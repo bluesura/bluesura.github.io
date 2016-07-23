@@ -1,0 +1,63 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "EnvColor",
+		"target": "画面",
+		"category": ["色の操作", "画面を指定色で塗りつぶす"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "EnvColor",
+	"description": "<p>画面を指定色で塗りつぶします。</p><p>ただし、AllPalFX(PalFX・BGPalFXはダメ ※PalFXはライフバーのLayerNo=1以上に設定されたFaceには効果がある。)・ヒットスパークやOnTop=1のスプライト・アニメーションやライフバーでLayer=1以上に設定されたスプライト(アニメーションは除く)は表示されます。ステージは、LayerNoの設定関係なしに塗りつぶされます。</p><p>超必殺・特殊技の演出などに使用出来ます。</p>",
+	"images": [{"src": "EnvColor.png", "width": "640", "height": "480", "alt": "MUGEN EnvColor"}],
+	"category": "state",
+
+	"version": [
+		{"no": "-", "content": "Timeを-1,-2に設定すると、ライフバーが塗りつぶされなくなり、ステージのLayerNo=1スプライトが塗りつぶされず前面に表示されそれ以外のレイヤーはvalueに関係なく透明に表示されなくなります。ラウンドごとにリセットされないかなり嫌がらせなバグ。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["赤", "緑", "青"],
+			"type": ["int", "int", "int"],
+			"description": "<p>画面を塗りつぶす色のR,G,B要素で指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["255", "255", "255 ;真白"],
+			"load_priority": ["1", "2", "3"]
+		},
+		{
+			"parameter": "Time",
+			"value": ["効果持続時間"],
+			"type": ["int"],
+			"description": "<p画面を塗りつぶすす時間をフレーム単位で指定。</p><p>-1,-2で効果の持続時間が永久になるが、謎のバグが発生するため使用を推奨できません。</p>",
+			"min_value": ["-2"],
+			"max_value": ["2147483646"],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["4"]
+		},
+		{
+			"parameter": "Under",
+			"value": ["背面フラグ"],
+			"type": ["int"],
+			"description": "<p>1にすると、キャラクターやAfterImage・Explod・Helper・MakeDust・Projectile・ステージでLayerNo=1に設定されたスプライトを塗りつぶさなくなります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["5"]
+		}
+	],
+
+	"quote": [
+		{"title": "EnvColor - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/EnvColor"},
+		{"title": "EnvColor - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?EnvColor"},
+		{"title": "EnvColor - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#EnvColor"},
+		{"title": "EnvColor - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
+	]
+}

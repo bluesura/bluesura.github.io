@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "TeamSide",
+		"target": "",
+		"category": ["キャラクターのパラメーター", "どっちのチームに所属していますか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "TeamSide",
+	"summary": "<p>プレイヤーが所属するチームを返します。</p>",
+	"syntax":[
+		"TeamSide"
+	],
+
+	"description": "<p>1P側(左側)なら1、2P側(右側)なら2の整数で返します。</p>",
+
+	"code_sample": [
+		{
+			"title": "プレイヤーが2P側のときのトリガー。",
+			"code": [
+				"Trigger1 = TeamSide = 2"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "TeamSide - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#teamside"}
+	]
+}

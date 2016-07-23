@@ -1,0 +1,51 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "DisplayToClipboard",
+		"target": "クリップボード",
+		"category": ["デバッグ", "クリップボードに変数・トリガー等の値を改行して表示"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "DisplayToClipboard",
+	"description": "<p>デバッグモード(Ctrl+D)でのみ有効なステートコントローラ。 </p><p>クリップボードの内容を消去し、デバッグ用のメッセージを表示します。</p><p>直前の値と見比べたい場合は、AppendToClipboardを使用します(併用も可)。</p>",
+	"images": [{"src": "AppendToClipboard.gif", "width": "640", "height": "480", "alt": "MUGEN AppendToClipboard"}],
+	"category": "state",
+	"associated_state": ["AppendToClipboard"],
+
+	"version": [
+		{"no": "Version1.0以上", "content": "%o,%x,%u,%c,%p,%nが使用不可能になりました。"},
+		{"no": "Version1.0以上", "content": "%sを記載しているとフリーズします。"},
+		{"no": "Version1.0より前", "content": "Paramsは5つまでしか指定できません。"},
+		{"no": "Version1.0以上", "content": "Paramsを6つまで指定できるようになりました。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "text",
+			"value": ["\"所定の文字列\""],
+			"type": ["string"],
+			"description": "<p>画面に出力したい文字列を、定められた書式に従って指定します。</p><p>基本的には\"\"で括った文字列がそのまま出力されますが、特別な書式として、</p><p>「\\n」が改行、「\\t」がタブ、「%%」が%、「%d」がint値、「%f」がfloat値として出力されます。</p><p>Version1.0より前では「%o」が8進数、「%x」が16進数、「%u」が負の補数表現、「%c」が整数値を文字で表示、「%p」がポインタ表示、「%n」がアドレス書き込み、「%s」が文字列として出力できます。</p>",
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "Params",
+			"value": ["引数1", "引数2", "引数3", "引数4", "引数5", "引数6"],
+			"type": [""],
+			"description": "<p>ここで指定した値が、指定順に、textで記述した%d、%fと置き換わります。6つまで指定可能。</p><p>text中の%d、%fの数と、paramsの数は、一致させる必要があります。データ型は、一致しなくてもエラーとはなりませんが、正しい値が返されません。</p>",
+			"parameter_type": "optional",
+			"default_value": [";なし"],
+			"load_priority": ["1", "2", "3", "4", "5", "6"]
+		}
+	],
+
+	"quote": [
+		{"title": "DisplayToClipboard - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/DisplayToClipboard"},
+		{"title": "DisplayToClipboard - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?DisplayToClipboard"},
+		{"title": "DisplayToClipboard - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#DisplayToClipboard"}
+	]
+}

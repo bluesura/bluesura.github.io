@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "NumEnemy",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "NumEnemy",
+	"summary": "<p>現在の敵の数を返します。</p>",
+	"syntax":[
+		"NumEnemy"
+	],
+
+	"description": "<p>ニュートラルプレイヤー(?)とノーマルタイプのヘルパーは数に含まれないそうです。書式: NumEnemy概要: なし戻り値の型: int使用例:Trigger1 = NumEnemy = 2Trigger1 = enemynear(1), name = \"Squash\"敵が2人いて、2番目に近い敵の名前が「Squash」さんだったときのトリガー。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

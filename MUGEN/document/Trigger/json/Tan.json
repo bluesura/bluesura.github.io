@@ -1,0 +1,37 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Tan",
+		"target": "",
+		"category": ["三角関数", "正接は何ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Tan",
+	"summary": "<p>ラジアンの正接を返します。</p>",
+	"syntax":[
+		"Tan(ラジアン)"
+	],
+
+	"description": "<p>正接を浮動小数点数で返します。引数には、浮動小数点数のタンジェントで指定します。</p>",
+
+	"version": [
+		{"no": "エラー", "content": "引数がSFalseの場合、SFalseを返します。"}
+	],
+
+	"code_sample": [
+		{
+			"title": "Tan(π/4)をvalueに代入",
+			"code": [
+				"value = Tan(Pi/4)"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

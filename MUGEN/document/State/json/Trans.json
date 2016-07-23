@@ -1,0 +1,137 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "Trans",
+		"target": "実行者自身",
+		"category": ["色の操作", "一時的にスプライトを透過します"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "Trans",
+	"description": "<p>Airファイルの透過指定を1フレームのみ変更します。</p>",
+	"images": [{"src": "trans.gif", "width": "640", "height": "480", "alt": "MUGEN "}],
+	"category": "state",
+
+  "version": [
+    {"no": "", "content": "AddAlpha・Add1は影と反射に影響を及ぼします。"},
+    {"no": "Version1.1から", "content": "AddAlpha・Add1でAlphaのソースアルファに負数が使えるようになりました。負数で透過されます。"}
+  ],
+
+	"parameter": [
+		{
+			"parameter": "Trans",
+			"value": ["透過型"],
+			"type": ["string"],
+			"description": "<p>透過型には、以下のいずれかの文字列を指定します。</p>",
+			"possible_value": [
+				["透過の種類", "効果"],
+				["Default", "何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。"],
+				["None", "透過処理無し。Airで透過処理している時無効にできる。"],
+				["Add", "画像を半透明にする。アルファ値256,256の加算透過。"],
+				["Add1", "Addより暗い感じの半透明にする。アルファ値256,128の加算透過。"],
+				["Sub", "画像を影のように半透明にする。減算透過。"],
+				["AddAlpha", "Alphaとセットで使用します。"]
+			],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "Alpha",
+			"value": ["ソースアルファ, デスティネーションアルファ"],
+			"type": ["int", "int"],
+			"description": "<p>透過型が\"AddAlpha\"の場合に指定します。有効範囲は0(低)から256(高)です。</p><p>ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。</p>",
+			"min_value": ["0 ;-256"],
+			"max_value": ["256"],
+			"parameter_type": "optional",
+			"default_value": ["256", "0"],
+			"load_priority": ["1", "2"]
+		}
+	],
+
+	"code_sample": [
+		{
+			"title": "",
+			"description": "",
+			"code": [
+				"[StateDef -2]",
+				"[State ]",
+				"Type                       = Null",
+				"Trigger1                   = !var(10)",
+				"Trigger1                   = var(10):=1",
+				"Trigger1                   = var(11):=1",
+				"[State ]",
+				"Type                       = Null",
+				"Trigger1                   = var(10)>256",
+				"Trigger1                   = var(11):=-1",
+				"Trigger2                   = var(10)<1",
+				"Trigger2                   = var(11):=1",
+				"[State ]",
+				"Type                       = Null",
+				"Trigger1                   = var(11)=1",
+				"Trigger1                   = var(10):=var(10)+3",
+				"Trigger2                   = var(11)=-1",
+				"Trigger2                   = var(10):=var(10)-3",
+				"",
+				"[State ,Trans]",
+				"Type                       = Trans",
+				"Trigger1                   = 1",
+				"Trans                      = AddAlpha",
+				"Alpha                      = var(10),125",
+				"Persistent                 = 1",
+				"IgnoreHitPause             = 0"
+			],
+			"media": {
+				"youtube": [
+					{"title": "", "file": "50zY223iGF0"}
+				]
+			}
+		},
+		{
+			"title": "",
+			"description": "",
+			"code": [
+				"[StateDef -2]",
+				"[State ]",
+				"Type                       = Null",
+				"Trigger1                   = !var(10)",
+				"Trigger1                   = var(10):=1",
+				"Trigger1                   = var(11):=1",
+				"[State ]",
+				"Type                       = Null",
+				"Trigger1                   = var(10)>256",
+				"Trigger1                   = var(11):=-1",
+				"Trigger2                   = var(10)<1",
+				"Trigger2                   = var(11):=1",
+				"[State ]",
+				"Type                       = Null",
+				"Trigger1                   = var(11)=1",
+				"Trigger1                   = var(10):=var(10)+3",
+				"Trigger2                   = var(11)=-1",
+				"Trigger2                   = var(10):=var(10)-3",
+				"",
+				"[State ,Trans]",
+				"Type                       = Trans",
+				"Trigger1                   = 1",
+				"Trans                      = AddAlpha",
+				"Alpha                      = 125,var(10)",
+				"Persistent                 = 1",
+				"IgnoreHitPause             = 0"
+			],
+			"media": {
+				"youtube": [
+					{"title": "", "file": "868b5oz8I9c"}
+				]
+			}
+		}
+	],
+
+
+	"quote": [
+		{"title": "Trans - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/Trans"},
+		{"title": "Trans - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Trans"},
+		{"title": "Trans - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Trans"}
+	]
+}

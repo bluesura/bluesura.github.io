@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "HitVel X",
+		"target": "",
+		"category": ["くらい関係", "プレイヤーが攻撃を受けた時、どれだけの速度がでているか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "HitVelX",
+	"summary": "<p>プレイヤーが攻撃を受けたときの速度を取得します。</p>",
+	"syntax":[
+		"HitVel X"
+	],
+
+	"description": "<p>HitVel Yは、上方向が、HitVel Xは後方が正の値となります。 戻り値の型: float</p>",
+
+	"code_sample": [
+		{
+			"title": "攻撃を受けたときのX方向の吹き飛び速度が0.5ピクセル毎フレームより大きいときのトリガー",
+			"code": [
+				"Trigger1 = HitVel X > 0.5"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "ParentDist X",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "ParentDistX",
+	"summary": "<p>親までの距離を返します。</p>",
+	"syntax":[
+		"ParentDist X"
+	],
+
+	"description": "<p>ヘルパーのステート内で使用します。P2Distと同じような働きをします。書式: ParentDist [要素] 概要: [要素]には、 Xまたは Yを指定します。間の半角スペースは、必須です。戻り値の型: floatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。エラー条件: 親がdestroyselfしている場合、SFalseを返します。詳細: ParentDist Y は、自分のY軸のheightとの座標差を返します。負の値は、親が頭上にいることを意味します。ParentDist X は、ヘルパーの中心軸から親の中心軸までの座標差を返します。正の値は、親がヘルパーの前にいることを意味します。使用例: Trigger1 = ParentDist X != 0 ヘルパーのX座標が親と同じでない場合のトリガー。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

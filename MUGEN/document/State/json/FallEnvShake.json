@@ -1,0 +1,21 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "FallEnvShake",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "FallEnvShake",
+	"description": "<p>プレイヤーが攻撃を受けているときに有効。相手のHitDef中のfall.envshakeパラメータを実行します。やられステートを上書きするときや、特殊なやられなどに使用。</p>",
+	"category": "state",
+
+	"quote": [
+		{"title": "FallEnvShake - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/FallEnvShake"},
+		{"title": "FallEnvShake - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?FallEnvShake"},
+		{"title": "FallEnvShake - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#FallEnvShake"}
+	]
+}

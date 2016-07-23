@@ -1,0 +1,40 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "ProjContact",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "ProjContact",
+	"summary": "<p>プレイヤーのProjectile(飛び道具)がヒット又はガード(以下、「接触」)したか、していないかを判定し、真偽を返します。</p>",
+	"syntax":[
+		"ProjContact",
+		"ProjContact(ProjectileのID)"
+	],
+
+	"description": "<p>また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjContactTimeの方を使った方がよいしょう。もちろん、単体ではファンクショントリガーとして使用できません。書式: 1. ProjContact[ID] = 値1 2. ProjContact[ID] = 値1, [符号] 値2 概要: [ID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、接触を調べる場合1を、非接触を調べる場合0を指定。[符号]には、 =, !=, <, >, <=, >= のうちのいずれかを指定します。値2には、比較する時間を指定します。戻り値の型: boolean int  詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveContactとは異なり、接触後1フレームしか値を返しません。様式2は、正の整数nが条件式\"n [符号] 値2\"を満たす場合、接触してからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。</p>",
+
+	"code_sample": [
+		{
+			"title": "ID1234のProjectileが接触した場合のトリガー",
+			"code": [
+				"Trigger1 = ProjContact(1234) = 1"
+			]
+		},
+		{
+			"title": "ID456のProjectileが過去15フレーム未満の間に接触しなかった場合のトリガー",
+			"code": [
+				"Trigger1 = ProjContact(456) = 0, < 15"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

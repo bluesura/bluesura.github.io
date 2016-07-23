@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Asin",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Asin",
+	"summary": "<p>ラジアンの逆正弦を返します。</p>",
+	"syntax":[
+		"Asin(ラジアン)"
+	],
+
+	"description": "<p>引数のアークサイン（逆正弦）値を返します。つまり、sinθ=引数となるθを、ラジアンで返します。概要:引数には、アークサインを計算したい値をfloatで指定します。戻り値の型: floatまたは、引数がアークサインの範囲外([-1.0,1.0])の場合もSFalseとなります。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

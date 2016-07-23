@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "TicksPerSecond",
+		"target": "",
+		"category": ["システムのパラメーター", "1秒が何フレームで処理されるように設定されていますか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "TicksPerSecond",
+	"summary": "<p>1秒が何フレームで処理されているかを返します。</p>",
+	"syntax":[
+		"TicksPerSecond"
+	],
+
+	"description": "<p>1秒あたりの単位時間を整数で返します。1フレームが1/60秒のとき60を返すことになります。 音声や取り込みアニメなどを、ゲームスピードに関係なく特定の間隔で再生したい場合に有効です。</p>",
+
+	"code_sample": [
+		{
+			"title": "ゲームスピードにかかわらず、ステート経過時間が10秒を超えているときのトリガー",
+			"code": [
+				"Trigger1 = Time > 10 * TicksPerSecond"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "TicksPerSecond - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#tickspersecond"}
+	]
+}

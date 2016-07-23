@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "MoveGuarded",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "MoveGuarded",
+	"summary": "<p>プレイヤーの攻撃がガードされたかどうかを返します。</p>",
+	"syntax":[
+		"MoveGuarded"
+	],
+
+	"description": "<p>攻撃判定のあるステートでのみ効果のあるトリガーで、プレイヤーの攻撃がガードされたとき、1を返します。winmugenでは仕様が異なり、ガードされてからの時間を返します。cmdファイル内で\"StateNo\"、\"Command\"と組み合わせ、キャンセル条件としてよく使われます。書式:MoveGuarded概要: なし戻り値の型:Dos版はboolean int (1 or 0)Win版はint詳細:MoveContactを参照のこと。使用例:Trigger1 = MoveGuarded攻撃が防御されたときのトリガー。Trigger1 = MoveGuarded = 1こう記述すると、DosとWinで差が出ます。Dosでは「ガードされてからステートが終了するまで」を意味しますが、Winでは「ガード後1フレーム目(ガードポーズが終わった瞬間)」を意味します。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

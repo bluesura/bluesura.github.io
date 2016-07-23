@@ -1,0 +1,34 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "IsHelper",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "IsHelper",
+	"summary": "<p>ヘルパーかどうかを返します。</p>",
+	"syntax":[
+		"IsHelper",
+		"IsHelper(HelperのID)"
+	],
+
+	"description": "<p>プレイヤーがヘルパーなら1を、それ以外なら0を返します。ヘルパーのIDを引数に指定することができ、その場合はプレイヤーが指定されたIDのヘルパーのとき1を返します。書式:IsHelperIsHelper(引数) 概要: なし戻り値の型: boolean int (1 or 0)使用例:1. Trigger1 = !IsHelperプレイヤーがヘルパーでないときのトリガー。2. Trigger1 = IsHelper(1234)プレイヤーがID1234のヘルパーの場合のトリガー。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

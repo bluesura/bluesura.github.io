@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Power",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Power",
+	"summary": "<p>プレイヤーの標準ゲージ現在量を返します。</p>",
+	"syntax":[
+		"Power"
+	],
+
+	"description": "<p>戻り値の型: int</p>",
+
+	"code_sample": [
+		{
+			"title": "ゲージ残量が1,000(レベル1)以上のときのトリガー。",
+			"code": [
+				"Trigger1 = Power >= 1000 "
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

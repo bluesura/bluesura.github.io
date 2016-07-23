@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "RoundNo",
+		"target": "",
+		"category": ["試合の情報", "何ラウンド目ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "RoundNo",
+	"summary": "<p>現在のラウンド数を返します。</p>",
+	"syntax":[
+		"RoundNo"
+	],
+
+	"description": "<p>戻り値の型: int</p>",
+
+	"code_sample": [
+		{
+			"title": "3ラウンド目のときのトリガー。",
+			"code": [
+				"Trigger1 = RoundNo = 3"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

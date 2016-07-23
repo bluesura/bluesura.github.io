@@ -1,0 +1,35 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "WinKO",
+		"target": "",
+		"category": ["勝敗判定", "ラウンドでKO勝利したか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "WinKO",
+	"summary": "<p>ラウンドで対戦相手を死亡させて勝利したかどうかを返します。</p>",
+	"syntax":[
+		"WinKO"
+	],
+
+	"description": "<p>ラウンドで対戦相手を死亡させて勝利している場合は1、<span class=\"decoration-font-line-blue\">それ以外の場合は0</span>を返します。</p><p>フラグはライフが0になった次のフレームにたちます。</p><p>ラウンドのKO勝利判定は<code><a href=\"WinKO.html\">WinKO</a></code>・ラウンドのパーフェクト勝利判定は<code><a href=\"WinPerfect.html\">WinPerfect</a></code>・ラウンドの時間切れ勝利判定は<code><a href=\"WinTime.html\">WinTime</a></code>・ラウンドの勝利判定は<code><a href=\"Win.html\">Win</a></code>、ラウンドのKO敗北判定は<code><a href=\"LoseKO.html\">LoseKO</a></code>・ラウンドの時間切れ敗北判定は<code><a href=\"LoseTime.html\">LoseTime</a></code>・ラウンドの敗北判定は<code><a href=\"Lose.html\">Lose</a></code>、ラウンドの引き分け判定は<code><a href=\"DrawGame.html\">DrawGame</a></code>、マッチの決着判定は<code><a href=\"MatchOver.html\">MatchOver</a></code>を使用して下さい。</p><p></p>",
+
+	"parameter": [
+		{
+			"parameter": "",
+			"type": [""],
+			"description": "<p></p>",
+			"min_value": [""],
+			"max_value": [""]
+		}
+	],
+
+	"quote": [
+		{"title": "Win - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#win"},
+		{"title": "WinKO - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/110.html"}
+	]
+}

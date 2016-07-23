@@ -1,0 +1,47 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "VelAdd",
+		"target": "実行者自身",
+		"category": ["速度操作", "指定の向きに速度を加算"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "VelAdd",
+	"description": "<p>速度を増減します。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "X",
+			"value": ["水平方向乗算速度"],
+			"type": ["float"],
+			"description": "<p>各方向の速度を指定。水平方向は、ターゲットが向いている方向が正。垂直方向は、下方向が正です。両方同時に指定できますし、どちらか一方指定してもかまいません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Y",
+			"value": ["垂直方向乗算速度"],
+			"type": ["float"],
+			"description": "<p>各方向の速度を指定。水平方向は、ターゲットが向いている方向が正。垂直方向は、下方向が正です。両方同時に指定できますし、どちらか一方指定してもかまいません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["2"]
+		}
+	],
+
+	"quote": [
+		{"title": "VelAdd - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/VelAdd"},
+		{"title": "VelAdd - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VelAdd"},
+		{"title": "VelAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#VelAdd"},
+		{"title": "VelAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
+	]
+}

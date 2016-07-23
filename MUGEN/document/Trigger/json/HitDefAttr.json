@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "HitDefAttr",
+		"target": "",
+		"category": ["攻撃属性", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "HitDefAttr",
+	"summary": "<p>プレーヤーのHitDefコントローラが実行されているとき、そのattrの値を判定し、真偽を返します。</p>",
+	"syntax":[
+		"HitDefAttr"
+	],
+
+	"description": "<p>主にcmdファイル内で使用されます。書式: HitDefAttr [符号] 値1, 値2概要:[符号]には、 = 又は != を指定します。他は無効。値1には、「立ち」、「しゃがみ」、「空中」を表す\"S\"、\"C\"、\"A\"の文字のうちから、少なくとも1つを指定します。複数の指定も可能で、例えば、\"SA\"であれば、「立ち又は空中」を意味します。値2には、「通常」、「必殺」、「超必殺」を表す\"N\"、\"S\"、\"H\"と、「攻撃」、「投げ」を表す\"A\"、\"T\"を組み合わせた2文字で指定します。例えば、通常攻撃は\"NA\"です。また、複数の組み合わせをコンマで区切って指定できます。例えば、\"SA, ST, HA, HT\"で必殺攻撃、必殺投げ、 超必殺攻撃、超必殺投げを意味します。HitDefの攻撃属性指定の書式を、属性1, 属性2とすると、このトリガーは、属性1、属性2がそれぞれ値1、値2に含まれていた場合に1を返します。戻り値の型: boolean int (1 or 0)使用例:Trigger1 = HitDefAttr = A, HAプレイヤーが空中超必殺技を出しているときのトリガー。Trigger1 = HitDefAttr = SC, NA, SAプレイヤーが立ち又はしゃがみ状態で通常攻撃又は必殺技を出しているときのトリガー。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

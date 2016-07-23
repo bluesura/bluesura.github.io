@@ -1,0 +1,37 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "InGuardDist",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"version": [
+		{"no": "?", "content": "Windows版"}
+	],
+
+	"trigger": "InGuardDist",
+	"summary": "<p>敵の攻撃、または敵の飛び道具の攻撃認識範囲内にいるかどうかを返します。</p>",
+	"syntax":[
+		"InGuardDist"
+	],
+
+	"description": "<p>敵の攻撃、または敵の飛び道具の攻撃認識範囲内にいる場合に1を、いない場合、0を返します。「攻撃認識範囲」は、相手のHitDefのguard.distパラメータで指定されている値です。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

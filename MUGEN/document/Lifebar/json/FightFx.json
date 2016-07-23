@@ -1,0 +1,36 @@
+{
+	"page": {
+		"title": "M.U.G.E.N ライフバー設定項目一覧",
+		"subtitle": "[FightFx]",
+		"target": "",
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"title": "FightFx",
+	"group": "[FightFx]",
+	"description": "MUGEN version 1.0(MUGEN RC)以上で、有効な設定です。WinMugenで記述してもとりあえず大丈夫です（書いても無視されます）。[Files]で指定したfightfx.sffやfightfx.airの設定ができます。",
+
+	"sample_code": {
+		"code": [
+			"[FightFx]",
+			"<a href=\"./FightFx.html#Scale\">Scale</a> = "
+		]
+	},
+
+	"parameter": [
+		{
+			"parameter": "Scale",
+			"value": ["倍率"],
+			"type": ["float"],
+			"description": "表示される大きさを調整できます。"
+		}
+	],
+
+	"quote": [
+		{"title": "Cabbit007's LifeBar Tutorial - RANDOM SELECT", "url": "https://docs.google.com/viewer?a=v&q=cache:wk0WfSKcE1UJ:moogen.piiym.net/files/LifeBar_tutorial.doc+&hl=ja&gl=jp&pid=bl&srcid=ADGEESjMMLACx97cJMbe_PLaOB4LIuGXjLUNCCX1oBR6A31VtVR1MH9gRGgTR-gQP9aDqukKTvHoFMgSgdkWv_6LmQZxnMwFH3e8ylyHvzVehxlEv5NQ1sDesHoDQPK2ABxZxR4F0Spl&sig=AHIEtbR4dlMgJl-_ZzZAvDxFlEzHe3WnDA"},
+		{"title": "ごろごろむ", "url": "http://gorogorom.blog44.fc2.com/"},
+		{"title": "新Mugenについて - 気まぐれ猫", "url": "http://page.freett.com/mugen_m3/NewMugen-3.html#2-5"},
+		{"title": "2010/11/24 (Wed) fight.def基礎知識その１ - lunaの倉庫", "url": "http://lunatic284.blog90.fc2.com/blog-entry-5836.html"}
+	]
+}

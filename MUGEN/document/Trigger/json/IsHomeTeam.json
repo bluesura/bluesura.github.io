@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "IsHomeTeam",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "IsHomeTeam",
+	"summary": "<p>プレイヤーのチームがホームかどうかを返します。</p>",
+	"syntax":[
+		"IsHomeTeam"
+	],
+
+	"description": "<p>プレイヤーのチームが「ホームチーム」とみなされれば1を返します。アーケードモードではCPUが、対戦時はP1側（左側）が「ホームチーム」とみなされるそうです。用途不明。書式: IsHomeTeam概要: なし戻り値の型: boolean int (1 or 0)使用例: なし</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

@@ -1,0 +1,56 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "WinTime",
+		"target": "",
+		"category": ["勝敗判定", "ラウンドで時間切れ勝利をしたか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "WinTime",
+	"summary": "<p>ラウンドで時間切れ勝利したかどうかを返します。</p>",
+	"syntax":[
+		"WinTime"
+	],
+
+	"description": "<p>ラウンドで時間切れによる体力判定勝利している場合は1、<span class=\"decoration-font-line-blue\">それ以外の場合は0</span>を返します。</p><p>フラグはライフが0になった次のフレームにたちます。</p><p>ラウンドのKO勝利判定は<code><a href=\"WinKO.html\">WinKO</a></code>・ラウンドのパーフェクト勝利判定は<code><a href=\"WinPerfect.html\">WinPerfect</a></code>・ラウンドの時間切れ勝利判定は<code><a href=\"WinTime.html\">WinTime</a></code>・ラウンドの勝利判定は<code><a href=\"Win.html\">Win</a></code>、ラウンドのKO敗北判定は<code><a href=\"LoseKO.html\">LoseKO</a></code>・ラウンドの時間切れ敗北判定は<code><a href=\"LoseTime.html\">LoseTime</a></code>・ラウンドの敗北判定は<code><a href=\"Lose.html\">Lose</a></code>、ラウンドの引き分け判定は<code><a href=\"DrawGame.html\">DrawGame</a></code>、マッチの決着判定は<code><a href=\"MatchOver.html\">MatchOver</a></code>を使用して下さい。</p><p>時間切れ勝利で特殊な勝利演出や処理をしたい場合に使用されています。</p>",
+
+	"parameter": [
+		{
+			"parameter": "",
+			"type": ["boolean"],
+			"description": "<p></p>",
+			"min_value": ["0"],
+			"max_value": ["1"]
+		}
+	],
+
+	"code_sample": [
+		{
+			"title": "フラグ管理",
+			"description": "時間切れ勝利していて、キャラクターが指定したアニメーションだった場合にフラグを立てる。",
+			"code": [
+				"[State ]",
+				"Type=VarSet",
+				"TriggerAll=Time=0&&(Root,StateNo=[1100,1199])&&Root,Alive=1&&WinTime=1",
+				"Trigger1=Anim=10205||Anim=10229||Anim=10405||Anim=10705||Anim=10711||Anim=11000||Anim=11015||Anim=11100||Anim=11110||Anim=11301||Anim=11317||Root,var(57)=19",
+				"var(0)=2"
+			]
+		}
+	],
+
+	"associated_trigger": [
+		"Win","WinKO","WinPerfect",
+		"Lose","LoseKO","LoseTime",
+		"DrawGame",
+		"MatchOver"
+	],
+
+	"quote": [
+		{"title": "Win - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#win"},
+		{"title": "WinTime - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/111.html"}
+	]
+}

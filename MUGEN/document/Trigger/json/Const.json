@@ -1,0 +1,404 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Const",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Const",
+	"summary": "<p>cnsの冒頭部で設定した各種パラメータを返します。</p>",
+	"syntax":[
+		"Const(Data.Life)",
+		"Const(Data.Attack)",
+		"Const(Data.Defence)",
+		"Const(Data.Fall.Defence_Mul)",
+		"Const(Data.Liedown.Time)",
+		"Const(Data.AirJuggle)",
+		"Const(Data.SparkNo)",
+		"Const(Data.Guard.SparkNo)",
+		"Const(Data.KO.Echo)",
+		"Const(Data.IntPersistIndex)",
+		"Const(Data.FloatPersistIndex)",
+		"Const(Size.XScale)",
+		"Const(Size.YScale)",
+		"Const(Size.Ground.Back)",
+		"Const(Size.Ground.Front)",
+		"Const(Size.Air.Back)",
+		"Const(Size.Air.Front)",
+		"Const(Size.Height)",
+		"Const(Size.Attack.Dist)",
+		"Const(Size.Proj.Attack.Dist)",
+		"Const(Size.Proj.Doscale)",
+		"Const(Size.Head.Pos.X)",
+		"Const(Size.Head.Pos.Y)",
+		"Const(Size.Mid.Pos.X)",
+		"Const(Size.Mid.Pos.Y)",
+		"Const(Size.Shadowoffset)",
+		"Const(Size.Draw.offset.Y)",
+		"Const(Size.Draw.offset.X)",
+		"Const(Velocity.Walk.Fwd.X)",
+		"Const(Velocity.Walk.Back.X)",
+		"Const(Velocity.Run.Fwd.X)",
+		"Const(Velocity.Run.Fwd.Y)",
+		"Const(Velocity.Run.Back.X)",
+		"Const(Velocity.Run.Back.Y)",
+		"Const(Velocity.Jump.Y)",
+		"Const(Velocity.Jump.Neu.X)",
+		"Const(Velocity.Jump.Back.X)",
+		"Const(Velocity.Jump.Fwd.X)",
+		"Const(Velocity.Runjumo.Back.X)",
+		"Const(Velocity.Runjumo.Fwd.X)",
+		"Const(Velocity.AirJump.Y)",
+		"Const(Velocity.AirJump.Neu.X)",
+		"Const(Velocity.AirJump.Back.X)",
+		"Const(Velocity.AirJump.Fwd.X)",
+		"Const(Movement.Airjump.Num)",
+		"Const(Movement.AirJump.Height)",
+		"Const(Movement.YAccel)",
+		"Const(Movement.Stand.Friction)",
+		"Const(Movement.Crouch.Friction)"
+	],
+
+	"description": "<p>自分にとっては定数なので、自分のCnsを参照しても、あまり意味はありません。主に、相手のパラメータを参照したり、相手に参照させるステートで使用したります。書式: Const(パラメータ名)概要:パラメータ名には、参照したいパラメータ名を指定します。指定できる値については詳細を参照のこと。戻り値の型:パラメータによって異なります。詳細:以下はcnsファイル中の[Data]部分で設定されているパラメータを参照します。</p>",
+
+	"parameter": [
+		{
+			"parameter": "Data.Life",
+			"type": ["int"],
+			"description": "<p>\"life\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Data.Attack",
+			"type": ["int"],
+			"description": "<p>\"attack\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Data.defence",
+			"type": ["int"],
+			"description": "<p>\"defence\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Data.fall.defence_mul",
+			"type": ["float"],
+			"description": "<p>\"fall.defence_up\" パラメータを f として、 100/(f+100)を返します。</p>"
+		},
+		{
+			"parameter": "Data.liedown.time",
+			"type": ["int"],
+			"description": "<p>\"liedown.time\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Data.airjuggle",
+			"type": ["int"],
+			"description": "<p>\"airjuggle\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Data.sparkno",
+			"type": ["int"],
+			"description": "<p>\"sparkno\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Data.guard.sparkno",
+			"type": ["int"],
+			"description": "<p>\"guard.sparkno\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Data.KO.echo",
+			"type": ["int"],
+			"description": "<p>\"ko.echo\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Data.IntPersistIndex",
+			"type": ["int"],
+			"description": "<p>\"IntPersistIndex\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Data.FloatPersistIndex",
+			"type": ["int"],
+			"description": "<p>\"FloatPersistIndex\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.xscale",
+			"type": ["float"],
+			"description": "<p>\"xscale\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.yscale",
+			"type": ["float"],
+			"description": "<p>\"yscale\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.ground.back",
+			"type": ["int"],
+			"description": "<p>\"ground.back\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.ground.front",
+			"type": ["int"],
+			"description": "<p>\"ground.front\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.air.back",
+			"type": ["int"],
+			"description": "<p>\"air.back\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.air.front",
+			"type": ["int"],
+			"description": "<p>\"air.front\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.height",
+			"type": ["int"],
+			"description": "<p>\"height\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.attack.dist",
+			"type": ["int"],
+			"description": "<p>\"attack.dist\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.proj.attack.dist",
+			"type": ["int"],
+			"description": "<p>\"proj.attack.dist\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.proj.doscale",
+			"type": ["int"],
+			"description": "<p>\"proj.doscale\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.head.pos.x",
+			"type": ["int"],
+			"description": "<p>\"head.pos\" パラメータのx要素を返します。</p>"
+		},
+		{
+			"parameter": "size.head.pos.y",
+			"type": ["int"],
+			"description": "<p>\"head.pos\" パラメータのy要素を返します。</p>"
+		},
+		{
+			"parameter": "size.mid.pos.x",
+			"type": ["int"],
+			"description": "<p>\"mid.pos\" パラメータのx要素を返します。</p>"
+		},
+		{
+			"parameter": "size.mid.pos.y",
+			"type": ["int"],
+			"description": "<p>\"mid.pos\" パラメータのy要素を返します。</p>"
+		},
+		{
+			"parameter": "size.shadowoffset",
+			"type": ["int"],
+			"description": "<p>\"shadowoffset\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "size.draw.offset.x",
+			"type": ["int"],
+			"description": "<p>\"draw.offset\" パラメータのx要素を返します。</p>"
+		},
+		{
+			"parameter": "size.draw.offset.y",
+			"type": ["int"],
+			"description": "<p>\"draw.offset\" パラメータのy要素を返します。</p>"
+		},
+		{
+			"parameter": "size.attack.z.width.front",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "size.attack.z.width.back",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "size.z.width",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.walk.fwd.x",
+			"type": ["float"],
+			"description": "<p>\"walk.fwd\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Velocity.walk.back.x",
+			"type": ["float"],
+			"description": "<p>\"walk.back\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Velocity.run.fwd.x",
+			"type": ["float"],
+			"description": "<p>\"run.fwd\" パラメータのx要素を返します。</p>"
+		},
+		{
+			"parameter": "Velocity.run.fwd.y",
+			"type": ["float"],
+			"description": "<p>\"run.fwd\" パラメータのy要素を返します。</p>"
+		},
+		{
+			"parameter": "Velocity.run.back.x",
+			"type": ["float"],
+			"description": "<p>\"run.back\" パラメータのx要素を返します。</p>"
+		},
+		{
+			"parameter": "Velocity.run.back.y",
+			"type": ["float"],
+			"description": "<p>\"run.back\" パラメータのy要素を返します。</p>"
+		},
+		{
+			"parameter": "Velocity.jump.y",
+			"type": ["float"],
+			"description": "<p>\"jump.neu\" パラメータのy要素を返します。\"Velocity.jump.neu.y\"ではなく、\"neu\" パラメータなので注意！</p>"
+		},
+		{
+			"parameter": "Velocity.jump.neu.x",
+			"type": ["float"],
+			"description": "<p>\"jump.neu\" パラメータのx要素を返します。</p>"
+		},
+		{
+			"parameter": "Velocity.jump.back.x",
+			"type": ["float"],
+			"description": "<p>\"jump.back\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Velocity.jump.fwd.x",
+			"type": ["float"],
+			"description": "<p>\"jump.fwd\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Velocity.runjump.back.x",
+			"type": ["float"],
+			"description": "<p>\"runjump.back\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Velocity.runjump.fwd.x",
+			"type": ["float"],
+			"description": "<p>\"runjump.fwd\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Velocity.airjump.y",
+			"type": ["float"],
+			"description": "<p>\"airjump.neu\" パラメータのy要素を返します。\"Velocity.airjump.neu.y\"じゃありませんので、注意！</p>"
+		},
+		{
+			"parameter": "Velocity.airjump.neu.x",
+			"type": ["float"],
+			"description": "<p>\"airjump.neu\" パラメータのx要素を返します。</p>"
+		},
+		{
+			"parameter": "Velocity.airjump.back.x",
+			"type": ["float"],
+			"description": "<p>\"airjump.back\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Velocity.airjump.fwd.x",
+			"type": ["float"],
+			"description": "<p>\"airjump.fwd\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "Velocity.airjump.down.x",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.airjump.up.x",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.jump.down.x",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.jump.up.x",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.run.down.x",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.run.down.y",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.run.up.x",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.run.up.y",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.runjump.down.x",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.runjump.up.x",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.runjump.y",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.walk.down.x",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "Velocity.walk.up.x",
+			"type": [""],
+			"description": "<p></p>"
+		},
+		{
+			"parameter": "movement.airjump.num",
+			"type": ["int"],
+			"description": "<p>\"airjump.num\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "movement.airjump.height",
+			"type": ["int"],
+			"description": "<p>\"airjump.height\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "movement.yaccel",
+			"type": ["float"],
+			"description": "<p>\"yaccel\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "movement.stand.friction",
+			"type": ["float"],
+			"description": "<p>\"stand.friction\" パラメータを返します。</p>"
+		},
+		{
+			"parameter": "movement.crouch.friction",
+			"type": ["float"],
+			"description": "<p>\"crouch.friction\" パラメータを返します。</p>"
+		}
+	],
+
+	"code_sample": [
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"},
+		{"title": "５１２オーバーフローバグ表 - lunaの倉庫", "url": "http://blog-imgs-48-origin.fc2.com/l/u/n/lunatic284/20140218214013fe3.txt"}
+	]
+}

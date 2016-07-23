@@ -1,0 +1,61 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "Width",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "Width",
+	"description": "<p>このステートコントローラー実行したプレイヤーのキャラや画面端の幅サイズを変更します。効果は、1フレームしか無いので注意！</p><p>デバッグモードで、判定枠を表示(Ctrl+C)させると、対画面端幅を示すバーが橙で、対プレイヤー幅を示すバーが黄色で、重なっている部分が明るい黄色で表示されます。例えば、edge=40とすると画面端から40ピクセルの範囲はプレイヤーが進入不可になります。</p><p>投げ技中の攻撃側が、これを使わないと画面端で敵との位置が狂ってしまいます(ScreenBoundを使うサムスピ式の方法もあります)。</p>",
+	"images": [{"src": "Width.png", "width": "640", "height": "480", "alt": "MUGEN Width"}],
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "Edge",
+			"value": ["前方画面端幅", "後方画面端幅(省略可能)"],
+			"type": ["int", "int"],
+			"description": "<p>画面端に対するプレイヤーの幅をピクセル単位指定。</p><p>画面端から指定値までの範囲は進入不可能になります。</p><p>前面と後ろにプレイヤーのエッジの幅を設定します。</p><p>エッジ幅は、プレイヤーが画面の端に得ることができますどれだけ近いかを判断します。</p>",
+			"min_value": ["-2147483647", "-2147483647"],
+			"max_value": ["2147483647", "2147483647"],
+			"parameter_type": "required",
+			"default_value": ["0", "0"],
+			"load_priority": ["1", "2"]
+		},
+		{
+			"parameter": "Player",
+			"value": ["前方プレイヤー幅", "後方プレイヤー幅(省略可能)"],
+			"type": ["int", "int"],
+			"description": "<p>相手に対するプレイヤー幅を指定。</p><p>前面と後ろに選手の幅を設定します。プレーヤの横幅はプレイヤーが他のプレイヤーに取得することができますどれだけ近いかを決定します。</p>",
+			"min_value": ["-2147483647", "-2147483647"],
+			"max_value": ["2147483647", "2147483647"],
+			"parameter_type": "required",
+			"default_value": ["0", "0"],
+			"load_priority": ["3", "4"]
+		},
+		{
+			"parameter": "; value",
+			"value": ["前方幅", "後方幅"],
+			"type": ["int", "int"],
+			"description": "<p>画面端とプレイヤー幅を両方設定出来る、EdgeとPlayerの短縮構文です。EdgeとPlayerのパラメータが指定されていない場合にのみ、有効になります。</p>",
+			"min_value": ["-2147483647", "-2147483647"],
+			"max_value": ["2147483647", "2147483647"],
+			"parameter_type": "instead",
+			"default_value": ["0", "0"],
+			"load_priority": ["1→3", "2→4"]
+		}
+	],
+
+	"quote": [
+		{"title": "Width - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/Width"},
+		{"title": "Width - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Width"},
+		{"title": "Width - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/50.html"},
+		{"title": "Width - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Width"},
+		{"title": "Width - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"},
+		{"title": "画面端で裏回らないために - DHQの雑記とか", "url": "http://dhq.blog137.fc2.com/blog-entry-93.html"}
+	]
+}

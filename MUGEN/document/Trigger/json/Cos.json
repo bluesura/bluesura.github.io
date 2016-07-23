@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Cos",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Cos",
+	"summary": "<p>ラジアンの余弦を返します。</p>",
+	"syntax":[
+		"Cos(ラジアン)"
+	],
+
+	"description": "<p>引数には、コサインを計算したい値をfloatで指定します。戻り値の型: float余弦波を点滅や軌道に利用します。</p>",
+
+	"code_sample": [
+		{
+			"title": "Cos(0)の計算結果をvalueに代入します。",
+			"code": [
+				"value = Cos(0)"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

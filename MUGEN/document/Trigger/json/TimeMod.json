@@ -1,0 +1,42 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "TimeMod",
+		"target": "",
+		"category": ["数値計算", "剰余は何ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "TimeMod",
+	"summary": "<p>Timeの剰余計算を比較した結果を返します。</p>",
+	"syntax":[
+		"TimeMod = 除数・正の整数, 剰余・整数",
+		"TimeMod != 除数・正の整数, 剰余・整数",
+		"TimeMod < 除数・正の整数, 剰余・整数",
+		"TimeMod > 除数・正の整数, 剰余・整数",
+		"TimeMod <= 除数・正の整数, 剰余・整数",
+		"TimeMod >= 除数・正の整数, 剰余・整数"
+	],
+
+	"description": "<p>ステート時間を第1指定値で割った余りが第2指定値と符号の条件を満たしている場合は1、満たしていなお場合は0を返します。%も割り算の余りを返す符号なので、代用可能で、このトリガーは使う必要がありません。</p>",
+
+	"version": [
+		{"no": "エラー", "content": "除数を0にするとSFalseを返します。"}
+	],
+
+	"code_sample": [
+		{
+			"title": "ステートの経過時間が 3, 7, 11, 15, ...のときのトリガー",
+			"code": [
+				"Trigger1 = TimeMod = 4, 3"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "TimeMod - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#timemod"}
+	]
+}

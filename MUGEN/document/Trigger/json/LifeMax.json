@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "LifeMax",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "LifeMax",
+	"summary": "<p>プレイヤーの体力の最大値を返します。</p>",
+	"syntax":[
+		"LifeMax"
+	],
+
+	"description": "<p>シングルモードでは、cnsファイルの[data]グループにあるlifeパラメータを返しますが、チームモード等では異なる値を返します。</p>",
+
+	"code_sample": [
+		{
+			"title": "プレイヤーの現体力が最大値の1/4未満のときのトリガー",
+			"code": [
+				"Trigger1 = Life < LifeMax / 4"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

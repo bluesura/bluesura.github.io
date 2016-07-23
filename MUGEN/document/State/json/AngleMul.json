@@ -1,0 +1,37 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "AngleMul",
+		"target": "実行者自身",
+		"category": ["角度操作", "AngleDrawの角度に乗算"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "AngleMul",
+	"description": "<p>AngleDrawで回転させる角度を倍数で指定。</p><p>単位は度。角度を返すトリガー(arc●●●)は、戻り値がラジアンなので、変換が必要となります。</p>",
+	"images": [{"src": "AngleDraw.gif", "width": "640", "height": "480", "alt": "MUGEN AngleDraw"}],
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["倍数"],
+			"type": ["float"],
+			"description": "<p>乗算する角度を指定。省略不可。見た目としては、1以上でアクセル、0～1間の小数でブレーキとして働きます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["1"]
+		}
+	],
+
+	"quote": [
+		{"title": "AngleMul - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/AngleMul"},
+		{"title": "AngleMul - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AngleMul"},
+		{"title": "AngleMul - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AngleMul"},
+		{"title": "AngleMul - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
+	]
+}

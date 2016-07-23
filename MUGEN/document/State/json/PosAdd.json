@@ -1,0 +1,60 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "PosAdd",
+		"target": "実行者自身",
+		"category": ["位置操作", "現在位置から指定値だけ移動"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "PosAdd",
+	"description": "<p><code>PosAdd</code>の実行者を指定した値だけ瞬時に移動させます。単位はピクセル。</p><p>基準点(0,0)は、AIRファイルで設定した基準点になります。<span class=\"decoration-font-line-red\">実行者が動くと基準点も同じように動きます。</span></p>",
+	"images": [{"src": "PosAdd.png", "width": "640", "height": "480", "alt": "MUGEN PosSet"}],
+	"category": "state",
+	"associated_trigger": [
+    "Pos X", "Pos Y", "ScreenPos X", "ScreenPos Y",
+    "P2Dist X", "P2Dist Y", "P2BodyDist X", "P2BodyDist Y",
+    "FrontEdgeDist", "BackEdgeDist",
+    "FrontEdgeBodyDist", "BackEdgeBodyDist", "E", "Pi"
+  ],
+
+	"version": [
+		{"no": "-", "content": "<span style=\"text-decoration: line-through\">公式では、X,Yはfloat型と記述されているが、なぜかエラーメッセージが出る。必ずパラメータには、FloorやCeilトリガーで対策をしないといけない。</span>※2015/09/06削除 エラーメッセージは出ません。正常に動作します。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "X",
+			"value": ["水平方向の移動距離"],
+			"type": ["float"],
+			"description": "<p>実行者を基準としたX軸の移動距離を指定。<span class=\"decoration-font-line-red\">実行者の正面が正の値、背面が負の値</span>になります。</p>",
+			"min_value": ["-2147483647", "-2147483647"],
+			"max_value": ["2147483647", "2147483647"],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Y",
+			"value": ["垂直方向の移動距離"],
+			"type": ["float"],
+			"description": "<p>実行者を基準としたY軸の移動距離を指定。<span class=\"decoration-font-line-red\">画面の下方向が正の値、上方向が負の値</span>になります。</p>",
+			"min_value": ["-2147483647", "-2147483647"],
+			"max_value": ["2147483647", "2147483647"],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["2"]
+		}
+	],
+
+	"quote": [
+		{"title": "PosAdd - State Controller Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#posadd"},
+		{"title": "PosAdd - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/PosAdd"},
+		{"title": "PosAdd - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PosAdd"},
+		{"title": "PosAdd - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/78.html"},
+		{"title": "PosAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PosAdd"},
+		{"title": "PosAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
+	]
+}

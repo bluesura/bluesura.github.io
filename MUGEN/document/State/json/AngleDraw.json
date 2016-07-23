@@ -1,0 +1,56 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "AngleDraw",
+		"target": "実行者自身",
+		"category": ["角度操作", "実行者自身を回転させます"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "AngleDraw",
+	"description": "<p>プレイヤーの軸を中心に回転させて表示します。AngleAdd、AngleMul、AngleSetと併せて使用。角度は、右向き時、反時計回りが正方向になります。</p><p>1フレームしか効果がないので、triggerの指定には注意。</p><p>Helperと組み合わせて、グルグル回転する、飛び道具とか、オプション等に使えるほか、回転やられに使う人もいます。</p><p>ただし、90の倍数角度回転なら問題ありませんが、それ以外の場合はジャギィがでてしまいます。</p><p>このステート実行中は、AIRファイル中の座標指定、反転表示、透過表示は無効になります。回転の中心を変えたい場合は、sffに別なスプライトとして登録しなければなりません。なお、これらの無効化は、AfterImageにも影響を及ぼします。また、判定枠は回転しませんので、判定を持たせる場合は、最初から原点(0,0)を中心とする正方形とするか、回転に合わせてAirを設定する必要があります。</p><p>キャラクターの見た目を大きくしたり、回転させることはできますが、当たり判定食らい判定は大きくなりません。</p>",
+	"images": [{"src": "AngleDraw.gif", "width": "640", "height": "480", "alt": "MUGEN AngleDraw"}],
+	"category": "state",
+
+  "version": [
+    {"no": "Version1.0より前", "content": "<code>HitPause</code>中に<code>IgnoreHitPause=1</code>の<code>AngleDraw</code>が実行されると、<code>HitPause</code>が終わるまで<code>AngleDraw</code>は終了せずに<code>Scale</code>が重ねがけされます。<!--animに関係するようなのは全て継続？-->"},
+    {"no": "Version1.0から", "content": "<code>IgnoreHitPause=1</code>を記述しないと縮尺が固定されません。"}
+  ],
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["角度"],
+			"type": ["float"],
+			"description": "<p>角度を指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Scale",
+			"value": ["横縮尺, 縦縮尺"],
+			"type": ["float", "float"],
+			"description": "<p>スプライトの縮尺を指定。</p><p>注意 :　 回転・縮尺ともに、判定枠には影響を及ぼしません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["1", "1"],
+			"load_priority": ["2", "3"]
+		}
+	],
+
+	"quote": [
+		{"title": "AngleDraw - State Controller Reference", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#angledraw"},
+		{"title": "AngleDraw - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/AngleDraw"},
+		{"title": "AngleDraw - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AngleDraw"},
+		{"title": "AngleDraw - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AngleDraw"},
+		{"title": "AngleDraw - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"},
+		{"title": "新Mugenについて - 気まぐれ猫", "url": "http://kneco.web.fc2.com/mugen110-1.html"},
+		{"title": "angledrawのscale - lunaの倉庫", "url": "http://lunatic284.blog90.fc2.com/blog-entry-304.html"}
+	]
+}

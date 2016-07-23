@@ -1,0 +1,49 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Abs",
+		"target": "",
+		"category": ["数値計算", "絶対値は何ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Abs",
+	"summary": "<p>xの絶対値を返します。</p>",
+	"syntax": [
+		"Abs(x)"
+	],
+
+	"description": "<p></p>",
+
+	"parameter": [
+		{
+			"parameter": "x",
+			"type": ["int", "float"],
+			"description": "<p>絶対値を計算したい値を指定します。</p>",
+			"min_value": [""],
+			"max_value": [""]
+		}
+	],
+
+	"code_sample": [
+		{
+			"title": "",
+			"description": "<p></p>",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"associated_trigger": ["Floor", "Ceil"],
+
+	"quote": [
+    {"title": "Abs - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#abs-math"},
+		{"title": "Abs - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/Abs/ja"},
+		{"title": "Abs - State Controller", "url": "http://homotaro.s44.xrea.com/triggerref.htm#Abs"},
+		{"title": "Abs - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/52.html"}
+	]
+}

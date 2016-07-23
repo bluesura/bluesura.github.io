@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "ProjGuarded",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "ProjGuarded",
+	"summary": "<p>プレイヤーのProjectile(飛び道具)がガードされたか、されていないかを判定し、真偽を返します。</p>",
+	"syntax":[
+		"ProjGuarded(ProjectileのID)"
+	],
+
+	"description": "<p>また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjGuardedTimeの方を使った方がよいしょう。もちろん、単体ではファンクショントリガーとして使用できません。書式: 1. ProjGuarded[ID] = 値 2. ProjGuarded[ID] = 値, [符号] 値2 概要: [ID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、ガードされたかを調べる場合1を、ガードされていないかを調べる場合0を指定。[符号]には、 =, !=, <, >, <=, >= のうちのいずれかを指定します。値2には、比較する時間を指定します。戻り値の型: boolean int (1 or 0)  詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveGuardedとは異なり、ガード後1フレームしか値を返しません。様式2は、正の整数nが条件式\"n [符号] 値2\"を満たす場合、ガードされてからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。 使用例: 1. Trigger1 = ProjGuarded1234 = 1 ID1234のProjectileがガードされた瞬間のトリガーです。2. Trigger1 = ProjGuarded = 1, < 15 プレイヤーのProjectileがガードされてから15フレーム未満のときのトリガーです。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

@@ -1,0 +1,107 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "AssertSpecial",
+		"target": "",
+		"category": ["", "消去・制限などの特殊処理"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "AssertSpecial",
+	"description": "<p>実行したフレームあるいは実行直後に、特殊処理を行います。</p><p>1フレームのみ有効。</p><p>1つの<code>AssertSpecial</code>で指定できるフラグは３種類だけです。※4つ以上のフラグを指定したい場合は複数の<code>AssertSpecial</code>を記述します。</p>",
+	"category": "state",
+
+	"version": [
+		{"no": "1.0より前", "content": "プラグインを導入した状態で、<code>NoMusic</code>を実行した場合バグる恐れあり。"},
+		{"no": "-", "content": "<code>RoundState=3</code>に<code>AssertSpecial</code>の<code>RoundNotOver</code>と、長時間の<code>SuperPause</code>または同時間に<code>ChangeState</code>を利用することで、八百長(配点がされないまま次ラウンドへ移行する)バグが発生します。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "Flag",
+			"value": ["フラグ名"],
+			"type": ["string"],
+			"description": "<p>指定できるフラグ名は、下記詳細にあるうちのいずれかです。<small>Flag1じゃないよ！</small></p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["?"],
+			"possible_value": [
+				["フラグ", "効果"],
+				["Intro", "イントロ（試合開始前の登場演出アクション,<code>RoundState=1</code>）状態を継続させます。ラウンドコール中にフラグが立つと、コールが中断され、フラグが消えてから、再度コールされます。長いイントロ(ステート<code>190</code>)を演出し切るためのフラグです。"],
+				["RoundNotOver", "このフラグが立っている間は、試合が終わっても次のラウンドが始まりません。試合後(<code>RoundState=4</code>)に、勝利ポーズ(ステート<code>180</code>)を演出し切るために使用します。"],
+				["Invisible", "このステートの実行者自身の姿を消す。しかし、残像（<code>AfterImage</code>）や判定は消せません。また、<code>-1</code>,<code>-2</code>,<code>-3</code>ステートでは自分の<code>Heplper</code>・<code>Projectile</code>全ての姿が消えます。"],
+				["GlobalNoShadow", "画面中に存在する全てのプレイヤー（ヘルパーと<code>Projectile</code>も含む）の影を消します。しかし、残像（<code>AfterImage</code>）や判定は消せません。"],
+				["NoShadow", "自分の影・床の反射を消します。しかし、残像（<code>AfterImage</code>）や判定は消せません。また、<code>-1</code>,<code>-2</code>,<code>-3</code>ステートでは自分の<code>Heplper</code>・<code>Projectile</code>全ての姿が消えます。"],
+				["NoBarDisplay", "ライフ・パワーゲージバー・勝利アイコン・ポートレート・キャラクター名・タイムカウントを非表示にします。<!--オリジナルのライフバーの表示に-->"],
+				["NoBG", "ステージ奥(<code>LayerNo=0</code>)の画像を非表示にし、「真っ黒な(正確には描画が更新されない)背景」にします。"],
+				["NoFG", "ステージ手前(<code>LayerNo=1</code>)の画像を非表示にします。"],
+				["NoKOSnd", "KO時の音声（<code>11,0</code>）を鳴らさないようにします。画面中に存在する全員に有効なので注意。"],
+				["NoKOSlow", "KO時のスローモーションを無効にします。（KO直前に有効にしないといけない）"],
+				["NoMusic", "演奏しているBGMを止めます。"],
+				["NoStandGuard", "次のフレームから、立ちガード始動・処理が出来なくなります。"],
+				["NoCrouchGuard", "次のフレームから、しゃがみガード始動・処理が出来なくなります。"],
+				["NoAirGuard", "次のフレームから、空中ガード始動・処理が出来なくなります。"],
+				["NoWalk", "次のフレームから、歩けなくなります。（コントロール可能時に、前か後ろのキーを入力で<code>[Statedef 20]</code>にならない）"],
+				["NoAutoTurn", "自動で相手に振り向かなくなります。"],
+				["NoJuggleCheck", "ジャグルをチェックしない。（ジャグルポイントが減らなくなる）"],
+				["NoKO", "試合中(<code>RoundState=2</code>)中のKOを無効にします。生死判定後(<code>RoundState=3</code>以上)に実行しても生死は覆りません。公式パラメータではないようなので、使用は自己責任で。"],
+				["TimerFreeze", "タイムカウント（制限時間）を停止します。ですが、あくまで表示されているタイムカウントのみで<code>Time</code>,<code>GameTime</code>トリガーの値は停止しません。"],
+				["UnGuardAble", "自分の全ての攻撃がガード不能になります。"]
+			]
+		},
+		{
+			"parameter": "Flag2",
+			"value": ["フラグ名"],
+			"type": ["string"],
+			"description": "<p>指定できるフラグ名は、<code>Flag</code>と同じ。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";なし"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "Flag3",
+			"value": ["フラグ名"],
+			"type": ["string"],
+			"description": "<p>指定できるフラグ名は、<code>Flag</code>と同じ。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";なし"],
+			"load_priority": ["?"]
+		}
+	],
+
+	"code_sample": [
+		{
+			"title": "",
+			"description": "200以上300以下または400以上500以下のステートはガード不能になります。",
+			"code": [
+				"[State , ガード不能]",
+				"Type = AssertSpecial",
+				"Trigger1 = !Ctrl && ((PrevStateNo = [200,300]) || (PrevStateNo = [400,500]))",
+				"Trigger1 = AnimTime < 0",
+				"Flag = NoStandGuard",
+				"Flag2 = NoCrouchGuard",
+				"Flag3 = NoAirGuard"
+			]
+		}
+	],
+
+
+
+	"quote": [
+		{"title": "AssertSpecial - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/AssertSpecial"},
+		{"title": "AssertSpecial - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AssertSpecial"},
+		{"title": "AssertSpecial - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/199.html"},
+		{"title": "AssertSpecial - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AssertSpecial"},
+		{"title": "AssertSpecial - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"},
+		{"title": "TimerFreezeとgamtime - EINZBERNの何もないMUGEN帳", "url": "http://mugeneinzbern.blog.fc2.com/blog-entry-54.html"},
+		{"title": "AssertSpecial一覧 - lunaの倉庫", "url": "http://lunatic284.blog90.fc2.com/blog-entry-9825.html"}
+	]
+}

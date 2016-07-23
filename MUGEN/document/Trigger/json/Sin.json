@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Sin",
+		"target": "",
+		"category": ["数値計算", "Xラジアンの正弦はどれくらいですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Sin",
+	"summary": "<p>ラジアンの正弦を返します。</p>",
+	"syntax":[
+		"Sin(ラジアン)"
+	],
+
+	"description": "<p>引数には、サインを計算したい値をfloatで指定します。 time等を引数にしてパレットのフラッシュや振動する軌道に。戻り値の型: float</p>",
+
+	"code_sample": [
+		{
+			"title": "Sin(π/2)をvalueに代入",
+			"code": [
+				"value = Sin(Pi/2)"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

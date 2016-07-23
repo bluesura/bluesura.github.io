@@ -1,0 +1,73 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "TargetLifeAdd",
+		"target": "ターゲット",
+		"category": ["ターゲット操作", "ターゲットのライフに指定値を加算"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "TargetLifeAdd",
+	"description": "<p>ターゲットの体力を増減します。投げなどに使用。攻撃力、防御力も考慮されます。</p>",
+	"category": "state",
+
+	"version": [
+		{"no": "-", "content": "<code>RoundState=3</code>ではライフが増減されません。<br>※ただし、パラメーターは読み込まれます。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "ID",
+			"value": ["ヒットID"],
+			"type": ["int"],
+			"description": "<p>対象とするターゲットのヒットIDを指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1 ;すべてのターゲットが対象"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Absolute",
+			"value": "-",
+			"type": ["int"],
+			"description": "<p>1にすると、attack/deffencemulを無視します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "Kill",
+			"value": "-",
+			"type": ["int"],
+			"description": "<p>0にすると、このコントローラでは死ななくなります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["3"]
+		},
+		{
+			"parameter": "value",
+			"value": ["体力増減値"],
+			"type": ["int"],
+			"description": "<p>増減する値を指定。減らす場合は負数。攻撃力、防御力の影響を受けますので、指定値がそのまま増減するわけではありません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["4"]
+		}
+	],
+
+	"quote": [
+		{"title": "TargetLifeAdd - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/TargetLifeAdd"},
+		{"title": "TargetLifeAdd - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetLifeAdd"},
+		{"title": "TargetLifeAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetLifeAdd"},
+		{"title": "TargetLifeAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"}
+	]
+}

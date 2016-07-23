@@ -1,0 +1,34 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "NumExplod",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "NumExplod",
+	"summary": "<p>出現しているExplodの数を返します。</p>",
+	"syntax":[
+		"NumExplod",
+		"NumExplod(ExplodのID)"
+	],
+
+	"description": "<p>引数にID番号を指定した場合、そのID番号のExplodの数を返します。IDには、-1以上の整数を指定します。-1の場合、省略時と同じ扱いになります。書式:1. NumExplod2. NumExplod(引数)概要:引数には、数えるExplodのID番号を-1以上のintで指定します。戻り値の型: int使用例:1. Trigger1 = NumExplod >= 4プレイヤーのexplodが4つ以上出現している場合のトリガー。2. Trigger1 = NumExplod(1234) >= 4プレイヤーのID1234のexplodが4つ以上出現している場合のトリガー。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

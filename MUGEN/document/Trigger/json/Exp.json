@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Exp",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Exp",
+	"summary": "<p>ネピア数のべき乗を返します。</p>",
+	"syntax":[
+		"Exp"
+	],
+
+	"description": "<p>ネピア数のべき乗は、微分しても自分自身になります。e**引数と書いても同じです。書式: exp(引数)概要:引数には、eの乗数をfloatで指定します。戻り値の型: float使用例:value = exp(4-var(0))valueにeの\"4-var(0)\"乗を代入します。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "MatchNo",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "MatchNo",
+	"summary": "<p>現在の試合番号を返します。</p>",
+	"syntax":[
+		"MatchNo"
+	],
+
+	"description": "<p>アーケードモードで勝利するたび1増えます。対戦時は常に1です。 戻り値の型: int詳細:MatchNoは、対戦モードでは常に1です。アーケード、チームアーケードモードでは、コンティニューや勝利により試合が切り替わるごとに、1ずつ増え、ゲームオーバー、ゲームクリアーなどでゲームを終わらせた場合、1に戻ります。使用例: なし</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

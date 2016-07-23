@@ -1,0 +1,50 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "HitVelSet",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "HitVelSet",
+	"description": "<p>プレイヤーがやられモーション中であるとき、相手のHitDefで指定された速度を有効にします。</p><p>　ヒットバックを発生させる、共通ステートを上書きするときや、相手に参照させるステートで使用します。</p>",
+	"category": "state",
+
+	"version": [
+		{"no": "MUGEN 1.0以上", "content": "このステートコントローラーの使用は非推奨です！"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "X",
+			"value": ["水平速度フラグ"],
+			"type": ["int"],
+			"description": "<p>それぞれの方向の速度を有効にするフラグです。0で無効、0以外で有効。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Y",
+			"value": ["垂直速度フラグ"],
+			"type": ["int"],
+			"description": "<p>それぞれの方向の速度を有効にするフラグです。0で無効、0以外で有効。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["2"]
+		}
+	],
+
+	"quote": [
+		{"title": "HitVelSet - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/HitVelSet"},
+		{"title": "HitVelSet - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitVelSet"},
+		{"title": "HitVelSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitVelSet"}
+	]
+}

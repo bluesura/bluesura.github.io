@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "PowerMax",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "PowerMax",
+	"summary": "<p>プレイヤーの標準ゲージの最大量を返します。</p>",
+	"syntax":[
+		"PowerMax"
+	],
+
+	"description": "<p>戻り値の型: int</p>",
+
+	"code_sample": [
+		{
+			"title": "ゲージ量が最大値の半分未満のときのトリガー。",
+			"code": [
+				"Trigger1 = Power < PowerMax / 2"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

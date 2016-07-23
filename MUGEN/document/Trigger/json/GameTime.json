@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "GameTime",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "GameTime",
+	"summary": "<p>ゲーム経過時間を返します。</p>",
+	"syntax":[
+		"GameTime"
+	],
+
+	"description": "<p>戻り値の型: int</p>",
+
+	"code_sample": [
+		{
+			"title": "総ゲーム時間を27で割った余りが0のときのトリガー",
+			"code": [
+				"Trigger1 = (GameTime%27)=0"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

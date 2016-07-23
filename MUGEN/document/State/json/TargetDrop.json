@@ -1,0 +1,47 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "TargetDrop",
+		"target": "ターゲット",
+		"category": ["ターゲット操作", "ターゲットの除外"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "TargetDrop",
+	"description": "<p>複数のターゲットがいる場合、特定のもの以外をターゲットから除外します。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "ExcludeID",
+			"value": ["除外ID"],
+			"type": ["int"],
+			"description": "<p>ターゲットとして残す敵をIDで指定。</p><p>もちろん、IDはヒットID(攻撃を当てたHitDefのID)です。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1 ;全ターゲットを除外"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "KeepOne",
+			"value": ["タイマンフラグ"],
+			"type": ["int"],
+			"description": "<p>残すターゲットが複数いた場合、ランダムで1体を残し、後はターゲットから外します。0にすると、excludeIDで指定したヒットIDの敵は、全てターゲットとして残ります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["2"]
+		}
+	],
+
+	"quote": [
+		{"title": "TargetDrop - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/TargetDrop"},
+		{"title": "TargetDrop - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetDrop"},
+		{"title": "TargetDrop - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetDrop"},
+		{"title": "TargetDrop - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "HitShakeOver",
+		"target": "",
+		"category": ["くらい関係", "攻撃を受けた後、硬直がとけたか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "HitShakeOver",
+	"summary": "<p>プレイヤーがやられ状態で、ヒットシェイクが終了したかどうかを返します。</p>",
+	"syntax":[
+		"HitShakeOver"
+	],
+
+	"description": "<p>プレイヤーがやられ状態で、ヒットシェイクが終了したとき1を返します。相手を特殊やられにするときや、やられステートをカスタマイズするときに。</p>",
+
+	"code_sample": [
+		{
+			"title": "ヒットシェイク中であることを意味するトリガー",
+			"code": [
+				"Trigger1 = HitShakeOver = 0"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

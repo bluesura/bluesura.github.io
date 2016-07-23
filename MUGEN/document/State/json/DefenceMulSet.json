@@ -1,0 +1,36 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "DefenceMulSet",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "DefenceMulSet",
+	"description": "<p>防御力を倍数で指定します。一時的に防御力が上がる技などに。バグか仕様かはわかりませんが、win版ではMovetypeがHのときしか効果がありません。</p><p>（１ヒット目のダメージには適用されない）</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["防御力係数"],
+			"type": ["float"],
+			"description": "<p>ダメージ係数を少数で指定。単純に、受けるはずのダメージ値にこの係数が乗算されます。例えば、0.5でダメージ半分、2で倍です。</p><p>ちなみに、負数を指定すると、ダメージ値×係数分体力が回復します。0にすると、一律1のダメージを受けるようになります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["1"]
+		}
+	],
+
+	"quote": [
+		{"title": "DefenceMulSet - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/DefenceMulSet"},
+		{"title": "DefenceMulSet - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?DefenceMulSet"},
+		{"title": "DefenceMulSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#DefenceMulSet"},
+		{"title": "DefenceMulSet - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

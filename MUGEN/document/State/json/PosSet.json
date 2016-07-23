@@ -1,0 +1,84 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "PosSet",
+		"target": "実行者自身",
+		"category": ["位置操作", "指定した値の位置へ移動"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "PosSet",
+	"description": "<p>PosSetの実行者を指定座標へ瞬時に移動します。単位はピクセル。</p><p>基準点(0,0)は、X軸が地面・Y軸がステージの中央となります。<span class=\"decoration-font-line-red\">画面が動いても軸は絶対に動きません。</span></p>",
+	"images": [{"src": "PosSet.png", "width": "640", "height": "480", "alt": "MUGEN PosSet"}],
+	"category": "state",
+  "associated_trigger": [
+    "Pos X", "Pos Y", "ScreenPos X", "ScreenPos Y",
+    "P2Dist X", "P2Dist Y", "P2BodyDist X", "P2BodyDist Y",
+    "FrontEdgeDist", "BackEdgeDist",
+    "FrontEdgeBodyDist", "BackEdgeBodyDist", "E", "Pi"
+  ],
+
+
+	"version": [
+		{"no": "-", "content": "<span style=\"text-decoration: line-through\">公式では、X,Yはfloat型と記述されているが、なぜかエラーメッセージが出る。必ずパラメータには、FloorやCeilトリガーで対策をしないといけない。</span>※2015/09/06削除 エラーメッセージは出ません。正常に動作します。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "X",
+			"value": ["水平方向の座標"],
+			"type": ["float"],
+			"description": "<p>地面をX軸として、ステージの右が正の値・左が負の値になります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Y",
+			"value": ["垂直方向の座標"],
+			"type": ["float"],
+			"description": "<p>ステージの中央をY軸として、上方向が負の値・下方向が正の値になります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["2"]
+		}
+	],
+
+	"code_sample": [
+		{
+			"title": "画面中央に固定",
+			"code": [
+				"[State ]",
+				"Type           = PosSet",
+				"Trigger1       = 1",
+				"X              = 0",
+				"Y              = 120 - ScreenPos Y + Pos Y",
+				"IgnoreHitPause = 1"
+			]
+		},
+		{
+			"title": "地面への着地",
+			"code": [
+				"[State ]",
+				"Type           = PosSet",
+				"Trigger1       = Pos y > 0",
+				"Y              = 0"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "PosSet - State Controller Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#posset"},
+		{"title": "PosSet - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/PosSet"},
+		{"title": "PosSet - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PosSet"},
+		{"title": "PosSet - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/27.html"},
+		{"title": "PosSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PosSet"},
+		{"title": "PosSet - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
+	]
+}

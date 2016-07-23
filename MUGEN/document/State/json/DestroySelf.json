@@ -1,0 +1,55 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "DestroySelf",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "DestroySelf",
+	"description": "<p>Helperのステートに記述します。そのHelperを消すことができます。パラメータはありません。</p><p>Helperは同時に存在する数に上限がありますので、常駐させるとき以外は、必ず消すようにしましょう(ラウンド終了時も自動で消えますが)。Helper以外のステートでは無効。</p>",
+	"category": "state",
+
+  "version": [
+    {"no": "Version1.1から", "content": "<code>recursive</code>,<code>removeexplods</code>が追加されました。"},
+    {"no": "Version1.0より前", "content": "Explodを消去する前に、Explodを管理しているHelperをDestroySelfで消去してしまうとExplodが残り続けます。"},
+    {"no": "-", "content": "DestroySelfを実行した直後に、Helperを射出するとエラーで落ちます。。"}
+  ],
+
+  "parameter": [
+    {
+      "parameter": "recursive ",
+      "value": ["recursive_flag "],
+      "type": ["int"],
+      "description": "<p>If 1, all helper descendents of this helper will also be destroyed.</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["?"]
+    },
+    {
+      "parameter": "removeexplods",
+      "value": ["remove_explods "],
+      "type": ["int"],
+      "description": "<p>If 1, all explods belonging to the helper will also be removed. If recursive_flag is 1, explods belonging to descendents of the helper will also be removed. </p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["?"]
+    }
+  ],
+
+	"quote": [
+		{"title": "DestroySelf - State Controller Reference", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#destroyself"},
+		{"title": "M.U.G.E.N Update History Version 1.0", "url": "http://network.mugenguild.com/justnopoint/1.0docs/history.html"},
+		{"title": "DestroySelf - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/DestroySelf"},
+		{"title": "DestroySelf - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?DestroySelf"},
+		{"title": "DestroySelf - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#DestroySelf"},
+		{"title": "DestroySelf - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"}
+	]
+}

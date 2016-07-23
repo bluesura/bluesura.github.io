@@ -1,0 +1,37 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "AnimElemTime",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "AnimElemTime",
+	"summary": "<p>アニメーションがx枚目になった時の経過時間を返します。</p>",
+	"syntax":[
+		"AnimElemTime(x)"
+	],
+
+	"description": "<p>特定のアニメ順番の経過時間を返します。アニメの順番は0からでなく、1から数えます。AnimElemトリガーの代わりに登場したトリガー。ファンクションとして使う場合はこちら。引数には、経過時間をチェックしたいアニメ順番をintで指定します。また、存在しないアニメ順番を指定した場合も、SFalseを返します。</p>",
+
+	"version": [
+		{"no":"", "content": ""}
+	],
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

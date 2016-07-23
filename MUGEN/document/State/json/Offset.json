@@ -1,0 +1,46 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "Offset",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "Offset",
+	"description": "<p>プレイヤースプライトの表示位置を変更します。Clns枠もしっかり移動します。1フレームのみ有効。</p><p>　見た目のみキャラを移動させる場合に使えます。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "X",
+			"value": ["x位置"],
+			"type": ["float"],
+			"description": "<p>プレイヤーを基準として指定の表示位置にスプライトをずらして表示させます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Y",
+			"value": ["y位置"],
+			"type": ["float"],
+			"description": "<p>プレイヤーを基準として指定の表示位置にスプライトをずらして表示させます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["2"]
+		}
+	],
+
+	"quote": [
+		{"title": "Offset - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/Offset"},
+		{"title": "Offset - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Offset"},
+		{"title": "Offset - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Offset"}
+	]
+}

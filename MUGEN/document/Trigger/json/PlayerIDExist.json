@@ -1,0 +1,64 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "PlayerIDExist",
+		"target": "",
+		"category": ["ID関係", "指定したIDのキャラクター・ヘルパーは存在しているか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "PlayerIDExist",
+	"summary": "<p>IDのプレイヤーが存在するかどうかを返します。</p>",
+	"syntax":[
+		"PlayerIDExist(ID番号)"
+	],
+
+	"description": "<p>指定IDのプレイヤーが存在する場合1、しない場合0を返します。</p><p>IDはIDトリガーで取得できます。ID番号には、調べたいプレイヤーのID番号を整数で指定します。</p><p>リダイレクト(Parent,Root,Helper,Partner,Enemy,EnemyNear,Target,NumTarget,PlayerID)やHelper消去時のHelper・Explod召喚フリーズ対策として用います。</p>",
+	"associated_state": ["Explod", "Helper"],
+	"associated_trigger": ["ID"],
+
+
+	"code_sample": [
+		{
+			"title": "リダイレクトを使用できるか確認",
+			"description": "変数を間違って相手ヘルパーに代入しないようにするためのトリガー。PlayerExistでHelper自身が存在しているか確認してからリダイレクト(PlayerID)を使用して、自分・相手どちらのヘルパーかTeamSideで確認しています。",
+			"code": [
+				"[State ]",
+				"Type = Null",
+				"Trigger1 = var(0) := var(0) + 1 * (var(0)=0)*ID",
+				"Trigger1 = PlayerExist(var(0))",
+				"Trigger1 = PlayerID(var(0)),Teamside != TeamSide",
+				"Trigger1 = var(20) := 999"
+			]
+		},
+		{
+			"title": "Helper消去時のHelper・Explod召喚フリーズ対策",
+			"description": "DestroySelf移行に設置しているExplodへ必ず記述して下さい。",
+			"code": [
+				"[State ]",
+				"Type          = Explod",
+				"TriggerAll    = PlayerIDExist(ID)",
+				"Trigger1      = Time = 0",
+				"Anim          = 1103",
+				"ID            = 1103",
+				"Pos           = 0,IfElse(Anim=402,-20,-60)",
+				"PosType       = P1",
+				"SprPriority   = 0",
+				"OwnPal        = 1",
+				"Shadow        = 0,0,0",
+				"Scale         = .8,.8",
+				"PauseMoveTime = 999999",
+				"SuperMoveTime = 999999"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "PlayerIDExist - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#playeridexist"},
+		{"title": "PlayerIDExist - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/trigger_main.html#PlayerIDExist"},
+		{"title": "PlayerIDExist - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/184.html"}
+	]
+}

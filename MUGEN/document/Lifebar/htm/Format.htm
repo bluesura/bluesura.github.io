@@ -1,0 +1,50 @@
+﻿
+		<title>Files | M.U.G.E.N ライフバー 設定項目一覧</title>
+		<link rel="stylesheet" href="./../lib/css/main.css?201303200000" />
+		<script type="text/javascript" src="../../../lib/js/google.js"></script>
+<div class="content">
+
+
+<div>ここでは参考程度に書いているので、c言語のprintfフォーマットとかで検索した方がよくわかると思います。</div>
+<table>
+<thead><tr><th>フォーマット</th><th>出力</th></tr></thead>
+<tbody>
+<tr><td>%c</td><td>１文字だけ出力する。</td></tr>
+<tr><td>%d</td><td>10進整数 (符号付)で出力する。</td></tr>
+<tr><td>%e</td><td>浮動小数点数 (指数形式)で出力する。</td></tr>
+<tr><td>%f</td><td>浮動小数点数 (小数形式)で出力する。</td></tr>
+<tr><td>%g</td><td>浮動小数点数で出力する。</td></tr>
+<tr><td>%i</td><td>%dと同じ？で出力する。</td></tr>
+<tr><td>%n</td><td>バグが発生しやすい、危険なので使用しないでください。詳しく知りたい方は、「%nバグ」で検索してください。</td></tr>
+<tr><td>%o</td><td>8進整数</td></tr>
+<tr><td>%p</td><td>アドレスを16進数で出力する。</td></tr>
+<tr><td>%s</td><td>文字列を出力する。</td></tr>
+<tr><td>%u</td><td>10進整数 (符号無)で出力する。</td></tr>
+<tr><td>%x</td><td>16進整数で出力する。</td></tr>
+<tr><td>%%</td><td>%を出力する。</td></tr>
+</tbody>
+</table>
+<div>
+フォーマット指定子の補足
+
+細かい補足
+<ul>
+	<li>TextでLayerNoを使用すると表示されない？</li>
+	<li>MidでTextは見えないかもしれない</li>
+	<li>Frontだとかけて見える可能性あり</li>
+	<li>PowerBarではテキストは使用できない</li>
+	<li>フォーマット指定子は複数指定できる。想定以上書いた場合は、何の値が書き込まれるかは謎。</li>
+%c,%s,%p,%nはMUGENが落ちる原因になりやすいので、取り扱いには注意。
+</ul>
+</div>
+<div>
+[補足]基本的にライフバーで、フォーマット指定子が利用できるのは、
+[Combo]の「Text.Text, team1.Text.Text, team2.Text.Text」
+[Round]の「round.default.text, win.text, win2.text」
+</div>
+
+
+http://drabs.blog40.fc2.com/blog-entry-949.html
+
+
+</div>

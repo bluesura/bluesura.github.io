@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "AnimExist",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "AnimExist",
+	"summary": "<p>xのアクションナンバーが存在するかどうかを返します。</p>",
+	"syntax":[
+		"AnimExist(x)"
+	],
+
+	"description": "<p>特定のアクション番号が存在するとき、1を返します。相手に参照させるステートの場合、自分のアニメが対象となります。相手に参照させるステートで、相手のアニメを調べる場合は、SelfAnimExistを使います。引数には調べたいアクション番号をintで指定します。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

@@ -1,0 +1,38 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "StageVar",
+		"target": "",
+		"category": ["ステージ関係", "ステージの情報を教えて下さい。"],
+		"version": "1.0",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "StageVar",
+	"summary": "<p>ステージの情報を返します。</p>",
+	"syntax":[
+		"StageVar(Info.Author) = \"作者名\"",
+		"StageVar(Info.DisplayName) = \"表示されるステージ名\"",
+		"StageVar(Info.Name) = \"ステージ名\"",
+		"StageVar(Info.Author) != \"作者名\"",
+		"StageVar(Info.DisplayName) != \"表示されるステージ名\"",
+		"StageVar(Info.Name) != \"ステージ名\""
+	],
+
+	"description": "<p></p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

@@ -1,0 +1,35 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Var",
+		"target": "",
+		"category": ["変数", "変数に入っている整数は何ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Var",
+	"summary": "<p>変数を参照します。</p>",
+	"syntax":[
+		"var(整数)",
+		"var(整数):=整数"
+	],
+
+	"description": "<p>整数の変数を参照します。小数を代入したい場合はFVarを使います。　概要:　引数には、0から59の整数変数番号を指定します。戻り値の型: 　intエラー条件:　引数がSFalseの場合、または、引数に指定可能な値以外を指定した場合、SFalseを返します。</p>",
+
+	"code_sample": [
+		{
+			"title": "var(0)に-34が代入",
+			"code": [
+				"Trigger1 = var(0) = -34"
+			]
+		}
+	],
+
+
+	"quote": [
+		{"title": "Var - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#var"}
+	]
+}

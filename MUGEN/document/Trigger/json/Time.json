@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Time",
+		"target": "",
+		"category": ["キャラクターのパラメーター", "現在のステートでどれだけ時間が経過したか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Time",
+	"summary": "<p>ステートの経過時間を返します。</p>",
+	"syntax":[
+		"Time"
+	],
+
+	"description": "<p>現在のステートでの経過時間をフレーム単位の整数で返します。</p>",
+
+	"code_sample": [
+		{
+			"title": "現在のステートに移行して2フレーム後のトリガー。",
+			"code": [
+				"Trigger1 = Time = 2"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "Time - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#time"}
+	]
+}

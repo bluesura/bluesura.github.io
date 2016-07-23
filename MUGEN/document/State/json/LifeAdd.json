@@ -1,0 +1,62 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "LifeAdd",
+		"target": "実行者自身",
+		"category": ["ライフ操作", "指定した値をライフに加算"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "LifeAdd",
+	"description": "<p>体力を増減します。回復技、自爆技などに。相手の防御力は考慮されますが、無視することも可能。</p>",
+	"category": "state",
+
+	"version": [
+		{"no": "-", "content": "<code>RoundState=3</code>ではライフが増減されません。<br>※ただし、パラメーターは読み込まれます。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "Absolute",
+			"value": ["絶対量フラグ"],
+			"type": ["int"],
+			"description": "<p>1にすると、valueで指定した値が増減されます。0で、相手の防御力が考慮されます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0;"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Kill",
+			"value": ["KOフラグ"],
+			"type": ["int"],
+			"description": "<p>0にすると、ライフが1ポイント残り、KOになりません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "value",
+			"value": ["体力増減量"],
+			"type": ["int"],
+			"description": "<p>体力の増加・減少量を指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["3"]
+		}
+	],
+
+	"quote": [
+		{"title": "LifeAdd - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/LifeAdd"},
+		{"title": "LifeAdd - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?LifeAdd"},
+		{"title": "LifeAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#LifeAdd"},
+		{"title": "LifeAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

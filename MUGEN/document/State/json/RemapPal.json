@@ -1,0 +1,50 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "RemapPal",
+		"target": "",
+		"category": ["", ""],
+		"version": "2011.01.18",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "RemapPal",
+	"description": "<p>m.u.g.e.n 1.0から追加されたステートコントローラ。</p><p>それより前のバージョンは、パレット(ていうかsff)の仕様が異なるため、使用不可。</p><p>プレイヤーのパレットのうちひとつを別なものに換えます。</p>",
+	"category": "state",
+
+	"version": [
+		{"no": "Version1.1から", "content": "<code>ReMapPal</code>のマッピング数が8個に限定されました。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "Source",
+			"value": ["変更前パレットのグループ番号, 変更前パレットのアイテム番号"],
+			"type": ["int", "int"],
+			"description": "<p></p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["1, 2"]
+		},
+		{
+			"parameter": "Dest",
+			"value": ["変更後パレットのグループ番号, 変更後パレットのアイテム番号"],
+			"type": ["int", "int"],
+			"description": "<p>プレイヤーのスプライト中、sourceで指定したパレットを使用しているもの全てをdestで指定したパレットに変更します。</p><p>sourceとdestで指定するパレットは、プレイヤーのスプライト中に存在しなければなりません。さらに、どちらも同じ色数である必要があります。</p><p>destで指定するパレット番号は、割り当て前のものを参照するので注意。例えば、パレット(1,1) -> (1,6)と割り当てた状態で、(2,2) -> (1,1)に割り当てようとすると、(1,6)ではなく、(1,1)が元のスプライトから割り当てられます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["3, 4"]
+		}
+	],
+
+	"quote": [
+		{"title": "RemapPal - State Controller Reference", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#remappal"},
+		{"title": "RemapPal - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/RemapPal"},
+		{"title": "RemapPal - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?RemapPal"}
+	]
+}

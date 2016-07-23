@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "PalNo",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "PalNo",
+	"summary": "<p>プレイヤーのパレット番号を返します。</p>",
+	"syntax":[
+		"PalNo"
+	],
+
+	"description": "<p>パレット番号はキャラセレクト時の決定ボタンで変化します。決定カラーで戦闘スタイルが異なるキャラや、カラーによってCPUアルゴリズムを変える場合などに。書式: PalNo 概要: なし 戻り値の型: int  詳細: 選択ボタンとパレット番号は次のとおり（スト2配置で言えば、弱キックが1番）: X Y Z 4 5 6 A B C 1 2 3 スタートボタンを押しながら選択すると、上記番号に6を足したものがパレット番号になります。大抵の格ゲーでは、左上のボタンが標準パレットなので、palnoは4となりますが、1を標準パレットにする人も多いです。使用例: Trigger1 = PalNo = 5 パレット番号5番（Yボタンで選んだときの色） のときのトリガー。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

@@ -1,0 +1,2557 @@
+<!DOCTYPE HTML>
+<html lang="ja-JP">
+<head>
+  <meta charset="UTF-8" />
+  <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
+
+  <title>MUGEN State Controller - Name = sura</title>
+  <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
+  <link rel="icon" href="/media/img/icon-192x192.png" sizes="192x192" />
+  <link rel="icon" sizes="192x192" href="/media/img/icon-192x192.png">
+  <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
+  <link rel="apple-touch-icon" sizes="128x128" href="/media/img/icon-128x128.png">
+  <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/media/img/icon-128x128.png">
+
+
+  <!-- 「チェス盤を引っくり返す！」 -->
+  <meta name="theme-color" content="#1E88E5">
+  <meta name="robots" content="INDEX,FOLLOW" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="author" content="sura" />
+  <meta name="generator" content="Smarty" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻" />
+  <!-- 「駄目ね、全然駄目だわ」 -->
+
+<!-- ジョインジョイン OGP -->
+  <meta property="og:url" content="http://analyticsfile.web.fc2.com/MUGEN/document/State/index.html" />
+  <meta property="og:title" content="M.U.G.E.N ステートコントローラ一覧 - Name = sura" />
+  <meta property="og:description" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://analyticsfile.web.fc2.com/media/img/profile_200.png" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:site_name" content="Name = sura" />
+<!-- もういい、ここまでだっ・・・ -->
+
+  <link rel="author" title="sura" href="https://twitter.com/bluesura" />
+
+  <link rel="stylesheet" href="/lib/css/material.css?20160722173154">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript" src="/lib/js/code.min.js?20160722173154"></script>
+  <script type="text/javascript" src="/lib/js/js-ctrl.js?20160722173154"></script>
+  <script type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js?20160722173154"></script>
+  <script type="text/javascript" src="/lib/js/isMobile.min.js?20160722173154"></script>
+
+</head>
+<body>
+
+<div id="container">
+<div id="container-inner">
+<header id="blog-title" class="header">
+	<div id="blog-title-inner">
+
+		<div id="blog-title-content">
+			<h1 id="title"><a href="./">MUGEN State Controller</a></h1>
+
+			<div id="blog-description"><div class="notice">MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div></div>
+		</div>
+	</div>
+  <div id="menu"><a href="javascript:void(0);" id="js-ctrl"<i class="fa fa-bars"></i></a></div>
+</header>
+
+<div id="content" class="hfeed"><div id="content-inner">
+
+<div id="wrapper"><div id="main"><div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
+
+<header class="entry-header"><div class="entry-title"><h1>ステートコントローラー一覧</h1></div></header>
+
+<div class="entry-content">			<div class="section">
+			<h2><a href="./A.html">A</a></h2>
+			<div><p>空中 Air 地上にいても「A」なら攻撃を受けると空中へ吹っ飛びます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[StateDef 『正の整数』]</li>
+					
+											<li>Type                       = 状態</li>
+											<li>Physics                    = 重力</li>
+											<li>MoveType                   = 行動状態</li>
+											<li>HitCountPersist            = 引継ぎフラグ</li>
+											<li>MoveHitPersist             = 引継ぎフラグ</li>
+											<li>HitDefPersist              = 引継ぎフラグ</li>
+											<li>SprPriority                = 画像の表示優先度</li>
+											<li>FaceP2                     = 相手へ振り向くフラグ</li>
+											<li>Juggle                     = ジャグル値に加算する値</li>
+											<li>VelSet                     = X軸の移動速度, Y軸の移動速度</li>
+											<li>Anim                       = アニメ番号</li>
+											<li>Ctrl                       = キー入力受付可能フラグ</li>
+											<li>PowerAdd                   = パワーゲージの増減量</li>
+					
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AfterImage.html">AfterImage</a></h2>
+			<div><p>キャラクターやノーマルヘルパーにに残像を付けます。パラメータはすべて省略可能で、省略した場合、残像は青くなります。</p><p><code>AfterImage</code>実行後、別の<code>AfterImage</code>を実行すると設定が上書きされ、直前まで表示していた残像は消去されます。</p><p>表示できる残像の数を増やしたい場合は、<code>mugen.cfg</code>の<code>AfterImageMax</code>で設定が可能。初期値は8、最小値は0、最大値は100。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AfterImage</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Time                       = 持続時間</li>
+											<li>Length                     = 残像用情報の保存枚数</li>
+											<li>Timegap                    = 残像画像の保存間隔</li>
+											<li>Framegap                   = 残像の表示間隔</li>
+											<li>PalColor                   = 彩度</li>
+											<li>PalInvertall               = 色反転フラグ</li>
+											<li>PalBright                  = 加算する赤, 加算する緑, 加算する青</li>
+											<li>PalContrast                = 乗算する赤, 乗算する緑, 乗算する青</li>
+											<li>PalPostBright              = add2_赤, add2_緑, add2_青</li>
+											<li>PalAdd                     = 加算する赤色, 加算する緑色, 加算する青色</li>
+											<li>PalMul                     = 合成する赤色, 合成する緑色, 合成する青色</li>
+											<li>Trans                      = 透過の種類</li>
+											<li>Alpha                      = ソースアルファ, デスティネーションアルファ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AfterImageTime.html">AfterImageTime</a></h2>
+			<div><p><a href="./AfterImage.html">AfterImage</a>のTime(残像表示時間)を上書きすることができます。</p><p><a href="./AfterImage.html">AfterImage</a>を連続で実行した場合、今まで表示されていた残像が消えてしまいます。なので、<a href="./AfterImage.html">AfterImage</a>のTimeを持続させたい場合はAfterImageTimeを使用します。</p><p>ただし、AfterImageTimeで残像を消去する処理は厳しいです。なぜなら、残像が表示される時間を変更するだけなので、残像の履歴が残っており履歴がなくなるまで残像が表示され続けます。ですので、完全に消去した場合は<a href="./AfterImage.html">AfterImage</a>でTime=0に設定し、1フレームだけ実行することによって一瞬で残像を消去できます。</p><p>また、<a href="./AfterImage.html">AfterImage</a>が実行されていない時は、AfterImageTimeのパラメータは無視されます。例えば、"Time = var(0) := 9"としていた場合、代入が実行されません。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AfterImageTime</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Time                       = 新しい継続時間</li>
+											<li>; Value                    = 新しい時間</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AllPalFX.html">AllPalFX</a></h2>
+			<div><p>画面全体のパレットに指定色を加算・乗算します。</p><p><code>OwnPal</code>パラメーターを無視して、画面,ステージ,ライフバー,キャラクター(<code>Explod</code>,<code>Helper</code>を含む)などのオブジェクトに適用されます。ただし、<code>AllPalFX</code>は影響を受けない,<code>PalFX</code>系で上書き,<code>SuperPause</code>による暗転を行うと背景や相手への効果が消える,<code>AfterImage</code>の残像,ライフバーのアニメーション,キャラクターの影など例外があります。</p><p>キャラクターのみに加算する場合は<a href="PalFX.html"><code>PalFX</code></a>,背景のみに加算する場合は<a href="BGPalFX.html"><code>BGPalFX</code></a>,指定色で塗りつぶしたい場合は<a href="EnvColor.html"><code>EnvColor</code></a>。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AllPalFX</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Time                       = 持続時間</li>
+											<li>Color                      = 彩度</li>
+											<li>Add                        = 加算する赤色, 加算する緑色, 加算する青色</li>
+											<li>Mul                        = 合成する赤色, 合成する緑色, 合成する青色</li>
+											<li>SinAdd                     = 周期する赤色, 周期する緑色, 周期する青色, 周期</li>
+											<li>InvertAll                  = 色反転フラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AngleAdd.html">AngleAdd</a></h2>
+			<div><p>AngleDrawで回転させる角度を増減します。</p><p>単位は度。角度を返すトリガー(arc●●●)は、戻り値がラジアンなので、変換が必要となります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AngleAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 加算角度</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AngleDraw.html">AngleDraw</a></h2>
+			<div><p>プレイヤーの軸を中心に回転させて表示します。AngleAdd、AngleMul、AngleSetと併せて使用。角度は、右向き時、反時計回りが正方向になります。</p><p>1フレームしか効果がないので、triggerの指定には注意。</p><p>Helperと組み合わせて、グルグル回転する、飛び道具とか、オプション等に使えるほか、回転やられに使う人もいます。</p><p>ただし、90の倍数角度回転なら問題ありませんが、それ以外の場合はジャギィがでてしまいます。</p><p>このステート実行中は、AIRファイル中の座標指定、反転表示、透過表示は無効になります。回転の中心を変えたい場合は、sffに別なスプライトとして登録しなければなりません。なお、これらの無効化は、AfterImageにも影響を及ぼします。また、判定枠は回転しませんので、判定を持たせる場合は、最初から原点(0,0)を中心とする正方形とするか、回転に合わせてAirを設定する必要があります。</p><p>キャラクターの見た目を大きくしたり、回転させることはできますが、当たり判定食らい判定は大きくなりません。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AngleDraw</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 角度</li>
+											<li>Scale                      = 横縮尺, 縦縮尺</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AngleMul.html">AngleMul</a></h2>
+			<div><p>AngleDrawで回転させる角度を倍数で指定。</p><p>単位は度。角度を返すトリガー(arc●●●)は、戻り値がラジアンなので、変換が必要となります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AngleMul</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 倍数</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AngleSet.html">AngleSet</a></h2>
+			<div><p>AngleDrawで回転させる角度を指定値に変更。</p><p>単位は度。角度を返すトリガー(arc●●●)は、戻り値がラジアンなので、変換が必要となります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AngleSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 角度</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AppendToClipboard.html">AppendToClipboard</a></h2>
+			<div><p>基本的にはDisplayToClipboardと同じで、併用も可能。</p><p>DisplayToClipboardは、すでにメッセージが存在する場合、上書きされますが、こちらは改行して表示されます。</p><p>直前の値と見比べることができますが、頻繁に値が変わる場合、却って見にくくなってしまいます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AppendToClipboard</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Text                       = "所定の文字列"</li>
+											<li>Params                     = 引数1, 引数2, 引数3, 引数4, 引数5, 引数6</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AssertSpecial.html">AssertSpecial</a></h2>
+			<div><p>実行したフレームあるいは実行直後に、特殊処理を行います。</p><p>1フレームのみ有効。</p><p>1つの<code>AssertSpecial</code>で指定できるフラグは３種類だけです。※4つ以上のフラグを指定したい場合は複数の<code>AssertSpecial</code>を記述します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AssertSpecial</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Flag                       = フラグ名</li>
+											<li>Flag2                      = フラグ名</li>
+											<li>Flag3                      = フラグ名</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AttackDist.html">AttackDist</a></h2>
+			<div><p>攻撃を行ったときに相手が防御体制をとる距離を変更します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AttackDist</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 攻撃認識距離</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./AttackMulSet.html">AttackMulSet</a></h2>
+			<div><p>攻撃力を倍数で指定します。一時的に攻撃力が上がる技などに。効果は1フレーム。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = AttackMulSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 攻撃力係数</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./BGPalFX.html">BGPalFX</a></h2>
+			<div><p>背景のパレットに指定色を加算・乗算します。</p><p>全画面に加算する場合は<a href="AllPalFX.html"><code>AllPalFX</code></a>,キャラクターのみに加算する場合は<a href="PalFX.html"><code>PalFX</code></a>,指定色で塗りつぶしたい場合は<a href="EnvColor.html"><code>EnvColor</code></a>。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = BGPalFX</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Time                       = 持続時間</li>
+											<li>Color                      = 彩度</li>
+											<li>Add                        = 加算する赤色, 加算する緑色, 加算する青色</li>
+											<li>Mul                        = 合成する赤色, 合成する緑色, 合成する青色</li>
+											<li>SinAdd                     = 周期する赤色, 周期する緑色, 周期する青色, 周期</li>
+											<li>InvertAll                  = 色反転フラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./BindToParent.html">BindToParent</a></h2>
+			<div><p>Helperのステート内で記述します。そのhelperを呼び出したステートのスプライトを基準に位置を固定します。</p><p>親がHelperの場合、当然そのHelperのスプライトが対象となります。</p><p>※Helper等がルートの場合、ルートがDestroySelfすると、このステートコントローラーは無効になります。でも、Helperがルートになるって、ありえるのか？なお、親がDestroySelfした場合も、無効となります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = BindToParent</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Time                       = 固定時間</li>
+											<li>Facing                     = 向きフラグ</li>
+											<li>Pos                        = x座標, y座標</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./BindToRoot.html">BindToRoot</a></h2>
+			<div><p>Helperのステート内で記述します。そのhelperを呼び出したステートのスプライトを基準に位置を固定します。</p><p>親がHelperの場合、当然そのHelperのスプライトが対象となります。</p><p>※Helper等がルートの場合、ルートがDestroySelfすると、このステートコントローラーは無効になります。でも、Helperがルートになるって、ありえるのか？なお、親がDestroySelfした場合も、無効となります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = BindToRoot</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Time                       = 固定時間</li>
+											<li>Facing                     = 向きフラグ</li>
+											<li>Pos                        = x座標, y座標</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./BindToTarget.html">BindToTarget</a></h2>
+			<div><p>特定のターゲット(プレイヤーの攻撃を受けてヒット・ガード状態になっている敵)を基準にプレイヤーの位置を固定します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = BindToTarget</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ヒットID</li>
+											<li>Time                       = 固定時間</li>
+											<li>Pos                        = x座標 , y座標 , 基準位置</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./C.html">C</a></h2>
+			<div>屈み Crouching</div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[StateDef 『正の整数』]</li>
+					
+											<li>Type                       = 状態</li>
+											<li>Physics                    = 重力</li>
+											<li>MoveType                   = 行動状態</li>
+											<li>HitCountPersist            = 引継ぎフラグ</li>
+											<li>MoveHitPersist             = 引継ぎフラグ</li>
+											<li>HitDefPersist              = 引継ぎフラグ</li>
+											<li>SprPriority                = 画像の表示優先度</li>
+											<li>FaceP2                     = 相手へ振り向くフラグ</li>
+											<li>Juggle                     = ジャグル値に加算する値</li>
+											<li>VelSet                     = X軸の移動速度, Y軸の移動速度</li>
+											<li>Anim                       = アニメ番号</li>
+											<li>Ctrl                       = キー入力受付可能フラグ</li>
+											<li>PowerAdd                   = パワーゲージの増減量</li>
+					
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ChangeAnim.html">ChangeAnim</a></h2>
+			<div><p>アニメーションを変更します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ChangeAnim</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = アクション番号</li>
+											<li>Elem                       = 要素番号</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ChangeAnim2.html">ChangeAnim2</a></h2>
+			<div><p>ChangeAnimと似た効果があります。パラメータについてはそちらを参照のこと。</p><p>HitDefのp2stateパラメータやTargetStateを使って相手に参照させるステート内で、プレイヤーのairファイルを使用して相手のアニメーションを変更するのに使用します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ChangeAnim2</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = アクション番号</li>
+											<li>Elem                       = 要素番号</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ChangeState.html">ChangeState</a></h2>
+			<div><p>実行者のステート・アニメーション・コントロールを変更します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ChangeState</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = ステート番号</li>
+											<li>Ctrl                       = コントロールフラグ</li>
+											<li>Anim                       = アクション番号</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ClearClipboard.html">ClearClipboard</a></h2>
+			<div><p>デバッグ用。クリップボードの内容(デバッグ情報)を消去します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ClearClipboard</li>
+					<li>Trigger1                   = 1</li>
+					
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./CtrlSet.html">CtrlSet</a></h2>
+			<div><p>プレイヤーのコントロールフラグをセットします。フラグが立っていると技の途中でも歩行、ジャンプ等の動作ができてしまいます。</p><p>通常はStateDef?の冒頭でセットするので、ステートの途中でフラグを変更するときなどに使用します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = CtrlSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = コントロールフラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./DefenceMulSet.html">DefenceMulSet</a></h2>
+			<div><p>防御力を倍数で指定します。一時的に防御力が上がる技などに。バグか仕様かはわかりませんが、win版ではMovetypeがHのときしか効果がありません。</p><p>（１ヒット目のダメージには適用されない）</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = DefenceMulSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 防御力係数</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./DestroySelf.html">DestroySelf</a></h2>
+			<div><p>Helperのステートに記述します。そのHelperを消すことができます。パラメータはありません。</p><p>Helperは同時に存在する数に上限がありますので、常駐させるとき以外は、必ず消すようにしましょう(ラウンド終了時も自動で消えますが)。Helper以外のステートでは無効。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = DestroySelf</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>recursive                  = recursive_flag </li>
+											<li>removeexplods              = remove_explods </li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./DisplayToClipboard.html">DisplayToClipboard</a></h2>
+			<div><p>デバッグモード(Ctrl+D)でのみ有効なステートコントローラ。 </p><p>クリップボードの内容を消去し、デバッグ用のメッセージを表示します。</p><p>直前の値と見比べたい場合は、AppendToClipboardを使用します(併用も可)。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = DisplayToClipboard</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>text                       = "所定の文字列"</li>
+											<li>Params                     = 引数1, 引数2, 引数3, 引数4, 引数5, 引数6</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./EnvColor.html">EnvColor</a></h2>
+			<div><p>画面を指定色で塗りつぶします。</p><p>ただし、AllPalFX(PalFX・BGPalFXはダメ ※PalFXはライフバーのLayerNo=1以上に設定されたFaceには効果がある。)・ヒットスパークやOnTop=1のスプライト・アニメーションやライフバーでLayer=1以上に設定されたスプライト(アニメーションは除く)は表示されます。ステージは、LayerNoの設定関係なしに塗りつぶされます。</p><p>超必殺・特殊技の演出などに使用出来ます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = EnvColor</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 赤, 緑, 青</li>
+											<li>Time                       = 効果持続時間</li>
+											<li>Under                      = 背面フラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./EnvShake.html">EnvShake</a></h2>
+			<div><p>画面を揺らします。ただし、ライフバーは揺れません。</p><p>次のフレームからTime-1フレーム後まで作用。1フレーム毎に実行すると、前回の効果に上書きされるため、内容が同じだと画面が揺れません。</p><p>揺れは正弦波であり、初期位相Phase°、角周波数Freq°/フレーム、振幅Amplピクセル。（正弦波は円周上を回る点を縦軸に映した影と見ることが出来、円の半径をAmpl、1フレームに反時計回りに回る角度をFreq、スタート地点をPhaseと考えることが出来る。）</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = EnvShake</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Time                       = 揺れる時間</li>
+											<li>Ampl                       = 揺れ幅</li>
+											<li>Phase                      = 位相開始位置</li>
+											<li>Freq                       = 揺れの速度</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Explod.html">Explod</a></h2>
+			<div><p>指定した番号のアニメーションをAIRファイルから呼び出して表示します。</p><p>同時に存在できる総数には上限があり、標準では64個(Mugen1.0から256個)となっています。仮にプレイヤー1(P1)が64個出してしまった場合、プレイヤー2(2P)は1つも出せなくなります。総数の上限は<code>mugen.cfg</code>の<code>ExplodMax</code>で変更できます。大きい値にするほど、PCへの負荷が大きくなります。動作が重かったりする場合は、この値を下げることにより改善する場合があります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Explod</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ExplodのID</li>
+											<li>Facing                     = 向き</li>
+											<li>VFacing                    = 上下の向き</li>
+											<li>Pos                        = x座標, y座標</li>
+											<li>PosType                    = 基準点の位置</li>
+											<li>Space                      = 座標の方法</li>
+											<li>Random                     = x範囲, y範囲</li>
+											<li>Vel                        = x速度, y速度</li>
+											<li>Accel                      = x加速度, y加速度</li>
+											<li>Scale                      = 横縮尺 [,縦縮尺]</li>
+											<li>Angle                      = 角度</li>
+											<li>XAngle                     = 角度</li>
+											<li>YAccelAngle                = 角度</li>
+											<li>BindID                     = bind_id</li>
+											<li>BindTime                   = 固定時間</li>
+											<li>SprPriority                = スプライト表示優先順位</li>
+											<li>OnTop                      = 手前表示フラグ</li>
+											<li>RemoveTime                 = 消滅時間</li>
+											<li>SuperMove                  = superpause無視フラグ</li>
+											<li>SuperMoveTime              = SuperPause無視時間</li>
+											<li>PauseMoveTime              = Pause無視時間</li>
+											<li>Shadow                     = 赤影, 緑影, 青影</li>
+											<li>RemoveOnGethit             = やられ消滅フラグ</li>
+											<li>Trans                      = 透過型</li>
+											<li>Alpha                      = ソースアルファ, デスティネーションアルファ</li>
+											<li>Anim                       = [F]アクション番号</li>
+											<li>OwnPal                     = 独自パレットフラグ</li>
+											<li>ReMapPal                   = dst_pal_grp, dst_pal_item</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ExplodBindTime.html">ExplodBindTime</a></h2>
+			<div><p>有効なExplodのBindTimeパラメータを変更します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ExplodBindTime</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ExplodのID</li>
+											<li>Time                       = 固定時間</li>
+											<li>; value                    = 固定時間</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./FallEnvShake.html">FallEnvShake</a></h2>
+			<div><p>プレイヤーが攻撃を受けているときに有効。相手のHitDef中のfall.envshakeパラメータを実行します。やられステートを上書きするときや、特殊なやられなどに使用。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = FallEnvShake</li>
+					<li>Trigger1                   = 1</li>
+					
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ForceFeedback.html">ForceFeedback</a></h2>
+			<div><p>対応しているゲームパッドを振動させます。</p><p>現在は廃止されているはずなのですが、最新（2013.08更新）common1.cnsには、まだ記載されています。また、対応しているゲームパッドの詳細も不明です。使用しないほうがいいです。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ForceFeedback</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>WaveForm                   = 振動パターン</li>
+											<li>Time                       = 持続時間</li>
+											<li>Ampl                       = 初期振幅 (integer constant), d1, d2, d3</li>
+											<li>Freq                       = 初期振動数 (integer constant), d1, d2, d3</li>
+											<li>Self                       = 自分フラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./GameMakeAnim.html">GameMakeAnim</a></h2>
+			<div><p>ヒットマークやダウン衝撃などの共通アニメを表示します。</p><p>Explodでも代用は可能ですが、相手に参照させるステート内では、こちらを使うのが無難。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = GameMakeAnim</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = アクション番号</li>
+											<li>Pos                        = x_座標, y_座標</li>
+											<li>Random                     = 出現範囲</li>
+											<li>Under                      = 背面フラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Gravity.html">Gravity</a></h2>
+			<div><p>cnsで設定した"yaccel"の値を利用してプレイヤーに重力をかけます。効果は1フレーム。パラメータはありません。</p><p>"yaccel"以外の重力をかけるときはVelAddを使用します。VelAddでも代用可能ですが、GravityはPosFreeze中に加速の影響を受けないという特徴があります。</p><p>そのステート中、プレイヤーに対して常に重力がかかります。</p><p>このコントローラを使う場合は、phisycsがNのはずなので、着地したときの記述を忘れないようにしましょう。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Gravity</li>
+					<li>Trigger1                   = 1</li>
+					
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Helper.html">Helper</a></h2>
+			<div><p>プレイヤー以外のキャラクターを出現させます。<code>Helper</code>が参照するステートを別に記述する必要がありますが、様々な動きが可能。<span class="decoration-font-line-green">複雑な動作の飛び道具</span>・プレイヤーについて動き回る<span class="decoration-font-line-green">サポートキャラ</span>・<span class="decoration-font-line-green">特殊ゲージなどの特殊システム</span>や<span class="decoration-font-line-green">自分自身の分身</span>などに利用します。</p><p>攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。</p><p><code>Helper</code>は、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。<code>Helper</code>が消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。但し、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。</p><p>なお、<span class="decoration-font-highlight-red">全プレイヤーの<code>Helper</code>合計数には上限</span>があり、初期設定は32個で最大56個まで増やせます。上限は<code>mugen.cfg</code>にて設定可能。設定数を超えると<code>Helper</code>を射出できなくなります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Helper</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>HelperType                 = ヘルパーの種類</li>
+											<li>Name                       = "ヘルパー名"</li>
+											<li>OwnPal                     = 独自パレットフラグ</li>
+											<li>Size.XScale                = 横縮尺</li>
+											<li>Size.YScale                = 縮尺</li>
+											<li>Size.Ground.Back           = 前ぶつかり判定</li>
+											<li>Size.Ground.Front          = 後ぶつかり判定</li>
+											<li>Size.Air.Back              = 空中での前ぶつかり判定</li>
+											<li>Size.Air.Front             = 空中での後ぶつかり判定</li>
+											<li>Size.Height                = 縦ぶつかり判定</li>
+											<li>Size.Proj.DoScale          = 飛び道具縮尺適用フラグ</li>
+											<li>Size.Head.Pos              = 頭の位置</li>
+											<li>Size.Mid.Pos               = 体の中間の位置</li>
+											<li>Size.ShadowOffset          = 影の表示位置</li>
+											<li>StateNo                    = ステート番号</li>
+											<li>KeyCtrl                    = コントロールフラグ</li>
+											<li>ID                         = ヘルパーID</li>
+											<li>Pos                        = x座標, y座標</li>
+											<li>PosType                    = 基準点の位置</li>
+											<li>Facing                     = ヘルパーの向き</li>
+											<li>PauseMoveTime              = Pause無視時間</li>
+											<li>SuperMoveTime              = SuperPause無視時間</li>
+											<li>ReMapPal                   = dst_pal_grp, dst_pal_item</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./HitAdd.html">HitAdd</a></h2>
+			<div><p>連続技実行中、ヒット数を増減します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = HitAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = ヒット数増減値</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./HitBy.html">HitBy</a></h2>
+			<div><p>一時的に特定の攻撃以外食らわないようにします。回り込み(投げのみ食らう)などに。</p><p>ジャンプの瞬間など「投げのみ食らわない」といった場合は姉妹品のNotHitByを使います。</p><p>また、HitBy効果持続中に、同じスロットのHitBy、NotHitByが実行されると、それまでのHitByの効果は無効となります。</p><p>2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>HitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = HitBy</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 攻撃属性</li>
+											<li>value2                     = 攻撃属性</li>
+											<li>Time                       = 効果持続時間</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./HitDef.html">HitDef</a></h2>
+			<div><p><code>AIR</code>ファイルで設定されている、実行者の<code>Clsn1</code>(攻撃判定：赤い四角)が相手の<code>Clsn2</code>(やられ判定：青い四角)に重なった時の処理を設定。設定された各種パラメーターの条件が相手の状態を満たしていた場合にヒットし、くらいアニメ・ダメージ・ふっとび速度などの処理が実行されます。</p><p><code>HitDef</code>の処理は、ステートを移動するか<a href="./ReversalDef.html"><code>ReversalDef</code></a>が実行されるまで続きます。</p><p>そのステート中効果が持続しますが、<code>1</code>回ヒットしたキャラに対しては、効果を及ぼさなくなります。このため、複数ヒットする技の場合は、ヒットさせたい数だけ<code>HitDef</code>を定義するか、複数回効果があるようにトリガーを設定する必要があります。</p><p><code>Clsn1</code>がない、または実行者の<code>MoveType</code>が<code>I</code>だった場合、<code>HitDef</code>は機能しません。</p><p><code>HitDef</code>の定義をもった攻撃判定へヒットするのが<a href="./ReversalDef.html"><code>ReversalDef</code></a>。仕様上<a href="./ReversalDef.html"><code>ReversalDef</code></a>とは併用できません。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = HitDef</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Attr                       = ステートタイプ, 攻撃属性(技の強さと属性), 以降攻撃属性をカンマで複数記述可...</li>
+											<li>HitFlag                    = ヒットフラグ</li>
+											<li>GuardFlag                  = ガードフラグ</li>
+											<li>AffectTeam                 = 影響チーム</li>
+											<li>AnimType                   = アニメタイプ</li>
+											<li>Air.AnimType               = 空中でのアニメタイプ</li>
+											<li>Fall.AnimType              = Fall状態時のアニメタイプ</li>
+											<li>Ground.Type                = 地上でののけぞり方</li>
+											<li>Air.Type                   = 空中でののけぞり方</li>
+											<li>ID                         = ヒットid番号</li>
+											<li>ChainID                    = 連続ヒットid番号</li>
+											<li>NoChainID                  = 不連続ヒットid番号1, 不連続ヒットid番号2</li>
+											<li>Kill                       = KOフラグ</li>
+											<li>Guard.Kill                 = ガードKOフラグ</li>
+											<li>Fall.Kill                  = </li>
+											<li>HitOnce                    = 1回ヒットフラグ</li>
+											<li>Air.Juggle                 = ジャグルポイント</li>
+											<li>Damage                     = ヒットダメージ, ガードダメージ</li>
+											<li>GetPower                   = p1ヒットゲージ増加量, p1ガードゲージ増加量</li>
+											<li>GivePower                  = p2ヒットゲージ増加量, p2ガードゲージ増加量</li>
+											<li>PauseTime                  = p1停止時間, p2ブルブル時間</li>
+											<li>NumHits                    = ヒットカウント数</li>
+											<li>HitSound                   = グループ番号, アイテム番号</li>
+											<li>GuardSound                 = グループ番号, アイテム番号</li>
+											<li>Priority                   = ヒット優先度, 相打ちの挙動</li>
+											<li>P1StateNo                  = ヒット時移行するステート番号</li>
+											<li>P2StateNo                  = ヒット時相手に参照させるステート番号</li>
+											<li>P2GetP1State               = ステート奪取フラグ</li>
+											<li>P1SprPriority              = </li>
+											<li>P2SprPriority              = </li>
+											<li>; SprPriority              = スプライト表示優先度</li>
+											<li>ForceStand                 = 強制立たせフラグ</li>
+											<li>ForceNoFall                = </li>
+											<li>Fall                       = 落下フラグ</li>
+											<li>Fall.Damage                = damage_amt</li>
+											<li>Fall.XVelocity             = 落下バウンド水平速度</li>
+											<li>Fall.YVelocity             = 落下バウンド垂直速度</li>
+											<li>Fall.Recover               = 受身可能フラグ</li>
+											<li>Fall.RecoverTime           = 受身可能受付開始時間</li>
+											<li>SparkNo                    = ヒットスパークのアクション番号</li>
+											<li>Guard.SparkNo              = ガードスパークのアクション番号</li>
+											<li>SparkXY                    = スパークx座標, スパークy座標</li>
+											<li>P1Facing                   = p1の向き</li>
+											<li>P1GetP2Facing              = p1の向き</li>
+											<li>Snap                       = x固定座標, y固定座標</li>
+											<li>; MinDist                  = x最小座標, y最小座標</li>
+											<li>; MaxDist                  = x最大座標, y最大座標</li>
+											<li>P2Facing                   = p2の向き</li>
+											<li>Ground.HitTime             = ヒット時間</li>
+											<li>Ground.SlideTime           = ヒットバック時間</li>
+											<li>Ground.Velocity            = ヒット速度X, ヒット速度Y</li>
+											<li>Ground.CornerPush.VelOff   = 地上コーナープッシュ速度</li>
+											<li>Air.HitTime                = 空中でのヒット時間</li>
+											<li>Air.Fall                   = value</li>
+											<li>Air.Velocity               = 空中ヒット速度X, 空中ヒット速度Y</li>
+											<li>Air.CornerPush.VelOff      = 空中コーナープッシュ速度</li>
+											<li>Down.Bounce                = ダウン追い討ちヒットバウンドフラグ</li>
+											<li>Down.HitTime               = ダウン追い討ちヒット時間</li>
+											<li>Down.Velocity              = ダウン追い討ち水平速度, ダウン追い討ち垂直速度</li>
+											<li>Down.CornerPush.VelOff     = ダウンコーナープッシュ速度</li>
+											<li>Guard.Velocity             = ガード速度X</li>
+											<li>Guard.HitTime              = ガード時間</li>
+											<li>Guard.SlideTime            = ガードバック時間</li>
+											<li>Guard.CtrlTime             = ガードからの復帰時間</li>
+											<li>Guard.Dist                 = ガード認識距離</li>
+											<li>Guard.PauseTime            = p1停止時間, p2ブルブル時間</li>
+											<li>Guard.CornerPush.VelOff    = 地上ガードコーナープッシュ速度</li>
+											<li>AirGuard.Velocity          = 空中ガード速度X, 空中ガード速度Y</li>
+											<li>AirGuard.CtrlTime          = 空中ガード復帰時間</li>
+											<li>AirGuard.CornerPush.VelOff = 地上ガードコーナープッシュ速度空中</li>
+											<li>YAccel                     = 重力</li>
+											<li>PalFX.Time                 = 持続時間</li>
+											<li>PalFX.Color                = 彩度</li>
+											<li>PalFX.Add                  = 加算する赤色, 加算する緑色, 加算する青色</li>
+											<li>PalFX.Mul                  = 合成する赤色, 合成する緑色, 合成する青色</li>
+											<li>PalFX.SinAdd               = 周期する赤色, 周期する緑色, 周期する青色, 周期</li>
+											<li>PalFX.InvertAll            = 色反転フラグ</li>
+											<li>EnvShake.Time              = ヒット時画面振動時間</li>
+											<li>EnvShake.Ampl              = 揺れ幅</li>
+											<li>EnvShake.Phase             = 位相</li>
+											<li>EnvShake.Freq              = 揺れの速度</li>
+											<li>Fall.EnvShake.Time         = 落下時画面振動時間</li>
+											<li>Fall.EnvShake.Ampl         = 振幅</li>
+											<li>Fall.EnvShake.Phase        = 位相</li>
+											<li>Fall.EnvShake.Freq         = 振動数</li>
+											<li>Attack.Width               = z1, z2</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./HitFallDamage.html">HitFallDamage</a></h2>
+			<div><p>攻撃を受けたとき、HitDefで設定された落下ダメージを与えます(自分に)。共通ステートを上書きするときや、相手に参照させるステートで使用します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = HitFallDamage</li>
+					<li>Trigger1                   = 1</li>
+					
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./HitFallSet.html">HitFallSet</a></h2>
+			<div><p>プレイヤーがヒットモーション中にあるとき、落下状態にします。共通ステートを上書きするときや、相手に参照させるステートで使用します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = HitFallSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 落下フラグ</li>
+											<li>XVel                       = 水平速度</li>
+											<li>YVel                       = 垂直速度</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./HitFallVel.html">HitFallVel</a></h2>
+			<div><p>プレイヤーがヒットモーション中の落下状態にあるとき、相手のHitDefで指定されたfall.xvelとfall.yvelの値を有効にします。</p><p>　共通ステートを上書きするときや、相手に参照させるステートで使用します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = HitFallVel</li>
+					<li>Trigger1                   = 1</li>
+					
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./HitOverRide.html">HitOverRide</a></h2>
+			<div><p>指定した種類の攻撃を受けたときに、指定したステートに移行することができます。カウンター技や、helperのやられなどに。ただし、攻撃側がp2Statenoを設定していると、攻撃が当たらなくなります(不具合防止のため？)。</p><p>なお、このコントローラでMovetypeがH以外のステートに移行すると、HitDefを無効にできますが、ヒットスパークとヒット音は必ず発生してしまいます。</p><p>一度に8種類の指定が可能。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = HitOverRide</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Attr                       = 攻撃属性</li>
+											<li>Slot                       = スロット番号</li>
+											<li>StateNo                    = ステート番号</li>
+											<li>Time                       = 効果時間</li>
+											<li>ForceAir                   = 空中ヒットフラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./HitVelSet.html">HitVelSet</a></h2>
+			<div><p>プレイヤーがやられモーション中であるとき、相手のHitDefで指定された速度を有効にします。</p><p>　ヒットバックを発生させる、共通ステートを上書きするときや、相手に参照させるステートで使用します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = HitVelSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>X                          = 水平速度フラグ</li>
+											<li>Y                          = 垂直速度フラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./L.html">L</a></h2>
+			<div>転倒 Lying down</div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[StateDef 『正の整数』]</li>
+					
+											<li>Type                       = 状態</li>
+											<li>Physics                    = 重力</li>
+											<li>MoveType                   = 行動状態</li>
+											<li>HitCountPersist            = 引継ぎフラグ</li>
+											<li>MoveHitPersist             = 引継ぎフラグ</li>
+											<li>HitDefPersist              = 引継ぎフラグ</li>
+											<li>SprPriority                = 画像の表示優先度</li>
+											<li>FaceP2                     = 相手へ振り向くフラグ</li>
+											<li>Juggle                     = ジャグル値に加算する値</li>
+											<li>VelSet                     = X軸の移動速度, Y軸の移動速度</li>
+											<li>Anim                       = アニメ番号</li>
+											<li>Ctrl                       = キー入力受付可能フラグ</li>
+											<li>PowerAdd                   = パワーゲージの増減量</li>
+					
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./LifeAdd.html">LifeAdd</a></h2>
+			<div><p>体力を増減します。回復技、自爆技などに。相手の防御力は考慮されますが、無視することも可能。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = LifeAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Absolute                   = 絶対量フラグ</li>
+											<li>Kill                       = KOフラグ</li>
+											<li>value                      = 体力増減量</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./LifeSet.html">LifeSet</a></h2>
+			<div><p>体力を指定値に変更します。全回復技、自分が瀕死になる技などに。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = LifeSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 体力変更値</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./MakeDust.html">MakeDust</a></h2>
+			<div><p>土埃を表示します。絵はfightfx.airのものが使用されます。効果は1フレーム。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = MakeDust</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Spacing                    = -</li>
+											<li>Pos                        = -, -</li>
+											<li>Pos2                       = -, -</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ModifyExplod.html">ModifyExplod</a></h2>
+			<div><p>既に出したExplodの設定を変える命令。指定したIDのExplodが存在しない場合は、ID以降のパラメータは読み込まれません。</p><p>IgnoreHitPause = 1ではHitPauseTime中にも出る、またAnimが動く。IgnoreHitPauseを省略するとHitPauseTime中には出ない、またAnimeが動く。IgnoreHitPause = 0ではHitPauseTime中には出ない、またAnimが動かない。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ModifyExplod</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ExplodのID番号</li>
+											<li>Facing                     = 向き</li>
+											<li>VFacing                    = 上下の向き</li>
+											<li>Pos                        = x座標, y座標</li>
+											<li>PosType                    = 基準点の位置</li>
+											<li>Random                     = x範囲, y範囲</li>
+											<li>Vel                        = x速度, y速度</li>
+											<li>Accel                      = x加速度, y加速度</li>
+											<li>Scale                      = 横縮尺 [,縦縮尺]</li>
+											<li>BindTime                   = 固定時間</li>
+											<li>OnTop                      = 手前表示フラグ</li>
+											<li>RemoveTime                 = 消滅時間</li>
+											<li>SuperMoveTime              = superpause無視時間</li>
+											<li>SprPriority                = スプライト表示優先順位</li>
+											<li>PauseMoveTime              = move_time</li>
+											<li>SuperMove                  = superpause無視フラグ</li>
+											<li>Shadow                     = 赤影, 緑影, 青影</li>
+											<li>RemoveOnGethit             = やられ消滅フラグ</li>
+											<li>Trans                      = 透過型</li>
+											<li>Alpha                      = ソースアルファ, デスティネーションアルファ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./MoveHitReset.html">MoveHitReset</a></h2>
+			<div><p>ヒットフラグ(MoveContact?、MoveGuarded?、MoveHit?、WinではMoveReversed?も)を0にします。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = MoveHitReset</li>
+					<li>Trigger1                   = 1</li>
+					
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./NotHitBy.html">NotHitBy</a></h2>
+			<div><p>一時的に特定の攻撃を食らわなくなります。無敵技、ジャンプ開始モーションなどに。</p><p>姉妹品にHitByがあります。指定方法が異なるだけで、実質的に同じコントローラと思ってよいです。</p><p>2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>NotHitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = NotHitBy</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 攻撃属性</li>
+											<li>value2                     = 攻撃属性</li>
+											<li>Time                       = 効果持続時間</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Null.html">Null</a></h2>
+			<div><p>何もしません。ステートコントローラーを一時的に無効にするときなどに使用します。動作チェック用。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Null</li>
+					<li>Trigger1                   = 1</li>
+					
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Offset.html">Offset</a></h2>
+			<div><p>プレイヤースプライトの表示位置を変更します。Clns枠もしっかり移動します。1フレームのみ有効。</p><p>　見た目のみキャラを移動させる場合に使えます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Offset</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>X                          = x位置</li>
+											<li>Y                          = y位置</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./PalFX.html">PalFX</a></h2>
+			<div><p>キャラクターなどのパレットに加算・乗算します。</p><p>全画面に加算する場合は<a href="AllPalFX.html"><code>AllPalFX</code></a>,背景のみに加算する場合は<a href="BGPalFX.html"><code>BGPalFX</code></a>,指定色で塗りつぶしたい場合は<a href="EnvColor.html"><code>EnvColor</code></a>。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = PalFX</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Time                       = 持続時間</li>
+											<li>Color                      = 彩度</li>
+											<li>Add                        = 加算する赤色, 加算する緑色, 加算する青色</li>
+											<li>Mul                        = 合成する赤色, 合成する緑色, 合成する青色</li>
+											<li>SinAdd                     = 周期する赤色, 周期する緑色, 周期する青色, 周期</li>
+											<li>InvertAll                  = 色反転フラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ParentVarAdd.html">ParentVarAdd</a></h2>
+			<div><p>Helperのステート内で記述。Helperの親の変数を増減します。Helper以外のステートで書いても意味なし。</p><p>Helperは固有の変数を持ちますので、VarAddだとHelper自身の変数を増減することになります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ParentVarAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>v                          = 整数変数番号</li>
+											<li>value                      = 整数増加量</li>
+											<li>; fv                       = 浮動小数変数番号</li>
+											<li>; value                    = 浮動小数変数増加量</li>
+											<li>; var(番号)              = 整数増減量</li>
+											<li>; fvar(番号)             = 小数増減量</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ParentVarSet.html">ParentVarSet</a></h2>
+			<div><p>Helperのステート内で記述。Helperの親の変数をセットします。Helper以外のステートで書いても意味なし。</p><p>Helperは固有の変数を持ちますので、VarSetだとHelper自身の変数をセットすることになります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ParentVarSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>v                          = 整数変数番号</li>
+											<li>value                      = 整数増加量</li>
+											<li>; fv                       = 浮動小数変数番号</li>
+											<li>; value                    = 浮動小数変数増加量</li>
+											<li>; var(番号)              = 整数増減量</li>
+											<li>; fvar(番号)             = 小数増減量</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Pause.html">Pause</a></h2>
+			<div><p>時間を止めます。画面上の全てのスプライト、キャラクター、背景に効果を及ぼします。また、-1,-2,-3ステート等はPause中実行されません。(未検証)</p><p>ですが、Helper、Explod等は設定により停止時間中も動くことが可能。</p><p>このコントローラによる停止時間中に同じコントローラが実行されると、それまでのPauseは無効となります。</p><p>SuperPause停止時間中にPauseが実行された場合は、SuperPauseの効果時間が切れてからPauseが有効になります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Pause</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Time                       = 停止時間</li>
+											<li>MoveTime                   = 停止無視時間</li>
+											<li>PauseBG                    = 背景停止フラグ</li>
+											<li>EndCmdBufTime              = bt</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./PlaySnd.html">PlaySnd</a></h2>
+			<div><p>音を鳴らします。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = PlaySnd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Channel                    = チャンネル番号</li>
+											<li>value                      = グループ番号, サウンド番号</li>
+											<li>Volume                     = 音量</li>
+											<li>LowPriority                = 先方優先フラグ</li>
+											<li>FreqMul                    = 周波数</li>
+											<li>Loop                       = 繰り返しフラグ</li>
+											<li>Pan                        = パノラマ位置</li>
+											<li>AbsPan                     = パノラマ位置</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./PlayerPush.html">PlayerPush</a></h2>
+			<div><p>プレイヤーのぶつかり判定の有無を指定します。相手をすり抜けたりする場合に使用。効果は1フレーム。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = PlayerPush</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = ぶつかりフラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./PosAdd.html">PosAdd</a></h2>
+			<div><p><code>PosAdd</code>の実行者を指定した値だけ瞬時に移動させます。単位はピクセル。</p><p>基準点(0,0)は、AIRファイルで設定した基準点になります。<span class="decoration-font-line-red">実行者が動くと基準点も同じように動きます。</span></p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = PosAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>X                          = 水平方向の移動距離</li>
+											<li>Y                          = 垂直方向の移動距離</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./PosFreeze.html">PosFreeze</a></h2>
+			<div><p>一時的に速度・重力による移動を無効化します。効果は1フレーム(実行中)のみ有効。PosSet・PosAddは無効になりません。</p><p>停止している間もVelAdd・Gravityの影響を受けます。PosFreezeが終了した時に、停止していた間の速度が加算された状態で動き出すので注意。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = PosFreeze</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 停止フラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./PosSet.html">PosSet</a></h2>
+			<div><p>PosSetの実行者を指定座標へ瞬時に移動します。単位はピクセル。</p><p>基準点(0,0)は、X軸が地面・Y軸がステージの中央となります。<span class="decoration-font-line-red">画面が動いても軸は絶対に動きません。</span></p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = PosSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>X                          = 水平方向の座標</li>
+											<li>Y                          = 垂直方向の座標</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./PowerAdd.html">PowerAdd</a></h2>
+			<div><p>パワーゲージに指定した値を加算します。</p><p>1000で1ゲージ。パワーゲージの値は最小値「<code>0</code>」～最大値「<code>[Data]</code>で設定した値」までしか変更できません。</p><p>キャラクターのパワーゲージ最大値は「<code>×××××.def</code>の<code>cns = △△△△△.cns</code>」の「<code>△△△△△.cns</code>内の<code>[Data]</code>」に記載された「<code>Power = ○○○○</code>」で変更します。最小値・最大値は旧MUGENでは<code>-1241513983</code>～<code>1241513983</code>、MUGEN1.0以降では<code>-2147483627</code>～<code>2147483627</code>なのでちょっとだけ注意。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = PowerAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 増減量</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./PowerSet.html">PowerSet</a></h2>
+			<div><p>パワーゲージを指定した値に変更します。</p><p>1000で1ゲージ。パワーゲージの値は最小値「<code>0</code>」～最大値「<code>[Data]</code>で設定した値」までしか変更できません。</p><p>キャラクターのパワーゲージ最大値は「<code>×××××.def</code>の<code>cns = △△△△△.cns</code>」の「<code>△△△△△.cns</code>内の<code>[Data]</code>」に記載された「<code>Power = ○○○○</code>」で変更します。最小値・最大値は旧MUGENでは<code>-1241513983</code>～<code>1241513983</code>、MUGEN1.0以降では<code>-2147483627</code>～<code>2147483627</code>なのでちょっとだけ注意。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = PowerSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 変更値</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Projectile.html">Projectile</a></h2>
+			<div><p>飛び道具を出現させます。独自のパラメータ以外にHitDefの全てのパラメータを設定可能。</p><p>ちなみに、飛び道具でもやられ判定を付けないと相殺しません。</p><p>割と細かい設定が可能ですが、それでもあまり複雑な動きはできません。</p><p>このステートコントローラーで役不足な場合はhelperを使用します。</p><p>なお、winではプレイヤーへのPalFXの影響を受けてしまいます(バグ？)。ownpal=1を指定してもエラーとはなりませんが、無効です。</p><p>ちなみに、helperが出したProjectileも、本体管理となります。当然、パレットも本体と共用です。</p><p>Projectile専用のパラメータはすべて省略可能ですが、HitDefのAttr,HitFlag,GuardFlagは必須です。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Projectile</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Attr                       = 反撃属性1, 反撃属性2, ...</li>
+											<li>HitFlag                    = ヒットフラグ</li>
+											<li>GuardFlag                  = ガードフラグ</li>
+											<li>AffectTeam                 = 影響チーム</li>
+											<li>AnimType                   = アニメタイプ</li>
+											<li>Air.AnimType               = 空中でのアニメタイプ</li>
+											<li>Fall.AnimType              = fall状態時のアニメタイプ</li>
+											<li>Ground.Type                = 地上でののけぞり方</li>
+											<li>Air.Type                   = 空中でののけぞり方</li>
+											<li>ProjID                     = 飛び道具のID番号</li>
+											<li>ProjRemove                 = 消滅フラグ</li>
+											<li>ProjRemoveTime             = 射程時間</li>
+											<li>ProjShadow                 = 赤影, 緑影, 青影</li>
+											<li>ProjMissTime               = ミス時間</li>
+											<li>ProjHits                   = ヒット数</li>
+											<li>ProjPriority               = 飛び道具優先度</li>
+											<li>ProjHitAnim                = ヒット時のアニメ番号</li>
+											<li>ProjRemAnim                = 消滅時のアニメ番号</li>
+											<li>ProjCancelAnim             = 相殺時のアニメ番号</li>
+											<li>Velocity                   = 水平速度, 垂直速度</li>
+											<li>VelMul                     = 水平速度係数, 垂直速度係数</li>
+											<li>RemVelocity                = 消滅時水平速度, 消滅時垂直速度</li>
+											<li>Accel                      = 水平加速度, 垂直加速度</li>
+											<li>ProjScale                  = x縮尺, y縮尺</li>
+											<li>ID                         = ヒットid番号</li>
+											<li>ChainID                    = 連続ヒットid番号</li>
+											<li>NoChainID                  = 不連続ヒットid番号1, 不連続ヒットid番号2</li>
+											<li>Kill                       = KOフラグ</li>
+											<li>Guard.Kill                 = ガードKOフラグ</li>
+											<li>Fall.Kill                  = </li>
+											<li>HitOnce                    = 1回ヒットフラグ</li>
+											<li>Air.Juggle                 = ジャグルポイント</li>
+											<li>Damage                     = ヒットダメージ, ガードダメージ</li>
+											<li>GetPower                   = p1ヒットゲージ増加量, p1ガードゲージ増加量</li>
+											<li>GivePower                  = p2ヒットゲージ増加量, p2ガードゲージ増加量</li>
+											<li>PauseTime                  = p1停止時間, p2ブルブル時間</li>
+											<li>NumHits                    = ヒットカウント数</li>
+											<li>HitSound                   = グループ番号, アイテム番号</li>
+											<li>GuardSound                 = グループ番号, アイテム番号</li>
+											<li>Priority                   = ヒット優先度, 相打ちの挙動</li>
+											<li>P1StateNo                  = ヒット時移行するステート番号</li>
+											<li>P2StateNo                  = ヒット時相手に参照させるステート番号</li>
+											<li>P2GetP1State               = ステート奪取フラグ</li>
+											<li>P1SprPriority              = </li>
+											<li>; SprPriority              = スプライト表示優先度</li>
+											<li>P2SprPriority              = </li>
+											<li>ForceStand                 = 強制立たせフラグ</li>
+											<li>ForceNoFall                = </li>
+											<li>Fall                       = 落下フラグ</li>
+											<li>Fall.Damage                = damage_amt</li>
+											<li>Fall.XVelocity             = 落下バウンド水平速度</li>
+											<li>Fall.YVelocity             = 落下バウンド垂直速度</li>
+											<li>Fall.Recover               = 受身可能フラグ</li>
+											<li>Fall.RecoverTime           = 受身可能受付開始時間</li>
+											<li>SparkNo                    = ヒットスパークのアクション番号</li>
+											<li>Guard.SparkNo              = ガードスパークのアクション番号</li>
+											<li>SparkXY                    = スパークx座標, スパークy座標</li>
+											<li>P1Facing                   = p1の向き</li>
+											<li>P1GetP2Facing              = p1の向き</li>
+											<li>Snap                       = x固定座標, y固定座標</li>
+											<li>; MinDist                  = x最小座標, y最小座標</li>
+											<li>; MaxDist                  = x最大座標, y最大座標</li>
+											<li>P2Facing                   = p2の向き</li>
+											<li>Ground.HitTime             = ヒット時間</li>
+											<li>Ground.SlideTime           = ヒットバック時間</li>
+											<li>Ground.Velocity            = ヒット速度X, ヒット速度Y</li>
+											<li>Ground.CornerPush.VelOff   = 地上コーナープッシュ速度</li>
+											<li>Air.HitTime                = 空中でのヒット時間</li>
+											<li>Air.Fall                   = value</li>
+											<li>Air.Velocity               = 空中ヒット速度X, 空中ヒット速度Y</li>
+											<li>Air.CornerPush.VelOff      = 空中コーナープッシュ速度</li>
+											<li>Down.Bounce                = ダウン追い討ちヒットバウンドフラグ</li>
+											<li>Down.HitTime               = ダウン追い討ちヒット時間</li>
+											<li>Down.Velocity              = ダウン追い討ち水平速度, ダウン追い討ち垂直速度</li>
+											<li>Down.CornerPush.VelOff     = ダウンコーナープッシュ速度</li>
+											<li>Guard.Velocity             = ガード速度X</li>
+											<li>Guard.HitTime              = ガード時間</li>
+											<li>Guard.SlideTime            = ガードバック時間</li>
+											<li>Guard.CtrlTime             = ガードからの復帰時間</li>
+											<li>Guard.Dist                 = ガード認識距離</li>
+											<li>Guard.PauseTime            = p1停止時間, p2ブルブル時間</li>
+											<li>Guard.CornerPush.VelOff    = 地上ガードコーナープッシュ速度</li>
+											<li>AirGuard.Velocity          = 空中ガード速度X, 空中ガード速度Y</li>
+											<li>AirGuard.CtrlTime          = 空中ガード復帰時間</li>
+											<li>AirGuard.CornerPush.VelOff = 地上ガードコーナープッシュ速度空中</li>
+											<li>YAccel                     = 重力</li>
+											<li>PalFX.Time                 = 持続時間</li>
+											<li>PalFX.Color                = 彩度</li>
+											<li>PalFX.Add                  = 加算する赤色, 加算する緑色, 加算する青色</li>
+											<li>PalFX.Mul                  = 合成する赤色, 合成する緑色, 合成する青色</li>
+											<li>PalFX.SinAdd               = 周期する赤色, 周期する緑色, 周期する青色, 周期</li>
+											<li>PalFX.InvertAll            = 色反転フラグ</li>
+											<li>EnvShake.Time              = ヒット時画面振動時間</li>
+											<li>EnvShake.Ampl              = 揺れ幅</li>
+											<li>EnvShake.Phase             = 位相</li>
+											<li>EnvShake.Freq              = 揺れの速度</li>
+											<li>Fall.EnvShake.Time         = 落下時画面振動時間</li>
+											<li>Fall.EnvShake.Ampl         = 振幅</li>
+											<li>Fall.EnvShake.Phase        = 位相</li>
+											<li>Fall.EnvShake.Freq         = 振動数</li>
+											<li>Offset                     = 水平発射位置, 垂直発射位置</li>
+											<li>PosType                    = 基準点の位置</li>
+											<li>ProjSprPriority            = スプライト表示優先度</li>
+											<li>ProjStageBound             = ステージ外射程</li>
+											<li>ProjEdgeBound              = 画面外射程</li>
+											<li>ProjHeightBound            = 上空射程, 地上射程</li>
+											<li>ProjAnim                   = 飛び道具のアニメ番号</li>
+											<li>PauseMoveTime              = pause無視時間</li>
+											<li>SuperMoveTime              = superpause無視時間</li>
+											<li>AfterImage.Time            = 持続時間</li>
+											<li>AfterImage.Length          = ヒストリーバッファ容量</li>
+											<li>AfterImage.TimeGap         = スキップフレーム数</li>
+											<li>AfterImage.FrameGap        = フレーム間隔</li>
+											<li>AfterImage.PalColor        = 彩度</li>
+											<li>AfterImage.PalInvertAll    = 色反転フラグ</li>
+											<li>AfterImage.PalBright       = add_赤, add_緑, add_青</li>
+											<li>AfterImage.PalContrast     = mul_赤, mul_緑, mul_青</li>
+											<li>AfterImage.PalPostBright   = add2_赤, add2_緑, add2_青</li>
+											<li>AfterImage.PalAdd          = add_赤, add_緑, add_青</li>
+											<li>AfterImage.PalMul          = mul_赤, mul_緑, mul_青</li>
+											<li>Attack.Width               = z1, z2</li>
+											<li>ReMapPal                   = dst_pal_grp, dst_pal_item</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./RemapPal.html">RemapPal</a></h2>
+			<div><p>m.u.g.e.n 1.0から追加されたステートコントローラ。</p><p>それより前のバージョンは、パレット(ていうかsff)の仕様が異なるため、使用不可。</p><p>プレイヤーのパレットのうちひとつを別なものに換えます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = RemapPal</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Source                     = 変更前パレットのグループ番号, 変更前パレットのアイテム番号</li>
+											<li>Dest                       = 変更後パレットのグループ番号, 変更後パレットのアイテム番号</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./RemoveExplod.html">RemoveExplod</a></h2>
+			<div><p>Explodで出現させたスプライトを消滅させます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = RemoveExplod</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = 消滅させるExplodのID</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ReversalDef.html">ReversalDef</a></h2>
+			<div><p>プレイヤーの攻撃判定枠Clns1(赤い四角)と敵の攻撃判定枠(つまり攻撃判定同士)が接触したときの動作(以下、「反撃」)を設定します。</p><p>設定できるのはHitDefのパラメータのうちpausetime, sparkno, sparkxy, hitsound, p1stateno, p2statenoと、以下の必須パラメータです。</p><p>当て身投げ、弾き、回避技などに。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ReversalDef</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Reversal.Attr              = 反撃属性1, 反撃属性2, ...</li>
+											<li>Attr                       = 反撃属性1, 反撃属性2, ...</li>
+											<li>HitFlag                    = ヒットフラグ</li>
+											<li>GuardFlag                  = ガードフラグ</li>
+											<li>AffectTeam                 = 影響チーム</li>
+											<li>AnimType                   = アニメタイプ</li>
+											<li>Air.AnimType               = 空中でのアニメタイプ</li>
+											<li>Fall.AnimType              = fall状態時のアニメタイプ</li>
+											<li>Ground.Type                = 地上でののけぞり方</li>
+											<li>Air.Type                   = 空中でののけぞり方</li>
+											<li>ID                         = ヒットid番号</li>
+											<li>ChainID                    = 連続ヒットid番号</li>
+											<li>NoChainID                  = 不連続ヒットid番号1, 不連続ヒットid番号2</li>
+											<li>Kill                       = KOフラグ</li>
+											<li>Guard.Kill                 = ガードKOフラグ</li>
+											<li>Fall.Kill                  = </li>
+											<li>HitOnce                    = 1回ヒットフラグ</li>
+											<li>Air.Juggle                 = ジャグルポイント</li>
+											<li>Damage                     = ヒットダメージ, ガードダメージ</li>
+											<li>GetPower                   = p1ヒットゲージ増加量, p1ガードゲージ増加量</li>
+											<li>GivePower                  = p2ヒットゲージ増加量, p2ガードゲージ増加量</li>
+											<li>PauseTime                  = p1停止時間, p2ブルブル時間</li>
+											<li>NumHits                    = ヒットカウント数</li>
+											<li>HitSound                   = グループ番号, アイテム番号</li>
+											<li>GuardSound                 = グループ番号, アイテム番号</li>
+											<li>Priority                   = ヒット優先度, 相打ちの挙動</li>
+											<li>P1StateNo                  = ヒット時移行するステート番号</li>
+											<li>P2StateNo                  = ヒット時相手に参照させるステート番号</li>
+											<li>P2GetP1State               = ステート奪取フラグ</li>
+											<li>P1SprPriority              = </li>
+											<li>; SprPriority              = スプライト表示優先度</li>
+											<li>P2SprPriority              = スプライト表示優先度</li>
+											<li>ForceStand                 = 強制立たせフラグ</li>
+											<li>ForceNoFall                = Fall解除フラグ</li>
+											<li>Fall                       = 落下フラグ</li>
+											<li>Fall.Damage                = damage_amt</li>
+											<li>Fall.XVelocity             = 落下バウンド水平速度</li>
+											<li>Fall.YVelocity             = 落下バウンド垂直速度</li>
+											<li>Fall.Recover               = 受身可能フラグ</li>
+											<li>Fall.RecoverTime           = 受身可能受付開始時間</li>
+											<li>SparkNo                    = ヒットスパークのアクション番号</li>
+											<li>Guard.SparkNo              = ガードスパークのアクション番号</li>
+											<li>SparkXY                    = スパークx座標, スパークy座標</li>
+											<li>P1Facing                   = p1の向き</li>
+											<li>P1GetP2Facing              = p1の向き</li>
+											<li>Snap                       = x固定座標, y固定座標</li>
+											<li>; MinDist                  = x最小座標, y最小座標</li>
+											<li>; MaxDist                  = x最大座標, y最大座標</li>
+											<li>P2Facing                   = p2の向き</li>
+											<li>Ground.HitTime             = ヒット時間</li>
+											<li>Ground.SlideTime           = ヒットバック時間</li>
+											<li>Ground.Velocity            = ヒット速度X, ヒット速度Y</li>
+											<li>Ground.CornerPush.VelOff   = 地上コーナープッシュ速度</li>
+											<li>Air.HitTime                = 空中でのヒット時間</li>
+											<li>Air.Fall                   = value</li>
+											<li>Air.Velocity               = 空中ヒット速度X, 空中ヒット速度Y</li>
+											<li>Air.CornerPush.VelOff      = 空中コーナープッシュ速度</li>
+											<li>Down.Bounce                = ダウン追い討ちヒットバウンドフラグ</li>
+											<li>Down.HitTime               = ダウン追い討ちヒット時間</li>
+											<li>Down.Velocity              = ダウン追い討ち水平速度, ダウン追い討ち垂直速度</li>
+											<li>Down.CornerPush.VelOff     = ダウンコーナープッシュ速度</li>
+											<li>Guard.Velocity             = ガード速度X</li>
+											<li>Guard.HitTime              = ガード時間</li>
+											<li>Guard.SlideTime            = ガードバック時間</li>
+											<li>Guard.CtrlTime             = ガードからの復帰時間</li>
+											<li>Guard.Dist                 = ガード認識距離</li>
+											<li>Guard.PauseTime            = p1停止時間, p2ブルブル時間</li>
+											<li>Guard.CornerPush.VelOff    = 地上ガードコーナープッシュ速度</li>
+											<li>AirGuard.Velocity          = 空中ガード速度X, 空中ガード速度Y</li>
+											<li>AirGuard.CtrlTime          = 空中ガード復帰時間</li>
+											<li>AirGuard.CornerPush.VelOff = 地上ガードコーナープッシュ速度空中</li>
+											<li>YAccel                     = 重力</li>
+											<li>PalFX.Time                 = 持続時間</li>
+											<li>PalFX.Color                = 彩度</li>
+											<li>PalFX.Add                  = 加算する赤色, 加算する緑色, 加算する青色</li>
+											<li>PalFX.Mul                  = 合成する赤色, 合成する緑色, 合成する青色</li>
+											<li>PalFX.SinAdd               = 周期する赤色, 周期する緑色, 周期する青色, 周期</li>
+											<li>PalFX.InvertAll            = 色反転フラグ</li>
+											<li>EnvShake.Time              = ヒット時画面振動時間</li>
+											<li>EnvShake.Ampl              = 揺れ幅</li>
+											<li>EnvShake.Phase             = 位相</li>
+											<li>EnvShake.Freq              = 揺れの速度</li>
+											<li>Fall.EnvShake.Time         = 落下時画面振動時間</li>
+											<li>Fall.EnvShake.Ampl         = 振幅</li>
+											<li>Fall.EnvShake.Phase        = 位相</li>
+											<li>Fall.EnvShake.Freq         = 振動数</li>
+											<li>; Attack.Width             = z1, z2</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./S.html">S</a></h2>
+			<div>立ち Standing</div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[StateDef 『正の整数』]</li>
+					
+											<li>Type                       = 状態</li>
+											<li>Physics                    = 重力</li>
+											<li>MoveType                   = 行動状態</li>
+											<li>HitCountPersist            = 引継ぎフラグ</li>
+											<li>MoveHitPersist             = 引継ぎフラグ</li>
+											<li>HitDefPersist              = 引継ぎフラグ</li>
+											<li>SprPriority                = 画像の表示優先度</li>
+											<li>FaceP2                     = 相手へ振り向くフラグ</li>
+											<li>Juggle                     = ジャグル値に加算する値</li>
+											<li>VelSet                     = X軸の移動速度, Y軸の移動速度</li>
+											<li>Anim                       = アニメ番号</li>
+											<li>Ctrl                       = キー入力受付可能フラグ</li>
+											<li>PowerAdd                   = パワーゲージの増減量</li>
+					
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./ScreenBound.html">ScreenBound</a></h2>
+			<div><p>カメラ？がプレイヤーを追うか否かを設定します。</p><p>軌道の低いジャンプや高速で往復したりする場合などは、画面を固定した方がよいことが多いです。1フレームのみ有効。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = ScreenBound</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 画面固定フラグ</li>
+											<li>MoveCamera                 = 水平移動フラグ, 垂直移動フラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./SelfState.html">SelfState</a></h2>
+			<div><p>ChangeStateと同じく、ステートを変更するコントローラですが、相手のステートを参照している場合に、自分のステートに変更するという点で異なります。</p><p>HitDefのP2StateパラメータやTargetStateを使った場合、必ずSelfStateで元に戻すようにしましょう。</p><p>また、ChangeStateの代わりとして普通に使えます。-2ステートに記述すれば、相手のステートから無理矢理抜けることもできますが、不具合の元です。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = SelfState</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = ステート番号</li>
+											<li>Ctrl                       = コントロールフラグ</li>
+											<li>Anim                       = アクション番号</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./SndPan.html">SndPan</a></h2>
+			<div><p>PlaySnd実行中、特定チャンネルのサウンドのpan/abspanパラメータを変更します。PlaySndで音が再生されていて、指定したチャンネル存在しないとPan,AbsPanは読み込まれません。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = SndPan</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Channel                    = チャンネル番号</li>
+											<li>Pan                        = パノラマ距離</li>
+											<li>AbsPan                     = パノラマ距離</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./SprPriority.html">SprPriority</a></h2>
+			<div><p>プレイヤーのスプライト表示優先度を変更します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = SprPriority</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = </li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./StateTypeSet.html">StateTypeSet</a></h2>
+			<div><p>プレイヤーのステートタイプ、行動状態、物理状態を変更します。技の途中で宙に浮いたりする場合に使用します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = StateTypeSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>StateType                  = ステートタイプ</li>
+											<li>Physics                    = 物理状態</li>
+											<li>MoveType                   = 行動状態</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./StopSnd.html">StopSnd</a></h2>
+			<div><p>特定チャンネルのサウンドを止めます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = StopSnd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Channel                    = チャンネル番号</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./SuperPause.html">SuperPause</a></h2>
+			<div><p>必殺技演出用に時間を止めます。画面の暗転、超必殺技エフェクトも指定可能。</p><p>時間が止まっている間は、ステート時間も経過しませんが、設定によっては行動可能。設定されていないステートは全て停止しているので注意。<!--by vesperさん--></p><p>Pauseコントローラ実行中にSuperPauseが実行されると、Pauseは中断されます。SuperPauseの効果が終了すると、Pauseの効果が再開されます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = SuperPause</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Time                       = 停止時間</li>
+											<li>MoveTime                   = 停止無視時間</li>
+											<li>PauseBG                    = 背景停止フラグ</li>
+											<li>EndCmdBufTime              = bt</li>
+											<li>Darken                     = 暗転フラグ</li>
+											<li>Anim                       = 超必殺演出アニメ番号</li>
+											<li>Pos                        = x表示位置, y表示位置</li>
+											<li>P2DefMul                   = p2防御力</li>
+											<li>PowerAdd                   = パワーゲージ増減量</li>
+											<li>UnHitTable                 = 無敵フラグ</li>
+											<li>Sound                      = サウンド番号, グループ番号</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./TagIn.html">TagIn</a></h2>
+			<div><p>パートナーがいる時に使用可能。実行者のCtrlは継続されるが、パートナーのCtrlは0になります。<a href="./ChangeState.html">ChangeState</a>と同じくStateNoでループ構造にすると”stopped after 2500 loops”が発生。</p><p>パートナーが存在しない場合、パラメータを読み込まず、StandByを1にしない事以外は<a href="./TagOut.html">TagOut</a>と同じ動作(Timeをリセットせずに実行時の[StateDef]を読み込み直す=TagIn以降のステートコントローラーは実行されない)をします。なので、シングルでも2500ループは発生するためエラーを起こさないようにNumPartnerや変数で対策が必要になります。</p><p>ヘルパー内部では動作しません。<span class="decoration-font-size-small">もしかしたら、同じステートでループした場合Timeがリセットされない可能性があるかもしれません。</span></p><p>使い方は、タッグパトナーとの同時攻撃、魅せる演出に使用します。例えば、”(´・ω・｀)とヘイちゃんのダブルカットインだしてカッコヨク技を発動”させたり”TagInで味方を[StateDef 110]へ飛ばし、味方に攻撃当ててターゲット確保、LifeAdd等を記述した蘇生ステートに飛して蘇生させる”のに使用します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = TagIn</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>StateNo                    = ステート番号</li>
+											<li>PartnerStateNo             = パートナーのステート番号</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./TagOut.html">TagOut</a></h2>
+			<div><p><span class="decoration-font-color-blue">実行時の[StateDef]を読み込み直す</span>が、ChangeStateなどと異なり<a href="#" onclick="return false;">Time</a>はリセットされません。また、<a href="#" onclick="return false;">StandBy</a>トリガーを1にします。<a href="#" onclick="return false;">StandBy</a>を0に戻す方法は不明、ステートが変わっても<a href="#" onclick="return false;">StandBy</a>は維持されます。さらに、TagOut実行中(トリガーの条件成立時)はTagOutより下のステートは読み込まれません。</p><p><a href="./TagIn.html">TagIn</a>,<a href="./ChangeState.html">ChangeState</a>のStateNoの指定したステートで、<a href="./TagOut.html">TagOut</a>のトリガーに『Time=0』や『1』などのステートを読み込んですぐに実行できる状態で<a href="./TagOut.html">TagOut</a>を実行すると”stopped after 2500 loops”(通称：2500ループ)が発生します。また、<a href="#" onclick="return false;">Persistent</a>を指定しても2500ループは発生します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = TagOut</li>
+					<li>Trigger1                   = 1</li>
+					
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./TargetBind.html">TargetBind</a></h2>
+			<div><p>自分の位置を基点にターゲット(自分の攻撃によりヒット/ガード中の相手)を実行したフレームからTime - 1フレーム後までTargetを実行者を基準とした位置に固定し続けます。</p><p>注意点が2点あり、実行したフレームからTime - 1フレーム後まで、Targetの速度は実行者の速度と同じになる。Target系のステートコントローラーは、特定のターゲットを指定できないため、敵が2以上いるSimulモードでは不具合が出やすいです。</p><p>例えば、1方がヒット、1方がガードだった場合でも、両方巻き込んでしまいます。両方ともヒットIDは同じであるため、ヒットの方だけ対象にすることは不可能です。</p><p>主に投げ技に使用。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = TargetBind</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ヒットID</li>
+											<li>Time                       = 固定時間</li>
+											<li>Pos                        = x位置, y位置</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./TargetDrop.html">TargetDrop</a></h2>
+			<div><p>複数のターゲットがいる場合、特定のもの以外をターゲットから除外します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = TargetDrop</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ExcludeID                  = 除外ID</li>
+											<li>KeepOne                    = タイマンフラグ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./TargetFacing.html">TargetFacing</a></h2>
+			<div><p>ターゲットの向きを変更します。投げ技などに使用。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = TargetFacing</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ヒットID</li>
+											<li>value                      = 敵の向き</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./TargetLifeAdd.html">TargetLifeAdd</a></h2>
+			<div><p>ターゲットの体力を増減します。投げなどに使用。攻撃力、防御力も考慮されます。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = TargetLifeAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ヒットID</li>
+											<li>Absolute                   = </li>
+											<li>Kill                       = </li>
+											<li>value                      = 体力増減値</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./TargetPowerAdd.html">TargetPowerAdd</a></h2>
+			<div><p>ターゲットのパワーゲージを増減します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = TargetPowerAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ヒットID</li>
+											<li>value                      = ゲージ増減量</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./TargetState.html">TargetState</a></h2>
+			<div><p>ターゲットのステートを指定値に変更します。このコントローラーで、相手はプレイヤーのステートを参照するようになります。</p><p>なお、ターゲットとは、自分の攻撃でヒット、ガード状態となった相手のことを指します。ガードも含まれることに注意。</p><p>ステートを奪った状態で相手がコントロール可能になると、歩く、ジャンプなどの共通動作が可能となりますが、このときもこちらの共通動作ステートを参照しています。なお、-1ステートは参照できませんので、攻撃はできません。ただ、-2ステートは、相手のステートを参照している場合も有効なので、内容によっては操作可能ですが、ChangeStateの対象はこちらのステートなので、不具合が生じる可能性が高いです。</p><p>この状態は、攻撃を受けるか、防御することで元に戻りますが、SelfStateで元に戻すのが普通です。</p><p>HitDefのP2statenoの代わりに使うこともできますが、simulモードや、連続技に組み込める技で使用する場合は、不具合が起きやすいので、トリガーの設定には十分注意しましょう。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = TargetState</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ヒットID</li>
+											<li>value                      = ステート番号</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./TargetVelAdd.html">TargetVelAdd</a></h2>
+			<div><p>ターゲットの速度を増減します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = TargetVelAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ヒットID</li>
+											<li>X                          = 水平速度</li>
+											<li>Y                          = 垂直速度</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./TargetVelSet.html">TargetVelSet</a></h2>
+			<div><p>ターゲットの速度を指定値に変更します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = TargetVelSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>ID                         = ヒットID</li>
+											<li>X                          = 水平速度</li>
+											<li>Y                          = 垂直速度</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Trans.html">Trans</a></h2>
+			<div><p>Airファイルの透過指定を1フレームのみ変更します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Trans</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Trans                      = 透過型</li>
+											<li>Alpha                      = ソースアルファ, デスティネーションアルファ</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Turn.html">Turn</a></h2>
+			<div><p>振り向きます。相手を後ろに投げる技の途中で振り向く場合や、相手に背を向けたい場合などに。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Turn</li>
+					<li>Trigger1                   = 1</li>
+					
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./U.html">U</a></h2>
+			<div>直前のステートから引き継ぐ Unchanged</div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[StateDef 『正の整数』]</li>
+					
+											<li>Type                       = 状態</li>
+											<li>Physics                    = 重力</li>
+											<li>MoveType                   = 行動状態</li>
+											<li>HitCountPersist            = 引継ぎフラグ</li>
+											<li>MoveHitPersist             = 引継ぎフラグ</li>
+											<li>HitDefPersist              = 引継ぎフラグ</li>
+											<li>SprPriority                = 画像の表示優先度</li>
+											<li>FaceP2                     = 相手へ振り向くフラグ</li>
+											<li>Juggle                     = ジャグル値に加算する値</li>
+											<li>VelSet                     = X軸の移動速度, Y軸の移動速度</li>
+											<li>Anim                       = アニメ番号</li>
+											<li>Ctrl                       = キー入力受付可能フラグ</li>
+											<li>PowerAdd                   = パワーゲージの増減量</li>
+					
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./VarAdd.html">VarAdd</a></h2>
+			<div><p>変数を増減します。整数・小数どちらの変数も扱えますが、同時に指定することはできません。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = VarAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>v                          = 整数変数番号</li>
+											<li>value                      = 整数増加量</li>
+											<li>; fv                       = 浮動小数変数番号</li>
+											<li>; value                    = 浮動小数変数増加量</li>
+											<li>; var(番号)              = 整数増減量</li>
+											<li>; fvar(番号)             = 小数増減量</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./VarRandom.html">VarRandom</a></h2>
+			<div><p>変数に乱数を代入します。fvarに代入することはできません。用途は様々。</p><p>相手のステートを奪った状態でこのコントローラを実行すると、相手の変数を変更することになってしまいます。失礼な行為に当たりますので、注意。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = VarRandom</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>v                          = 整数変数番号</li>
+											<li>Range                      = 乱数最小値, 乱数最大値</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./VarRangeSet.html">VarRangeSet</a></h2>
+			<div><p>指定した範囲の番号の変数に、一気に同じ値を代入します。整数変数、小数変数ともに代入可能ですが、両方を同時に扱うことはできません。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = VarRangeSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = 整数代入値</li>
+											<li>; fvalue                   = 小数代入値</li>
+											<li>First                      = 最初の変数番号</li>
+											<li>Last                       = 最後の変数番</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./VarSet.html">VarSet</a></h2>
+			<div><p>変数を指定値に変更します。整数・小数どちらの変数も扱えますが、同時に指定することはできません。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = VarSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>v                          = 整数変数番号</li>
+											<li>value                      = 整数増加量</li>
+											<li>; fv                       = 浮動小数変数番号</li>
+											<li>; value                    = 浮動小数変数増加量</li>
+											<li>; var(番号)              = 整数増減量</li>
+											<li>; fvar(番号)             = 小数増減量</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./VelAdd.html">VelAdd</a></h2>
+			<div><p>速度を増減します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = VelAdd</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>X                          = 水平方向乗算速度</li>
+											<li>Y                          = 垂直方向乗算速度</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./VelMul.html">VelMul</a></h2>
+			<div><p>速度を倍数指定で増減します。浮力、摩擦等に使用。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = VelMul</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>X                          = 水平方向乗算速度</li>
+											<li>Y                          = 垂直方向乗算速度</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./VelSet.html">VelSet</a></h2>
+			<div><p>速度を指定値に変更します。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = VelSet</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>X                          = 水平方向乗算速度</li>
+											<li>Y                          = 垂直方向乗算速度</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./VictoryQuote.html">VictoryQuote</a></h2>
+			<div><p>”M.U.G.E.N 1.0”から追加されたステートコントローラで、勝利画面に表示するプレイヤーのセリフを選択します。</p><p>”VictoryQuote”はプレイヤーの試合中に読み込まれますが、試合後にしか効果がありません。また、ヘルパーで実行しても効果がないです。勝利のセリフは、CNSファイル内の[Quotes]グループに指定します。</p><p>勝利画面では、 ”9000,2” のスプライトが必要になります。キャラの ”Localcoord” が ”320, 240” の場合、画像の大きさは左上基準で横幅120、高さ115になります。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = VictoryQuote</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>value                      = セリフの番号</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Width.html">Width</a></h2>
+			<div><p>このステートコントローラー実行したプレイヤーのキャラや画面端の幅サイズを変更します。効果は、1フレームしか無いので注意！</p><p>デバッグモードで、判定枠を表示(Ctrl+C)させると、対画面端幅を示すバーが橙で、対プレイヤー幅を示すバーが黄色で、重なっている部分が明るい黄色で表示されます。例えば、edge=40とすると画面端から40ピクセルの範囲はプレイヤーが進入不可になります。</p><p>投げ技中の攻撃側が、これを使わないと画面端で敵との位置が狂ってしまいます(ScreenBoundを使うサムスピ式の方法もあります)。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Width</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Edge                       = 前方画面端幅, 後方画面端幅(省略可能)</li>
+											<li>Player                     = 前方プレイヤー幅, 後方プレイヤー幅(省略可能)</li>
+											<li>; value                    = 前方幅, 後方幅</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+			<div class="section">
+			<h2><a href="./Zoom.html">Zoom</a></h2>
+			<div><p>トリガーの条件を満たしている間だけ画面をズームイン・ズームアウトします。ズームイン・ズームアウトする基準点はトリガーがTrueになった瞬間に固定されるので注意。</p><p>Version1.1からテスト実装されました。有効にしたい場合は、キャラクターのdefファイル内の<code>MugenVersion=1.1</code>に変更して下さい。</p></div>
+			<div class="code" contenteditable="true">
+				<ul>
+										<li>[State ]</li>
+					<li>Type                       = Zoom</li>
+					<li>Trigger1                   = 1</li>
+					
+											<li>Pos                        = x座標, y座標</li>
+											<li>Scale                      = 倍率</li>
+											<li>Lag                        = 遅延させる時間</li>
+					
+										<li>Persistent                 = ?</li>
+					<li>IgnoreHitPause             = ?</li>
+									</ul>
+			</div>
+		</div>
+
+
+﻿		<h2>お世話になったリンク一覧</h2>
+		<ul>
+			<li><a href="http://homotaro.s44.xrea.com/scr.htm" target="_blank" rel="external">ステートコントローラー一覧</a></li>
+			<li><a href="http://homotaro.s44.xrea.com/etc.htm" target="_blank" rel="external">その他</a></li>
+			<li><a href="http://homotaro.s44.xrea.com/tr.htm" target="_blank" rel="external">Trigger reference</a></li>
+			<li><a href="http://homepage3.nifty.com/andil/mugen/" target="_blank" rel="external">ADIのMUGENメモ</a></li>
+			<li><a href="http://www49.atwiki.jp/mugencns/" target="_blank" rel="external">MUGEN CNS WIKI CHAOS@予定</a></li>
+			<li><a href="http://mugenbinran.web.fc2.com/" target="_blank" rel="external">MUGENの便覧</a></li>
+			<li><a href="http://kyoakumugenirc.blog61.fc2.com/" target="_blank" rel="external">凶悪MUGEN_IRC_ログ倉庫</a></li>
+			<li><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls.html" target="_blank" rel="external">東方夢幻館</a></li>
+			<li><a href="http://elecbyte.com/wiki/index.php/Category:State_Controllers" target="_blank" rel="external">elecbyte</a></li>
+			<li><a href="http://www.purple.dti.ne.jp/earth/mugen/statebook/entranse.htm" target="_blank" rel="external">地球の応接間</a></li>
+			<li><a href="http://web.archive.org/web/20090220031609/http://tukiken.hp.infoseek.co.jp/muge/cr/cns/cnsdef.html" target="_blank" rel="external">CNSを作ってみよう…</a></li>
+			<li><a href="http://lunatic284.blog90.fc2.com/" target="_blank" rel="external">lunaの倉庫</a></li>
+			<li><a href="http://yurusanae.blog98.fc2.com" target="_blank" rel="external">絶対許早苗</a></li>
+			<li><a href="http://www.2500loops.com/lec-process.html" target="_blank" rel="external">2500loops</a></li>
+			<!--<li><a href="" target="_blank" rel="external"> - </a></li>-->
+		</ul>
+
+		<h2>お世話になった小ネタ・記事一覧</h2>
+		<ul>
+			<li><a href="http://oki6761.blog23.fc2.com/blog-entry-1492.html" target="_blank" rel="external">MUGENでやってはいけないこと　by熄癈人</a></li>
+			<li><a href="http://chottokomaru.sitemix.jp/alpha4.html" target="_blank" rel="external">君の瞳は紫外線 - M.U.G.E.N 1.1 Alpha 4 について</a></li>
+			<li><a href="http://elecbyte.com/wiki/index.php?title=MUGEN1_RC6_bugs/ja" target="_blank" rel="external">MUGEN1 RC6 bugs/ja - elecbyte</a></li>
+			<li><a href="http://hidemf.blog.shinobi.jp/%E5%B0%8F%E3%83%8D%E3%82%BF/%E3%82%B5%E3%82%A6%E3%82%B6%E3%83%BC%E3%81%AE%E4%BB%95%E6%A7%98%E3%81%A8mugen%E3%81%AEpersistent%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6" target="_blank" rel="external">サウザーの仕様とmugenのPersistentについて - 可愛いの拳</a></li>
+			<li><a href="http://hitachi5300.blog.fc2.com/category4-1.html" target="_blank" rel="external">Alive偽装その3 - ＠ひたちがゆく！</a></li>
+			<li><a href="http://drmugen.seesaa.net/article/235872403.html" target="_blank" rel="external">PersistentでProjectileが出せなくなる。 - でぃーあーるM</a></li>
+			<li><a href="http://lunatic284.blog90.fc2.com/blog-entry-5868.html" target="_blank" rel="external">persistent - lunaの倉庫</a></li>
+			<li><a href="http://hitotume.iza-yoi.net/txt/mogen.txt" target="_blank" rel="external">どうでもよさそうでよくないかもしれないMUGENの仕様＋＋ - ＦｒｅｅｄｏＭｕｇｅｎ</a></li>
+		</ul>
+
+		<h2>情報提供者</h2>
+		<ul>
+			<li>Iwakick氏 - PowerAddの仕様について情報提供ありがとうございます。</li>
+		</ul>
+</div>
+
+	</div></div></article></div>
+		
+
+
+
+	<div id="box2" class="slideout-sidebar">
+<div class="menu">
+	
+			<label for="menu_bar01">+ State Controller Reference</label><input type="checkbox" id="menu_bar01" class="accordion" /><ul id="links01">
+			<li><a href="/MUGEN/document/State/index.html">Top Page</a></li>
+			<li><a href="/MUGEN/document/State/A.html">A</a></li>
+			<li><a href="/MUGEN/document/State/AfterImage.html">AfterImage</a></li>
+			<li><a href="/MUGEN/document/State/AfterImageTime.html">AfterImageTime</a></li>
+			<li><a href="/MUGEN/document/State/AllPalFX.html">AllPalFX</a></li>
+			<li><a href="/MUGEN/document/State/AngleAdd.html">AngleAdd</a></li>
+			<li><a href="/MUGEN/document/State/AngleDraw.html">AngleDraw</a></li>
+			<li><a href="/MUGEN/document/State/AngleMul.html">AngleMul</a></li>
+			<li><a href="/MUGEN/document/State/AngleSet.html">AngleSet</a></li>
+			<li><a href="/MUGEN/document/State/AppendToClipboard.html">AppendToClipboard</a></li>
+			<li><a href="/MUGEN/document/State/AssertSpecial.html">AssertSpecial</a></li>
+			<li><a href="/MUGEN/document/State/AttackDist.html">AttackDist</a></li>
+			<li><a href="/MUGEN/document/State/AttackMulSet.html">AttackMulSet</a></li>
+			<li><a href="/MUGEN/document/State/BGPalFX.html">BGPalFX</a></li>
+			<li><a href="/MUGEN/document/State/BindToParent.html">BindToParent</a></li>
+			<li><a href="/MUGEN/document/State/BindToRoot.html">BindToRoot</a></li>
+			<li><a href="/MUGEN/document/State/BindToTarget.html">BindToTarget</a></li>
+			<li><a href="/MUGEN/document/State/C.html">C</a></li>
+			<li><a href="/MUGEN/document/State/ChangeAnim.html">ChangeAnim</a></li>
+			<li><a href="/MUGEN/document/State/ChangeAnim2.html">ChangeAnim2</a></li>
+			<li><a href="/MUGEN/document/State/ChangeState.html">ChangeState</a></li>
+			<li><a href="/MUGEN/document/State/ClearClipboard.html">ClearClipboard</a></li>
+			<li><a href="/MUGEN/document/State/CtrlSet.html">CtrlSet</a></li>
+			<li><a href="/MUGEN/document/State/DefenceMulSet.html">DefenceMulSet</a></li>
+			<li><a href="/MUGEN/document/State/DestroySelf.html">DestroySelf</a></li>
+			<li><a href="/MUGEN/document/State/DisplayToClipboard.html">DisplayToClipboard</a></li>
+			<li><a href="/MUGEN/document/State/EnvColor.html">EnvColor</a></li>
+			<li><a href="/MUGEN/document/State/EnvShake.html">EnvShake</a></li>
+			<li><a href="/MUGEN/document/State/Explod.html">Explod</a></li>
+			<li><a href="/MUGEN/document/State/ExplodBindTime.html">ExplodBindTime</a></li>
+			<li><a href="/MUGEN/document/State/FallEnvShake.html">FallEnvShake</a></li>
+			<li><a href="/MUGEN/document/State/ForceFeedback.html">ForceFeedback</a></li>
+			<li><a href="/MUGEN/document/State/GameMakeAnim.html">GameMakeAnim</a></li>
+			<li><a href="/MUGEN/document/State/Gravity.html">Gravity</a></li>
+			<li><a href="/MUGEN/document/State/Helper.html">Helper</a></li>
+			<li><a href="/MUGEN/document/State/HitAdd.html">HitAdd</a></li>
+			<li><a href="/MUGEN/document/State/HitBy.html">HitBy</a></li>
+			<li><a href="/MUGEN/document/State/HitDef.html">HitDef</a></li>
+			<li><a href="/MUGEN/document/State/HitFallDamage.html">HitFallDamage</a></li>
+			<li><a href="/MUGEN/document/State/HitFallSet.html">HitFallSet</a></li>
+			<li><a href="/MUGEN/document/State/HitFallVel.html">HitFallVel</a></li>
+			<li><a href="/MUGEN/document/State/HitOverRide.html">HitOverRide</a></li>
+			<li><a href="/MUGEN/document/State/HitVelSet.html">HitVelSet</a></li>
+			<li><a href="/MUGEN/document/State/L.html">L</a></li>
+			<li><a href="/MUGEN/document/State/LifeAdd.html">LifeAdd</a></li>
+			<li><a href="/MUGEN/document/State/LifeSet.html">LifeSet</a></li>
+			<li><a href="/MUGEN/document/State/MakeDust.html">MakeDust</a></li>
+			<li><a href="/MUGEN/document/State/ModifyExplod.html">ModifyExplod</a></li>
+			<li><a href="/MUGEN/document/State/MoveHitReset.html">MoveHitReset</a></li>
+			<li><a href="/MUGEN/document/State/NotHitBy.html">NotHitBy</a></li>
+			<li><a href="/MUGEN/document/State/Null.html">Null</a></li>
+			<li><a href="/MUGEN/document/State/Offset.html">Offset</a></li>
+			<li><a href="/MUGEN/document/State/PalFX.html">PalFX</a></li>
+			<li><a href="/MUGEN/document/State/ParentVarAdd.html">ParentVarAdd</a></li>
+			<li><a href="/MUGEN/document/State/ParentVarSet.html">ParentVarSet</a></li>
+			<li><a href="/MUGEN/document/State/Pause.html">Pause</a></li>
+			<li><a href="/MUGEN/document/State/PlaySnd.html">PlaySnd</a></li>
+			<li><a href="/MUGEN/document/State/PlayerPush.html">PlayerPush</a></li>
+			<li><a href="/MUGEN/document/State/PosAdd.html">PosAdd</a></li>
+			<li><a href="/MUGEN/document/State/PosFreeze.html">PosFreeze</a></li>
+			<li><a href="/MUGEN/document/State/PosSet.html">PosSet</a></li>
+			<li><a href="/MUGEN/document/State/PowerAdd.html">PowerAdd</a></li>
+			<li><a href="/MUGEN/document/State/PowerSet.html">PowerSet</a></li>
+			<li><a href="/MUGEN/document/State/Projectile.html">Projectile</a></li>
+			<li><a href="/MUGEN/document/State/RemapPal.html">RemapPal</a></li>
+			<li><a href="/MUGEN/document/State/RemoveExplod.html">RemoveExplod</a></li>
+			<li><a href="/MUGEN/document/State/ReversalDef.html">ReversalDef</a></li>
+			<li><a href="/MUGEN/document/State/S.html">S</a></li>
+			<li><a href="/MUGEN/document/State/ScreenBound.html">ScreenBound</a></li>
+			<li><a href="/MUGEN/document/State/SelfState.html">SelfState</a></li>
+			<li><a href="/MUGEN/document/State/SndPan.html">SndPan</a></li>
+			<li><a href="/MUGEN/document/State/SprPriority.html">SprPriority</a></li>
+			<li><a href="/MUGEN/document/State/StateTypeSet.html">StateTypeSet</a></li>
+			<li><a href="/MUGEN/document/State/StopSnd.html">StopSnd</a></li>
+			<li><a href="/MUGEN/document/State/SuperPause.html">SuperPause</a></li>
+			<li><a href="/MUGEN/document/State/TagIn.html">TagIn</a></li>
+			<li><a href="/MUGEN/document/State/TagOut.html">TagOut</a></li>
+			<li><a href="/MUGEN/document/State/TargetBind.html">TargetBind</a></li>
+			<li><a href="/MUGEN/document/State/TargetDrop.html">TargetDrop</a></li>
+			<li><a href="/MUGEN/document/State/TargetFacing.html">TargetFacing</a></li>
+			<li><a href="/MUGEN/document/State/TargetLifeAdd.html">TargetLifeAdd</a></li>
+			<li><a href="/MUGEN/document/State/TargetPowerAdd.html">TargetPowerAdd</a></li>
+			<li><a href="/MUGEN/document/State/TargetState.html">TargetState</a></li>
+			<li><a href="/MUGEN/document/State/TargetVelAdd.html">TargetVelAdd</a></li>
+			<li><a href="/MUGEN/document/State/TargetVelSet.html">TargetVelSet</a></li>
+			<li><a href="/MUGEN/document/State/Trans.html">Trans</a></li>
+			<li><a href="/MUGEN/document/State/Turn.html">Turn</a></li>
+			<li><a href="/MUGEN/document/State/U.html">U</a></li>
+			<li><a href="/MUGEN/document/State/VarAdd.html">VarAdd</a></li>
+			<li><a href="/MUGEN/document/State/VarRandom.html">VarRandom</a></li>
+			<li><a href="/MUGEN/document/State/VarRangeSet.html">VarRangeSet</a></li>
+			<li><a href="/MUGEN/document/State/VarSet.html">VarSet</a></li>
+			<li><a href="/MUGEN/document/State/VelAdd.html">VelAdd</a></li>
+			<li><a href="/MUGEN/document/State/VelMul.html">VelMul</a></li>
+			<li><a href="/MUGEN/document/State/VelSet.html">VelSet</a></li>
+			<li><a href="/MUGEN/document/State/VictoryQuote.html">VictoryQuote</a></li>
+			<li><a href="/MUGEN/document/State/Width.html">Width</a></li>
+			<li><a href="/MUGEN/document/State/Zoom.html">Zoom</a></li>
+			</ul>
+			<label for="menu_bar02">+ Trigger Reference</label><input type="checkbox" id="menu_bar02" class="accordion" /><ul id="links02">
+			<li><a href="/MUGEN/document/Trigger/index.html">Top Page</a></li>
+			<li><a href="/MUGEN/document/Trigger/Abs.html">Abs</a></li>
+			<li><a href="/MUGEN/document/Trigger/Acos.html">Acos</a></li>
+			<li><a href="/MUGEN/document/Trigger/AILevel.html">AILevel</a></li>
+			<li><a href="/MUGEN/document/Trigger/Alive.html">Alive</a></li>
+			<li><a href="/MUGEN/document/Trigger/Anim.html">Anim</a></li>
+			<li><a href="/MUGEN/document/Trigger/AnimElem.html">AnimElem</a></li>
+			<li><a href="/MUGEN/document/Trigger/AnimElemNo.html">AnimElemNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/AnimElemTime.html">AnimElemTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/AnimExist.html">AnimExist</a></li>
+			<li><a href="/MUGEN/document/Trigger/AnimTime.html">AnimTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/Asin.html">Asin</a></li>
+			<li><a href="/MUGEN/document/Trigger/Atan.html">Atan</a></li>
+			<li><a href="/MUGEN/document/Trigger/AuthorName.html">AuthorName</a></li>
+			<li><a href="/MUGEN/document/Trigger/BackEdge.html">BackEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/BackEdgeBodyDist.html">BackEdgeBodyDist</a></li>
+			<li><a href="/MUGEN/document/Trigger/BackEdgeDist.html">BackEdgeDist</a></li>
+			<li><a href="/MUGEN/document/Trigger/BottomEdge.html">BottomEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/CameraPosX.html">CameraPosX</a></li>
+			<li><a href="/MUGEN/document/Trigger/CameraPosY.html">CameraPosY</a></li>
+			<li><a href="/MUGEN/document/Trigger/CameraZoom.html">CameraZoom</a></li>
+			<li><a href="/MUGEN/document/Trigger/CanRecover.html">CanRecover</a></li>
+			<li><a href="/MUGEN/document/Trigger/Ceil.html">Ceil</a></li>
+			<li><a href="/MUGEN/document/Trigger/Command.html">Command</a></li>
+			<li><a href="/MUGEN/document/Trigger/Cond.html">Cond</a></li>
+			<li><a href="/MUGEN/document/Trigger/Const.html">Const</a></li>
+			<li><a href="/MUGEN/document/Trigger/Const240p.html">Const240p</a></li>
+			<li><a href="/MUGEN/document/Trigger/Const480p.html">Const480p</a></li>
+			<li><a href="/MUGEN/document/Trigger/Const720p.html">Const720p</a></li>
+			<li><a href="/MUGEN/document/Trigger/Cos.html">Cos</a></li>
+			<li><a href="/MUGEN/document/Trigger/Ctrl.html">Ctrl</a></li>
+			<li><a href="/MUGEN/document/Trigger/DrawGame.html">DrawGame</a></li>
+			<li><a href="/MUGEN/document/Trigger/E.html">E</a></li>
+			<li><a href="/MUGEN/document/Trigger/Exp.html">Exp</a></li>
+			<li><a href="/MUGEN/document/Trigger/FVar.html">FVar</a></li>
+			<li><a href="/MUGEN/document/Trigger/Facing.html">Facing</a></li>
+			<li><a href="/MUGEN/document/Trigger/Floor.html">Floor</a></li>
+			<li><a href="/MUGEN/document/Trigger/FrontEdge.html">FrontEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/FrontEdgeBodyDist.html">FrontEdgeBodyDist</a></li>
+			<li><a href="/MUGEN/document/Trigger/FrontEdgeDist.html">FrontEdgeDist</a></li>
+			<li><a href="/MUGEN/document/Trigger/GameHeight.html">GameHeight</a></li>
+			<li><a href="/MUGEN/document/Trigger/GameTime.html">GameTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/GameWidth.html">GameWidth</a></li>
+			<li><a href="/MUGEN/document/Trigger/GetHitVar.html">GetHitVar</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitCount.html">HitCount</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitDefAttr.html">HitDefAttr</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitFall.html">HitFall</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitOver.html">HitOver</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitPauseTime.html">HitPauseTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitShakeOver.html">HitShakeOver</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitVelX.html">HitVelX</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitVelY.html">HitVelY</a></li>
+			<li><a href="/MUGEN/document/Trigger/ID.html">ID</a></li>
+			<li><a href="/MUGEN/document/Trigger/IfElse.html">IfElse</a></li>
+			<li><a href="/MUGEN/document/Trigger/InGuardDist.html">InGuardDist</a></li>
+			<li><a href="/MUGEN/document/Trigger/IsHelper.html">IsHelper</a></li>
+			<li><a href="/MUGEN/document/Trigger/IsHomeTeam.html">IsHomeTeam</a></li>
+			<li><a href="/MUGEN/document/Trigger/LeftEdge.html">LeftEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/Life.html">Life</a></li>
+			<li><a href="/MUGEN/document/Trigger/LifeMax.html">LifeMax</a></li>
+			<li><a href="/MUGEN/document/Trigger/Ln.html">Ln</a></li>
+			<li><a href="/MUGEN/document/Trigger/Log.html">Log</a></li>
+			<li><a href="/MUGEN/document/Trigger/Lose.html">Lose</a></li>
+			<li><a href="/MUGEN/document/Trigger/LoseKO.html">LoseKO</a></li>
+			<li><a href="/MUGEN/document/Trigger/LoseTime.html">LoseTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/MatchNo.html">MatchNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/MatchOver.html">MatchOver</a></li>
+			<li><a href="/MUGEN/document/Trigger/MoveContact.html">MoveContact</a></li>
+			<li><a href="/MUGEN/document/Trigger/MoveGuarded.html">MoveGuarded</a></li>
+			<li><a href="/MUGEN/document/Trigger/MoveHit.html">MoveHit</a></li>
+			<li><a href="/MUGEN/document/Trigger/MoveReversed.html">MoveReversed</a></li>
+			<li><a href="/MUGEN/document/Trigger/MoveType.html">MoveType</a></li>
+			<li><a href="/MUGEN/document/Trigger/Name.html">Name</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumEnemy.html">NumEnemy</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumExplod.html">NumExplod</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumHelper.html">NumHelper</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumPartner.html">NumPartner</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumProj.html">NumProj</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumProjID.html">NumProjID</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumTarget.html">NumTarget</a></li>
+			<li><a href="/MUGEN/document/Trigger/P1Name.html">P1Name</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2BodyDistX.html">P2BodyDistX</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2BodyDistY.html">P2BodyDistY</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2DistX.html">P2DistX</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2DistY.html">P2DistY</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2Life.html">P2Life</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2MoveType.html">P2MoveType</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2Name.html">P2Name</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2StateNo.html">P2StateNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2StateType.html">P2StateType</a></li>
+			<li><a href="/MUGEN/document/Trigger/P3Name.html">P3Name</a></li>
+			<li><a href="/MUGEN/document/Trigger/P4Name.html">P4Name</a></li>
+			<li><a href="/MUGEN/document/Trigger/PalNo.html">PalNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/ParentDistX.html">ParentDistX</a></li>
+			<li><a href="/MUGEN/document/Trigger/ParentDistY.html">ParentDistY</a></li>
+			<li><a href="/MUGEN/document/Trigger/Pi.html">Pi</a></li>
+			<li><a href="/MUGEN/document/Trigger/PlayerIDExist.html">PlayerIDExist</a></li>
+			<li><a href="/MUGEN/document/Trigger/PosX.html">PosX</a></li>
+			<li><a href="/MUGEN/document/Trigger/PosY.html">PosY</a></li>
+			<li><a href="/MUGEN/document/Trigger/Power.html">Power</a></li>
+			<li><a href="/MUGEN/document/Trigger/PowerMax.html">PowerMax</a></li>
+			<li><a href="/MUGEN/document/Trigger/PrevStateNo.html">PrevStateNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjCancelTime.html">ProjCancelTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjContact.html">ProjContact</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjContactTime.html">ProjContactTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjGuarded.html">ProjGuarded</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjGuardedTime.html">ProjGuardedTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjHit.html">ProjHit</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjHitTime.html">ProjHitTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/Random.html">Random</a></li>
+			<li><a href="/MUGEN/document/Trigger/RightEdge.html">RightEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/RootDistX.html">RootDistX</a></li>
+			<li><a href="/MUGEN/document/Trigger/RootDistY.html">RootDistY</a></li>
+			<li><a href="/MUGEN/document/Trigger/RoundNo.html">RoundNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/RoundState.html">RoundState</a></li>
+			<li><a href="/MUGEN/document/Trigger/RoundsExisted.html">RoundsExisted</a></li>
+			<li><a href="/MUGEN/document/Trigger/ScreenPosX.html">ScreenPosX</a></li>
+			<li><a href="/MUGEN/document/Trigger/ScreenPosY.html">ScreenPosY</a></li>
+			<li><a href="/MUGEN/document/Trigger/ScreenHeight.html">ScreenHeight</a></li>
+			<li><a href="/MUGEN/document/Trigger/ScreenWidth.html">ScreenWidth</a></li>
+			<li><a href="/MUGEN/document/Trigger/SelfAnimExist.html">SelfAnimExist</a></li>
+			<li><a href="/MUGEN/document/Trigger/Sin.html">Sin</a></li>
+			<li><a href="/MUGEN/document/Trigger/StandBy.html">StandBy</a></li>
+			<li><a href="/MUGEN/document/Trigger/StateNo.html">StateNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/StateType.html">StateType</a></li>
+			<li><a href="/MUGEN/document/Trigger/StageVar.html">StageVar</a></li>
+			<li><a href="/MUGEN/document/Trigger/SysFVar.html">SysFVar</a></li>
+			<li><a href="/MUGEN/document/Trigger/SysVar.html">SysVar</a></li>
+			<li><a href="/MUGEN/document/Trigger/Tan.html">Tan</a></li>
+			<li><a href="/MUGEN/document/Trigger/TeamMode.html">TeamMode</a></li>
+			<li><a href="/MUGEN/document/Trigger/TeamSide.html">TeamSide</a></li>
+			<li><a href="/MUGEN/document/Trigger/TicksPerSecond.html">TicksPerSecond</a></li>
+			<li><a href="/MUGEN/document/Trigger/Time.html">Time</a></li>
+			<li><a href="/MUGEN/document/Trigger/TimeMod.html">TimeMod</a></li>
+			<li><a href="/MUGEN/document/Trigger/TopEdge.html">TopEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/UniqHitCount.html">UniqHitCount</a></li>
+			<li><a href="/MUGEN/document/Trigger/Var.html">Var</a></li>
+			<li><a href="/MUGEN/document/Trigger/VelX.html">VelX</a></li>
+			<li><a href="/MUGEN/document/Trigger/VelY.html">VelY</a></li>
+			<li><a href="/MUGEN/document/Trigger/Win.html">Win</a></li>
+			<li><a href="/MUGEN/document/Trigger/WinKO.html">WinKO</a></li>
+			<li><a href="/MUGEN/document/Trigger/WinPerfect.html">WinPerfect</a></li>
+			<li><a href="/MUGEN/document/Trigger/WinTime.html">WinTime</a></li>
+			</ul>
+			<label for="menu_bar03">+ LifeBar Reference</label><input type="checkbox" id="menu_bar03" class="accordion" /><ul id="links03">
+			<li><a href="/MUGEN/document/Lifebar/index.html">Top Page</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Combo.html">Combo</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Face.html">Face</a></li>
+			<li><a href="/MUGEN/document/Lifebar/FightFx.html">FightFx</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Files.html">Files</a></li>
+			<li><a href="/MUGEN/document/Lifebar/LifeBar.html">LifeBar</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Name.html">Name</a></li>
+			<li><a href="/MUGEN/document/Lifebar/PowerBar.html">PowerBar</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Round.html">Round</a></li>
+			<li><a href="/MUGEN/document/Lifebar/SimulFace.html">SimulFace</a></li>
+			<li><a href="/MUGEN/document/Lifebar/SimulLifeBar.html">SimulLifeBar</a></li>
+			<li><a href="/MUGEN/document/Lifebar/SimulName.html">SimulName</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Time.html">Time</a></li>
+			<li><a href="/MUGEN/document/Lifebar/TurnsFace.html">TurnsFace</a></li>
+			<li><a href="/MUGEN/document/Lifebar/TurnsLifeBar.html">TurnsLifeBar</a></li>
+			<li><a href="/MUGEN/document/Lifebar/TurnsName.html">TurnsName</a></li>
+			<li><a href="/MUGEN/document/Lifebar/WinIcon.html">WinIcon</a></li>
+			<li><a href="/MUGEN/document/Lifebar/BeginAction.html">BeginAction</a></li>
+			<li><a href="/MUGEN/document/Lifebar/MakeFont.html">MakeFont</a></li>
+			</ul>
+		
+</div>
+
+
+
+
+<iframe src="https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+</div>
+
+
+
+</div>
+</div></div></div>
+﻿<footer id="footer">
+	<div id="footer-inner">
+		<nav id="footer-main">
+
+			<ul>
+				<li>本体</li>
+				<li><a href="http://www.elecbyte.com/mugen">M.U.G.E.N</a></li>
+				<li><a href="http://network.mugenguild.com/justnopoint/1.0docs/mugen.html">M.U.G.E.N 1.0 と 1.1b</a></li>
+				<li><a href="http://mug3.anikipedia.com/mugen.htm">M.U.G.E.N 1.1</a></li>
+				<li><a href="http://homepage2.nifty.com/oriheus/ikemen/">I.K.E.M.E.N</a></li>
+			</ul>
+
+				<ul>
+					<li>テキストエディタ</li>
+					<li><a href="http://sakura-editor.sourceforge.net/">サクラエディタ</a></li>
+					<li><a href="http://nicious.toypark.in/mugen/sakura_de_mugen.html">設定ファイル</a></li>
+					<li><a href="http://mugenbinran.web.fc2.com/tool_introduction.html#1">解説</a></li>
+				</ul>
+
+				<ul>
+					<li>SFF・AIR・SND エディタ</li>
+					<li><a href="http://www.geocities.jp/sffeditor/">SAEditor</a></li>
+					<li><a href="http://mugenguild.com/forum/index.php?topic=137126">Fighter Factory 3.0</a></li>
+				</ul>
+
+				<ul>
+					<li>デバッグ</li>
+					<li><a href="http://jbbs.shitaraba.net/bbs/read.cgi/game/54714/1340533542/135">窓無限の十徳ナイフ</a></li>
+					<li>cnslint</li>
+				</ul>
+				
+				<ul>
+					<li>ドット絵</li>
+					<li><a href="http://takabosoft.com/edge">EDGE</a></li>
+					<li><a href="http://www.fenrir-inc.com/jp/pictbear/">PictBear</a></li>
+				</ul>
+
+				<ul>
+					<li>画像の閲覧・一括編集</li>
+					<li><a href="http://www8.plala.or.jp/kusutaku/iview/">IrfanView</a></li>
+				</ul>
+
+				<ul>
+					<li>エフェクト</li>
+					<li><a href="http://game-hikidashi.com/">Prominence</a></li>
+					<li><a href="http://nive.jp/">NicoVisualEffects</a></li>
+				</ul>
+
+				<ul>
+					<li>音声加工</li>
+					<li><a href="http://soundengine.jp/software/soundengine/">SoundEngine</a></li>
+				</ul>
+
+		</nav>
+	</div>
+
+	<nav id="footer-sub">
+		<ul>
+			<li><a href="/">©Name = sura</a></li>
+			<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
+			<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
+			<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>
+			<li><a href="/MUGEN/document/Trigger/index.html">Trigger Reference</a></li>
+		</ul>
+	</nav>
+</footer>
+
+</body>
+</html>

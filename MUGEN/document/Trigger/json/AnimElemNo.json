@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "AnimElemNo",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "AnimElemNo",
+	"summary": "<p>x経過時間のアニメーションが何枚目かを返します。</p>",
+	"syntax":[
+		"AnimElemNo(x)"
+	],
+
+	"description": "<p>特定の経過時間におけるアニメの絵が何枚目かを返します。使用に当たっては、時間の経過をよく考慮する必要があります。引数には、現時点からの経過時間をintで指定します。例えば、0なら現在、-1なら1フレーム前、1なら1フレーム後です。引数に、0枚目以前を返すことになるような時間を指定すると、SFalseを返します。注意:ループアニメ部分が表示されている場合、引数にどんな値を指定しても、ループ部分のアニメ順番しか返しません。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

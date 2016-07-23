@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "StateNo",
+		"target": "",
+		"category": ["ステータス", "現在どのステートにいますか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "StateNo",
+	"summary": "<p>現在のステート番号を返します。</p>",
+	"syntax":[
+		"StateNo"
+	],
+
+	"description": "<p>cmdファイルでの条件指定に有効。 戻り値の型: int</p>",
+
+	"code_sample": [
+		{
+			"title": "現在のステート番号が200以上650未満の場合のトリガー。",
+			"code": [
+				"Trigger1 = StateNo = [200,650]"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

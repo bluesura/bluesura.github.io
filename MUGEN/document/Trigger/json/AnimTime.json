@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "AnimTime",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "AnimTime",
+	"summary": "<p>アニメーションが残り何フレームで終了するかを返します。</p>",
+	"syntax":[
+		"AnimTime"
+	],
+
+	"description": "<p>アニメ終了からの経過時間を返します。アニメが終了していない場合、終了までの時間を負数で返すことになります。アニメが終了した場合、アニメの最初に戻るか、他のアニメに切り替わることになりますので、基本的にこのトリガーが正の数を返すことはありませんが、最後の絵が表示時間-1の場合など、「終わらないアニメ」が表示されているときは、表示時間-1の絵になってからの経過時間が、正の数で返されます。ただし、1枚目の表示時間が-1の場合、1しか返しません。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

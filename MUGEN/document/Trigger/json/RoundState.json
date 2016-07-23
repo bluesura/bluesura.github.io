@@ -1,0 +1,48 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "RoundState",
+		"target": "",
+		"category": ["試合の情報", "試合前・イントロ・試合中・試合終了・勝敗判定のどの状態？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "RoundState",
+	"summary": "<p>現在のラウンドの状態を返します。</p>",
+	"syntax":[
+		"RoundState"
+	],
+
+	"description": "<p>0: 試合前 - 真っ暗な画面からフェードインしている状態です。 1: イントロ - キャラクターが演出している状態です。 2: 試合中 - 文字通り試合中の状態です。 3: 試合終了 - 決着がついてから勝敗判定をするまでの間の状態です。 4: 勝敗判定 - どちらが勝利したかを判定して、発表している状態です。</p>",
+
+	"code_sample": [
+		{
+			"title": "フライング防止",
+			"code": [
+				"[State -3, 変数リセット]",
+				"Type = VarSet",
+				"Trigger1 = RoundState != 2",
+				"var(45) = 0",
+				"IgnoreHitPause = 1",
+				"",
+				"[State -3, 変数セット]",
+				"Type = VarSet",
+				"Triggerall = var(59)",
+				"Triggerall = var(45) = 0",
+				"Triggerall = RoundState = 2",
+				"Trigger2 = Ctrl",
+				"Trigger3 = MoveType = H",
+				"var(45) = 1",
+				"IgnoreHitPause = 1"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "RoundState - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#roundstate"},
+		{"title": "RoundState - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/191.html"}
+	]
+}

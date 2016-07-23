@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "HitPauseTime",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "HitPauseTime",
+	"summary": "<p>プレイヤーの攻撃がヒットしたときの停止時間が終了するまでの時間を返します。</p>",
+	"syntax":[
+		"HitPauseTime"
+	],
+
+	"description": "<p>HitPauseTimeの初期値は、プレイヤーのHitDefのpausetimeパラメータの値1(自分の停止時間)と同値になり、1フレーム経過するごとに1減ることになります。但し、ignorehitpause=1を指定しないと、0しか返しません。</p>",
+
+	"code_sample": [
+		{
+			"title": "ヒットによる時間停止中でないときのトリガー",
+			"code": [
+				"Trigger1 = HitPauseTime = 0"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

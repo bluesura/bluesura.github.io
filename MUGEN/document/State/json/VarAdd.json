@@ -1,0 +1,96 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "VarAdd",
+		"target": "ステート実行者自身",
+		"category": ["変数", "指定変数に値を加算"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "VarAdd",
+	"description": "<p>変数を増減します。整数・小数どちらの変数も扱えますが、同時に指定することはできません。</p>",
+	"category": "state",
+
+	"version": [
+		{"no": "Version1.0より前", "content": "var(番号),fvar(番号)で大文字を使用するとエラーが発生します。"},
+		{"no": "Version1.1から", "content": "未検証:値が変化しない場合があります。ヒット硬直やステコンPauseなどの停止系統が作用している時。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "v",
+			"value": ["整数変数番号"],
+			"type": ["int"],
+			"description": "<p>変更する整数変数の番号を0～59から指定します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "value",
+			"value": ["整数増加量"],
+			"type": ["int"],
+			"description": "<p>代入値を整数で指定します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "; fv",
+			"value": ["浮動小数変数番号"],
+			"type": ["int"],
+			"description": "<p>変更する浮動小数変数の番号を0～39から指定します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "; value",
+			"value": ["浮動小数変数増加量"],
+			"type": ["float"],
+			"description": "<p>代入値を浮動小数で指定します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "; var(番号)",
+			"value": ["整数増減量"],
+			"type": ["int", "int"],
+			"description": "<p>vとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "instead",
+			"default_value": [""],
+			"load_priority": ["2 ;先に()内がロードされます。"]
+		},
+		{
+			"parameter": "; fvar(番号)",
+			"value": ["小数増減量"],
+			"type": ["int", "float"],
+			"description": "<p>fvとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "instead",
+			"default_value": [""],
+			"load_priority": ["2 ;先に()内がロードされます。"]
+		}
+	],
+
+	"quote": [
+		{"title": "VarAdd - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/VarAdd"},
+		{"title": "VarAdd - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VarAdd"},
+		{"title": "VarAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#VarAdd"},
+		{"title": "VarAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
+	]
+}

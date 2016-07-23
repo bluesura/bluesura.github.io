@@ -1,0 +1,24 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "Turn",
+		"target": "ステート実行者自身",
+		"category": ["操作", "実行者の向きを変える"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "Turn",
+	"description": "<p>振り向きます。相手を後ろに投げる技の途中で振り向く場合や、相手に背を向けたい場合などに。</p>",
+	"images": [{"src": "Turn.gif", "width": "640", "height": "480", "alt": "MUGEN Turn"}],
+	"category": "state",
+
+	"quote": [
+		{"title": "Turn - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/Turn"},
+		{"title": "Turn - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Turn"},
+		{"title": "Turn - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/272.html"},
+		{"title": "Turn - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Turn"},
+		{"title": "Turn - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

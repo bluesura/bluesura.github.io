@@ -1,0 +1,210 @@
+﻿<p class="description">かなり適当に翻訳しているので、間違いとかが多いと思います。なので、間違いやら変な箇所を見つけた場合、連絡していただけるとありがたいです。</p>
+
+<h2>作成する前に</h2>
+<div>
+	<h3>ライフバーの数値化</h3>
+	<div>ライフバー側では無理だと思われます。キャラクター側でExplodなどを使って、表示しないと無理です。</div>
+
+	<h3>作成できる限界</h3>
+	<div>ライフバーなどは、右から左または左から右へしか、表示を消すことがでないため、180°以上曲がった円形のようなものは再現は無理です。</div>
+
+	<h3>タイムの表示を、99から999に変えるには？</h3>
+	<div>mugen.cfgの「[Options]→Time」で変更できます。</div>
+
+	<h3>タイムの経過を早くする方法は？</h3>
+	<div>ライフバーファイルの「<a href="./Time.html">[Time]</a>→<a href="./Time.html#FrameSperCount">FrameSperCount</a>」で値を小さくすれば、早くなります。もちろん、大きくすれば遅くなります。</div>
+
+	<h3>何本先取（マッチ）か決定する方法は？</h3>
+	<div>「<a href="./Round.html">[Round]</a>→<a href="./Round.html#Match.Wins">Match.Wins</a>」の値を変更すれば設定できます。</div>
+
+	<h3>コンボ数・ヒット数の999限界どうやってなくすんだよ！</h3>
+	<div>mugen.exeを<a href="http://www.vector.co.jp/soft/win95/util/se079072.html" target="_blank">Stirling</a>のようなツールを使い、バイナリをいじって改造します。<a href="http://www.nicovideo.jp/watch/sm9496256" target="_blank">mugen.exeを改造してコンボ上限の999をとっぱらう</a>で改造の仕方が紹介されています。</div>
+	<table>
+	<thead>
+	<tr>
+	<th><strong>M.U.G.E.N Version 1.0 RC6</strong></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td>447BC: E7030000 → FFFFFF00<br>447CD: E7030000 → FFFFFF00</td>
+	</tr>
+	</tbody>
+	<thead>
+	<tr>
+	<th><strong>最新版(2011/01/18)</strong></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td>0004BDBC: E7030000 → FFFFFF00<br>0004BDCD: E7030000 → FFFFFF00</td>
+	</tr>
+	</tbody>
+	<thead>
+	<tr>
+	<th><strong>Windows Mugen Plus</strong></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td>00021F41: E7030000 → FFFFFF00<br>00021F4F: E7030000 → FFFFFF00</td>
+	</tr>
+	</tbody>
+	</table>
+	
+</div>
+
+
+
+<h2>新mugenでは</h2>
+<div>
+
+	<li>MUGENの設定次第で、ライフバーのサイズ調整が必要。</li>
+	<li><a href="./FightFx.html">[Fightfx]</a>が追加され<strong class="warning"><a href="./Combo.html">[Combo]</a>の仕様がまったく違う。</strong></li>
+
+</div>
+
+
+<h2>エラーやらミスに関するメモ</h2>
+<div>
+
+<li>ミスは無視される
+<div>間違った記述をしていた場合は、エラーが表示されず無視されます。表示されない場合は、記述が間違っていないか見直してみてください。</div>
+<span class="example">例:</span>
+<div class="example-content">
+P1.BG0.asdfasfa = 10 ;無視される。<br>
+</div>
+</li>
+<li>最小記述
+<div>ライフバーを完全に表示しないようにするためには、以下のように記述してあげればいいです。また、MUGEN 1.0(RC)は[FightFx]を追加してあげてください。</div>
+<span class="example">例（WinMugen）:</span>
+<table>
+<thead><tr><th>エラーが出ない最小の書き方</th></tr></thead>
+<tbody><tr>
+<td>
+	<div class="code">
+		<ul>
+			<li>[Files]</li>
+			<li>Sff = fight.sff</li>
+			<li>Snd = fight.snd</li>
+			<li>FightFx.Sff = fightfx.sff</li>
+			<li>FightFx.Air = fightfx.air</li>
+			<li>Common.Snd = common.snd</li>
+			<li>[LifeBar]</li>
+			<li>[Simul LifeBar]</li>
+			<li>[Turns LifeBar]</li>
+			<li>[Powerbar]</li>
+			<li>[Face]</li>
+			<li>[Simul Face]</li>
+			<li>[Turns Face]</li>
+			<li>[Name]</li>
+			<li>[Simul Name]</li>
+			<li>[Turns Name]</li>
+			<li>[Time]</li>
+			<li>[Combo]</li>
+			<li>[Round]</li>
+			<li>[WinIcon]</li>
+		</ul>
+	</div>
+</td>
+</tr>
+</tbody>
+<thead><tr><th>1つでも書いていないとエラーが出る</th></tr></thead>
+<tbody>
+<tr>
+<td>
+	<div class="code">
+		<ul>
+			<li>[Files]</li>
+			<li>Sff = fight.sff</li>
+			<li>Snd = fight.snd</li>
+			<li>FightFx.Sff = fightfx.sff</li>
+			<li>FightFx.Air = fightfx.air</li>
+			<li>Common.Snd = common.snd</li>
+			<li>[LifeBar]</li>
+			<li>[Simul LifeBar]</li>
+			<li>[Turns LifeBar]</li>
+			<li>[Powerbar]</li>
+			<li>[Face]</li>
+			<li>[Name]</li>
+			<li>[Simul Name]</li>
+			<li>[Turns Name]</li>
+			<li>[Time]</li>
+			<li>[Combo]</li>
+			<li>[Round]</li>
+			<li>[WinIcon]</li>
+		</ul>
+	</div>
+</td>
+</tr>
+</tbody>
+<thead><tr><th>エラーが出ない</th></tr></thead>
+<tbody>
+<tr>
+<td>
+	<div class="code">
+		<ul>
+			<li>[Files]</li>
+			<li>Sff = fight.sff</li>
+			<li>Snd = fight.snd</li>
+			<li>FightFx.Sff = fightfx.sff</li>
+			<li>FightFx.Air = fightfx.air</li>
+			<li>Common.Snd = common.snd</li>
+			<li></li>
+			<li>;間違った項目は</li>
+			<li>;無視される</li>
+			<li>[fasdfafsafd]</li>
+			<li></li>
+			<li>[LifeBar]</li>
+			<li>;Begin Actionは</li>
+			<li>;読み込まれる</li>
+			<li>[Begin Action 2001]</li>
+			<li>;Begin Actionでは</li>
+			<li>;以下の項目が</li>
+			<li>;存在しないため</li>
+			<li>;全部無視される</li>
+			<li>P1.<a href="./LifeBar.html#Pos">Pos</a>    = 140,12</li>
+			<li>P1.BG0.<a href="./LifeBar.html#Anim">Anim</a> = 10</li>
+			<li>P1.BG1.<a href="./LifeBar.html#Spr">Spr</a> = 11,0</li>
+			<li>P1.BG1.<a href="./LifeBar.html#Offset">Offset</a> = 0,100</li>
+			<li>P1.BG1.<a href="./LifeBar.html#DisplayTime">DisplayTime</a> = 100</li>
+			<li>;以下省略</li>
+		</ul>
+	</div>
+</td>
+</tr></tbody>
+</table>
+</li>
+<li>anim,spr,textの優先順位
+<div>bg0などの同じ場所にanimとspr両方を記述した場合、順番に関係なくsprが優先される。「spr &gt; anim &gt; text」</div>
+<span class="example">例:</span>
+<div class="example-content">
+P1.BG0.<a href="./LifeBar.html#Text">Text</a> = wryyyyyy<br>
+P1.BG0.<a href="./LifeBar.html#Anim">Anim</a> = 10<br>
+P1.BG0.<a href="./LifeBar.html#Spr">Spr</a> = 11,0 ;こっちが表示される<br>
+</div>
+</li>
+<li>重複の優先順位
+<div>重複していた場合は、一番初めに記述したものが表示される。</div>
+<span class="example">例:</span>
+<div class="example-content">
+P1.BG0.<a href="./LifeBar.html#Spr">Spr</a> = 10,0 ;こっちが表示される<br>
+P1.BG0.<a href="./LifeBar.html#Spr">Spr</a> = 11,0<br>
+</div>
+</li>
+<li>表示の優先順位
+<div>全てのレイヤーが同じ時、記述順に関係なく以下の優先順位になります。</div>
+<div class="example-content">
+[LifeBar]<br>
+[Powerbar]<br>
+front &gt; mid &gt; bg0 &gt; bg1 &gt; bg2<br>
+[Face]<br>
+face &gt; bg<br>
+[Name]<br>
+name &gt; bg<br>
+[Time]<br>
+counter &gt; bg<br>
+</div>
+</li>
+
+</div>

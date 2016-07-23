@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "FrontEdgeBodyDist",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "FrontEdgeBodyDist",
+	"summary": "<p>プレイヤー前面のぶつかり判定から、前方の画面端までの距離を返します。</p>",
+	"syntax":[
+		"FrontEdgeBodyDist"
+	],
+
+	"description": "<p>戻り値の型: float</p>",
+
+	"code_sample": [
+		{
+			"title": "プレイヤー前面のぶつかり判定から前方の画面端までの距離が30ピクセル未満のときのトリガー",
+			"code": [
+				"Trigger1 = FrontEdgeBodyDist < 30"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

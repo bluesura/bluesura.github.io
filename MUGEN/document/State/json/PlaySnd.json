@@ -1,0 +1,113 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "PlaySnd",
+		"target": "音声",
+		"category": ["音声", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "PlaySnd",
+	"description": "<p>音を鳴らします。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "Channel",
+			"value": ["チャンネル番号"],
+			"type": ["int"],
+			"description": "<p>チャンネルを指定。同じチャンネルのPlaySndが実行されると、それまで鳴っていた音は止まります。StopSndで特定の音を止める場合にも必要。また、チャンネル0は、ボイス再生専用で、再生中にmovetypeがH(やられ)になると、音が停止するという特性を持っています。省略時は-1で、空いてるチャンネルを使用することになり、再生間隔が短いと、音声がオーバーラップします。キャラ音声の場合は、激しく不自然となるので、忘れずに0を指定しましょう。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "value",
+			"value": ["グループ番号, サウンド番号"],
+			"type": ["int", "int"],
+			"description": "",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": [""],
+			"load_priority": ["2, 3"]
+		},
+		{
+			"parameter": "Volume",
+			"value": ["音量"],
+			"type": ["int"],
+			"description": "<p>音量を指定。0が標準で、正数だと音が大きく、負数だと小さくなるようです。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["4"]
+		},
+		{
+			"parameter": "LowPriority",
+			"value": ["先方優先フラグ"],
+			"type": ["int"],
+			"description": "<p>基本的に、同じチャンネルのPlaySndが実行されると、それまで鳴っていた音は止まりますが、lowpriorityを0以外に指定すると、同じチャンネルの音が鳴ってる場合は、PlaySndが実行されなくなります。チャンネルが-1の場合は無効。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["5"]
+		},
+		{
+			"parameter": "FreqMul",
+			"value": ["周波数"],
+			"type": ["float"],
+			"description": "<p>周波数を倍数で指定。例えば1.1にすると、ピッチが1割り増しとなります。たぶん。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["6"]
+		},
+		{
+			"parameter": "Loop",
+			"value": ["繰り返しフラグ"],
+			"type": ["int"],
+			"description": "<p>0以外を指定すると、サウンドがループするようになります。BGMを鳴らすときなどに？</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["7"]
+		},
+		{
+			"parameter": "Pan",
+			"value": ["パノラマ位置"],
+			"type": ["int"],
+			"description": "<p>音が出る位置を変更することができるようです。左右のスピーカーのバランスで調節するのでしょうか。正で自分の前方、負で後方位置から音が鳴ることになります。単位はピクセル。</p><p>うまく使えば、臨場感あふれるサウンドを実現できるかもしれません。MUGENでまともに音が鳴れば。</p><p>省略時0。プレイヤーの位置から音が鳴っているはずです。ステレオ環境の方は、気をつけて聞いてみましょう。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["8"]
+		},
+		{
+			"parameter": "AbsPan",
+			"value": ["パノラマ位置"],
+			"type": ["int"],
+			"description": "<p>panとほぼ同じ。panはプレイヤーを基準として位置を指定(正の値が前方、負は後方)しますが、こちらはスクリーンの中央からの位置で指定します。panとの同時指定不可。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["8"]
+		}
+	],
+
+	"quote": [
+		{"title": "PlaySnd - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/PlaySnd"},
+		{"title": "PlaySnd - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PlaySnd"},
+		{"title": "PlaySnd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PlaySnd"},
+		{"title": "PlaySnd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
+	]
+}

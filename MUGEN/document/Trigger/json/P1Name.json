@@ -1,0 +1,34 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "P1Name",
+		"target": "",
+		"category": ["名前", "プレイヤー1の名前は何ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "P1Name",
+	"summary": "<p>プレイヤーのnameを判定し、真偽を返します。</p>",
+	"syntax":[
+		"P1Name = \"名前\"",
+		"P1Name != \"名前\""
+	],
+
+	"description": "<p>Nameトリガーの別書式です。効果は全く一緒。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

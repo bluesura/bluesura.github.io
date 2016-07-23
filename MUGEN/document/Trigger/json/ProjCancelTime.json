@@ -1,0 +1,44 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "ProjCancelTime",
+		"target": "",
+		"category": ["飛び道具", "飛び道具が相殺されてからどれだけの時間が経過したか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "ProjCancelTime",
+	"summary": "<p>プレイヤーが最後に放出したProjectile（飛び道具）が指定したID番号の場合、そのProjectileが相手のProjectileに消されてからの時間を返します。</p>",
+	"syntax":[
+		"ProjCancelTime",
+		"ProjCancelTime(ProjectileのID)"
+	],
+
+	"description": "<p>引数として、正の整数をID番号として指定することを必要とします。IDに0を指定した場合、チェックされません。これらの条件に該当しない場合、-1を返します。 概要: 引数には、調べたいProjectileのID番号を、0または正のintで指定します。省略不可。戻り値の型: int また、IDに負数を指定した場合、0を返します。</p>",
+
+	"version": [
+		{"no": "バグ", "content": "直前に命中したProjectileのIDを基準とするため、相殺されたProjectileのIDを使用しても意味が無い。"}
+	],
+
+	"code_sample": [
+		{
+			"title": "ID1234のProjectileが消された瞬間のトリガー",
+			"code": [
+				"Trigger1 = ProjCancelTime(1234) = 1"
+			]
+		},
+		{
+			"title": "プレイヤーのProjectileが消されてから15フレーム未満のときのトリガー",
+			"code": [
+				"Trigger1 = ProjCancelTime(0) != -1 && ProjCancelTime(0) < 15"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

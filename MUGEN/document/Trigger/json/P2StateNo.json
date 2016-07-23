@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "P2StateNo",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "P2StateNo",
+	"summary": "<p>P2のステート番号を返します。</p>",
+	"syntax":[
+		"P2StateNo"
+	],
+
+	"description": "<p>エラー条件:ゲームクリア、ゲームオーバー画面など、P2が存在しない場合、SFalseを返します。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

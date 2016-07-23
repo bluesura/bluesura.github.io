@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Random",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Random",
+	"summary": "<p>0以上999以下の乱数を返します。</p>",
+	"syntax":[
+		"Random"
+	],
+
+	"description": "<p>同じステートコントローラ内で複数のrandomを記述しても、それぞれ異なる値を返します。書式: Random概要: なし戻り値の型: int使用例:Trigger1 = Random <= 249乱数が249以下のときのトリガーです。25%の確率を意味します。Ceil、Floor、%演算子などと組み合わせることにより、任意の範囲の乱数を発生させることもできます。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

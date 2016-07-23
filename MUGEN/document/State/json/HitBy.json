@@ -1,0 +1,58 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "HitBy",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "HitBy",
+	"description": "<p>一時的に特定の攻撃以外食らわないようにします。回り込み(投げのみ食らう)などに。</p><p>ジャンプの瞬間など「投げのみ食らわない」といった場合は姉妹品のNotHitByを使います。</p><p>また、HitBy効果持続中に、同じスロットのHitBy、NotHitByが実行されると、それまでのHitByの効果は無効となります。</p><p>2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>HitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["攻撃属性"],
+			"type": ["string"],
+			"description": "<p>攻撃属性で指定できる値は、HitDefのattrパラメータで指定できる値と同じです。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "value2",
+			"value": ["攻撃属性"],
+			"type": ["string"],
+			"description": "<p>攻撃属性で指定できる値は、HitDefのattrパラメータで指定できる値と同じです。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["? ;valueまたはvalue2どちらかがあればOK！"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "Time",
+			"value": ["効果持続時間"],
+			"type": ["int"],
+			"description": "<p>フレーム単位で効果の持続時間を指定します。特定の技に無敵を付加する場合は、トリガーで持続時間を指定したほうがよいでしょう。</p><p>-1以下で効果時間が永続化。</p><p>※60フレーム=1秒</p>",
+			"min_value": ["-2147483647"],
+			"max_value": ["2147483647"],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["1"]
+		}
+	],
+
+	"quote": [
+		{"title": "HitBy - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/HitBy"},
+		{"title": "HitBy - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitBy"},
+		{"title": "HitBy - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitBy"},
+		{"title": "HitBy - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

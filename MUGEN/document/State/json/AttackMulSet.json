@@ -1,0 +1,36 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"subtitle": "AttackMulSet",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "AttackMulSet",
+	"description": "<p>攻撃力を倍数で指定します。一時的に攻撃力が上がる技などに。効果は1フレーム。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["攻撃力係数"],
+			"type": ["float"],
+			"description": "<p>攻撃力を何倍にするか指定。例えば、0.5なら半分に、2なら倍になります。省略不可。</p><p>ちなみに、負数を指定すると、ダメージ値×係数の分体力が回復します。0を指定すると、一律1のダメージになります。</p><p>※通常攻撃、Projectileのstate攻撃には反映されるが、Helperを介した攻撃には適用されない。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["1"]
+		}
+	],
+
+	"quote": [
+		{"title": "AttackMulSet - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/AttackMulSet"},
+		{"title": "AttackMulSet - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AttackMulSet"},
+		{"title": "AttackMulSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AttackMulSet"},
+		{"title": "AttackMulSet - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

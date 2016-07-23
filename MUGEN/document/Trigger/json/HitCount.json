@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "HitCount",
+		"target": "",
+		"category": ["ヒット回数", "一つの攻撃でのヒット数は何回ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "HitCount",
+	"summary": "<p>そのステート内でのヒット数を返します。</p>",
+	"syntax":[
+		"HitCount"
+	],
+
+	"description": "<p>ガード含まず。ステートが変わるとヒット数はリセットされますので、前のステートのヒット数を引き継ぎたい場合は予めStatedefの冒頭にhitcountpersist = 1と記述しておく必要があります。姉妹品にUniqHitCountがあり、チームプレイで複数の敵に同時ヒットした場合の扱いが異なります。HitCountの場合は1ヒット、UniqHitCountの場合は2ヒットとして扱われます。画面に表示されるヒット数とは全くの別物で、同一ステート内、もしくはhitcountpersist = 1であれば連続ヒットしなくてもカウントされます。よってダメージ補正に使うのは難しいです。 戻り値の型: int</p>",
+
+	"code_sample": [
+		{
+			"title": "同一ステート内、もしくはhitcountpersist = 1のステートで攻撃が9回以上ヒットしたときのトリガー",
+			"code": [
+				"Trigger1 = HitCount > 8"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

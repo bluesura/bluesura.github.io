@@ -1,0 +1,40 @@
+<?php /* Smarty version Smarty-3.1.12, created on 2016-04-24 16:58:36
+         compiled from "F:\bluesura\Dropbox\Public\www\MUGEN\document\Template\header.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:136465693d073308d07-64783590%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '92b0a277156a4edc0f50e5204b1afe87206a27ca' => 
+    array (
+      0 => 'F:\\bluesura\\Dropbox\\Public\\www\\MUGEN\\document\\Template\\header.tpl',
+      1 => 1461517112,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '136465693d073308d07-64783590',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5693d07338d684_05188576',
+  'variables' => 
+  array (
+    'content' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5693d07338d684_05188576')) {function content_5693d07338d684_05188576($_smarty_tpl) {?><header id="blog-title">
+	<div id="blog-title-inner"><?php echo $_smarty_tpl->getSubTemplate ("./nav.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
+		<div id="blog-title-content">
+			<h1 id="title"><a href="./"><?php echo $_smarty_tpl->tpl_vars['content']->value['page_title'];?>
+</a></h1>
+
+<h2 id="blog-description">
+		<div class="notice">MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div>
+</h2>
+		</div>
+
+	</div>
+</header><?php }} ?>

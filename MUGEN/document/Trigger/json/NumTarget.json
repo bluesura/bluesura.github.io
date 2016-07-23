@@ -1,0 +1,40 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "NumTarget",
+		"target": "",
+		"category": ["カウント", "ターゲットはどれだけありますか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "NumTarget",
+	"summary": "<p>プレイヤーのターゲットの数を返します。</p>",
+	"syntax":[
+		"NumTarget",
+		"NumTarget(ID)"
+	],
+
+	"description": "<p>引数にID番号を指定した場合、そのID番号のターゲット数を返します。IDに-1以下を指定した場合、省略時と同様に扱われます。書式:1. NumTarget2. NumTarget(引数)概要:引数には、数えたいターゲットのヒットIDを指定。戻り値の型: int</p>",
+
+	"code_sample": [
+		{
+			"title": "ターゲットが2体以上のときのトリガー",
+			"code": [
+				"Trigger1 = NumTarget >= 2"
+			]
+		},
+		{
+			"title": "ID1234のターゲットが2体以上のときのトリガー",
+			"code": [
+				"Trigger1 = NumTarget(1234) >= 2"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

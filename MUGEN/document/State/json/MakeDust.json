@@ -1,0 +1,63 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "MakeDust",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "MakeDust",
+	"description": "<p>土埃を表示します。絵はfightfx.airのものが使用されます。効果は1フレーム。</p>",
+	"images": [{"src": "MakeDust.gif", "width": "640", "height": "480", "alt": "MUGEN MakeDust"}],
+	"category": "state",
+
+	"version": [
+		{"no": "MUGEN 1.0以上", "content": "このステートコントローラーの使用は非推奨です！Explodを使用しろo(｀ω´*)o"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "Spacing",
+			"value": ["-"],
+			"type": ["int"],
+			"description": "<p>何フレームごとに表示するかを指定。1以上を指定すること。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["3 ;3フレーム毎に表示"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Pos",
+			"value": ["-, -"],
+			"type": ["int", "int"],
+			"description": "<p>出現位置をプレイヤーの相対位置で指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0, 0"],
+			"load_priority": ["2, 3"]
+		},
+		{
+			"parameter": "Pos2",
+			"value": ["-, -"],
+			"type": ["float", "float"],
+			"description": "<p>2つ同時に出す場合、2つ目の位置を指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";2つ目の土埃は描画されません。"],
+			"load_priority": ["4, 5"]
+		}
+	],
+
+	"quote": [
+		{"title": "MakeDust - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/MakeDust"},
+		{"title": "MakeDust - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?MakeDust"},
+		{"title": "MakeDust - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#MakeDust"},
+		{"title": "MakeDust - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

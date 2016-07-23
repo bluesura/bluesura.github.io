@@ -1,0 +1,11 @@
+{
+	"parameter": "IgnoreHitPause",
+	"value": ["HitPauseを無視フラグ"],
+	"type": ["boolean"],
+	"description": "<p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p>",
+	"min_value": ["0"],
+	"max_value": ["1"],
+	"parameter_type": "optional",
+	"default_value": ["0"],
+	"load_priority": ["?"]
+}

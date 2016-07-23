@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Log",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Log",
+	"summary": "<p>指定値の対数を返します。</p>",
+	"syntax":[
+		"Log(底,指数)"
+	],
+
+	"description": "<p>底には、対数の底(てい)を指定します。負数不可。指数には、指数を指定します。負数不可。戻り値の型: floatエラー条件:引数のいずれかでもSFalseまたは負数の場合、SFalseを返します。</p>",
+
+	"code_sample": [
+		{
+			"title": "2を底とした64の対数(=6)をvalueに代入",
+			"code": [
+				"value=log(2,64)"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

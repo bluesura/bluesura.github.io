@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "HitOver",
+		"target": "",
+		"category": ["くらい関係", "攻撃を受けてのけぞっていますか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "HitOver",
+	"summary": "<p>攻撃を受けた場合のHitTimeが0になったかどうかを返します。</p>",
+	"syntax":[
+		"HitOver"
+	],
+
+	"description": "<p>攻撃を受けた場合のHitTimeが0になったとき、1を返します。共通のやられは、このトリガーにより通常ステートに移されています。やられステートをカスタマイズするとき等に。</p>",
+
+	"code_sample": [
+		{
+			"title": "プレイヤーのやられ状態が終了したときのトリガー",
+			"code": [
+				"Trigger1 = HitOver = 1"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

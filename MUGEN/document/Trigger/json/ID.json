@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "ID",
+		"target": "",
+		"category": ["ステータス", "IDは何番ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "ID",
+	"summary": "<p>プレイヤーのIDを返します。</p>",
+	"syntax":[
+		"ID"
+	],
+
+	"description": "<p>このIDは、helperを含むプレイヤーが発生すると、自動で割り付けられ、その試合中は変更できません。自分で指定することもできません。\"playerID\"リダイレクトキーワードに使用するため、敵のIDを取得するのが主な使用方法でしょうか。書式: ID概要: なし戻り値の型: int使用例:value = IDプレイヤーのID番号をvalueに代入します。value = EnemyNear, IDプレイヤーに最も近い敵のID番号をvalueに代入します。\"EnemyNear()\"もリダイレクトキーワードです。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

@@ -1,0 +1,79 @@
+{
+	"page": {
+		"title": "M.U.G.E.N ライフバー設定項目一覧",
+		"subtitle": "[Files]",
+		"target": "",
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"title": "Files",
+	"group": "[Files]",
+	"description": "どのsff,snd,fnt,airファイルを読み込みか設定します。<br><hr>ディレクトリは以下の順序でチェックされます。:<br><ul><li>現在fight.def（system.defで選択したもの）が置かれているディレクトリ</li><li>data/</li><li>MUGEN本体が置かれているディレクトリ</li></ul>",
+
+	"sample_code": {
+		"code": [
+			"[Files]",
+			"<a href=\"./Files.html#Sff\">Sff</a> = Fight.Sff",
+			"<a href=\"./Files.html#Snd\">Snd</a> = Fight.Snd",
+			"<a href=\"./Files.html#Font【FontNumber】\">Font</a>1 = ",
+			"<a href=\"./Files.html#Font【FontNumber】\">Font</a>2 = ",
+			"<a href=\"./Files.html#Font【FontNumber】\">Font</a>3 = ",
+			"<a href=\"./Files.html#Font【FontNumber】\">Font</a>4 = ",
+			"<a href=\"./Files.html#Font【FontNumber】\">Font</a>5 = ",
+			"<a href=\"./Files.html#Font【FontNumber】\">Font</a>6 = ",
+			"<a href=\"./Files.html#Font【FontNumber】\">Font</a>7 = ",
+			"<a href=\"./Files.html#Font【FontNumber】\">Font</a>8 = ",
+			"<a href=\"./Files.html#Font【FontNumber】\">Font</a>9 = ",
+			"<a href=\"./Files.html#Fightfx.Sff\">FightFx.Sff</a> = FightFx.sff",
+			"<a href=\"./Files.html#Fightfx.Air\">FightFx.Air</a> = FightFx.air",
+			"<a href=\"./Files.html#Common.Snd\">Common.Snd</a> = Common.snd",
+			";<span class=\"warning\">*Font以外の設定項目は必ず書いてください。エラーになります。</span>"
+		]
+	},
+
+	"parameter": [
+		{
+			"parameter": "Sff",
+			"value": ["sffファイル名"],
+			"type": ["string"],
+			"description": "spr・[Begin Action]などで使用するものをここで設定します。<hr>パラメータ指定例:<br>sff = fight.sff<br>fight.sffを読み込んできます。<br>"
+		},
+		{
+			"parameter": "Snd",
+			"value": ["sndファイル名"],
+			"type": ["string"],
+			"description": "sndで使用するためのものをここで設定します。<hr>使用例:<br>snd = fight.snd<br>fight.sndを読み込んできます。<br>"
+		},
+		{
+			"parameter": "Font【FontNumber】",
+			"value": ["fontファイル名"],
+			"type": ["string"],
+			"description": "<ul><li>[Files]には0～9までの最大10個のfontが指定できます。10個以上指定した場合MUGENがクラッシュすると書かれてましたがよくわかりません。なので、0は使用しない方が良いかもしれないです。</li><li>ここで指定されたfontはsystem.def内に書かれたものとは違います。</li><li>フォントは、次の順序でディレクトリを検索します:<ol><li>system.defのfight=で指定した同一ディレクトリ</li><li>MUGEN本体が置かれているディレクトリ<br>(ここにオリジナルのフォントを入れることを推奨しません)</li><li>data/<br>(ここにオリジナルのフォントを入れることを推奨しません)</li><li>font/</li></ol></li></ul><hr>使用例:<br>font1 = font/jg.fnt<br>font2 = font/num1.fnt<br>font3 = font/name1.fnt<br>"
+		},
+		{
+			"parameter": "Fightfx.Sff",
+			"value": ["sffファイル名"],
+			"type": ["string"],
+			"description": "MUGENで使用したいヒットスパークのスプライトファイルを指定します。<hr>使用例:<br>fightfx.sff = fightfx.sff<br>fightfx.sffが読み込まれます。<br>"
+		},
+		{
+			"parameter": "Fightfx.Air",
+			"value": ["airファイル名"],
+			"type": ["string"],
+			"description": "MUGENで使用したいヒットスパークのAIRファイルを指定します。<hr>使用例:<br>fightfx.air = fightfx.air<br>fightfx.airが読み込まれます。<br>"
+		},
+		{
+			"parameter": "Common.Snd",
+			"value": ["sndファイル名"],
+			"type": ["string"],
+			"description": "MUGENで使用したい効果音（攻撃・ガードとか）のSNDファイルを指定します。<hr>使用例:<br>common.snd = common.snd<br>common.sndが読み込まれます。<br>"
+		}
+	],
+
+	"quote": [
+		{"title": "Cabbit007's LifeBar Tutorial - RANDOM SELECT", "url": "https://docs.google.com/viewer?a=v&q=cache:wk0WfSKcE1UJ:moogen.piiym.net/files/LifeBar_tutorial.doc+&hl=ja&gl=jp&pid=bl&srcid=ADGEESjMMLACx97cJMbe_PLaOB4LIuGXjLUNCCX1oBR6A31VtVR1MH9gRGgTR-gQP9aDqukKTvHoFMgSgdkWv_6LmQZxnMwFH3e8ylyHvzVehxlEv5NQ1sDesHoDQPK2ABxZxR4F0Spl&sig=AHIEtbR4dlMgJl-_ZzZAvDxFlEzHe3WnDA"},
+		{"title": "ごろごろむ", "url": "http://gorogorom.blog44.fc2.com/"}
+	]
+}

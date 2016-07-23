@@ -1,0 +1,59 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "NotHitBy",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "NotHitBy",
+	"description": "<p>一時的に特定の攻撃を食らわなくなります。無敵技、ジャンプ開始モーションなどに。</p><p>姉妹品にHitByがあります。指定方法が異なるだけで、実質的に同じコントローラと思ってよいです。</p><p>2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>NotHitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["攻撃属性"],
+			"type": ["string"],
+			"description": "<p>攻撃属性で指定できる値は、HitDefのattrパラメータで指定できる値と同じです。が、このステートコントローラーでは、,(カンマ)がOR条件とみなされるようです。</p><p>例えば、value = SCA, NAとすると、HitDefでは「立屈空の通常攻撃」を意味しますが、このNotHitByでは、「立屈空または通常攻撃」とみなされ、すべての攻撃に対し無敵となります。</p><p>ですので、value = SCAあるいはvalue = , NAとして、どちらかの状態のみ指定するのが普通です。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "value2",
+			"value": ["攻撃属性"],
+			"type": ["string"],
+			"description": "<p>攻撃属性で指定できる値は、HitDefのattrパラメータで指定できる値と同じです。が、このステートコントローラーでは、,(カンマ)がOR条件とみなされるようです。</p><p>例えば、value = SCA, NAとすると、HitDefでは「立屈空の通常攻撃」を意味しますが、このNotHitByでは、「立屈空または通常攻撃」とみなされ、すべての攻撃に対し無敵となります。</p><p>ですので、value = SCAあるいはvalue = , NAとして、どちらかの状態のみ指定するのが普通です。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["? ;valueまたはvalue2どちらかがあればOK！"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "Time",
+			"value": ["効果持続時間"],
+			"type": ["int"],
+			"description": "<p>フレーム単位で効果の持続時間を指定します。特定の技に無敵を付加する場合は、トリガーで持続時間を指定したほうがよいでしょう。</p><p>-1以下で効果時間が永続化。</p><p>※60フレーム=1秒</p>",
+			"min_value": ["-2147483647"],
+			"max_value": ["2147483647"],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["1"]
+		}
+	],
+
+
+	"quote": [
+		{"title": "NotHitBy - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/NotHitBy"},
+		{"title": "NotHitBy - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?NotHitBy"},
+		{"title": "NotHitBy - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#NotHitBy"},
+		{"title": "NotHitBy - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

@@ -1,0 +1,39 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "NumProjID",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "NumProjID",
+	"summary": "<p>プレイヤーの特定IDのProjectile数を返します。</p>",
+	"syntax":[
+		"NumProjID(ProjectileのID)"
+	],
+
+	"description": "<p>コマンド条件で飛び道具の数を制限したい場合などに。引数には、数えたいProjectileのIDを、intで指定。戻り値の型: intエラー条件:引数に負数を指定した場合、IDは0とみなされます。また、引数がSFalseの場合、SFalseを返します。使用例:Trigger1 = NumProjID(1234) = 1プレイヤーが放出したID1234の飛び道具が1つだけ存在している場合のトリガー。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"associated_state": ["Projectile"],
+	"associated_trigger": ["NumProj", "NumProjID",
+		"ProjCancelTime", "ProjContact", "ProjContactTime",
+		"ProjGuarded", "ProjGuardedTime", "ProjHit", "ProjHitTime"
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

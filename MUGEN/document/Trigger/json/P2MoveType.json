@@ -1,0 +1,38 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "P2MoveType",
+		"target": "",
+		"category": ["ステータス", "最も近い相手の行動状態は何ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "P2MoveType",
+	"summary": "<p>最も近い相手のMoveTypeを判定し、真偽を返します。</p>",
+	"syntax":[
+		"P2MoveType = I",
+		"P2MoveType = A",
+		"P2MoveType = H",
+		"P2MoveType != I",
+		"P2MoveType != A",
+		"P2MoveType != H"
+	],
+
+	"description": "<p></p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

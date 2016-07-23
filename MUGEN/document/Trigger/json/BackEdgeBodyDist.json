@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "BackEdgeBodyDist",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "BackEdgeBodyDist",
+	"summary": "<p>プレイヤーの背面から背面側の画面端までの距離を返します。</p>",
+	"syntax":[
+		"BackEdgeBodyDist"
+	],
+
+	"description": "<p>書式: BackEdgeBodyDist概要: なし戻り値の型: float使用例:Trigger1 = BackEdgeBodyDist < 30プレイヤー背中側のぶつかり判定から後方の画面端までの距離が30ピクセル未満のときのトリガー。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

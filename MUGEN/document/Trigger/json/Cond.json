@@ -1,0 +1,36 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Cond",
+		"target": "",
+		"category": ["条件分岐", "条件によって結果を変えたい場合"],
+		"version": "Version1.0",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Cond",
+	"summary": "<p>条件式の真偽に合わせた結果返します。</p>",
+	"syntax":[
+		"Cond(条件式, 条件が真の時の処理, 条件が偽の時の処理)"
+	],
+
+	"description": "<p>条件式で真(0以外)か偽(0)かを判定して、処理結果を返します。返せる値は整数と小数と真偽のみで、文字列は返せません。</p><p>入れ子( <code>Cond(var(0)=1,IfElse(var(1)=0,1,2),0)</code> )にすることも可能です</p><p><code>IfElse</code>とほぼ同じで、条件式の真偽に合わせた結果返します。違う点は処理の流れで、<code>IfElse</code>は条件式の真偽の結果にかかわらず条件が真の時の処理・条件が偽の時の処理が実行さます。Condは条件式の結果で条件が真の時の処理・条件が偽の時の処理のどちらかの処理が実行されます。</p><p><code>IfElse(var(1):=1,var(1):=var(1)+1,var(1):=var(1)+1);var(1)の値は3になります。</code></p><p><code>Cond(var(1):=1,var(1):=var(1)+1,var(1):=var(1)+1);var(1)の値は2になります。</code></p>",
+
+	"version": [
+		{"no": "Version1.0から", "content": "リダイレクト先の変数を直接書き換えることが可能。"},
+		{"no": "Version1.0から", "content": "fvar(40)に代入するとsysvar(0)に浮動小数点のデータが入ってしまいます。"},
+		{"no": "Version1.0から", "content": "var(60)はfvar(0)に入ってしまうようです。こちらは基本的に0が入るようです。"}
+	],
+
+	"associated_trigger": ["IfElse"],
+
+	"quote": [
+		{"title": "Cond - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#cond-math"},
+		{"title": "RC6のCondトリガー - chikuchikugonzalezの雑記帳", "url": "http://chiku2gonzalez.hatenablog.com/entry/20091219/1261201891"},
+		{"title": "Cond IfElse 二重リダイレクト リダイレクトのリダイレクト - 絶対許早苗豆腐", "url": "http://yurusanae.blog98.fc2.com/blog-category-42.html"},
+		{"title": "Condの意外な活用法 - 気まぐれ猫ブログ", "url": "http://kneco.blog40.fc2.com/blog-entry-142.html"},
+		{"title": "これはひどい - Xの空間", "url": "http://d.hatena.ne.jp/xboxaruhuraito/20120530/1338368722"}
+	]
+}

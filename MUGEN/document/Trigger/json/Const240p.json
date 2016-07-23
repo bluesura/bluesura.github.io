@@ -1,0 +1,36 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Const240p",
+		"target": "",
+		"category": ["", ""],
+		"version": "Version1.0",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Const240p",
+	"summary": "<p>240p時の座標を、プレイヤーの座標空間に合わせた値に変換した数値を返します。</p>",
+	"syntax":[
+		"Const240p(座標)"
+	],
+
+	"description": "<p>Non-zero position and velocity offset values in common1.cns should use one of the Const triggers to maintain consistency with characters from a different coordinate space. </p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				"value = Const240p(3)",
+				";320x240の場合、3がvalueに代入されます。",
+				";640x480の場合、6がvalueに代入されます。",
+				";1280x720の場合、12がvalueに代入されます。"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

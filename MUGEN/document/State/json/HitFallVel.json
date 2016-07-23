@@ -1,0 +1,21 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "HitFallVel",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "HitFallVel",
+	"description": "<p>プレイヤーがヒットモーション中の落下状態にあるとき、相手のHitDefで指定されたfall.xvelとfall.yvelの値を有効にします。</p><p>　共通ステートを上書きするときや、相手に参照させるステートで使用します。</p>",
+	"category": "state",
+
+	"quote": [
+		{"title": "HitFallVel - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/HitFallVel"},
+		{"title": "HitFallVel - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitFallVel"},
+		{"title": "HitFallVel - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitFallVel"}
+	]
+}

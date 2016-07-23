@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Vel Y",
+		"target": "",
+		"category": ["速度", "Y方向の速度はどれだけか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "VelY",
+	"summary": "<p>プレイヤーのY方向の速度を返します。</p>",
+	"syntax":[
+		"Vel Y"
+	],
+
+	"description": "<p>Vel Y は、下方に移動している場合、正の値を返します。戻り値の型: 　floatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。</p>",
+
+	"code_sample": [
+		{
+			"title": "プレイヤーが上方向に移動していないときのトリガー",
+			"code": [
+				"Trigger1 = Vel Y >= 0"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "Vel - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#vel"}
+	]
+}

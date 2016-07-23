@@ -1,0 +1,40 @@
+<?php /* Smarty version Smarty-3.1.12, created on 2016-04-24 17:05:33
+         compiled from "F:\bluesura\Dropbox\Public\www\MUGEN\document\Template\nav.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:20201571cfb10865984-28200895%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '18b0e14ff739bea69ca684aad97a9733ea48335c' => 
+    array (
+      0 => 'F:\\bluesura\\Dropbox\\Public\\www\\MUGEN\\document\\Template\\nav.tpl',
+      1 => 1461517527,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '20201571cfb10865984-28200895',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_571cfb108f1d28_27992956',
+  'variables' => 
+  array (
+    'content' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_571cfb108f1d28_27992956')) {function content_571cfb108f1d28_27992956($_smarty_tpl) {?>﻿		<nav>
+			<div class="breadcrumb">
+				<ul>
+<?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']>="1"){?><?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']>="2"){?>
+					<li itemscope><a href="./" target="_top" itemprop="url"><span itemprop="title"><?php echo $_smarty_tpl->tpl_vars['content']->value['page_title'];?>
+</span></a></li>
+<?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']>="3"){?>
+					<li><?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
+</li>
+<?php }?>
+<?php }?>
+<?php }?>
+				</ul>
+			</div>
+		</nav><?php }} ?>

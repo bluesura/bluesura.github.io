@@ -1,0 +1,677 @@
+﻿<!DOCTYPE HTML>
+<html lang="ja-JP">
+<head>
+
+	<!-- 「チェス盤を引っくり返す！」 -->
+	<meta charset="UTF-8" />
+	<meta name="robots" content="INDEX,FOLLOW" />
+	<meta name="author" content="sura" />
+	<meta name="title" content="SimulLifeBar | M.U.G.E.N ライフバー 設定項目一覧 - Name = sura" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="MUGEN" />
+	<!-- 「駄目ね、全然駄目だわ」 -->
+
+	<!-- ジョインジョイン OGP -->
+	<meta property="og:url" content="http://analyticsfile.web.fc2.com/MUGEN/document/LifeBar/SimulLifeBar.html" />
+	<meta property="og:title" content="SimulLifeBar | M.U.G.E.N ライフバー 設定項目一覧 - Name = sura" />
+	<meta property="og:description" content="#" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="http://analyticsfile.web.fc2.com/MUGEN/document/LifeBar/img/profile_200.png" />
+	<meta property="og:locale" content="ja_JP" />
+	<meta property="og:site_name" content="Name = sura" />
+	<!-- もういい、ここまでだっ・・・ -->
+
+	<!-- ドロー！ Twitter Cards -->
+	<meta name="twitter:card" value="player" />
+	<meta name="twitter:site" value="@bluesura" />
+	<!-- ターンエンドだ！ -->
+
+	<title>SimulLifeBar | M.U.G.E.N ライフバー 設定項目一覧</title>
+
+	<link rel="shortcut icon" href="./../../../media/img/favicon.ico" />
+	<link rel="stylesheet" href="./../lib/css/main.css?201303200000" />
+	<script type="text/javascript" src="./../lib/js/google.js?201303200000"></script>
+
+</head>
+<body>
+<header>
+	<div class="header">
+
+		<div class="title">
+			<h1>M.U.G.E.N ライフバー設定項目一覧</h1>
+			<h2>Name = sura</h2>
+		</div>
+
+		<div>MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div>
+
+		<nav>
+			<div class="breadcrumb">
+				<ul>
+					<li><a href="/index.html" target="_top">Home</a></li>
+					<li><span> &gt;&gt; </span></li>
+					<li><a href="./index.html" target="_top">M.U.G.E.N ライフバー設定項目一覧</a></li>
+					<li><span> &gt;&gt; </span></li>
+					<li>[SimulLifeBar]</li>
+				</ul>
+			</div>
+		</nav>
+
+	</div>
+</header>
+
+		<div class="contents clearfix">
+			<div class="sidebar">
+<div class="categories">
+	<ul>
+		<li><div class="tooltip">
+			<a href="./Combo.html">Combo</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./Face.html">Face</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./FightFx.html">FightFx</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./Files.html">Files</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./LifeBar.html">LifeBar</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./Name.html">Name</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./PowerBar.html">PowerBar</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./Round.html">Round</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./SimulFace.html">SimulFace</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./SimulLifeBar.html">SimulLifeBar</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./SimulName.html">SimulName</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./Time.html">Time</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./TurnsFace.html">TurnsFace</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./TurnsLifeBar.html">TurnsLifeBar</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./TurnsName.html">TurnsName</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./WinIcon.html">WinIcon</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./BeginAction.html">BeginAction</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./index.html">index</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./MakeFont.html">MakeFont</a>
+			
+		</div></li>
+	</ul>
+</div>
+
+<div class="search-engine">
+	<gcse:searchbox-only></gcse:searchbox-only>
+</div>
+
+<div>
+
+	<a class="twitter-timeline" href="https://twitter.com/bluesura" data-widget-id="283962985054093312">@bluesura からのツイート</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+</div>
+
+<div style="word-wrap:break-word;">
+ページに何か間違いがございましたら、ツイッターやsuteadddayov+MUGEN@gmail.comまでご連絡ください。
+</div>
+
+			</div>
+
+
+	<div class="content">
+				<h1 id="SimulLifeBar">[Simul LifeBar]</h1>
+				<p class="description">タッグ戦(2 VS 2)時の項目です。基本的なことは<a href="./LifeBar.html">[LifeBar]</a>と変わらないのですが、こちらはp1～p4まで設定しなければなりません。ちなみに、p3はp1,p4はp2に配置されます。</p>
+
+	<section id="SampleCode"><div class="section">
+		<h2>設定可能なパラメータ一覧</h2>
+		<div class="code">
+		<ul>
+									<li>[Simul LifeBar]</li>
+									<li>P1.<a href="./SimulLifeBar.html#Pos">Pos</a> = ,</li>
+									<li></li>
+									<li>P1.BG0.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P1.BG0.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P1.BG0.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P1.BG0.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P1.BG0.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P1.BG0.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P1.BG0.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P1.BG0.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P1.BG0.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P1.BG0.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P1.BG1.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P1.BG1.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P1.BG1.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P1.BG1.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P1.BG1.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P1.BG1.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P1.BG1.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P1.BG1.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P1.BG1.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P1.BG1.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P1.BG2.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P1.BG2.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P1.BG2.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P1.BG2.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P1.BG2.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P1.BG2.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P1.BG2.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P1.BG2.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P1.BG2.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P1.BG2.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>;ライフ本体の画像</li>
+									<li>P1.Front.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P1.Front.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P1.Front.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P1.Front.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P1.Front.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P1.Front.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P1.Front.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P1.Front.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P1.Front.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P1.Front.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>;ライフが減少時の画像（赤いやつ）</li>
+									<li>P1.Mid.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P1.Mid.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P1.Mid.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P1.Mid.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P1.Mid.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P1.Mid.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P1.Mid.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P1.Mid.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P1.Mid.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P1.Mid.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P1.<a href="./SimulLifeBar.html#LifeBar.range.x">Range.X</a> = ,</li>
+									<li></li>
+									<li></li>
+									<li>P2.<a href="./SimulLifeBar.html#Pos">Pos</a> = ,</li>
+									<li></li>
+									<li>P2.BG0.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P2.BG0.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P2.BG0.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P2.BG0.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P2.BG0.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P2.BG0.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P2.BG0.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P2.BG0.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P2.BG0.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P2.BG0.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P2.BG1.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P2.BG1.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P2.BG1.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P2.BG1.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P2.BG1.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P2.BG1.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P2.BG1.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P2.BG1.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P2.BG1.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P2.BG1.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P2.BG2.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P2.BG2.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P2.BG2.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P2.BG2.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P2.BG2.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P2.BG2.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P2.BG2.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P2.BG2.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P2.BG2.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P2.BG2.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P2.Front.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P2.Front.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P2.Front.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P2.Front.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P2.Front.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P2.Front.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P2.Front.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P2.Front.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P2.Front.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P2.Front.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P2.Mid.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P2.Mid.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P2.Mid.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P2.Mid.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P2.Mid.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P2.Mid.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P2.Mid.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P2.Mid.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P2.Mid.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P2.Mid.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P2.<a href="./SimulLifeBar.html#LifeBar.range.x">Range.X</a> = ,</li>
+									<li></li>
+									<li></li>
+									<li>P3.<a href="./SimulLifeBar.html#Pos">Pos</a> = ,</li>
+									<li></li>
+									<li>P3.BG0.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P3.BG0.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P3.BG0.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P3.BG0.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P3.BG0.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P3.BG0.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P3.BG0.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P3.BG0.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P3.BG0.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P3.BG0.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P3.BG1.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P3.BG1.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P3.BG1.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P3.BG1.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P3.BG1.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P3.BG1.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P3.BG1.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P3.BG1.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P3.BG1.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P3.BG1.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P3.BG2.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P3.BG2.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P3.BG2.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P3.BG2.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P3.BG2.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P3.BG2.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P3.BG2.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P3.BG2.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P3.BG2.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P3.BG2.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P3.Front.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P3.Front.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P3.Front.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P3.Front.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P3.Front.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P3.Front.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P3.Front.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P3.Front.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P3.Front.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P3.Front.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P3.Mid.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P3.Mid.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P3.Mid.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P3.Mid.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P3.Mid.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P3.Mid.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P3.Mid.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P3.Mid.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P3.Mid.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P3.Mid.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P3.<a href="./SimulLifeBar.html#LifeBar.range.x">Range.X</a> = ,</li>
+									<li></li>
+									<li></li>
+									<li>P4.<a href="./SimulLifeBar.html#Pos">Pos</a> = ,</li>
+									<li></li>
+									<li>P4.BG0.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P4.BG0.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P4.BG0.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P4.BG0.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P4.BG0.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P4.BG0.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P4.BG0.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P4.BG0.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P4.BG0.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P4.BG0.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P4.BG1.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P4.BG1.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P4.BG1.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P4.BG1.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P4.BG1.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P4.BG1.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P4.BG1.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P4.BG1.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P4.BG1.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P4.BG1.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P4.BG2.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P4.BG2.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P4.BG2.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P4.BG2.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P4.BG2.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P4.BG2.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P4.BG2.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P4.BG2.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P4.BG2.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P4.BG2.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P4.Front.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P4.Front.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P4.Front.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P4.Front.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P4.Front.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P4.Front.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P4.Front.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P4.Front.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P4.Front.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P4.Front.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P4.Mid.<a href="./SimulLifeBar.html#Spr">Spr</a> = ,</li>
+									<li>P4.Mid.<a href="./SimulLifeBar.html#Anim">Anim</a> = </li>
+									<li>P4.Mid.<a href="./SimulLifeBar.html#Font">Font</a> = </li>
+									<li>P4.Mid.<a href="./SimulLifeBar.html#Text">Text</a> = </li>
+									<li>P4.Mid.<a href="./SimulLifeBar.html#Offset">Offset</a> = ,</li>
+									<li>P4.Mid.<a href="./SimulLifeBar.html#DisplayTime">DisplayTime</a> = </li>
+									<li>P4.Mid.<a href="./SimulLifeBar.html#Facing">Facing</a> = </li>
+									<li>P4.Mid.<a href="./SimulLifeBar.html#VFacing">VFacing</a> = </li>
+									<li>P4.Mid.<a href="./SimulLifeBar.html#LayerNo">LayerNo</a> = </li>
+									<li>P4.Mid.<a href="./SimulLifeBar.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>P4.<a href="./SimulLifeBar.html#LifeBar.range.x">Range.X</a> = ,</li>
+						</ul>
+		</div>
+	</div></section>
+
+<!--
+	<section id="Version"><div class="section">
+		<h2>versionごとの変更点・バグ・エラー・仕様</h2>
+					<div>なし</div>
+			</div></section>
+-->
+
+	<section id="Parameter"><div class="section">
+		<h2>パラメーター</h2>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Range.X">Range.X = ライフバー画像がLife0になる位置, ライフバー画像がLifeMaxになる位置</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">ライフ画像の減少表示のための終点と始点を指定します。<br>注意点として、sffでライフ画像のx座標を終点0・始点マイナスにした場合、MAXをマイナス,始点をプラスにした場合、MAXをプラスにしなければいけません。またvfacing=-1に設定したものは先ほどとは逆に設定しなければなりません。さらにscaleで拡大または縮小した場合、MAXの位置もそれに合わせて変更しなければなりません。<hr><span class="example">使用例:</span><br>(sffで画像が127ピクセルのものを終点を0,始点を127した場合)<br><table><thead><tr><th>vfancing = 1</th><th>vfancing = -1</th></tr></thead><tbody><tr><td>P1.range.x = 0, 127</td><td>P1.range.x = 0, -127</td></tr></tbody></table></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Pos">Pos = x座標, y座標</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">表示開始位置を設定します。<br><img src="./img/pos.png" alt="position" /><br>Pos=30,30した場合、基準点が上の画像のように右下へ30ピクセルずつ移動した場所に設定されます。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Anim">Anim = ActionNo</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">AntionNoはこれが書かれているファイルと同一ファイル内の[Begin Action Number(Int型)]で書き込まれたNumberを指定します。<div style="background: url(./img/animation.gif) no-repeat 0 2em width: 120px height: 140px border: solid 1px #000"><div>anim(animation)<br>動く画像</div></div><hr><span class="example">使用例:</span><br>P1.BG0.<a href="./SimulLifeBar.html#Anim">Anim</a> = 100<br>　　[Begin Action 100]がp1のbg0に読み込まれます。<br>Animは、メイン要素です。メイン要素は１つしか設定できないので注意してください。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Spr">Spr = SprGrp, SprNo</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">[Files]のsffで読み込んだスプライトファイルからどれを表示するか指定します。<div style="background: url(./img/sprite.gif) no-repeat 0 2em width: 120px height: 140px border: solid 1px #000"><div>spr(sprite)<br>静止画</div></div><hr><span class="example">使用例:</span><br>P1.BG0.<a href="./SimulLifeBar.html#Spr">Spr</a> = 0, 0<br>p1のbg0にはスプライトファイルの0,0に置かれているものが読み込まれます。<br>Sprは、メイン要素です。メイン要素は１つしか設定できないので注意してください。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Font">Font = FontNo, FontBank, AlignMt(-1,0,1)【省略可】</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。Fontは、メイン要素です。メイン要素は１つしか設定できないので注意してください。また、場所によって、<a href="./Format.html">フォーマット指定子</a>が使用できます。FontNoは<a href="files.html">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style="background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000">fontとtext<br>文章</div><hr><span class="example">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.<a href="./SimulLifeBar.html#Font">Font</a> = 1, 0, 0<br>　P1.BG0.<a href="./SimulLifeBar.html#Text">Text</a> = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.<a href="./SimulLifeBar.html#Font">Font</a> = 1, 0, 0<br>　P1.BG0.<a href="./SimulLifeBar.html#Text">Text</a> = "悪いね☆"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Text">Text = 文字列</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					String				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。また、場所によって、<a href="./Format.html">フォーマット指定子</a>が使用できます。FontNoは<a href="files.html">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style="background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000">fontとtext<br>文章</div><hr><span class="example">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.<a href="./SimulLifeBar.html#Font">Font</a> = 1, 0, 0<br>　P1.BG0.<a href="./SimulLifeBar.html#Text">Text</a> = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.<a href="./SimulLifeBar.html#Font">Font</a> = 1, 0, 0<br>　P1.BG0.<a href="./SimulLifeBar.html#Text">Text</a> = "悪いね☆"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Snd">Snd = SndGrp, SndNo</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">ゲージがたっま時になる音をsnd=で読み込んだsndファイルから設定できます。Levelは1～9まで設定できます。so don't beat your computer when your level 5000 snds don't work (if your sound goes that high, you should just go shoot yourself).Sndは、メイン要素です。メイン要素は１つしか設定できないので注意してください。<hr><span class="example">使用例:</span><br>level1.snd = 21, 0<br>21グループの0番目の音をLevel1まで、たまったときに鳴らします。<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Offset">Offset = x座標, y座標</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">posで設定した値を基準点として、Anim,Spr,Fontの表示位置を決めます。省略時、値はデフォルトで0,0となっています。<hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Face.html#Offset">Offset</a> = 160, 120<br>bg0の表示位置がP1.<a href="./Face.html#Pos">Pos</a>で決まった基準点から右に160ピクセル・下に120ピクセルになります。<br><img src="./img/offset.jpg" alt="offset"/></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="DisplayTime">DisplayTime = 表示時間</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">spr,anim,fontの要素を何フレーム表示するか指定します。省略された場合は、表示する要素によってデフォルト値が変わります。spr,fontの場合は1、animの場合はループするようになっています。おそらく、-1でループ・0で何も表示されなくなります。　<span class="advice">*60フレーム=1秒</span><hr><span class="example">使用例:</span><br><table><thead><tr><th>P1.BG0.<a href="./Face.html#Anim">Anim</a> = 10<br>P1.BG0.<a href="./Face.html#DisplayTime">DisplayTime</a> = 10</th><th>P1.BG0.<a href="./Face.html#Spr">Spr</a> = 10<br>P1.BG0.<a href="./Face.html#DisplayTime">DisplayTime</a> = 10</th></tr></thead><tbody><tr><td>　10フレーム経過後にループします。要するに、Begin Actionで10フレーム以上設定されていた場合、10フレーム以降のものは表示されません。</td><td>　10フレーム後に表示が消えます。ですが、ライフバーみたいなものは常に表示される仕組みになっているので、設定しても大して意味はないと思います。（たぶん）</td></tr></tbody></table></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Facing">Facing = Dir(1または-1)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">spr,animの要素を水平反転（左右反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。<hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Face.html#Facing">Facing</a> = -1<br>p1のbg0のspr,animは反転して表示されます。<br><img src="./img/facing.gif" alt="facing"/></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="VFacing">VFacing = Dir(1または-1)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">spr,animの要素を垂直反転（上下反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。<hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Face.html#VFacing">VFacing</a> = -1<br>p1のbg0のspr,animは反転して表示されます。<br><img src="./img/vfacing.gif" alt="vfacing"/></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="LayerNo">LayerNo = No</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">spr,anim,fontの要素をどのレイヤーに表示するか指定します。<br>LayerNo = 0<br><span>背景より前～プレイヤーより奥に表示。なので、背景を上書きするキャラで見えなくなるので注意。</span>LayerNo = 1<br><span>プレイヤーより前～前景(StageでLayerNo=1に設定されたプレイヤーより手前に表示される背景)より奥に表示されます。</span>LayerNo = 2<br><span>もはや邪魔するものはなし。</span>なので、<span class="advice">基本的には2を使用</span>することをお勧めします。<hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Face.html#LayerNo">LayerNo</a> = 2<br>p1のbg0のspr,animまたはfontはレイヤー2に表示されます。<br>・LifeBarとcharacterの表示順序<br><img src="./img/layerno.gif" alt="layerno"/><br><span style="color:red">赤がLayerNo=0</span>でSprPriority=-5のものより、後に表示される。<br><span style="color:green">緑がLayerNo=1</span>でOnTop=1のものより、奥に表示される。<br><span style="color:blue">青がLayerNo=2</span>で完全に手前に表示<br>・LifeBarとStageLayerNoの表示順序<br>手前 LifeBar2 > Stage1 > LifeBar1 > LifeBar0 > Stage0背景<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Scale">Scale = XScale, YScale</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					float, 				</a>
+								<a href="#" onclick="return false;">
+					float				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">sprやanimの表示される倍率を指定します。ひとつ注意点があってfont関連でのscaleはWinMugenではサポートされていません、MUGENRCから使用可能です。マイナスの値は、反転したような状態になります。倍率は、画像・環境の考慮なしで、だいたい-1070000～1070000ぐらいまでいけました。<br>どうでもいいことですが、変わるのは画像の大きさなので、座標とか注意してね！<hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Face.html#Scale">Scale</a> = 0.5やP1.BG0.<a href="./Face.html#Scale">Scale</a> = .5（0．の0は省略できます。）<br>p1のbg0のsprまたはanimは0.5倍で表示されます。<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+			</div></section>
+
+<!--
+	<section id="QandA"><div class="section">
+		<h2>注意事項</h2>
+				<div>なし</div>
+			</div></section>
+
+	<section id="CodeSample"><div class="section">
+		<h2>コードサンプル</h2>
+				<div>なし</div>
+			</div></section>
+-->
+
+	<section id="Quote"><div class="section">
+		<h2>引用記事</h2>
+		<ul>
+					<li><a href="https://docs.google.com/viewer?a=v&q=cache:wk0WfSKcE1UJ:moogen.piiym.net/files/LifeBar_tutorial.doc+&hl=ja&gl=jp&pid=bl&srcid=ADGEESjMMLACx97cJMbe_PLaOB4LIuGXjLUNCCX1oBR6A31VtVR1MH9gRGgTR-gQP9aDqukKTvHoFMgSgdkWv_6LmQZxnMwFH3e8ylyHvzVehxlEv5NQ1sDesHoDQPK2ABxZxR4F0Spl&sig=AHIEtbR4dlMgJl-_ZzZAvDxFlEzHe3WnDA" target="_blank">Cabbit007's LifeBar Tutorial - RANDOM SELECT</a></li>
+					<li><a href="http://gorogorom.blog44.fc2.com/" target="_blank">ごろごろむ</a></li>
+					<li><a href="http://page.freett.com/mugen_m3/NewMugen-3.html#2-5" target="_blank">新Mugenについて - 気まぐれ猫</a></li>
+					<li><a href="http://lunatic284.blog90.fc2.com/blog-entry-5836.html" target="_blank">2010/11/24 (Wed) fight.def基礎知識その１ - lunaの倉庫</a></li>
+				</ul>
+	</div></section>
+
+	</div>
+			</div>
+
+﻿<footer>
+	<div class="footer">
+		<nav>
+			<ul>
+				<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
+				<li><a href="mailto:suteadddayov+MUGEN@gmail.com">E-mail</a></li>
+				<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
+				<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>
+				<li><a href="/">（*´ω｀*）</a></li>
+			</ul>
+		</nav>
+	</div>
+</footer>
+</body>
+</html>

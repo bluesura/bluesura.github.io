@@ -1,0 +1,124 @@
+{
+	"page": {
+		"title": "M.U.G.E.N ライフバー設定項目一覧",
+		"subtitle": "[Combo]",
+		"target": "",
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"title": "Combo",
+	"group": "[Combo]",
+	"description": "<strong class=\"warning\">[Combo]の設定は、MUGEN 1.0(MUGEN RC)以上では、WinMugenとは仕様が違います。</strong>なので、作成するときは注意してください。またここでは、背景画像が多分表示できません。なので、ちょっと表示したいよという人は<a href=\"./MakeFont.html#apply\">ここ</a>を読んでみてください。",
+
+	"sample_code": {
+		"code": [
+			"[Combo]",
+			";WinMugen",
+			"<a href=\"./Combo.html#Pos\">Pos</a> = , ",
+			"<a href=\"./Combo.html#Start.X\">Start.X</a> = ",
+			"",
+			"Counter.<a href=\"./Combo.html#Font\">Font</a> = , ,",
+			"Counter.<a href=\"./Combo.html#Offset\">Offset</a> = ,",
+			"Counter.<a href=\"./Combo.html#LayerNo\">LayerNo</a> = ",
+			"Counter.<a href=\"./Combo.html#Scale\">Scale</a> = ,",
+			"<a href=\"./Combo.html#Counter.Shake\">Counter.Shake</a> = ",
+			"",
+			"<a href=\"./Combo.html#Text.Text\">Text.Text</a> = ",
+			"Text.<a href=\"./Combo.html#Font\">Font</a> = , ,",
+			"Text.<a href=\"./Combo.html#Offset\">Offset</a> = ,",
+			"Text.<a href=\"./Combo.html#LayerNo\">LayerNo</a> = ",
+			"Text.<a href=\"./Combo.html#Scale\">Scale</a> = ,",
+			"",
+			"<a href=\"./Combo.html#DisplayTime\">DisplayTime</a> = ",
+			"",
+			"",
+			"",
+			";MugenRC",
+			";チーム１(P1,P3)",
+			"Team1.<a href=\"./Combo.html#Pos\">Pos</a> = ,",
+			"Team1.<a href=\"./Combo.html#Start.X\">Start.X</a> = ",
+			"Team1.Counter.<a href=\"./Combo.html#Font\">Font</a> = , ,",
+			"Team1.<a href=\"./Combo.html#Counter.Shake\">Counter.Shake</a> = ",
+			"Team1.<a href=\"./Combo.html#Text.Text\">Text.Text</a> = ",
+			"Team1.Text.<a href=\"./Combo.html#Font\">Font</a> = , ,",
+			"Team1.Text.<a href=\"./Combo.html#Offset\">Offset</a> = ,",
+			"Team1.<a href=\"./Combo.html#DisplayTime\">DisplayTime</a> = ",
+			"",
+			";チーム２(P2,P4)",
+			"Team2.<a href=\"./Combo.html#Pos\">Pos</a> = ,",
+			"Team2.<a href=\"./Combo.html#Start.X\">Start.X</a> = ",
+			"Team2.Counter.<a href=\"./Combo.html#Font\">Font</a> = , ,",
+			"Team2.<a href=\"./Combo.html#Counter.Shake\">Counter.Shake</a> = ",
+			"Team2.<a href=\"./Combo.html#Text.Text\">Text.Text</a> = ",
+			"Team2.Text.<a href=\"./Combo.html#Font\">Font</a> = , ,",
+			"Team2.Text.<a href=\"./Combo.html#Offset\">Offset</a> = ,",
+			"Team2.<a href=\"./Combo.html#DisplayTime\">DisplayTime</a> = "
+		]
+	},
+
+	"parameter": [
+		{
+			"parameter": "Start.X",
+			"value": ["x座標"],
+			"type": ["int"],
+			"description": "ヒットカウンター表示を画面外へ隠すためのx座標を指定します。Start.Xはposのx値より小さくしないといけません。しなかった場合、コンボの表示が消えなくなります。<hr><span class=\"example\">使用例:</span><br>　pos = 100, 0<br>Start.X = 10<br>10に表示されて100まで動き、しばらくしてから10に向かってスライドアウトします。<br>"
+		},
+		{
+			"parameter": "Counter.Shake",
+			"value": ["フラグ(1 or 0)"],
+			"type": ["boolean"],
+			"description": "カウンターを揺らすかどうか指定します。1で文字が揺れ、0は揺れません。省略された場合は、0となります。揺れるのはあくまで数字だけで、表示された文字は揺れません。"
+		},
+		{
+			"parameter": "Text.Text",
+			"value": ["文字列"],
+			"type": ["string"],
+			"description": "コンボしたときに表示する文字列を指定します。フォーマット指定子も使えますが、ここで使用すると誤作動を起こす可能性があります。<hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>Text.Text = Combo!<hr>「（コンボ数） Combo!」と表示されます。</td><td>Team1.Text.Text = \"COMBO!\"<hr>「（コンボ数） Combo!」と表示されます。</td></tr></tbody></table>"
+		},
+		{
+			"parameter": "DisplayTime",
+			"value": ["表示時間"],
+			"type": ["int"],
+			"description": "コンボカウンターが表示されている時間を指定します。単位はもちろんフレーム。<hr><span class=\"example\">使用例:</span><br>displaytime = 60<br>60フレーム（1秒）の間、コンボカウンターが表示されています。<br>"
+		},
+		{
+			"parameter": "Pos",
+			"value": ["x座標", "y座標"],
+			"type": ["int", "int"],
+			"description": "表示開始位置を設定します。<br><img src=\"./img/pos.png\" alt=\"position\" /><br>Pos=30,30した場合、基準点が上の画像のように右下へ30ピクセルずつ移動した場所に設定されます。"
+		},
+		{
+			"parameter": "Font",
+			"value": ["FontNo", "FontBank", "AlignMt(-1,0,1)【省略可】"],
+			"type": ["int", "int", "int"],
+			"description": "ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。Fontは、メイン要素です。メイン要素は１つしか設定できないので注意してください。また、場所によって、<a href=\"./Format.html\">フォーマット指定子</a>が使用できます。FontNoは<a href=\"Files.html\">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style=\"background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000\">fontとtext<br>文章</div><hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.<a href=\"./Combo.html#Font\">Font</a> = 1, 0, 0<br>　P1.BG0.<a href=\"./Combo.html#Text\">Text</a> = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.<a href=\"./Combo.html#Font\">Font</a> = 1, 0, 0<br>　P1.BG0.<a href=\"./Combo.html#Text\">Text</a> = \"悪いね☆\"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table>"
+		},
+		{
+			"parameter": "Offset",
+			"value": ["x座標", "y座標"],
+			"type": ["int", "int"],
+			"description": "posで設定した値を基準点として、Anim,Spr,Fontの表示位置を決めます。省略時、値はデフォルトで0,0となっています。<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#Offset\">Offset</a> = 160, 120<br>bg0の表示位置がP1.<a href=\"./Face.html#Pos\">Pos</a>で決まった基準点から右に160ピクセル・下に120ピクセルになります。<br><img src=\"./img/offset.jpg\" alt=\"offset\"/>"
+		},
+		{
+			"parameter": "LayerNo",
+			"value": ["No"],
+			"type": ["int"],
+			"description": "spr,anim,fontの要素をどのレイヤーに表示するか指定します。<br>LayerNo = 0<br><span>背景より前～プレイヤーより奥に表示。なので、背景を上書きするキャラで見えなくなるので注意。</span>LayerNo = 1<br><span>プレイヤーより前～前景(StageでLayerNo=1に設定されたプレイヤーより手前に表示される背景)より奥に表示されます。</span>LayerNo = 2<br><span>もはや邪魔するものはなし。</span>なので、<span class=\"advice\">基本的には2を使用</span>することをお勧めします。<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#LayerNo\">LayerNo</a> = 2<br>p1のbg0のspr,animまたはfontはレイヤー2に表示されます。<br>・LifeBarとcharacterの表示順序<br><img src=\"./img/layerno.gif\" alt=\"layerno\"/><br><span style=\"color:red\">赤がLayerNo=0</span>でSprPriority=-5のものより、後に表示される。<br><span style=\"color:green\">緑がLayerNo=1</span>でOnTop=1のものより、奥に表示される。<br><span style=\"color:blue\">青がLayerNo=2</span>で完全に手前に表示<br>・LifeBarとStageLayerNoの表示順序<br>手前 LifeBar2 > Stage1 > LifeBar1 > LifeBar0 > Stage0背景<br>"
+		},
+		{
+			"parameter": "Scale",
+			"value": ["XScale", "YScale"],
+			"type": ["float", "float"],
+			"description": "sprやanimの表示される倍率を指定します。ひとつ注意点があってfont関連でのscaleはWinMugenではサポートされていません、MUGENRCから使用可能です。マイナスの値は、反転したような状態になります。倍率は、画像・環境の考慮なしで、だいたい-1070000～1070000ぐらいまでいけました。<br>どうでもいいことですが、変わるのは画像の大きさなので、座標とか注意してね！<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#Scale\">Scale</a> = 0.5やP1.BG0.<a href=\"./Face.html#Scale\">Scale</a> = .5（0．の0は省略できます。）<br>p1のbg0のsprまたはanimは0.5倍で表示されます。<br>"
+		}
+	],
+
+	"quote": [
+		{"title": "Cabbit007's LifeBar Tutorial - RANDOM SELECT", "url": "https://docs.google.com/viewer?a=v&q=cache:wk0WfSKcE1UJ:moogen.piiym.net/files/LifeBar_tutorial.doc+&hl=ja&gl=jp&pid=bl&srcid=ADGEESjMMLACx97cJMbe_PLaOB4LIuGXjLUNCCX1oBR6A31VtVR1MH9gRGgTR-gQP9aDqukKTvHoFMgSgdkWv_6LmQZxnMwFH3e8ylyHvzVehxlEv5NQ1sDesHoDQPK2ABxZxR4F0Spl&sig=AHIEtbR4dlMgJl-_ZzZAvDxFlEzHe3WnDA"},
+		{"title": "ごろごろむ", "url": "http://gorogorom.blog44.fc2.com/"},
+		{"title": "新Mugenについて - 気まぐれ猫", "url": "http://page.freett.com/mugen_m3/NewMugen-3.html#2-5"},
+		{"title": "2010/11/24 (Wed) fight.def基礎知識その１ - lunaの倉庫", "url": "http://lunatic284.blog90.fc2.com/blog-entry-5836.html"}
+	]
+}

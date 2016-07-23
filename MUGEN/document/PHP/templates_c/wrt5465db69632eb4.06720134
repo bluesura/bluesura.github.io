@@ -1,0 +1,66 @@
+<?php /* Smarty version Smarty-3.1.12, created on 2014-11-14 10:37:29
+         compiled from "F:\bluesura\Dropbox\Public\www\MUGEN\document\Template\header.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:1963352db6d9ee75156-70148069%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '92b0a277156a4edc0f50e5204b1afe87206a27ca' => 
+    array (
+      0 => 'F:\\bluesura\\Dropbox\\Public\\www\\MUGEN\\document\\Template\\header.tpl',
+      1 => 1415961433,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1963352db6d9ee75156-70148069',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_52db6d9ef2c9a8_57224100',
+  'variables' => 
+  array (
+    'content' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_52db6d9ef2c9a8_57224100')) {function content_52db6d9ef2c9a8_57224100($_smarty_tpl) {?><header>
+	<div class="header">
+
+		<div class="title">
+<?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']=="1"){?>
+			<div>Name = sura</div>
+<?php }elseif($_smarty_tpl->tpl_vars['content']->value['page']['level']=="2"){?>
+			<div><?php echo $_smarty_tpl->tpl_vars['content']->value['page_title'];?>
+</div>
+			<div>Name = sura</div>
+<?php }elseif($_smarty_tpl->tpl_vars['content']->value['page']['level']=="3"){?>
+			<div><?php echo $_smarty_tpl->tpl_vars['content']->value['page_title'];?>
+</div>
+			<div>Name = sura</div>
+<?php }?>
+		</div>
+
+		<div>MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div>
+
+		<nav>
+			<div class="breadcrumb">
+				<ul>
+<?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']>="1"){?>
+					<li itemscope><a href="/index.html" target="_top" itemprop="url"><span itemprop="title">Home</span></a></li>
+<?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']>="2"){?>
+					<li><span> &gt;&gt; </span></li>
+					<li itemscope><a href="./index.html" target="_top" itemprop="title" itemprop="url"><?php echo $_smarty_tpl->tpl_vars['content']->value['page_title'];?>
+</a></li>
+<?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']>="3"){?>
+					<li><span> &gt;&gt; </span></li>
+					<li><?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
+</li>
+<?php }?>
+<?php }?>
+<?php }?>
+				</ul>
+			</div>
+		</nav>
+
+	</div>
+</header><?php }} ?>

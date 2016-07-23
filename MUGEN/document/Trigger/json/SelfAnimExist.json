@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "SelfAnimExist",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "SelfAnimExist",
+	"summary": "<p>x番のアニメーションがAIRファイルに存在するかどうかを返します。</p>",
+	"syntax":[
+		"SelfAnimExist(x)"
+	],
+
+	"description": "<p>自分のairに引数のアニメが存在するときは1を、なければ0を返します。AnimExistトリガーとの違いは、相手に参照させるステートで、相手のアニメが対象になることです。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

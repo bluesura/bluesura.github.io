@@ -1,0 +1,67 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "Zoom",
+		"target": "画面",
+		"category": ["演出", "画面を拡大・縮小"],
+		"version": "1.1",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "Zoom",
+	"description": "<p>トリガーの条件を満たしている間だけ画面をズームイン・ズームアウトします。ズームイン・ズームアウトする基準点はトリガーがTrueになった瞬間に固定されるので注意。</p><p>Version1.1からテスト実装されました。有効にしたい場合は、キャラクターのdefファイル内の<code>MugenVersion=1.1</code>に変更して下さい。</p>",
+	"category": "state",
+  "associated_trigger": [
+    "CameraPos", "CameraZoom", "LeftEdge", "RightEdge",
+    "ScreenWidth", "ScreenHeight",
+    "FrontEdge", "BackEdge",
+    "TopEdge", "BottomEdge"
+  ],
+
+	"version": [
+		{"no": "Version1.1a4から", "content": "ズームインしかできません。"},
+		{"no": "Version1.1a4から", "content": "ズームインが終了した後に、残像の拡大がなおらないなどのバグがあります。"},
+		{"no": "Version1.1a4から", "content": "PosTypeは実装されていません。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "Pos",
+			"value": ["x座標", "y座標"],
+			"type": ["float", "float"],
+			"description": "<p>カメラがズームする基準点。</p>",
+			"parameter_type": "optional",
+			"default_value": ["?"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "Scale",
+			"value": ["倍率"],
+			"type": ["float"],
+			"description": "ズームの倍率を指定します。",
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "Lag",
+			"value": ["遅延させる時間"],
+			"type": ["int"],
+			"description": "検証不足:ズームイン・ズームアウトするタイミングを遅延させる時間をフレーム単位で指定します？",
+			"min_value": ["0"],
+			"max_value": ["1"],
+			"parameter_type": "optional",
+			"default_value": ["?"],
+			"load_priority": ["?"]
+		}
+	],
+
+
+	"quote": [
+		{"title": "[M.U.G.E.N]1.1新機能ズームとzoomステコンの使い方基本(How to use zoom on MUGEN1.1) - Kunshomo", "url": "https://www.youtube.com/watch?v=iXNgdBrAOSg"},
+		{"title": "新Mugenについて - 気まぐれ猫", "url": "http://kneco.web.fc2.com/mugen110-1.html"},
+		{"title": "M.U.G.E.N 1.1 - 君の瞳は紫外線", "url": "http://chottokomaru.sitemix.jp/mugen1.1.html"},
+		{"title": "MUGEN1.1a4に関する報告 - 月の子午線", "url": "http://moonmeridian.blog.fc2.com/blog-entry-5.html"}
+	]
+}

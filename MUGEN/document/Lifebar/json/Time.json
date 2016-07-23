@@ -1,0 +1,129 @@
+{
+	"page": {
+		"title": "M.U.G.E.N ライフバー設定項目一覧",
+		"subtitle": "[Time]",
+		"target": "",
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"title": "Time",
+	"group": "[Time]",
+	"description": "タイマーに関していじる場所",
+
+	"sample_code": {
+		"code": [
+			"[Time]",
+			"<a href=\"./Time.html#Pos\">Pos</a> = , ",
+			"",
+			"BG.<a href=\"./Time.html#Spr\">Spr</a> = ,",
+			"BG.<a href=\"./Time.html#Anim\">Anim</a> = ",
+			"BG.<a href=\"./Time.html#Font\">Font</a> =",
+			"BG.<a href=\"./Time.html#Text\">Text</a> =",
+			"BG.<a href=\"./Time.html#Offset\">Offset</a> = ,",
+			"BG.<a href=\"./Time.html#DisplayTime\">DisplayTime</a> = ",
+			"BG.<a href=\"./Time.html#Facing\">Facing</a> = ",
+			"BG.<a href=\"./Time.html#VFacing\">VFacing</a> = ",
+			"BG.<a href=\"./Time.html#LayerNo\">LayerNo</a> = ",
+			"BG.<a href=\"./Time.html#Scale\">Scale</a> = ,",
+			"",
+			";時間の表示に関して",
+			"Counter.<a href=\"./Time.html#Offset\">Offset</a> = ,",
+			"Counter.<a href=\"./Time.html#DisplayTime\">DisplayTime</a> = ",
+			"Counter.<a href=\"./Time.html#Font\">Font</a> = , ,",
+			"Counter.<a href=\"./Time.html#LayerNo\">LayerNo</a> = ",
+			"Counter.<a href=\"./Time.html#Scale\">Scale</a> = ,",
+			"",
+			"<a href=\"./Time.html#FrameSperCount\">FrameSperCount</a> = "
+		]
+	},
+
+	"parameter": [
+		{
+			"parameter": "FrameSperCount",
+			"value": ["タイマーのカウント間隔"],
+			"type": ["int"],
+			"description": "タイマーをどれくらいの感覚で数えるか調整するものです。MUGENでは60フレームは1秒なので、60にしておくことを推奨します。<hr><span class=\"example\">使用例:</span><br>FrameSperCount = 60<br>"
+		},
+		{
+			"parameter": "Pos",
+			"value": ["x座標", "y座標"],
+			"type": ["int", "int"],
+			"description": "表示開始位置を設定します。<br><img src=\"./img/pos.png\" alt=\"position\" /><br>Pos=30,30した場合、基準点が上の画像のように右下へ30ピクセルずつ移動した場所に設定されます。"
+		},
+		{
+			"parameter": "Anim",
+			"type": ["int", "int"],
+			"value": ["ActionNo"],
+			"type": ["int"],
+			"description": "AntionNoはこれが書かれているファイルと同一ファイル内の[Begin Action Number(Int型)]で書き込まれたNumberを指定します。<div style=\"background: url(./img/animation.gif) no-repeat 0 2em width: 120px height: 140px border: solid 1px #000\"><div>anim(animation)<br>動く画像</div></div><hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Time.html#Anim\">Anim</a> = 100<br>　　[Begin Action 100]がp1のbg0に読み込まれます。<br>Animは、メイン要素です。メイン要素は１つしか設定できないので注意してください。"
+		},
+		{
+			"parameter": "Spr",
+			"value": ["SprGrp", "SprNo"],
+			"type": ["int", "int"],
+			"description": "[Files]のsffで読み込んだスプライトファイルからどれを表示するか指定します。<div style=\"background: url(./img/sprite.gif) no-repeat 0 2em width: 120px height: 140px border: solid 1px #000\"><div>spr(sprite)<br>静止画</div></div><hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Time.html#Spr\">Spr</a> = 0, 0<br>p1のbg0にはスプライトファイルの0,0に置かれているものが読み込まれます。<br>Sprは、メイン要素です。メイン要素は１つしか設定できないので注意してください。"
+		},
+		{
+			"parameter": "Font",
+			"value": ["FontNo", "FontBank", "AlignMt(-1,0,1)【省略可】"],
+			"type": ["int", "int", "int"],
+			"description": "ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。Fontは、メイン要素です。メイン要素は１つしか設定できないので注意してください。また、場所によって、<a href=\"./Format.html\">フォーマット指定子</a>が使用できます。FontNoは<a href=\"files.html\">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style=\"background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000\">fontとtext<br>文章</div><hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.<a href=\"./Time.html#Font\">Font</a> = 1, 0, 0<br>　P1.BG0.<a href=\"./Time.html#Text\">Text</a> = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.<a href=\"./Time.html#Font\">Font</a> = 1, 0, 0<br>　P1.BG0.<a href=\"./Time.html#Text\">Text</a> = \"悪いね☆\"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table>"
+		},
+		{
+			"parameter": "Text",
+			"value": ["文字列"],
+			"type": ["String"],
+			"description": "ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。また、場所によって、<a href=\"./Format.html\">フォーマット指定子</a>が使用できます。FontNoは<a href=\"files.html\">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style=\"background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000\">fontとtext<br>文章</div><hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.<a href=\"./Time.html#Font\">Font</a> = 1, 0, 0<br>　P1.BG0.<a href=\"./Time.html#Text\">Text</a> = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.<a href=\"./Time.html#Font\">Font</a> = 1, 0, 0<br>　P1.BG0.<a href=\"./Time.html#Text\">Text</a> = \"悪いね☆\"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table>"
+		},
+		{
+			"parameter": "Snd",
+			"value": ["SndGrp", "SndNo"],
+			"type": ["int", "int"],
+			"description": "ゲージがたっま時になる音をsnd=で読み込んだsndファイルから設定できます。Levelは1～9まで設定できます。so don't beat your computer when your level 5000 snds don't work (if your sound goes that high, you should just go shoot yourself).Sndは、メイン要素です。メイン要素は１つしか設定できないので注意してください。<hr><span class=\"example\">使用例:</span><br>level1.snd = 21, 0<br>21グループの0番目の音をLevel1まで、たまったときに鳴らします。<br>"
+		},
+		{
+			"parameter": "Offset",
+			"value": ["x座標", "y座標"],
+			"type": ["int", "int"],
+			"description": "posで設定した値を基準点として、Anim,Spr,Fontの表示位置を決めます。省略時、値はデフォルトで0,0となっています。<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#Offset\">Offset</a> = 160, 120<br>bg0の表示位置がP1.<a href=\"./Face.html#Pos\">Pos</a>で決まった基準点から右に160ピクセル・下に120ピクセルになります。<br><img src=\"./img/offset.jpg\" alt=\"offset\"/>"
+		},
+		{
+			"parameter": "DisplayTime",
+			"value": ["表示時間"],
+			"type": ["int"],
+			"description": "spr,anim,fontの要素を何フレーム表示するか指定します。省略された場合は、表示する要素によってデフォルト値が変わります。spr,fontの場合は1、animの場合はループするようになっています。おそらく、-1でループ・0で何も表示されなくなります。　<span class=\"advice\">*60フレーム=1秒</span><hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>P1.BG0.<a href=\"./Face.html#Anim\">Anim</a> = 10<br>P1.BG0.<a href=\"./Face.html#DisplayTime\">DisplayTime</a> = 10</th><th>P1.BG0.<a href=\"./Face.html#Spr\">Spr</a> = 10<br>P1.BG0.<a href=\"./Face.html#DisplayTime\">DisplayTime</a> = 10</th></tr></thead><tbody><tr><td>　10フレーム経過後にループします。要するに、Begin Actionで10フレーム以上設定されていた場合、10フレーム以降のものは表示されません。</td><td>　10フレーム後に表示が消えます。ですが、ライフバーみたいなものは常に表示される仕組みになっているので、設定しても大して意味はないと思います。（たぶん）</td></tr></tbody></table>"
+		},
+		{
+			"parameter": "Facing",
+			"value": ["Dir(1または-1)"],
+			"type": ["int"],
+			"description": "spr,animの要素を水平反転（左右反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#Facing\">Facing</a> = -1<br>p1のbg0のspr,animは反転して表示されます。<br><img src=\"./img/facing.gif\" alt=\"facing\"/>"
+		},
+		{
+			"parameter": "VFacing",
+			"value": ["Dir(1または-1)"],
+			"type": ["int"],
+			"description": "spr,animの要素を垂直反転（上下反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#VFacing\">VFacing</a> = -1<br>p1のbg0のspr,animは反転して表示されます。<br><img src=\"./img/vfacing.gif\" alt=\"vfacing\"/>"
+		},
+		{
+			"parameter": "LayerNo",
+			"value": ["No"],
+			"type": ["int"],
+			"description": "spr,anim,fontの要素をどのレイヤーに表示するか指定します。<br>LayerNo = 0<br><span>背景より前～プレイヤーより奥に表示。なので、背景を上書きするキャラで見えなくなるので注意。</span>LayerNo = 1<br><span>プレイヤーより前～前景(StageでLayerNo=1に設定されたプレイヤーより手前に表示される背景)より奥に表示されます。</span>LayerNo = 2<br><span>もはや邪魔するものはなし。</span>なので、<span class=\"advice\">基本的には2を使用</span>することをお勧めします。<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#LayerNo\">LayerNo</a> = 2<br>p1のbg0のspr,animまたはfontはレイヤー2に表示されます。<br>・LifeBarとcharacterの表示順序<br><img src=\"./img/layerno.gif\" alt=\"layerno\"/><br><span style=\"color:red\">赤がLayerNo=0</span>でSprPriority=-5のものより、後に表示される。<br><span style=\"color:green\">緑がLayerNo=1</span>でOnTop=1のものより、奥に表示される。<br><span style=\"color:blue\">青がLayerNo=2</span>で完全に手前に表示<br>・LifeBarとStageLayerNoの表示順序<br>手前 LifeBar2 > Stage1 > LifeBar1 > LifeBar0 > Stage0背景<br>"
+		},
+		{
+			"parameter": "Scale",
+			"value": ["XScale", "YScale"],
+			"type": ["float", "float"],
+			"description": "sprやanimの表示される倍率を指定します。ひとつ注意点があってfont関連でのscaleはWinMugenではサポートされていません、MUGENRCから使用可能です。マイナスの値は、反転したような状態になります。倍率は、画像・環境の考慮なしで、だいたい-1070000～1070000ぐらいまでいけました。<br>どうでもいいことですが、変わるのは画像の大きさなので、座標とか注意してね！<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#Scale\">Scale</a> = 0.5やP1.BG0.<a href=\"./Face.html#Scale\">Scale</a> = .5（0．の0は省略できます。）<br>p1のbg0のsprまたはanimは0.5倍で表示されます。<br>"
+		}
+	],
+
+	"quote": [
+		{"title": "Cabbit007's LifeBar Tutorial - RANDOM SELECT", "url": "https://docs.google.com/viewer?a=v&q=cache:wk0WfSKcE1UJ:moogen.piiym.net/files/LifeBar_tutorial.doc+&hl=ja&gl=jp&pid=bl&srcid=ADGEESjMMLACx97cJMbe_PLaOB4LIuGXjLUNCCX1oBR6A31VtVR1MH9gRGgTR-gQP9aDqukKTvHoFMgSgdkWv_6LmQZxnMwFH3e8ylyHvzVehxlEv5NQ1sDesHoDQPK2ABxZxR4F0Spl&sig=AHIEtbR4dlMgJl-_ZzZAvDxFlEzHe3WnDA"},
+		{"title": "ごろごろむ", "url": "http://gorogorom.blog44.fc2.com/"},
+		{"title": "新Mugenについて - 気まぐれ猫", "url": "http://page.freett.com/mugen_m3/NewMugen-3.html#2-5"},
+		{"title": "2010/11/24 (Wed) fight.def基礎知識その１ - lunaの倉庫", "url": "http://lunatic284.blog90.fc2.com/blog-entry-5836.html"}
+	]
+}

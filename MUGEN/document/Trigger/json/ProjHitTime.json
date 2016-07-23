@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "ProjHitTime",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "ProjHitTime",
+	"summary": "<p>プレイヤーが最後に放出したProjectile（飛び道具）が指定したID番号の場合、そのProjectileが相手にヒットしてからの時間を返します。</p>",
+	"syntax":[
+		"ProjHitTime"
+	],
+
+	"description": "<p>引数として、正の整数をID番号として指定することを必要とします。IDに0を指定した場合、チェックされません。これらの条件に該当しない場合、-1を返します。書式: ProjHitTime(引数)概要:引数には、調べたいProjectileのID番号を、0または正のintで指定します。省略不可。戻り値の型: intまた、IDに負数を指定した場合、0を返します。使用例:1. Trigger1 = ProjHitTime(1234) = 1ID1234のProjectileがヒットした瞬間のトリガーです。2. Trigger1 = ProjHitTime(0) != -1 && ProjHitTime(0) < 15プレイヤーのProjectileがヒットしてから15フレーム未満のときのトリガーです。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

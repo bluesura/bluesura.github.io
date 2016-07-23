@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Ctrl",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Ctrl",
+	"summary": "<p>プレイヤーのコントロールフラグを返します。</p>",
+	"syntax":[
+		"Ctrl"
+	],
+
+	"description": "<p>戻り値の型: boolean int (1 or 0)</p>",
+
+	"code_sample": [
+		{
+			"title": "プレイヤーがコントロール可能なときのトリガー",
+			"code": [
+				"Trigger1 = Ctrl"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

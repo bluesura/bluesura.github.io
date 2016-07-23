@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "PrevStateNo",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "PrevStateNo",
+	"summary": "<p>直前のステート番号を返します。</p>",
+	"syntax":[
+		"PrevStateNo = [ステート番号,ステート番号]"
+	],
+
+	"description": "<p>戻り値の型: int</p>",
+
+	"code_sample": [
+		{
+			"title": "直前のステート番号が200以上650以内の場合のトリガー。",
+			"code": [
+				"Trigger1 = PrevStateNo = [200,650] "
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

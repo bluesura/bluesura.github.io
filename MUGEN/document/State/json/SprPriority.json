@@ -1,0 +1,36 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "SprPriority",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "SprPriority",
+	"description": "<p>プレイヤーのスプライト表示優先度を変更します。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": "スプライト表示優先度",
+			"type": ["int"],
+			"description": "<p>スプライト表示優先度を-5から5までの値を指定。当然、値が大きいほうが手前に表示されます。</p>",
+			"min_value": ["-5"],
+			"max_value": ["5"],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["1"]
+		}
+	],
+
+	"quote": [
+		{"title": "SprPriority - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/SprPriority"},
+		{"title": "SprPriority - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?SprPriority"},
+		{"title": "SprPriority - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#SprPriority"},
+		{"title": "SprPriority - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

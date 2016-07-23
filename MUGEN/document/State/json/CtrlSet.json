@@ -1,0 +1,36 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "CtrlSet",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "CtrlSet",
+	"description": "<p>プレイヤーのコントロールフラグをセットします。フラグが立っていると技の途中でも歩行、ジャンプ等の動作ができてしまいます。</p><p>通常はStateDef?の冒頭でセットするので、ステートの途中でフラグを変更するときなどに使用します。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["コントロールフラグ"],
+			"type": ["int"],
+			"description": "<p>1なら操作可能。0で不可。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["1"]
+		}
+	],
+
+	"quote": [
+		{"title": "CtrlSet - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/CtrlSet"},
+		{"title": "CtrlSet - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?CtrlSet"},
+		{"title": "CtrlSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#CtrlSet"},
+		{"title": "CtrlSet - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

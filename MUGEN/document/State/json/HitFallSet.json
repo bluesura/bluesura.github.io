@@ -1,0 +1,57 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "HitFallSet",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "HitFallSet",
+	"description": "<p>プレイヤーがヒットモーション中にあるとき、落下状態にします。共通ステートを上書きするときや、相手に参照させるステートで使用します。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["落下フラグ"],
+			"type": ["int"],
+			"description": "<p>-1で変更なし。1もしくは-2以下でfall、0だとfallが解除となります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "XVel",
+			"value": ["水平速度"],
+			"type": ["float"],
+			"description": "<p>速度を変更したい場合は、指定します。もしかしたら、このパラメータは読み込まれていない可能性があります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["GetHitVar(Fall.XVel) ;多分違う？"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "YVel",
+			"value": ["垂直速度"],
+			"type": ["float"],
+			"description": "<p>速度を変更したい場合は、指定します。もしかしたら、このパラメータは読み込まれていない可能性があります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["GetHitVar(Fall.YVel) ;多分違う？"],
+			"load_priority": ["?"]
+		}
+	],
+
+	"quote": [
+		{"title": "HitFallSet - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/HitFallSet"},
+		{"title": "HitFallSet - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitFallSet"},
+		{"title": "HitFallSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitFallSet"}
+	]
+}

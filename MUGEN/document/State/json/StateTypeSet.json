@@ -1,0 +1,75 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "StateTypeSet",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "StateTypeSet",
+	"description": "<p>プレイヤーのステートタイプ、行動状態、物理状態を変更します。技の途中で宙に浮いたりする場合に使用します。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "StateType",
+			"value": ["ステートタイプ"],
+			"type": ["string"],
+			"description": "<p>ステートの状態を指定。</p>",
+			"parameter_type": "optional",
+			"default_value": ["U"],
+			"load_priority": ["?"],
+			"possible_value": [
+				["状況", "内容"],
+				["S", "<div>立ち(Stand)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Stand_s.png\" alt=\"カンフーマン立ち(Stand)状態\" width=\"140\" height=\"140\"></div>"],
+				["C", "<div>屈み(Crouch)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Crouch_s.png\" alt=\"カンフーマン屈み(Crouch)状態\" width=\"140\" height=\"140\"></div>"],
+				["A", "<div>空中(Air)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Air_s.png\" alt=\"カンフーマン空中(Air)状態\" width=\"140\" height=\"140\"></div>"],
+				["L", "<div>倒れ(Lying down)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Lying_s.png\" alt=\"倒れ(Lying down)状態\" width=\"140\" height=\"140\"></div>"],
+				["U", "直前のステートから引き継ぐ(Unchanged)"]
+			]
+		},
+		{
+			"parameter": "Physics",
+			"value": ["物理状態"],
+			"type": ["string"],
+			"description": "<p>物理状態を文字で指定。</p>",
+			"parameter_type": "optional",
+			"default_value": ["U"],
+			"load_priority": ["?"],
+			"possible_value": [
+				["重力", "効果"],
+				["S", "立ち(Stand)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Stand.friction)</code>)がかかります。"],
+				["C", "屈み(Crouch)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Crouch.friction)</code>)がかかります。"],
+				["A", "空中(Air)。CNSで設定されている重力(<code>Vel Y+Const(Movement.yaccel)</code>)がかかり、着地時は自動的に着地ステートに移行します。"],
+				["N", "重力や摩擦を無視(None)。"],
+				["U", "直前のステートから引き継ぐ(Unchanged)。"]
+			]
+		},
+		{
+			"parameter": "MoveType",
+			"value": ["行動状態"],
+			"type": ["string"],
+			"description": "<p>行動状態を文字で指定。</p>",
+			"parameter_type": "optional",
+			"default_value": ["U"],
+			"load_priority": ["?"],
+			"possible_value": [
+				["行動", "内容"],
+				["I", "待機(Idle)。"],
+				["A", "攻撃している(Attack)。HitDefが有効になり、敵もガードモーションをとれるようになります。"],
+				["H", "食らい状態(Hit)。相手のHitDefが有効になります。"],
+				["U", "直前のステートから引き継ぐ(Unchanged)。"]
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "StateTypeSet - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/StateTypeSet"},
+		{"title": "StateTypeSet - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?StateTypeSet"},
+		{"title": "StateTypeSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#StateTypeSet"},
+		{"title": "StateTypeSet - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

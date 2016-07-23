@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "HitFall",
+		"target": "",
+		"category": ["くらい関係", "攻撃を受けて落下状態ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "HitFall",
+	"summary": "<p>プレイヤーがやられ状態で落下状態にあるかどうかを返します。</p>",
+	"syntax":[
+		"HitFall"
+	],
+
+	"description": "<p>プレイヤーがやられ状態にあるとき、落下状態なら1、それ以外なら0を返します。</p>",
+
+	"code_sample": [
+		{
+			"title": "プレイヤーが落下やられ状態でないときのトリガー",
+			"code": [
+				"Trigger1 = !HitFall"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

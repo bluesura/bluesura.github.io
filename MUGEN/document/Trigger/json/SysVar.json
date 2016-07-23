@@ -1,0 +1,34 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "SysVar",
+		"target": "",
+		"category": ["変数", "システム変数に入っている整数は何ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "SysVar",
+	"summary": "<p>システムの整数変数を参照します。</p>",
+	"syntax":[
+		"sysvar(整数)",
+		"sysvar(整数):=整数"
+	],
+
+	"description": "<p>システム変数はcommonファイル内で使われています。 システム変数を使用しているステートを上書きするとき以外は、使わない方がよいでしょう。引数には、0から4までの変数番号を指定します。戻り値の型:int</p>",
+
+	"code_sample": [
+		{
+			"title": "SysVar(0)に-34が代入",
+			"code": [
+				"Trigger1 = sysvar(0) = -34"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

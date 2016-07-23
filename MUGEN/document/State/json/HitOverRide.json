@@ -1,0 +1,80 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "HitOverRide",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "HitOverRide",
+	"description": "<p>指定した種類の攻撃を受けたときに、指定したステートに移行することができます。カウンター技や、helperのやられなどに。ただし、攻撃側がp2Statenoを設定していると、攻撃が当たらなくなります(不具合防止のため？)。</p><p>なお、このコントローラでMovetypeがH以外のステートに移行すると、HitDefを無効にできますが、ヒットスパークとヒット音は必ず発生してしまいます。</p><p>一度に8種類の指定が可能。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "Attr",
+			"value": ["攻撃属性"],
+			"type": ["string"],
+			"description": "<p>どのような攻撃で有効になるかを指定します。設定できる値はHitDefのattrと同じ。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "Slot",
+			"value": ["スロット番号"],
+			"type": ["int"],
+			"description": "<p>このステートコントローラーは一度に8つまで定義ができますが、それぞれslotに指定された番号で区別されます。attr毎に異なる挙動にしたいときに指定。</p><p>省略時は0。同じ番号のHitOverrideが有効になると、前のHitOverrideの効果は消えます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "StateNo",
+			"value": ["ステート番号"],
+			"type": ["int"],
+			"description": "<p>attrの攻撃を受けたときに移行するステートを指定します。-1を指定すると、HitOverrideそのものが機能しなくなります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1 ;ステート移行しない。"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "Time",
+			"value": ["効果時間"],
+			"type": ["int"],
+			"description": "<p>このコントローラの有効時間。-1にすると、同じslotのHitOverrideに上書きされるまで有効。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["3"]
+		},
+		{
+			"parameter": "ForceAir",
+			"value": ["空中ヒットフラグ"],
+			"type": ["boolean"],
+			"description": "<p>1にすると、空中で攻撃を受けたときと同じ状態になります。全ての攻撃でダウンさせたいときに有効らしい。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["4"]
+		}
+	],
+
+	"quote": [
+		{"title": "HitOverRide - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/HitOverRide"},
+		{"title": "HitOverRide - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitOverRide"},
+		{"title": "HitOverRide - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitOverRide"},
+		{"title": "HitOverRide - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

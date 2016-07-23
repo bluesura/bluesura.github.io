@@ -1,0 +1,261 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "ModifyExplod",
+		"target": "画像",
+		"category": ["Explod", "Explodの設定を変更"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "ModifyExplod",
+	"description": "<p>既に出したExplodの設定を変える命令。指定したIDのExplodが存在しない場合は、ID以降のパラメータは読み込まれません。</p><p>IgnoreHitPause = 1ではHitPauseTime中にも出る、またAnimが動く。IgnoreHitPauseを省略するとHitPauseTime中には出ない、またAnimeが動く。IgnoreHitPause = 0ではHitPauseTime中には出ない、またAnimが動かない。</p>",
+	"category": "state",
+
+	"version": [
+		{"no": "-", "content": "BindTime=0でPosTypeを指定していてもPosType=Leftとして扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。"},
+		{"no": "-", "content": "未検証：AfterImage系統と異なり、ModifyExplodを用いてもRemoveTimeで消えるまでの残り時間は変わらない。"},
+		{"no": "-", "content": "AnimとOwnPalは設定出来ません。"},
+		{"no": "-", "content": "Pos、Facing、VFacing、Vel、Accel、RandomはPosTypeも一緒に指定しなければ読み込まれない。"},
+		{"no": "-", "content": "SuperMoveTimeやPauseMoveTimeはModifyExplod自体のパラメータが変更されるだけで、対象となるExplodの該当する値を変更することはできない。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "ID",
+			"value": ["ExplodのID番号"],
+			"type": ["int"],
+			"description": "<p>設定を変更するExplodのIDを指定します。-1で全てのExplodの設定を変更する。</p><p>IDが存在しない場合、それ以降のパラメータは読み込まれない。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Facing",
+			"value": ["向き"],
+			"type": ["int"],
+			"description": "<p>スプライトの向きを指定。1で正、-1で負の方向を向きます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "VFacing",
+			"value": ["上下の向き"],
+			"type": ["int"],
+			"description": "<p>-1にすると、垂直方向に反転表示されます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["3"]
+		},
+		{
+			"parameter": "Pos",
+			"value": ["x座標, y座標"],
+			"type": ["int", "int"],
+			"description": "<p>スプライトの出現位置を変更します。</p>",
+			"min_value": ["-2147483647", "-2147483647"],
+			"max_value": ["2147483647", "2147483647"],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["4", "5"]
+		},
+    {
+      "parameter": "PosType",
+      "value": ["基準点の位置"],
+      "type": ["string"],
+      "description": "<p>アニメーションを出現させるための基準点(0,0)をどこにするか、以下の文字列から指定します。</p>",
+      "parameter_type": "optional",
+      "default_value": ["P1 ;Version1.1からはNoneに変更されています。"],
+      "possible_value": [
+        ["タイプ", "基準"],
+        ["P1", "<p>実行者が基準点(0,0)になります。X軸の正数は実行者の正面・Y軸の負数は実行者の頭上。</p><div><img src=\"./media/img/PosType_P1.png\" alt=\"MUGEN PosType P1\"></div>"],
+        ["P2", "<p>実行者に最も近い敵が基準点(0,0)になります。X軸の正数は最も近い敵の正面・Y軸の負数は最も近い敵の頭上。</p><div><img src=\"./media/img/PosType_P2.png\" alt=\"MUGEN PosType P2\"></div>"],
+        ["F", "<p>FはFrontの略。実行者の正面の画面端が基準点(0,0)になります。X軸の負数は基準点から実行者の方向・Y軸の負数は地面から上。</p><div><img src=\"./media/img/PosType_Front_1.png\" alt=\"MUGEN PosType Front\"></div>"],
+        ["B", "<p>BはBackの略。実行者の背面の画面端が基準点(0,0)になります。X軸の正数は基準点から実行者の方向・Y軸の負数は地面から上。</p><div><img src=\"./media/img/PosType_Back_1.png\" alt=\"MUGEN PosType Back\"></div>"],
+        ["L", "<p>LはLeftの略。画面左上が基準点(0,0)になります。X軸の正数は画面右方向・Y軸の正数は画面下方向。</p><div><img src=\"./media/img/PosType_Left_Explod.png\" alt=\"MUGEN PosType Left\"></div>"],
+        ["R", "<p>RはRightの略。画面右上が基準点(0,0)になります。X軸の負数は画面左方向・Y軸の正数は画面下方向。</p><div><img src=\"./media/img/PosType_Right_Explod.png\" alt=\"MUGEN PosType Right\"></div>"],
+        ["N", "<p>NはNoneの略。ステージ中央が基準点(0,0)になります。他のPosTypeと違い基準点は絶対に動きません。X軸は右方向が正数・左方向が負数。Y軸は上方向が負数・下方向が正数。</p><p>Version1.1から追加された値です。</p><div><img src=\"./media/img/PosType_None.png\" alt=\"MUGEN PosType None\"></div>"]
+      ],
+      "load_priority": ["?"]
+    },
+		{
+			"parameter": "Random",
+			"value": ["x範囲, y範囲"],
+			"type": ["int", "int"],
+			"description": "<p>出現位置をランダムにする場合の、出現範囲を指定。</p><p>pos = 0,0で、random = 40,80の場合、0,0の位置から左右-20～20ピクセル、上下-40～40ピクセルの範囲内でランダムに出現します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["6", "7"]
+		},
+		{
+			"parameter": "Vel",
+			"value": ["x速度, y速度"],
+			"type": ["float", "float"],
+			"description": "<p>スプライトの初速度を指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["8", "9"]
+		},
+		{
+			"parameter": "Accel",
+			"value": ["x加速度, y加速度"],
+			"type": ["float", "float"],
+			"description": "<p>スプライトの加速度を指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["10", "11"]
+		},
+		{
+			"parameter": "Scale",
+			"value": ["横縮尺 [,縦縮尺]"],
+			"type": ["float"],
+			"description": "<p>縮尺を指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["12", "13"]
+		},
+		{
+			"parameter": "BindTime",
+			"value": ["固定時間"],
+			"type": ["int"],
+			"description": "<p>ここで指定した時間内は、基準位置からの相対位置で表示されます。つまり、基準位置が移動すると、それに合わせてスプライトも移動します。</p><p>-1以下で固定時間が永続化。ただし-2以下は警告文を出すので永続にする場合は、-1のみしか指定してはいけません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["14"]
+		},
+		{
+			"parameter": "OnTop",
+			"value": ["手前表示フラグ"],
+			"type": ["boolean"],
+			"description": "<p>1にすると、sprpriorityは無視され、全てのスプライト、背景レイヤーより手前に表示されます。ただし、ヒット/ガードスパークより手前に表示させることはできません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["15"]
+		},
+		{
+			"parameter": "RemoveTime",
+			"value": ["消滅時間"],
+			"type": ["int"],
+			"description": "<p>発生してから消滅するまでの時間を指定。-1で永久に表示。-2で、スプライトのアニメが終了すると消えます。特定の条件下で消すような場合は、Expoldを消すコントローラを使うとよいでしょう。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["16"]
+		},
+		{
+			"parameter": "SuperMoveTime",
+			"value": ["superpause無視時間"],
+			"type": ["int"],
+			"description": "<p>SuperPauseコントローラの影響を無視する時間を指定。-1または-2で無視時間永続化。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["17"]
+		},
+		{
+			"parameter": "SprPriority",
+			"value": ["スプライト表示優先順位"],
+			"type": ["int"],
+			"description": "<p>スプライトの表示優先順位を指定。-3にすると、大抵のスプライトより奥に表示されます。</p><p>OnTopが有効な場合、SprPriorityが読み込まれません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["18"]
+		},
+		{
+			"parameter": "PauseMoveTime",
+			"value": ["move_time"],
+			"type": ["int"],
+			"description": "<p>pauseコントローラの影響を無視する時間を指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["19"]
+		},
+		{
+			"parameter": "SuperMove",
+			"value": ["superpause無視フラグ"],
+			"type": ["boolean"],
+			"description": "<p>1にすると、superpauseコントローラの影響を受けなくなります。</p><p>指定しないほうがよいパラメータのようです。下記のsupermovetimeで代用してください。</p><p>SuperMoveTimeが0の場合は、SuperMoveは読み込まれません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["20"]
+		},
+		{
+			"parameter": "Shadow",
+			"value": ["赤影, 緑影, 青影"],
+			"type": ["int", "int", "int"],
+			"description": "<p>影の色をR,G,Bで指定。-1でステージ依存。0,0,0で影なし。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["21", "22", "23"]
+		},
+		{
+			"parameter": "RemoveOnGethit",
+			"value": ["やられ消滅フラグ"],
+			"type": ["boolean"],
+			"description": "<p>1にすると、プレイヤーが攻撃を受けた場合、消滅します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["24"]
+		},
+		{
+			"parameter": "Trans",
+			"value": ["透過型"],
+			"type": ["string"],
+			"description": "<p>透過型には、以下のいずれかの文字列を指定します。</p><p><table><thead><tr><th>透過処理</th><th>効果</th></tr></thead><tbody><tr><td>Default</td><td>何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。</td></tr><tr><td>None</td><td>透過処理無し。Airで透過処理している時無効にできる。</td></tr><tr><td>Add</td><td>画像を半透明にする。アルファ値256,256の加算透過。</td></tr><tr><td>Add1</td><td>Addより暗い感じの半透明にする。アルファ値256,128の加算透過。</td></tr><tr><td>Sub</td><td>画像を影のように半透明にする。減算透過。</td></tr><tr><td>AddAlpha</td><td>下記のAlphaとセットで使うのが普通。</td></tr></tbody></table></p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "Alpha",
+			"value": ["ソースアルファ, デスティネーションアルファ"],
+			"type": ["int", "int"],
+			"description": "<p>透過型が\"AddAlpha\"の場合に指定します。有効範囲は0(低)から256(高)です。</p><p>ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";変更なし"],
+			"load_priority": ["25", "26"]
+		}
+	],
+
+	"quote": [
+		{"title": "ModifyExplod - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/ModifyExplod"},
+		{"title": "ModifyExplod - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ModifyExplod"},
+		{"title": "ModifyExplod - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ModifyExplod"},
+		{"title": "ModifyExplod - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
+	]
+}

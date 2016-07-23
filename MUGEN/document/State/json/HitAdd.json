@@ -1,0 +1,46 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "HitAdd",
+		"target": "使用者",
+		"category": ["攻撃関連", "ヒットカウント(コンボ数)の増減"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "HitAdd",
+	"description": "<p>連続技実行中、ヒット数を増減します。</p>",
+	"category": "state",
+
+	"version": [
+		{"no": "", "content": "GetHItVar()のHitCountには影響しない。"},
+		{"no": "", "content": "リセットされなければ残り続ける。"}
+	],
+
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["ヒット数増減値"],
+			"type": ["int"],
+			"description": "<p>増減したい値を指定。</p>",
+			"min_value": ["-2147483647"],
+			"max_value": ["2147483647"],
+			"parameter_type": "required",
+			"default_value": [""],
+			"load_priority": ["1"],
+			"associated_trigger": ["HitCount"]
+		}
+	],
+
+	"quote": [
+		{"title": "HitAdd - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/HitAdd"},
+		{"title": "HitAdd - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitAdd"},
+		{"title": "HitAdd - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/235.html"},
+		{"title": "HitAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitAdd"},
+		{"title": "HitAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"},
+		{"title": "永続ターゲット時のhitadd - lunaの倉庫", "url": "http://lunatic284.blog90.fc2.com/?no=699"},
+		{"title": "永続ターゲット時のhitadd - 芹香の夫のチラ裏", "url": "http://suikanootto.blog67.fc2.com/blog-entry-26.html"}
+	]
+}

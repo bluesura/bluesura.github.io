@@ -1,0 +1,47 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "TargetState",
+		"target": "ターゲット",
+		"category": ["ターゲット操作", "ターゲットのステートを実行者のステートに移動"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "TargetState",
+	"description": "<p>ターゲットのステートを指定値に変更します。このコントローラーで、相手はプレイヤーのステートを参照するようになります。</p><p>なお、ターゲットとは、自分の攻撃でヒット、ガード状態となった相手のことを指します。ガードも含まれることに注意。</p><p>ステートを奪った状態で相手がコントロール可能になると、歩く、ジャンプなどの共通動作が可能となりますが、このときもこちらの共通動作ステートを参照しています。なお、-1ステートは参照できませんので、攻撃はできません。ただ、-2ステートは、相手のステートを参照している場合も有効なので、内容によっては操作可能ですが、ChangeStateの対象はこちらのステートなので、不具合が生じる可能性が高いです。</p><p>この状態は、攻撃を受けるか、防御することで元に戻りますが、SelfStateで元に戻すのが普通です。</p><p>HitDefのP2statenoの代わりに使うこともできますが、simulモードや、連続技に組み込める技で使用する場合は、不具合が起きやすいので、トリガーの設定には十分注意しましょう。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "ID",
+			"value": ["ヒットID"],
+			"type": ["int"],
+			"description": "<p>対象とするターゲットのヒットIDを指定。</p><p>特定のターゲットを指定できないため、非常に取扱が難しいです。TargetDropで対象を特定してから使うのが吉。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1 ;すべてのターゲットが対象"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "value",
+			"value": ["ステート番号"],
+			"type": ["int"],
+			"description": "<p>ターゲットに参照させるステート番号を指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "required",
+			"default_value": [""],
+			"load_priority": ["2"]
+		}
+	],
+
+	"quote": [
+		{"title": "TargetState - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/TargetState"},
+		{"title": "TargetState - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetState"},
+		{"title": "TargetState - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetState"},
+		{"title": "TargetState - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"}
+	]
+}

@@ -1,0 +1,36 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "RoundsExisted",
+		"target": "",
+		"category": ["試合の情報", "ラウンドがどれだけ経過していますか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "RoundsExisted",
+	"summary": "<p>試合中、プレイヤーが存在していたラウンドの数を返します。</p>",
+	"syntax":[
+		"RoundsExisted"
+	],
+
+	"description": "<p>ターンバトル(KOF等のアレ)一本目で一人目が負けた場合、二本目のRoundNoは2ですが、二人目にとっては初ラウンドなので、RoundsExistedは0になります。一方、勝った方はRound1でも存在していたので、RoundExistedは1となります。ターンバトル以外では、常にRoundNoから1を引いた値を返すことになると思います。 戻り値の型: int</p>",
+
+	"code_sample": [
+		{
+			"title": "ターンバトル時、ラウンド番号にかかわらず、そのプレイヤーにとっての最初のラウンドのときのトリガー",
+			"description": "<p>初期化ステート(StateDef 5900)に書き込むことにより、イントロを変更するときなどに使用できます。</p>",
+			"code": [
+				"Trigger1 = RoundsExisted = 0",
+				"Trigger1 = TeamMode = Turns",
+				"Trigger1 = RoundNo > 0"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

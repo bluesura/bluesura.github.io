@@ -1,0 +1,214 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "L",
+		"target": "ステート実行者自身",
+		"category": ["ステートタイプ", "転倒状態にする"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "L",
+	"description": "転倒 Lying down",
+	"category": "statetype",
+
+	"version": [
+		{"no": "-", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}
+	],
+
+
+	"parameter": [
+		{
+			"parameter": "Type",
+			"value": ["状態"],
+			"type": ["string"],
+			"description": "<p>ステートの状態を指定。</p>",
+			"parameter_type": "optional",
+			"default_value": ["S;もしかしたら、前のステートで使用された動きを引き継ぐ。"],
+			"load_priority": ["?"],
+			"possible_value": [
+				["状況", "内容"],
+				["S", "<div>立ち(Stand)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Stand_s.png\" alt=\"カンフーマン立ち(Stand)状態\" width=\"140\" height=\"140\"></div>"],
+				["C", "<div>屈み(Crouch)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Crouch_s.png\" alt=\"カンフーマン屈み(Crouch)状態\" width=\"140\" height=\"140\"></div>"],
+				["A", "<div>空中(Air)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Air_s.png\" alt=\"カンフーマン空中(Air)状態\" width=\"140\" height=\"140\"></div>"],
+				["L", "<div>倒れ(Lying down)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Lying_s.png\" alt=\"倒れ(Lying down)状態\" width=\"140\" height=\"140\"></div>"],
+				["U", "直前のステートから引き継ぐ(Unchanged)"]
+			]
+		},
+		{
+			"parameter": "Physics",
+			"value": ["重力"],
+			"type": ["string"],
+			"description": "<p>ステートの物理的な姿勢。</p>",
+			"parameter_type": "optional",
+			"default_value": ["N ;もしかしたら、前のステートで使用された重力を引き継ぐ。"],
+			"load_priority": ["?"],
+			"possible_value": [
+				["重力", "効果"],
+				["S", "立ち(Stand)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Stand.friction)</code>)がかかります。"],
+				["C", "屈み(Crouch)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Crouch.friction)</code>)がかかります。"],
+				["A", "空中(Air)。CNSで設定されている重力(<code>Vel Y+Const(Movement.yaccel)</code>)がかかり、着地時は自動的に着地ステートに移行します。"],
+				["N", "重力や摩擦を無視(None)。"],
+				["U", "直前のステートから引き継ぐ(Unchanged)。"]
+			]
+		},
+		{
+			"parameter": "MoveType",
+			"value": ["行動状態"],
+			"type": ["string"],
+			"description": "<p>ステートの行動内容を指定。</p>",
+			"parameter_type": "optional",
+			"default_value": ["I ;もしかしたら、前のステートで使用された状態を引き継ぐ。"],
+			"load_priority": ["?"],
+			"possible_value": [
+				["行動", "内容"],
+				["I", "待機(Idle)。"],
+				["A", "攻撃している(Attack)。HitDefが有効になり、敵もガードモーションをとれるようになります。"],
+				["H", "食らい状態(Hit)。相手のHitDefが有効になります。"],
+				["U", "直前のステートから引き継ぐ(Unchanged)。"]
+			]
+		},
+		{
+			"parameter": "HitCountPersist",
+			"value": ["引継ぎフラグ"],
+			"type": ["boolean"],
+			"description": "<p>直前のステートからの「HitCount」「UniqHitCount」の効果を引き継ぐか否か。</p>",
+			"parameter_type": "optional",
+			"min_value": ["0"],
+			"max_value": ["1"],
+			"default_value": ["0"],
+			"load_priority": ["1"],
+			"possible_value": [
+				["フラグ", "結果"],
+				["0", "引き継がない"],
+				["1", "引き継ぐ"]
+			]
+		},
+		{
+			"parameter": "MoveHitPersist",
+			"value": ["引継ぎフラグ"],
+			"type": ["boolean"],
+			"description": "<p>直前のステートのヒット、ガード、空振り状態を引き継ぐか否か。</p>",
+			"parameter_type": "optional",
+			"min_value": ["0"],
+			"max_value": ["1"],
+			"default_value": ["0"],
+			"load_priority": ["2"],
+			"possible_value": [
+				["フラグ", "結果"],
+				["0", "引き継がない"],
+				["1", "引き継ぐ"]
+			]
+		},
+		{
+			"parameter": "HitDefPersist",
+			"value": ["引継ぎフラグ"],
+			"type": ["boolean"],
+			"description": "<p>直前のステートの「HitDef」の効果を引き継ぐか否か。</p>",
+			"parameter_type": "optional",
+			"min_value": ["0"],
+			"max_value": ["1"],
+			"default_value": ["0"],
+			"load_priority": ["3"],
+			"possible_value": [
+				["フラグ", "結果"],
+				["0", "引き継がない"],
+				["1", "引き継ぐ"]
+			]
+		},
+		{
+			"parameter": "SprPriority",
+			"value": ["画像の表示優先度"],
+			"type": ["int"],
+			"description": "<p>画像表示優先度。5 ～ -5の間で指定します。数値が大きければ手前に、小さければ奥に優先されます。</p>",
+			"parameter_type": "optional",
+			"min_value": ["-5"],
+			"max_value": ["5"],
+			"default_value": [";前の値を引き継ぐ。"],
+			"load_priority": ["4"]
+		},
+		{
+			"parameter": "FaceP2",
+			"value": ["相手へ振り向くフラグ"],
+			"type": ["boolean"],
+			"description": "<p>ステートの開始時に相手の方向へ振り向くか否か。</p>",
+			"parameter_type": "optional",
+			"min_value": ["-2,147,483,648"],
+			"max_value": ["2,147,483,647"],
+			"default_value": ["0"],
+			"load_priority": ["5"],
+			"possible_value": [
+				["フラグ", "結果"],
+				["0", "振り向かない"],
+				["1", "振り向く"]
+			]
+		},
+		{
+			"parameter": "Juggle",
+			"value": ["ジャグル値に加算する値"],
+			"type": ["int"],
+			"description": "<p>攻撃を当てた時に溜まるジャグルポイントの設定。</p>",
+			"parameter_type": "optional",
+			"min_value": [""],
+			"max_value": [""],
+			"default_value": [";前の攻撃ステートで成功した時のジャグル値を引き継ぐ。"],
+			"load_priority": ["6"]
+		},
+		{
+			"parameter": "VelSet",
+			"value": ["X軸の移動速度, Y軸の移動速度"],
+			"type": ["int", "int"],
+			"description": "<p>移動速度の設定。</p>",
+			"parameter_type": "optional",
+			"min_value": ["-2,147,483,648"],
+			"max_value": ["2,147,483,647"],
+			"default_value": [";前の値を引き継ぐ。"],
+			"load_priority": ["7", "8"]
+		},
+		{
+			"parameter": "Anim",
+			"value": ["アニメ番号"],
+			"type": ["int"],
+			"description": "<p>AIRに登録したアニメを呼び出す。<code>Anim = 1000 ;[Begin Action 1000]を表示します。</code></p>",
+			"parameter_type": "optional",
+			"min_value": ["0"],
+			"max_value": ["2,147,483,647"],
+			"default_value": [";前の値を引き継ぐ。"],
+			"load_priority": ["9"]
+		},
+		{
+			"parameter": "Ctrl",
+			"value": ["キー入力受付可能フラグ"],
+			"type": ["boolean"],
+			"description": "<p>ステート中にキー入力を受け付けるか否か。</p>",
+			"parameter_type": "optional",
+			"min_value": ["0"],
+			"max_value": ["1"],
+			"default_value": [";前の値を引き継ぐ。"],
+			"load_priority": ["10"],
+			"possible_value": [
+				["フラグ", "結果"],
+				["0", "操作不可"],
+				["1", "操作可能"]
+			]
+		},
+		{
+			"parameter": "PowerAdd",
+			"value": ["パワーゲージの増減量"],
+			"type": ["int"],
+			"description": "<p>パワーゲージの増減量。</p>",
+			"parameter_type": "optional",
+			"min_value": ["-2,147,483,648"],
+			"max_value": ["2,147,483,647"],
+			"default_value": ["0"],
+			"load_priority": ["11"]
+		}
+	],
+
+	"quote": [
+		{"title": "The CNS format - elecbyte", "url": "http://www.elecbyte.com/mugendocs/cns.html"},
+		{"title": "Statedef冒頭でのパラメータ省略 - 虹格な海底宝物庫", "url": "http://mugenrick.seesaa.net/article/167227846.html"},
+		{"title": "Statedef - M.U.G.E.M.解説", "url": "http://www.geocities.jp/byte10242048/new/010/014/014-1.html"}
+	]
+}

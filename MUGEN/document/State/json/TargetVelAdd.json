@@ -1,0 +1,58 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "TargetVelAdd",
+		"target": "ターゲット",
+		"category": ["ターゲット操作", "ターゲットの速度に指定値を加算"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "TargetVelAdd",
+	"description": "<p>ターゲットの速度を増減します。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "ID",
+			"value": ["ヒットID"],
+			"type": ["int"],
+			"description": "<p>対象とするターゲットのヒットIDを指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1 ;すべてのターゲットが対象"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "X",
+			"value": ["水平速度"],
+			"type": ["float"],
+			"description": "<p>各方向の速度を指定。水平方向は、ターゲットが向いている方向が正。垂直方向は、下方向が正です。両方同時に指定できますし、どちらか一方指定してもかまいません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "Y",
+			"value": ["垂直速度"],
+			"type": ["float"],
+			"description": "<p>各方向の速度を指定。水平方向は、ターゲットが向いている方向が正。垂直方向は、下方向が正です。両方同時に指定できますし、どちらか一方指定してもかまいません。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["3"]
+		}
+	],
+
+	"quote": [
+		{"title": "TargetVelAdd - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/TargetVelAdd"},
+		{"title": "TargetVelAdd - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetVelAdd"},
+		{"title": "TargetVelAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetVelAdd"},
+		{"title": "TargetVelAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"}
+	]
+}

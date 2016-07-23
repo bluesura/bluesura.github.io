@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "NumProj",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "NumProj",
+	"summary": "<p>プレイヤーが出現させているProjectileの数を返します。</p>",
+	"syntax":[
+		"NumProj"
+	],
+
+	"description": "<p>コマンド条件で飛び道具の数を制限したい場合などに。このトリガーは、ID指定できません。ID指定したい場合は、NumProjIDを使いましょう。mugenの遍歴を感じるトリガーです。書式: NumProj概要: なし戻り値の型: int使用例: 。</p>",
+
+	"code_sample": [
+		{
+			"title": "プレイヤーの飛び道具が出現していない場合のトリガー",
+			"code": [
+				"Trigger1 = NumProj = 0"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

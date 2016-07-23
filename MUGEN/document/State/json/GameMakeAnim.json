@@ -1,0 +1,72 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "GameMakeAnim",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "GameMakeAnim",
+	"description": "<p>ヒットマークやダウン衝撃などの共通アニメを表示します。</p><p>Explodでも代用は可能ですが、相手に参照させるステート内では、こちらを使うのが無難。</p>",
+	"category": "state",
+
+	"version": [
+		{"no": "MUGEN version.?", "content": "Explodで代用できるので、廃止予定。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["アクション番号"],
+			"type": ["int"],
+			"description": "<p>fightfxに登録されているアクション番号を指定します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Pos",
+			"value": ["x_座標, y_座標"],
+			"type": ["float", "float"],
+			"description": "<p>キャラの軸を基準とした出現位置を指定します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0, 0"],
+			"load_priority": ["2, 3"]
+		},
+		{
+			"parameter": "Random",
+			"value": ["出現範囲"],
+			"type": ["int"],
+			"description": "<p>指定した値を辺の長さとする正方形の範囲内でランダムな位置に出現さるときに指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["4"]
+		},
+		{
+			"parameter": "Under",
+			"value": ["背面フラグ"],
+			"type": ["int"],
+			"description": "<p>1にすれば、キャラの奥側に表示されます。省略時は0で、キャラの前面に表示されます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["5"]
+		}
+	],
+
+	"quote": [
+		{"title": "GameMakeAnim - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/GameMakeAnim"},
+		{"title": "GameMakeAnim - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?GameMakeAnim"},
+		{"title": "GameMakeAnim - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#GameMakeAnim"}
+	]
+}

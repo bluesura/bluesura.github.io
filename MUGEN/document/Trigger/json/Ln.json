@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Ln",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Ln",
+	"summary": "<p>指定値の自然対数を返します。</p>",
+	"syntax":[
+		"Ln(引数)"
+	],
+
+	"description": "<p>自然対数は底(てい)をネピア数eとする対数です。引数には、自然対数を計算したい指数をfloatで指定します。戻り値の型: floatエラー条件:引数がSFalseまたは負数の場合、SFalseを返します。</p>",
+
+	"code_sample": [
+		{
+			"title": "ステートの経過時間の自然対数をvalueに代入",
+			"code": [
+				"value = Ln(Time)"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

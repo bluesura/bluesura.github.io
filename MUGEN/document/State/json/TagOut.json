@@ -1,0 +1,58 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "TagOut",
+		"target": "自分自身？",
+		"category": ["タッグ演出", "TagInの専用ステート？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "TagOut",
+	"description": "<p><span class=\"decoration-font-color-blue\">実行時の[StateDef]を読み込み直す</span>が、ChangeStateなどと異なり<a href=\"#\" onclick=\"return false;\">Time</a>はリセットされません。また、<a href=\"#\" onclick=\"return false;\">StandBy</a>トリガーを1にします。<a href=\"#\" onclick=\"return false;\">StandBy</a>を0に戻す方法は不明、ステートが変わっても<a href=\"#\" onclick=\"return false;\">StandBy</a>は維持されます。さらに、TagOut実行中(トリガーの条件成立時)はTagOutより下のステートは読み込まれません。</p><p><a href=\"./TagIn.html\">TagIn</a>,<a href=\"./ChangeState.html\">ChangeState</a>のStateNoの指定したステートで、<a href=\"./TagOut.html\">TagOut</a>のトリガーに『Time=0』や『1』などのステートを読み込んですぐに実行できる状態で<a href=\"./TagOut.html\">TagOut</a>を実行すると”stopped after 2500 loops”(通称：2500ループ)が発生します。また、<a href=\"#\" onclick=\"return false;\">Persistent</a>を指定しても2500ループは発生します。</p>",
+	"category": "state",
+
+	"code_sample": [
+		{
+			"title": "条件付きのループ構造にする。",
+			"description": "TagOutを利用することで、お手軽ループ処理が実現できる？",
+			"code": [
+				"[Statedef 1000]",
+				"StateType                  = S",
+				"MoveType                   = I",
+				"Physics                    = S",
+				"Anim                       = 0",
+				"Ctrl                       = 1",
+				"",
+				";ここから",
+				"[State ,ループ処理用のステート]",
+				"Type                       = Null",
+				"Trigger1                   = var(0) < 2499 ;2500ループ処理の防止策",
+				"Trigger1                   = var(0) := var(0) + 1 ;250(ry",
+				";ここのトリガーでループさせて計算したい処理を書く。",
+				"IgnoreHitPause             = 1",
+				"",
+				";ここまでが ループさせる処理",
+				"[State ,TagOut]",
+				"Type                       = TagOut",
+				"Trigger1                   = var(0) < 2499 ;250(ry",
+				"IgnoreHitPause             = 1",
+				"",
+				";ここに通常の処理を書く",
+				"",
+				"[State 1000, END]",
+				"Type = ChangeState",
+				"Trigger1                   = Time = 1800",
+				"value                      = 0",
+				"IgnoreHitPause             = 1"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "TagIn - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-602.html"},
+		{"title": "パラメータ優先順位、StandBy、tagin、tagout - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-2413.html"},
+		{"title": "tagout - 制作日記", "url": "http://drabs.blog40.fc2.com/blog-entry-980.html"}
+	]
+}

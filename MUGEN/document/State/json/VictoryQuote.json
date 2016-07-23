@@ -1,0 +1,97 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "VictoryQuote",
+		"target": "画面",
+		"category": ["演出", "勝利画面のセリフを変更"],
+		"version": "2011.01.18",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "VictoryQuote",
+	"description": "<p>”M.U.G.E.N 1.0”から追加されたステートコントローラで、勝利画面に表示するプレイヤーのセリフを選択します。</p><p>”VictoryQuote”はプレイヤーの試合中に読み込まれますが、試合後にしか効果がありません。また、ヘルパーで実行しても効果がないです。勝利のセリフは、CNSファイル内の[Quotes]グループに指定します。</p><p>勝利画面では、 ”9000,2” のスプライトが必要になります。キャラの ”Localcoord” が ”320, 240” の場合、画像の大きさは左上基準で横幅120、高さ115になります。</p>",
+	"images": [{"src": "VictoryQuote.png", "width": "640", "height": "480", "alt": "MUGEN VictoryQuote"}],
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["セリフの番号"],
+			"type": ["int"],
+			"description": "使用するセリフの番号を指定します。無効な番号が指定された場合、ランダムに選択されます。",
+			"min_value": ["0"],
+			"max_value": ["99"],
+			"parameter_type": "optional",
+			"default_value": ["-1"],
+			"load_priority": ["1"]
+		}
+	],
+
+	"code_sample": [
+		{
+			"title": "設定方法",
+			"code": [
+				"; system.def で有無を設定。デフォルトは 1 で、有効になります。",
+				"[Victory Screen]",
+				"enabled = 1"
+			]
+		},
+		{
+			"title": ".cnsの[Quotes]設定方法",
+			"code": [
+				"; ”[Quotes]”はデフォルトの言語で指定されるセリフです。",
+				"; 基本的に”[Quotes]”は英語で書かなければいけません。",
+				"; 各言語ごとにセリフは 100 まで指定出来ます。 (例：victory0 - victory99)",
+				"[Quotes]",
+				"victory1 = \"You must defeat Tu Shou to stand a chance.\"",
+				"victory2 = \"You need a lot of training. Come back in ten years.\"",
+				"victory3 = \"You look familiar. Did I see you on TV?\"",
+				"victory4 = \"Your moves are too predictable. You want to learn Kung Fu Palm? It's not for novices.\"",
+				"victory5 = \"That was a good workout.\"",
+				"victory6 = \"I want to challenge more skilled fighters.\"",
+				"victory7 = \"What do you mean my girlfriend is in another temple?\""
+			]
+		},
+		{
+			"title": "別言語の[Quotes]設定方法1",
+			"code": [
+				"; 日本語のセリフを指定するには”[ja.Quotes]”のように書きます。",
+				"; 別の言語(例： en, es, ja, etc.)を指定する場合",
+				"; <a href=\"http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO 639-1</a>を参考にして設定してください。(例：中国語の場合”[zh.Quotes]”)",
+				"; それ以降は”[Quotes]”と同じ書き方ですが、ファイルを必ずutf-8で保存してください。",
+				"[ja.Quotes]",
+				"victory1 = \"カンフー突き手を破らぬ限り、お前に勝ち目はない！\"",
+				"victory2 = \"十年早いんだぞ\"",
+				"victory3 = \"お前は見覚えがあるな。テレビにでも…？\"",
+				"victory4 = \"お前の動きは見破りやすすぎる。　なに、カンフー突き手が覚えたいんだと？　素人には無理だぞ\"",
+				"victory5 = \"ふー。　いい汗だった\"",
+				"victory6 = \"もっと強い相手に挑戦したい\"",
+				"victory7 = \"なんだと！彼女はここにもいないと？\""
+			]
+		},
+		{
+			"title": "別言語の[Quotes]設定方法2",
+			"code": [
+				"; mugen.cfg を開いて Language を設定します",
+				"; language は<a href=\"http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO 639-1</a>を参考に指定してください。",
+				"Language = \"ja\""
+			]
+		},
+		{
+			"title": "P2の名前が”Kung Fu Man”の時に、3番目の勝利ゼリフを出す",
+			"code": [
+				"[State ,VictoryQuote]",
+				"Type = VictoryQuote",
+				"Trigger1 = P2Name = \"Kung Fu Man\"",
+				"value = 3"
+			]
+		}
+	],
+
+	"quote": [
+		{"title": "VictoryQuote - 絶対許早苗豆腐", "url": "http://yurusanae.blog98.fc2.com/blog-category-41.html"},
+		{"title": "VictoryQuote - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/VictoryQuote"},
+		{"title": "VictoryQuote - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VictoryQuote"}
+	]
+}

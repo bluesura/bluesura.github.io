@@ -1,0 +1,47 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "ScreenBound",
+		"target": "画面",
+		"category": ["ステートタイプ", "空中状態にする"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "ScreenBound",
+	"description": "<p>カメラ？がプレイヤーを追うか否かを設定します。</p><p>軌道の低いジャンプや高速で往復したりする場合などは、画面を固定した方がよいことが多いです。1フレームのみ有効。</p>",
+	"category": "state",
+
+	"parameter": [
+		{
+			"parameter": "value",
+			"value": ["画面固定フラグ"],
+			"type": ["int"],
+			"description": "<p>0を指定すると、カメラがプレイヤーを追わなくなります。敵との距離が離れると、敵のみカメラが追うため、自分は画面の外に出ることになります。</p><p>フラグが解除されたときに、プレイヤーがステージのスクロール開始位置の範囲外にいる場合、その範囲内に強制的に引き戻されます。この仕様が問題で、たとえ画面内にいても、スクロール開始位置までワープしてしまいます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [""],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "MoveCamera",
+			"value": ["水平移動フラグ, 垂直移動フラグ"],
+			"type": ["int"],
+			"description": "<p>カメラがプレイヤーを追わなくなります。0以外を指定すると、その方向にはカメラが追うようになります。縦方向のみ固定する場合等に。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0, 0"],
+			"load_priority": ["2, 3"]
+		}
+	],
+
+	"quote": [
+		{"title": "ScreenBound - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/ScreenBound"},
+		{"title": "ScreenBound - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ScreenBound"},
+		{"title": "ScreenBound - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ScreenBound"},
+		{"title": "ScreenBound - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
+	]
+}

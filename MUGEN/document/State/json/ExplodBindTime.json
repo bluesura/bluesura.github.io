@@ -1,0 +1,62 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "ExplodBindTime",
+		"target": "画像",
+		"category": ["Explod", "Explodの固定時間を変更"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "ExplodBindTime",
+	"description": "<p>有効なExplodのBindTimeパラメータを変更します。</p>",
+	"category": "state",
+
+	"version": [
+		{"no": "-", "content": "Timeを-2以下に設定した場合、警告文が出る。"}
+	],
+
+	"parameter": [
+		{
+			"parameter": "ID",
+			"value": ["ExplodのID"],
+			"type": ["int"],
+			"description": "<p>変更するExplodのIDを指定。-1で、すべてのExplodが対象になります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Time",
+			"value": ["固定時間"],
+			"type": ["int"],
+			"description": "<p>新たに設定する固定時間を指定します。-1以下で永続化。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "; value",
+			"value": ["固定時間"],
+			"type": ["int"],
+			"description": "<p>Timeの代替書式。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "instead",
+			"default_value": ["1"],
+			"load_priority": ["2"]
+		}
+	],
+
+	"quote": [
+		{"title": "ExplodBindTime - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/ExplodBindTime"},
+		{"title": "ExplodBindTime - State Controller", "url": "http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ExplodBindTime"},
+		{"title": "ExplodBindTime - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ExplodBindTime"},
+		{"title": "ExplodBindTime - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
+}

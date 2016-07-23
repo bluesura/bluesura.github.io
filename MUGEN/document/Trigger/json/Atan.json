@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Atan",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Atan",
+	"summary": "<p>ラジアンの逆正接を返します。</p>",
+	"syntax":[
+		"Atan(ラジアン)"
+	],
+
+	"description": "<p>引数のアークタンジェント（逆正接）値を返します。つまり、tanθ=引数となるθを、ラジアンで返します。書式: atan(引数)概要:引数には、アークタンジェントを計算したい値をfloatで指定します。戻り値の型: float使用例:value = atan(1)Atan(1)の計算結果をvalueに代入します。結果は約π/4です。位置や速度から角度を計算するのに使えます。単位はラジアンなので、180/piをかけて度にすると良いです。戻り値の型はfloatなので注意。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

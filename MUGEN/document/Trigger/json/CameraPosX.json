@@ -1,0 +1,34 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "CameraPos X",
+		"target": "",
+		"category": ["カメラ", "カメラは横方向にどれだけ動きましたか？"],
+		"version": "Version1.1",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "CameraPosX",
+	"summary": "<p>カメラが横方向にどれだけ動いたかを返します。</p>",
+	"syntax":[
+		"CameraPos X"
+	],
+
+	"description": "<p>ステージ中央を基準点(0,0)にして、カメラがX軸方向にどれだけ動いたかを浮動小数点数で返します。カメラが左方向に動いていれば負数、右方向に動いていれば正数になります。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+    {"title": "CameraPos - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#camerapos"},
+		{"title": "M.U.G.E.N 1.1 - 君の瞳は紫外線", "url": "http://chottokomaru.sitemix.jp/mugen1.1.html"}
+	]
+}

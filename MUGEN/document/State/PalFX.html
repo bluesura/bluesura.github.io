@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ja-JP" prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
+<head>
+  <meta charset="UTF-8" />
+  <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
+
+  <title>PalFX 【キャラクターなどの色を変更】 | MUGEN State Controller - Name = sura</title>
+  <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
+  <link rel="icon" href="/media/img/icon-192x192.png" sizes="192x192" />
+  <link rel="icon" sizes="192x192" href="/media/img/icon-192x192.png">
+  <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
+  <link rel="apple-touch-icon" sizes="128x128" href="/media/img/icon-128x128.png">
+  <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/media/img/icon-128x128.png">
+
+
+  <!-- 「チェス盤を引っくり返す！」 -->
+  <meta name="theme-color" content="#1E88E5">
+  <meta name="robots" content="INDEX,FOLLOW" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="author" content="sura" />
+  <meta name="generator" content="Smarty" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻" />
+  <!-- 「駄目ね、全然駄目だわ」 -->
+
+<!-- ジョインジョイン OGP -->
+  <meta property="og:url" content="http://analyticsfile.web.fc2.com/MUGEN/document/State/index.html" />
+  <meta property="og:title" content="M.U.G.E.N ステートコントローラ一覧 - Name = sura" />
+  <meta property="og:description" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://analyticsfile.web.fc2.com/media/img/profile_200.png" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:site_name" content="Name = sura" />
+<!-- もういい、ここまでだっ・・・ -->
+
+  <link rel="author" title="sura" href="https://twitter.com/bluesura" />
+
+  <link rel="stylesheet" href="/lib/css/material.css?20160722173154">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript" src="/lib/js/code.min.js?20160722173154"></script>
+  <script type="text/javascript" src="/lib/js/js-ctrl.js?20160722173154"></script>
+  <script type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js?20160722173154"></script>
+  <script type="text/javascript" src="/lib/js/isMobile.min.js?20160722173154"></script>
+
+</head>
+
+<body>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
+<!-- End Google Tag Manager -->
+
+
+<div id="container">
+<div id="container-inner">
+<header id="blog-title" class="header">
+	<div id="blog-title-inner">
+
+		<div id="blog-title-content">
+			<h1 id="title"><a href="./">MUGEN State Controller</a></h1>
+
+			<div id="blog-description"><div class="notice">MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div></div>
+		</div>
+	</div>
+  <div id="menu"><a href="javascript:void(0);" id="js-ctrl"<i class="fa fa-bars"></i></a></div>
+</header>
+
+<div id="content" class="hfeed"><div id="content-inner">
+
+	<div id="wrapper"><div id="main">
+<div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
+	<header class="entry-header"><div>
+
+	<div class="entry-title"><div>
+	<h1 id="PalFX">Type = PalFX</h1>
+	<div class="category">色の操作 > キャラクターなどの色を変更 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身</div>
+</div></div>
+
+</div></header>
+
+	<div class="entry-content">
+
+﻿	<div class="description">
+<div><p>キャラクターなどのパレットに加算・乗算します。</p><p>全画面に加算する場合は<a href="AllPalFX.html"><code>AllPalFX</code></a>,背景のみに加算する場合は<a href="BGPalFX.html"><code>BGPalFX</code></a>,指定色で塗りつぶしたい場合は<a href="EnvColor.html"><code>EnvColor</code></a>。</p></div>
+
+
+
+				
+	</div>
+
+﻿		<section id="Version"><div class="section">
+		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
+		<table>
+			<thead>
+				<tr><th></th><th>内容</th></tr>
+			</thead>
+			<tbody>
+									<tr><td>-</td><td><code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。</td></tr>
+							</tbody>
+		</table>
+	</div></section>
+	
+
+﻿	<section id="Parameter"><div class="section">
+		<h2>パラメーター</h2>
+						<dl class="parameter">
+			<dt>
+				<span class="main" id="Time">
+									Time = 持続時間								(整数)
+				</span>
+			</dt>
+			<dd>
+				<div class="description"><p>効果の持続時間をフレーム単位で指定します。</p><p>ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、<code>Time=1</code>にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXで<code>Time=1</code>をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>※60フレーム=1秒</p></div>
+
+				<div class="option-value">
+
+					
+										<div class="range-value">
+												<span class="min-value">最小値: -1</span>
+												,												<span class="max-value">最大値: 2147483647</span>
+											</div>
+					
+										<div class="default-value">省略時のデフォルト値： 0</div>
+					
+					
+				
+				</div>
+
+
+			</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Color">
+									Color = 彩度								(整数)
+				</span>
+			</dt>
+			<dd>
+				<div class="description"><p>パレットの彩度を下げます。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style="background-color: hsl(0, 0%, 100%);border: 1px solid #000;">　</span><br><span style="background-color: hsl(0, 0%, 80%);">　</span><span style="background-color: hsl(0, 10%, 80%);">　</span><span style="background-color: hsl(0, 20%, 80%);">　</span><span style="background-color: hsl(0, 30%, 80%);">　</span><br><span style="background-color: hsl(0, 0%, 60%);">　</span><span style="background-color: hsl(0, 10%, 60%);">　</span><span style="background-color: hsl(0, 20%, 60%);">　</span><span style="background-color: hsl(0, 30%, 60%);">　</span><span style="background-color: hsl(0, 40%, 60%);">　</span><span style="background-color: hsl(0, 50%, 60%);">　</span><span style="background-color: hsl(0, 60%, 60%);">　</span><span style="background-color: hsl(0, 70%, 60%);">　</span><br><span style="background-color: hsl(0, 0%, 50%);">　</span><span style="background-color: hsl(0, 10%, 50%);">　</span><span style="background-color: hsl(0, 20%, 50%);">　</span><span style="background-color: hsl(0, 30%, 50%);">　</span><span style="background-color: hsl(0, 40%, 50%);">　</span><span style="background-color: hsl(0, 50%, 50%);">　</span><span style="background-color: hsl(0, 60%, 50%);">　</span><span style="background-color: hsl(0, 70%, 50%);">　</span><span style="background-color: hsl(0, 80%, 50%);">　</span><span style="background-color: hsl(0, 90%, 50%);">　</span><span style="background-color: hsl(0, 100%, 50%);">　</span><br><span style="background-color: hsl(0, 0%, 40%);">　</span><span style="background-color: hsl(0, 10%, 40%);">　</span><span style="background-color: hsl(0, 20%, 40%);">　</span><span style="background-color: hsl(0, 30%, 40%);">　</span><span style="background-color: hsl(0, 40%, 40%);">　</span><span style="background-color: hsl(0, 50%, 40%);">　</span><span style="background-color: hsl(0, 60%, 40%);">　</span><span style="background-color: hsl(0, 70%, 40%);">　</span><br><span style="background-color: hsl(0, 0%, 20%);">　</span><span style="background-color: hsl(0, 10%, 20%);">　</span><span style="background-color: hsl(0, 20%, 20%);">　</span><span style="background-color: hsl(0, 30%, 20%);">　</span><br><span style="background-color: hsl(0, 0%, 0%);">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p></div>
+
+				<div class="option-value">
+
+					
+										<div class="range-value">
+												<span class="min-value">最小値: 0 ;グレースケール</span>
+												,												<span class="max-value">最大値: 256 ;変化なし</span>
+											</div>
+					
+										<div class="default-value">省略時のデフォルト値： 256</div>
+					
+					
+				
+				</div>
+
+
+			</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Add">
+									Add = 加算する赤色, 加算する緑色, 加算する青色								(整数, 整数, 整数)
+				</span>
+			</dt>
+			<dd>
+				<div class="description"><p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style="border: 1px solid #000;background: rgb(256,0,0);">　</span><code>Add=256,0,0</code>の場合、<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)は<span style="border: 1px solid #000;background: rgb(256,0,0);">　</span>赤(256,0,0)になりますが、<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)は<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)のままです。</p></div>
+
+				<div class="option-value">
+
+					
+										<div class="range-value">
+												<span class="min-value">最小値: -256, -256, -256 ;黒</span>
+												,												<span class="max-value">最大値: 256, 256, 256 ;白</span>
+											</div>
+					
+										<div class="default-value">省略時のデフォルト値： 0, 0, 0</div>
+					
+					
+				
+				</div>
+
+
+			</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Mul">
+									Mul = 合成する赤色, 合成する緑色, 合成する青色								(整数, 整数, 整数)
+				</span>
+			</dt>
+			<dd>
+				<div class="description"><p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style="border: 1px solid #000;background: rgb(64,256,64);">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)は<span style="border: 1px solid #000;background: rgb(1,256,1);">　</span>緑(1,256,1)になりますが、<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)は<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)のままです。</p></div>
+
+				<div class="option-value">
+
+					
+										<div class="range-value">
+												<span class="min-value">最小値: 1, 1, 1</span>
+												,												<span class="max-value">最大値: 256, 256, 256 ;変化なし</span>
+											</div>
+					
+										<div class="default-value">省略時のデフォルト値： 256, 256, 256</div>
+					
+					
+				
+				</div>
+
+
+			</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="SinAdd">
+									SinAdd = 周期する赤色, 周期する緑色, 周期する青色, 周期								(整数, 整数, 整数, 整数)
+				</span>
+			</dt>
+			<dd>
+				<div class="description"><p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style="border: 1px solid #000;background: rgb(0,0,256);">　</span><code>SinAdd=0,0,256,20</code>,<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)は、5F後<span style="border: 1px solid #000;background: rgb(128,128,256);">　</span>(128,128,256)になり、10F後<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)に戻り、15F後<span style="border: 1px solid #000;background: rgb(128,128,0);">　</span>(128,128,0)、20F後<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)に戻る、という周期を繰り返します。</p></div>
+
+				<div class="option-value">
+
+					
+										<div class="range-value">
+																							</div>
+					
+										<div class="default-value">省略時のデフォルト値： 0, 0, 0, 0</div>
+					
+					
+								<div class="media">
+															<div class="image-group">
+												<div class="image">
+							<div class="title"></div>
+							<div class="image-frame"><img src="./media/img/SinAdd.png" alt="" width="600" height="242" /></div>
+						</div>
+											</div>
+									</div>
+				
+				</div>
+
+
+			</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="InvertAll">
+									InvertAll = 色反転フラグ								(0か1)
+				</span>
+			</dt>
+			<dd>
+				<div class="description"><p>色を反転するか・しないかのフラグです。</p><p>例: <span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>(0,0,0)→<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>(256,256,256),<span style="border: 1px solid #000;background: rgb(0,252,0);">　</span>(0,252,0)→<span style="border: 1px solid #000;background: rgb(256,4,256);">　</span>(256,4,256),<span style="border: 1px solid #000;background: rgb(256,0,0);">　</span>(256,0,0)→<span style="border: 1px solid #000;background: rgb(0,256,256);">　</span>(0,256,256)</p></div>
+
+				<div class="option-value">
+
+					
+										<div class="range-value">
+												<span class="min-value">最小値: 0 ;色が反転しない</span>
+												,												<span class="max-value">最大値: 1 ;色が反転する</span>
+											</div>
+					
+										<div class="default-value">省略時のデフォルト値： 0</div>
+					
+					
+								<div class="media">
+															<div class="image-group">
+												<div class="image">
+							<div class="title"></div>
+							<div class="image-frame"><img src="./media/img/InvertAll.png" alt="" width="167" height="167" /></div>
+						</div>
+											</div>
+									</div>
+				
+				</div>
+
+
+			</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Persistent">
+									Persistent = HitPause無視時間								(整数)
+				</span>
+			</dt>
+			<dd>
+				<div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
+
+				<div class="option-value">
+
+					
+										<div class="range-value">
+												<span class="min-value">最小値: 0</span>
+												,												<span class="max-value">最大値: 128</span>
+											</div>
+					
+										<div class="default-value">省略時のデフォルト値： 1</div>
+					
+					
+				
+				</div>
+
+
+			</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="IgnoreHitPause">
+									IgnoreHitPause = HitPauseを無視フラグ								(0か1)
+				</span>
+			</dt>
+			<dd>
+				<div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
+
+				<div class="option-value">
+
+					
+										<div class="range-value">
+												<span class="min-value">最小値: 0</span>
+												,												<span class="max-value">最大値: 1</span>
+											</div>
+					
+										<div class="default-value">省略時のデフォルト値： 0</div>
+					
+					
+				
+				</div>
+
+
+			</dd>
+		</dl>
+					</div></section>
+
+﻿	<section id="DefaultParameter"><div class="section">
+		<h2>省略した時のデフォルト値</h2>
+		<div class="code" contenteditable="true">
+		<ul>
+						<li>[State ,PalFX]</li>
+			<li>Type                       = PalFX</li>
+			<li>Trigger1                   = 1</li>
+															<li class="optional-parameter">Time                       = 0</li>
+									<li class="optional-parameter">Color                      = 256</li>
+									<li class="optional-parameter">Add                        = 0, 0, 0</li>
+									<li class="optional-parameter">Mul                        = 256, 256, 256</li>
+									<li class="optional-parameter">SinAdd                     = 0, 0, 0, 0</li>
+									<li class="optional-parameter">InvertAll                  = 0</li>
+									<li class="optional-parameter">Persistent                 = 1</li>
+									<li class="optional-parameter">IgnoreHitPause             = 0</li>
+				
+			
+		</ul>
+		</div>
+		
+	</div></section>
+
+﻿	<section id="LoadParameter"><div class="section">
+		<h2>パラメーターの読み込み順</h2>
+
+
+
+		<div>
+			<p>
+				Time(1) => 
+				Color(2) => 
+				Add(3, 4, 5) => 
+				Mul(6, 7, 8) => 
+				SinAdd(9, 10, 11, 12) => 
+				InvertAll(13) => 
+				Persistent(?) => 
+				IgnoreHitPause(?) => 
+			</p>
+		</div>
+
+		<div class="supplement"><br>*バージョンや実行環境,パラーメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。</div>
+
+	</div></section>
+
+
+﻿		<section id="QandA"><div class="section">
+		<h2>注意事項</h2>
+				<table class="qanda">
+			<tr>
+				<th class="question">問</th>
+				<td>表示される色の処理順</td>
+			</tr>						<tr>
+				<th class="answer">答</th>
+				<td>==========各条件を以下のように定義する。==========<br>基本色:<br>Add    = Add_赤色(AR), Add_緑色(AG), Add_青色(AB)<br>SinAdd = Sin_赤色(SR), Sin_緑色(SG), Sin_青色(SB), 周期(P)<br><br>合成色:<br>Mul    = Mul_赤色(MR), Mul_緑色(MG), Mul_青色(MB)<br><br>経過時間:(T) ※単位はフレーム、1秒=60フレーム<br>円周率:(Pi)<br><br>変更する色:<br>Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br><br>==========処理の流れ==========<br>処理する色 = Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br>↓<br>彩度(Color)<br>彩度を調整した色 = Color_赤色(CR), Color_緑色(CG), Color_青色(CB)<br>↓<br>経過時間(T)に表示される色は<br>赤要素(RR) = (CR + AR + SR * Sin(2*Pi*T/P))  *  MR/256<br>緑要素(RG) = (CG + AG + SG * Sin(2*Pi*T/P))  *  MG/256<br>青要素(RB) = (CB + AB + SB * Sin(2*Pi*T/P))  *  MB/256<br>↓<br>色反転(InvertAll)<br>反転した赤要素(IR) = 256-RR<br>反転した緑要素(IG) = 256-RG<br>反転した青要素(IB) = 256-RB<br>↓<br>結果色(IR, IG, IB)が表示されます。<br></td>
+			</tr>					</table>
+			</div></section>
+	
+
+﻿	
+
+﻿		<section id="Quote"><div class="section">
+		<h2>引用記事</h2>
+		<ul>
+					<li><a href="http://elecbyte.com/wiki/index.php/PalFX" target="_blank" rel="external">PalFX - M.U.G.E.N wiki</a></li>
+					<li><a href="http://homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PalFX" target="_blank" rel="external">PalFX - State Controller</a></li>
+					<li><a href="http://www49.atwiki.jp/mugencns/pages/64.html" target="_blank" rel="external">PalFX - MUGEN CNS WIKI CHAOS@予定</a></li>
+					<li><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PalFX" target="_blank" rel="external">PalFX - 東方夢幻館</a></li>
+					<li><a href="http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm" target="_blank" rel="external">PalFX - 地球の応接間</a></li>
+				</ul>
+	</div></section>
+	
+
+	</div>
+</article></div>
+
+	</div></div>
+
+
+	<div id="box2" class="slideout-sidebar">
+<div class="menu">
+	
+			<label for="menu_bar01">+ State Controller Reference</label><input type="checkbox" id="menu_bar01" class="accordion" /><ul id="links01">
+			<li><a href="/MUGEN/document/State/index.html">Top Page</a></li>
+			<li><a href="/MUGEN/document/State/A.html">A</a></li>
+			<li><a href="/MUGEN/document/State/AfterImage.html">AfterImage</a></li>
+			<li><a href="/MUGEN/document/State/AfterImageTime.html">AfterImageTime</a></li>
+			<li><a href="/MUGEN/document/State/AllPalFX.html">AllPalFX</a></li>
+			<li><a href="/MUGEN/document/State/AngleAdd.html">AngleAdd</a></li>
+			<li><a href="/MUGEN/document/State/AngleDraw.html">AngleDraw</a></li>
+			<li><a href="/MUGEN/document/State/AngleMul.html">AngleMul</a></li>
+			<li><a href="/MUGEN/document/State/AngleSet.html">AngleSet</a></li>
+			<li><a href="/MUGEN/document/State/AppendToClipboard.html">AppendToClipboard</a></li>
+			<li><a href="/MUGEN/document/State/AssertSpecial.html">AssertSpecial</a></li>
+			<li><a href="/MUGEN/document/State/AttackDist.html">AttackDist</a></li>
+			<li><a href="/MUGEN/document/State/AttackMulSet.html">AttackMulSet</a></li>
+			<li><a href="/MUGEN/document/State/BGPalFX.html">BGPalFX</a></li>
+			<li><a href="/MUGEN/document/State/BindToParent.html">BindToParent</a></li>
+			<li><a href="/MUGEN/document/State/BindToRoot.html">BindToRoot</a></li>
+			<li><a href="/MUGEN/document/State/BindToTarget.html">BindToTarget</a></li>
+			<li><a href="/MUGEN/document/State/C.html">C</a></li>
+			<li><a href="/MUGEN/document/State/ChangeAnim.html">ChangeAnim</a></li>
+			<li><a href="/MUGEN/document/State/ChangeAnim2.html">ChangeAnim2</a></li>
+			<li><a href="/MUGEN/document/State/ChangeState.html">ChangeState</a></li>
+			<li><a href="/MUGEN/document/State/ClearClipboard.html">ClearClipboard</a></li>
+			<li><a href="/MUGEN/document/State/CtrlSet.html">CtrlSet</a></li>
+			<li><a href="/MUGEN/document/State/DefenceMulSet.html">DefenceMulSet</a></li>
+			<li><a href="/MUGEN/document/State/DestroySelf.html">DestroySelf</a></li>
+			<li><a href="/MUGEN/document/State/DisplayToClipboard.html">DisplayToClipboard</a></li>
+			<li><a href="/MUGEN/document/State/EnvColor.html">EnvColor</a></li>
+			<li><a href="/MUGEN/document/State/EnvShake.html">EnvShake</a></li>
+			<li><a href="/MUGEN/document/State/Explod.html">Explod</a></li>
+			<li><a href="/MUGEN/document/State/ExplodBindTime.html">ExplodBindTime</a></li>
+			<li><a href="/MUGEN/document/State/FallEnvShake.html">FallEnvShake</a></li>
+			<li><a href="/MUGEN/document/State/ForceFeedback.html">ForceFeedback</a></li>
+			<li><a href="/MUGEN/document/State/GameMakeAnim.html">GameMakeAnim</a></li>
+			<li><a href="/MUGEN/document/State/Gravity.html">Gravity</a></li>
+			<li><a href="/MUGEN/document/State/Helper.html">Helper</a></li>
+			<li><a href="/MUGEN/document/State/HitAdd.html">HitAdd</a></li>
+			<li><a href="/MUGEN/document/State/HitBy.html">HitBy</a></li>
+			<li><a href="/MUGEN/document/State/HitDef.html">HitDef</a></li>
+			<li><a href="/MUGEN/document/State/HitFallDamage.html">HitFallDamage</a></li>
+			<li><a href="/MUGEN/document/State/HitFallSet.html">HitFallSet</a></li>
+			<li><a href="/MUGEN/document/State/HitFallVel.html">HitFallVel</a></li>
+			<li><a href="/MUGEN/document/State/HitOverRide.html">HitOverRide</a></li>
+			<li><a href="/MUGEN/document/State/HitVelSet.html">HitVelSet</a></li>
+			<li><a href="/MUGEN/document/State/L.html">L</a></li>
+			<li><a href="/MUGEN/document/State/LifeAdd.html">LifeAdd</a></li>
+			<li><a href="/MUGEN/document/State/LifeSet.html">LifeSet</a></li>
+			<li><a href="/MUGEN/document/State/MakeDust.html">MakeDust</a></li>
+			<li><a href="/MUGEN/document/State/ModifyExplod.html">ModifyExplod</a></li>
+			<li><a href="/MUGEN/document/State/MoveHitReset.html">MoveHitReset</a></li>
+			<li><a href="/MUGEN/document/State/NotHitBy.html">NotHitBy</a></li>
+			<li><a href="/MUGEN/document/State/Null.html">Null</a></li>
+			<li><a href="/MUGEN/document/State/Offset.html">Offset</a></li>
+			<li><a href="/MUGEN/document/State/PalFX.html">PalFX</a></li>
+			<li><a href="/MUGEN/document/State/ParentVarAdd.html">ParentVarAdd</a></li>
+			<li><a href="/MUGEN/document/State/ParentVarSet.html">ParentVarSet</a></li>
+			<li><a href="/MUGEN/document/State/Pause.html">Pause</a></li>
+			<li><a href="/MUGEN/document/State/PlaySnd.html">PlaySnd</a></li>
+			<li><a href="/MUGEN/document/State/PlayerPush.html">PlayerPush</a></li>
+			<li><a href="/MUGEN/document/State/PosAdd.html">PosAdd</a></li>
+			<li><a href="/MUGEN/document/State/PosFreeze.html">PosFreeze</a></li>
+			<li><a href="/MUGEN/document/State/PosSet.html">PosSet</a></li>
+			<li><a href="/MUGEN/document/State/PowerAdd.html">PowerAdd</a></li>
+			<li><a href="/MUGEN/document/State/PowerSet.html">PowerSet</a></li>
+			<li><a href="/MUGEN/document/State/Projectile.html">Projectile</a></li>
+			<li><a href="/MUGEN/document/State/RemapPal.html">RemapPal</a></li>
+			<li><a href="/MUGEN/document/State/RemoveExplod.html">RemoveExplod</a></li>
+			<li><a href="/MUGEN/document/State/ReversalDef.html">ReversalDef</a></li>
+			<li><a href="/MUGEN/document/State/S.html">S</a></li>
+			<li><a href="/MUGEN/document/State/ScreenBound.html">ScreenBound</a></li>
+			<li><a href="/MUGEN/document/State/SelfState.html">SelfState</a></li>
+			<li><a href="/MUGEN/document/State/SndPan.html">SndPan</a></li>
+			<li><a href="/MUGEN/document/State/SprPriority.html">SprPriority</a></li>
+			<li><a href="/MUGEN/document/State/StateTypeSet.html">StateTypeSet</a></li>
+			<li><a href="/MUGEN/document/State/StopSnd.html">StopSnd</a></li>
+			<li><a href="/MUGEN/document/State/SuperPause.html">SuperPause</a></li>
+			<li><a href="/MUGEN/document/State/TagIn.html">TagIn</a></li>
+			<li><a href="/MUGEN/document/State/TagOut.html">TagOut</a></li>
+			<li><a href="/MUGEN/document/State/TargetBind.html">TargetBind</a></li>
+			<li><a href="/MUGEN/document/State/TargetDrop.html">TargetDrop</a></li>
+			<li><a href="/MUGEN/document/State/TargetFacing.html">TargetFacing</a></li>
+			<li><a href="/MUGEN/document/State/TargetLifeAdd.html">TargetLifeAdd</a></li>
+			<li><a href="/MUGEN/document/State/TargetPowerAdd.html">TargetPowerAdd</a></li>
+			<li><a href="/MUGEN/document/State/TargetState.html">TargetState</a></li>
+			<li><a href="/MUGEN/document/State/TargetVelAdd.html">TargetVelAdd</a></li>
+			<li><a href="/MUGEN/document/State/TargetVelSet.html">TargetVelSet</a></li>
+			<li><a href="/MUGEN/document/State/Trans.html">Trans</a></li>
+			<li><a href="/MUGEN/document/State/Turn.html">Turn</a></li>
+			<li><a href="/MUGEN/document/State/U.html">U</a></li>
+			<li><a href="/MUGEN/document/State/VarAdd.html">VarAdd</a></li>
+			<li><a href="/MUGEN/document/State/VarRandom.html">VarRandom</a></li>
+			<li><a href="/MUGEN/document/State/VarRangeSet.html">VarRangeSet</a></li>
+			<li><a href="/MUGEN/document/State/VarSet.html">VarSet</a></li>
+			<li><a href="/MUGEN/document/State/VelAdd.html">VelAdd</a></li>
+			<li><a href="/MUGEN/document/State/VelMul.html">VelMul</a></li>
+			<li><a href="/MUGEN/document/State/VelSet.html">VelSet</a></li>
+			<li><a href="/MUGEN/document/State/VictoryQuote.html">VictoryQuote</a></li>
+			<li><a href="/MUGEN/document/State/Width.html">Width</a></li>
+			<li><a href="/MUGEN/document/State/Zoom.html">Zoom</a></li>
+			</ul>
+			<label for="menu_bar02">+ Trigger Reference</label><input type="checkbox" id="menu_bar02" class="accordion" /><ul id="links02">
+			<li><a href="/MUGEN/document/Trigger/index.html">Top Page</a></li>
+			<li><a href="/MUGEN/document/Trigger/Abs.html">Abs</a></li>
+			<li><a href="/MUGEN/document/Trigger/Acos.html">Acos</a></li>
+			<li><a href="/MUGEN/document/Trigger/AILevel.html">AILevel</a></li>
+			<li><a href="/MUGEN/document/Trigger/Alive.html">Alive</a></li>
+			<li><a href="/MUGEN/document/Trigger/Anim.html">Anim</a></li>
+			<li><a href="/MUGEN/document/Trigger/AnimElem.html">AnimElem</a></li>
+			<li><a href="/MUGEN/document/Trigger/AnimElemNo.html">AnimElemNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/AnimElemTime.html">AnimElemTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/AnimExist.html">AnimExist</a></li>
+			<li><a href="/MUGEN/document/Trigger/AnimTime.html">AnimTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/Asin.html">Asin</a></li>
+			<li><a href="/MUGEN/document/Trigger/Atan.html">Atan</a></li>
+			<li><a href="/MUGEN/document/Trigger/AuthorName.html">AuthorName</a></li>
+			<li><a href="/MUGEN/document/Trigger/BackEdge.html">BackEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/BackEdgeBodyDist.html">BackEdgeBodyDist</a></li>
+			<li><a href="/MUGEN/document/Trigger/BackEdgeDist.html">BackEdgeDist</a></li>
+			<li><a href="/MUGEN/document/Trigger/BottomEdge.html">BottomEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/CameraPosX.html">CameraPosX</a></li>
+			<li><a href="/MUGEN/document/Trigger/CameraPosY.html">CameraPosY</a></li>
+			<li><a href="/MUGEN/document/Trigger/CameraZoom.html">CameraZoom</a></li>
+			<li><a href="/MUGEN/document/Trigger/CanRecover.html">CanRecover</a></li>
+			<li><a href="/MUGEN/document/Trigger/Ceil.html">Ceil</a></li>
+			<li><a href="/MUGEN/document/Trigger/Command.html">Command</a></li>
+			<li><a href="/MUGEN/document/Trigger/Cond.html">Cond</a></li>
+			<li><a href="/MUGEN/document/Trigger/Const.html">Const</a></li>
+			<li><a href="/MUGEN/document/Trigger/Const240p.html">Const240p</a></li>
+			<li><a href="/MUGEN/document/Trigger/Const480p.html">Const480p</a></li>
+			<li><a href="/MUGEN/document/Trigger/Const720p.html">Const720p</a></li>
+			<li><a href="/MUGEN/document/Trigger/Cos.html">Cos</a></li>
+			<li><a href="/MUGEN/document/Trigger/Ctrl.html">Ctrl</a></li>
+			<li><a href="/MUGEN/document/Trigger/DrawGame.html">DrawGame</a></li>
+			<li><a href="/MUGEN/document/Trigger/E.html">E</a></li>
+			<li><a href="/MUGEN/document/Trigger/Exp.html">Exp</a></li>
+			<li><a href="/MUGEN/document/Trigger/FVar.html">FVar</a></li>
+			<li><a href="/MUGEN/document/Trigger/Facing.html">Facing</a></li>
+			<li><a href="/MUGEN/document/Trigger/Floor.html">Floor</a></li>
+			<li><a href="/MUGEN/document/Trigger/FrontEdge.html">FrontEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/FrontEdgeBodyDist.html">FrontEdgeBodyDist</a></li>
+			<li><a href="/MUGEN/document/Trigger/FrontEdgeDist.html">FrontEdgeDist</a></li>
+			<li><a href="/MUGEN/document/Trigger/GameHeight.html">GameHeight</a></li>
+			<li><a href="/MUGEN/document/Trigger/GameTime.html">GameTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/GameWidth.html">GameWidth</a></li>
+			<li><a href="/MUGEN/document/Trigger/GetHitVar.html">GetHitVar</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitCount.html">HitCount</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitDefAttr.html">HitDefAttr</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitFall.html">HitFall</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitOver.html">HitOver</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitPauseTime.html">HitPauseTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitShakeOver.html">HitShakeOver</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitVelX.html">HitVelX</a></li>
+			<li><a href="/MUGEN/document/Trigger/HitVelY.html">HitVelY</a></li>
+			<li><a href="/MUGEN/document/Trigger/ID.html">ID</a></li>
+			<li><a href="/MUGEN/document/Trigger/IfElse.html">IfElse</a></li>
+			<li><a href="/MUGEN/document/Trigger/InGuardDist.html">InGuardDist</a></li>
+			<li><a href="/MUGEN/document/Trigger/IsHelper.html">IsHelper</a></li>
+			<li><a href="/MUGEN/document/Trigger/IsHomeTeam.html">IsHomeTeam</a></li>
+			<li><a href="/MUGEN/document/Trigger/LeftEdge.html">LeftEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/Life.html">Life</a></li>
+			<li><a href="/MUGEN/document/Trigger/LifeMax.html">LifeMax</a></li>
+			<li><a href="/MUGEN/document/Trigger/Ln.html">Ln</a></li>
+			<li><a href="/MUGEN/document/Trigger/Log.html">Log</a></li>
+			<li><a href="/MUGEN/document/Trigger/Lose.html">Lose</a></li>
+			<li><a href="/MUGEN/document/Trigger/LoseKO.html">LoseKO</a></li>
+			<li><a href="/MUGEN/document/Trigger/LoseTime.html">LoseTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/MatchNo.html">MatchNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/MatchOver.html">MatchOver</a></li>
+			<li><a href="/MUGEN/document/Trigger/MoveContact.html">MoveContact</a></li>
+			<li><a href="/MUGEN/document/Trigger/MoveGuarded.html">MoveGuarded</a></li>
+			<li><a href="/MUGEN/document/Trigger/MoveHit.html">MoveHit</a></li>
+			<li><a href="/MUGEN/document/Trigger/MoveReversed.html">MoveReversed</a></li>
+			<li><a href="/MUGEN/document/Trigger/MoveType.html">MoveType</a></li>
+			<li><a href="/MUGEN/document/Trigger/Name.html">Name</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumEnemy.html">NumEnemy</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumExplod.html">NumExplod</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumHelper.html">NumHelper</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumPartner.html">NumPartner</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumProj.html">NumProj</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumProjID.html">NumProjID</a></li>
+			<li><a href="/MUGEN/document/Trigger/NumTarget.html">NumTarget</a></li>
+			<li><a href="/MUGEN/document/Trigger/P1Name.html">P1Name</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2BodyDistX.html">P2BodyDistX</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2BodyDistY.html">P2BodyDistY</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2DistX.html">P2DistX</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2DistY.html">P2DistY</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2Life.html">P2Life</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2MoveType.html">P2MoveType</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2Name.html">P2Name</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2StateNo.html">P2StateNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/P2StateType.html">P2StateType</a></li>
+			<li><a href="/MUGEN/document/Trigger/P3Name.html">P3Name</a></li>
+			<li><a href="/MUGEN/document/Trigger/P4Name.html">P4Name</a></li>
+			<li><a href="/MUGEN/document/Trigger/PalNo.html">PalNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/ParentDistX.html">ParentDistX</a></li>
+			<li><a href="/MUGEN/document/Trigger/ParentDistY.html">ParentDistY</a></li>
+			<li><a href="/MUGEN/document/Trigger/Pi.html">Pi</a></li>
+			<li><a href="/MUGEN/document/Trigger/PlayerIDExist.html">PlayerIDExist</a></li>
+			<li><a href="/MUGEN/document/Trigger/PosX.html">PosX</a></li>
+			<li><a href="/MUGEN/document/Trigger/PosY.html">PosY</a></li>
+			<li><a href="/MUGEN/document/Trigger/Power.html">Power</a></li>
+			<li><a href="/MUGEN/document/Trigger/PowerMax.html">PowerMax</a></li>
+			<li><a href="/MUGEN/document/Trigger/PrevStateNo.html">PrevStateNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjCancelTime.html">ProjCancelTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjContact.html">ProjContact</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjContactTime.html">ProjContactTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjGuarded.html">ProjGuarded</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjGuardedTime.html">ProjGuardedTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjHit.html">ProjHit</a></li>
+			<li><a href="/MUGEN/document/Trigger/ProjHitTime.html">ProjHitTime</a></li>
+			<li><a href="/MUGEN/document/Trigger/Random.html">Random</a></li>
+			<li><a href="/MUGEN/document/Trigger/RightEdge.html">RightEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/RootDistX.html">RootDistX</a></li>
+			<li><a href="/MUGEN/document/Trigger/RootDistY.html">RootDistY</a></li>
+			<li><a href="/MUGEN/document/Trigger/RoundNo.html">RoundNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/RoundState.html">RoundState</a></li>
+			<li><a href="/MUGEN/document/Trigger/RoundsExisted.html">RoundsExisted</a></li>
+			<li><a href="/MUGEN/document/Trigger/ScreenPosX.html">ScreenPosX</a></li>
+			<li><a href="/MUGEN/document/Trigger/ScreenPosY.html">ScreenPosY</a></li>
+			<li><a href="/MUGEN/document/Trigger/ScreenHeight.html">ScreenHeight</a></li>
+			<li><a href="/MUGEN/document/Trigger/ScreenWidth.html">ScreenWidth</a></li>
+			<li><a href="/MUGEN/document/Trigger/SelfAnimExist.html">SelfAnimExist</a></li>
+			<li><a href="/MUGEN/document/Trigger/Sin.html">Sin</a></li>
+			<li><a href="/MUGEN/document/Trigger/StandBy.html">StandBy</a></li>
+			<li><a href="/MUGEN/document/Trigger/StateNo.html">StateNo</a></li>
+			<li><a href="/MUGEN/document/Trigger/StateType.html">StateType</a></li>
+			<li><a href="/MUGEN/document/Trigger/StageVar.html">StageVar</a></li>
+			<li><a href="/MUGEN/document/Trigger/SysFVar.html">SysFVar</a></li>
+			<li><a href="/MUGEN/document/Trigger/SysVar.html">SysVar</a></li>
+			<li><a href="/MUGEN/document/Trigger/Tan.html">Tan</a></li>
+			<li><a href="/MUGEN/document/Trigger/TeamMode.html">TeamMode</a></li>
+			<li><a href="/MUGEN/document/Trigger/TeamSide.html">TeamSide</a></li>
+			<li><a href="/MUGEN/document/Trigger/TicksPerSecond.html">TicksPerSecond</a></li>
+			<li><a href="/MUGEN/document/Trigger/Time.html">Time</a></li>
+			<li><a href="/MUGEN/document/Trigger/TimeMod.html">TimeMod</a></li>
+			<li><a href="/MUGEN/document/Trigger/TopEdge.html">TopEdge</a></li>
+			<li><a href="/MUGEN/document/Trigger/UniqHitCount.html">UniqHitCount</a></li>
+			<li><a href="/MUGEN/document/Trigger/Var.html">Var</a></li>
+			<li><a href="/MUGEN/document/Trigger/VelX.html">VelX</a></li>
+			<li><a href="/MUGEN/document/Trigger/VelY.html">VelY</a></li>
+			<li><a href="/MUGEN/document/Trigger/Win.html">Win</a></li>
+			<li><a href="/MUGEN/document/Trigger/WinKO.html">WinKO</a></li>
+			<li><a href="/MUGEN/document/Trigger/WinPerfect.html">WinPerfect</a></li>
+			<li><a href="/MUGEN/document/Trigger/WinTime.html">WinTime</a></li>
+			</ul>
+			<label for="menu_bar03">+ LifeBar Reference</label><input type="checkbox" id="menu_bar03" class="accordion" /><ul id="links03">
+			<li><a href="/MUGEN/document/Lifebar/index.html">Top Page</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Combo.html">Combo</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Face.html">Face</a></li>
+			<li><a href="/MUGEN/document/Lifebar/FightFx.html">FightFx</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Files.html">Files</a></li>
+			<li><a href="/MUGEN/document/Lifebar/LifeBar.html">LifeBar</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Name.html">Name</a></li>
+			<li><a href="/MUGEN/document/Lifebar/PowerBar.html">PowerBar</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Round.html">Round</a></li>
+			<li><a href="/MUGEN/document/Lifebar/SimulFace.html">SimulFace</a></li>
+			<li><a href="/MUGEN/document/Lifebar/SimulLifeBar.html">SimulLifeBar</a></li>
+			<li><a href="/MUGEN/document/Lifebar/SimulName.html">SimulName</a></li>
+			<li><a href="/MUGEN/document/Lifebar/Time.html">Time</a></li>
+			<li><a href="/MUGEN/document/Lifebar/TurnsFace.html">TurnsFace</a></li>
+			<li><a href="/MUGEN/document/Lifebar/TurnsLifeBar.html">TurnsLifeBar</a></li>
+			<li><a href="/MUGEN/document/Lifebar/TurnsName.html">TurnsName</a></li>
+			<li><a href="/MUGEN/document/Lifebar/WinIcon.html">WinIcon</a></li>
+			<li><a href="/MUGEN/document/Lifebar/BeginAction.html">BeginAction</a></li>
+			<li><a href="/MUGEN/document/Lifebar/MakeFont.html">MakeFont</a></li>
+			</ul>
+		
+</div>
+
+
+
+
+<iframe src="https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+</div>
+	</div>
+
+</div></div></div>
+
+
+
+﻿<footer id="footer">
+	<div id="footer-inner">
+		<nav id="footer-main">
+
+			<ul>
+				<li>本体</li>
+				<li><a href="http://www.elecbyte.com/mugen">M.U.G.E.N</a></li>
+				<li><a href="http://network.mugenguild.com/justnopoint/1.0docs/mugen.html">M.U.G.E.N 1.0 と 1.1b</a></li>
+				<li><a href="http://mug3.anikipedia.com/mugen.htm">M.U.G.E.N 1.1</a></li>
+				<li><a href="http://homepage2.nifty.com/oriheus/ikemen/">I.K.E.M.E.N</a></li>
+			</ul>
+
+				<ul>
+					<li>テキストエディタ</li>
+					<li><a href="http://sakura-editor.sourceforge.net/">サクラエディタ</a></li>
+					<li><a href="http://nicious.toypark.in/mugen/sakura_de_mugen.html">設定ファイル</a></li>
+					<li><a href="http://mugenbinran.web.fc2.com/tool_introduction.html#1">解説</a></li>
+				</ul>
+
+				<ul>
+					<li>SFF・AIR・SND エディタ</li>
+					<li><a href="http://www.geocities.jp/sffeditor/">SAEditor</a></li>
+					<li><a href="http://mugenguild.com/forum/index.php?topic=137126">Fighter Factory 3.0</a></li>
+				</ul>
+
+				<ul>
+					<li>デバッグ</li>
+					<li><a href="http://jbbs.shitaraba.net/bbs/read.cgi/game/54714/1340533542/135">窓無限の十徳ナイフ</a></li>
+					<li>cnslint</li>
+				</ul>
+				
+				<ul>
+					<li>ドット絵</li>
+					<li><a href="http://takabosoft.com/edge">EDGE</a></li>
+					<li><a href="http://www.fenrir-inc.com/jp/pictbear/">PictBear</a></li>
+				</ul>
+
+				<ul>
+					<li>画像の閲覧・一括編集</li>
+					<li><a href="http://www8.plala.or.jp/kusutaku/iview/">IrfanView</a></li>
+				</ul>
+
+				<ul>
+					<li>エフェクト</li>
+					<li><a href="http://game-hikidashi.com/">Prominence</a></li>
+					<li><a href="http://nive.jp/">NicoVisualEffects</a></li>
+				</ul>
+
+				<ul>
+					<li>音声加工</li>
+					<li><a href="http://soundengine.jp/software/soundengine/">SoundEngine</a></li>
+				</ul>
+
+		</nav>
+	</div>
+
+	<nav id="footer-sub">
+		<ul>
+			<li><a href="/">©Name = sura</a></li>
+			<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
+			<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
+			<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>
+			<li><a href="/MUGEN/document/Trigger/index.html">Trigger Reference</a></li>
+		</ul>
+	</nav>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,971 @@
+﻿<!DOCTYPE HTML>
+<html lang="ja-JP">
+<head>
+
+	<!-- 「チェス盤を引っくり返す！」 -->
+	<meta charset="UTF-8" />
+	<meta name="robots" content="INDEX,FOLLOW" />
+	<meta name="author" content="sura" />
+	<meta name="title" content="Round | M.U.G.E.N ライフバー 設定項目一覧 - Name = sura" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="MUGEN" />
+	<!-- 「駄目ね、全然駄目だわ」 -->
+
+	<!-- ジョインジョイン OGP -->
+	<meta property="og:url" content="http://analyticsfile.web.fc2.com/MUGEN/document/LifeBar/Round.html" />
+	<meta property="og:title" content="Round | M.U.G.E.N ライフバー 設定項目一覧 - Name = sura" />
+	<meta property="og:description" content="#" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="http://analyticsfile.web.fc2.com/MUGEN/document/LifeBar/img/profile_200.png" />
+	<meta property="og:locale" content="ja_JP" />
+	<meta property="og:site_name" content="Name = sura" />
+	<!-- もういい、ここまでだっ・・・ -->
+
+	<!-- ドロー！ Twitter Cards -->
+	<meta name="twitter:card" value="player" />
+	<meta name="twitter:site" value="@bluesura" />
+	<!-- ターンエンドだ！ -->
+
+	<title>Round | M.U.G.E.N ライフバー 設定項目一覧</title>
+
+	<link rel="shortcut icon" href="./../../../media/img/favicon.ico" />
+	<link rel="stylesheet" href="./../lib/css/main.css?201303200000" />
+	<script type="text/javascript" src="./../lib/js/google.js?201303200000"></script>
+
+</head>
+<body>
+<header>
+	<div class="header">
+
+		<div class="title">
+			<h1>M.U.G.E.N ライフバー設定項目一覧</h1>
+			<h2>Name = sura</h2>
+		</div>
+
+		<div>MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div>
+
+		<nav>
+			<div class="breadcrumb">
+				<ul>
+					<li><a href="/index.html" target="_top">Home</a></li>
+					<li><span> &gt;&gt; </span></li>
+					<li><a href="./index.html" target="_top">M.U.G.E.N ライフバー設定項目一覧</a></li>
+					<li><span> &gt;&gt; </span></li>
+					<li>[Round]</li>
+				</ul>
+			</div>
+		</nav>
+
+	</div>
+</header>
+
+		<div class="contents clearfix">
+			<div class="sidebar">
+<div class="categories">
+	<ul>
+		<li><div class="tooltip">
+			<a href="./Combo.html">Combo</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./Face.html">Face</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./FightFx.html">FightFx</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./Files.html">Files</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./LifeBar.html">LifeBar</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./Name.html">Name</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./PowerBar.html">PowerBar</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./Round.html">Round</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./SimulFace.html">SimulFace</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./SimulLifeBar.html">SimulLifeBar</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./SimulName.html">SimulName</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./Time.html">Time</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./TurnsFace.html">TurnsFace</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./TurnsLifeBar.html">TurnsLifeBar</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./TurnsName.html">TurnsName</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./WinIcon.html">WinIcon</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./BeginAction.html">BeginAction</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./index.html">index</a>
+			
+		</div></li>
+		<li><div class="tooltip">
+			<a href="./MakeFont.html">MakeFont</a>
+			
+		</div></li>
+	</ul>
+</div>
+
+<div class="search-engine">
+	<gcse:searchbox-only></gcse:searchbox-only>
+</div>
+
+<div>
+
+	<a class="twitter-timeline" href="https://twitter.com/bluesura" data-widget-id="283962985054093312">@bluesura からのツイート</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+</div>
+
+<div style="word-wrap:break-word;">
+ページに何か間違いがございましたら、ツイッターやsuteadddayov+MUGEN@gmail.comまでご連絡ください。
+</div>
+
+			</div>
+
+
+	<div class="content">
+				<h1 id="Round">[Round]</h1>
+				<p class="description">Roundの開始・終了のラウンドコール・表示・RoundState時間設定ができます。time関係の値は、デフォルト値を表記していますのでよくわからない人はそれをコピペしてね。</p>
+
+	<section id="SampleCode"><div class="section">
+		<h2>設定可能なパラメータ一覧</h2>
+		<div class="code">
+		<ul>
+									<li>[Round]</li>
+									<li><a href="./Round.html#Start.WaitTime">Start.WaitTime</a> = 30</li>
+									<li><a href="./Round.html#Match.Wins">Match.Wins</a> = </li>
+									<li><a href="./Round.html#Match.MaxDrawGames">Match.MaxDrawGames</a> = </li>
+									<li></li>
+									<li><a href="./Round.html#Pos">Pos</a> = ,</li>
+									<li></li>
+									<li>; ラウンドコール</li>
+									<li><a href="./Round.html#Round.Time">Round.Time</a> = 0</li>
+									<li>Round.Default.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Round.Default.<a href="./Round.html#Offset">Offset</a> = , </li>
+									<li>Round.Default.<a href="./Round.html#Font">Font</a> = , , </li>
+									<li>Round.Default.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Round.Default.<a href="./Round.html#Text">Text</a> = </li>
+									<li></li>
+									<li></li>
+									<li>;ラウンド9まで設定できる</li>
+									<li><a href="./Round.html#Round.SndTime">Round.SndTime</a> = 0</li>
+									<li>Round1.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li>Round2.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li>Round3.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li>Round4.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li>Round5.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li>Round6.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li>Round7.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li>Round8.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li>Round9.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li></li>
+									<li>Round1.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Round1.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>Round1.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>Round1.<a href="./Round.html#Text">Text</a> = </li>
+									<li>Round1.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Round1.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Round1.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>Round1.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>Round1.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>Round1.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>Round2.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Round2.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>Round2.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>Round2.<a href="./Round.html#Text">Text</a> = </li>
+									<li>Round2.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Round2.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Round2.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>Round2.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>Round2.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>Round2.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>Round3.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Round3.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>Round3.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>Round3.<a href="./Round.html#Text">Text</a> = </li>
+									<li>Round3.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Round3.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Round3.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>Round3.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>Round3.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>Round3.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>Round4.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Round4.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>Round4.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>Round4.<a href="./Round.html#Text">Text</a> = </li>
+									<li>Round4.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Round4.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Round4.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>Round4.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>Round4.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>Round4.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>Round5.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Round5.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>Round5.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>Round5.<a href="./Round.html#Text">Text</a> = </li>
+									<li>Round5.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Round5.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Round5.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>Round5.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>Round5.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>Round5.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>Round6.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Round6.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>Round6.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>Round6.<a href="./Round.html#Text">Text</a> = </li>
+									<li>Round6.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Round6.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Round6.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>Round6.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>Round6.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>Round6.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>Round7.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Round7.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>Round7.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>Round7.<a href="./Round.html#Text">Text</a> = </li>
+									<li>Round7.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Round7.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Round7.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>Round7.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>Round7.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>Round7.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>Round8.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Round8.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>Round8.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>Round8.<a href="./Round.html#Text">Text</a> = </li>
+									<li>Round8.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Round8.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Round8.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>Round8.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>Round8.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>Round8.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>Round9.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Round9.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>Round9.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>Round9.<a href="./Round.html#Text">Text</a> = </li>
+									<li>Round9.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Round9.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Round9.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>Round9.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>Round9.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>Round9.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li></li>
+									<li>;ファイト表示の設定</li>
+									<li><a href="./Round.html#Fight.Time">Fight.Time</a> = </li>
+									<li>Fight.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Fight.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Fight.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li>Fight.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li><a href="./Round.html#Fight.SndTime">Fight.SndTime</a> = </li>
+									<li></li>
+									<li><a href="./Round.html#Ctrl.Time">Ctrl.Time</a> = </li>
+									<li></li>
+									<li>;KO,DKO,TO sprなどの表示開始時間</li>
+									<li><a href="./Round.html#KO.Time">KO.Time</a> = 0</li>
+									<li>;KO,DKO,TO sndの再生開始時間</li>
+									<li><a href="./Round.html#KO.SndTime">KO.SndTime</a> = 0</li>
+									<li></li>
+									<li>;KO表示の設定</li>
+									<li>KO.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>KO.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>KO.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li>KO.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li>KO.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li></li>
+									<li>;Double KO表示の設定</li>
+									<li>DKO.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>DKO.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>DKO.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li>DKO.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li>DKO.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li></li>
+									<li>;Time Over表示の設定</li>
+									<li>TO.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>TO.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>TO.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>TO.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li>TO.<a href="./Round.html#snd">Snd</a> = ,</li>
+									<li></li>
+									<li><a href="./Round.html#Slow.Time">Slow.Time</a> = 60</li>
+									<li></li>
+									<li><a href="./Round.html#Over.Waittime">Over.Waittime</a> = 45</li>
+									<li><a href="./Round.html#Over.hittime">Over.hittime</a> = 10</li>
+									<li><a href="./Round.html#Over.Wintime">Over.Wintime</a> = 45</li>
+									<li><a href="./Round.html#Over.Time">Over.Time</a> = 210</li>
+									<li></li>
+									<li>;win,win2,drawのsprなどの表示開始時間</li>
+									<li><a href="./Round.html#Win.Time">Win.Time</a> = 0</li>
+									<li></li>
+									<li>;シングルの勝利時</li>
+									<li>Win.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>Win.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>Win.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>Win.<a href="./Round.html#Text">Text</a> = </li>
+									<li>Win.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>Win.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>Win.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>Win.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>Win.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>Win.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>;タッグの勝利時</li>
+									<li>win2.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>win2.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>win2.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>win2.<a href="./Round.html#Text">Text</a> = </li>
+									<li>win2.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>win2.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>win2.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>win2.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>win2.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>win2.<a href="./Round.html#Scale">Scale</a> = ,</li>
+									<li></li>
+									<li>;ドロー用</li>
+									<li>draw.<a href="./Round.html#Anim">Anim</a> = </li>
+									<li>draw.<a href="./Round.html#Spr">Spr</a> = </li>
+									<li>draw.<a href="./Round.html#Font">Font</a> = , ,</li>
+									<li>draw.<a href="./Round.html#Text">Text</a> = </li>
+									<li>draw.<a href="./Round.html#Offset">Offset</a> = ,</li>
+									<li>draw.<a href="./Round.html#DisplayTime">DisplayTime</a> = </li>
+									<li>draw.<a href="./Round.html#Facing">Facing</a> = </li>
+									<li>draw.<a href="./Round.html#VFacing">VFacing</a> = </li>
+									<li>draw.<a href="./Round.html#LayerNo">LayerNo</a> = </li>
+									<li>draw.<a href="./Round.html#Scale">Scale</a> = ,</li>
+						</ul>
+		</div>
+	</div></section>
+
+<!--
+	<section id="Version"><div class="section">
+		<h2>versionごとの変更点・バグ・エラー・仕様</h2>
+					<div>なし</div>
+			</div></section>
+-->
+
+	<section id="Parameter"><div class="section">
+		<h2>パラメーター</h2>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Slow.Time">Slow.Time = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">KO時などで、スローで表示される時間</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Match.Wins">Match.Wins = ポイント数</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">何ポイント先取で勝つかの指定します。<hr><span class="example">使用例:</span><br>　Match.Wins = 2<br>　　2ポイント先取したプレイヤー勝利です。<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Match.MaxDrawGames">Match.MaxDrawGames = ドロー数</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">何回目のドローから両者に配点するか設定します。-1に設定した場合、ドローが続く限り試合が終了しません。<hr><span class="example">使用例:</span><br>　match.maxdrawgames = 1<br>　　2回目のドロー以降両者にポイントが加えられる。<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Round.Default.Text">Round.Default.Text = 文字列</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					String				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">ラウンドコール時に文字を表示することができます。ここでは現在のラウンド数が引数に1つだけ、存在します。なので、フォーマット指定子が一つだけ使用できます。二つ以上は絶対に使わないでください。<hr><span class="example">使用例:</span><br>　Round.Default.Text = Round %i<br>　　「Round 現在のラウンド数（10進数）」が表示されます。<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Start.WaitTime">Start.WaitTime = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">ファイト画面になるまでの時間が設定できます。Roundstate = 0 の長さ。ここを0に設定した場合、Roundstate = 0 がないことになってしまうので、必ず値を設定してください。普通は30になります。流れを知りたい方は、<a href="./Round.html#RoundState">ココ</a>を見てね。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Round.Time">Round.Time = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">Roundのsprなどが表示開始時間を指定します。こだわりがない限りは、０に設定することをお勧めします。また指定できる時間は68が限界(WinMugenで確認)です。流れを知りたい方は、<a href="./Round.html#RoundState">ココ</a>を見てね。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Round.SndTime">Round.SndTime = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">Roundのsnd再生開始時間を指定します。こだわりがない限りは、０に設定することをお勧めします。また指定できる時間は69が限界(WinMugenで確認)です。流れを知りたい方は、<a href="./Round.html#RoundState">ココ</a>を見てね。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Fight.Time">Fight.Time = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">Roundstate=2に入ってから、Fightのanimなどの表示開始時間。フライングの原因になりやすいので注意１。ctrl.Timeで演出中にフライングできないように調整しましょう。流れを知りたい方は、<a href="./Round.html#RoundState">ココ</a>を見てね。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Fight.SndTime">Fight.SndTime = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">ファイト！のような音声の再生開始タイミングを調整します。だいたい０でいいはず・・・。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="KO.SndTime">KO.SndTime = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">KO！のような音声の再生開始タイミングを調整します。だいたい０でいいはず・・・。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Ctrl.Time">Ctrl.Time = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">Roundstate=2に入ってから、ctrl可能になるまでの時間。フライングの原因になりやすいので注意２。Fight.Timeの演出中に、動けるようにしないでください。だいたいココに設定する値は、Fight.Time+それで表示した演出のフレーム時間になります。流れを知りたい方は、<a href="./Round.html#RoundState">ココ</a>を見てね。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Over.WaitTime">Over.WaitTime = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">KO後Roundstate=4移行するまでの時間。試合後この時間が過ぎるとcommandが一切働かなくなります。また、短すぎるとKOやTOのsndがループして再生される可能性があります。45に設定することを推奨します。流れを知りたい方は、<a href="./Round.html#RoundState">ココ</a>を見てね。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Over.HitTime">Over.HitTime = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">試合後、この時間が過ぎるとライフが一切変動しないようになります。また、KO・DKO判定するための時間になります。10に設定することを推奨します。あと、死の宣告有効時間境界で、強制死の宣告の場合のKO表示はおそらく仕掛けた側のKOコールだそうです。流れを知りたい方は、<a href="./Round.html#RoundState">ココ</a>を見てね。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="KO.Time">KO.Time = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">KO,DKO,TOが表示開始時間が指定できます。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Win.Time">Win.Time = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">win,win2,drawのような、どちらが勝利、または引き分けたかを表示する時間です。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Over.WinTime">Over.WinTime = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">Roundstate=4入ってから配点されるまでの時間。Roundstate=4になってからこの時間がたった瞬間に勝敗がきまります。この時、勝利ステート（勝利ポーズのやつ）などに飛ばされます。45に設定することを推奨します。ここの時間で演出時の八百長をつぶせるとか。流れを知りたい方は、<a href="./Round.html#RoundState">ココ</a>を見てね。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Over.Time">Over.Time = 時間(フレーム単位)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">Roundstate=4入ってから次のラウンド移行するまでの時間。これをOver.Wintimeより小さくすると八百長が発生してしまうので注意してください。210に設定することを推奨します。流れを知りたい方は、<a href="./Round.html#RoundState">ココ</a>を見てね。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Win.Text">Win.Text = 文字列</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					string				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">勝者を表示するための場所です。ここでは、引数に勝者名のアドレスが存在します。なので、%sを使用するとそれが表示されます。そして、ここでは、2つ以上または%s以外のフォーマット指定子を使うとエラーや表示がおかしくなる可能性があるので注意してください。<hr><span class="example">使用例:</span>　Win.Text = %s Wins<br>　　「（勝者の名前） Wins」と表示されます。<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Win2.Text">Win2.Text = 文字列</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					string				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">タッグ専用でWin.Textとだいたい同じ。ですが、勝者名が引数に2つ存在します。なので、ここでは%sが2つまで使用できます。<hr><span class="example">使用例:</span>　win2.Text = %s and %s Win<br>　　「（勝者の名前１） and （勝者の名前２） Win」と表示されます。<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Pos">Pos = x座標, y座標</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">表示開始位置を設定します。<br><img src="./img/pos.png" alt="position" /><br>Pos=30,30した場合、基準点が上の画像のように右下へ30ピクセルずつ移動した場所に設定されます。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Face.Anim">Face.Anim = ActionNo</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">キャラクターのair内部[Begin Action (Number)]を指定できます。<hr><span class="example">使用例:</span><br>　P1.Face.anim = 0<br>　　キャラクターのair内部[Begin Action 0]が使用されます。<br><hr><span class="error">エラー:</span><br>WinMugen<br>displaytimeを-1に設定したり,省略したり,animのフレームを超える数値を設定した場合、バトル中にESCを押した時、Assert failure in array.c line 349が表示されMUGENが落ちます。また、トップメニュー画面でAボタンを押すとError message: ~ なエラーメッセ時が表示されMUGENが落ちます。displaytimeをanimのフレーム数に収めた場合には、ESCのエラーはなくなりますが、Aボタンのバグは消えません。とにかく、faceでanimとdisplaytimeは記述しないほうが無難です。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Face.Spr">Face.Spr = SprGrp, SprNo</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">キャラクターのsffのspr番号を指定できます。ポトレは基本的に9000グループが使用されます。<hr><span class="example">使用例:</span><br>　P1.Face.spr = 9000, 0<br>　　キャラクターのsffの9000グループの0番目が使用されます。<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Anim">Anim = ActionNo</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">AntionNoはこれが書かれているファイルと同一ファイル内の[Begin Action Number(Int型)]で書き込まれたNumberを指定します。<div style="background: url(./img/animation.gif) no-repeat 0 2em width: 120px height: 140px border: solid 1px #000"><div>anim(animation)<br>動く画像</div></div><hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Round.html#Anim">Anim</a> = 100<br>　　[Begin Action 100]がp1のbg0に読み込まれます。<br>Animは、メイン要素です。メイン要素は１つしか設定できないので注意してください。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Spr">Spr = SprGrp, SprNo</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">[Files]のsffで読み込んだスプライトファイルからどれを表示するか指定します。<div style="background: url(./img/sprite.gif) no-repeat 0 2em width: 120px height: 140px border: solid 1px #000"><div>spr(sprite)<br>静止画</div></div><hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Round.html#Spr">Spr</a> = 0, 0<br>p1のbg0にはスプライトファイルの0,0に置かれているものが読み込まれます。<br>Sprは、メイン要素です。メイン要素は１つしか設定できないので注意してください。</div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Font">Font = FontNo, FontBank, AlignMt(-1,0,1)【省略可】</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。Fontは、メイン要素です。メイン要素は１つしか設定できないので注意してください。また、場所によって、<a href="./Format.html">フォーマット指定子</a>が使用できます。FontNoは<a href="files.html">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style="background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000">fontとtext<br>文章</div><hr><span class="example">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.<a href="./Round.html#Font">Font</a> = 1, 0, 0<br>　P1.BG0.<a href="./Round.html#Text">Text</a> = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.<a href="./Round.html#Font">Font</a> = 1, 0, 0<br>　P1.BG0.<a href="./Round.html#Text">Text</a> = "悪いね☆"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Text">Text = 文字列</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					String				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。また、場所によって、<a href="./Format.html">フォーマット指定子</a>が使用できます。FontNoは<a href="files.html">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style="background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000">fontとtext<br>文章</div><hr><span class="example">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.<a href="./Round.html#Font">Font</a> = 1, 0, 0<br>　P1.BG0.<a href="./Round.html#Text">Text</a> = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.<a href="./Round.html#Font">Font</a> = 1, 0, 0<br>　P1.BG0.<a href="./Round.html#Text">Text</a> = "悪いね☆"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Snd">Snd = SndGrp, SndNo</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">ゲージがたっま時になる音をsnd=で読み込んだsndファイルから設定できます。Levelは1～9まで設定できます。so don't beat your computer when your level 5000 snds don't work (if your sound goes that high, you should just go shoot yourself).Sndは、メイン要素です。メイン要素は１つしか設定できないので注意してください。<hr><span class="example">使用例:</span><br>level1.snd = 21, 0<br>21グループの0番目の音をLevel1まで、たまったときに鳴らします。<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Offset">Offset = x座標, y座標</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int, 				</a>
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">posで設定した値を基準点として、Anim,Spr,Fontの表示位置を決めます。省略時、値はデフォルトで0,0となっています。<hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Face.html#Offset">Offset</a> = 160, 120<br>bg0の表示位置がP1.<a href="./Face.html#Pos">Pos</a>で決まった基準点から右に160ピクセル・下に120ピクセルになります。<br><img src="./img/offset.jpg" alt="offset"/></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="DisplayTime">DisplayTime = 表示時間</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">spr,anim,fontの要素を何フレーム表示するか指定します。省略された場合は、表示する要素によってデフォルト値が変わります。spr,fontの場合は1、animの場合はループするようになっています。おそらく、-1でループ・0で何も表示されなくなります。　<span class="advice">*60フレーム=1秒</span><hr><span class="example">使用例:</span><br><table><thead><tr><th>P1.BG0.<a href="./Face.html#Anim">Anim</a> = 10<br>P1.BG0.<a href="./Face.html#DisplayTime">DisplayTime</a> = 10</th><th>P1.BG0.<a href="./Face.html#Spr">Spr</a> = 10<br>P1.BG0.<a href="./Face.html#DisplayTime">DisplayTime</a> = 10</th></tr></thead><tbody><tr><td>　10フレーム経過後にループします。要するに、Begin Actionで10フレーム以上設定されていた場合、10フレーム以降のものは表示されません。</td><td>　10フレーム後に表示が消えます。ですが、ライフバーみたいなものは常に表示される仕組みになっているので、設定しても大して意味はないと思います。（たぶん）</td></tr></tbody></table></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Facing">Facing = Dir(1または-1)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">spr,animの要素を水平反転（左右反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。<hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Face.html#Facing">Facing</a> = -1<br>p1のbg0のspr,animは反転して表示されます。<br><img src="./img/facing.gif" alt="facing"/></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="VFacing">VFacing = Dir(1または-1)</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">spr,animの要素を垂直反転（上下反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。<hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Face.html#VFacing">VFacing</a> = -1<br>p1のbg0のspr,animは反転して表示されます。<br><img src="./img/vfacing.gif" alt="vfacing"/></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="LayerNo">LayerNo = No</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					int				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">spr,anim,fontの要素をどのレイヤーに表示するか指定します。<br>LayerNo = 0<br><span>背景より前～プレイヤーより奥に表示。なので、背景を上書きするキャラで見えなくなるので注意。</span>LayerNo = 1<br><span>プレイヤーより前～前景(StageでLayerNo=1に設定されたプレイヤーより手前に表示される背景)より奥に表示されます。</span>LayerNo = 2<br><span>もはや邪魔するものはなし。</span>なので、<span class="advice">基本的には2を使用</span>することをお勧めします。<hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Face.html#LayerNo">LayerNo</a> = 2<br>p1のbg0のspr,animまたはfontはレイヤー2に表示されます。<br>・LifeBarとcharacterの表示順序<br><img src="./img/layerno.gif" alt="layerno"/><br><span style="color:red">赤がLayerNo=0</span>でSprPriority=-5のものより、後に表示される。<br><span style="color:green">緑がLayerNo=1</span>でOnTop=1のものより、奥に表示される。<br><span style="color:blue">青がLayerNo=2</span>で完全に手前に表示<br>・LifeBarとStageLayerNoの表示順序<br>手前 LifeBar2 > Stage1 > LifeBar1 > LifeBar0 > Stage0背景<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="Scale">Scale = XScale, YScale</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					float, 				</a>
+								<a href="#" onclick="return false;">
+					float				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">sprやanimの表示される倍率を指定します。ひとつ注意点があってfont関連でのscaleはWinMugenではサポートされていません、MUGENRCから使用可能です。マイナスの値は、反転したような状態になります。倍率は、画像・環境の考慮なしで、だいたい-1070000～1070000ぐらいまでいけました。<br>どうでもいいことですが、変わるのは画像の大きさなので、座標とか注意してね！<hr><span class="example">使用例:</span><br>P1.BG0.<a href="./Face.html#Scale">Scale</a> = 0.5やP1.BG0.<a href="./Face.html#Scale">Scale</a> = .5（0．の0は省略できます。）<br>p1のbg0のsprまたはanimは0.5倍で表示されます。<br></div>
+				<div class="option-value">
+																				<div class="default-value">省略時のデフォルト値： </div>
+									</div>
+							</dd>
+		</dl>
+			</div></section>
+
+<!--
+	<section id="QandA"><div class="section">
+		<h2>注意事項</h2>
+						<table class="qanda">
+			<tr>
+				<th class="question">Q</th>
+				<td><div id="RoundState">RoundStateの流れ</div></td>
+			</tr>
+			<tr>
+				<th class="problem">?</th>
+				<td></td>
+			</tr>
+			<tr>
+				<th class="answer">A</th>
+				<td><table><tbody><tr><th>roundstate=0<br>黒画面からの<br>フェードイン中</th><td>start.waittime</td></tr><tr><td colspan="2">↓↓↓↓</td></tr><tr><th>roundstate=1<br>イントロ<br>～<br>ラウンドコール</th><td>イントロ<br>　+　<br>70F<br>(round.time + round.SndTime)→<br>　↓　</td><td rowspan="5">ラウンド<br>コール</td></tr><tr><td colspan="2">↓↓↓↓</td></tr><tr><th rowspan="3">roundstate=2<br>開始合図<br>～<br>試合中</th><td>fight.time | ctrl.time</td></tr><tr><td><pre>          | ↓↓↓↓</pre></td></tr><tr><td>Time 試合中</td></tr><tr><td colspan="2">↓↓↓↓</td></tr><tr><th rowspan="3">roundstate=3<br>終了合図</th><td>over.hittime | over.waittime</td></tr><tr><td><pre>             | ↓↓↓↓</pre></td></tr><tr><td>KO.time</td></tr><tr><td colspan="2">↓↓↓↓</td></tr><tr><th rowspan="2">roundstate=4<br>アウトロ<br>～<br>フェードアウト</th><td>over.wintime | over.time</td></tr><tr><td><pre>              | ↓↓↓↓</pre></td></tr><tr><td colspan="2">↓↓↓↓</td></tr><tr><th colspan="2">次のラウンド</th></tr></tbody></table></td>
+			</tr>
+			<tr>
+				<th class="quote">"</th>
+				<td>
+													<a href="" target="_blank"></a>
+																	</td>
+			</tr>
+		</table>
+					</div></section>
+
+	<section id="CodeSample"><div class="section">
+		<h2>コードサンプル</h2>
+								<h3></h3>
+			<div class="code">
+			<ul>
+							<li></li>
+						</ul>
+			</div>
+									</div></section>
+-->
+
+	<section id="Quote"><div class="section">
+		<h2>引用記事</h2>
+		<ul>
+					<li><a href="https://docs.google.com/viewer?a=v&q=cache:wk0WfSKcE1UJ:moogen.piiym.net/files/LifeBar_tutorial.doc+&hl=ja&gl=jp&pid=bl&srcid=ADGEESjMMLACx97cJMbe_PLaOB4LIuGXjLUNCCX1oBR6A31VtVR1MH9gRGgTR-gQP9aDqukKTvHoFMgSgdkWv_6LmQZxnMwFH3e8ylyHvzVehxlEv5NQ1sDesHoDQPK2ABxZxR4F0Spl&sig=AHIEtbR4dlMgJl-_ZzZAvDxFlEzHe3WnDA" target="_blank">Cabbit007's LifeBar Tutorial - RANDOM SELECT</a></li>
+					<li><a href="http://gorogorom.blog44.fc2.com/" target="_blank">ごろごろむ</a></li>
+					<li><a href="http://homepage3.nifty.com/andil/mugen/AI03.html" target="_blank">ADIのMUGENメモ・ＡＩ制作・作製の手引き　その３</a></li>
+					<li><a href="http://page.freett.com/mugen_m3/NewMugen-3.html#2-5" target="_blank">新Mugenについて - 気まぐれ猫</a></li>
+					<li><a href="http://lunatic284.blog90.fc2.com/blog-entry-5836.html" target="_blank">2010/11/24 (Wed) fight.def基礎知識その１ - lunaの倉庫</a></li>
+					<li><a href="http://lunatic284.blog90.fc2.com/blog-entry-5851.html" target="_blank">2010/11/25 (Thu) fight.def基礎知識その２ - lunaの倉庫</a></li>
+				</ul>
+	</div></section>
+
+	</div>
+			</div>
+
+﻿<footer>
+	<div class="footer">
+		<nav>
+			<ul>
+				<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
+				<li><a href="mailto:suteadddayov+MUGEN@gmail.com">E-mail</a></li>
+				<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
+				<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>
+				<li><a href="/">（*´ω｀*）</a></li>
+			</ul>
+		</nav>
+	</div>
+</footer>
+</body>
+</html>

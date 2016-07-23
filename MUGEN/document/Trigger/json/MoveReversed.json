@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "MoveReversed",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "MoveReversed",
+	"summary": "<p>プレイヤーの攻撃が相手の反撃を受けたかどうかを返します。</p>",
+	"syntax":[
+		"MoveReversed"
+	],
+
+	"description": "<p>攻撃判定のあるステートでのみ効果のあるトリガーで、プレイヤーの攻撃が相手の反撃を受けたとき(ReversalDefが定義された攻撃判定枠に接触したとき)、0以外の値を返します。Win版から追加されたトリガーで、このトリガーを使用しているキャラは、Dos版で使うとエラーが出ます。書式: MoveReversed概要: なし戻り値の型: int詳細:MoveContactを参照のこと。使用例:Trigger1 = MoveReversed攻撃が反撃された場合のトリガー。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

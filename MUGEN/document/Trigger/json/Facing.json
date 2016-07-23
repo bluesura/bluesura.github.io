@@ -1,0 +1,33 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "Facing",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "Facing",
+	"summary": "<p>プレイヤーの向きを返します。</p>",
+	"syntax":[
+		"Facing"
+	],
+
+	"description": "<p>プレイヤーが右向きのときに1、左向きのときに-1を返します。書式: Facing概要: なし戻り値の型: int使用例:Trigger = Facing = -1プレイヤーが左向きのときのトリガー。</p>",
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

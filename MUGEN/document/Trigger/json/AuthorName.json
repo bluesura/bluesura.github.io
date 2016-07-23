@@ -1,0 +1,34 @@
+{
+	"page": {
+		"title": "MUGEN Trigger",
+		"subtitle": "AuthorName",
+		"target": "",
+		"category": ["名前", "製作者名は何ですか？"],
+		"version": "2002.04.14",
+		"type": "document",
+		"level": "3"
+	},
+	"category": "trigger",
+
+	"trigger": "AuthorName",
+	"summary": "<p>キャラクターの作者名があっているかどうかを返します。</p>",
+	"syntax":[
+		"AuthorName = \"作者名\"",
+		"AuthorName != \"作者名\""
+	],
+
+	"description": "<p>リダイレクトキーワード\"enemy,\"、\"partner,\"等と組み合わせて使用されることが多いです。戻り値の型: boolean int (1 or 0)</p>",
+
+	"code_sample": [
+		{
+			"title": "製作者名がSuikaさんの場合のトリガー",
+			"code": [
+				"Trigger1 = Authorname = \"Suika\""
+			]
+		}
+	],
+
+	"quote": [
+		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+	]
+}

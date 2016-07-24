@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
-  <title>MUGEN LifeBar - Name = sura</title>
+  <title>MUGEN Lifebar - Name = sura</title>
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
   <link rel="icon" href="/media/img/icon-192x192.png" sizes="192x192" />
   <link rel="icon" sizes="192x192" href="/media/img/icon-192x192.png">
@@ -21,6 +21,7 @@
   <meta name="generator" content="Smarty" />
   <meta name="description" content="" />
   <meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻" />
+  <meta name="mobile-web-app-capable" content="yes">
   <!-- 「駄目ね、全然駄目だわ」 -->
 
 <!-- ジョインジョイン OGP -->
@@ -35,18 +36,29 @@
 
   <link rel="author" title="sura" href="https://twitter.com/bluesura" />
 
-  <link rel="stylesheet" href="/lib/css/material.css?20160722173155">
+  <link rel="stylesheet" href="/lib/css/material.css?20160724152301">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
   <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script type="text/javascript" src="/lib/js/code.min.js?20160722173155"></script>
-  <script type="text/javascript" src="/lib/js/js-ctrl.js?20160722173155"></script>
-  <script type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js?20160722173155"></script>
-  <script type="text/javascript" src="/lib/js/isMobile.min.js?20160722173155"></script>
+  <script type="text/javascript" src="/lib/js/code.min.js?20160724152301"></script>
+  <script type="text/javascript" src="/lib/js/js-ctrl.js?20160724152301"></script>
+  <script type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js?20160724152301"></script>
+  <script type="text/javascript" src="/lib/js/isMobile.min.js?20160724152301"></script>
 
 </head>
 
 <body>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
+<!-- End Google Tag Manager -->
+
 
 <div id="container">
 <div id="container-inner">
@@ -54,7 +66,7 @@
 	<div id="blog-title-inner">
 
 		<div id="blog-title-content">
-			<h1 id="title"><a href="./">MUGEN LifeBar</a></h1>
+			<h1 id="title"><a href="./">MUGEN Lifebar</a></h1>
 
 			<div id="blog-description"><div class="notice">MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div></div>
 		</div>
@@ -65,119 +77,64 @@
 <div id="content" class="hfeed"><div id="content-inner">
 
 	<div id="wrapper"><div id="main">
-
 <div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
 	<header class="entry-header"><div>
+
+	<div class="entry-title"><div>
+	<h1 id=""></h1>
+	</div></div>
 
 </div></header>
 
 	<div class="entry-content">
-﻿<h1 id="BeginAction">[Begin Action 整数]</h1>
-<p class="description">[Begin Action]はグループの中に書き込みさえしなければ、ファイル内のどこにでも定義することができます。基本的な設定は<a href="http://www.elecbyte.com/wiki/index.php/AIR/ja" target="_blank">ココ</a>を読めば大丈夫です。あと、SAEやFighterFactoryとかで、作成したairファイルをテキストエディタで開いてコピペしたほうが幾分か楽です。</p>
 
-<dl class="parameter">
-	<dt>
-		<div>[Begin Action 整数]</div>
-		<div>スプライトのグループ番号, スプライトのイメージ番号, x座標, y座標, 表示される時間, スプライトの反転, 透過設定</div>
-	</dt>
-	<dd>
-		<ol>
-		<li>表示される時間
-		<div>スプライトの再生を停止させたい場合は、-1と記述。</div>
-		</li>
-		<li>透過設定
-		<div>
-		A 加算透過 黒いほど透過され、白いものほど透過されない<br>
-		A1 加算透過 Aより、50％ほど透過が下がっている。<br>
-		S 減算透過 黒いほど透過され、白いものは黒くなる<br>
-		AS***D*** ASの値が明るさの度合い（0～256）、Dの値が半透明率（0～256）だそうです。<br>
-		<a href="http://www.geocities.jp/byte10242048/030/air-4.html" target="_blank">透過設定実行結果の一覧</a><br>
-		</div>
-		</li>
-		<li>アニメーションをループさせる。
-		<div>Loopstartと書きこむ。</div>
-		</li>
-		</ol>
-		<hr>
-		<span class="example">使用例:</span>
-		<div class="code">
-			<ul>
-				<li>[Begin Action 10]</li>
-				<li>15,1, 0,0, 5, H  ;水平方向に反転</li>
-				<li>15,2, 0,0, 5, V  ;垂直方向に反転</li>
-				<li>15,3, 0,0, 5, VH ;180度回転</li>
-				<li>15,4, 0,0, 5, ,A   ;加算透過</li>
-				<li>15,4, 0,0, 5, H, S ;水平方向に反転、減算透過</li>
-				<li>Loopstart</li>
-				<li>15,4, 0,0, 5, ,A1  ;加算透過</li>
-				<li>15,4, 0,0, 5, ,AS128D128 ;明るさ 50% 透過率 50%</li>
-			</ul>
-		</div>
-	</dd>
-</dl>
+				<p class="description"></p>
 
-<table>
-<thead>
-<tr><th>誤った書き方</th><th>正しい書き方</th></tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<div class="code">
-	<ul>
-		<li>[Files]</li>
-		<li>Sff = fight.sff</li>
-		<li>Snd = fight.snd</li>
-		<li></li>
-		<li>[Begin Action 1]</li>
-		<li>;設定は省略</li>
-		<li>;書き込めるが[LifeBar]</li>
-		<li>;までの間違った設定は無視され</li>
-		<li>;エラーとなります。</li>
-		<li>;[Files]以外の所ではエラーはでませんが</li>
-		<li>;設定が無視されます。</li>
-		<li></li>
-		<li>Font1 = font/jg.fnt</li>
-		<li>Font2 = font/num1.fnt</li>
-		<li>Font3 = font/name1.fnt</li>
-		<li>FightFx.Sff = fightfx.sff</li>
-		<li>FightFx.Air = fightfx.air</li>
-		<li></li>
-		<li>[LifeBar]</li>
-		<li>P1.<a href="./LifeBar.html#Pos">Pos</a></li>
-		<li>P1.BG0.<a href="./LifeBar.html#Offset">Offset</a></li>
-		<li>P1.BG0.<a href="./LifeBar.html#Spr">Spr</a></li>
-		<li>...</li>
-	</ul>
-</div>
-</td>
-<td>
-<div class="code">
-	<ul>
-		<li>[Files]</li>
-		<li>Sff = fight.sff</li>
-		<li>Snd = fight.snd</li>
-		<li>Font1 = font/jg.fnt</li>
-		<li>Font2 = font/num1.fnt</li>
-		<li>Font3 = font/name1.fnt</li>
-		<li>FightFx.Sff = fightfx.sff</li>
-		<li>FightFx.Air = fightfx.air</li>
-		<li></li>
-		<li>[Begin Action 1]</li>
-		<li>;設定は省略</li>
-		<li>;このように間に書かなければならない</li>
-		<li></li>
-		<li>[LifeBar]</li>
-		<li>P1.<a href="./LifeBar.html#Pos">Pos</a></li>
-		<li>P1.BG0.<a href="./LifeBar.html#Offset">Offset</a></li>
-		<li>P1.BG0.<a href="./LifeBar.html#Spr">Spr</a></li>
-		<li>...</li>
-	</ul>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
+
+	<section id="Parameter"><div class="section">
+		<h2>パラメーター</h2>
+				<dl class="parameter">
+			<dt>
+				<span class="main" id="W">W = W</span>
+				<span class="type">
+								<a href="#" onclick="return false;">
+					W				</a>
+								</span>
+			</dt>
+			<dd>
+				<div class="description">W</div>
+				<div class="option-value">
+										<div class="range-value">
+												<span class="min-value">最小値: W</span>
+												,												<span class="max-value">最大値: W</span>
+											</div>
+															<div class="possible-value">選択可能な文字列: W</div>
+															<div class="default-value">省略時のデフォルト値： W</div>
+									</div>
+								<div class="media">
+										<div class="video-group">
+												<div class="video">
+							<div class="title">W</div>
+							<video controls="controls">
+								<source src="./video/W.mp4" type="video/mp4" />
+								<source src="./video/W.webm" type="video/webm" />
+								<source src="./video/W.ogg" type="video/ogg" />
+								<a href="./video/W.mp4">動画</a>
+							</video>
+						</div>
+											</div>
+															<div class="image-group">
+												<div class="image">
+							<div class="title">W</div>
+							<div class="image-frame"><img src="./img/W" alt="W" width="W" height="W" /></div>
+						</div>
+											</div>
+									</div>
+							</dd>
+		</dl>
+			</div></section>
+
+
 
 	</div>
 </article></div>
@@ -189,7 +146,7 @@
 <div class="menu">
 	
 			<label for="menu_bar01">+ State Controller Reference</label><input type="checkbox" id="menu_bar01" class="accordion" /><ul id="links01">
-			<li><a href="/MUGEN/document/State/index.html">Top Page</a></li>
+			<li><a href="/MUGEN/document/State/">Top Page</a></li>
 			<li><a href="/MUGEN/document/State/A.html">A</a></li>
 			<li><a href="/MUGEN/document/State/AfterImage.html">AfterImage</a></li>
 			<li><a href="/MUGEN/document/State/AfterImageTime.html">AfterImageTime</a></li>
@@ -289,7 +246,7 @@
 			<li><a href="/MUGEN/document/State/Zoom.html">Zoom</a></li>
 			</ul>
 			<label for="menu_bar02">+ Trigger Reference</label><input type="checkbox" id="menu_bar02" class="accordion" /><ul id="links02">
-			<li><a href="/MUGEN/document/Trigger/index.html">Top Page</a></li>
+			<li><a href="/MUGEN/document/Trigger/">Top Page</a></li>
 			<li><a href="/MUGEN/document/Trigger/Abs.html">Abs</a></li>
 			<li><a href="/MUGEN/document/Trigger/Acos.html">Acos</a></li>
 			<li><a href="/MUGEN/document/Trigger/AILevel.html">AILevel</a></li>
@@ -433,8 +390,8 @@
 			<li><a href="/MUGEN/document/Trigger/WinPerfect.html">WinPerfect</a></li>
 			<li><a href="/MUGEN/document/Trigger/WinTime.html">WinTime</a></li>
 			</ul>
-			<label for="menu_bar03">+ LifeBar Reference</label><input type="checkbox" id="menu_bar03" class="accordion" /><ul id="links03">
-			<li><a href="/MUGEN/document/Lifebar/index.html">Top Page</a></li>
+			<label for="menu_bar03">+ Lifebar Reference</label><input type="checkbox" id="menu_bar03" class="accordion" /><ul id="links03">
+			<li><a href="/MUGEN/document/Lifebar/">Top Page</a></li>
 			<li><a href="/MUGEN/document/Lifebar/Combo.html">Combo</a></li>
 			<li><a href="/MUGEN/document/Lifebar/Face.html">Face</a></li>
 			<li><a href="/MUGEN/document/Lifebar/FightFx.html">FightFx</a></li>

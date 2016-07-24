@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-22 13:45:21
+<?php /* Smarty version Smarty-3.1.12, created on 2016-07-24 16:48:00
          compiled from ".\..\Template\base.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:700351ec0171a88c40-09866654%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5ac4a276d869311c2ba7116783143ef3c7ab1414' => 
     array (
       0 => '.\\..\\Template\\base.tpl',
-      1 => 1469195117,
+      1 => 1469375735,
       2 => 'file',
     ),
   ),
@@ -24,8 +24,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_51ec0171b07443_74798507')) {function content_51ec0171b07443_74798507($_smarty_tpl) {?><!DOCTYPE html>
-<html lang="ja-JP" prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
-<head>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
 <?php echo $_smarty_tpl->getSubTemplate ("./head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 </head>

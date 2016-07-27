@@ -48,6 +48,7 @@ array_push($sidebar, "</ul>");
 /****************************************************/
 $PROTOCOL   = "https";
 $DOMAIN     = "bluesura.github.io";
+$MUGEN_PATH = "/MUGEN/document";
 $URL        = $PROTOCOL."://".$DOMAIN;
 $MAIN_TITLE = "Name = SURA";
 $PATH_LIST  = [];
@@ -107,7 +108,7 @@ $path = "/State/";
 
 $smarty->assign('content', $categorie);
 file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/index.tpl'));
-array_push($PATH_LIST, $URL.$path);
+array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
 /*
  ステートコントローラー
@@ -134,7 +135,7 @@ for ($i = 0; $i < $loop_end; $i++) {
 
   $filename = $state_name.".html";
   file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
-  array_push($PATH_LIST, $URL.$path.$filename);
+  array_push($PATH_LIST, $URL.$MUGEN_PATH.$path.$filename);
 }
 
 
@@ -178,7 +179,7 @@ $path = "/Trigger/";
 
 $smarty->assign('content', $categorie);
 file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/index.tpl'));
-array_push($PATH_LIST, $URL.$path);
+array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
 
 /*
@@ -200,7 +201,7 @@ for ($i = 0; $i < $loop_end; $i++) {
 
   $filename = $trigger_name.".html";
   file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
-  array_push($PATH_LIST, $URL.$path.$filename);
+  array_push($PATH_LIST, $URL.$MUGEN_PATH.$path.$filename);
 }
 
 
@@ -244,7 +245,7 @@ $path = "/Lifebar/";
 
 $smarty->assign('content', $categorie);
 file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/htmlbase.tpl'));
-array_push($PATH_LIST, $URL.$path);
+array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
 
 /*
@@ -274,7 +275,7 @@ for ($i = 0; $i < $loop_end; $i++) {
 
   $filename = $name.".html";
   file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
-  array_push($PATH_LIST, $URL.$path.$filename);
+  array_push($PATH_LIST, $URL.$MUGEN_PATH.$path.$filename);
 }
 
 
@@ -297,7 +298,7 @@ for ($i = $loop_start; $i < $loop_end; $i++) {
 
   $filename = $name.".html";
   file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
-  array_push($PATH_LIST, $URL.$path.$filename);
+  array_push($PATH_LIST, $URL.$MUGEN_PATH.$path.$filename);
 }
 
 /*sitemap*/

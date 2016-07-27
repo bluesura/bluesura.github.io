@@ -35,7 +35,7 @@ $loop_end = count($list);
 for ($i = 0; $i < $loop_end; $i++) {
   array_push($sidebar, "<li><a href=\"/MUGEN/document/Lifebar/".$list[$i].".html\">".$list[$i]."</a></li>");
 }
-$list = array("BeginAction", "MakeFont");
+$list = array("BeginAction", "Format", "MakeFont");
 $loop_end = count($list);
 for ($i = 0; $i < $loop_end; $i++) {
   array_push($sidebar, "<li><a href=\"/MUGEN/document/Lifebar/".$list[$i].".html\">".$list[$i]."</a></li>");
@@ -249,6 +249,24 @@ array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
 
 /*
+ 
+*/
+$categorie["html"] = file_get_contents("./../Lifebar/htm/Format.htm");
+$categorie["main_title"] = $MAIN_TITLE;
+$categorie["page_category"] = "Lifebar";
+$categorie["page_title"] = $PAGE_TITLE;
+$categorie["page"]["level"] = "2";
+$categorie["categories"] = $categories;
+$categorie["sidebar"] = $sidebar;
+$filename = "Format.html";
+$path = "/Lifebar/";
+
+$smarty->assign('content', $categorie);
+file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/htmlbase.tpl'));
+array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
+
+
+/*
  タイトルの処理
 */
 $loop_start = 0;
@@ -297,8 +315,9 @@ for ($i = $loop_start; $i < $loop_end; $i++) {
   $smarty->assign('content', $categorie);
 
   $filename = $name.".html";
-  file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
   array_push($PATH_LIST, $URL.$MUGEN_PATH.$path.$filename);
+
+  file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
 }
 
 /*sitemap*/

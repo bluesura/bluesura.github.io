@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+<html lang="ja-JP" prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
+<head>
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
-  <title>IsHomeTeam | MUGEN Trigger - Name = sura</title>
+  <title>MUGEN Lifebar - Name = sura</title>
   <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN">
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
   <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
@@ -48,24 +48,13 @@
 
 <body>
 
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
-<!-- End Google Tag Manager -->
-
-
 <div id="container">
 <div id="container-inner">
 <header id="blog-title" class="header">
 	<div id="blog-title-inner">
 
 		<div id="blog-title-content">
-			<h1 id="title"><a href="./">MUGEN Trigger</a></h1>
+			<h1 id="title"><a href="./">MUGEN Lifebar</a></h1>
 
 			<div id="blog-description"><div class="notice">MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div></div>
 		</div>
@@ -76,68 +65,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div id="content" class="hfeed"><div id="content-inner">
 
 	<div id="wrapper"><div id="main">
-<div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
-	<header class="entry-header">
-	<div>
 
-	<div class="entry-title"><div>
-	<h1 id="IsHomeTeam">IsHomeTeam</h1>
-	<div class="category"> >  | 実装されたバージョン: 2002.04.14 | </div>
-</div></div>
+<div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
+	<header class="entry-header"><div>
 
 </div></header>
+
 	<div class="entry-content">
+﻿<div>ここでは参考程度に書いているので、c言語のprintfフォーマットとかで検索した方がよくわかると思います。</div>
+<table>
+<thead><tr><th>フォーマット</th><th>出力</th></tr></thead>
+<tbody>
+<tr><td>%c</td><td>１文字だけ出力する。</td></tr>
+<tr><td>%d</td><td>10進整数 (符号付)で出力する。</td></tr>
+<tr><td>%e</td><td>浮動小数点数 (指数形式)で出力する。</td></tr>
+<tr><td>%f</td><td>浮動小数点数 (小数形式)で出力する。</td></tr>
+<tr><td>%g</td><td>浮動小数点数で出力する。</td></tr>
+<tr><td>%i</td><td>%dと同じ？で出力する。</td></tr>
+<tr><td>%n</td><td>バグが発生しやすい、危険なので使用しないでください。詳しく知りたい方は、「%nバグ」で検索してください。</td></tr>
+<tr><td>%o</td><td>8進整数</td></tr>
+<tr><td>%p</td><td>アドレスを16進数で出力する。</td></tr>
+<tr><td>%s</td><td>文字列を出力する。</td></tr>
+<tr><td>%u</td><td>10進整数 (符号無)で出力する。</td></tr>
+<tr><td>%x</td><td>16進整数で出力する。</td></tr>
+<tr><td>%%</td><td>%を出力する。</td></tr>
+</tbody>
+</table>
+<div>
+フォーマット指定子の補足
 
-
-
-﻿	<section id="summary"><div class="summary section">
-		<h2>概要</h2>
-		<p>プレイヤーのチームがホームかどうかを返します。</p>
-	</div></section>
-
-	<section id="syntax"><div class="syntax section">
-		<h2>構文</h2>
-		<div class="code"><code><ul>
-					<li>IsHomeTeam</li>
-				</ul></code></div>
-	</div></section>
-
-		<section id="description"><div class="description section">
-		<h2>詳細</h2>
-		<div>
-			<p>プレイヤーのチームが「ホームチーム」とみなされれば1を返します。アーケードモードではCPUが、対戦時はP1側（左側）が「ホームチーム」とみなされるそうです。用途不明。書式: IsHomeTeam概要: なし戻り値の型: boolean int (1 or 0)使用例: なし</p>
-		</div>
-
-					</div></section>
-	
-
-﻿	
-
-
-
-﻿	
-
-﻿		<section id="CodeSample"><div class="section">
-		<h2>コードサンプル</h2>
-			<div>
-									<div class="code"><code><ul>
-							<li></li>
-						</ul></code></div>
-
-			</div>
-				</div></section>
-	
-
-﻿		<section id="Quote"><div class="section">
-		<h2>引用記事</h2>
-		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
-				</ul>
-	</div></section>
-	
-
+細かい補足
+<ul>
+	<li>TextでLayerNoを使用すると表示されない？</li>
+	<li>MidでTextは見えないかもしれない</li>
+	<li>Frontだとかけて見える可能性あり</li>
+	<li>PowerBarではテキストは使用できない</li>
+	<li>フォーマット指定子は複数指定できる。想定以上書いた場合は、何の値が書き込まれるかは謎。</li>
+%c,%s,%p,%nはMUGENが落ちる原因になりやすいので、取り扱いには注意。
+</ul>
+</div>
+<div>
+[補足]基本的にライフバーで、フォーマット指定子が利用できるのは、
+[Combo]の「Text.Text, team1.Text.Text, team2.Text.Text」
+[Round]の「round.default.text, win.text, win2.text」
+</div>
 	</div>
 </article></div>
+
 	</div></div>
 
 

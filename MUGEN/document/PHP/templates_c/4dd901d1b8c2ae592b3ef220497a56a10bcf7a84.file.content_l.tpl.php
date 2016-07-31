@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-24 05:11:51
+<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 09:14:13
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\LifeBar\content_l.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:239457944e175a0dd6-65375689%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4dd901d1b8c2ae592b3ef220497a56a10bcf7a84' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\LifeBar\\content_l.tpl',
-      1 => 1452702576,
+      1 => 1469955950,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_57944e17719d30_51035182',
   'variables' => 
   array (
     'content' => 0,
@@ -27,8 +29,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'quote' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_57944e17719d30_51035182',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_57944e17719d30_51035182')) {function content_57944e17719d30_51035182($_smarty_tpl) {?>				<p class="description"><?php echo $_smarty_tpl->tpl_vars['content']->value['description'];?>
 </p>
@@ -132,7 +132,7 @@ $_smarty_tpl->tpl_vars['video']->_loop = true;
 						<div class="video">
 							<div class="title"><?php echo $_smarty_tpl->tpl_vars['video']->value['title'];?>
 </div>
-							<video controls="controls">
+							<video controls="controls" onplay="ga('send','event','video','play',document.location.pathname,1);">
 								<source src="./video/<?php echo $_smarty_tpl->tpl_vars['video']->value['file'];?>
 .mp4" type="video/mp4" />
 								<source src="./video/<?php echo $_smarty_tpl->tpl_vars['video']->value['file'];?>

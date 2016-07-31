@@ -56,7 +56,8 @@
 
 	<nav id="footer-sub">
 		<ul>
-			<li><a href="/">©Name = sura</a></li>
+			<li><a href="https://twitter.com/bluesura" class="vcard author" rel="author">SURA</a></li>
+			<li><a href="/">TopPage</a></li>
 			<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
 			<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
 			<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>

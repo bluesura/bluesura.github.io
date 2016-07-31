@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-24 05:11:49
+<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 03:30:39
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2158057944e15439067-20822760%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c88ca6311f74a3a49603b8bcfd9a4e5c490e92d3' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\footer.tpl',
-      1 => 1469203231,
+      1 => 1469935688,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.12',
   'unifunc' => 'content_57944e1543d537_66825838',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_57944e1543d537_66825838')) {function content_57944e1543d537_66825838($_smarty_tpl) {?>﻿<footer id="footer">
 	<div id="footer-inner">
@@ -77,7 +77,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 	<nav id="footer-sub">
 		<ul>
-			<li><a href="/">©Name = sura</a></li>
+			<li><a href="https://twitter.com/bluesura" class="vcard author" rel="author">SURA</a></li>
+			<li><a href="/">TopPage</a></li>
 			<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
 			<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
 			<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>

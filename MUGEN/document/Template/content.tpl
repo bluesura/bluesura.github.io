@@ -27,5 +27,7 @@
 
 {include file="./content/Quote.tpl"}
 
+<div>{if $content.page.update != NULL}<span class="entry-date">最終更新日:<time datetime="{$content.page.update|replace:'.':'-'}">{$content.page.update}</time></span>{/if} | {if $content.page.contributor != NULL}<span>貢献者: {foreach $content.page.contributor as $contributor}{$contributor}氏{if $contributor@last != true}, {/if}{/foreach}</span>{/if}</div>
+
 	</div>
 </article></div>

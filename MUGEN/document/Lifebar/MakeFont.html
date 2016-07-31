@@ -114,7 +114,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 										<div class="video-group">
 												<div class="video">
 							<div class="title">W</div>
-							<video controls="controls">
+							<video controls="controls" onplay="ga('send','event','video','play',document.location.pathname,1);">
 								<source src="./video/W.mp4" type="video/mp4" />
 								<source src="./video/W.webm" type="video/webm" />
 								<source src="./video/W.ogg" type="video/ogg" />
@@ -134,6 +134,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			</div></section>
 
 
+
+<div> | </div>
 
 	</div>
 </article></div>
@@ -420,9 +422,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
+<iframe id="survey" onclick="console.log('survey');ga('send','event','survey','click',document.location.pathname,1);" src="https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+<iframe id="feedback" onclick="ga('send','event','feedback','click',document.location.pathname,1);" src="https://docs.google.com/forms/d/1dafgc1TPGiLt4h9Mx_nlikml4QxKWL8a4PkMBCOMqi8/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+
 <div><strong>問題点があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。また、ページ編集にご協力いただける方を募集しております。お気軽にご連絡下さい。Please report any problems to the <a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a> · <a href="https://twitter.com/bluesura">Twitter</a> · <a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>. In addition, we are looking for the person who cooperate with page editing and translation. Please do not hesitate to contact me.</strong></div>
 
-<iframe src="https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
 </div>
 	</div>
 
@@ -488,7 +492,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 	<nav id="footer-sub">
 		<ul>
-			<li><a href="/">©Name = sura</a></li>
+			<li><a href="https://twitter.com/bluesura" class="vcard author" rel="author">SURA</a></li>
+			<li><a href="/">TopPage</a></li>
 			<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
 			<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
 			<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>

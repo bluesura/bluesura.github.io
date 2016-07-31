@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-24 17:14:52
+<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 13:47:46
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:311035794f78ca758a4-59740298%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:4064579e018216f263-15503570%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '00a372bc34ee85aa36a99f03597f6ced85b03ba6' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1469380387,
+      1 => 1469972786,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '311035794f78ca758a4-59740298',
+  'nocache_hash' => '4064579e018216f263-15503570',
   'function' => 
   array (
   ),
@@ -21,20 +21,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5794f78cb20c79_52964466',
+  'unifunc' => 'content_579e01822339a7_78735780',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5794f78cb20c79_52964466')) {function content_5794f78cb20c79_52964466($_smarty_tpl) {?>  <meta charset="UTF-8" />
+<?php if ($_valid && !is_callable('content_579e01822339a7_78735780')) {function content_579e01822339a7_78735780($_smarty_tpl) {?>  <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
 <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']=="1"){?>
-  <title>Name = sura</title>
+  <title itemprop="headline">Name = sura</title>
 <?php }elseif($_smarty_tpl->tpl_vars['content']->value['page']['level']=="2"){?>
-  <title><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page_title'], ENT_QUOTES, 'ISO-8859-1', true);?>
+  <title itemprop="headline"><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page_title'], ENT_QUOTES, 'ISO-8859-1', true);?>
  - Name = sura</title>
 <?php }elseif($_smarty_tpl->tpl_vars['content']->value['page']['level']=="3"){?>
-  <title><?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
+  <title itemprop="headline"><?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
  <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['category'][1]){?>【<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page']['category'][1], ENT_QUOTES, 'ISO-8859-1', true);?>
 】 <?php }?>| <?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page_title'], ENT_QUOTES, 'ISO-8859-1', true);?>
  - Name = sura</title>

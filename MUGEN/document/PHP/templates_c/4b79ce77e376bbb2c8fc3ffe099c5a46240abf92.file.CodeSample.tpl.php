@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 09:14:11
+<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 10:06:46
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content\CodeSample.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2695757944e15b97e41-14206893%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4b79ce77e376bbb2c8fc3ffe099c5a46240abf92' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content\\CodeSample.tpl',
-      1 => 1469956446,
+      1 => 1469959059,
       2 => 'file',
     ),
   ),
@@ -67,7 +67,7 @@ $_smarty_tpl->tpl_vars['youtube']->_loop = true;
 					<h4><?php echo $_smarty_tpl->tpl_vars['video']->value['title'];?>
 </h4>
 					<div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;"><iframe style="position: absolute; top: 0;  left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/<?php echo $_smarty_tpl->tpl_vars['youtube']->value['file'];?>
-" frameborder="0" onclick="console.log('play')" allowfullscreen></iframe></div>
+" frameborder="0" allowfullscreen></iframe></div>
 					<?php } ?>
 				</div>
 				<?php }?>
@@ -81,7 +81,7 @@ $_smarty_tpl->tpl_vars['video']->_loop = true;
 					<h4><?php echo $_smarty_tpl->tpl_vars['video']->value['title'];?>
 </h4>
 					<div class="video image-frame">
-						<video controls="controls" onplay="ga('send','event','video','play',document.location.pathname,1);">
+						<video controls="controls">
 							<source src="https://dl.dropboxusercontent.com/u/103321845/www/MUGEN/document/State/media/video/<?php echo $_smarty_tpl->tpl_vars['video']->value['file'];?>
 .mp4" type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'" />
 						</video>

@@ -13,7 +13,7 @@
 	</div></section>
 
 	{if $content.description != NULL}
-	<section id="description"><div class="description section">
+	<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
 			{$content.description}

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 08:02:27
+<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 14:45:26
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\LifeBar\LifeBar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2995757944e175098d9-69069922%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '518d8b728492eddf4b2f403ac871861483ef01bc' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\LifeBar\\LifeBar.tpl',
-      1 => 1469952107,
+      1 => 1469976296,
       2 => 'file',
     ),
   ),
@@ -38,9 +38,12 @@ px;"<?php } ?>><div<?php  $_smarty_tpl->tpl_vars['array'] = new Smarty_Variable;
 foreach ($_from as $_smarty_tpl->tpl_vars['array']->key => $_smarty_tpl->tpl_vars['array']->value){
 $_smarty_tpl->tpl_vars['array']->_loop = true;
 ?> style="height:<?php echo $_smarty_tpl->tpl_vars['array']->value["height"];?>
-px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"<?php } ?>>
+px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"<?php } ?>><?php if ($_smarty_tpl->tpl_vars['content']->value['images']!=null){?><span itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display: none;"/><meta itemprop="url" content="https://bluesura.github.io/MUGEN/document/LifeBar/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
+"><meta itemprop="width" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['width'];?>
+"><meta itemprop="height" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['height'];?>
+"></span><?php }?>
 
-	<div class="entry-title"><div>
+	<div class="entry-title" itemprop="name"><div>
 	<h1 id="<?php echo $_smarty_tpl->tpl_vars['content']->value['title'];?>
 "><?php echo $_smarty_tpl->tpl_vars['content']->value['group'];?>
 </h1>
@@ -59,7 +62,7 @@ px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"<?php } ?>>
 <?php echo $_smarty_tpl->getSubTemplate ("./content_l.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
-<div><?php if ($_smarty_tpl->tpl_vars['content']->value['page']['update']!=null){?><span class="entry-date">最終更新日:<time datetime="<?php echo smarty_modifier_replace($_smarty_tpl->tpl_vars['content']->value['page']['update'],'.','-');?>
+<div><span>公開日:<time itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['update']!=null){?><span>最終更新日:<time class="updated" itemprop="dateModified" datetime="<?php echo smarty_modifier_replace($_smarty_tpl->tpl_vars['content']->value['page']['update'],'.','-');?>
 "><?php echo $_smarty_tpl->tpl_vars['content']->value['page']['update'];?>
 </time></span><?php }?> | <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['contributor']!=null){?><span>貢献者: <?php  $_smarty_tpl->tpl_vars['contributor'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['contributor']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['content']->value['page']['contributor']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}

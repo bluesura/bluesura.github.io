@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 09:14:11
+<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 10:06:46
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content\Parameter.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:334557944e157af781-06661810%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6556772a1b3e03b1884015ad2e633f9ec946283f' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content\\Parameter.tpl',
-      1 => 1469955908,
+      1 => 1469959069,
       2 => 'file',
     ),
   ),
@@ -187,7 +187,7 @@ $_smarty_tpl->tpl_vars['video']->_loop = true;
 							<div class="title"><a href="https://dl.dropboxusercontent.com/u/103321845/www/MUGEN/document/State/media/video/<?php echo $_smarty_tpl->tpl_vars['video']->value['file'];?>
 .mp4"><?php echo $_smarty_tpl->tpl_vars['video']->value['title'];?>
 </a></div>
-							<video controls="controls" onplay="ga('send','event','video','play',document.location.pathname,1);">
+							<video controls="controls">
 								<source src="https://dl.dropboxusercontent.com/u/103321845/www/MUGEN/document/State/media/video/<?php echo $_smarty_tpl->tpl_vars['video']->value['file'];?>
 .mp4" type="video/mp4" />
 							</video>

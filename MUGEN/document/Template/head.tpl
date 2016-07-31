@@ -4,11 +4,11 @@
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
 {if $content.page.level == "1"}
-  <title>Name = sura</title>
+  <title itemprop="headline">Name = sura</title>
 {elseif $content.page.level == "2"}
-  <title>{$content.page_title|escape} - Name = sura</title>
+  <title itemprop="headline">{$content.page_title|escape} - Name = sura</title>
 {elseif $content.page.level == "3"}
-  <title>{$content.page_subtitle} {if $content.page.category[1]}【{$content.page.category[1]|escape}】 {/if}| {$content.page_title|escape} - Name = sura</title>
+  <title itemprop="headline">{$content.page_subtitle} {if $content.page.category[1]}【{$content.page.category[1]|escape}】 {/if}| {$content.page_title|escape} - Name = sura</title>
 {/if}
   <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN">
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">

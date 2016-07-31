@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" itemscope itemtype="http://schema.org/Article">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
 {include file="./head.tpl"}
 </head>
@@ -17,11 +17,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 {/literal}
 
-<div id="container">
+<div id="container"><div id="content-inner">
 <div id="container-inner">
 {include file="./header.tpl"}
 
-<div id="content" class="hfeed"><div id="content-inner">
+<div id="content" class="hfeed">
 
 	<div id="wrapper"><div id="main">
 {if $content.page_category == "State"}{include file="./content.tpl"}

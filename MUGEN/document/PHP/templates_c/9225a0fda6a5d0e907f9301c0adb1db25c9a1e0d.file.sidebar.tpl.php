@@ -1,30 +1,30 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 09:15:52
+<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 10:19:18
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\sidebar.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1409579daf6b56f582-04110504%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:6519579dd0a6ea6713-50511219%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '9225a0fda6a5d0e907f9301c0adb1db25c9a1e0d' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\sidebar.tpl',
-      1 => 1469956547,
+      1 => 1469960349,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1409579daf6b56f582-04110504',
+  'nocache_hash' => '6519579dd0a6ea6713-50511219',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_579daf6b5f1eb7_73717845',
   'variables' => 
   array (
     'content' => 0,
     'temp' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_579dd0a6f2afa3_33806680',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_579daf6b5f1eb7_73717845')) {function content_579daf6b5f1eb7_73717845($_smarty_tpl) {?>	<div id="box2" class="slideout-sidebar">
+<?php if ($_valid && !is_callable('content_579dd0a6f2afa3_33806680')) {function content_579dd0a6f2afa3_33806680($_smarty_tpl) {?>	<div id="box2" class="slideout-sidebar">
 <div class="menu">
 <?php if ($_smarty_tpl->tpl_vars['content']->value!=null){?>
 	
@@ -46,8 +46,9 @@ $_smarty_tpl->tpl_vars['temp']->_loop = true;
 
 
 
-<iframe id="survey" onclick="console.log('survey');ga('send','event','survey','click',document.location.pathname,1);" src="https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
-<iframe id="feedback" onclick="ga('send','event','feedback','click',document.location.pathname,1);" src="https://docs.google.com/forms/d/1dafgc1TPGiLt4h9Mx_nlikml4QxKWL8a4PkMBCOMqi8/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+
+<iframe id="survey" src="https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true" width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+<iframe id="feedback" src="https://docs.google.com/forms/d/1dafgc1TPGiLt4h9Mx_nlikml4QxKWL8a4PkMBCOMqi8/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
 
 <div><strong>問題点があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。また、ページ編集にご協力いただける方を募集しております。お気軽にご連絡下さい。Please report any problems to the <a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a> · <a href="https://twitter.com/bluesura">Twitter</a> · <a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>. In addition, we are looking for the person who cooperate with page editing and translation. Please do not hesitate to contact me.</strong></div>
 

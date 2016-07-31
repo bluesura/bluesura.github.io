@@ -1,4 +1,4 @@
-				<p class="description">{$content.description}</p>
+  <p class="description" itemprop="articleBody">{$content.description}</p>
 
 {if $content.sample_code != NULL}
 	<section id="SampleCode"><div class="section">

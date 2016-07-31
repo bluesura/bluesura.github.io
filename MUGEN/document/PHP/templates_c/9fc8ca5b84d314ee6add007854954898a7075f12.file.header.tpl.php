@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-24 05:11:49
+<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 14:26:03
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1884657944e153c6542-93599245%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9fc8ca5b84d314ee6add007854954898a7075f12' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\header.tpl',
-      1 => 1469199398,
+      1 => 1469975112,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_57944e153d85b5_19458998',
   'variables' => 
   array (
     'content' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_57944e153d85b5_19458998',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_57944e153d85b5_19458998')) {function content_57944e153d85b5_19458998($_smarty_tpl) {?><header id="blog-title" class="header">
 	<div id="blog-title-inner">

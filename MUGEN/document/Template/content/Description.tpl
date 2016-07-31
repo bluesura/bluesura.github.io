@@ -1,4 +1,4 @@
-﻿	<div class="description">
+﻿	<div class="description" itemprop="articleBody">
 <div>{$content.description}</div>
 
 

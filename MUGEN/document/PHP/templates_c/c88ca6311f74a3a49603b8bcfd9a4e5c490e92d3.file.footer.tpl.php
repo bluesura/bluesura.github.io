@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 03:30:39
+<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 14:26:03
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2158057944e15439067-20822760%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c88ca6311f74a3a49603b8bcfd9a4e5c490e92d3' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\footer.tpl',
-      1 => 1469935688,
+      1 => 1469975154,
       2 => 'file',
     ),
   ),
@@ -77,8 +77,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 	<nav id="footer-sub">
 		<ul>
-			<li><a href="https://twitter.com/bluesura" class="vcard author" rel="author">SURA</a></li>
-			<li><a href="/">TopPage</a></li>
+			<li itemprop="author" itemscope itemtype="http://schema.org/Person"><a href="https://twitter.com/bluesura">©<span itemprop="name">SURA</span></a></li>
+			<li itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><a href="/" itemprop="url"><span itemprop="name"><span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject" style="display:none;"><meta itemprop="url" content="https://bluesura.github.io/media/img/icon-192x192.png"><meta itemprop="width" content="192"><meta itemprop="height" content="192"></span>Name = SURA</span></a></li>
 			<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
 			<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
 			<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>

@@ -56,8 +56,8 @@
 
 	<nav id="footer-sub">
 		<ul>
-			<li><a href="https://twitter.com/bluesura" class="vcard author" rel="author">SURA</a></li>
-			<li><a href="/">TopPage</a></li>
+			<li itemprop="author" itemscope itemtype="http://schema.org/Person"><a href="https://twitter.com/bluesura">©<span itemprop="name">SURA</span></a></li>
+			<li itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><a href="/" itemprop="url"><span itemprop="name"><span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject" style="display:none;"><meta itemprop="url" content="https://bluesura.github.io/media/img/icon-192x192.png"><meta itemprop="width" content="192"><meta itemprop="height" content="192"></span>Name = SURA</span></a></li>
 			<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
 			<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
 			<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>

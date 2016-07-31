@@ -20,10 +20,10 @@
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 {/literal}
 </div>
-
 -->*}
 
-<iframe id="survey" src="https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+
+<iframe id="survey" src="https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true" width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
 <iframe id="feedback" src="https://docs.google.com/forms/d/1dafgc1TPGiLt4h9Mx_nlikml4QxKWL8a4PkMBCOMqi8/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
 
 <div><strong>問題点があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。また、ページ編集にご協力いただける方を募集しております。お気軽にご連絡下さい。Please report any problems to the <a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a> · <a href="https://twitter.com/bluesura">Twitter</a> · <a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>. In addition, we are looking for the person who cooperate with page editing and translation. Please do not hesitate to contact me.</strong></div>

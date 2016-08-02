@@ -13,7 +13,7 @@
 
 {include file="./content_l.tpl"}
 
-<div><span>公開日:<time itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | {if $content.page.update != NULL}<span>最終更新日:<time class="updated" itemprop="dateModified" datetime="{$content.page.update|replace:'.':'-'}">{$content.page.update}</time></span>{/if} | {if $content.page.contributor != NULL}<span>貢献者: {foreach $content.page.contributor as $contributor}{$contributor}氏{if $contributor@last != true}, {/if}{/foreach}</span>{/if}</div>
+<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | {if $content.page.update != NULL}<span>最終更新日:<time class="updated" itemprop="dateModified" datetime="{$content.page.update|replace:'.':'-'}">{$content.page.update}</time></span>{/if} | {if $content.page.contributor != NULL}<span>貢献者: {foreach $content.page.contributor as $contributor}{$contributor}氏{if $contributor@last != true}, {/if}{/foreach}</span>{/if}</div>
 
 	</div>
 </article></div>

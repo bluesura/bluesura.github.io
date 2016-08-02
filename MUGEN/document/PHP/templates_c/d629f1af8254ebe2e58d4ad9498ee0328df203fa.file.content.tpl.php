@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 14:45:24
+<?php /* Smarty version Smarty-3.1.12, created on 2016-08-02 14:24:15
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2500257944e155e1c36-62291719%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd629f1af8254ebe2e58d4ad9498ee0328df203fa' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content.tpl',
-      1 => 1469976316,
+      1 => 1470147771,
       2 => 'file',
     ),
   ),
@@ -82,7 +82,7 @@ px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"<?php } ?>><?p
 <?php echo $_smarty_tpl->getSubTemplate ("./content/Quote.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
-<div><span>公開日:<time itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['update']!=null){?><span>最終更新日:<time class="updated" itemprop="dateModified" datetime="<?php echo smarty_modifier_replace($_smarty_tpl->tpl_vars['content']->value['page']['update'],'.','-');?>
+<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['update']!=null){?><span>最終更新日:<time class="updated" itemprop="dateModified" datetime="<?php echo smarty_modifier_replace($_smarty_tpl->tpl_vars['content']->value['page']['update'],'.','-');?>
 "><?php echo $_smarty_tpl->tpl_vars['content']->value['page']['update'];?>
 </time></span><?php }?> | <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['contributor']!=null){?><span>貢献者: <?php  $_smarty_tpl->tpl_vars['contributor'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['contributor']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['content']->value['page']['contributor']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}

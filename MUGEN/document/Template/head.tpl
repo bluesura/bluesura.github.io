@@ -50,7 +50,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
   <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script type="text/javascript" src="/lib/js/code.min.js"></script>
+  <script type="text/javascript" src="/lib/js/code.js"></script>
   <script type="text/javascript" src="/lib/js/js-ctrl.js"></script>
   <script type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js"></script>
   <script type="text/javascript" src="/lib/js/isMobile.min.js"></script>

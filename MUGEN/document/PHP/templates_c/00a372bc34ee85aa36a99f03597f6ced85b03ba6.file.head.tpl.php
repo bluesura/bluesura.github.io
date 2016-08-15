@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 13:47:46
+<?php /* Smarty version Smarty-3.1.12, created on 2016-08-07 07:21:08
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:4064579e018216f263-15503570%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:65757a6e164702a24-16037406%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '00a372bc34ee85aa36a99f03597f6ced85b03ba6' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1469972786,
+      1 => 1470554358,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4064579e018216f263-15503570',
+  'nocache_hash' => '65757a6e164702a24-16037406',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_579e01822339a7_78735780',
+  'unifunc' => 'content_57a6e1647d45e2_00257237',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_579e01822339a7_78735780')) {function content_579e01822339a7_78735780($_smarty_tpl) {?>  <meta charset="UTF-8" />
+<?php if ($_valid && !is_callable('content_57a6e1647d45e2_00257237')) {function content_57a6e1647d45e2_00257237($_smarty_tpl) {?>  <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
@@ -71,7 +71,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
   <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script type="text/javascript" src="/lib/js/code.min.js"></script>
+  <script type="text/javascript" src="/lib/js/code.js"></script>
   <script type="text/javascript" src="/lib/js/js-ctrl.js"></script>
   <script type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js"></script>
   <script type="text/javascript" src="/lib/js/isMobile.min.js"></script>

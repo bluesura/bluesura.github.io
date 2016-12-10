@@ -14,7 +14,7 @@
 	"description": "<p>トリガーの条件を満たしている間だけ画面をズームイン・ズームアウトします。ズームイン・ズームアウトする基準点はトリガーがTrueになった瞬間に固定されるので注意。</p><p>Version1.1からテスト実装されました。有効にしたい場合は、キャラクターのdefファイル内の<code>MugenVersion=1.1</code>に変更して下さい。</p>",
 	"category": "state",
   "associated_trigger": [
-    "CameraPos", "CameraZoom", "LeftEdge", "RightEdge",
+    "CameraPosX", "CameraPosY", "CameraZoom", "LeftEdge", "RightEdge",
     "ScreenWidth", "ScreenHeight",
     "FrontEdge", "BackEdge",
     "TopEdge", "BottomEdge"

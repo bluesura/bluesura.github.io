@@ -1,9 +1,9 @@
 {
 	"page": {
 		"title": "MUGEN Trigger",
-		"subtitle": "Pi",
-		"target": "",
-		"category": ["", ""],
+		"subtitle": "PI",
+		"target": "数学",
+		"category": ["定数", "円周率は？"],
 		"version": "2002.04.14",
     "update": "2015.12.24",
 		"type": "document",
@@ -11,24 +11,15 @@
 	},
 	"category": "trigger",
 
-	"trigger": "Pi",
+	"trigger": "PI",
 	"summary": "<p>円周率πを返します。</p>",
 	"syntax":[
-		"Pi"
+		"PI"
 	],
 
-	"description": "<p> 定数(3.141593...)です。ラジアンに180/piをかけると度になります。 戻り値の型: float</p>",
-
-	"code_sample": [
-		{
-			"title": "",
-			"code": [
-				""
-			]
-		}
-	],
+	"description": "<p> 定数(<script>document.write(Math.PI)</script>)です。ラジアンに180/piをかけると度になります。</p><p>戻り値の型: float</p>",
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "PI - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#pi-math"}
 	]
 }

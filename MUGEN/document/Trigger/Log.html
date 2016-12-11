@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
-  <title itemprop="headline">Log | MUGEN Trigger - Name = sura</title>
+  <title itemprop="headline">Log 【底Xの対数は何ですか？】 | MUGEN Trigger - Name = sura</title>
   <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN">
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
   <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
@@ -81,7 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<div>
 	<div class="entry-title" itemprop="name"><div>
 	<h1 id="Log">Log</h1>
-	<div class="category"> >  | 実装されたバージョン: 2002.04.14 | </div>
+	<div class="category">対数 > 底Xの対数は何ですか？ | 実装されたバージョン: 2002.04.14 | 対象: 数学</div>
 </div></div>
 
 </div></header>
@@ -97,20 +97,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<section id="syntax"><div class="syntax section">
 		<h2>構文</h2>
 		<div class="code"><code><ul>
-					<li>Log(底,指数)</li>
+					<li>Log(底, 引数)</li>
 				</ul></code></div>
 	</div></section>
 
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>底には、対数の底(てい)を指定します。負数不可。指数には、指数を指定します。負数不可。戻り値の型: floatエラー条件:引数のいずれかでもSFalseまたは負数の場合、SFalseを返します。</p>
+			<p>底には、対数の底を0より大きいfloatで指定します。引数には、0より大きいfloatで指定します。</p><p>戻り値の型: float</p><p>Log(<input type="number" id="exp1" size="8" value="1" style="display: inline;" onclick="document.getElementById('log-simulation').innerText=Math.log(document.getElementById('exp2').value)/Math.log(document.getElementById('exp1').value)">, <input type="number" id="exp2" size="8" value="1" style="display: inline;" onclick="document.getElementById('log-simulation').innerText=Math.log(document.getElementById('exp2').value)/Math.log(document.getElementById('exp1').value)">) = <span id="log-simulation"></span></p>
 		</div>
 
-					</div></section>
+				<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/E.html"><code>E</code></a>, <a href="./../Trigger/Log.html"><code>Log</code></a></div>	</div></section>
 	
 
-﻿	
+﻿		<section id="Version"><div class="section">
+		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
+		<table class="version">
+		<thead>
+			<tr>
+				<th class="left">バージョン</th>
+				<th class="right">内容</th>
+			</tr>
+		</thead>
+		<tbody>
+							<tr>
+					<td>WARNING</td>
+					<td>TOOK LOG WITH A NON-POSITIVE BASE OR ARGUMENT.: 底・引数に0より大きい値を入れて下さい</td>
+				</tr>
+					</tbody>
+		</table>
+	</div></section>
+	
 
 
 
@@ -120,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<h2>コードサンプル</h2>
 			<div>
 			<h3>2を底とした64の対数(=6)をvalueに代入</h3>						<div class="code"><code><ul>
-							<li>value=log(2,64)</li>
+							<li>value = Log(2, 64)</li>
 						</ul></code></div>
 
 			</div>
@@ -130,12 +147,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#log-math" target="_blank" rel="external">Log - Trigger Reference Reference Documentation for version 1.1</a></li>
 				</ul>
 	</div></section>
 	
 
-<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <span>最終更新日:<time class="updated" itemprop="dateModified" datetime="2015-12-24">2015.12.24</time></span> | </div>
+<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <span>最終更新日:<time class="updated" itemprop="dateModified" datetime="2016-12-11">2016.12.11</time></span> | </div>
 
 	</div>
 </article></div>

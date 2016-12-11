@@ -104,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>ニュートラルプレイヤー(?)と、ノーマルヘルパーは、パートナーとみなされません。書式: NumPartner概要: なし戻り値の型: int使用例:Trigger1 = NumPartner = 1Trigger1 = partner, life < 200プレイヤーのパートナーが1人で、そのパートナーの体力が200未満の場合のトリガー。</p>
+			<p>ニュートラルプレイヤー(?)と、ノーマルヘルパーは、パートナーとみなされません。</p><p>戻り値の型: int</p>
 		</div>
 
 					</div></section>
@@ -120,7 +120,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<h2>コードサンプル</h2>
 			<div>
 									<div class="code"><code><ul>
+							<li>[State , Player Number Tag]</li>
+							<li>Type = Null</li>
+							<li>TriggerAll = NumPartner</li>
+							<li>Trigger1 = TeamSide = 1 && ID > partner,ID</li>
+							<li>Trigger1 = var(1) := 1</li>
+							<li>Trigger2 = TeamSide = 2 && ID > partner,ID</li>
+							<li>Trigger2 = var(1) := 2</li>
+							<li>Trigger3 = TeamSide = 1 && ID < partner,ID</li>
+							<li>Trigger3 = var(1) := 3</li>
+							<li>Trigger4 = TeamSide = 2 && ID < partner,ID</li>
+							<li>Trigger4 = var(1) := 4</li>
+							<li>Trigger5 = var(1) := -1</li>
 							<li></li>
+							<li>[State , Player Number Single]</li>
+							<li>Type = Null</li>
+							<li>TriggerAll = !NumPartner</li>
+							<li>Trigger1 = TeamSide = 1</li>
+							<li>Trigger1 = var(1) := 1</li>
+							<li>Trigger2 = TeamSide = 2</li>
+							<li>Trigger2 = var(1) := 2</li>
+							<li>Trigger3 = var(1) := -1</li>
+						</ul></code></div>
+
+			</div>
+			<div>
+			<h3>プレイヤーのパートナーが1人で、そのパートナーの体力が200未満の場合のトリガー</h3>						<div class="code"><code><ul>
+							<li>[State ]</li>
+							<li>Type = Null</li>
+							<li>Trigger1 = NumPartner = 1</li>
+							<li>Trigger1 = Partner,Life < 200</li>
 						</ul></code></div>
 
 			</div>

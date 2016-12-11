@@ -2,10 +2,10 @@
 	"page": {
 		"title": "MUGEN Trigger",
 		"subtitle": "Log",
-		"target": "",
-		"category": ["", ""],
+		"target": "数学",
+		"category": ["対数", "底Xの対数は何ですか？"],
 		"version": "2002.04.14",
-    "update": "2015.12.24",
+    "update": "2016.12.11",
 		"type": "document",
 		"level": "3"
 	},
@@ -14,21 +14,27 @@
 	"trigger": "Log",
 	"summary": "<p>指定値の対数を返します。</p>",
 	"syntax":[
-		"Log(底,指数)"
+		"Log(底, 引数)"
 	],
 
-	"description": "<p>底には、対数の底(てい)を指定します。負数不可。指数には、指数を指定します。負数不可。戻り値の型: floatエラー条件:引数のいずれかでもSFalseまたは負数の場合、SFalseを返します。</p>",
+	"description": "<p>底には、対数の底を0より大きいfloatで指定します。引数には、0より大きいfloatで指定します。</p><p>戻り値の型: float</p><p>Log(<input type=\"number\" id=\"exp1\" size=\"8\" value=\"1\" style=\"display: inline;\" onclick=\"document.getElementById('log-simulation').innerText=Math.log(document.getElementById('exp2').value)/Math.log(document.getElementById('exp1').value)\">, <input type=\"number\" id=\"exp2\" size=\"8\" value=\"1\" style=\"display: inline;\" onclick=\"document.getElementById('log-simulation').innerText=Math.log(document.getElementById('exp2').value)/Math.log(document.getElementById('exp1').value)\">) = <span id=\"log-simulation\"></span></p>",
+
+	"version": [
+		{"no": "WARNING", "content": "TOOK LOG WITH A NON-POSITIVE BASE OR ARGUMENT.: 底・引数に0より大きい値を入れて下さい"}
+	],
 
 	"code_sample": [
 		{
 			"title": "2を底とした64の対数(=6)をvalueに代入",
 			"code": [
-				"value=log(2,64)"
+				"value = Log(2, 64)"
 			]
 		}
 	],
 
+	"associated_trigger": ["E", "Log"],
+
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "Log - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#log-math"}
 	]
 }

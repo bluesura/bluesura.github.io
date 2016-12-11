@@ -17,13 +17,42 @@
 		"NumPartner"
 	],
 
-	"description": "<p>ニュートラルプレイヤー(?)と、ノーマルヘルパーは、パートナーとみなされません。書式: NumPartner概要: なし戻り値の型: int使用例:Trigger1 = NumPartner = 1Trigger1 = partner, life < 200プレイヤーのパートナーが1人で、そのパートナーの体力が200未満の場合のトリガー。</p>",
+	"description": "<p>ニュートラルプレイヤー(?)と、ノーマルヘルパーは、パートナーとみなされません。</p><p>戻り値の型: int</p>",
 
 	"code_sample": [
 		{
 			"title": "",
 			"code": [
-				""
+"[State , Player Number Tag]",
+"Type = Null",
+"TriggerAll = NumPartner",
+"Trigger1 = TeamSide = 1 && ID > partner,ID",
+"Trigger1 = var(1) := 1",
+"Trigger2 = TeamSide = 2 && ID > partner,ID",
+"Trigger2 = var(1) := 2",
+"Trigger3 = TeamSide = 1 && ID < partner,ID",
+"Trigger3 = var(1) := 3",
+"Trigger4 = TeamSide = 2 && ID < partner,ID",
+"Trigger4 = var(1) := 4",
+"Trigger5 = var(1) := -1",
+"",
+"[State , Player Number Single]",
+"Type = Null",
+"TriggerAll = !NumPartner",
+"Trigger1 = TeamSide = 1",
+"Trigger1 = var(1) := 1",
+"Trigger2 = TeamSide = 2",
+"Trigger2 = var(1) := 2",
+"Trigger3 = var(1) := -1"
+			]
+		},
+		{
+			"title": "プレイヤーのパートナーが1人で、そのパートナーの体力が200未満の場合のトリガー",
+			"code": [
+"[State ]",
+"Type = Null",
+"Trigger1 = NumPartner = 1",
+"Trigger1 = Partner,Life < 200"
 			]
 		}
 	],

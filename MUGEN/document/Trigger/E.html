@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
-  <title itemprop="headline">E | MUGEN Trigger - Name = sura</title>
+  <title itemprop="headline">E 【自然対数の底は？】 | MUGEN Trigger - Name = sura</title>
   <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN">
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
   <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
@@ -81,7 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<div>
 	<div class="entry-title" itemprop="name"><div>
 	<h1 id="E">E</h1>
-	<div class="category"> >  | 実装されたバージョン: 2002.04.14 | </div>
+	<div class="category">定数 > 自然対数の底は？ | 実装されたバージョン: 2002.04.14 | 対象: 数学</div>
 </div></div>
 
 </div></header>
@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 ﻿	<section id="summary"><div class="summary section">
 		<h2>概要</h2>
-		<p>ネピア数を返します。</p>
+		<p>ネピア数(自然対数の底)を返します。</p>
 	</div></section>
 
 	<section id="syntax"><div class="syntax section">
@@ -104,10 +104,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>定数(2.718281828...)です。書式: e概要: なし戻り値の型: float</p>
+			<p>定数(<script>document.write(Math.E);</script>)を返します。</p><p>戻り値の型: float</p>
 		</div>
 
-					</div></section>
+				<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/Exp.html"><code>Exp</code></a></div>	</div></section>
 	
 
 ﻿	
@@ -119,8 +119,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ﻿		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-									<div class="code"><code><ul>
+			<h3>Eは計算によって、なぜか違う値を返してきます</h3>						<div class="code"><code><ul>
+							<li>[State ]</li>
+							<li>Type = Null</li>
 							<li></li>
+							<li>;2.718282</li>
+							<li>Trigger1 = E</li>
+							<li></li>
+							<li>;27.182817</li>
+							<li>Trigger1 = E*10</li>
+							<li></li>
+							<li>;271.828186</li>
+							<li>Trigger1 = E*100</li>
+							<li></li>
+							<li>;2718.281738</li>
+							<li>Trigger1 = E*1000</li>
+							<li></li>
+							<li>;27182.818359</li>
+							<li>Trigger1 = E*10000</li>
+							<li></li>
+							<li>;271828.187500</li>
+							<li>Trigger1 = E*100000</li>
+							<li></li>
+							<li>;2718281.750000</li>
+							<li>Trigger1 = E*1000000</li>
+							<li></li>
+							<li>;27182818.000000</li>
+							<li>Trigger1 = E*10000000</li>
+							<li></li>
+							<li>;271828160.000000</li>
+							<li>Trigger1 = E*100000000</li>
+							<li></li>
+							<li>;2718281728.000000</li>
+							<li>Trigger1 = E*1000000000</li>
+							<li></li>
+							<li>;5837465600.000000</li>
+							<li>Trigger1 = E*10000000000</li>
+							<li></li>
+							<li>;7.389056</li>
+							<li>Trigger1 = E*E</li>
 						</ul></code></div>
 
 			</div>
@@ -130,12 +167,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="https://www49.atwiki.jp/mugencns/pages/117.html" target="_blank" rel="external">E - MUGEN CNS WIKI CHAOS@予定</a></li>
+					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#e-math" target="_blank" rel="external">E - Trigger Reference Reference Documentation for version 1.1</a></li>
 				</ul>
 	</div></section>
 	
 
-<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <span>最終更新日:<time class="updated" itemprop="dateModified" datetime="2016-01-17">2016.01.17</time></span> | </div>
+<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <span>最終更新日:<time class="updated" itemprop="dateModified" datetime="2016-12-11">2016.12.11</time></span> | </div>
 
 	</div>
 </article></div>

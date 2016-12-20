@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-12-20 16:40:46
+<?php /* Smarty version Smarty-3.1.12, created on 2016-12-20 16:44:00
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:2484758595f0ea2a7c5-58298682%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2573958595fd0764790-46563092%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '00a372bc34ee85aa36a99f03597f6ced85b03ba6' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1482252035,
+      1 => 1482252230,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2484758595f0ea2a7c5-58298682',
+  'nocache_hash' => '2573958595fd0764790-46563092',
   'function' => 
   array (
   ),
@@ -21,12 +21,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_58595f0eae2276_04602056',
+  'unifunc' => 'content_58595fd081aca0_99196555',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_58595f0eae2276_04602056')) {function content_58595f0eae2276_04602056($_smarty_tpl) {?>  <meta charset="UTF-8" />
+<?php if ($_valid && !is_callable('content_58595fd081aca0_99196555')) {function content_58595fd081aca0_99196555($_smarty_tpl) {?>  <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="Last-Modified" content="Tue, 16 Feb 2016 14:25:27 GMT">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
 <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']=="1"){?>

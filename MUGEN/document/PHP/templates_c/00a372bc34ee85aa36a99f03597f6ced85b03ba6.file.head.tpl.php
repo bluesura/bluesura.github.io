@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-08-07 07:21:08
+<?php /* Smarty version Smarty-3.1.12, created on 2016-12-20 15:45:32
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:65757a6e164702a24-16037406%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:162935859521c40db36-83960723%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '00a372bc34ee85aa36a99f03597f6ced85b03ba6' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1470554358,
+      1 => 1482248716,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '65757a6e164702a24-16037406',
+  'nocache_hash' => '162935859521c40db36-83960723',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_57a6e1647d45e2_00257237',
+  'unifunc' => 'content_5859521c493267_19571050',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_57a6e1647d45e2_00257237')) {function content_57a6e1647d45e2_00257237($_smarty_tpl) {?>  <meta charset="UTF-8" />
+<?php if ($_valid && !is_callable('content_5859521c493267_19571050')) {function content_5859521c493267_19571050($_smarty_tpl) {?>  <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
@@ -58,7 +58,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <meta name="author" content="sura" />
   <meta name="generator" content="Smarty" />
   <meta name="description" content="" />
-  <meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻" />
+  
   <meta name="mobile-web-app-capable" content="yes">
   <!-- 「駄目ね、全然駄目だわ」 -->
 
@@ -70,9 +70,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <link rel="stylesheet" href="/lib/css/material.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-  <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script type="text/javascript" src="/lib/js/code.js"></script>
-  <script type="text/javascript" src="/lib/js/js-ctrl.js"></script>
-  <script type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js"></script>
-  <script type="text/javascript" src="/lib/js/isMobile.min.js"></script>
+  <script async type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script async type="text/javascript" src="/lib/js/code.js"></script>
+  <script async type="text/javascript" src="/lib/js/js-ctrl.js"></script>
+  <script async type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js"></script>
+  <script async type="text/javascript" src="/lib/js/isMobile.min.js"></script>
 <?php }} ?>

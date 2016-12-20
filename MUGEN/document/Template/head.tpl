@@ -1,7 +1,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="Last-Modified" content="{$content.page.update|replace:'.':'-'}">
+  <meta http-equiv="Last-Modified" content="Tue, 16 Feb 2016 14:25:27 GMT">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
 {if $content.page.level == "1"}

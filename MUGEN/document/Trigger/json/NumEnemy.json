@@ -2,10 +2,10 @@
 	"page": {
 		"title": "MUGEN Trigger",
 		"subtitle": "NumEnemy",
-		"target": "",
-		"category": ["", ""],
+		"target": "敵",
+		"category": ["数を数える", "敵は何人いますか？"],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+    "update": "2016.12.21",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,18 +17,19 @@
 		"NumEnemy"
 	],
 
-	"description": "<p>ニュートラルプレイヤー(?)とノーマルタイプのヘルパーは数に含まれないそうです。書式: NumEnemy概要: なし戻り値の型: int使用例:Trigger1 = NumEnemy = 2Trigger1 = enemynear(1), name = \"Squash\"敵が2人いて、2番目に近い敵の名前が「Squash」さんだったときのトリガー。</p>",
+	"description": "<p>ヘルパーは数に含まれません。</p><p>戻り値の型: int</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "敵が2人いて、2番目に近い敵の名前がSquashだったときのトリガー",
 			"code": [
-				""
+				"Trigger1 = NumEnemy = 2",
+        "Trigger1 = EnemyNear(1),Name = \"Squash\""
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "NumEnemy - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#numenemy"}
 	]
 }

@@ -2,10 +2,10 @@
 	"page": {
 		"title": "MUGEN Trigger",
 		"subtitle": "NumExplod",
-		"target": "",
-		"category": ["", ""],
+		"target": "アニメーション",
+		"category": ["数を数える", "アニメーションは何個表示されていますか？"],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+    "update": "2016.12.21",
 		"type": "document",
 		"level": "3"
 	},
@@ -18,18 +18,26 @@
 		"NumExplod(ExplodのID)"
 	],
 
-	"description": "<p>引数にID番号を指定した場合、そのID番号のExplodの数を返します。IDには、-1以上の整数を指定します。-1の場合、省略時と同じ扱いになります。書式:1. NumExplod2. NumExplod(引数)概要:引数には、数えるExplodのID番号を-1以上のintで指定します。戻り値の型: int使用例:1. Trigger1 = NumExplod >= 4プレイヤーのexplodが4つ以上出現している場合のトリガー。2. Trigger1 = NumExplod(1234) >= 4プレイヤーのID1234のexplodが4つ以上出現している場合のトリガー。</p>",
+	"description": "<p>引数にID番号を指定した場合、そのID番号のExplodの数を返します。IDには、-1以上の整数を指定します。-1の場合、省略時と同じ扱いになります。</p><p>戻り値の型: int</p>",
+
+	"associated_state": ["Explod"],
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "プレイヤーのexplodが4つ以上出現している場合のトリガー",
 			"code": [
-				""
+				"Trigger1 = NumExplod >= 4"
+			]
+		},
+		{
+			"title": "プレイヤーのID1234のexplodが4つ以上出現している場合のトリガー",
+			"code": [
+				"Trigger1 = NumExplod(1234) >= 4"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "NumExplod - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#numexplod"}
 	]
 }

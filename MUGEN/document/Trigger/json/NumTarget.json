@@ -2,10 +2,10 @@
 	"page": {
 		"title": "MUGEN Trigger",
 		"subtitle": "NumTarget",
-		"target": "",
-		"category": ["カウント", "ターゲットはどれだけありますか？"],
+		"target": "実行者自身",
+		"category": ["数を数える", "ターゲットはどれだけありますか？"],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+    "update": "2016.12.21",
 		"type": "document",
 		"level": "3"
 	},
@@ -18,7 +18,7 @@
 		"NumTarget(ID)"
 	],
 
-	"description": "<p>引数にID番号を指定した場合、そのID番号のターゲット数を返します。IDに-1以下を指定した場合、省略時と同様に扱われます。書式:1. NumTarget2. NumTarget(引数)概要:引数には、数えたいターゲットのヒットIDを指定。戻り値の型: int</p>",
+	"description": "<p>引数にID番号を指定した場合、そのID番号のターゲット数を返します。IDに-1以下を指定した場合、省略時と同様に扱われます。引数には、数えたいターゲットのヒットIDを指定。</p><p>戻り値の型: int</p>",
 
 	"code_sample": [
 		{
@@ -36,6 +36,6 @@
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "NumTarget - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#numtarget"}
 	]
 }

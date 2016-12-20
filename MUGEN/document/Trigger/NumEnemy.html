@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
-  <title itemprop="headline">NumEnemy | MUGEN Trigger - Name = sura</title>
+  <title itemprop="headline">NumEnemy 【敵は何人いますか？】 | MUGEN Trigger - Name = sura</title>
   <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN">
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
   <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
@@ -81,7 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<div>
 	<div class="entry-title" itemprop="name"><div>
 	<h1 id="NumEnemy">NumEnemy</h1>
-	<div class="category"> >  | 実装されたバージョン: 2002.04.14 | </div>
+	<div class="category">数を数える > 敵は何人いますか？ | 実装されたバージョン: 2002.04.14 | 対象: 敵</div>
 </div></div>
 
 </div></header>
@@ -104,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>ニュートラルプレイヤー(?)とノーマルタイプのヘルパーは数に含まれないそうです。書式: NumEnemy概要: なし戻り値の型: int使用例:Trigger1 = NumEnemy = 2Trigger1 = enemynear(1), name = "Squash"敵が2人いて、2番目に近い敵の名前が「Squash」さんだったときのトリガー。</p>
+			<p>ヘルパーは数に含まれません。</p><p>戻り値の型: int</p>
 		</div>
 
 					</div></section>
@@ -119,8 +119,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ﻿		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-									<div class="code"><code><ul>
-							<li></li>
+			<h3>敵が2人いて、2番目に近い敵の名前がSquashだったときのトリガー</h3>						<div class="code"><code><ul>
+							<li>Trigger1 = NumEnemy = 2</li>
+							<li>Trigger1 = EnemyNear(1),Name = "Squash"</li>
 						</ul></code></div>
 
 			</div>
@@ -130,12 +131,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#numenemy" target="_blank" rel="external">NumEnemy - Trigger Reference Reference Documentation for version 1.1</a></li>
 				</ul>
 	</div></section>
 	
 
-<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <span>最終更新日:<time class="updated" itemprop="dateModified" datetime="2016-01-17">2016.01.17</time></span> | </div>
+<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <span>最終更新日:<time class="updated" itemprop="dateModified" datetime="2016-12-21">2016.12.21</time></span> | </div>
 
 	</div>
 </article></div>

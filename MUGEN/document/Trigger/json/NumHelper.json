@@ -2,10 +2,10 @@
 	"page": {
 		"title": "MUGEN Trigger",
 		"subtitle": "NumHelper",
-		"target": "",
-		"category": ["", ""],
+		"target": "実行者自身",
+		"category": ["数を数える", "ヘルパーは何個ありますか？"],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+    "update": "2016.12.21",
 		"type": "document",
 		"level": "3"
 	},
@@ -18,18 +18,26 @@
 		"NumHelper(HelperのID)"
 	],
 
-	"description": "<p>引数にID番号を指定した場合、そのID番号のhelperの数を返します。IDには、0以上の整数を指定します。0以下の数を指定した場合、省略時と同じ扱いになります。書式:1. NumHelper2. NumHelper(引数)概要:引数には、数えるhelperのID番号を0以上のintで指定します。戻り値の型: int使用例:1. Trigger1 = NumHelper < 2プレイヤーのヘルパー数が2つ未満の場合のトリガー。2. Trigger1 = NumHelper(1234) < 2プレイヤーのID1234のヘルパー数が2つ未満の場合のトリガー。</p>",
+	"description": "<p>引数にID番号を指定した場合、そのID番号のhelperの数を返します。IDには、0以上の整数を指定します。0以下の数を指定した場合、省略時と同じ扱いになります。</p><p>戻り値の型: int</p>",
+
+	"associated_state": ["Helper"],
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "プレイヤーのヘルパー数が2つ未満の場合のトリガー",
 			"code": [
-				""
+				"Trigger1 = NumHelper < 2"
+			]
+		},
+		{
+			"title": "プレイヤーのID1234のヘルパー数が2つ未満の場合のトリガー",
+			"code": [
+				"Trigger1 = NumHelper(1234) < 2"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "NumHelper - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#numhelper"}
 	]
 }

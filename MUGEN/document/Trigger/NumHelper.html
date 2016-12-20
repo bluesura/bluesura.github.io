@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
-  <title itemprop="headline">NumHelper | MUGEN Trigger - Name = sura</title>
+  <title itemprop="headline">NumHelper 【ヘルパーは何個ありますか？】 | MUGEN Trigger - Name = sura</title>
   <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN">
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
   <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
@@ -81,7 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<div>
 	<div class="entry-title" itemprop="name"><div>
 	<h1 id="NumHelper">NumHelper</h1>
-	<div class="category"> >  | 実装されたバージョン: 2002.04.14 | </div>
+	<div class="category">数を数える > ヘルパーは何個ありますか？ | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身</div>
 </div></div>
 
 </div></header>
@@ -105,10 +105,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>引数にID番号を指定した場合、そのID番号のhelperの数を返します。IDには、0以上の整数を指定します。0以下の数を指定した場合、省略時と同じ扱いになります。書式:1. NumHelper2. NumHelper(引数)概要:引数には、数えるhelperのID番号を0以上のintで指定します。戻り値の型: int使用例:1. Trigger1 = NumHelper < 2プレイヤーのヘルパー数が2つ未満の場合のトリガー。2. Trigger1 = NumHelper(1234) < 2プレイヤーのID1234のヘルパー数が2つ未満の場合のトリガー。</p>
+			<p>引数にID番号を指定した場合、そのID番号のhelperの数を返します。IDには、0以上の整数を指定します。0以下の数を指定した場合、省略時と同じ扱いになります。</p><p>戻り値の型: int</p>
 		</div>
 
-					</div></section>
+		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/Helper.html"><code>Helper</code></a></div>			</div></section>
 	
 
 ﻿	
@@ -120,8 +120,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ﻿		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-									<div class="code"><code><ul>
-							<li></li>
+			<h3>プレイヤーのヘルパー数が2つ未満の場合のトリガー</h3>						<div class="code"><code><ul>
+							<li>Trigger1 = NumHelper < 2</li>
+						</ul></code></div>
+
+			</div>
+			<div>
+			<h3>プレイヤーのID1234のヘルパー数が2つ未満の場合のトリガー</h3>						<div class="code"><code><ul>
+							<li>Trigger1 = NumHelper(1234) < 2</li>
 						</ul></code></div>
 
 			</div>
@@ -131,12 +137,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#numhelper" target="_blank" rel="external">NumHelper - Trigger Reference Reference Documentation for version 1.1</a></li>
 				</ul>
 	</div></section>
 	
 
-<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <span>最終更新日:<time class="updated" itemprop="dateModified" datetime="2016-01-17">2016.01.17</time></span> | </div>
+<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <span>最終更新日:<time class="updated" itemprop="dateModified" datetime="2016-12-21">2016.12.21</time></span> | </div>
 
 	</div>
 </article></div>

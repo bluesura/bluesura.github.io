@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
-  <title itemprop="headline">NumProjID | MUGEN Trigger - Name = sura</title>
+  <title itemprop="headline">NumProjID 【IDがXの飛び道具は何個ですか？】 | MUGEN Trigger - Name = sura</title>
   <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN">
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
   <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
@@ -81,7 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<div>
 	<div class="entry-title" itemprop="name"><div>
 	<h1 id="NumProjID">NumProjID</h1>
-	<div class="category"> >  | 実装されたバージョン: 2002.04.14 | </div>
+	<div class="category">数を数える > IDがXの飛び道具は何個ですか？ | 実装されたバージョン: 2002.04.14 | 対象: 飛び道具</div>
 </div></div>
 
 </div></header>
@@ -104,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>コマンド条件で飛び道具の数を制限したい場合などに。引数には、数えたいProjectileのIDを、intで指定。戻り値の型: intエラー条件:引数に負数を指定した場合、IDは0とみなされます。また、引数がSFalseの場合、SFalseを返します。使用例:Trigger1 = NumProjID(1234) = 1プレイヤーが放出したID1234の飛び道具が1つだけ存在している場合のトリガー。</p>
+			<p>コマンド条件で飛び道具の数を制限したい場合などに。引数には、数えたいProjectileのIDを、intで指定。引数に負数を指定した場合、IDは0とみなされます。</p><p>戻り値の型: int</p>
 		</div>
 
 		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/Projectile.html"><code>Projectile</code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/NumProj.html"><code>NumProj</code></a>, <a href="./../Trigger/NumProjID.html"><code>NumProjID</code></a>, <a href="./../Trigger/ProjCancelTime.html"><code>ProjCancelTime</code></a>, <a href="./../Trigger/ProjContact.html"><code>ProjContact</code></a>, <a href="./../Trigger/ProjContactTime.html"><code>ProjContactTime</code></a>, <a href="./../Trigger/ProjGuarded.html"><code>ProjGuarded</code></a>, <a href="./../Trigger/ProjGuardedTime.html"><code>ProjGuardedTime</code></a>, <a href="./../Trigger/ProjHit.html"><code>ProjHit</code></a>, <a href="./../Trigger/ProjHitTime.html"><code>ProjHitTime</code></a></div>	</div></section>
@@ -119,8 +119,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ﻿		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-									<div class="code"><code><ul>
-							<li></li>
+			<h3>プレイヤーが放出したID1234の飛び道具が1つだけ存在している場合のトリガー</h3>						<div class="code"><code><ul>
+							<li>Trigger1 = NumProjID(1234) = 1</li>
 						</ul></code></div>
 
 			</div>
@@ -130,12 +130,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#numprojid" target="_blank" rel="external">NumProjID - Trigger Reference Reference Documentation for version 1.1</a></li>
 				</ul>
 	</div></section>
 	
 
-<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <span>最終更新日:<time class="updated" itemprop="dateModified" datetime="2016-01-17">2016.01.17</time></span> | </div>
+<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <span>最終更新日:<time class="updated" itemprop="dateModified" datetime="2016-12-21">2016.12.21</time></span> | </div>
 
 	</div>
 </article></div>

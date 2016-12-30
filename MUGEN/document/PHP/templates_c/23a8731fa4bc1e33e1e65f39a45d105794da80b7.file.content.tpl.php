@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-08-02 14:24:16
+<?php /* Smarty version Smarty-3.1.12, created on 2016-12-21 10:45:47
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\Trigger\content.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:641957944e1698e627-16008093%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '23a8731fa4bc1e33e1e65f39a45d105794da80b7' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\Trigger\\content.tpl',
-      1 => 1470147793,
+      1 => 1482313150,
       2 => 'file',
     ),
   ),
@@ -78,9 +78,9 @@ px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"<?php } ?>><?p
 <?php echo $_smarty_tpl->getSubTemplate ("./../Trigger/content/Quote.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
-<div><span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span> | <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['update']!=null){?><span>最終更新日:<time class="updated" itemprop="dateModified" datetime="<?php echo smarty_modifier_replace($_smarty_tpl->tpl_vars['content']->value['page']['update'],'.','-');?>
+<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><?php if ($_smarty_tpl->tpl_vars['content']->value['page']['update']!=null){?><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="<?php echo smarty_modifier_replace($_smarty_tpl->tpl_vars['content']->value['page']['update'],'.','-');?>
 "><?php echo $_smarty_tpl->tpl_vars['content']->value['page']['update'];?>
-</time></span><?php }?> | <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['contributor']!=null){?><span>貢献者: <?php  $_smarty_tpl->tpl_vars['contributor'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['contributor']->_loop = false;
+</time></div><?php }?><?php if ($_smarty_tpl->tpl_vars['content']->value['page']['contributor']!=null){?><div><strong>貢献者:</strong><?php  $_smarty_tpl->tpl_vars['contributor'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['contributor']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['content']->value['page']['contributor']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
  $_smarty_tpl->tpl_vars['contributor']->total= $_smarty_tpl->_count($_from);
  $_smarty_tpl->tpl_vars['contributor']->iteration=0;
@@ -89,7 +89,7 @@ $_smarty_tpl->tpl_vars['contributor']->_loop = true;
  $_smarty_tpl->tpl_vars['contributor']->iteration++;
  $_smarty_tpl->tpl_vars['contributor']->last = $_smarty_tpl->tpl_vars['contributor']->iteration === $_smarty_tpl->tpl_vars['contributor']->total;
 ?><?php echo $_smarty_tpl->tpl_vars['contributor']->value;?>
-氏<?php if ($_smarty_tpl->tpl_vars['contributor']->last!=true){?>, <?php }?><?php } ?></span><?php }?></div>
+氏<?php if ($_smarty_tpl->tpl_vars['contributor']->last!=true){?>, <?php }?><?php } ?></div><?php }?></div>
 
 	</div>
 </article></div><?php }} ?>

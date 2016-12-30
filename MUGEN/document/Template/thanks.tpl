@@ -1,4 +1,4 @@
-﻿		<h2>お世話になったリンク一覧</h2>
+﻿		<h2>参考にさせてもらったサイト一覧</h2>
 		<ul>
 			<li><a href="http://homotaro.s44.xrea.com/scr.htm" target="_blank" rel="external">ステートコントローラー一覧</a></li>
 			<li><a href="http://homotaro.s44.xrea.com/etc.htm" target="_blank" rel="external">その他</a></li>
@@ -17,7 +17,7 @@
 			<!--<li><a href="" target="_blank" rel="external"> - </a></li>-->
 		</ul>
 
-		<h2>お世話になった小ネタ・記事一覧</h2>
+		<h2>参考にさせてもらった小ネタ・記事一覧</h2>
 		<ul>
 			<li><a href="http://oki6761.blog23.fc2.com/blog-entry-1492.html" target="_blank" rel="external">MUGENでやってはいけないこと　by熄癈人</a></li>
 			<li><a href="http://chottokomaru.sitemix.jp/alpha4.html" target="_blank" rel="external">君の瞳は紫外線 - M.U.G.E.N 1.1 Alpha 4 について</a></li>

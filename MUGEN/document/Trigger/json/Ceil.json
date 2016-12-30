@@ -2,10 +2,10 @@
 	"page": {
 		"title": "MUGEN Trigger",
 		"subtitle": "Ceil",
-		"target": "",
-		"category": ["", ""],
+		"target": "数学",
+		"category": ["計算", "xの小数点以上を切り上げた結果は何ですか？"],
 		"version": "2002.04.14",
-    "update": "2015.12.24",
+    "update": "2016.12.21",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,18 +17,27 @@
 		"Ceil(x)"
 	],
 
-	"description": "<p>小数点以下を切り上げます。書式: ceil(引数)概要: 引数には、切り上げしたい小数を指定します。戻り値の型: intエラー条件: 引数がSFalseの場合SFalseを返します。使用例:1. value = ceil(5.5)valueに6を代入。2. value = ceil(-2)valueに-2を代入。</p>",
+	"description": "<p>引数xの小数点以下を切り上げた整数を返します。</p><p>戻り値の型: int</p>",
+
+	"associated_trigger": ["Floor"],
+	"associated_state": [""],
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "valueに6を代入",
 			"code": [
-				""
+				"value = Ceil(5.5)"
+			]
+		},
+		{
+			"title": "valueに-2を代入",
+			"code": [
+				"value = Ceil(-2)"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "Ceil - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#ceil-math"}
 	]
 }

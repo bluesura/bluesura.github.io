@@ -3,33 +3,38 @@
 		"title": "MUGEN Trigger",
 		"subtitle": "AnimElem",
 		"target": "実行者",
-		"category": ["アニメーション", "特定のアニメーションが指定した時間経過したか？"],
+		"category": ["アニメーション", "特定のアニメーションが指定した時間を経過したか？"],
 		"version": "2002.04.14",
-    "update": "2015.12.24",
+    "update": "2016.12.30",
 		"type": "document",
 		"level": "3"
 	},
 	"category": "trigger",
 
 	"trigger": "AnimElem",
-	"summary": "<p>アニメの順番と、その経過時間を判断</p>",
+	"summary": "<p>アニメの順番とその経過時間を判断します。</p>",
 	"syntax":[
+    ";アニメが「値1」枚目になった瞬間に真(1)を返すトリガー",
 		"AnimElem = 値1",
-		"AnimElem = 値1, [符号] 値2"
+		"",
+    ";アニメが「値1」枚目に切り替わってからの経過時間を値2と比較し、真偽を返すトリガー",
+		"AnimElem = 値1, =  値2",
+		"AnimElem = 値1, != 値2",
+		"AnimElem = 値1, <= 値2",
+		"AnimElem = 値1, >= 値2",
+		"AnimElem = 値1, >  値2",
+		"AnimElem = 値1, <  値2"
 	],
 
-	"description": "<p>アニメの順番と、その経過時間を判断する、コンディション専用の旧式トリガー。sffファイルでは0から番号を付けることが多いですが、このトリガーでは1から順番を数えます。類似品にAnimElemTimeトリガーがあります。AnimElemトリガーは、2つの値を判断し、真偽を返す、という無駄の多い仕様なので、AnimElemTimeを使った方が吉。[符号] には、次のいずれかを指定します(他は無効)。=, !=, <, >, <=, >=値1には、何枚目のアニメをチェックするかをintで指定。値2には、比較する時間をintで指定。無効なアニメ枚数(多すぎ又は少なすぎなど)を指定すると、SFalseを返します。書式1は、アニメが「値1」枚目になった瞬間に真(1)を返すトリガーです。AnimElem = 値1, =0の略式と考えてよいです。書式2は、アニメが「値1」枚目に切り替わってからの経過時間を値2と比較し、真偽を返すトリガーです。</p>",
+	"description": "<p>アニメの順番と、その経過時間を判断するトリガー。</p><p>値1には、何枚目のアニメをチェックするかをintで指定。値2には、比較する時間をintで指定します。</p>",
 
-	"code_sample": [
-		{
-			"title": "",
-			"code": [
-				""
-			]
-		}
-	],
+	"associated_trigger": [
+    "Anim", "AnimTime", "AnimElemNo", "AnimElemTime",
+    "AnimExist", "SelfAnimExist"
+  ],
+	"associated_state": [""],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "AnimElem - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#animelem"}
 	]
 }

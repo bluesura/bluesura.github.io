@@ -2,10 +2,10 @@
 	"page": {
 		"title": "MUGEN Trigger",
 		"subtitle": "Floor",
-		"target": "",
-		"category": ["", ""],
+		"target": "数学",
+		"category": ["計算", "xの小数点以下を切り捨てた結果は何ですか？"],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+    "update": "2016.12.21",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,18 +17,27 @@
 		"Floor(x)"
 	],
 
-	"description": "<p>引数には、切捨てを行いたい小数を指定します。戻り値の型: int使用例:1. value=floor(5.5)valueに5を代入。2. value=floor(-2)valueに-2を代入。</p>",
+	"description": "<p>引数には、切捨てを行いたい小数を指定します。</p><p>戻り値の型: int</p>",
+
+	"associated_trigger": ["Ceil"],
+	"associated_state": [""],
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "valueに5を代入",
 			"code": [
-				""
+				"value = Floor(5.5)"
+			]
+		},
+		{
+			"title": "valueに-2を代入",
+			"code": [
+				"value = Floor(-2)"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "Floor - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#floor-math"}
 	]
 }

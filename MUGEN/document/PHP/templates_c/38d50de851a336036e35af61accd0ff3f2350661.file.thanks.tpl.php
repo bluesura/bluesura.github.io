@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-24 05:11:49
+<?php /* Smarty version Smarty-3.1.12, created on 2016-12-21 10:45:46
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\thanks.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1550957944e155b5ec3-64993836%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '38d50de851a336036e35af61accd0ff3f2350661' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\thanks.tpl',
-      1 => 1450515908,
+      1 => 1482317135,
       2 => 'file',
     ),
   ),
@@ -15,11 +15,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.12',
   'unifunc' => 'content_57944e155bbb21_68140232',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_57944e155bbb21_68140232')) {function content_57944e155bbb21_68140232($_smarty_tpl) {?>﻿		<h2>お世話になったリンク一覧</h2>
+<?php if ($_valid && !is_callable('content_57944e155bbb21_68140232')) {function content_57944e155bbb21_68140232($_smarty_tpl) {?>﻿		<h2>参考にさせてもらったサイト一覧</h2>
 		<ul>
 			<li><a href="http://homotaro.s44.xrea.com/scr.htm" target="_blank" rel="external">ステートコントローラー一覧</a></li>
 			<li><a href="http://homotaro.s44.xrea.com/etc.htm" target="_blank" rel="external">その他</a></li>
@@ -38,7 +38,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<!--<li><a href="" target="_blank" rel="external"> - </a></li>-->
 		</ul>
 
-		<h2>お世話になった小ネタ・記事一覧</h2>
+		<h2>参考にさせてもらった小ネタ・記事一覧</h2>
 		<ul>
 			<li><a href="http://oki6761.blog23.fc2.com/blog-entry-1492.html" target="_blank" rel="external">MUGENでやってはいけないこと　by熄癈人</a></li>
 			<li><a href="http://chottokomaru.sitemix.jp/alpha4.html" target="_blank" rel="external">君の瞳は紫外線 - M.U.G.E.N 1.1 Alpha 4 について</a></li>

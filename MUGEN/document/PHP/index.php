@@ -9,7 +9,7 @@ $smarty->debugging = false;
 */
 $sidebar = [];
 
-array_push($sidebar, "<label for=\"menu_bar01\">+ State Controller Reference</label><input type=\"checkbox\" id=\"menu_bar01\" class=\"accordion\" /><ul id=\"links01\">");
+array_push($sidebar, "<label for=\"menu_bar01\">+ ステートコントローラー 一覧を見る</label><input type=\"checkbox\" id=\"menu_bar01\" class=\"accordion\" /><ul id=\"links01\">");
 array_push($sidebar, "<li><a href=\"/MUGEN/document/State/\">Top Page</a></li>");
 $list = json_decode(file_get_contents("./../State/json/state_list.json"), true);
 $loop_end = count($list);
@@ -18,7 +18,7 @@ for ($i = 0; $i < $loop_end; $i++) {
 }
 array_push($sidebar, "</ul>");
 
-array_push($sidebar, "<label for=\"menu_bar02\">+ Trigger Reference</label><input type=\"checkbox\" id=\"menu_bar02\" class=\"accordion\" /><ul id=\"links02\">");
+array_push($sidebar, "<label for=\"menu_bar02\">+ トリガー 一覧を見る</label><input type=\"checkbox\" id=\"menu_bar02\" class=\"accordion\" /><ul id=\"links02\">");
 array_push($sidebar, "<li><a href=\"/MUGEN/document/Trigger/\">Top Page</a></li>");
 $list = json_decode(file_get_contents("./../Trigger/json/trigger_list.json"), true);
 $loop_end = count($list);
@@ -28,7 +28,7 @@ for ($i = 0; $i < $loop_end; $i++) {
 array_push($sidebar, "</ul>");
 
 
-array_push($sidebar, "<label for=\"menu_bar03\">+ Lifebar Reference</label><input type=\"checkbox\" id=\"menu_bar03\" class=\"accordion\" /><ul id=\"links03\">");
+array_push($sidebar, "<label for=\"menu_bar03\">+ ライフバーの設定 を見る</label><input type=\"checkbox\" id=\"menu_bar03\" class=\"accordion\" /><ul id=\"links03\">");
 array_push($sidebar, "<li><a href=\"/MUGEN/document/Lifebar/\">Top Page</a></li>");
 $list = array("Combo", "Face","FightFx", "Files", "LifeBar","Name", "PowerBar","Round", "SimulFace", "SimulLifeBar", "SimulName","Time", "TurnsFace", "TurnsLifeBar", "TurnsName", "WinIcon");
 $loop_end = count($list);

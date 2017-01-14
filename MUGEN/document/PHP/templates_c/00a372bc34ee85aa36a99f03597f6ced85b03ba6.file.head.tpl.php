@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-12-30 04:36:28
+<?php /* Smarty version Smarty-3.1.12, created on 2017-01-14 14:05:45
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:22745865e44c0404b9-69856301%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '00a372bc34ee85aa36a99f03597f6ced85b03ba6' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1483072581,
+      1 => 1484402727,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5865e44c1166c6_51494505',
   'variables' => 
   array (
     'content' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5865e44c1166c6_51494505',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5865e44c1166c6_51494505')) {function content_5865e44c1166c6_51494505($_smarty_tpl) {?>  <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
@@ -71,9 +71,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
   <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript" src="/lib/js/isMobile.min.js?version=20161230"></script>
   <script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
   <script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
   <script async type="text/javascript" src="/lib/js/js-ctrl.js?version=20161230"></script>
   <script async type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js"></script>
-  <script async type="text/javascript" src="/lib/js/isMobile.min.js?version=20161230"></script>
 <?php }} ?>

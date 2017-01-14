@@ -269,7 +269,6 @@ array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 /*
  タイトルの処理
 */
-$loop_start = 0;
 $loop_end = count($html_output_list);
 for ($i = 0; $i < $loop_end; $i++) {
   $categorie["main_title"] = $MAIN_TITLE;
@@ -299,14 +298,12 @@ for ($i = 0; $i < $loop_end; $i++) {
 
 
 /* htm */
-$loop_start = 0;
 $loop_end = count($html_output_list);
-
-for ($i = $loop_start; $i < $loop_end; $i++) {
+for ($i = 0; $i < $loop_end; $i++) {
   $name = $html_output_list[$i];
   $categorie["html"] = file_get_contents("./../Lifebar/htm/".$name.".htm");
   $categorie["main_title"] = $MAIN_TITLE;
-  $categorie["page_category"] = "Lifebar";
+  $categorie["page_category"] = "Lifebar_htm";
   $categorie["page_title"] = $PAGE_TITLE;
   $categorie["page_subtitle"] = $name;
   $categorie["categories"] = $categories;

@@ -27,6 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {if $content.page_category == "State"}{include file="./content.tpl"}
 {elseif $content.page_category == "Trigger"}{include file="./Trigger/content.tpl"}
 {elseif $content.page_category == "Lifebar"}{include file="./LifeBar/LifeBar.tpl"}
+{elseif $content.page_category == "Lifebar_htm"}<div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd"><div class="entry-content">{$content.html}</div></article></div>
 {/if}
 	</div></div>
 

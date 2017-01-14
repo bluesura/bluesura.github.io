@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-12-21 10:45:46
+<?php /* Smarty version Smarty-3.1.12, created on 2017-01-14 13:45:33
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\thanks.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1550957944e155b5ec3-64993836%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '38d50de851a336036e35af61accd0ff3f2350661' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\thanks.tpl',
-      1 => 1482317135,
+      1 => 1484401527,
       2 => 'file',
     ),
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_57944e155bbb21_68140232')) {function content_57944e155bbb21_68140232($_smarty_tpl) {?>﻿		<h2>参考にさせてもらったサイト一覧</h2>
 		<ul>
-			<li><a href="http://homotaro.s44.xrea.com/scr.htm" target="_blank" rel="external">ステートコントローラー一覧</a></li>
-			<li><a href="http://homotaro.s44.xrea.com/etc.htm" target="_blank" rel="external">その他</a></li>
-			<li><a href="http://homotaro.s44.xrea.com/tr.htm" target="_blank" rel="external">Trigger reference</a></li>
+			<li><a href="/redirect/?url=homotaro.s44.xrea.com/scr.htm&protocol=http" target="_blank" rel="external">ステートコントローラー一覧</a></li>
+			<li><a href="/redirect/?url=homotaro.s44.xrea.com/etc.htm&protocol=http" target="_blank" rel="external">その他</a></li>
+			<li><a href="/redirect/?url=homotaro.s44.xrea.com/tr.htm&protocol=http" target="_blank" rel="external">Trigger reference</a></li>
 			<li><a href="http://homepage3.nifty.com/andil/mugen/" target="_blank" rel="external">ADIのMUGENメモ</a></li>
 			<li><a href="http://www49.atwiki.jp/mugencns/" target="_blank" rel="external">MUGEN CNS WIKI CHAOS@予定</a></li>
 			<li><a href="http://mugenbinran.web.fc2.com/" target="_blank" rel="external">MUGENの便覧</a></li>

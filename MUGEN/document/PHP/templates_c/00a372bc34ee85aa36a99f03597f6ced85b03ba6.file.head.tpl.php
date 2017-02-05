@@ -1,29 +1,29 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-01-14 14:05:45
+<?php /* Smarty version Smarty-3.1.12, created on 2017-02-05 18:00:31
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:22745865e44c0404b9-69856301%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:193935897683fad1fd7-18723983%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '00a372bc34ee85aa36a99f03597f6ced85b03ba6' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1484402727,
+      1 => 1486317622,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '22745865e44c0404b9-69856301',
+  'nocache_hash' => '193935897683fad1fd7-18723983',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5865e44c1166c6_51494505',
   'variables' => 
   array (
     'content' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5897683fb840e0_78617605',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5865e44c1166c6_51494505')) {function content_5865e44c1166c6_51494505($_smarty_tpl) {?>  <meta charset="UTF-8" />
+<?php if ($_valid && !is_callable('content_5897683fb840e0_78617605')) {function content_5897683fb840e0_78617605($_smarty_tpl) {?>  <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
@@ -49,6 +49,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
   <link rel="mask-icon" href="/media/img/infinite-M.svg" color="#1E88E5">
   <link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
+
+  <link rel="manifest" href="/manifest.json">
 
   <!-- 「チェス盤を引っくり返す！」 -->
   <meta name="theme-color" content="#1E88E5">

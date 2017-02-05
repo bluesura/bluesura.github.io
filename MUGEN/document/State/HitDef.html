@@ -18,6 +18,8 @@
   <link rel="mask-icon" href="/media/img/infinite-M.svg" color="#1E88E5">
   <link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
 
+  <link rel="manifest" href="/manifest.json">
+
   <!-- 「チェス盤を引っくり返す！」 -->
   <meta name="theme-color" content="#1E88E5">
   <meta name="msapplication-TileColor" content="#1E88E5">
@@ -3042,6 +3044,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		</ul>
 	</nav>
 </footer>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register('/lib/js/service-worker.js')
+           .then(function() { console.log('Service Worker Registered'); });
+}
+</script>
 
 </body>
 </html>

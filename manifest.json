@@ -1,6 +1,8 @@
 {
-  "short_name": "MUGEN Document",
+  "lang": "ja",
+  "short_name": "∞",
   "name": "MUGEN Document",
+  "description": "",
   "icons": [
     {
       "src": "/media/img/favicon.png",
@@ -8,10 +10,24 @@
       "sizes": "32x32"
     },
     {
+      "src": "/media/img/icon-128x128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
       "src": "/media/img/icon-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
+    },
+    {
+      "src": "/media/img/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
+  "theme_color": "#1E88E5",
+  "background_color": "#1E88E5",
+  "display": "standalone",
+  "orientation": "portrait",
   "start_url": "/MUGEN/document/State/"
 }

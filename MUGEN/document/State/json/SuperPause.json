@@ -12,6 +12,7 @@
 
 	"state": "SuperPause",
 	"description": "<p>必殺技演出用に時間を止めます。画面の暗転、超必殺技エフェクトも指定可能。</p><p>時間が止まっている間は、ステート時間も経過しませんが、設定によっては行動可能。設定されていないステートは全て停止しているので注意。<!--by vesperさん--></p><p>Pauseコントローラ実行中にSuperPauseが実行されると、Pauseは中断されます。SuperPauseの効果が終了すると、Pauseの効果が再開されます。</p>",
+	"images": [{"src": "SuperPause.gif", "width": "640", "height": "480", "alt": "MUGEN SuperPause"}],
 	"category": "state",
 
 	"version": [
@@ -151,6 +152,7 @@
 
 	"quote": [
 		{"title": "SuperPause - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/SuperPause"},
+		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html"},
 		{"title": "SuperPause - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?SuperPause&protocol=http"},
 		{"title": "SuperPause - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#SuperPause"},
 		{"title": "SuperPause - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}

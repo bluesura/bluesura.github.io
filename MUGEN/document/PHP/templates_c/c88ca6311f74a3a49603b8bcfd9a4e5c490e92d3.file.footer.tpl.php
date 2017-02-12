@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-02-05 23:08:38
+<?php /* Smarty version Smarty-3.1.12, created on 2017-02-12 06:54:15
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2158057944e15439067-20822760%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c88ca6311f74a3a49603b8bcfd9a4e5c490e92d3' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\footer.tpl',
-      1 => 1486336110,
+      1 => 1486881833,
       2 => 'file',
     ),
   ),
@@ -91,6 +91,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
            .register('/lib/js/service-worker.js')
-           .then(function() { console.log('Service Worker Registered'); });//
+           .then(function() { console.log('Service Worker Registered'); });
 }
 </script><?php }} ?>

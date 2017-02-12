@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
-  <title itemprop="headline">SuperPause | MUGEN State Controller - Name = sura</title>
+  <title itemprop="headline">SuperPause 【暗転させて時間と処理を止めます。】 | MUGEN State Controller - Name = sura</title>
   <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN">
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
   <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
@@ -83,7 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<header class="entry-header" style="background: url(./media/img/SuperPause.gif) no-repeat; background-size: cover;"><div style="height:480px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"><span itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display: none;"/><meta itemprop="url" content="https://bluesura.github.io/MUGEN/document/State/media/img/SuperPause.gif"><meta itemprop="width" content="640"><meta itemprop="height" content="480"></span>
 	<div class="entry-title" itemprop="name"><div>
 	<h1 id="SuperPause">Type = SuperPause</h1>
-	<div class="category"> >  | 実装されたバージョン: 2002.04.14 | </div>
+	<div class="category">時間停止 > 暗転させて時間と処理を止めます。 | 実装されたバージョン: 2002.04.14 | 対象: 時間</div>
 </div></div>
 
 </div></header>
@@ -106,6 +106,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			</thead>
 			<tbody>
 									<tr><td>-</td><td><code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。</td></tr>
+									<tr><td>エラー</td><td>SET ILLEGAL PAUSETIME: Timeに0以下</td></tr>
+									<tr><td>エラー</td><td>NEGATIVE SPARK ANIMENO IGNORE: Animeに-2以下</td></tr>
+									<tr><td>エラー</td><td>SET ILLEGAL PAUSEMOVETIME: MoveTimeに -1以下またはパラメータのTime+1以上</td></tr>
+									<tr><td>エラー</td><td>NEGATIVE P2DEFMUL FOR SUPERPAUSE: P2DefMulに0未満</td></tr>
+									<tr><td>エラー</td><td>SET ILLEGAL ENDCMDBUFTIME: EndCmdBufTimeに-1以下</td></tr>
 							</tbody>
 		</table>
 	</div></section>
@@ -506,7 +511,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div></section>
 	
 
-<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2014-12-30">2014.12.30</time></div></div>
+<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-02-12">2017.02.12</time></div></div>
 
 	</div>
 </article></div>

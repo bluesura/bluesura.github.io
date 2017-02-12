@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
-  <title itemprop="headline">Pause | MUGEN State Controller - Name = sura</title>
+  <title itemprop="headline">Pause 【時間と処理を止めます。】 | MUGEN State Controller - Name = sura</title>
   <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN">
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
   <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
@@ -80,10 +80,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 	<div id="wrapper"><div id="main">
 <div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
-	<header class="entry-header"><div>
+	<header class="entry-header" style="background: url(./media/img/Pause.gif) no-repeat; background-size: cover;"><div style="height:480px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"><span itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display: none;"/><meta itemprop="url" content="https://bluesura.github.io/MUGEN/document/State/media/img/Pause.gif"><meta itemprop="width" content="640"><meta itemprop="height" content="480"></span>
 	<div class="entry-title" itemprop="name"><div>
 	<h1 id="Pause">Type = Pause</h1>
-	<div class="category"> >  | 実装されたバージョン: 2002.04.14 | </div>
+	<div class="category">時間停止 > 時間と処理を止めます。 | 実装されたバージョン: 2002.04.14 | 対象: 時間</div>
 </div></div>
 
 </div></header>
@@ -98,7 +98,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				
 	</div>
 
-﻿	
+﻿		<section id="Version"><div class="section">
+		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
+		<table>
+			<thead>
+				<tr><th></th><th>内容</th></tr>
+			</thead>
+			<tbody>
+									<tr><td>エラー</td><td>SET ILLEGAL PAUSETIME: Timeに0以下</td></tr>
+									<tr><td>エラー</td><td>SET ILLEGAL PAUSEMOVETIME: MoveTimeに -1以下またはパラメータのTime+1以上</td></tr>
+									<tr><td>エラー</td><td>SET ILLEGAL ENDCMDBUFTIME: EndCmdBufTimeに-1以下</td></tr>
+							</tbody>
+		</table>
+	</div></section>
+	
 
 ﻿	<section id="Parameter"><div class="section">
 		<h2>パラメーター</h2>
@@ -305,6 +318,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<h2>引用記事</h2>
 		<ul>
 					<li><a href="http://elecbyte.com/wiki/index.php/Pause" target="_blank" rel="external">Pause - M.U.G.E.N wiki</a></li>
+					<li><a href="http://mugenbinran.web.fc2.com/error.html" target="_blank" rel="external">不具合・対策まとめ - MUGENの便覧</a></li>
 					<li><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Pause&protocol=http" target="_blank" rel="external">Pause - State Controller</a></li>
 					<li><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Pause" target="_blank" rel="external">Pause - 東方夢幻館</a></li>
 					<li><a href="http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm" target="_blank" rel="external">Pause - 地球の応接間</a></li>
@@ -312,7 +326,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div></section>
 	
 
-<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2013-11-27">2013.11.27</time></div></div>
+<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-02-12">2017.02.12</time></div></div>
 
 	</div>
 </article></div>

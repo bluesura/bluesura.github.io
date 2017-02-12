@@ -2,17 +2,24 @@
 	"page": {
 		"title": "MUGEN State Controller",
 		"subtitle": "Pause",
-		"target": "",
-		"category": ["", ""],
+		"target": "時間",
+		"category": ["時間停止", "時間と処理を止めます。"],
 		"version": "2002.04.14",
-		"update": "2013.11.27",
+		"update": "2017.02.12",
 		"type": "document",
 		"level": "3"
 	},
 
 	"state": "Pause",
 	"description": "<p>時間を止めます。画面上の全てのスプライト、キャラクター、背景に効果を及ぼします。また、-1,-2,-3ステート等はPause中実行されません。(未検証)</p><p>ですが、Helper、Explod等は設定により停止時間中も動くことが可能。</p><p>このコントローラによる停止時間中に同じコントローラが実行されると、それまでのPauseは無効となります。</p><p>SuperPause停止時間中にPauseが実行された場合は、SuperPauseの効果時間が切れてからPauseが有効になります。</p>",
+	"images": [{"src": "Pause.gif", "width": "640", "height": "480", "alt": "MUGEN Pause"}],
 	"category": "state",
+
+	"version": [
+		{"no": "エラー", "content": "SET ILLEGAL PAUSETIME: Timeに0以下"},
+		{"no": "エラー", "content": "SET ILLEGAL PAUSEMOVETIME: MoveTimeに -1以下またはパラメータのTime+1以上"},
+		{"no": "エラー", "content": "SET ILLEGAL ENDCMDBUFTIME: EndCmdBufTimeに-1以下"}
+	],
 
 	"parameter": [
 		{
@@ -63,6 +70,7 @@
 
 	"quote": [
 		{"title": "Pause - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/Pause"},
+		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html"},
 		{"title": "Pause - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Pause&protocol=http"},
 		{"title": "Pause - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Pause"},
 		{"title": "Pause - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}

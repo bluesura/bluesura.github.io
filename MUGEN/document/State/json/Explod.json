@@ -5,7 +5,7 @@
     "target": "画像",
     "category": ["Explod", "アニメーションを表示"],
     "version": "2002.04.14",
-		"update": "2016.01.24",
+    "update": "2016.01.24",
     "type": "document",
     "level": "3"
   },
@@ -13,8 +13,8 @@
   "state": "Explod",
   "description": "<p>指定した番号のアニメーションをAIRファイルから呼び出して表示します。</p><p>同時に存在できる総数には上限があり、標準では64個(Mugen1.0から256個)となっています。仮にプレイヤー1(P1)が64個出してしまった場合、プレイヤー2(2P)は1つも出せなくなります。総数の上限は<code>mugen.cfg</code>の<code>ExplodMax</code>で変更できます。大きい値にするほど、PCへの負荷が大きくなります。動作が重かったりする場合は、この値を下げることにより改善する場合があります。</p>",
   "category": "state",
-	"associated_state": ["RemoveExplod", "ModifyExplod", "ExplodBindTime"],
-	"associated_trigger": ["NumExplod", "PlayerIDExist"],
+  "associated_state": ["RemoveExplod", "ModifyExplod", "ExplodBindTime"],
+  "associated_trigger": ["NumExplod", "PlayerIDExist"],
 
 
   "version": [
@@ -27,12 +27,12 @@
     {"no": "Version1.1から", "content": "<code>-2</code>に記述された<code>Explod</code>はステートが奪われた場合、奪った相手の<code>LocalCoord</code>の影響を受け縮尺がおかしくなります。"},
     {"no": "Version1.1から", "content": "<code>Space</code>,<code>Angle</code>,<code>XAngle</code>,<code>YAngle</code>,<code>ReMapPal</code>,<code>BindID</code>,<code>PosType</code>に<code>None</code>が追加されました。"},
     {"no": "Version1.1から", "content": "<code>SuperMove</code>が廃止されました。"},
-    {"no": "エラー", "content": "ILLEGAL EXPLOD ANIMNO : Animに-1以下"},
-    {"no": "エラー", "content": "NEGATIVE EXPLOD ID : IDに-1以下"},
-    {"no": "エラー", "content": "ILLEGAL POSBINDTIME FOR EXPLOD : BindTimeに-2以下"},
-    {"no": "エラー", "content": "NEGATIVE EXPLOD RANDOM PARAM : Randomに-1以下"},
-    {"no": "エラー", "content": "ILLEGAL REMOVETIME FOR EXPLOD : RemoveTimeに-3以下"},
-    {"no": "エラー", "content": "ILLEGAL SHADOW COLOR : Colorに-2以下"}
+    {"no": "警告文", "content": "ILLEGAL EXPLOD ANIMNO : Animに-1以下"},
+    {"no": "警告文", "content": "NEGATIVE EXPLOD ID : IDに-1以下"},
+    {"no": "警告文", "content": "ILLEGAL POSBINDTIME FOR EXPLOD : BindTimeに-2以下"},
+    {"no": "警告文", "content": "NEGATIVE EXPLOD RANDOM PARAM : Randomに-1以下"},
+    {"no": "警告文", "content": "ILLEGAL REMOVETIME FOR EXPLOD : RemoveTimeに-3以下"},
+    {"no": "警告文", "content": "ILLEGAL SHADOW COLOR : Colorに-2以下"}
   ],
 
   "parameter": [
@@ -388,10 +388,10 @@
     }
   ],
 
-	"code_sample": [
-		{
-			"title": "SpaceでPosTypeを再現する方法",
-			"code": [
+  "code_sample": [
+    {
+      "title": "SpaceでPosTypeを再現する方法",
+      "code": [
         ";PosType = P1",
         "Space = Stage",
         "Pos = Pos X + CameraPos X, Pos Y",
@@ -421,11 +421,11 @@
         "Space = Screen",
         "Pos = ScreenWidth, 0",
         "Facing = 1"
-			]
-		},
-		{
-			"title": "マガがしいオーラ（厄い）",
-			"code": [
+      ]
+    },
+    {
+      "title": "マガがしいオーラ（厄い）",
+      "code": [
         "[State -2]",
         "Type = Explod",
         "Trigger1 = NumExplod(1) &lt; 10 &amp;&amp; Time %8",
@@ -443,9 +443,9 @@
         "Anim = 0",
         "OwnPal = 0",
         "IgnoreHitPause = 1"
-			]
-		}
-	],
+      ]
+    }
+  ],
 
   "quote": [
     {"title": "Explod - State Controller Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#explod"},
@@ -455,7 +455,7 @@
     {"title": "Explod - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Explod&protocol=http"},
     {"title": "Explod - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Explod"},
     {"title": "Explod - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"},
-    {"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html"},
+    {"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
     {"title": "Explodって結構ヘンなコントローラーじゃないかね - Diary::586", "url": "http://d.hatena.ne.jp/e586/20080129/1201591289"},
     {"title": "sffとairの限界 - lunaの倉庫", "url": "http://lunatic284.blog90.fc2.com/blog-entry-2008.html"}
   ]

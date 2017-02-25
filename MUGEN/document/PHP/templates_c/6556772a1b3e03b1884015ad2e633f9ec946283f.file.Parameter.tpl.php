@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 10:06:46
+<?php /* Smarty version Smarty-3.1.12, created on 2017-02-25 14:09:04
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content\Parameter.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:334557944e157af781-06661810%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6556772a1b3e03b1884015ad2e633f9ec946283f' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content\\Parameter.tpl',
-      1 => 1469959069,
+      1 => 1488031737,
       2 => 'file',
     ),
   ),
@@ -29,6 +29,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'max_value' => 0,
     'default_value' => 0,
     'associated_trigger' => 0,
+    'youtube' => 0,
     'video' => 0,
     'image' => 0,
   ),
@@ -176,6 +177,20 @@ $_smarty_tpl->tpl_vars['associated_trigger']->_loop = true;
 
 				<?php if ($_smarty_tpl->tpl_vars['array']->value['media']!=null){?>
 				<div class="media">
+          <?php if ($_smarty_tpl->tpl_vars['array']->value['media']['youtube']!=array()){?>
+          <div class="video-group">
+            <?php  $_smarty_tpl->tpl_vars['youtube'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['youtube']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['array']->value['media']['youtube']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['youtube']->key => $_smarty_tpl->tpl_vars['youtube']->value){
+$_smarty_tpl->tpl_vars['youtube']->_loop = true;
+?>
+            <h4><?php echo $_smarty_tpl->tpl_vars['youtube']->value['title'];?>
+</h4>
+            <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;"><iframe style="position: absolute; top: 0;  left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/<?php echo $_smarty_tpl->tpl_vars['youtube']->value['file'];?>
+" frameborder="0" allowfullscreen></iframe></div>
+            <?php } ?>
+          </div>
+          <?php }?>
 					<?php if ($_smarty_tpl->tpl_vars['array']->value['media']['video']!=array()){?>
 					<div class="video-group">
 						<?php  $_smarty_tpl->tpl_vars['video'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['video']->_loop = false;
@@ -203,8 +218,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['image']->key => $_smarty_tpl->tpl_var
 $_smarty_tpl->tpl_vars['image']->_loop = true;
 ?>
 						<div class="image">
-							<div class="title"><?php echo $_smarty_tpl->tpl_vars['image']->value['title'];?>
-</div>
+							<h4><?php echo $_smarty_tpl->tpl_vars['image']->value['title'];?>
+</h4>
 							<div class="image-frame"><img src="./media/img/<?php echo $_smarty_tpl->tpl_vars['image']->value['file'];?>
 " alt="<?php echo $_smarty_tpl->tpl_vars['image']->value['title'];?>
 " width="<?php echo $_smarty_tpl->tpl_vars['image']->value['width'];?>

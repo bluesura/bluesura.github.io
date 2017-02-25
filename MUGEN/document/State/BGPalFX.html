@@ -106,6 +106,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			</thead>
 			<tbody>
 									<tr><td>-</td><td><code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。</td></tr>
+									<tr><td>警告文</td><td>INVALID PALFX TIME: Timeに-2以下</td></tr>
+									<tr><td>警告文</td><td>INVALID PALFX COLOR: Colorに-1以下、257以上</td></tr>
+									<tr><td>警告文</td><td>INVALID PALFX MUL VALUE: MULに-1以下</td></tr>
 							</tbody>
 		</table>
 	</div></section>
@@ -236,9 +239,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					
 					
 								<div class="media">
-															<div class="image-group">
+          															<div class="image-group">
 												<div class="image">
-							<div class="title"></div>
+							<h4></h4>
 							<div class="image-frame"><img src="./media/img/SinAdd.png" alt="" width="600" height="242" /></div>
 						</div>
 											</div>
@@ -270,9 +273,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					
 					
 								<div class="media">
-															<div class="image-group">
+          															<div class="image-group">
 												<div class="image">
-							<div class="title"></div>
+							<h4></h4>
 							<div class="image-frame"><img src="./media/img/InvertAll.png" alt="" width="167" height="167" /></div>
 						</div>
 											</div>
@@ -401,8 +404,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<h2>引用記事</h2>
 		<ul>
 					<li><a href="http://elecbyte.com/wiki/index.php/BGPalFX" target="_blank" rel="external">BGPalFX - M.U.G.E.N wiki</a></li>
-					<li><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BGPalFX&protocol=http" target="_blank" rel="external">BGPalFX - State Controller</a></li>
 					<li><a href="http://www49.atwiki.jp/mugencns/pages/65.html" target="_blank" rel="external">BGPalFX - MUGEN CNS WIKI CHAOS@予定</a></li>
+					<li><a href="http://mugenbinran.web.fc2.com/error.html#12" target="_blank" rel="external">不具合・対策まとめ - MUGENの便覧</a></li>
+					<li><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BGPalFX&protocol=http" target="_blank" rel="external">BGPalFX - State Controller</a></li>
 					<li><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#BGPalFX" target="_blank" rel="external">BGPalFX - 東方夢幻館</a></li>
 					<li><a href="http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm" target="_blank" rel="external">BGPalFX - 地球の応接間</a></li>
 				</ul>
@@ -737,6 +741,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				<li><a href="http://homepage2.nifty.com/oriheus/ikemen/">I.K.E.M.E.N</a></li>
 			</ul>
 
+			<ul>
+				<li>キャラクター</li>
+				<li><a href="http://mug2.anikipedia.com/">和訳カンフーマン</a></li>
+				<li><a href="http://mugenbinran.web.fc2.com/test_chara.html">テスト用キャラ一覧</a></li>
+			</ul>
+
 				<ul>
 					<li>テキストエディタ</li>
 					<li><a href="http://sakura-editor.sourceforge.net/">サクラエディタ</a></li>
@@ -760,6 +770,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<li>ドット絵</li>
 					<li><a href="http://takabosoft.com/edge">EDGE</a></li>
 					<li><a href="http://www.fenrir-inc.com/jp/pictbear/">PictBear</a></li>
+					<li><a href="http://mugenyes.web.fc2.com/DotoEita/">MUGENドット絵板</a></li>
 				</ul>
 
 				<ul>
@@ -776,6 +787,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				<ul>
 					<li>音声加工</li>
 					<li><a href="http://soundengine.jp/software/soundengine/">SoundEngine</a></li>
+					<li><a href="http://soundengine.jp/software/radioline/">RadioLine</a></li>
+					<li><a href="http://www.foobar2000.org/">foobar2000</a></li>
 				</ul>
 
 		</nav>
@@ -783,21 +796,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 	<nav id="footer-sub">
 		<ul>
-			<li itemprop="author" itemscope itemtype="http://schema.org/Person"><a href="https://twitter.com/bluesura">©<span class="author" itemprop="name">SURA</span></a></li>
 			<li itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><a href="/" itemprop="url"><span itemprop="name"><span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject" style="display:none;"><meta itemprop="url" content="https://bluesura.github.io/media/img/icon-192x192.png"><meta itemprop="width" content="192"><meta itemprop="height" content="192"></span>Name = SURA</span></a></li>
 			<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
+			<li><a href="https://www.youtube.com/channel/UCaMPKIvY7SRpjr-SbVg8Z7Q" target="_blank">Youtube</a></li>
 			<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
 			<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>
 			<li><a href="/MUGEN/document/Trigger/index.html">Trigger Reference</a></li>
 		</ul>
 	</nav>
+
+  <div>
+		<ul>
+      <li itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <div><img src="/media/img/MUGEN.svgz" width="64" height="64" onerror="this.src='/media/img/icon-128x128.png';"></div>
+        <div>Copyright © <span class="author" itemprop="name">SURA</span>(すら) All rights reserved.</div>
+        <div><script>document.write(document.location.host)</script>で使用している文章・画像・動画は非商用で再利用可能です。</div>
+      </li>
+			<li></li>
+      
+      <li></li>
+		</ul>
+  </div>
 </footer>
 
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
            .register('/lib/js/service-worker.js')
-           .then(function() { console.log('Service Worker Registered'); });
+           .then(function() { /*console.log();*/ });
 }
 </script>
 

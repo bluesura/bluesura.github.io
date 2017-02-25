@@ -1,65 +1,67 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "TargetBind",
-		"target": "ターゲット",
-		"category": ["ターゲット操作", "実行者を基点にターゲットの位置固定"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "TargetBind",
+    "target": "ターゲット",
+    "category": ["ターゲット操作", "実行者を基点にターゲットの位置固定"],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3"
+  },
 
-	"state": "TargetBind",
-	"description": "<p>自分の位置を基点にターゲット(自分の攻撃によりヒット/ガード中の相手)を実行したフレームからTime - 1フレーム後までTargetを実行者を基準とした位置に固定し続けます。</p><p>注意点が2点あり、実行したフレームからTime - 1フレーム後まで、Targetの速度は実行者の速度と同じになる。Target系のステートコントローラーは、特定のターゲットを指定できないため、敵が2以上いるSimulモードでは不具合が出やすいです。</p><p>例えば、1方がヒット、1方がガードだった場合でも、両方巻き込んでしまいます。両方ともヒットIDは同じであるため、ヒットの方だけ対象にすることは不可能です。</p><p>主に投げ技に使用。</p>",
-	"category": "state",
+  "state": "TargetBind",
+  "description": "<p>自分の位置を基点にターゲット(自分の攻撃によりヒット/ガード中の相手)を実行したフレームからTime - 1フレーム後までTargetを実行者を基準とした位置に固定し続けます。</p><p>注意点が2点あり、実行したフレームからTime - 1フレーム後まで、Targetの速度は実行者の速度と同じになる。Target系のステートコントローラーは、特定のターゲットを指定できないため、敵が2以上いるSimulモードでは不具合が出やすいです。</p><p>例えば、1方がヒット、1方がガードだった場合でも、両方巻き込んでしまいます。両方ともヒットIDは同じであるため、ヒットの方だけ対象にすることは不可能です。</p><p>主に投げ技に使用。</p>",
+  "category": "state",
 
 
-	"version": [
-		{"no": "-", "content": "Posを省略してしまうと、Targetを実行者からP2BodyDist x = -1025, P2BodyDist y = -1025の位置に移動させる。"},
-		{"no": "-", "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。"}
-	],
+  "version": [
+    {"no": "-", "content": "Posを省略してしまうと、Targetを実行者からP2BodyDist x = -1025, P2BodyDist y = -1025の位置に移動させる。"},
+    {"no": "-", "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。"},
+    {"no": "警告文", "content": "Set ILLEGAL TARGET BINDTIME: Timeに-2以下"}
+  ],
 
-	"parameter": [
-		{
-			"parameter": "ID",
-			"value": ["ヒットID"],
-			"type": ["int"],
-			"description": "<p>固定する敵のヒットIDを指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1 ;全てのターゲットを固定"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Time",
-			"value": ["固定時間"],
-			"type": ["int"],
-			"description": "<p>固定する時間をフレーム単位で指定。”Time = 0”では動作しない。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1 ;1フレームだけ実行"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "Pos",
-			"value": ["x位置, y位置"],
-			"type": ["float", "float"],
-			"description": "<p>プレイヤーの原点座標からの位置を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0, 0 ;のはずだけど"],
-			"load_priority": ["3,  4"]
-		}
-	],
+  "parameter": [
+    {
+      "parameter": "ID",
+      "value": ["ヒットID"],
+      "type": ["int"],
+      "description": "<p>固定する敵のヒットIDを指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["-1 ;全てのターゲットを固定"],
+      "load_priority": ["1"]
+    },
+    {
+      "parameter": "Time",
+      "value": ["固定時間"],
+      "type": ["int"],
+      "description": "<p>固定する時間をフレーム単位で指定。”Time = 0”では動作しない。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["1 ;1フレームだけ実行"],
+      "load_priority": ["2"]
+    },
+    {
+      "parameter": "Pos",
+      "value": ["x位置, y位置"],
+      "type": ["float", "float"],
+      "description": "<p>プレイヤーの原点座標からの位置を指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0, 0 ;のはずだけど"],
+      "load_priority": ["3,  4"]
+    }
+  ],
 
-	"quote": [
-		{"title": "TargetBind - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/TargetBind"},
-		{"title": "TargetBind - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetBind&protocol=http"},
-		{"title": "TargetBind - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetBind"},
-		{"title": "TargetBind - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"}
-	]
+  "quote": [
+    {"title": "TargetBind - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/TargetBind"},
+    {"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
+    {"title": "TargetBind - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetBind&protocol=http"},
+    {"title": "TargetBind - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetBind"},
+    {"title": "TargetBind - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"}
+  ]
 }

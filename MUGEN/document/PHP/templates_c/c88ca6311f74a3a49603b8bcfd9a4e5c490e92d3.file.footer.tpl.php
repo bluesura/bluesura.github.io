@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-02-12 06:54:15
+<?php /* Smarty version Smarty-3.1.12, created on 2017-02-25 13:06:46
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2158057944e15439067-20822760%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c88ca6311f74a3a49603b8bcfd9a4e5c490e92d3' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\footer.tpl',
-      1 => 1486881833,
+      1 => 1488028002,
       2 => 'file',
     ),
   ),
@@ -29,6 +29,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<li><a href="http://network.mugenguild.com/justnopoint/1.0docs/mugen.html">M.U.G.E.N 1.0 と 1.1b</a></li>
 				<li><a href="http://mug3.anikipedia.com/mugen.htm">M.U.G.E.N 1.1</a></li>
 				<li><a href="http://homepage2.nifty.com/oriheus/ikemen/">I.K.E.M.E.N</a></li>
+			</ul>
+
+			<ul>
+				<li>キャラクター</li>
+				<li><a href="http://mug2.anikipedia.com/">和訳カンフーマン</a></li>
+				<li><a href="http://mugenbinran.web.fc2.com/test_chara.html">テスト用キャラ一覧</a></li>
 			</ul>
 
 				<ul>
@@ -54,6 +60,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<li>ドット絵</li>
 					<li><a href="http://takabosoft.com/edge">EDGE</a></li>
 					<li><a href="http://www.fenrir-inc.com/jp/pictbear/">PictBear</a></li>
+					<li><a href="http://mugenyes.web.fc2.com/DotoEita/">MUGENドット絵板</a></li>
 				</ul>
 
 				<ul>
@@ -70,6 +77,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<ul>
 					<li>音声加工</li>
 					<li><a href="http://soundengine.jp/software/soundengine/">SoundEngine</a></li>
+					<li><a href="http://soundengine.jp/software/radioline/">RadioLine</a></li>
+					<li><a href="http://www.foobar2000.org/">foobar2000</a></li>
 				</ul>
 
 		</nav>
@@ -77,20 +86,33 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 	<nav id="footer-sub">
 		<ul>
-			<li itemprop="author" itemscope itemtype="http://schema.org/Person"><a href="https://twitter.com/bluesura">©<span class="author" itemprop="name">SURA</span></a></li>
 			<li itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><a href="/" itemprop="url"><span itemprop="name"><span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject" style="display:none;"><meta itemprop="url" content="https://bluesura.github.io/media/img/icon-192x192.png"><meta itemprop="width" content="192"><meta itemprop="height" content="192"></span>Name = SURA</span></a></li>
 			<li><a href="https://twitter.com/bluesura" target="_blank">Twitter</a></li>
+			<li><a href="https://www.youtube.com/channel/UCaMPKIvY7SRpjr-SbVg8Z7Q" target="_blank">Youtube</a></li>
 			<li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
 			<li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>
 			<li><a href="/MUGEN/document/Trigger/index.html">Trigger Reference</a></li>
 		</ul>
 	</nav>
+
+  <div>
+		<ul>
+      <li itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <div><img src="/media/img/MUGEN.svgz" width="64" height="64" onerror="this.src='/media/img/icon-128x128.png';"></div>
+        <div>Copyright © <span class="author" itemprop="name">SURA</span>(すら) All rights reserved.</div>
+        <div><script>document.write(document.location.host)</script>で使用している文章・画像・動画は非商用で再利用可能です。</div>
+      </li>
+			<li></li>
+      
+      <li></li>
+		</ul>
+  </div>
 </footer>
 
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
            .register('/lib/js/service-worker.js')
-           .then(function() { console.log('Service Worker Registered'); });
+           .then(function() { /*console.log();*/ });
 }
 </script><?php }} ?>

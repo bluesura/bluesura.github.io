@@ -79,7 +79,7 @@
       <li itemprop="author" itemscope="" itemtype="http://schema.org/Person">
         <div><img src="/media/img/MUGEN.svgz" width="64" height="64" onerror="this.src='/media/img/icon-128x128.png';"></div>
         <div>Copyright © <span class="author" itemprop="name">SURA</span>(すら) All rights reserved.</div>
-        <div><script>document.write(document.location.host)</script>で使用している文章・画像・動画は非商用で再利用可能です。</div>
+        <div>bluesura.github.ioで使用している文章・画像・動画は非商用で再利用可能です。</div>
       </li>
 			<li></li>
       

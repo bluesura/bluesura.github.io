@@ -30,11 +30,11 @@
 -->*}
 
 <div id="survey" class="article-survey-container">
-<div class="as"><div class="title">この記事は役に立ちましたか？</div><button id="survey-yes" class="as-button" type="button">はい</button><button id="survey-no" class="as-button" type="button">いいえ</button></div>
+<div class="as"><div class="title">この記事は役に立ちましたか？</div><button id="survey-yes" class="as-button" type="button" onclick="document.getElementById('survey').innerHTML = '<div class=\'as\'><div class=\'title\'>貴重なご意見をお寄せいただきありがとうございます。</div></div>';">はい</button><button id="survey-no" class="as-button" type="button" onclick="document.getElementById('survey').innerHTML='<iframe src=\'https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true\' width=\'100%\' height=\'1000\' frameborder=\'0\' marginheight=\'0\' marginwidth=\'0\'>読み込んでいます...</iframe>';">いいえ</button></div>
 </div>
 
 <div id="feedback" class="article-survey-container">
-<div class="as"><div class="title">ご意見・ご要望はございますか？</div><button id="feedback-yes" class="as-button" type="button">はい</button><button id="feedback-no" class="as-button" type="button">いいえ</button></div>
+<div class="as"><div class="title">ご意見・ご要望はございますか？</div><button id="feedback-yes" class="as-button" type="button" onclick="document.getElementById('feedback').innerHTML = '<iframe id=\'feedback\' src=\'https://docs.google.com/forms/d/1dafgc1TPGiLt4h9Mx_nlikml4QxKWL8a4PkMBCOMqi8/viewform?embedded=true\' width=\'100%\' height=\'900\' frameborder=\'0\' marginheight=\'0\' marginwidth=\'0\'>読み込んでいます...</iframe>';">はい</button><button id="feedback-no" class="as-button" type="button" onclick="document.getElementById('feedback').innerHTML = '<div class=\'as\'><div class=\'title\'>(*´ω｀*)</div></div>';">いいえ</button></div>
 </div>
 
 

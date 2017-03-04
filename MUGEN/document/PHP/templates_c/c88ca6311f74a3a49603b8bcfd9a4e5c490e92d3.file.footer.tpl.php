@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-02-25 13:06:46
+<?php /* Smarty version Smarty-3.1.12, created on 2017-03-04 19:31:40
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2158057944e15439067-20822760%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c88ca6311f74a3a49603b8bcfd9a4e5c490e92d3' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\footer.tpl',
-      1 => 1488028002,
+      1 => 1488035669,
       2 => 'file',
     ),
   ),
@@ -100,7 +100,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       <li itemprop="author" itemscope="" itemtype="http://schema.org/Person">
         <div><img src="/media/img/MUGEN.svgz" width="64" height="64" onerror="this.src='/media/img/icon-128x128.png';"></div>
         <div>Copyright © <span class="author" itemprop="name">SURA</span>(すら) All rights reserved.</div>
-        <div><script>document.write(document.location.host)</script>で使用している文章・画像・動画は非商用で再利用可能です。</div>
+        <div>bluesura.github.ioで使用している文章・画像・動画は非商用で再利用可能です。</div>
       </li>
 			<li></li>
       

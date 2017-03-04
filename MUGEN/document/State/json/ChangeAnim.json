@@ -1,48 +1,53 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "ChangeAnim",
-		"target": "",
-		"category": ["", ""],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "ChangeAnim",
+    "target": "",
+    "category": ["", ""],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3"
+  },
 
-	"state": "ChangeAnim",
-	"description": "<p>アニメーションを変更します。</p>",
-	"category": "state",
+  "state": "ChangeAnim",
+  "description": "<p>アニメーションを変更します。</p>",
+  "category": "state",
 
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["アクション番号"],
-			"type": ["int"],
-			"description": "<p>変更するアクション番号を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Elem",
-			"value": ["要素番号"],
-			"type": ["int"],
-			"description": "<p>何枚目から始めるかを指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["2"]
-		}
-	],
+  "version": [
+    {"no": "警告文", "content": "CHANGED TO NEGATIVE ANIMELEM: ELEMに-1以下"}
+  ],
 
-	"quote": [
-		{"title": "ChangeAnim - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/ChangeAnim"},
-		{"title": "ChangeAnim - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ChangeAnim&protocol=http"},
-		{"title": "ChangeAnim - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ChangeAnim"},
-		{"title": "ChangeAnim - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": ["アクション番号"],
+      "type": ["int"],
+      "description": "<p>変更するアクション番号を指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "required",
+      "default_value": ["?"],
+      "load_priority": ["1"]
+    },
+    {
+      "parameter": "Elem",
+      "value": ["要素番号"],
+      "type": ["int"],
+      "description": "<p>何枚目から始めるかを指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["1"],
+      "load_priority": ["2"]
+    }
+  ],
+
+  "quote": [
+    {"title": "ChangeAnim - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/ChangeAnim"},
+    {"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
+    {"title": "ChangeAnim - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ChangeAnim&protocol=http"},
+    {"title": "ChangeAnim - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ChangeAnim"},
+    {"title": "ChangeAnim - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
+  ]
 }

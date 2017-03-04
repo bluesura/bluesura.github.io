@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<div class="entry-content">
 
 ﻿	<div class="description" itemprop="articleBody">
-<div><p>ヒットマークやダウン衝撃などの共通アニメを表示します。</p><p>Explodでも代用は可能ですが、相手に参照させるステート内では、こちらを使うのが無難。</p></div>
+<div><p>ヒットマークやダウン衝撃などの共通アニメを表示します。</p></div>
 
 
 
@@ -105,7 +105,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				<tr><th></th><th>内容</th></tr>
 			</thead>
 			<tbody>
-									<tr><td>MUGEN version.?</td><td>Explodで代用できるので、廃止予定。</td></tr>
+									<tr><td>MUGEN version.?</td><td>廃止予定(Explodで代用できるため)</td></tr>
+									<tr><td>警告文</td><td>MADE NEGATIVE GAMEANIM: Valueに-1以下</td></tr>
+									<tr><td>警告文</td><td>NEGATIVE RANDOM PARAM FOR GAMEMAKEANIM: Randomに-1以下</td></tr>
 							</tbody>
 		</table>
 	</div></section>
@@ -312,6 +314,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<h2>引用記事</h2>
 		<ul>
 					<li><a href="http://elecbyte.com/wiki/index.php/GameMakeAnim" target="_blank" rel="external">GameMakeAnim - M.U.G.E.N wiki</a></li>
+					<li><a href="http://mugenbinran.web.fc2.com/error.html#12" target="_blank" rel="external">不具合・対策まとめ - MUGENの便覧</a></li>
 					<li><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?GameMakeAnim&protocol=http" target="_blank" rel="external">GameMakeAnim - State Controller</a></li>
 					<li><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#GameMakeAnim" target="_blank" rel="external">GameMakeAnim - 東方夢幻館</a></li>
 				</ul>
@@ -613,11 +616,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <div id="survey" class="article-survey-container">
-<div class="as"><div class="title">この記事は役に立ちましたか？</div><button id="survey-yes" class="as-button" type="button">はい</button><button id="survey-no" class="as-button" type="button">いいえ</button></div>
+<div class="as"><div class="title">この記事は役に立ちましたか？</div><button id="survey-yes" class="as-button" type="button" onclick="document.getElementById('survey').innerHTML = '<div class=\'as\'><div class=\'title\'>貴重なご意見をお寄せいただきありがとうございます。</div></div>';">はい</button><button id="survey-no" class="as-button" type="button" onclick="document.getElementById('survey').innerHTML='<iframe src=\'https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true\' width=\'100%\' height=\'1000\' frameborder=\'0\' marginheight=\'0\' marginwidth=\'0\'>読み込んでいます...</iframe>';">いいえ</button></div>
 </div>
 
 <div id="feedback" class="article-survey-container">
-<div class="as"><div class="title">ご意見・ご要望はございますか？</div><button id="feedback-yes" class="as-button" type="button">はい</button><button id="feedback-no" class="as-button" type="button">いいえ</button></div>
+<div class="as"><div class="title">ご意見・ご要望はございますか？</div><button id="feedback-yes" class="as-button" type="button" onclick="document.getElementById('feedback').innerHTML = '<iframe id=\'feedback\' src=\'https://docs.google.com/forms/d/1dafgc1TPGiLt4h9Mx_nlikml4QxKWL8a4PkMBCOMqi8/viewform?embedded=true\' width=\'100%\' height=\'900\' frameborder=\'0\' marginheight=\'0\' marginwidth=\'0\'>読み込んでいます...</iframe>';">はい</button><button id="feedback-no" class="as-button" type="button" onclick="document.getElementById('feedback').innerHTML = '<div class=\'as\'><div class=\'title\'>(*´ω｀*)</div></div>';">いいえ</button></div>
 </div>
 
 
@@ -715,7 +718,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <li itemprop="author" itemscope="" itemtype="http://schema.org/Person">
         <div><img src="/media/img/MUGEN.svgz" width="64" height="64" onerror="this.src='/media/img/icon-128x128.png';"></div>
         <div>Copyright © <span class="author" itemprop="name">SURA</span>(すら) All rights reserved.</div>
-        <div><script>document.write(document.location.host)</script>で使用している文章・画像・動画は非商用で再利用可能です。</div>
+        <div>bluesura.github.ioで使用している文章・画像・動画は非商用で再利用可能です。</div>
       </li>
 			<li></li>
       

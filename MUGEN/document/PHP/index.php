@@ -107,7 +107,7 @@ $filename = "index.html";
 $path = "/State/";
 
 $smarty->assign('content', $categorie);
-file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/index.tpl'));
+file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
 array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
 /*
@@ -178,7 +178,7 @@ $filename = "index.html";
 $path = "/Trigger/";
 
 $smarty->assign('content', $categorie);
-file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/index.tpl'));
+file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
 array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
 

@@ -21,12 +21,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div id="container-inner">
 {include file="./header.tpl"}
 
-<div id="content st-container" class="st-container">
+<div id="content">
 
 	<div id="wrapper"><div id="main">
-{if $content.page_category == "State"}{include file="./content.tpl"}
-{elseif $content.page_category == "Trigger"}{include file="./Trigger/content.tpl"}
-{elseif $content.page_category == "Lifebar"}{include file="./LifeBar/LifeBar.tpl"}
+{if $content.page_category == "State"}
+  {if $content.page.level == "3"}
+    {include file="./content.tpl"}
+  {elseif $content.page.level == "2"}
+    {include file="./index.tpl"}
+  {/if}
+
+{elseif $content.page_category == "Trigger"}
+  {if $content.page.level == "3"}
+    {include file="./Trigger/content.tpl"}
+  {elseif $content.page.level == "2"}
+    {include file="./index.tpl"}
+  {/if}
+
+  {elseif $content.page_category == "Lifebar"}
+    {include file="./LifeBar/LifeBar.tpl"}
+
 {elseif $content.page_category == "Lifebar_htm"}<div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd"><div class="entry-content">{$content.html}</div></article></div>
 {/if}
 	</div></div>

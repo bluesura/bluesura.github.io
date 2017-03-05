@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-04-29 19:59:40
+<?php /* Smarty version Smarty-3.1.12, created on 2017-03-05 05:13:35
          compiled from ".\..\Template\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:95285529e9f593ce44-38431918%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a776ce11c213c6ba01f0c889d6cd891495d38b7' => 
     array (
       0 => '.\\..\\Template\\index.tpl',
-      1 => 1461959978,
+      1 => 1488690804,
       2 => 'file',
     ),
   ),
@@ -39,7 +39,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php echo $_smarty_tpl->getSubTemplate ("./header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
-<div id="content" class="hfeed"><div id="content-inner">
+<div id="content" class=""><div id="content-inner">
 
 <div id="wrapper"><div id="main"><div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
 

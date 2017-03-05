@@ -21,7 +21,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div id="container-inner">
 {include file="./header.tpl"}
 
-<div id="content" class="hfeed">
+<div id="content st-container" class="st-container">
 
 	<div id="wrapper"><div id="main">
 {if $content.page_category == "State"}{include file="./content.tpl"}

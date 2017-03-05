@@ -88,6 +88,8 @@
   </div>
 </footer>
 
+{*<script src="/lib/js/classie.js"></script>
+<script src="/lib/js/sidebarEffects.js"></script>*}
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker

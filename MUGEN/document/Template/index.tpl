@@ -9,7 +9,7 @@
 <div id="container-inner">
 {include file="./header.tpl"}
 
-<div id="content" class="hfeed"><div id="content-inner">
+<div id="content" class=""><div id="content-inner">
 
 <div id="wrapper"><div id="main"><div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
 

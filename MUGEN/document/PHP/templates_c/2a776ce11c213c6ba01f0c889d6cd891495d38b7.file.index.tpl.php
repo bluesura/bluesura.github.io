@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-03-05 06:07:51
+<?php /* Smarty version Smarty-3.1.12, created on 2017-03-05 07:02:41
          compiled from ".\..\Template\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:95285529e9f593ce44-38431918%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a776ce11c213c6ba01f0c889d6cd891495d38b7' => 
     array (
       0 => '.\\..\\Template\\index.tpl',
-      1 => 1488694068,
+      1 => 1488697237,
       2 => 'file',
     ),
   ),
@@ -26,7 +26,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5529e9f5a20696_12666032')) {function content_5529e9f5a20696_12666032($_smarty_tpl) {?><div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
+<?php if ($_valid && !is_callable('content_5529e9f5a20696_12666032')) {function content_5529e9f5a20696_12666032($_smarty_tpl) {?><div id="main-inner">
+<article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
 
 <?php if ($_smarty_tpl->tpl_vars['content']->value['page_category']=="State"){?>
 <header class="entry-header"><div class="entry-title"><h1>ステートコントローラー一覧</h1></div></header>
@@ -69,7 +70,8 @@ $_smarty_tpl->tpl_vars['parameter']->_loop = true;
 				</ul>
 			</div>
 		</div>
-<?php } ?>
+<?php } ?><?php echo $_smarty_tpl->getSubTemplate ("./thanks.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+</div>
 
 
 <?php }elseif($_smarty_tpl->tpl_vars['content']->value['page_category']=="Trigger"){?>
@@ -98,11 +100,22 @@ $_smarty_tpl->tpl_vars['syntax']->_loop = true;
 				</ul>
 			</div>
 		</div>
-<?php } ?>
-
-
-<?php }?>
-<?php echo $_smarty_tpl->getSubTemplate ("./thanks.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+<?php } ?><?php echo $_smarty_tpl->getSubTemplate ("./thanks.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 </div>
 
-</div></article></div><?php }} ?>
+<?php }elseif($_smarty_tpl->tpl_vars['content']->value['page_category']=="Trigger"){?>
+<header class="entry-header"><div class="entry-title"><h1>ライフバーに関するメモ</h1></div></header>
+<div class="entry-content">
+<div class="section">
+<?php echo $_smarty_tpl->tpl_vars['content']->value['html'];?>
+
+</div>
+<?php echo $_smarty_tpl->getSubTemplate ("./thanks.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+</div>
+<?php }?>
+
+
+
+
+</article></div><?php }} ?>

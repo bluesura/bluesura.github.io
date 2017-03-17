@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-03-05 06:38:56
+<?php /* Smarty version Smarty-3.1.12, created on 2017-03-05 07:13:47
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1488658bbb0490c6ce2-40533810%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c7b3cfc4257e25099929cc57f82310b8ca43834d' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\index.tpl',
-      1 => 1488695921,
+      1 => 1488698019,
       2 => 'file',
     ),
   ),
@@ -101,6 +101,14 @@ $_smarty_tpl->tpl_vars['syntax']->_loop = true;
 			</div>
 		</div>
 <?php } ?><?php echo $_smarty_tpl->getSubTemplate ("./thanks.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+</div>
+
+<?php }elseif($_smarty_tpl->tpl_vars['content']->value['page_category']=="Lifebar"){?>
+<div class="entry-content">
+<div class="section">
+<?php echo $_smarty_tpl->tpl_vars['content']->value['html'];?>
+
+</div>
 </div>
 <?php }?>
 

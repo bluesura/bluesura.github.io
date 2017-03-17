@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja-JP" prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
-<head>
+<html lang="ja" itemscope itemtype="http://schema.org/Article">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,7 +57,18 @@
 
 <body>
 
-<div id="container">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
+<!-- End Google Tag Manager -->
+
+
+<div id="container"><div id="content-inner">
 <div id="container-inner">
 <header id="blog-title" class="header">
 	<div id="blog-title-inner">
@@ -71,71 +82,64 @@
   <div id="menu"><a href="javascript:void(0);" id="js-ctrl"<i class="fa fa-bars"></i></a></div>
 </header>
 
-<div id="content" class="hfeed"><div id="content-inner">
+<div id="content">
 
 	<div id="wrapper"><div id="main">
+      <div id="main-inner">
+<article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
 
-<div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
-	<header class="entry-header"><div>
+<div class="entry-content">
+<div class="section">
+﻿<h2>ライフバーの数値化</h2>
+<p>ライフバー側では無理だと思われます。キャラクター側でExplodなどを使って、表示しないと無理です。</p>
 
-</div></header>
+<h2>作成できる限界</h2>
+<div>ライフバーなどは、右から左または左から右へしか、表示を消すことがでないため、180°以上曲がった円形のようなものは再現は無理です。</div>
 
-	<div class="entry-content">
-﻿<p class="description">かなり適当に翻訳しているので、間違いとかが多いと思います。なので、間違いやら変な箇所を見つけた場合、連絡していただけるとありがたいです。</p>
+<h2>タイムの表示を、99から999に変えるには？</h2>
+<div>mugen.cfgの「[Options]→Time」で変更できます。</div>
 
-<h2>作成する前に</h2>
-<div>
-	<h3>ライフバーの数値化</h3>
-	<div>ライフバー側では無理だと思われます。キャラクター側でExplodなどを使って、表示しないと無理です。</div>
+<h2>タイムの経過を早くする方法は？</h2>
+<div>ライフバーファイルの「<a href="./Time.html">[Time]</a>→<a href="./Time.html#FrameSperCount">FrameSperCount</a>」で値を小さくすれば、早くなります。もちろん、大きくすれば遅くなります。</div>
 
-	<h3>作成できる限界</h3>
-	<div>ライフバーなどは、右から左または左から右へしか、表示を消すことがでないため、180°以上曲がった円形のようなものは再現は無理です。</div>
+<h2>何本先取（マッチ）か決定する方法は？</h2>
+<div>「<a href="./Round.html">[Round]</a>→<a href="./Round.html#Match.Wins">Match.Wins</a>」の値を変更すれば設定できます。</div>
 
-	<h3>タイムの表示を、99から999に変えるには？</h3>
-	<div>mugen.cfgの「[Options]→Time」で変更できます。</div>
+<h2>コンボ数・ヒット数の999限界どうやってなくすんだよ！</h2>
+<div>mugen.exeを<a href="http://www.vector.co.jp/soft/win95/util/se079072.html" target="_blank">Stirling</a>のようなツールを使い、バイナリをいじって改造します。<a href="http://www.nicovideo.jp/watch/sm9496256" target="_blank">mugen.exeを改造してコンボ上限の999をとっぱらう</a>で改造の仕方が紹介されています。</div>
+<table>
+<thead>
+<tr>
+<th><strong>M.U.G.E.N Version 1.0 RC6</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>447BC: E7030000 → FFFFFF00<br>447CD: E7030000 → FFFFFF00</td>
+</tr>
+</tbody>
+<thead>
+<tr>
+<th><strong>最新版(2011/01/18)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0004BDBC: E7030000 → FFFFFF00<br>0004BDCD: E7030000 → FFFFFF00</td>
+</tr>
+</tbody>
+<thead>
+<tr>
+<th><strong>Windows Mugen Plus</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00021F41: E7030000 → FFFFFF00<br>00021F4F: E7030000 → FFFFFF00</td>
+</tr>
+</tbody>
+</table>
 
-	<h3>タイムの経過を早くする方法は？</h3>
-	<div>ライフバーファイルの「<a href="./Time.html">[Time]</a>→<a href="./Time.html#FrameSperCount">FrameSperCount</a>」で値を小さくすれば、早くなります。もちろん、大きくすれば遅くなります。</div>
-
-	<h3>何本先取（マッチ）か決定する方法は？</h3>
-	<div>「<a href="./Round.html">[Round]</a>→<a href="./Round.html#Match.Wins">Match.Wins</a>」の値を変更すれば設定できます。</div>
-
-	<h3>コンボ数・ヒット数の999限界どうやってなくすんだよ！</h3>
-	<div>mugen.exeを<a href="http://www.vector.co.jp/soft/win95/util/se079072.html" target="_blank">Stirling</a>のようなツールを使い、バイナリをいじって改造します。<a href="http://www.nicovideo.jp/watch/sm9496256" target="_blank">mugen.exeを改造してコンボ上限の999をとっぱらう</a>で改造の仕方が紹介されています。</div>
-	<table>
-	<thead>
-	<tr>
-	<th><strong>M.U.G.E.N Version 1.0 RC6</strong></th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-	<td>447BC: E7030000 → FFFFFF00<br>447CD: E7030000 → FFFFFF00</td>
-	</tr>
-	</tbody>
-	<thead>
-	<tr>
-	<th><strong>最新版(2011/01/18)</strong></th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-	<td>0004BDBC: E7030000 → FFFFFF00<br>0004BDCD: E7030000 → FFFFFF00</td>
-	</tr>
-	</tbody>
-	<thead>
-	<tr>
-	<th><strong>Windows Mugen Plus</strong></th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-	<td>00021F41: E7030000 → FFFFFF00<br>00021F4F: E7030000 → FFFFFF00</td>
-	</tr>
-	</tbody>
-	</table>
-	
-</div>
 
 
 
@@ -292,9 +296,14 @@ counter &gt; bg<br>
 
 </div>
 
-	</div>
-</article></div>
+</div>
+</div>
 
+
+
+
+</article></div>
+      
 	</div></div>
 
 

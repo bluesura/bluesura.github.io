@@ -30,9 +30,11 @@
   <meta name="viewport" content="width=device-width" />
   <meta name="author" content="sura" />
   <meta name="generator" content="Smarty" />
-  <meta name="description" content="{*$content.description|strip_tags:false|escape*}" />
-  {*<meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻" />*}
   <meta name="mobile-web-app-capable" content="yes">
+{*
+<meta name="description" content="$content.description|strip_tags:false|escape" />
+<meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻" />
+*}
   <!-- 「駄目ね、全然駄目だわ」 -->
 
 {*<!-- ジョインジョイン OGP -->
@@ -51,15 +53,14 @@
   <link rel="stylesheet" href="/lib/css/material.css?version=20161230">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-  <!--sidebar-->
-  {*<link rel="stylesheet" href="/lib/css/normalize.css" />
+{*<!--sidebar-->
+  <link rel="stylesheet" href="/lib/css/normalize.css" />
   <link rel="stylesheet" href="/lib/css/component.css" />
-  <script src="/lib/js/modernizr.custom.js"></script>*}
-  <!--sidebar-->
+  <script src="/lib/js/modernizr.custom.js"></script>
+  <!--sidebar-->*}
 
   <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
   <script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
-  <script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
   <script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
   {*<script type="text/javascript" src="/lib/js/isMobile.min.js?version=20161230"></script>*}
   {*<script async type="text/javascript" src="/lib/js/js-ctrl.js?version=20161230"></script>*}

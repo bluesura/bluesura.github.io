@@ -38,10 +38,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     {include file="./index.tpl"}
   {/if}
 
-  {elseif $content.page_category == "Lifebar"}
+{elseif $content.page_category == "Lifebar"}
+  {if $content.page.level == "3"}
     {include file="./LifeBar/LifeBar.tpl"}
-
-{elseif $content.page_category == "Lifebar_htm"}<div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd"><div class="entry-content">{$content.html}</div></article></div>
+  {elseif $content.page.level == "2"}
+    {include file="./index.tpl"}
+  {/if}
+    
 {/if}
 	</div></div>
 
@@ -54,6 +57,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 {include file="./footer.tpl"}
+
+{*<script src="/lib/js/classie.js"></script>
+<script src="/lib/js/sidebarEffects.js"></script>*}
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register('/lib/js/service-worker.js')
+           .then(function() { /*console.log();*/ });
+}
+</script>
 
 </body>
 </html>

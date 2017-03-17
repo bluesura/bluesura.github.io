@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-03-05 06:40:14
+<?php /* Smarty version Smarty-3.1.12, created on 2017-03-05 06:56:21
          compiled from ".\..\Template\base.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:700351ec0171a88c40-09866654%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5ac4a276d869311c2ba7116783143ef3c7ab1414' => 
     array (
       0 => '.\\..\\Template\\base.tpl',
-      1 => 1488696006,
+      1 => 1488696948,
       2 => 'file',
     ),
   ),
@@ -69,12 +69,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <?php }?>
 
-  <?php }elseif($_smarty_tpl->tpl_vars['content']->value['page_category']=="Lifebar"){?>
+<?php }elseif($_smarty_tpl->tpl_vars['content']->value['page_category']=="Lifebar"){?>
+  <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']=="3"){?>
     <?php echo $_smarty_tpl->getSubTemplate ("./LifeBar/LifeBar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
+  <?php }elseif($_smarty_tpl->tpl_vars['content']->value['page']['level']=="2"){?>
+    <?php echo $_smarty_tpl->getSubTemplate ("./index.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
-<?php }elseif($_smarty_tpl->tpl_vars['content']->value['page_category']=="Lifebar_htm"){?><div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd"><div class="entry-content"><?php echo $_smarty_tpl->tpl_vars['content']->value['html'];?>
-</div></article></div>
+  <?php }?>
+    
 <?php }?>
 	</div></div>
 

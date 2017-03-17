@@ -244,7 +244,7 @@ $filename = "index.html";
 $path = "/Lifebar/";
 
 $smarty->assign('content', $categorie);
-file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/htmlbase.tpl'));
+file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
 array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
 
@@ -262,7 +262,7 @@ $filename = "Format.html";
 $path = "/Lifebar/";
 
 $smarty->assign('content', $categorie);
-file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/htmlbase.tpl'));
+file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
 array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
 
@@ -284,6 +284,7 @@ for ($i = 0; $i < $loop_end; $i++) {
   $json["main_title"] = $MAIN_TITLE;
   $json["page_category"] = "Lifebar";
   $json["page_title"] = $PAGE_TITLE;
+$categorie["page"]["level"] = "3";
   $json["page_subtitle"] = $output_list[$i];
   $json["categories"] = $categories;
   $json["sidebar"] = $sidebar;
@@ -303,8 +304,9 @@ for ($i = 0; $i < $loop_end; $i++) {
   $name = $html_output_list[$i];
   $categorie["html"] = file_get_contents("./../Lifebar/htm/".$name.".htm");
   $categorie["main_title"] = $MAIN_TITLE;
-  $categorie["page_category"] = "Lifebar_htm";
+  $categorie["page_category"] = "Lifebar";
   $categorie["page_title"] = $PAGE_TITLE;
+$categorie["page"]["level"] = "2";
   $categorie["page_subtitle"] = $name;
   $categorie["categories"] = $categories;
   $categorie["sidebar"] = $sidebar;

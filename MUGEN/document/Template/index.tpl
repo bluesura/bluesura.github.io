@@ -1,17 +1,5 @@
-<!DOCTYPE HTML>
-<html lang="ja-JP">
-<head>
-{include file="./head.tpl"}
-</head>
-<body>
-
-<div id="container">
-<div id="container-inner">
-{include file="./header.tpl"}
-
-<div id="content" class=""><div id="content-inner">
-
-<div id="wrapper"><div id="main"><div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
+<div id="main-inner">
+<article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
 
 {if $content.page_category == "State"}
 <header class="entry-header"><div class="entry-title"><h1>ステートコントローラー一覧</h1></div></header>
@@ -41,7 +29,7 @@
 				</ul>
 			</div>
 		</div>
-{/foreach}
+{/foreach}{include file="./thanks.tpl"}</div>
 
 
 {elseif $content.page_category == "Trigger"}
@@ -58,24 +46,17 @@
 				</ul>
 			</div>
 		</div>
-{/foreach}
+{/foreach}{include file="./thanks.tpl"}</div>
 
-
-{/if}
-{include file="./thanks.tpl"}</div>
-
-	</div></div></article></div>
-		
-
-
-
-{include file="./sidebar.tpl"}
-
-
-
+{elseif $content.page_category == "Lifebar"}
+<div class="entry-content">
+<div class="section">
+{$content.html}
 </div>
-</div></div></div>
-{include file="./footer.tpl"}
+</div>
+{/if}
 
-</body>
-</html>
+
+
+
+</article></div>

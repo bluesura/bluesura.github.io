@@ -1,29 +1,29 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-03-05 06:56:21
+<?php /* Smarty version Smarty-3.1.12, created on 2017-03-18 19:24:36
          compiled from ".\..\Template\base.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:700351ec0171a88c40-09866654%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2963558cd8974caeb00-16025641%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5ac4a276d869311c2ba7116783143ef3c7ab1414' => 
     array (
       0 => '.\\..\\Template\\base.tpl',
-      1 => 1488696948,
+      1 => 1488712784,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '700351ec0171a88c40-09866654',
+  'nocache_hash' => '2963558cd8974caeb00-16025641',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_51ec0171b07443_74798507',
   'variables' => 
   array (
     'content' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_58cd8974da6617_17254143',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51ec0171b07443_74798507')) {function content_51ec0171b07443_74798507($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_58cd8974da6617_17254143')) {function content_58cd8974da6617_17254143($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="ja" itemscope itemtype="http://schema.org/Article">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
 <?php echo $_smarty_tpl->getSubTemplate ("./head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
@@ -92,6 +92,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <?php echo $_smarty_tpl->getSubTemplate ("./footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
+
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register('/lib/js/service-worker.js')
+           .then(function() { /*console.log();*/ });
+}
+</script>
 
 </body>
 </html>

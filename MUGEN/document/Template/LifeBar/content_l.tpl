@@ -19,13 +19,13 @@
 		{foreach $content.parameter as $array}
 		<dl class="parameter">
 			<dt>
-				<span class="main" id="{$array.parameter}">{$array.parameter} = {foreach $array.value as $value}{$value}{if $value@last != true}, {/if}{/foreach}</span>
-				<span class="type">
-				{foreach $array.type as $type}
-				<a href="#" onclick="return false;">
-					{$type}{if $type@last != true}, {/if}
-				</a>
-				{/foreach}
+				<span class="main" id="{$array.parameter}">
+				{if $array.main == ""}
+					{$array.parameter} = {foreach $array.value as $value}{$value}{if $value@last != true}, {/if}{/foreach}
+				{else}
+					{$array.main}
+				{/if}
+				({foreach $array.type as $type}{if $type=="boolean"}0か1{/if}{if $type=="int"}整数{/if}{if $type=="float"}浮動小数点数{/if}{if $type=="string"}文字列{/if}{if $type@last != true}, {/if}{/foreach})
 				</span>
 			</dt>
 			<dd>
@@ -49,7 +49,7 @@
 					<div class="required-parameter">省略不可</div>
 					{elseif $array.default_value == "instead"}
 					<div class="instead-parameter">代替書式</div>
-					{else}
+					{elseif $array.default_value != ""}
 					<div class="default-value">省略時のデフォルト値： {$array.default_value}</div>
 					{/if}
 				</div>

@@ -15,47 +15,47 @@
 	"sample_code": {
 		"code": [
 			"[Turns Name]",
-			"P1.<a href=\"./TurnsName.html#Pos\">Pos</a> = ,",
+			"P1.Pos = ,",
 			"",
-			"P1.BG.<a href=\"./TurnsName.html#Spr\">Spr</a> = ,",
-			"P1.BG.<a href=\"./TurnsName.html#Anim\">Anim</a> =",
-			"P1.BG.<a href=\"./TurnsName.html#Font\">Font</a> =",
-			"P1.BG.<a href=\"./TurnsName.html#Text\">Text</a> =",
-			"P1.BG.<a href=\"./TurnsName.html#Offset\">Offset</a> = ,",
-			"P1.BG.<a href=\"./TurnsName.html#DisplayTime\">DisplayTime</a> = ",
-			"P1.BG.<a href=\"./TurnsName.html#Facing\">Facing</a> = ",
-			"P1.BG.<a href=\"./TurnsName.html#VFacing\">VFacing</a> = ",
-			"P1.BG.<a href=\"./TurnsName.html#LayerNo\">LayerNo</a> = ",
-			"P1.BG.<a href=\"./TurnsName.html#Scale\">Scale</a> = ,",
-			"",
-			";プレイヤーの名前を表示関連。",
-			"P1.Name.<a href=\"./TurnsName.html#Offset\">Offset</a> = ,",
-			"P1.Name.<a href=\"./TurnsName.html#DisplayTime\">DisplayTime</a> = ",
-			"P1.Name.<a href=\"./TurnsName.html#Font\">Font</a> = , ,",
-			"P1.Name.<a href=\"./TurnsName.html#LayerNo\">LayerNo</a> = ",
-			"P1.Name.<a href=\"./TurnsName.html#Scale\">Scale</a> = ,",
-			"",
-			"",
-			"",
-			"P2.<a href=\"./TurnsName.html#Pos\">Pos</a> = ,",
-			"",
-			"P2.BG.<a href=\"./TurnsName.html#Spr\">Spr</a> = ,",
-			"P2.BG.<a href=\"./TurnsName.html#Anim\">Anim</a> =",
-			"P2.BG.<a href=\"./TurnsName.html#Font\">Font</a> =",
-			"P2.BG.<a href=\"./TurnsName.html#Text\">Text</a> =",
-			"P2.BG.<a href=\"./TurnsName.html#Offset\">Offset</a> = ,",
-			"P2.BG.<a href=\"./TurnsName.html#DisplayTime\">DisplayTime</a> = ",
-			"P2.BG.<a href=\"./TurnsName.html#Facing\">Facing</a> = ",
-			"P2.BG.<a href=\"./TurnsName.html#VFacing\">VFacing</a> = ",
-			"P2.BG.<a href=\"./TurnsName.html#LayerNo\">LayerNo</a> = ",
-			"P2.BG.<a href=\"./TurnsName.html#Scale\">Scale</a> = ,",
+			"P1.BG.Spr = ,",
+			"P1.BG.Anim =",
+			"P1.BG.Font =",
+			"P1.BG.Text =",
+			"P1.BG.Offset = ,",
+			"P1.BG.DisplayTime = ",
+			"P1.BG.Facing = ",
+			"P1.BG.VFacing = ",
+			"P1.BG.LayerNo = ",
+			"P1.BG.Scale = ,",
 			"",
 			";プレイヤーの名前を表示関連。",
-			"P2.Name.<a href=\"./TurnsName.html#Offset\">Offset</a> = ,",
-			"P2.Name.<a href=\"./TurnsName.html#DisplayTime\">DisplayTime</a> = ",
-			"P2.Name.<a href=\"./TurnsName.html#Font\">Font</a> = , ,",
-			"P2.Name.<a href=\"./TurnsName.html#LayerNo\">LayerNo</a> = ",
-			"P2.Name.<a href=\"./TurnsName.html#Scale\">Scale</a> = ,"
+			"P1.Name.Offset = ,",
+			"P1.Name.DisplayTime = ",
+			"P1.Name.Font = , ,",
+			"P1.Name.LayerNo = ",
+			"P1.Name.Scale = ,",
+			"",
+			"",
+			"",
+			"P2.Pos = ,",
+			"",
+			"P2.BG.Spr = ,",
+			"P2.BG.Anim =",
+			"P2.BG.Font =",
+			"P2.BG.Text =",
+			"P2.BG.Offset = ,",
+			"P2.BG.DisplayTime = ",
+			"P2.BG.Facing = ",
+			"P2.BG.VFacing = ",
+			"P2.BG.LayerNo = ",
+			"P2.BG.Scale = ,",
+			"",
+			";プレイヤーの名前を表示関連。",
+			"P2.Name.Offset = ,",
+			"P2.Name.DisplayTime = ",
+			"P2.Name.Font = , ,",
+			"P2.Name.LayerNo = ",
+			"P2.Name.Scale = ,"
 		]
 	},
 
@@ -71,25 +71,25 @@
 			"type": ["int", "int"],
 			"value": ["ActionNo"],
 			"type": ["int"],
-			"description": "AntionNoはこれが書かれているファイルと同一ファイル内の[Begin Action Number(Int型)]で書き込まれたNumberを指定します。<div style=\"background: url(./img/animation.gif) no-repeat 0 2em width: 120px height: 140px border: solid 1px #000\"><div>anim(animation)<br>動く画像</div></div><hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./TurnsName.html#Anim\">Anim</a> = 100<br>　　[Begin Action 100]がp1のbg0に読み込まれます。<br>Animは、メイン要素です。メイン要素は１つしか設定できないので注意してください。"
+			"description": "<p>AntionNoは同一ファイル内の[Begin Action ActionNo(整数)]で書き込まれたActionNoを指定します。</p><p>AnimはAnimationの略で動く画像のことです。</p><img src=\"./img/Animation.gif\" alt=\"\" width=\"100%\" /><div class=\"code\" contenteditable=\"true\"><ul><li>;使用例</li><li>;[Begin Action 100]がP1のBG0に読み込まれます。</li><li>;Animは、メイン要素です。メイン要素は１つしか設定できないので注意してください。</li><li>P1.BG0.Anim = 100</li><li></li><li>[Begin Action 100]</li><li>15,1, 0,0, 5, H</li></ul></div>"
 		},
 		{
 			"parameter": "Spr",
 			"value": ["SprGrp", "SprNo"],
 			"type": ["int", "int"],
-			"description": "[Files]のsffで読み込んだスプライトファイルからどれを表示するか指定します。<div style=\"background: url(./img/sprite.gif) no-repeat 0 2em width: 120px height: 140px border: solid 1px #000\"><div>spr(sprite)<br>静止画</div></div><hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./TurnsName.html#Spr\">Spr</a> = 0, 0<br>p1のbg0にはスプライトファイルの0,0に置かれているものが読み込まれます。<br>Sprは、メイン要素です。メイン要素は１つしか設定できないので注意してください。"
+			"description": "<p>[Files]のSffで読み込んだスプライトファイルからどれを表示するか指定します。</p><p>SprはSpriteの略で静止画のことです。</p><img src=\"./img/Sprite.gif\" alt=\"\" width=\"100%\" /><div class=\"code\" contenteditable=\"true\"><ul><li>;使用例</li><li>;P1のBG0にはスプライトファイルの0,0に置かれているものが読み込まれます。</li><li>;Sprは、メイン要素です。メイン要素は１つしか設定できないので注意してください。</li><li>P1.BG0.Spr = 0, 0</li></ul></div>"
 		},
 		{
 			"parameter": "Font",
 			"value": ["FontNo", "FontBank", "AlignMt(-1,0,1)【省略可】"],
 			"type": ["int", "int", "int"],
-			"description": "ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。Fontは、メイン要素です。メイン要素は１つしか設定できないので注意してください。また、場所によって、<a href=\"./Format.html\">フォーマット指定子</a>が使用できます。FontNoは<a href=\"files.html\">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style=\"background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000\">fontとtext<br>文章</div><hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.<a href=\"./TurnsName.html#Font\">Font</a> = 1, 0, 0<br>　P1.BG0.<a href=\"./TurnsName.html#Text\">Text</a> = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.<a href=\"./TurnsName.html#Font\">Font</a> = 1, 0, 0<br>　P1.BG0.<a href=\"./TurnsName.html#Text\">Text</a> = \"悪いね☆\"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table>"
+			"description": "ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。Fontは、メイン要素です。メイン要素は１つしか設定できないので注意してください。また、場所によって、<a href=\"./Format.html\">フォーマット指定子</a>が使用できます。FontNoは<a href=\"./Files.html\">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style=\"background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000\">fontとtext<br>文章</div><hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.Font = 1, 0, 0<br>　P1.BG0.Text = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.Font = 1, 0, 0<br>　P1.BG0.Text = \"悪いね☆\"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table>"
 		},
 		{
 			"parameter": "Text",
 			"value": ["文字列"],
 			"type": ["String"],
-			"description": "ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。また、場所によって、<a href=\"./Format.html\">フォーマット指定子</a>が使用できます。FontNoは<a href=\"files.html\">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style=\"background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000\">fontとtext<br>文章</div><hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.<a href=\"./TurnsName.html#Font\">Font</a> = 1, 0, 0<br>　P1.BG0.<a href=\"./TurnsName.html#Text\">Text</a> = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.<a href=\"./TurnsName.html#Font\">Font</a> = 1, 0, 0<br>　P1.BG0.<a href=\"./TurnsName.html#Text\">Text</a> = \"悪いね☆\"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table>"
+			"description": "ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。また、場所によって、<a href=\"./Format.html\">フォーマット指定子</a>が使用できます。FontNoは<a href=\"Files.html\">[Files]</a>で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。<br>textの文字列はMUGEN RC以外では、日本語は文字化けします。<div style=\"background: url(./img/text.gif) no-repeat 0 3em width: 160px height: 70px border: solid 1px #000\">fontとtext<br>文章</div><hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>WinMugen</th><th>MugenRC</th></tr></thead><tbody><tr><td>　P1.BG0.Font = 1, 0, 0<br>　P1.BG0.Text = waruiNe!<br>　　font1の0 Colorで中央揃えにwaruiNe!を表示します。</td><td>　P1.BG0.Font = 1, 0, 0<br>　P1.BG0.Text = \"悪いね☆\"<br>　　font1の0 Colorで中央揃えに 悪いね☆を表示します。</td></tr></tbody></table>"
 		},
 		{
 			"parameter": "Snd",
@@ -101,37 +101,37 @@
 			"parameter": "Offset",
 			"value": ["x座標", "y座標"],
 			"type": ["int", "int"],
-			"description": "posで設定した値を基準点として、Anim,Spr,Fontの表示位置を決めます。省略時、値はデフォルトで0,0となっています。<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#Offset\">Offset</a> = 160, 120<br>bg0の表示位置がP1.<a href=\"./Face.html#Pos\">Pos</a>で決まった基準点から右に160ピクセル・下に120ピクセルになります。<br><img src=\"./img/offset.jpg\" alt=\"offset\"/>"
+			"description": "posで設定した値を基準点として、Anim,Spr,Fontの表示位置を決めます。省略時、値はデフォルトで0,0となっています。<hr><span class=\"example\">使用例:</span><br>P1.BG0.Offset = 160, 120<br>bg0の表示位置がP1.Posで決まった基準点から右に160ピクセル・下に120ピクセルになります。<br><img src=\"./img/offset.jpg\" alt=\"offset\"/>"
 		},
 		{
 			"parameter": "DisplayTime",
 			"value": ["表示時間"],
 			"type": ["int"],
-			"description": "spr,anim,fontの要素を何フレーム表示するか指定します。省略された場合は、表示する要素によってデフォルト値が変わります。spr,fontの場合は1、animの場合はループするようになっています。おそらく、-1でループ・0で何も表示されなくなります。　<span class=\"advice\">*60フレーム=1秒</span><hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>P1.BG0.<a href=\"./Face.html#Anim\">Anim</a> = 10<br>P1.BG0.<a href=\"./Face.html#DisplayTime\">DisplayTime</a> = 10</th><th>P1.BG0.<a href=\"./Face.html#Spr\">Spr</a> = 10<br>P1.BG0.<a href=\"./Face.html#DisplayTime\">DisplayTime</a> = 10</th></tr></thead><tbody><tr><td>　10フレーム経過後にループします。要するに、Begin Actionで10フレーム以上設定されていた場合、10フレーム以降のものは表示されません。</td><td>　10フレーム後に表示が消えます。ですが、ライフバーみたいなものは常に表示される仕組みになっているので、設定しても大して意味はないと思います。（たぶん）</td></tr></tbody></table>"
+			"description": "spr,anim,fontの要素を何フレーム表示するか指定します。省略された場合は、表示する要素によってデフォルト値が変わります。spr,fontの場合は1、animの場合はループするようになっています。おそらく、-1でループ・0で何も表示されなくなります。　<span class=\"advice\">*60フレーム=1秒</span><hr><span class=\"example\">使用例:</span><br><table><thead><tr><th>P1.BG0.Anim = 10<br>P1.BG0.DisplayTime = 10</th><th>P1.BG0.Spr = 10<br>P1.BG0.DisplayTime = 10</th></tr></thead><tbody><tr><td>　10フレーム経過後にループします。要するに、Begin Actionで10フレーム以上設定されていた場合、10フレーム以降のものは表示されません。</td><td>　10フレーム後に表示が消えます。ですが、ライフバーみたいなものは常に表示される仕組みになっているので、設定しても大して意味はないと思います。（たぶん）</td></tr></tbody></table>"
 		},
 		{
 			"parameter": "Facing",
 			"value": ["Dir(1または-1)"],
 			"type": ["int"],
-			"description": "spr,animの要素を水平反転（左右反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#Facing\">Facing</a> = -1<br>p1のbg0のspr,animは反転して表示されます。<br><img src=\"./img/facing.gif\" alt=\"facing\"/>"
+			"description": "spr,animの要素を水平反転（左右反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。<hr><span class=\"example\">使用例:</span><br>P1.BG0.Facing = -1<br>p1のbg0のspr,animは反転して表示されます。<br><img src=\"./img/facing.gif\" alt=\"facing\"/>"
 		},
 		{
 			"parameter": "VFacing",
 			"value": ["Dir(1または-1)"],
 			"type": ["int"],
-			"description": "spr,animの要素を垂直反転（上下反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#VFacing\">VFacing</a> = -1<br>p1のbg0のspr,animは反転して表示されます。<br><img src=\"./img/vfacing.gif\" alt=\"vfacing\"/>"
+			"description": "spr,animの要素を垂直反転（上下反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。<hr><span class=\"example\">使用例:</span><br>P1.BG0.VFacing = -1<br>p1のbg0のspr,animは反転して表示されます。<br><img src=\"./img/vfacing.gif\" alt=\"vfacing\"/>"
 		},
 		{
 			"parameter": "LayerNo",
 			"value": ["No"],
 			"type": ["int"],
-			"description": "spr,anim,fontの要素をどのレイヤーに表示するか指定します。<br>LayerNo = 0<br><span>背景より前～プレイヤーより奥に表示。なので、背景を上書きするキャラで見えなくなるので注意。</span>LayerNo = 1<br><span>プレイヤーより前～前景(StageでLayerNo=1に設定されたプレイヤーより手前に表示される背景)より奥に表示されます。</span>LayerNo = 2<br><span>もはや邪魔するものはなし。</span>なので、<span class=\"advice\">基本的には2を使用</span>することをお勧めします。<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#LayerNo\">LayerNo</a> = 2<br>p1のbg0のspr,animまたはfontはレイヤー2に表示されます。<br>・LifeBarとcharacterの表示順序<br><img src=\"./img/layerno.gif\" alt=\"layerno\"/><br><span style=\"color:red\">赤がLayerNo=0</span>でSprPriority=-5のものより、後に表示される。<br><span style=\"color:green\">緑がLayerNo=1</span>でOnTop=1のものより、奥に表示される。<br><span style=\"color:blue\">青がLayerNo=2</span>で完全に手前に表示<br>・LifeBarとStageLayerNoの表示順序<br>手前 LifeBar2 > Stage1 > LifeBar1 > LifeBar0 > Stage0背景<br>"
+			"description": "spr,anim,fontの要素をどのレイヤーに表示するか指定します。<br>LayerNo = 0<br><span>背景より前～プレイヤーより奥に表示。なので、背景を上書きするキャラで見えなくなるので注意。</span>LayerNo = 1<br><span>プレイヤーより前～前景(StageでLayerNo=1に設定されたプレイヤーより手前に表示される背景)より奥に表示されます。</span>LayerNo = 2<br><span>もはや邪魔するものはなし。</span>なので、<span class=\"advice\">基本的には2を使用</span>することをお勧めします。<hr><span class=\"example\">使用例:</span><br>P1.BG0.LayerNo = 2<br>p1のbg0のspr,animまたはfontはレイヤー2に表示されます。<br>・LifeBarとcharacterの表示順序<br><img src=\"./img/layerno.gif\" alt=\"layerno\"/><br><span style=\"color:red\">赤がLayerNo=0</span>でSprPriority=-5のものより、後に表示される。<br><span style=\"color:green\">緑がLayerNo=1</span>でOnTop=1のものより、奥に表示される。<br><span style=\"color:blue\">青がLayerNo=2</span>で完全に手前に表示<br>・LifeBarとStageLayerNoの表示順序<br>手前 LifeBar2 > Stage1 > LifeBar1 > LifeBar0 > Stage0背景<br>"
 		},
 		{
 			"parameter": "Scale",
 			"value": ["XScale", "YScale"],
 			"type": ["float", "float"],
-			"description": "sprやanimの表示される倍率を指定します。ひとつ注意点があってfont関連でのscaleはWinMugenではサポートされていません、MUGENRCから使用可能です。マイナスの値は、反転したような状態になります。倍率は、画像・環境の考慮なしで、だいたい-1070000～1070000ぐらいまでいけました。<br>どうでもいいことですが、変わるのは画像の大きさなので、座標とか注意してね！<hr><span class=\"example\">使用例:</span><br>P1.BG0.<a href=\"./Face.html#Scale\">Scale</a> = 0.5やP1.BG0.<a href=\"./Face.html#Scale\">Scale</a> = .5（0．の0は省略できます。）<br>p1のbg0のsprまたはanimは0.5倍で表示されます。<br>"
+			"description": "sprやanimの表示される倍率を指定します。ひとつ注意点があってfont関連でのscaleはWinMugenではサポートされていません、MUGENRCから使用可能です。マイナスの値は、反転したような状態になります。倍率は、画像・環境の考慮なしで、だいたい-1070000～1070000ぐらいまでいけました。<br>どうでもいいことですが、変わるのは画像の大きさなので、座標とか注意してね！<hr><span class=\"example\">使用例:</span><br>P1.BG0.Scale = 0.5やP1.BG0.Scale = .5（0．の0は省略できます。）<br>p1のbg0のsprまたはanimは0.5倍で表示されます。<br>"
 		}
 	],
 

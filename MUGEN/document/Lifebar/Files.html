@@ -27,9 +27,8 @@
   <meta name="viewport" content="width=device-width" />
   <meta name="author" content="sura" />
   <meta name="generator" content="Smarty" />
-  <meta name="description" content="" />
-  
   <meta name="mobile-web-app-capable" content="yes">
+
   <!-- 「駄目ね、全然駄目だわ」 -->
 
 
@@ -40,13 +39,10 @@
   <link rel="stylesheet" href="/lib/css/material.css?version=20161230">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-  <!--sidebar-->
-  
-  <!--sidebar-->
+
 
   <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
   <script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
-  <script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
   <script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
   
   
@@ -102,20 +98,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<div class="code">
 		<ul>
 									<li>[Files]</li>
-									<li><a href="./Files.html#Sff">Sff</a> = Fight.Sff</li>
-									<li><a href="./Files.html#Snd">Snd</a> = Fight.Snd</li>
-									<li><a href="./Files.html#Font【FontNumber】">Font</a>1 = </li>
-									<li><a href="./Files.html#Font【FontNumber】">Font</a>2 = </li>
-									<li><a href="./Files.html#Font【FontNumber】">Font</a>3 = </li>
-									<li><a href="./Files.html#Font【FontNumber】">Font</a>4 = </li>
-									<li><a href="./Files.html#Font【FontNumber】">Font</a>5 = </li>
-									<li><a href="./Files.html#Font【FontNumber】">Font</a>6 = </li>
-									<li><a href="./Files.html#Font【FontNumber】">Font</a>7 = </li>
-									<li><a href="./Files.html#Font【FontNumber】">Font</a>8 = </li>
-									<li><a href="./Files.html#Font【FontNumber】">Font</a>9 = </li>
-									<li><a href="./Files.html#Fightfx.Sff">FightFx.Sff</a> = FightFx.sff</li>
-									<li><a href="./Files.html#Fightfx.Air">FightFx.Air</a> = FightFx.air</li>
-									<li><a href="./Files.html#Common.Snd">Common.Snd</a> = Common.snd</li>
+									<li>Sff = Fight.Sff</li>
+									<li>Snd = Fight.Snd</li>
+									<li>Font1 = </li>
+									<li>Font2 = </li>
+									<li>Font3 = </li>
+									<li>Font4 = </li>
+									<li>Font5 = </li>
+									<li>Font6 = </li>
+									<li>Font7 = </li>
+									<li>Font8 = </li>
+									<li>Font9 = </li>
+									<li>FightFx.Sff = FightFx.sff</li>
+									<li>FightFx.Air = FightFx.air</li>
+									<li>Common.Snd = Common.snd</li>
 									<li>;<span class="warning">*Font以外の設定項目は必ず書いてください。エラーになります。</span></li>
 						</ul>
 		</div>
@@ -125,92 +121,74 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<h2>パラメーター</h2>
 				<dl class="parameter">
 			<dt>
-				<span class="main" id="Sff">Sff = sffファイル名</span>
-				<span class="type">
-								<a href="#" onclick="return false;">
-					string				</a>
-								</span>
+				<span class="main" id="Sff">
+									Sff = sffファイル名								(文字列)
+				</span>
 			</dt>
 			<dd>
 				<div class="description">spr・[Begin Action]などで使用するものをここで設定します。<hr>パラメータ指定例:<br>sff = fight.sff<br>fight.sffを読み込んできます。<br></div>
 				<div class="option-value">
-																				<div class="default-value">省略時のデフォルト値： </div>
-									</div>
+																			</div>
 							</dd>
 		</dl>
 				<dl class="parameter">
 			<dt>
-				<span class="main" id="Snd">Snd = sndファイル名</span>
-				<span class="type">
-								<a href="#" onclick="return false;">
-					string				</a>
-								</span>
+				<span class="main" id="Snd">
+									Snd = sndファイル名								(文字列)
+				</span>
 			</dt>
 			<dd>
 				<div class="description">sndで使用するためのものをここで設定します。<hr>使用例:<br>snd = fight.snd<br>fight.sndを読み込んできます。<br></div>
 				<div class="option-value">
-																				<div class="default-value">省略時のデフォルト値： </div>
-									</div>
+																			</div>
 							</dd>
 		</dl>
 				<dl class="parameter">
 			<dt>
-				<span class="main" id="Font【FontNumber】">Font【FontNumber】 = fontファイル名</span>
-				<span class="type">
-								<a href="#" onclick="return false;">
-					string				</a>
-								</span>
+				<span class="main" id="Font【FontNumber】">
+									Font【FontNumber】 = fontファイル名								(文字列)
+				</span>
 			</dt>
 			<dd>
 				<div class="description"><ul><li>[Files]には0～9までの最大10個のfontが指定できます。10個以上指定した場合MUGENがクラッシュすると書かれてましたがよくわかりません。なので、0は使用しない方が良いかもしれないです。</li><li>ここで指定されたfontはsystem.def内に書かれたものとは違います。</li><li>フォントは、次の順序でディレクトリを検索します:<ol><li>system.defのfight=で指定した同一ディレクトリ</li><li>MUGEN本体が置かれているディレクトリ<br>(ここにオリジナルのフォントを入れることを推奨しません)</li><li>data/<br>(ここにオリジナルのフォントを入れることを推奨しません)</li><li>font/</li></ol></li></ul><hr>使用例:<br>font1 = font/jg.fnt<br>font2 = font/num1.fnt<br>font3 = font/name1.fnt<br></div>
 				<div class="option-value">
-																				<div class="default-value">省略時のデフォルト値： </div>
-									</div>
+																			</div>
 							</dd>
 		</dl>
 				<dl class="parameter">
 			<dt>
-				<span class="main" id="Fightfx.Sff">Fightfx.Sff = sffファイル名</span>
-				<span class="type">
-								<a href="#" onclick="return false;">
-					string				</a>
-								</span>
+				<span class="main" id="Fightfx.Sff">
+									Fightfx.Sff = sffファイル名								(文字列)
+				</span>
 			</dt>
 			<dd>
 				<div class="description">MUGENで使用したいヒットスパークのスプライトファイルを指定します。<hr>使用例:<br>fightfx.sff = fightfx.sff<br>fightfx.sffが読み込まれます。<br></div>
 				<div class="option-value">
-																				<div class="default-value">省略時のデフォルト値： </div>
-									</div>
+																			</div>
 							</dd>
 		</dl>
 				<dl class="parameter">
 			<dt>
-				<span class="main" id="Fightfx.Air">Fightfx.Air = airファイル名</span>
-				<span class="type">
-								<a href="#" onclick="return false;">
-					string				</a>
-								</span>
+				<span class="main" id="Fightfx.Air">
+									Fightfx.Air = airファイル名								(文字列)
+				</span>
 			</dt>
 			<dd>
 				<div class="description">MUGENで使用したいヒットスパークのAIRファイルを指定します。<hr>使用例:<br>fightfx.air = fightfx.air<br>fightfx.airが読み込まれます。<br></div>
 				<div class="option-value">
-																				<div class="default-value">省略時のデフォルト値： </div>
-									</div>
+																			</div>
 							</dd>
 		</dl>
 				<dl class="parameter">
 			<dt>
-				<span class="main" id="Common.Snd">Common.Snd = sndファイル名</span>
-				<span class="type">
-								<a href="#" onclick="return false;">
-					string				</a>
-								</span>
+				<span class="main" id="Common.Snd">
+									Common.Snd = sndファイル名								(文字列)
+				</span>
 			</dt>
 			<dd>
 				<div class="description">MUGENで使用したい効果音（攻撃・ガードとか）のSNDファイルを指定します。<hr>使用例:<br>common.snd = common.snd<br>common.sndが読み込まれます。<br></div>
 				<div class="option-value">
-																				<div class="default-value">省略時のデフォルト値： </div>
-									</div>
+																			</div>
 							</dd>
 		</dl>
 			</div></section>

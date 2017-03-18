@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-31 11:00:11
+<?php /* Smarty version Smarty-3.1.12, created on 2017-03-18 19:30:04
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\LifeBar\content_l.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:239457944e175a0dd6-65375689%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4dd901d1b8c2ae592b3ef220497a56a10bcf7a84' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\LifeBar\\content_l.tpl',
-      1 => 1469962754,
+      1 => 1489865398,
       2 => 'file',
     ),
   ),
@@ -62,7 +62,9 @@ $_smarty_tpl->tpl_vars['array']->_loop = true;
 		<dl class="parameter">
 			<dt>
 				<span class="main" id="<?php echo $_smarty_tpl->tpl_vars['array']->value['parameter'];?>
-"><?php echo $_smarty_tpl->tpl_vars['array']->value['parameter'];?>
+">
+				<?php if ($_smarty_tpl->tpl_vars['array']->value['main']==''){?>
+					<?php echo $_smarty_tpl->tpl_vars['array']->value['parameter'];?>
  = <?php  $_smarty_tpl->tpl_vars['value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['value']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['value']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
  $_smarty_tpl->tpl_vars['value']->total= $_smarty_tpl->_count($_from);
@@ -72,9 +74,12 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
  $_smarty_tpl->tpl_vars['value']->iteration++;
  $_smarty_tpl->tpl_vars['value']->last = $_smarty_tpl->tpl_vars['value']->iteration === $_smarty_tpl->tpl_vars['value']->total;
 ?><?php echo $_smarty_tpl->tpl_vars['value']->value;?>
-<?php if ($_smarty_tpl->tpl_vars['value']->last!=true){?>, <?php }?><?php } ?></span>
-				<span class="type">
-				<?php  $_smarty_tpl->tpl_vars['type'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['type']->_loop = false;
+<?php if ($_smarty_tpl->tpl_vars['value']->last!=true){?>, <?php }?><?php } ?>
+				<?php }else{ ?>
+					<?php echo $_smarty_tpl->tpl_vars['array']->value['main'];?>
+
+				<?php }?>
+				(<?php  $_smarty_tpl->tpl_vars['type'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['type']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['type']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
  $_smarty_tpl->tpl_vars['type']->total= $_smarty_tpl->_count($_from);
  $_smarty_tpl->tpl_vars['type']->iteration=0;
@@ -82,12 +87,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['type']->key => $_smarty_tpl->tpl_vars
 $_smarty_tpl->tpl_vars['type']->_loop = true;
  $_smarty_tpl->tpl_vars['type']->iteration++;
  $_smarty_tpl->tpl_vars['type']->last = $_smarty_tpl->tpl_vars['type']->iteration === $_smarty_tpl->tpl_vars['type']->total;
-?>
-				<a href="#" onclick="return false;">
-					<?php echo $_smarty_tpl->tpl_vars['type']->value;?>
-<?php if ($_smarty_tpl->tpl_vars['type']->last!=true){?>, <?php }?>
-				</a>
-				<?php } ?>
+?><?php if ($_smarty_tpl->tpl_vars['type']->value=="boolean"){?>0か1<?php }?><?php if ($_smarty_tpl->tpl_vars['type']->value=="int"){?>整数<?php }?><?php if ($_smarty_tpl->tpl_vars['type']->value=="float"){?>浮動小数点数<?php }?><?php if ($_smarty_tpl->tpl_vars['type']->value=="string"){?>文字列<?php }?><?php if ($_smarty_tpl->tpl_vars['type']->last!=true){?>, <?php }?><?php } ?>)
 				</span>
 			</dt>
 			<dd>
@@ -115,7 +115,7 @@ $_smarty_tpl->tpl_vars['type']->_loop = true;
 					<div class="required-parameter">省略不可</div>
 					<?php }elseif($_smarty_tpl->tpl_vars['array']->value['default_value']=="instead"){?>
 					<div class="instead-parameter">代替書式</div>
-					<?php }else{ ?>
+					<?php }elseif($_smarty_tpl->tpl_vars['array']->value['default_value']!=''){?>
 					<div class="default-value">省略時のデフォルト値： <?php echo $_smarty_tpl->tpl_vars['array']->value['default_value'];?>
 </div>
 					<?php }?>

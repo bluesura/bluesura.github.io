@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
   <title itemprop="headline">S 【立ち状態にする】 | MUGEN State Controller - Name = sura</title>
@@ -19,6 +20,7 @@
   <link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
 
   <link rel="manifest" href="/manifest.json">
+  <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/State/S.html">
 
   <!-- 「チェス盤を引っくり返す！」 -->
   <meta name="theme-color" content="#1E88E5">
@@ -49,19 +51,24 @@
   
 
 
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
+<!-- End Google Tag Manager -->
+
 </head>
 
 <body>
 
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
-<!-- End Google Tag Manager -->
+<!-- End Google Tag Manager (noscript) -->
 
 
 <div id="container"><div id="content-inner">
@@ -113,477 +120,451 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div></section>
 	
 
-﻿	<section id="Parameter"><div class="section">
-		<h2>パラメーター</h2>
-						<dl class="parameter">
-			<dt>
-				<span class="main" id="Type">
-									Type = 状態								(文字列)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>ステートの状態を指定。</p></div>
+﻿  <section id="Parameter"><div class="section">
+    <h2>パラメーター</h2>
+            <dl class="parameter">
+      <dt class="main" id="Type">
+                  Type = 状態                (文字列)
+      </dt>
+      <dd>
+        <div class="description"><p>ステートの状態を指定。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					<div class="possible-value">
-					          <div>
-					<table>
-						<tr>
-							<th>状況</th>
-							<th>内容</th>
-						</tr>
-						<tr>
-							<td>S</td>
-							<td><div>立ち(Stand)</div><div class="image-frame"><img src="./media/img/StateDef_Stand_s.png" alt="カンフーマン立ち(Stand)状態" width="140" height="140"></div></td>
-						</tr><tr>
-							<td>C</td>
-							<td><div>屈み(Crouch)</div><div class="image-frame"><img src="./media/img/StateDef_Crouch_s.png" alt="カンフーマン屈み(Crouch)状態" width="140" height="140"></div></td>
-						</tr><tr>
-							<td>A</td>
-							<td><div>空中(Air)</div><div class="image-frame"><img src="./media/img/StateDef_Air_s.png" alt="カンフーマン空中(Air)状態" width="140" height="140"></div></td>
-						</tr><tr>
-							<td>L</td>
-							<td><div>倒れ(Lying down)</div><div class="image-frame"><img src="./media/img/StateDef_Lying_s.png" alt="倒れ(Lying down)状態" width="140" height="140"></div></td>
-						</tr><tr>
-							<td>U</td>
-							<td>直前のステートから引き継ぐ(Unchanged)</td>
-						</tr>					</table>
-					</div>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： S;もしかしたら、前のステートで使用された動きを引き継ぐ。</div>
-					
-					
-				
-				</div>
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>状況</th>
+              <th>内容</th>
+            </tr>
+            <tr>
+              <td>S</td>
+              <td><div>立ち(Stand)</div><div class="image-frame"><img src="./media/img/StateDef_Stand_s.png" alt="カンフーマン立ち(Stand)状態" width="140" height="140"></div></td>
+            </tr><tr>
+              <td>C</td>
+              <td><div>屈み(Crouch)</div><div class="image-frame"><img src="./media/img/StateDef_Crouch_s.png" alt="カンフーマン屈み(Crouch)状態" width="140" height="140"></div></td>
+            </tr><tr>
+              <td>A</td>
+              <td><div>空中(Air)</div><div class="image-frame"><img src="./media/img/StateDef_Air_s.png" alt="カンフーマン空中(Air)状態" width="140" height="140"></div></td>
+            </tr><tr>
+              <td>L</td>
+              <td><div>倒れ(Lying down)</div><div class="image-frame"><img src="./media/img/StateDef_Lying_s.png" alt="倒れ(Lying down)状態" width="140" height="140"></div></td>
+            </tr><tr>
+              <td>U</td>
+              <td>直前のステートから引き継ぐ(Unchanged)</td>
+            </tr>          </table>
+          </div>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： S;もしかしたら、前のステートで使用された動きを引き継ぐ。</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Physics">
-									Physics = 重力								(文字列)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>ステートの物理的な姿勢。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Physics">
+                  Physics = 重力                (文字列)
+      </dt>
+      <dd>
+        <div class="description"><p>ステートの物理的な姿勢。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					<div class="possible-value">
-					          <div>
-					<table>
-						<tr>
-							<th>重力</th>
-							<th>効果</th>
-						</tr>
-						<tr>
-							<td>S</td>
-							<td>立ち(Stand)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Stand.friction)</code>)がかかります。</td>
-						</tr><tr>
-							<td>C</td>
-							<td>屈み(Crouch)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Crouch.friction)</code>)がかかります。</td>
-						</tr><tr>
-							<td>A</td>
-							<td>空中(Air)。CNSで設定されている重力(<code>Vel Y+Const(Movement.yaccel)</code>)がかかり、着地時は自動的に着地ステートに移行します。</td>
-						</tr><tr>
-							<td>N</td>
-							<td>重力や摩擦を無視(None)。</td>
-						</tr><tr>
-							<td>U</td>
-							<td>直前のステートから引き継ぐ(Unchanged)。</td>
-						</tr>					</table>
-					</div>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： N ;もしかしたら、前のステートで使用された重力を引き継ぐ。</div>
-					
-					
-				
-				</div>
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>重力</th>
+              <th>効果</th>
+            </tr>
+            <tr>
+              <td>S</td>
+              <td>立ち(Stand)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Stand.friction)</code>)がかかります。</td>
+            </tr><tr>
+              <td>C</td>
+              <td>屈み(Crouch)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Crouch.friction)</code>)がかかります。</td>
+            </tr><tr>
+              <td>A</td>
+              <td>空中(Air)。CNSで設定されている重力(<code>Vel Y+Const(Movement.yaccel)</code>)がかかり、着地時は自動的に着地ステートに移行します。</td>
+            </tr><tr>
+              <td>N</td>
+              <td>重力や摩擦を無視(None)。</td>
+            </tr><tr>
+              <td>U</td>
+              <td>直前のステートから引き継ぐ(Unchanged)。</td>
+            </tr>          </table>
+          </div>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： N ;もしかしたら、前のステートで使用された重力を引き継ぐ。</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="MoveType">
-									MoveType = 行動状態								(文字列)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>ステートの行動内容を指定。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="MoveType">
+                  MoveType = 行動状態                (文字列)
+      </dt>
+      <dd>
+        <div class="description"><p>ステートの行動内容を指定。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					<div class="possible-value">
-					          <div>
-					<table>
-						<tr>
-							<th>行動</th>
-							<th>内容</th>
-						</tr>
-						<tr>
-							<td>I</td>
-							<td>待機(Idle)。</td>
-						</tr><tr>
-							<td>A</td>
-							<td>攻撃している(Attack)。HitDefが有効になり、敵もガードモーションをとれるようになります。</td>
-						</tr><tr>
-							<td>H</td>
-							<td>食らい状態(Hit)。相手のHitDefが有効になります。</td>
-						</tr><tr>
-							<td>U</td>
-							<td>直前のステートから引き継ぐ(Unchanged)。</td>
-						</tr>					</table>
-					</div>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： I ;もしかしたら、前のステートで使用された状態を引き継ぐ。</div>
-					
-					
-				
-				</div>
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>行動</th>
+              <th>内容</th>
+            </tr>
+            <tr>
+              <td>I</td>
+              <td>待機(Idle)。</td>
+            </tr><tr>
+              <td>A</td>
+              <td>攻撃している(Attack)。HitDefが有効になり、敵もガードモーションをとれるようになります。</td>
+            </tr><tr>
+              <td>H</td>
+              <td>食らい状態(Hit)。相手のHitDefが有効になります。</td>
+            </tr><tr>
+              <td>U</td>
+              <td>直前のステートから引き継ぐ(Unchanged)。</td>
+            </tr>          </table>
+          </div>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： I ;もしかしたら、前のステートで使用された状態を引き継ぐ。</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="HitCountPersist">
-									HitCountPersist = 引継ぎフラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>直前のステートからの「HitCount」「UniqHitCount」の効果を引き継ぐか否か。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="HitCountPersist">
+                  HitCountPersist = 引継ぎフラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p>直前のステートからの「HitCount」「UniqHitCount」の効果を引き継ぐか否か。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					<div class="possible-value">
-					          <div>
-					<table>
-						<tr>
-							<th>フラグ</th>
-							<th>結果</th>
-						</tr>
-						<tr>
-							<td>0</td>
-							<td>引き継がない</td>
-						</tr><tr>
-							<td>1</td>
-							<td>引き継ぐ</td>
-						</tr>					</table>
-					</div>
-											</div>
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 1</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0</div>
-					
-					
-				
-				</div>
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>フラグ</th>
+              <th>結果</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>引き継がない</td>
+            </tr><tr>
+              <td>1</td>
+              <td>引き継ぐ</td>
+            </tr>          </table>
+          </div>
+                      </div>
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 1</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="MoveHitPersist">
-									MoveHitPersist = 引継ぎフラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>直前のステートのヒット、ガード、空振り状態を引き継ぐか否か。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="MoveHitPersist">
+                  MoveHitPersist = 引継ぎフラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p>直前のステートのヒット、ガード、空振り状態を引き継ぐか否か。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					<div class="possible-value">
-					          <div>
-					<table>
-						<tr>
-							<th>フラグ</th>
-							<th>結果</th>
-						</tr>
-						<tr>
-							<td>0</td>
-							<td>引き継がない</td>
-						</tr><tr>
-							<td>1</td>
-							<td>引き継ぐ</td>
-						</tr>					</table>
-					</div>
-											</div>
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 1</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0</div>
-					
-					
-				
-				</div>
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>フラグ</th>
+              <th>結果</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>引き継がない</td>
+            </tr><tr>
+              <td>1</td>
+              <td>引き継ぐ</td>
+            </tr>          </table>
+          </div>
+                      </div>
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 1</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="HitDefPersist">
-									HitDefPersist = 引継ぎフラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>直前のステートの「HitDef」の効果を引き継ぐか否か。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="HitDefPersist">
+                  HitDefPersist = 引継ぎフラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p>直前のステートの「HitDef」の効果を引き継ぐか否か。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					<div class="possible-value">
-					          <div>
-					<table>
-						<tr>
-							<th>フラグ</th>
-							<th>結果</th>
-						</tr>
-						<tr>
-							<td>0</td>
-							<td>引き継がない</td>
-						</tr><tr>
-							<td>1</td>
-							<td>引き継ぐ</td>
-						</tr>					</table>
-					</div>
-											</div>
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 1</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0</div>
-					
-					
-				
-				</div>
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>フラグ</th>
+              <th>結果</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>引き継がない</td>
+            </tr><tr>
+              <td>1</td>
+              <td>引き継ぐ</td>
+            </tr>          </table>
+          </div>
+                      </div>
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 1</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="SprPriority">
-									SprPriority = 画像の表示優先度								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>画像表示優先度。5 ～ -5の間で指定します。数値が大きければ手前に、小さければ奥に優先されます。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="SprPriority">
+                  SprPriority = 画像の表示優先度                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>画像表示優先度。5 ～ -5の間で指定します。数値が大きければ手前に、小さければ奥に優先されます。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: -5</span>
-												,												<span class="max-value">最大値: 5</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: -5</span>
+                        ,                        <span class="max-value">最大値: 5</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="FaceP2">
-									FaceP2 = 相手へ振り向くフラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>ステートの開始時に相手の方向へ振り向くか否か。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="FaceP2">
+                  FaceP2 = 相手へ振り向くフラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p>ステートの開始時に相手の方向へ振り向くか否か。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					<div class="possible-value">
-					          <div>
-					<table>
-						<tr>
-							<th>フラグ</th>
-							<th>結果</th>
-						</tr>
-						<tr>
-							<td>0</td>
-							<td>振り向かない</td>
-						</tr><tr>
-							<td>1</td>
-							<td>振り向く</td>
-						</tr>					</table>
-					</div>
-											</div>
-										<div class="range-value">
-												<span class="min-value">最小値: -2,147,483,648</span>
-												,												<span class="max-value">最大値: 2,147,483,647</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0</div>
-					
-					
-				
-				</div>
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>フラグ</th>
+              <th>結果</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>振り向かない</td>
+            </tr><tr>
+              <td>1</td>
+              <td>振り向く</td>
+            </tr>          </table>
+          </div>
+                      </div>
+                    <div class="range-value">
+                        <span class="min-value">最小値: -2,147,483,648</span>
+                        ,                        <span class="max-value">最大値: 2,147,483,647</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Juggle">
-									Juggle = ジャグル値に加算する値								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>攻撃を当てた時に溜まるジャグルポイントの設定。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Juggle">
+                  Juggle = ジャグル値に加算する値                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>攻撃を当てた時に溜まるジャグルポイントの設定。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;前の攻撃ステートで成功した時のジャグル値を引き継ぐ。</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;前の攻撃ステートで成功した時のジャグル値を引き継ぐ。</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="VelSet">
-									VelSet = X軸の移動速度, Y軸の移動速度								(整数, 整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>移動速度の設定。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="VelSet">
+                  VelSet = X軸の移動速度, Y軸の移動速度                (整数, 整数)
+      </dt>
+      <dd>
+        <div class="description"><p>移動速度の設定。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: -2,147,483,648</span>
-												,												<span class="max-value">最大値: 2,147,483,647</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: -2,147,483,648</span>
+                        ,                        <span class="max-value">最大値: 2,147,483,647</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Anim">
-									Anim = アニメ番号								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>AIRに登録したアニメを呼び出す。<code>Anim = 1000 ;[Begin Action 1000]を表示します。</code></p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Anim">
+                  Anim = アニメ番号                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>AIRに登録したアニメを呼び出す。<code>Anim = 1000 ;[Begin Action 1000]を表示します。</code></p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 2,147,483,647</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 2,147,483,647</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Ctrl">
-									Ctrl = キー入力受付可能フラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>ステート中にキー入力を受け付けるか否か。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Ctrl">
+                  Ctrl = キー入力受付可能フラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p>ステート中にキー入力を受け付けるか否か。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					<div class="possible-value">
-					          <div>
-					<table>
-						<tr>
-							<th>フラグ</th>
-							<th>結果</th>
-						</tr>
-						<tr>
-							<td>0</td>
-							<td>操作不可</td>
-						</tr><tr>
-							<td>1</td>
-							<td>操作可能</td>
-						</tr>					</table>
-					</div>
-											</div>
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 1</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div>
-					
-					
-				
-				</div>
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>フラグ</th>
+              <th>結果</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>操作不可</td>
+            </tr><tr>
+              <td>1</td>
+              <td>操作可能</td>
+            </tr>          </table>
+          </div>
+                      </div>
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 1</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="PowerAdd">
-									PowerAdd = パワーゲージの増減量								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>パワーゲージの増減量。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="PowerAdd">
+                  PowerAdd = パワーゲージの増減量                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>パワーゲージの増減量。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: -2,147,483,648</span>
-												,												<span class="max-value">最大値: 2,147,483,647</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: -2,147,483,648</span>
+                        ,                        <span class="max-value">最大値: 2,147,483,647</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-					</div></section>
+      </dd>
+    </dl>
+          </div></section>
 
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
@@ -638,7 +619,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div></section>
 
 
-﻿	
+﻿  
 
 ﻿	
 

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
   <title itemprop="headline">PosFreeze 【一時的に速度移動を無効化】 | MUGEN State Controller - Name = sura</title>
@@ -19,6 +20,7 @@
   <link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
 
   <link rel="manifest" href="/manifest.json">
+  <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/State/PosFreeze.html">
 
   <!-- 「チェス盤を引っくり返す！」 -->
   <meta name="theme-color" content="#1E88E5">
@@ -49,19 +51,24 @@
   
 
 
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
+<!-- End Google Tag Manager -->
+
 </head>
 
 <body>
 
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
-<!-- End Google Tag Manager -->
+<!-- End Google Tag Manager (noscript) -->
 
 
 <div id="container"><div id="content-inner">
@@ -102,85 +109,79 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 ﻿	
 
-﻿	<section id="Parameter"><div class="section">
-		<h2>パラメーター</h2>
-						<dl class="parameter">
-			<dt>
-				<span class="main" id="value">
-									value = 停止フラグ								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>1を指定するとその場に停止します。0で変化なし。</p></div>
+﻿  <section id="Parameter"><div class="section">
+    <h2>パラメーター</h2>
+            <dl class="parameter">
+      <dt class="main" id="value">
+                  value = 停止フラグ                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>1を指定するとその場に停止します。0で変化なし。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： 1</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 1</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Persistent">
-									Persistent = HitPause無視時間								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Persistent">
+                  Persistent = HitPause無視時間                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 128</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 1</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 128</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 1</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="IgnoreHitPause">
-									IgnoreHitPause = HitPauseを無視フラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="IgnoreHitPause">
+                  IgnoreHitPause = HitPauseを無視フラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 1</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 1</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-					</div></section>
+      </dd>
+    </dl>
+          </div></section>
 
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
@@ -217,7 +218,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div></section>
 
 
-﻿	
+﻿  
 
 ﻿	
 

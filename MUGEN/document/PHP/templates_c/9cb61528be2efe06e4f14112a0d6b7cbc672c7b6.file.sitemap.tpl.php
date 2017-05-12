@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2016-07-24 15:05:19
+<?php /* Smarty version Smarty-3.1.12, created on 2017-04-22 08:27:19
          compiled from ".\..\..\..\sitemap.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:76815794d92f4bfe50-10390019%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9cb61528be2efe06e4f14112a0d6b7cbc672c7b6' => 
     array (
       0 => '.\\..\\..\\..\\sitemap.tpl',
-      1 => 1469372549,
+      1 => 1492056210,
       2 => 'file',
     ),
   ),
@@ -15,16 +15,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5794d92f56abf5_68733639',
   'variables' => 
   array (
     'urls' => 0,
     'url' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5794d92f56abf5_68733639',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5794d92f56abf5_68733639')) {function content_5794d92f56abf5_68733639($_smarty_tpl) {?>﻿<?php echo '<?xml';?> version="1.0" encoding="UTF-8"<?php echo '?>';?>
+<?php if ($_valid && !is_callable('content_5794d92f56abf5_68733639')) {function content_5794d92f56abf5_68733639($_smarty_tpl) {?>﻿
+<?php echo '<?xml';?> version="1.0" encoding="UTF-8"<?php echo '?>';?>
 
  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -48,8 +49,9 @@ $_smarty_tpl->tpl_vars['url']->_loop = true;
                  href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 "
                  />
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <changefreq>monthly</changefreq>
+    
+    
   </url>
 <?php } ?>
 </urlset><?php }} ?>

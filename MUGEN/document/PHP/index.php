@@ -4,6 +4,7 @@ require_once('C:\libs\php\smarty\Smarty.class.php');
 $smarty = new Smarty();
 ini_set( 'display_errors', 0 );
 $smarty->debugging = false;
+
 /*
  sidebar
 */
@@ -62,11 +63,15 @@ $categorie["page_title"] = $MAIN_TITLE;
 $categorie["page"] = [];
 $categorie["page"]["level"] = "1";
 $categorie["sidebar"] = $sidebar;
-$smarty->assign('content', $categorie);
 $filename = "index.html";
 $path = "/";
+$categorie["url"] = $URL.$path;
+
+$smarty->assign('content', $categorie);
 file_put_contents("./../../..".$path.$filename, $smarty->fetch('./../Template/top_page.tpl'));
 array_push($PATH_LIST, $URL.$path);
+
+
 
 /*
  State項目
@@ -105,6 +110,7 @@ $categorie["description"] = "";
 $categorie["sidebar"] = $sidebar;
 $filename = "index.html";
 $path = "/State/";
+$categorie["url"] = $URL.$MUGEN_PATH.$path;
 
 $smarty->assign('content', $categorie);
 file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
@@ -130,10 +136,11 @@ for ($i = 0; $i < $loop_end; $i++) {
   $json["page_subtitle"] = $json["page"]["subtitle"];
   $json["categories"] = $categories;
   $json["sidebar"] = $sidebar;
+  $filename = $state_name.".html";
+  $json["url"] = $URL.$MUGEN_PATH.$path.$filename;
 
   $smarty->assign('content', $json);
 
-  $filename = $state_name.".html";
   file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
   array_push($PATH_LIST, $URL.$MUGEN_PATH.$path.$filename);
 }
@@ -176,8 +183,10 @@ $categorie["description"] = "";
 $categorie["sidebar"] = $sidebar;
 $filename = "index.html";
 $path = "/Trigger/";
+$categorie["url"] = $URL.$MUGEN_PATH.$path;
 
 $smarty->assign('content', $categorie);
+
 file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
 array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
@@ -196,10 +205,11 @@ for ($i = 0; $i < $loop_end; $i++) {
   $json["page_subtitle"] = $json["page"]["subtitle"];
   $json["categories"] = $categories;
   $json["sidebar"] = $sidebar;
+  $filename = $trigger_name.".html";
+  $json["url"] = $URL.$MUGEN_PATH.$path.$filename;
 
   $smarty->assign("content", $json);
 
-  $filename = $trigger_name.".html";
   file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
   array_push($PATH_LIST, $URL.$MUGEN_PATH.$path.$filename);
 }
@@ -242,8 +252,10 @@ $categorie["categories"] = $categories;
 $categorie["sidebar"] = $sidebar;
 $filename = "index.html";
 $path = "/Lifebar/";
+$categorie["url"] = $URL.$MUGEN_PATH.$path;
 
 $smarty->assign('content', $categorie);
+
 file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
 array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
@@ -260,8 +272,10 @@ $categorie["categories"] = $categories;
 $categorie["sidebar"] = $sidebar;
 $filename = "Format.html";
 $path = "/Lifebar/";
+$categorie["url"] = $URL.$MUGEN_PATH.$path.$filename;
 
 $smarty->assign('content', $categorie);
+
 file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
 array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 
@@ -284,14 +298,15 @@ for ($i = 0; $i < $loop_end; $i++) {
   $json["main_title"] = $MAIN_TITLE;
   $json["page_category"] = "Lifebar";
   $json["page_title"] = $PAGE_TITLE;
-$categorie["page"]["level"] = "3";
+  $json["page"]["level"] = "3";
   $json["page_subtitle"] = $output_list[$i];
   $json["categories"] = $categories;
   $json["sidebar"] = $sidebar;
+  $filename = $name.".html";
+  $json["url"] = $URL.$MUGEN_PATH.$path.$filename;
 
   $smarty->assign('content', $json);
 
-  $filename = $name.".html";
   file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));
   array_push($PATH_LIST, $URL.$MUGEN_PATH.$path.$filename);
 }
@@ -306,14 +321,15 @@ for ($i = 0; $i < $loop_end; $i++) {
   $categorie["main_title"] = $MAIN_TITLE;
   $categorie["page_category"] = "Lifebar";
   $categorie["page_title"] = $PAGE_TITLE;
-$categorie["page"]["level"] = "2";
+  $categorie["page"]["level"] = "2";
   $categorie["page_subtitle"] = $name;
   $categorie["categories"] = $categories;
   $categorie["sidebar"] = $sidebar;
+  $filename = $name.".html";
+  $categorie["url"] = $URL.$MUGEN_PATH.$path.$filename;
 
   $smarty->assign('content', $categorie);
 
-  $filename = $name.".html";
   array_push($PATH_LIST, $URL.$MUGEN_PATH.$path.$filename);
 
   file_put_contents("./..".$path.$filename, $smarty->fetch('./../Template/base.tpl'));

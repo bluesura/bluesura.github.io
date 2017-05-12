@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
   <title itemprop="headline">AllPalFX 【画面全体の色を変更】 | MUGEN State Controller - Name = sura</title>
@@ -19,6 +20,7 @@
   <link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
 
   <link rel="manifest" href="/manifest.json">
+  <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/State/AllPalFX.html">
 
   <!-- 「チェス盤を引っくり返す！」 -->
   <meta name="theme-color" content="#1E88E5">
@@ -49,19 +51,24 @@
   
 
 
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
+<!-- End Google Tag Manager -->
+
 </head>
 
 <body>
 
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
-<!-- End Google Tag Manager -->
+<!-- End Google Tag Manager (noscript) -->
 
 
 <div id="container"><div id="content-inner">
@@ -122,231 +129,215 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div></section>
 	
 
-﻿	<section id="Parameter"><div class="section">
-		<h2>パラメーター</h2>
-						<dl class="parameter">
-			<dt>
-				<span class="main" id="Time">
-									Time = 持続時間								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>効果の持続時間をフレーム単位で指定します。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>ステートが変わっても有効のため、効果持続中にやられステートへ移行しても効果は持続します。回避方法は、<code>AllPalFX</code>を<code>Time=1</code>に設定してトリガーで時間を調整します。ただし、<code>SinAdd</code>が機能しないので注意。別の方法は、効果を終わらせたいタイミングで<code>Time=0</code>だけを指定した<code>AllPalFX</code>を実行して値を上書きします。ただし、相手プレイヤーの<code>AllPalFX</code>を打ち消すことがあるので管理に注意。</p><p>※60フレーム=1秒</p></div>
+﻿  <section id="Parameter"><div class="section">
+    <h2>パラメーター</h2>
+            <dl class="parameter">
+      <dt class="main" id="Time">
+                  Time = 持続時間                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>効果の持続時間をフレーム単位で指定します。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>ステートが変わっても有効のため、効果持続中にやられステートへ移行しても効果は持続します。回避方法は、<code>AllPalFX</code>を<code>Time=1</code>に設定してトリガーで時間を調整します。ただし、<code>SinAdd</code>が機能しないので注意。別の方法は、効果を終わらせたいタイミングで<code>Time=0</code>だけを指定した<code>AllPalFX</code>を実行して値を上書きします。ただし、相手プレイヤーの<code>AllPalFX</code>を打ち消すことがあるので管理に注意。</p><p>※60フレーム=1秒</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: -1</span>
-												,												<span class="max-value">最大値: 2147483647</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: -1</span>
+                        ,                        <span class="max-value">最大値: 2147483647</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Color">
-									Color = 彩度								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>パレットの彩度を下げます。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style="background-color: hsl(0, 0%, 100%);border: 1px solid #000;">　</span><br><span style="background-color: hsl(0, 0%, 80%);">　</span><span style="background-color: hsl(0, 10%, 80%);">　</span><span style="background-color: hsl(0, 20%, 80%);">　</span><span style="background-color: hsl(0, 30%, 80%);">　</span><br><span style="background-color: hsl(0, 0%, 60%);">　</span><span style="background-color: hsl(0, 10%, 60%);">　</span><span style="background-color: hsl(0, 20%, 60%);">　</span><span style="background-color: hsl(0, 30%, 60%);">　</span><span style="background-color: hsl(0, 40%, 60%);">　</span><span style="background-color: hsl(0, 50%, 60%);">　</span><span style="background-color: hsl(0, 60%, 60%);">　</span><span style="background-color: hsl(0, 70%, 60%);">　</span><br><span style="background-color: hsl(0, 0%, 50%);">　</span><span style="background-color: hsl(0, 10%, 50%);">　</span><span style="background-color: hsl(0, 20%, 50%);">　</span><span style="background-color: hsl(0, 30%, 50%);">　</span><span style="background-color: hsl(0, 40%, 50%);">　</span><span style="background-color: hsl(0, 50%, 50%);">　</span><span style="background-color: hsl(0, 60%, 50%);">　</span><span style="background-color: hsl(0, 70%, 50%);">　</span><span style="background-color: hsl(0, 80%, 50%);">　</span><span style="background-color: hsl(0, 90%, 50%);">　</span><span style="background-color: hsl(0, 100%, 50%);">　</span><br><span style="background-color: hsl(0, 0%, 40%);">　</span><span style="background-color: hsl(0, 10%, 40%);">　</span><span style="background-color: hsl(0, 20%, 40%);">　</span><span style="background-color: hsl(0, 30%, 40%);">　</span><span style="background-color: hsl(0, 40%, 40%);">　</span><span style="background-color: hsl(0, 50%, 40%);">　</span><span style="background-color: hsl(0, 60%, 40%);">　</span><span style="background-color: hsl(0, 70%, 40%);">　</span><br><span style="background-color: hsl(0, 0%, 20%);">　</span><span style="background-color: hsl(0, 10%, 20%);">　</span><span style="background-color: hsl(0, 20%, 20%);">　</span><span style="background-color: hsl(0, 30%, 20%);">　</span><br><span style="background-color: hsl(0, 0%, 0%);">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Color">
+                  Color = 彩度                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>パレットの彩度を下げます。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style="background-color: hsl(0, 0%, 100%);border: 1px solid #000;">　</span><br><span style="background-color: hsl(0, 0%, 80%);">　</span><span style="background-color: hsl(0, 10%, 80%);">　</span><span style="background-color: hsl(0, 20%, 80%);">　</span><span style="background-color: hsl(0, 30%, 80%);">　</span><br><span style="background-color: hsl(0, 0%, 60%);">　</span><span style="background-color: hsl(0, 10%, 60%);">　</span><span style="background-color: hsl(0, 20%, 60%);">　</span><span style="background-color: hsl(0, 30%, 60%);">　</span><span style="background-color: hsl(0, 40%, 60%);">　</span><span style="background-color: hsl(0, 50%, 60%);">　</span><span style="background-color: hsl(0, 60%, 60%);">　</span><span style="background-color: hsl(0, 70%, 60%);">　</span><br><span style="background-color: hsl(0, 0%, 50%);">　</span><span style="background-color: hsl(0, 10%, 50%);">　</span><span style="background-color: hsl(0, 20%, 50%);">　</span><span style="background-color: hsl(0, 30%, 50%);">　</span><span style="background-color: hsl(0, 40%, 50%);">　</span><span style="background-color: hsl(0, 50%, 50%);">　</span><span style="background-color: hsl(0, 60%, 50%);">　</span><span style="background-color: hsl(0, 70%, 50%);">　</span><span style="background-color: hsl(0, 80%, 50%);">　</span><span style="background-color: hsl(0, 90%, 50%);">　</span><span style="background-color: hsl(0, 100%, 50%);">　</span><br><span style="background-color: hsl(0, 0%, 40%);">　</span><span style="background-color: hsl(0, 10%, 40%);">　</span><span style="background-color: hsl(0, 20%, 40%);">　</span><span style="background-color: hsl(0, 30%, 40%);">　</span><span style="background-color: hsl(0, 40%, 40%);">　</span><span style="background-color: hsl(0, 50%, 40%);">　</span><span style="background-color: hsl(0, 60%, 40%);">　</span><span style="background-color: hsl(0, 70%, 40%);">　</span><br><span style="background-color: hsl(0, 0%, 20%);">　</span><span style="background-color: hsl(0, 10%, 20%);">　</span><span style="background-color: hsl(0, 20%, 20%);">　</span><span style="background-color: hsl(0, 30%, 20%);">　</span><br><span style="background-color: hsl(0, 0%, 0%);">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: 0 ;グレースケール</span>
-												,												<span class="max-value">最大値: 256 ;変化なし</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 256</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0 ;グレースケール</span>
+                        ,                        <span class="max-value">最大値: 256 ;変化なし</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 256</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Add">
-									Add = 加算する赤色, 加算する緑色, 加算する青色								(整数, 整数, 整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style="border: 1px solid #000;background: rgb(256,0,0);">　</span><code>Add=256,0,0</code>の場合、<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)は<span style="border: 1px solid #000;background: rgb(256,0,0);">　</span>赤(256,0,0)になりますが、<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)は<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)のままです。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Add">
+                  Add = 加算する赤色, 加算する緑色, 加算する青色                (整数, 整数, 整数)
+      </dt>
+      <dd>
+        <div class="description"><p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style="border: 1px solid #000;background: rgb(256,0,0);">　</span><code>Add=256,0,0</code>の場合、<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)は<span style="border: 1px solid #000;background: rgb(256,0,0);">　</span>赤(256,0,0)になりますが、<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)は<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)のままです。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: -256, -256, -256 ;黒</span>
-												,												<span class="max-value">最大値: 256, 256, 256 ;白</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0, 0, 0</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: -256, -256, -256 ;黒</span>
+                        ,                        <span class="max-value">最大値: 256, 256, 256 ;白</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0, 0, 0</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Mul">
-									Mul = 合成する赤色, 合成する緑色, 合成する青色								(整数, 整数, 整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style="border: 1px solid #000;background: rgb(64,256,64);">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)は<span style="border: 1px solid #000;background: rgb(1,256,1);">　</span>緑(1,256,1)になりますが、<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)は<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)のままです。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Mul">
+                  Mul = 合成する赤色, 合成する緑色, 合成する青色                (整数, 整数, 整数)
+      </dt>
+      <dd>
+        <div class="description"><p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style="border: 1px solid #000;background: rgb(64,256,64);">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)は<span style="border: 1px solid #000;background: rgb(1,256,1);">　</span>緑(1,256,1)になりますが、<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)は<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)のままです。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: 1, 1, 1</span>
-												,												<span class="max-value">最大値: 256, 256, 256 ;変化なし</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 256, 256, 256</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 1, 1, 1</span>
+                        ,                        <span class="max-value">最大値: 256, 256, 256 ;変化なし</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 256, 256, 256</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="SinAdd">
-									SinAdd = 周期する赤色, 周期する緑色, 周期する青色, 周期								(整数, 整数, 整数, 整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style="border: 1px solid #000;background: rgb(0,0,256);">　</span><code>SinAdd=0,0,256,20</code>,<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)は、5F後<span style="border: 1px solid #000;background: rgb(128,128,256);">　</span>(128,128,256)になり、10F後<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)に戻り、15F後<span style="border: 1px solid #000;background: rgb(128,128,0);">　</span>(128,128,0)、20F後<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)に戻る、という周期を繰り返します。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="SinAdd">
+                  SinAdd = 周期する赤色, 周期する緑色, 周期する青色, 周期                (整数, 整数, 整数, 整数)
+      </dt>
+      <dd>
+        <div class="description"><p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style="border: 1px solid #000;background: rgb(0,0,256);">　</span><code>SinAdd=0,0,256,20</code>,<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)は、5F後<span style="border: 1px solid #000;background: rgb(128,128,256);">　</span>(128,128,256)になり、10F後<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)に戻り、15F後<span style="border: 1px solid #000;background: rgb(128,128,0);">　</span>(128,128,0)、20F後<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)に戻る、という周期を繰り返します。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0, 0, 0, 0</div>
-					
-					
-								<div class="media">
-          															<div class="image-group">
-												<div class="image">
-							<h4></h4>
-							<div class="image-frame"><img src="./media/img/SinAdd.png" alt="" width="600" height="242" /></div>
-						</div>
-											</div>
-									</div>
-				
-				</div>
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0, 0, 0, 0</div>
+          
+          
+                <div class="media">
+                                        <div class="image-group">
+                        <div class="image">
+              <h4></h4>
+              <div class="image-frame"><img src="./media/img/SinAdd.png" alt="" width="600" height="242" /></div>
+            </div>
+                      </div>
+                  </div>
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="InvertAll">
-									InvertAll = 色反転フラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>色を反転するか・しないかのフラグです。</p><p>例: <span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>(0,0,0)→<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>(256,256,256),<span style="border: 1px solid #000;background: rgb(0,252,0);">　</span>(0,252,0)→<span style="border: 1px solid #000;background: rgb(256,4,256);">　</span>(256,4,256),<span style="border: 1px solid #000;background: rgb(256,0,0);">　</span>(256,0,0)→<span style="border: 1px solid #000;background: rgb(0,256,256);">　</span>(0,256,256)</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="InvertAll">
+                  InvertAll = 色反転フラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p>色を反転するか・しないかのフラグです。</p><p>例: <span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>(0,0,0)→<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>(256,256,256),<span style="border: 1px solid #000;background: rgb(0,252,0);">　</span>(0,252,0)→<span style="border: 1px solid #000;background: rgb(256,4,256);">　</span>(256,4,256),<span style="border: 1px solid #000;background: rgb(256,0,0);">　</span>(256,0,0)→<span style="border: 1px solid #000;background: rgb(0,256,256);">　</span>(0,256,256)</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: 0 ;色が反転しない</span>
-												,												<span class="max-value">最大値: 1 ;色が反転する</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0</div>
-					
-					
-								<div class="media">
-          															<div class="image-group">
-												<div class="image">
-							<h4></h4>
-							<div class="image-frame"><img src="./media/img/InvertAll.png" alt="" width="167" height="167" /></div>
-						</div>
-											</div>
-									</div>
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0 ;色が反転しない</span>
+                        ,                        <span class="max-value">最大値: 1 ;色が反転する</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+                <div class="media">
+                                        <div class="image-group">
+                        <div class="image">
+              <h4></h4>
+              <div class="image-frame"><img src="./media/img/InvertAll.png" alt="" width="167" height="167" /></div>
+            </div>
+                      </div>
+                  </div>
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Persistent">
-									Persistent = HitPause無視時間								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Persistent">
+                  Persistent = HitPause無視時間                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 128</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 1</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 128</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 1</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="IgnoreHitPause">
-									IgnoreHitPause = HitPauseを無視フラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="IgnoreHitPause">
+                  IgnoreHitPause = HitPauseを無視フラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
 
-				<div class="option-value">
+        <div class="option-value">
 
-					
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 1</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0</div>
-					
-					
-				
-				</div>
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 1</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+        
+        </div>
 
 
-			</dd>
-		</dl>
-					</div></section>
+      </dd>
+    </dl>
+          </div></section>
 
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
@@ -393,18 +384,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div></section>
 
 
-﻿		<section id="QandA"><div class="section">
-		<h2>注意事項</h2>
-				<table class="qanda">
-			<tr>
-				<th class="question">問</th>
-				<td>表示される色の処理順</td>
-			</tr>						<tr>
-				<th class="answer">答</th>
-				<td>==========各条件を以下のように定義する。==========<br>基本色:<br>Add    = Add_赤色(AR), Add_緑色(AG), Add_青色(AB)<br>SinAdd = Sin_赤色(SR), Sin_緑色(SG), Sin_青色(SB), 周期(P)<br><br>合成色:<br>Mul    = Mul_赤色(MR), Mul_緑色(MG), Mul_青色(MB)<br><br>経過時間:(T) ※単位はフレーム、1秒=60フレーム<br>円周率:(Pi)<br><br>変更する色:<br>Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br><br>==========処理の流れ==========<br>処理する色 = Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br>↓<br>彩度(Color)<br>彩度を調整した色 = Color_赤色(CR), Color_緑色(CG), Color_青色(CB)<br>↓<br>経過時間(T)に表示される色は<br>赤要素(RR) = (CR + AR + SR * Sin(2*Pi*T/P))  *  MR/256<br>緑要素(RG) = (CG + AG + SG * Sin(2*Pi*T/P))  *  MG/256<br>青要素(RB) = (CB + AB + SB * Sin(2*Pi*T/P))  *  MB/256<br>↓<br>色反転(InvertAll)<br>反転した赤要素(IR) = 256-RR<br>反転した緑要素(IG) = 256-RG<br>反転した青要素(IB) = 256-RB<br>↓<br>結果色(IR, IG, IB)が表示されます。<br></td>
-			</tr>					</table>
-			</div></section>
-	
+﻿    <section id="QandA"><div class="section">
+    <h2>Q＆A(よくありそうな質問)</h2>
+    <div>
+              <h3></h3>
+        
+          </div>
+  </div></section>
+  
 
 ﻿		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>

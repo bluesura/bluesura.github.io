@@ -1,6 +1,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
 {if $content.page.level == "1"}
@@ -22,6 +23,7 @@
   <link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
 
   <link rel="manifest" href="/manifest.json">
+  <link rel="canonical" href="{$content.url}">
 
   <!-- 「チェス盤を引っくり返す！」 -->
   <meta name="theme-color" content="#1E88E5">

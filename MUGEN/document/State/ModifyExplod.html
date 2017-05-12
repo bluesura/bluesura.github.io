@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
   <title itemprop="headline">ModifyExplod 【Explodの設定を変更】 | MUGEN State Controller - Name = sura</title>
@@ -19,6 +20,7 @@
   <link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
 
   <link rel="manifest" href="/manifest.json">
+  <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/State/ModifyExplod.html">
 
   <!-- 「チェス盤を引っくり返す！」 -->
   <meta name="theme-color" content="#1E88E5">
@@ -49,19 +51,24 @@
   
 
 
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
+<!-- End Google Tag Manager -->
+
 </head>
 
 <body>
 
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MMQSZM');</script>
-<!-- End Google Tag Manager -->
+<!-- End Google Tag Manager (noscript) -->
 
 
 <div id="container"><div id="content-inner">
@@ -117,571 +124,527 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div></section>
 	
 
-﻿	<section id="Parameter"><div class="section">
-		<h2>パラメーター</h2>
-						<dl class="parameter">
-			<dt>
-				<span class="main" id="ID">
-									ID = ExplodのID番号								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>設定を変更するExplodのIDを指定します。-1で全てのExplodの設定を変更する。</p><p>IDが存在しない場合、それ以降のパラメータは読み込まれない。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： -1</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Facing">
-									Facing = 向き								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>スプライトの向きを指定。1で正、-1で負の方向を向きます。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="VFacing">
-									VFacing = 上下の向き								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>-1にすると、垂直方向に反転表示されます。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Pos">
-									Pos = x座標, y座標								(整数, 整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>スプライトの出現位置を変更します。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-												<span class="min-value">最小値: -2147483647, -2147483647</span>
-												,												<span class="max-value">最大値: 2147483647, 2147483647</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="PosType">
-									PosType = 基準点の位置								(文字列)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>アニメーションを出現させるための基準点(0,0)をどこにするか、以下の文字列から指定します。</p></div>
-
-				<div class="option-value">
-
-					<div class="possible-value">
-					          <div>
-					<table>
-						<tr>
-							<th>タイプ</th>
-							<th>基準</th>
-						</tr>
-						<tr>
-							<td>P1</td>
-							<td><p>実行者が基準点(0,0)になります。X軸の正数は実行者の正面・Y軸の負数は実行者の頭上。</p><div><img src="./media/img/PosType_P1.png" alt="MUGEN PosType P1"></div></td>
-						</tr><tr>
-							<td>P2</td>
-							<td><p>実行者に最も近い敵が基準点(0,0)になります。X軸の正数は最も近い敵の正面・Y軸の負数は最も近い敵の頭上。</p><div><img src="./media/img/PosType_P2.png" alt="MUGEN PosType P2"></div></td>
-						</tr><tr>
-							<td>F</td>
-							<td><p>FはFrontの略。実行者の正面の画面端が基準点(0,0)になります。X軸の負数は基準点から実行者の方向・Y軸の負数は地面から上。</p><div><img src="./media/img/PosType_Front_1.png" alt="MUGEN PosType Front"></div></td>
-						</tr><tr>
-							<td>B</td>
-							<td><p>BはBackの略。実行者の背面の画面端が基準点(0,0)になります。X軸の正数は基準点から実行者の方向・Y軸の負数は地面から上。</p><div><img src="./media/img/PosType_Back_1.png" alt="MUGEN PosType Back"></div></td>
-						</tr><tr>
-							<td>L</td>
-							<td><p>LはLeftの略。画面左上が基準点(0,0)になります。X軸の正数は画面右方向・Y軸の正数は画面下方向。</p><div><img src="./media/img/PosType_Left_Explod.png" alt="MUGEN PosType Left"></div></td>
-						</tr><tr>
-							<td>R</td>
-							<td><p>RはRightの略。画面右上が基準点(0,0)になります。X軸の負数は画面左方向・Y軸の正数は画面下方向。</p><div><img src="./media/img/PosType_Right_Explod.png" alt="MUGEN PosType Right"></div></td>
-						</tr><tr>
-							<td>N</td>
-							<td><p>NはNoneの略。ステージ中央が基準点(0,0)になります。他のPosTypeと違い基準点は絶対に動きません。X軸は右方向が正数・左方向が負数。Y軸は上方向が負数・下方向が正数。</p><p>Version1.1から追加された値です。</p><div><img src="./media/img/PosType_None.png" alt="MUGEN PosType None"></div></td>
-						</tr>					</table>
-					</div>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： P1 ;Version1.1からはNoneに変更されています。</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Random">
-									Random = x範囲, y範囲								(整数, 整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>出現位置をランダムにする場合の、出現範囲を指定。</p><p>pos = 0,0で、random = 40,80の場合、0,0の位置から左右-20～20ピクセル、上下-40～40ピクセルの範囲内でランダムに出現します。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Vel">
-									Vel = x速度, y速度								(浮動小数点数, 浮動小数点数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>スプライトの初速度を指定。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Accel">
-									Accel = x加速度, y加速度								(浮動小数点数, 浮動小数点数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>スプライトの加速度を指定。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Scale">
-									Scale = 横縮尺 [,縦縮尺]								(浮動小数点数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>縮尺を指定。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="BindTime">
-									BindTime = 固定時間								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>ここで指定した時間内は、基準位置からの相対位置で表示されます。つまり、基準位置が移動すると、それに合わせてスプライトも移動します。</p><p>-1以下で固定時間が永続化。ただし-2以下は警告文を出すので永続にする場合は、-1のみしか指定してはいけません。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="OnTop">
-									OnTop = 手前表示フラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>1にすると、sprpriorityは無視され、全てのスプライト、背景レイヤーより手前に表示されます。ただし、ヒット/ガードスパークより手前に表示させることはできません。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="RemoveTime">
-									RemoveTime = 消滅時間								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>発生してから消滅するまでの時間を指定。-1で永久に表示。-2で、スプライトのアニメが終了すると消えます。特定の条件下で消すような場合は、Expoldを消すコントローラを使うとよいでしょう。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="SuperMoveTime">
-									SuperMoveTime = superpause無視時間								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>SuperPauseコントローラの影響を無視する時間を指定。-1または-2で無視時間永続化。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="SprPriority">
-									SprPriority = スプライト表示優先順位								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>スプライトの表示優先順位を指定。-3にすると、大抵のスプライトより奥に表示されます。</p><p>OnTopが有効な場合、SprPriorityが読み込まれません。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="PauseMoveTime">
-									PauseMoveTime = move_time								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>pauseコントローラの影響を無視する時間を指定。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="SuperMove">
-									SuperMove = superpause無視フラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>1にすると、superpauseコントローラの影響を受けなくなります。</p><p>指定しないほうがよいパラメータのようです。下記のsupermovetimeで代用してください。</p><p>SuperMoveTimeが0の場合は、SuperMoveは読み込まれません。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Shadow">
-									Shadow = 赤影, 緑影, 青影								(整数, 整数, 整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>影の色をR,G,Bで指定。-1でステージ依存。0,0,0で影なし。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="RemoveOnGethit">
-									RemoveOnGethit = やられ消滅フラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>1にすると、プレイヤーが攻撃を受けた場合、消滅します。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Trans">
-									Trans = 透過型								(文字列)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>透過型には、以下のいずれかの文字列を指定します。</p><p><table><thead><tr><th>透過処理</th><th>効果</th></tr></thead><tbody><tr><td>Default</td><td>何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。</td></tr><tr><td>None</td><td>透過処理無し。Airで透過処理している時無効にできる。</td></tr><tr><td>Add</td><td>画像を半透明にする。アルファ値256,256の加算透過。</td></tr><tr><td>Add1</td><td>Addより暗い感じの半透明にする。アルファ値256,128の加算透過。</td></tr><tr><td>Sub</td><td>画像を影のように半透明にする。減算透過。</td></tr><tr><td>AddAlpha</td><td>下記のAlphaとセットで使うのが普通。</td></tr></tbody></table></p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Alpha">
-									Alpha = ソースアルファ, デスティネーションアルファ								(整数, 整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p>透過型が"AddAlpha"の場合に指定します。有効範囲は0(低)から256(高)です。</p><p>ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-																							</div>
-					
-										<div class="default-value">省略時のデフォルト値： ;変更なし</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="Persistent">
-									Persistent = HitPause無視時間								(整数)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 128</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 1</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-				<dl class="parameter">
-			<dt>
-				<span class="main" id="IgnoreHitPause">
-									IgnoreHitPause = HitPauseを無視フラグ								(0か1)
-				</span>
-			</dt>
-			<dd>
-				<div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
-
-				<div class="option-value">
-
-					
-										<div class="range-value">
-												<span class="min-value">最小値: 0</span>
-												,												<span class="max-value">最大値: 1</span>
-											</div>
-					
-										<div class="default-value">省略時のデフォルト値： 0</div>
-					
-					
-				
-				</div>
-
-
-			</dd>
-		</dl>
-					</div></section>
+﻿  <section id="Parameter"><div class="section">
+    <h2>パラメーター</h2>
+            <dl class="parameter">
+      <dt class="main" id="ID">
+                  ID = ExplodのID番号                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>設定を変更するExplodのIDを指定します。-1で全てのExplodの設定を変更する。</p><p>IDが存在しない場合、それ以降のパラメータは読み込まれない。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： -1</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Facing">
+                  Facing = 向き                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>スプライトの向きを指定。1で正、-1で負の方向を向きます。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="VFacing">
+                  VFacing = 上下の向き                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>-1にすると、垂直方向に反転表示されます。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Pos">
+                  Pos = x座標, y座標                (整数, 整数)
+      </dt>
+      <dd>
+        <div class="description"><p>スプライトの出現位置を変更します。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: -2147483647, -2147483647</span>
+                        ,                        <span class="max-value">最大値: 2147483647, 2147483647</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="PosType">
+                  PosType = 基準点の位置                (文字列)
+      </dt>
+      <dd>
+        <div class="description"><p>アニメーションを出現させるための基準点(0,0)をどこにするか、以下の文字列から指定します。</p></div>
+
+        <div class="option-value">
+
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>タイプ</th>
+              <th>基準</th>
+            </tr>
+            <tr>
+              <td>P1</td>
+              <td><p>実行者が基準点(0,0)になります。X軸の正数は実行者の正面・Y軸の負数は実行者の頭上。</p><div><img src="./media/img/PosType_P1.png" alt="MUGEN PosType P1"></div></td>
+            </tr><tr>
+              <td>P2</td>
+              <td><p>実行者に最も近い敵が基準点(0,0)になります。X軸の正数は最も近い敵の正面・Y軸の負数は最も近い敵の頭上。</p><div><img src="./media/img/PosType_P2.png" alt="MUGEN PosType P2"></div></td>
+            </tr><tr>
+              <td>F</td>
+              <td><p>FはFrontの略。実行者の正面の画面端が基準点(0,0)になります。X軸の負数は基準点から実行者の方向・Y軸の負数は地面から上。</p><div><img src="./media/img/PosType_Front_1.png" alt="MUGEN PosType Front"></div></td>
+            </tr><tr>
+              <td>B</td>
+              <td><p>BはBackの略。実行者の背面の画面端が基準点(0,0)になります。X軸の正数は基準点から実行者の方向・Y軸の負数は地面から上。</p><div><img src="./media/img/PosType_Back_1.png" alt="MUGEN PosType Back"></div></td>
+            </tr><tr>
+              <td>L</td>
+              <td><p>LはLeftの略。画面左上が基準点(0,0)になります。X軸の正数は画面右方向・Y軸の正数は画面下方向。</p><div><img src="./media/img/PosType_Left_Explod.png" alt="MUGEN PosType Left"></div></td>
+            </tr><tr>
+              <td>R</td>
+              <td><p>RはRightの略。画面右上が基準点(0,0)になります。X軸の負数は画面左方向・Y軸の正数は画面下方向。</p><div><img src="./media/img/PosType_Right_Explod.png" alt="MUGEN PosType Right"></div></td>
+            </tr><tr>
+              <td>N</td>
+              <td><p>NはNoneの略。ステージ中央が基準点(0,0)になります。他のPosTypeと違い基準点は絶対に動きません。X軸は右方向が正数・左方向が負数。Y軸は上方向が負数・下方向が正数。</p><p>Version1.1から追加された値です。</p><div><img src="./media/img/PosType_None.png" alt="MUGEN PosType None"></div></td>
+            </tr>          </table>
+          </div>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： P1 ;Version1.1からはNoneに変更されています。</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Random">
+                  Random = x範囲, y範囲                (整数, 整数)
+      </dt>
+      <dd>
+        <div class="description"><p>出現位置をランダムにする場合の、出現範囲を指定。</p><p>pos = 0,0で、random = 40,80の場合、0,0の位置から左右-20～20ピクセル、上下-40～40ピクセルの範囲内でランダムに出現します。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Vel">
+                  Vel = x速度, y速度                (浮動小数点数, 浮動小数点数)
+      </dt>
+      <dd>
+        <div class="description"><p>スプライトの初速度を指定。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Accel">
+                  Accel = x加速度, y加速度                (浮動小数点数, 浮動小数点数)
+      </dt>
+      <dd>
+        <div class="description"><p>スプライトの加速度を指定。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Scale">
+                  Scale = 横縮尺 [,縦縮尺]                (浮動小数点数)
+      </dt>
+      <dd>
+        <div class="description"><p>縮尺を指定。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="BindTime">
+                  BindTime = 固定時間                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>ここで指定した時間内は、基準位置からの相対位置で表示されます。つまり、基準位置が移動すると、それに合わせてスプライトも移動します。</p><p>-1以下で固定時間が永続化。ただし-2以下は警告文を出すので永続にする場合は、-1のみしか指定してはいけません。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="OnTop">
+                  OnTop = 手前表示フラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p>1にすると、sprpriorityは無視され、全てのスプライト、背景レイヤーより手前に表示されます。ただし、ヒット/ガードスパークより手前に表示させることはできません。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="RemoveTime">
+                  RemoveTime = 消滅時間                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>発生してから消滅するまでの時間を指定。-1で永久に表示。-2で、スプライトのアニメが終了すると消えます。特定の条件下で消すような場合は、Expoldを消すコントローラを使うとよいでしょう。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="SuperMoveTime">
+                  SuperMoveTime = superpause無視時間                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>SuperPauseコントローラの影響を無視する時間を指定。-1または-2で無視時間永続化。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="SprPriority">
+                  SprPriority = スプライト表示優先順位                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>スプライトの表示優先順位を指定。-3にすると、大抵のスプライトより奥に表示されます。</p><p>OnTopが有効な場合、SprPriorityが読み込まれません。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="PauseMoveTime">
+                  PauseMoveTime = move_time                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p>pauseコントローラの影響を無視する時間を指定。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="SuperMove">
+                  SuperMove = superpause無視フラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p>1にすると、superpauseコントローラの影響を受けなくなります。</p><p>指定しないほうがよいパラメータのようです。下記のsupermovetimeで代用してください。</p><p>SuperMoveTimeが0の場合は、SuperMoveは読み込まれません。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Shadow">
+                  Shadow = 赤影, 緑影, 青影                (整数, 整数, 整数)
+      </dt>
+      <dd>
+        <div class="description"><p>影の色をR,G,Bで指定。-1でステージ依存。0,0,0で影なし。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="RemoveOnGethit">
+                  RemoveOnGethit = やられ消滅フラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p>1にすると、プレイヤーが攻撃を受けた場合、消滅します。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Trans">
+                  Trans = 透過型                (文字列)
+      </dt>
+      <dd>
+        <div class="description"><p>透過型には、以下のいずれかの文字列を指定します。</p><p><table><thead><tr><th>透過処理</th><th>効果</th></tr></thead><tbody><tr><td>Default</td><td>何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。</td></tr><tr><td>None</td><td>透過処理無し。Airで透過処理している時無効にできる。</td></tr><tr><td>Add</td><td>画像を半透明にする。アルファ値256,256の加算透過。</td></tr><tr><td>Add1</td><td>Addより暗い感じの半透明にする。アルファ値256,128の加算透過。</td></tr><tr><td>Sub</td><td>画像を影のように半透明にする。減算透過。</td></tr><tr><td>AddAlpha</td><td>下記のAlphaとセットで使うのが普通。</td></tr></tbody></table></p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Alpha">
+                  Alpha = ソースアルファ, デスティネーションアルファ                (整数, 整数)
+      </dt>
+      <dd>
+        <div class="description"><p>透過型が"AddAlpha"の場合に指定します。有効範囲は0(低)から256(高)です。</p><p>ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                                              </div>
+          
+                    <div class="default-value">省略時のデフォルト値： ;変更なし</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="Persistent">
+                  Persistent = HitPause無視時間                (整数)
+      </dt>
+      <dd>
+        <div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 128</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 1</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main" id="IgnoreHitPause">
+                  IgnoreHitPause = HitPauseを無視フラグ                (0か1)
+      </dt>
+      <dd>
+        <div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 1</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+          </div></section>
 
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
@@ -756,7 +719,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div></section>
 
 
-﻿	
+﻿  
 
 ﻿	
 

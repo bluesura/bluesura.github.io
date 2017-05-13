@@ -1,4 +1,4 @@
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="format-detection" content="telephone=no">
@@ -28,43 +28,45 @@
   <!-- 「チェス盤を引っくり返す！」 -->
   <meta name="theme-color" content="#1E88E5">
   <meta name="msapplication-TileColor" content="#1E88E5">
-  <meta name="robots" content="INDEX,FOLLOW" />
-  <meta name="viewport" content="width=device-width" />
-  <meta name="author" content="sura" />
-  <meta name="generator" content="Smarty" />
+  <meta name="robots" content="INDEX,FOLLOW">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="sura">
+  <meta name="generator" content="Smarty">
   <meta name="mobile-web-app-capable" content="yes">
 {*
-<meta name="description" content="$content.description|strip_tags:false|escape" />
-<meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻" />
+  <meta name="description" content="$content.description|strip_tags:false|escape">
+  <meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻">
 *}
   <!-- 「駄目ね、全然駄目だわ」 -->
 
 {*<!-- ジョインジョイン OGP -->
-  <meta property="og:url" content="http://analyticsfile.web.fc2.com/MUGEN/document/State/index.html" />
-  <meta property="og:title" content="M.U.G.E.N ステートコントローラ一覧 - Name = sura" />
-  <meta property="og:description" content="" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="http://analyticsfile.web.fc2.com/media/img/profile_200.png" />
-  <meta property="og:locale" content="ja_JP" />
-  <meta property="og:site_name" content="Name = sura" />
+  <meta property="og:url" content="http://analyticsfile.web.fc2.com/MUGEN/document/State/index.html">
+  <meta property="og:title" content="M.U.G.E.N ステートコントローラ一覧 - Name = sura">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="http://analyticsfile.web.fc2.com/media/img/profile_200.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="Name = sura">
 <!-- もういい、ここまでだっ・・・ -->*}
 
-  <link rel="author" title="sura" href="https://twitter.com/bluesura" />
-  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="ATOM" type="application/atom+xml" />
+  <link rel="author" title="sura" href="https://twitter.com/bluesura">
+  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="ATOM" type="application/atom+xml">
 
   <link rel="stylesheet" href="/lib/css/material.css?version=20161230">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 {*<!--sidebar-->
-  <link rel="stylesheet" href="/lib/css/normalize.css" />
-  <link rel="stylesheet" href="/lib/css/component.css" />
+  <link rel="stylesheet" href="/lib/css/normalize.css">
+  <link rel="stylesheet" href="/lib/css/component.css">
   <script src="/lib/js/modernizr.custom.js"></script>
   <!--sidebar-->*}
 
   <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
   <script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
   <script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
-  {*<script type="text/javascript" src="/lib/js/isMobile.min.js?version=20161230"></script>*}
-  {*<script async type="text/javascript" src="/lib/js/js-ctrl.js?version=20161230"></script>*}
-  {*<script async type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js"></script>*}
+{*
+  <script type="text/javascript" src="/lib/js/isMobile.min.js?version=20161230"></script>
+  <script async type="text/javascript" src="/lib/js/js-ctrl.js?version=20161230"></script>
+  <script async type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js"></script>
+*}
 

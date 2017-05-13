@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-05-12 04:31:41
+<?php /* Smarty version Smarty-3.1.12, created on 2017-05-13 23:49:58
          compiled from ".\..\Template\base.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2963558cd8974caeb00-16025641%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5ac4a276d869311c2ba7116783143ef3c7ab1414' => 
     array (
       0 => '.\\..\\Template\\base.tpl',
-      1 => 1494563489,
+      1 => 1494719186,
       2 => 'file',
     ),
   ),
@@ -84,6 +84,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <?php }?>
     
 <?php }?>
+
+<style>
+
+.sosial_buttons{list-style-type:none;padding-left:0;margin-bottom:20px}
+.sosial_buttons:before,.sosial_buttons:after{content:" ";display:table}
+.sosial_buttons:after{clear:both}
+.sosial_buttons li{width:25%;text-align:center;font-size:130%;height:44px;line-height:44px;float:left}
+.sosial_buttons li a{text-decoration:none;display:block;color:white}
+.sosial_buttons li a .fa{color:white;padding-right:6px}
+.sosial_buttons li.sb_facebook{background:#315096}
+.sosial_buttons li.sb_twitter{background:#55acee}
+.sosial_buttons li.sb_hatena{background:#008fde}
+.sosial_buttons li.sb_gplus{background:#dd4b39}
+.fa-hatena:before{content:"B!";font-family:Verdana;font-weight:bold}
+
+</style>
+<ul class="sosial_buttons">
+    <li class="sb_facebook">
+        <a href="" onclick="window.open('https://www.facebook.com/share.php?u='+encodeURIComponent(document.location.href), 'FBwindow', 'width=320, height=320, menubar=no, toolbar=no, scrollbars=yes'); return false;" target="_blank">
+            <i class="fa fa-facebook"></i>
+        </a>
+    </li>
+
+    <li class="sb_twitter">
+        <a href="" onclick="window.open('http://twitter.com/share?count=horizontal&amp;original_referer=http%3A%2F%2Frokaru.jp%2Fmatome%2F28227&amp;text='+encodeURIComponent((function(){if((''+document.getSelection()).length){return document.getSelection()}else{return document.title.slice(0,30)}})()+' @bluesuraさんから')+'&amp;url='+document.location.href, 'tweetwindow', 'width=550, height=450,personalbar=0,toolbar=0,scrollbars=1,resizable=1'); return false;" title="このページをツイートする" target="_blank">
+            <i class="fa fa-twitter"></i>
+        </a>
+    </li>
+    <li class="sb_hatena">
+        <a href="" onclick="window.open('http://b.hatena.ne.jp/entry/'+encodeURIComponent(document.location.href))" class="hatena-bookmark-button" title="このページをはてなブックマークに追加する" target="_blank">
+            <i class="fa fa-hatena"></i>
+        </a>
+    </li>
+    <li class="sb_gplus">
+        <a href="" onclick="window.open('https://plus.google.com/share?url='+encodeURIComponent(document.location.href), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">
+            <i class="fa fa-google-plus"></i>
+        </a>
+    </li>
+</ul>
+
 	</div></div>
 
 

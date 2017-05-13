@@ -87,15 +87,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	<div id="wrapper"><div id="main">
       <div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
-	<header class="entry-header"><div>
-	<div class="entry-title" itemprop="name"><div>
-	<h1 id="TargetState">Type = TargetState</h1>
-	<div class="category">ターゲット操作 > ターゲットのステートを実行者のステートに移動 | 実装されたバージョン: 2002.04.14 | 対象: ターゲット</div>
+  <header class="entry-header"><div>
+  <img src="https://bluesura.github.io/MUGEN/document/State/media/img/" alt="" style="display:none;">
+  <div class="entry-title" itemprop="name"><div>
+  <h1 id="TargetState">Type = TargetState</h1>
+  <div class="category">ターゲット操作 > ターゲットのステートを実行者のステートに移動 | 実装されたバージョン: 2002.04.14 | 対象: ターゲット</div>
 </div></div>
 
 </div></header>
 
-	<div class="entry-content">
+  <div class="entry-content">
 
 ﻿	<div class="description" itemprop="articleBody">
 <div><p>ターゲットのステートを指定値に変更します。このコントローラーで、相手はプレイヤーのステートを参照するようになります。</p><p>なお、ターゲットとは、自分の攻撃でヒット、ガード状態となった相手のことを指します。ガードも含まれることに注意。</p><p>ステートを奪った状態で相手がコントロール可能になると、歩く、ジャンプなどの共通動作が可能となりますが、このときもこちらの共通動作ステートを参照しています。なお、-1ステートは参照できませんので、攻撃はできません。ただ、-2ステートは、相手のステートを参照している場合も有効なので、内容によっては操作可能ですが、ChangeStateの対象はこちらのステートなので、不具合が生じる可能性が高いです。</p><p>この状態は、攻撃を受けるか、防御することで元に戻りますが、SelfStateで元に戻すのが普通です。</p><p>HitDefのP2statenoの代わりに使うこともできますが、simulモードや、連続技に組み込める技で使用する場合は、不具合が起きやすいので、トリガーの設定には十分注意しましょう。</p></div>
@@ -257,7 +258,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2013-11-27">2013.11.27</time></div></div>
 
-	</div>
+  </div>
 </article></div>
 
   

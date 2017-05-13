@@ -87,15 +87,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	<div id="wrapper"><div id="main">
       <div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
-	<header class="entry-header" style="background: url(./media/img/HitDef.png) no-repeat; background-size: cover;"><div style="height:480px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"><span itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display: none;"/><meta itemprop="url" content="https://bluesura.github.io/MUGEN/document/State/media/img/HitDef.png"><meta itemprop="width" content="640"><meta itemprop="height" content="480"></span>
-	<div class="entry-title" itemprop="name"><div>
-	<h1 id="HitDef">Type = HitDef</h1>
-	<div class="category">攻撃 > 攻撃判定 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身</div>
+  <header class="entry-header" style="background: url(./media/img/HitDef.png) no-repeat; background-size: cover;"><div style="height:480px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"><span itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display: none;"/><meta itemprop="url" content="https://bluesura.github.io/MUGEN/document/State/media/img/HitDef.png"><meta itemprop="width" content="640"><meta itemprop="height" content="480"></span>
+  <img src="https://bluesura.github.io/MUGEN/document/State/media/img/HitDef.png" alt="MUGEN HitDef" style="display:none;">
+  <div class="entry-title" itemprop="name"><div>
+  <h1 id="HitDef">Type = HitDef</h1>
+  <div class="category">攻撃 > 攻撃判定 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身</div>
 </div></div>
 
 </div></header>
 
-	<div class="entry-content">
+  <div class="entry-content">
 
 ﻿	<div class="description" itemprop="articleBody">
 <div><p><code>AIR</code>ファイルで設定されている、実行者の<code>Clsn1</code>(攻撃判定：赤い四角)が相手の<code>Clsn2</code>(やられ判定：青い四角)に重なった時の処理を設定。設定された各種パラメーターの条件が相手の状態を満たしていた場合にヒットし、くらいアニメ・ダメージ・ふっとび速度などの処理が実行されます。</p><p><code>HitDef</code>の処理は、ステートを移動するか<a href="./ReversalDef.html"><code>ReversalDef</code></a>が実行されるまで続きます。</p><p>そのステート中効果が持続しますが、<code>1</code>回ヒットしたキャラに対しては、効果を及ぼさなくなります。このため、複数ヒットする技の場合は、ヒットさせたい数だけ<code>HitDef</code>を定義するか、複数回効果があるようにトリガーを設定する必要があります。</p><p><code>Clsn1</code>がない、または実行者の<code>MoveType</code>が<code>I</code>だった場合、<code>HitDef</code>は機能しません。</p><p><code>HitDef</code>の定義をもった攻撃判定へヒットするのが<a href="./ReversalDef.html"><code>ReversalDef</code></a>。仕様上<a href="./ReversalDef.html"><code>ReversalDef</code></a>とは併用できません。</p></div>
@@ -2494,7 +2495,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2015-10-04">2015.10.04</time></div></div>
 
-	</div>
+  </div>
 </article></div>
 
   

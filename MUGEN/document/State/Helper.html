@@ -87,15 +87,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	<div id="wrapper"><div id="main">
       <div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
-	<header class="entry-header"><div>
-	<div class="entry-title" itemprop="name"><div>
-	<h1 id="Helper">Type = Helper</h1>
-	<div class="category">Helper > 飛び道具・分身・特殊ゲージ等のサポート | 実装されたバージョン: 2002.04.14 | 対象: 召喚</div>
+  <header class="entry-header"><div>
+  <img src="https://bluesura.github.io/MUGEN/document/State/media/img/" alt="" style="display:none;">
+  <div class="entry-title" itemprop="name"><div>
+  <h1 id="Helper">Type = Helper</h1>
+  <div class="category">Helper > 飛び道具・分身・特殊ゲージ等のサポート | 実装されたバージョン: 2002.04.14 | 対象: 召喚</div>
 </div></div>
 
 </div></header>
 
-	<div class="entry-content">
+  <div class="entry-content">
 
 ﻿	<div class="description" itemprop="articleBody">
 <div><p>プレイヤー以外のキャラクターを出現させます。<code>Helper</code>が参照するステートを別に記述する必要がありますが、様々な動きが可能。<span class="decoration-font-line-green">複雑な動作の飛び道具</span>・プレイヤーについて動き回る<span class="decoration-font-line-green">サポートキャラ</span>・<span class="decoration-font-line-green">特殊ゲージなどの特殊システム</span>や<span class="decoration-font-line-green">自分自身の分身</span>などに利用します。</p><p>攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。</p><p><code>Helper</code>は、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。<code>Helper</code>が消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。但し、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。</p><p>なお、<span class="decoration-font-highlight-red">全プレイヤーの<code>Helper</code>合計数には上限</span>があり、初期設定は32個で最大56個まで増やせます。上限は<code>mugen.cfg</code>にて設定可能。設定数を超えると<code>Helper</code>を射出できなくなります。</p></div>
@@ -966,7 +967,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2016-12-21">2016.12.21</time></div></div>
 
-	</div>
+  </div>
 </article></div>
 
   

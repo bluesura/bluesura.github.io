@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-05-14 01:12:30
+<?php /* Smarty version Smarty-3.1.12, created on 2017-05-14 01:30:24
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:228675917aefe7b98a1-24623939%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '00a372bc34ee85aa36a99f03597f6ced85b03ba6' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1494724317,
+      1 => 1494725420,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5917aefe8b3f98_56490912',
   'variables' => 
   array (
     'content' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5917aefe8b3f98_56490912',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5917aefe8b3f98_56490912')) {function content_5917aefe8b3f98_56490912($_smarty_tpl) {?>  
 
@@ -81,7 +81,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <meta property="og:title" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
  | <?php echo $_smarty_tpl->tpl_vars['content']->value['page_title'];?>
 ">
-  
+  <meta property="og:description" content="">
   <meta property="og:type" content="website">
 <?php if ($_smarty_tpl->tpl_vars['content']->value['images'][0]['src']!=''){?>  <meta property="og:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
 "><?php }?>
@@ -95,10 +95,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <meta name="twitter:title" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
  | <?php echo $_smarty_tpl->tpl_vars['content']->value['page_title'];?>
 ">
-
+  <meta name="twitter:description" content="">
+  <meta name="twitter:text:description" content="">
   <meta name="twitter:card" content="summary_large_image">
 <?php if ($_smarty_tpl->tpl_vars['content']->value['images'][0]['src']!=''){?>  <meta name="twitter:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
 " /><?php }?>
+<?php if ($_smarty_tpl->tpl_vars['content']->value['images'][0]['src']!=''){?>  <link rel="image_src" href="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
+" /><?php }?>
+<?php if ($_smarty_tpl->tpl_vars['content']->value['images'][0]['src']!=''){?><meta property="pin:media" content="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
+" />
+<meta property="pin:description" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['alt'];?>
+" /><?php }?>
+
 
   <link rel="author" title="sura" href="https://twitter.com/bluesura">
   <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="ATOM" type="application/atom+xml">

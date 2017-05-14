@@ -51,7 +51,7 @@
   <!-- ジョインジョイン OGP -->
   <meta property="og:url" content="{$content.url}">
   <meta property="og:title" content="{$content.page_subtitle} | {$content.page_title}">
-  {*<meta property="og:description" content="">*}
+  <meta property="og:description" content="">
   <meta property="og:type" content="website">
 {if $content.images[0].src != ""}  <meta property="og:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/{$content.images[0].src}">{/if}
   <meta property="og:locale" content="ja_JP">
@@ -61,9 +61,14 @@
   <meta name="twitter:creator" content="@bluesura">
   <meta name="twitter:url" content="{$content.url}">
   <meta name="twitter:title" content="{$content.page_subtitle} | {$content.page_title}">
-{*  <meta name="twitter:description" content="">*}
+  <meta name="twitter:description" content="">
+  <meta name="twitter:text:description" content="">
   <meta name="twitter:card" content="summary_large_image">
 {if $content.images[0].src != ""}  <meta name="twitter:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/{$content.images[0].src}" />{/if}
+{if $content.images[0].src != ""}  <link rel="image_src" href="https://bluesura.github.io/MUGEN/document/State/media/img/{$content.images[0].src}" />{/if}
+{if $content.images[0].src != ""}<meta property="pin:media" content="https://bluesura.github.io/MUGEN/document/State/media/img/{$content.images[0].src}" />
+<meta property="pin:description" content="{$content.images[0].alt}" />{/if}
+
 
   <link rel="author" title="sura" href="https://twitter.com/bluesura">
   <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="ATOM" type="application/atom+xml">

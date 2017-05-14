@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" itemscope itemtype="http://schema.org/Article">
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+<head>
 {include file="./head.tpl"}
 
 {literal}

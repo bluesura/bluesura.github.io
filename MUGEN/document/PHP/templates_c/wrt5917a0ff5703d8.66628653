@@ -1,35 +1,32 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-05-14 01:12:30
+<?php /* Smarty version Smarty-3.1.12, created on 2017-05-14 00:12:47
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:228675917aefe7b98a1-24623939%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:219215917535430bbe1-36511154%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '00a372bc34ee85aa36a99f03597f6ced85b03ba6' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1494724317,
+      1 => 1494720763,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '228675917aefe7b98a1-24623939',
+  'nocache_hash' => '219215917535430bbe1-36511154',
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_591753543c4095_21040653',
   'variables' => 
   array (
     'content' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5917aefe8b3f98_56490912',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5917aefe8b3f98_56490912')) {function content_5917aefe8b3f98_56490912($_smarty_tpl) {?>  
-
-  <meta charset="UTF-8">
+<?php if ($_valid && !is_callable('content_591753543c4095_21040653')) {function content_591753543c4095_21040653($_smarty_tpl) {?>  <meta charset="UTF-8">
   <meta http-equiv="Content-Language" content="ja">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="format-detection" content="telephone=no">
-  <meta name="referrer" content="unsafe-url" />
   <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
 <?php if ($_smarty_tpl->tpl_vars['content']->value['page']['level']=="1"){?>
@@ -47,20 +44,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
   <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
   <link rel="apple-touch-icon" sizes="128x128" href="/media/img/icon-128x128.png">
+  <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/media/img/icon-128x128.png">
   <link rel="icon" sizes="192x192" href="/media/img/icon-192x192.png">
   <meta name="msapplication-TileImage" content="/media/img/icon-512x512.png">
 
   <link rel="mask-icon" href="/media/img/infinite-M.svg" color="#1E88E5">
   <link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
 
-  <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/media/img/icon-128x128.png">
   <link rel="manifest" href="/manifest.json">
   <link rel="canonical" href="<?php echo $_smarty_tpl->tpl_vars['content']->value['url'];?>
 ">
-
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="MUGEN Document" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- 「チェス盤を引っくり返す！」 -->
   <meta name="theme-color" content="#1E88E5">
@@ -68,37 +61,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <meta name="robots" content="INDEX,FOLLOW">
   <meta name="viewport" content="width=device-width">
   <meta name="author" content="sura">
-  <meta name="copyright" content="Copyright© SURA(すら) All rights reserved." />
   <meta name="generator" content="Smarty">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="referrer" content="unsafe-url">
 
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
   <meta property="og:url" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['url'];?>
 ">
-  <meta property="og:title" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
- | <?php echo $_smarty_tpl->tpl_vars['content']->value['page_title'];?>
+  <meta property="og:title" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['page_title'];?>
 ">
   
   <meta property="og:type" content="website">
-<?php if ($_smarty_tpl->tpl_vars['content']->value['images'][0]['src']!=''){?>  <meta property="og:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
-"><?php }?>
+  <meta property="og:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
+">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:site_name" content="Name = sura">
   <!-- もういい、ここまでだっ・・・ -->
-  <meta name="twitter:site" content="@bluesura">
-  <meta name="twitter:creator" content="@bluesura">
-  <meta name="twitter:url" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['url'];?>
-">
-  <meta name="twitter:title" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
- | <?php echo $_smarty_tpl->tpl_vars['content']->value['page_title'];?>
-">
-
-  <meta name="twitter:card" content="summary_large_image">
-<?php if ($_smarty_tpl->tpl_vars['content']->value['images'][0]['src']!=''){?>  <meta name="twitter:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
-" /><?php }?>
 
   <link rel="author" title="sura" href="https://twitter.com/bluesura">
   <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="ATOM" type="application/atom+xml">

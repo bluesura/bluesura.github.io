@@ -42,8 +42,8 @@
   <meta name="generator" content="Smarty">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="referrer" content="unsafe-url">
+  <meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 {*
-  <meta name="description" content="$content.description|strip_tags:false|escape">
   <meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻">
 *}
   <!-- 「駄目ね、全然駄目だわ」 -->
@@ -51,7 +51,7 @@
   <!-- ジョインジョイン OGP -->
   <meta property="og:url" content="{$content.url}">
   <meta property="og:title" content="{$content.page_subtitle} | {$content.page_title}">
-  <meta property="og:description" content="">
+  <meta property="og:description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
   <meta property="og:type" content="website">
 {if $content.images[0].src != ""}  <meta property="og:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/{$content.images[0].src}">{/if}
   <meta property="og:locale" content="ja_JP">
@@ -61,7 +61,7 @@
   <meta name="twitter:creator" content="@bluesura">
   <meta name="twitter:url" content="{$content.url}">
   <meta name="twitter:title" content="{$content.page_subtitle} | {$content.page_title}">
-  <meta name="twitter:description" content="">
+  <meta name="twitter:description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
   <meta name="twitter:text:description" content="">
   <meta name="twitter:card" content="summary_large_image">
 {if $content.images[0].src != ""}  <meta name="twitter:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/{$content.images[0].src}" />{/if}

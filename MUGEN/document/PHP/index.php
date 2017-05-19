@@ -51,7 +51,9 @@ $PROTOCOL   = "https";
 $DOMAIN     = "bluesura.github.io";
 $MUGEN_PATH = "/MUGEN/document";
 $URL        = $PROTOCOL."://".$DOMAIN;
-$MAIN_TITLE = "Name = SURA";
+$SITE_NAME  = "Name = SURA";
+$MAIN_TITLE = "";
+$sub_title  = "";
 $PATH_LIST  = [];
 /****************************************************/
 
@@ -59,7 +61,7 @@ $PATH_LIST  = [];
  Top Page
 */
 $categorie=[];
-$categorie["page_title"] = $MAIN_TITLE;
+$categorie["site_name"] = $SITE_NAME;
 $categorie["page"] = [];
 $categorie["page"]["level"] = "1";
 $categorie["sidebar"] = $sidebar;
@@ -102,9 +104,10 @@ for ($i = 0; $i < $loop_end; $i++) {
 
 //index
 $categorie["page"]["level"] = "2";
-$categorie["main_title"] = $MAIN_TITLE;
+$categorie["site_name"] = $SITE_NAME;
 $categorie["page_category"] = "State";
 $categorie["page_title"] = "MUGEN State Controller";
+$categorie["page_subtitle"] = "";
 $categorie["categories"] = $categories;
 $categorie["description"] = "";
 $categorie["sidebar"] = $sidebar;
@@ -130,7 +133,7 @@ for ($i = 0; $i < $loop_end; $i++) {
     array_push($json["parameter"], json_decode(file_get_contents("./../State/json/IgnoreHitPause.json"), true));
   }
 
-  $json["main_title"] = $MAIN_TITLE;
+  $json["site_name"] = $SITE_NAME;
   $json["page_title"] = $json["page"]["title"];
   $json["page_category"] = "State";
   $json["page_subtitle"] = $json["page"]["subtitle"];
@@ -175,9 +178,10 @@ for ($i = 0; $i < $loop_end; $i++) {
 
 //index
 $categorie["page"]["level"] = "2";
-$categorie["main_title"] = $MAIN_TITLE;
+$categorie["site_name"] = $SITE_NAME;
 $categorie["page_category"] = "Trigger";
 $categorie["page_title"] = "MUGEN Trigger";
+$categorie["page_subtitle"] = "";
 $categorie["categories"] = $categories;
 $categorie["description"] = "";
 $categorie["sidebar"] = $sidebar;
@@ -199,7 +203,7 @@ for ($i = 0; $i < $loop_end; $i++) {
   $json = file_get_contents("./../Trigger/json/".$trigger_name.".json");
   $json = json_decode($json, true);
 
-  $json["main_title"] = $MAIN_TITLE;
+  $json["site_name"] = $SITE_NAME;
   $json["page_title"] = $json["page"]["title"];
   $json["page_category"] = "Trigger";
   $json["page_subtitle"] = $json["page"]["subtitle"];
@@ -244,9 +248,10 @@ $loop_end = count($output_list);
  index
 */
 $categorie["html"] = file_get_contents("./../Lifebar/htm/index.htm");
-$categorie["main_title"] = $MAIN_TITLE;
+$categorie["site_name"] = $SITE_NAME;
 $categorie["page_category"] = "Lifebar";
 $categorie["page_title"] = $PAGE_TITLE;
+$categorie["page_subtitle"] = "";
 $categorie["page"]["level"] = "2";
 $categorie["categories"] = $categories;
 $categorie["sidebar"] = $sidebar;
@@ -264,7 +269,7 @@ array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
  
 */
 $categorie["html"] = file_get_contents("./../Lifebar/htm/Format.htm");
-$categorie["main_title"] = $MAIN_TITLE;
+$categorie["site_name"] = $SITE_NAME;
 $categorie["page_category"] = "Lifebar";
 $categorie["page_title"] = $PAGE_TITLE;
 $categorie["page"]["level"] = "2";
@@ -285,7 +290,7 @@ array_push($PATH_LIST, $URL.$MUGEN_PATH.$path);
 */
 $loop_end = count($html_output_list);
 for ($i = 0; $i < $loop_end; $i++) {
-  $categorie["main_title"] = $MAIN_TITLE;
+  $categorie["site_name"] = $SITE_NAME;
   $categorie["page_title"] = $PAGE_TITLE;
   $categorie["page_subtitle"] = $html_output_list[$i];
   array_push($categories, $categorie);
@@ -295,7 +300,7 @@ $loop_end = count($output_list);
 for ($i = 0; $i < $loop_end; $i++) {
   $name = $output_list[$i];
   $json = json_decode(file_get_contents("./../Lifebar/json/".$name.".json"), true);
-  $json["main_title"] = $MAIN_TITLE;
+  $json["site_name"] = $SITE_NAME;
   $json["page_category"] = "Lifebar";
   $json["page_title"] = $PAGE_TITLE;
   $json["page"]["level"] = "3";
@@ -318,7 +323,7 @@ $loop_end = count($html_output_list);
 for ($i = 0; $i < $loop_end; $i++) {
   $name = $html_output_list[$i];
   $categorie["html"] = file_get_contents("./../Lifebar/htm/".$name.".htm");
-  $categorie["main_title"] = $MAIN_TITLE;
+  $categorie["site_name"] = $SITE_NAME;
   $categorie["page_category"] = "Lifebar";
   $categorie["page_title"] = $PAGE_TITLE;
   $categorie["page"]["level"] = "2";

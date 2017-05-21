@@ -1,1049 +1,1046 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "ReversalDef",
-		"target": "実行者自身",
-		"category": ["攻撃", "当て身投げ用"],
-		"version": "2002.04.14",
-		"update": "2014.12.30",
-		"type": "document",
-		"level": "3"
-	},
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "ReversalDef",
+    "target": "実行者自身",
+    "category": ["攻撃", "当て身投げ用"],
+    "version": "2002.04.14",
+    "update": "2014.12.30",
+    "type": "document",
+    "level": "3"
+  },
 
-	"state": "ReversalDef",
-	"description": "<p>プレイヤーの攻撃判定枠Clns1(赤い四角)と敵の攻撃判定枠(つまり攻撃判定同士)が接触したときの動作(以下、「反撃」)を設定します。</p><p>設定できるのはHitDefのパラメータのうちpausetime, sparkno, sparkxy, hitsound, p1stateno, p2statenoと、以下の必須パラメータです。</p><p>当て身投げ、弾き、回避技などに。</p>",
-	"category": "state",
+  "state": "ReversalDef",
+  "description": "<p>プレイヤーの攻撃判定枠Clns1(赤い四角)と敵の攻撃判定枠(つまり攻撃判定同士)が接触したときの動作(以下、「反撃」)を設定します。</p><p>設定できるのはHitDefのパラメータのうちpausetime, sparkno, sparkxy, hitsound, p1stateno, p2statenoと、以下の必須パラメータです。</p><p>当て身投げ、弾き、回避技などに。</p>",
+  "category": "state",
 
-	"パラメータについて": "<!--HitDefの丸コピ-->",
+  "パラメータについて": "<!--HitDefの丸コピ-->",
 
-	"version": [
-		{"no":"全バージョン共通", "content": "HitDefを常時使用している「Helper」が、相手側の「Attr」を適切に設定していない「ReversalDef」に衝突すると<span class=\"warning\">”分身バグ”</span>が発生します。"},
-		{"no":"微検証(v1.0)", "content": "GivePowerが動作しない？オプションは読み込む？"},
-		{"no": "-", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}
-	],
+  "version": [
+    {"no":"全バージョン共通", "content": "HitDefを常時使用している「Helper」が、相手側の「Attr」を適切に設定していない「ReversalDef」に衝突すると<span class=\"warning\">”分身バグ”</span>が発生します。"},
+    {"no":"微検証(v1.0)", "content": "GivePowerが動作しない？オプションは読み込む？"},
+    {"no": "-", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}
+  ],
 
-	"parameter": [
-		{
-			"parameter": "Reversal.Attr",
-			"value": ["反撃属性1", "反撃属性2", "..."],
-			"type": ["string", "string", "..."],
-			"description": "<p>どのような攻撃を受けたときに反撃するかを文字で指定。</p><p>反撃属性1には、「S」「C」「A」(順に立ち、屈み、空中)のいずれかを指定します。</p><p>反撃属性2には、「N」「S」「H」「A」（順に通常、必殺、超必殺、すべて）と、「A」「T」「P」（同じく攻撃、投げ、飛び道具）を組み合わせて指定します。</p><p>例えば、reversal.attr = SA,NA,SAとした場合は、立ち又は空中で出す通常攻撃、必殺技に対し、反撃します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?", "?", "..."],
-			"load_priority": ["?", "?", "..."]
-		},
-		{
-			"parameter": "Attr",
-			"value": ["反撃属性1", "反撃属性2", "..."],
-			"type": ["string", "string", "..."],
-			"description": "<p>攻撃の属性を指定します。</p><p>属性1には、「S」「C」「A」(順に立ち、屈み、空中)のいずれかを指定します。</p><p>属性2には、「N」「S」「H」「A」（順に通常、必殺、超必殺、すべて）と、「A」「T」「P」（同じく攻撃、投げ、飛び道具）を組み合わせて指定します。</p><p>例えば立ちパンチなどなら attr = S,NA、空中で飛び道具を出す超必殺技なら attr = A,HP と記述します。</p><p>空中判定になる地上攻撃(リープアタック等)は、空中扱いにしましょう。ただし、AirやOffsetで見た目のみ浮いている場合は、地上扱いでもかまいません。とりあえず、statetypeと同じにしておけば、問題ないでしょう。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["?", "?", "..."],
-			"load_priority": ["?", "?", "..."]
-		},
-		{
-			"parameter": "HitFlag",
-			"value": ["ヒットフラグ"],
-			"type": ["string"],
-			"description": "<p>敵がどういう状態ならヒットするかフラグを指定します。フラグは複数指定可能。</p><p>投げ技など連続技に組み込めない攻撃で有効。</p>",
-			"parameter_type": "optional",
-			"possible_value": [
-				["フラグ", ""],
-				["H", "立ち"],
-				["L", "屈み"],
-				["M", "立ち、屈みの両方"],
-				["A", "空中"],
-				["F", "落下状態"],
-				["D", "ダウン状態(ただし、Fと組み合わせなければ機能しない)"],
-				["P", "飛び道具を消せるようになる。ただし、Windows版のみ。"],
-				["+", "食らい状態の敵のみにヒット"],
-				["-", "食らい状態の敵にはヒットしない"]
-			],
-			"default_value": ["MAF ;ダウン状態にのみヒットしない"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "GuardFlag",
-			"value": ["ガードフラグ"],
-			"type": ["string"],
-			"description": "<p>敵がどういう状態ならガードできるかフラグを指定します。フラグは複数指定可能。</p>",
-			"parameter_type": "optional",
-			"possible_value": [
-				["フラグ", ""],
-				["H", "立ち"],
-				["L", "屈み"],
-				["M", "立ち、屈みの両方"],
-				["A", "空中"]
-			],
-			"default_value": [";値なし(ガード不可能)"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "AffectTeam",
-			"value": ["影響チーム"],
-			"type": ["string"],
-			"description": "<p>チームモード時、どのチームに攻撃が影響するかフラグを指定します。</p>",
-			"possible_value": [
-				["フラグ", ""],
-				["B", "敵味方かまわず"],
-				["E", "敵のみ"],
-				["F", "味方のみ"]
-			],
-			"parameter_type": "optional",
-			"default_value": ["E"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "AnimType",
-			"value": ["アニメタイプ"],
-			"type": ["string"],
-			"description": "<p>相手のリアクションアニメの種類を指定します。</p><p>ただし、「up」と「diagup」はオプションで、相手が絵を用意してない場合は、「back」と同じ結果になります。</p>",
-			"possible_value": [
-				["文字列", "状態"],
-				["L", "弱 (Lightの略)"],
-				["M", "中 (Mediumの略)"],
-				["H", "強 (Hard<!--Heavy-->の略)"],
-				["B", "ふっとび (Backの略)"],
-				["U", "真上ふっとび (UPの略)"],
-				["D", "斜めふっとび (DiagUpの略)"]
-			],
-			"parameter_type": "optional",
-			"default_value": ["Light"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "Air.AnimType",
-			"value": ["空中でのアニメタイプ"],
-			"type": ["string"],
-			"description": "<p>空中でのアニメタイプを指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [";AnimTypeと同じ値"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "Fall.AnimType",
-			"value": ["fall状態時のアニメタイプ"],
-			"type": ["string"],
-			"description": "<p>空中でのアニメタイプfall状態のときのアニメタイプです。</p><p>※fall状態・・・fall=1。hittimeを過ぎても、受身を取らない限り空中復帰できず、着地すると落下ダウンする状態。これに対し、fall=0の場合、空中で立ち直り、hittimeを過ぎると操作可能となる。また、hittime中でも、着地すると通常のジャンプ着地となる。なお、一度fall=1になると、fall=0の攻撃を受けてもfall=1のままとなる。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; Air.AnimTypeがUpの場合はUP、それ以外はBack"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "Ground.Type",
-			"value": ["地上でののけぞり方"],
-			"type": ["string"],
-			"description": "<p>相手の地上でののけぞり方を文字列で指定します。</p>",
-			"possible_value": [
-				["文字列", "状態"],
-				["H", "上のけぞり (Highの略)"],
-				["L", "下のけぞり (Lowの略)"],
-				["T", "転倒 (Tripの略)"],
-				["N", "なし、使用は非推奨 (Non<!--Null-->の略)"]
-			],
-			"parameter_type": "optional",
-			"default_value": ["High"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "Air.Type",
-			"value": ["空中でののけぞり方"],
-			"type": ["string"],
-			"description": "<p>相手の空中でののけぞり方を文字列で指定します。設定方法はground.typeと同じ。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; Ground.Typeと同じ値"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "ID",
-			"value": ["ヒットid番号"],
-			"type": ["int"],
-			"description": "<p>識別用のIDをつけることができます。後述と組み合わせることにより、特定の技からは繋がらなかったりするようにできます。</p><p>また、Target系のステコン、トリガーが参照するID(HitID)は、このIDの攻撃によりターゲットとなった敵を示します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "ChainID",
-			"value": ["連続ヒットid番号"],
-			"type": ["int"],
-			"description": "<p>ここで指定したIDからのみ、攻撃が繋がるようになります。</p><p>-1を指定した場合、すべての攻撃が繋がります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "NoChainID",
-			"value": ["不連続ヒットid番号1", "不連続ヒットid番号2"],
-			"type": ["int", "int"],
-			"description": "<p>指定したIDからは攻撃が繋がらなくなります。ガードされても攻撃は繋がりません。2つまで指定可。</p><p>-1を指定した場合、すべての攻撃が繋がります。<!--かなり微妙--></p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1"],
-			"load_priority": ["3", "4"]
-		},
-		{
-			"parameter": "Kill",
-			"value": ["KOフラグ"],
-			"type": ["int"],
-			"description": "<p>0にすると、その攻撃で相手をKOできなくなります。</p><p>最後の一撃でのみKOしたい多段攻撃などに。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["5"]
-		},
-		{
-			"parameter": "Guard.Kill",
-			"value": ["ガードKOフラグ"],
-			"type": ["int"],
-			"description": "<p>0にすると、ガード時のダメージで相手をKOできなくなります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["6"]
-		},
-		{
-			"parameter": "Fall.Kill",
-			"value": [""],
-			"type": ["int"],
-			"description": "<p>0にすると、落下ダウン時のダメージで相手をKOできなくなります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["7"]
-		},
-		{
-			"parameter": "HitOnce",
-			"value": ["1回ヒットフラグ"],
-			"type": ["boolean"],
-			"description": "<p>1にした場合、複数の敵がいても、1方にしかヒットしなくなります。attrがT(投げ)の場合、1になります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["8"]
-		},
-		{
-			"parameter": "Air.Juggle",
-			"value": ["ジャグルポイント"],
-			"type": ["int"],
-			"description": "<p>fall状態の敵に対する連続技に必要なポイント数を上乗せします。StateDefの\"juggle\"パラメータと混同しないようにしましょう。</p><p>projectile専用のパラメータと思ってよいらしいです。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["9"]
-		},
-		{
-			"parameter": "Damage",
-			"value": ["ヒットダメージ", "ガードダメージ"],
-			"type": ["int", "int"],
-			"description": "<p>ヒット、ガード時のダメージを整数で指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0", "0"],
-			"load_priority": ["10", "11"]
-		},
-		{
-			"parameter": "GetPower",
-			"value": ["p1ヒットゲージ増加量", "p1ガードゲージ増加量"],
-			"type": ["int", "int"],
-			"description": "<p>攻撃がヒットした、ガードされたときに増えるゲージ量です。</p><p>省略時は、ヒット時がmugen.cfgのDefault.Attack.LifeToPowerMulパラメータにdamageをかけたものに、ガード時がその半分になります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; ヒット時：mugen.cfgのDefault.Attack.LifeToPowerMulパラメータにDamageをかけた値、ガード時：ヒット時の半分"],
-			"load_priority": ["12", "13"]
-		},
-		{
-			"parameter": "GivePower",
-			"value": ["p2ヒットゲージ増加量", "p2ガードゲージ増加量"],
-			"type": ["int", "int"],
-			"description": "<p>攻撃がヒットした、ガードされたときに増える相手のゲージ量です。</p><p>省略時は、ヒット時がmugen.cfgのDefault.GetHit.LifeToPowerMulパラメータにdamageをかけたものに、ガード時がその半分になります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; ヒット時：mugen.cfgのDefault.GetHit.LifeToPowerMulパラメータにDamageをかけた値、ガード時：ヒット時の半分"],
-			"load_priority": ["14", "15"]
-		},
-		{
-			"parameter": "PauseTime",
-			"value": ["p1停止時間", "p2ブルブル時間"],
-			"type": ["int", "int"],
-			"description": "<p>ヒット時の自分と相手の停止時間を整数で指定します。停止時間中、相手はブルブル揺れます(HitShake状態)。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0", "0"],
-			"load_priority": ["17", "16"]
-		},
-		{
-			"parameter": "NumHits",
-			"value": ["ヒットカウント数"],
-			"type": ["int"],
-			"description": "<p>コンボカウンターに加算されるヒット数です。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["18"]
-		},
-		{
-			"parameter": "HitSound",
-			"value": ["グループ番号", "アイテム番号"],
-			"type": ["int", "int"],
-			"description": "<p>ヒット音をcommon.sndから指定します。5,0(弱ヒット音)～5,4(大打撃音)から選ぶことになります。自分のsndファイルから指定したい場合は、\"HitSound = S1,0\"のように、先頭にSを記述します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; Defaults to the value set in the player variables"],
-			"load_priority": ["19", "20"]
-		},
-		{
-			"parameter": "GuardSound",
-			"value": ["グループ番号", "アイテム番号"],
-			"type": ["int", "int"],
-			"description": "<p>ガード音をcommon.sndから指定します。といっても、用意されているのは6,0のみ。自分のsndファイルから指定したい場合は、先頭にSを記述します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; Defaults to the value set in the player variables"],
-			"load_priority": ["21", "22"]
-		},
-		{
-			"parameter": "Priority",
-			"value": ["ヒット優先度, 相打ちの挙動"],
-			"type": ["int", "string"],
-			"description": "<p>攻撃の優先度で1から7、相打ち時の挙動を「Hit」「Dodge」「Miss」の内から指定します。</p><p>実行者の攻撃と相手の攻撃が同時に発生した場合、数値の高い方のみヒットします。ヒット優先度が同じ場合、「Hit」「Miss」「Dodge」により以下のようになります。</p>",
-			"possible_value": [
-				["文字列", "状態"],
-				["H", "攻撃がヒットする (Hitの略)"],
-				["M", "自分の攻撃は当たらない (Missの略)"],
-				["D", "相手が「Hit」でも両者空振り (Dodgeの略)"]
-			],
-			"parameter_type": "optional",
-			"default_value": ["4, H"],
-			"load_priority": ["23", "?"]
-		},
-		{
-			"parameter": "P1StateNo",
-			"value": ["ヒット時移行するステート番号"],
-			"type": ["int"],
-			"description": "<p>攻撃がヒットした場合に移行するステートの番号を指定します。主に投げ技で使用。-1の場合、ステートは移行しません。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1"],
-			"load_priority": ["24"]
-		},
-		{
-			"parameter": "P2StateNo",
-			"value": ["ヒット時相手に参照させるステート番号"],
-			"type": ["int"],
-			"description": "<p>攻撃がヒットした場合に、相手に参照させるステートの番号を指定します。これを指定した場合、HitOverrideを仕込んだ相手(Helper等)に攻撃が当たらなくなります。</p><p>P2StateNo=-1とすると、P2GetP1State=1の効果のみになる。（P2GetP1State=0が指定されている場合はP2GetP1Stateが優先されるためP2GetP1State=0となる。）なお、この際に5000番台に移動するのはGround.Type、Air.TypeがNormal(頭文字がN）以外の場合である。</p><p>投げに使ってもProjectile等と相打ちした時に致命的な不具合が生じることがあるので、できれば全く使わない方が良いです。</p><p>といいたいところですが、代わりに使うことになるTargetStateも扱いが難しいので、不具合を承知で使うのも止むを得ないかもしれません。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1 ;無効"],
-			"load_priority": ["25"]
-		},
-		{
-			"parameter": "P2GetP1State",
-			"value": ["ステート奪取フラグ"],
-			"type": ["int"],
-			"description": "<p>0の時はP2StateNoを指定していても対象者のステートを奪わず、対象者自身のステートを読みこませる。1の時は相手のステートを奪います。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [";相手に実行者の食らいステートを読み込ませる。"],
-			"load_priority": ["26"]
-		},
-		{
-			"parameter": "P1SprPriority",
-			"value": [""],
-			"type": ["int"],
-			"description": "<p>攻撃が接触した場合のスプライトの表示優先度を指定します。1だと相手の手前、-1だと奥に表示されます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["27"]
-		},
-		{
-			"parameter": "; SprPriority",
-			"value": ["スプライト表示優先度"],
-			"type": ["int"],
-			"description": "<p>攻撃が接触した場合のスプライトの表示優先度を指定します。1だと相手の手前、-1だと奥に表示されます。SprPriorityのパラメータをP1SprPriorityに改名しているので、どちらも機能は同じです。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["27"]
-		},
-		{
-			"parameter": "P2SprPriority",
-			"value": ["スプライト表示優先度"],
-			"type": ["int"],
-			"description": "<p>攻撃がヒットまたはガードした相手のスプライト表示優先度を指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["28"]
-		},
-		{
-			"parameter": "ForceStand",
-			"value": ["強制立たせフラグ"],
-			"type": ["int"],
-			"description": "<p>1にすると、しゃがんだ相手にヒットしても立ち食らいポーズをとらせます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; ground.velocity y が0の場合：0、0以外の場合：1"],
-			"load_priority": ["29"]
-		},
-		{
-			"parameter": "ForceNoFall",
-			"value": ["Fall解除フラグ"],
-			"type": ["boolean"],
-			"description": "<p>m.u.g.e.n 1.0から追加されたパラメータ。Fallフラグが一度立ってしまうと、受身を取らない限りfallのままで、これを回避するには、相手のステートを奪う必要があったのですが、このパラメータを1にすることにより、攻撃を当てたときに、P2のfall状態が解除されます。当然、P2がfall状態でなければ、何も起きません。なお、fall=1を指定している場合、このパラメータは無視されます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["30"]
-		},
-		{
-			"parameter": "Fall",
-			"value": ["落下フラグ"],
-			"type": ["int"],
-			"description": "<p>HitTimeの時間が経過した後に、攻撃で浮いた相手を自動で受け身を取り着地させるかどうか指定します。0の場合：自動で受け身をとる、1の場合：自動で受け身を取らず、受身操作をしなければダウンします。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["31"]
-		},
-		{
-			"parameter": "Fall.Damage",
-			"value": ["damage_amt"],
-			"type": ["int"],
-			"description": "<p>落下状態のままダウンした場合に与えるダメージを指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["32"]
-		},
-		{
-			"parameter": "Fall.XVelocity",
-			"value": ["落下バウンド水平速度"],
-			"type": ["float"],
-			"description": "<p>落下状態のままダウンした場合の、バウンド水平速度を変更する場合、指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [";速度の変更なし"],
-			"load_priority": ["33"]
-		},
-		{
-			"parameter": "Fall.YVelocity",
-			"value": ["落下バウンド垂直速度"],
-			"type": ["float"],
-			"description": "<p>落下状態のままダウンした場合の、バウンド垂直速度を指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-4.5"],
-			"load_priority": ["34"]
-		},
-		{
-			"parameter": "Fall.Recover",
-			"value": ["受身可能フラグ"],
-			"type": ["int"],
-			"description": "<p>相手が落下状態の時に、受身が取れるか・取れないか指定します。</p><p>0の場合：受け身が取れない、：1の場合：受身可能。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["35"]
-		},
-		{
-			"parameter": "Fall.RecoverTime",
-			"value": ["受身可能受付開始時間"],
-			"type": ["int"],
-			"description": "<p>落下状態になってから受身が取れるようになるまでの時間を指定します。pausetimeは含まれません。fall.recover = 0にした場合は無効。</p><p>追撃できることを想定している技の場合、大きな値を設定するか、fall.recover=0にするとよいでしょう。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["4"],
-			"load_priority": ["36"]
-		},
-		{
-			"parameter": "SparkNo",
-			"value": ["ヒットスパークのアクション番号"],
-			"type": ["int"],
-			"description": "<p>ヒットスパークのアクション番号をfightfx.airから指定します。自分のairファイルから指定したい場合は、\"sparkno = S2000,0\"のように、先頭にSを記述します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; cnsで設定した値"],
-			"load_priority": ["37"]
-		},
-		{
-			"parameter": "Guard.SparkNo",
-			"value": ["ガードスパークのアクション番号"],
-			"type": ["int"],
-			"description": "<p>ガードスパークのアクション番号をfightfx.airから指定します。自分のairファイルから指定したい場合は、\"guard.sparkno = S2010,0\"のように、先頭にSを記述します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; cnsで設定した値"],
-			"load_priority": ["38"]
-		},
-		{
-			"parameter": "SparkXY",
-			"value": ["スパークx座標", "スパークy座標"],
-			"type": ["int", "int"],
-			"description": "<p>ヒット、ガードスパークの表示位置を指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0", "0"],
-			"load_priority": ["39", "40"]
-		},
-		{
-			"parameter": "P1Facing",
-			"value": ["p1の向き"],
-			"type": ["int"],
-			"description": "<p>攻撃に成功した時、P1の向きを変更します。主に投げ技で使用。1の場合：正面を向く、-1の場合：後ろを向き、0の場合：向きの変更なし。<!--予測--></p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["41"]
-		},
-		{
-			"parameter": "P1GetP2Facing",
-			"value": ["p1の向き"],
-			"type": ["int"],
-			"description": "<p>攻撃がヒットした相手の向きに合わせて、P1の向きを変更します。1の場合：相手と同じ方向、-1の場合：逆を向き、0の場合：向きの変更なし。p1facingより優先されます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["42"]
-		},
-		{
-			"parameter": "Snap",
-			"value": ["x固定座標", "y固定座標"],
-			"type": ["int", "int"],
-			"description": "<p>ヒットした相手を固定する位置を、P1を基準として指定します。</p><p>このパラメータも、通常、使用しません。投げ等で相手を指定位置に固定する場合は、TargetBindを使用します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; 行動範囲に変化なし"],
-			"load_priority": ["(43->45)", "(44->46)"]
-		},
-		{
-			"parameter": "; MinDist",
-			"value": ["x最小座標", "y最小座標"],
-			"type": ["int", "int"],
-			"description": "<p>攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できますが、このパラメータは一般に使用されません。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; 行動範囲に変化なし"],
-			"load_priority": ["43", "44"]
-		},
-		{
-			"parameter": "; MaxDist",
-			"value": ["x最大座標", "y最大座標"],
-			"type": ["int", "int"],
-			"description": "<p>攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できますが、このパラメータは一般に使用されません。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; 行動範囲に変化なし"],
-			"load_priority": ["45", "46"]
-		},
-		{
-			"parameter": "P2Facing",
-			"value": ["p2の向き"],
-			"type": ["int"],
-			"description": "<p>攻撃がヒットした相手の向きを指定します。1：正面、-1：後ろ、0：変化なし。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["47"]
-		},
-		{
-			"parameter": "Ground.HitTime",
-			"value": ["ヒット時間"],
-			"type": ["int"],
-			"description": "<p>相手が攻撃を受けて行動不能になる時間です。長くするほど連続攻撃が繋がりやすくなります。永久コンボが発生しないように、気をつけて設定しましょう。</p><p>相手が地上にいる間のみ有効です。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["48"]
-		},
-		{
-			"parameter": "Ground.SlideTime",
-			"value": ["ヒットバック時間"],
-			"type": ["int"],
-			"description": "<p>相手が攻撃を受けて後ずさる時間です。この時間が経過すると、ブレーキがかかります。ただし、やられステートのphysicsがSやCになっているため、ヒットバックは摩擦によっても停止します。よって、よろけやられのような、ゆっくりとしたヒットバックは、HitDefでは再現できません。</p><p>0の場合、強烈なブレーキがかかるためパラメータの省略は推奨できません。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["49"]
-		},
-		{
-			"parameter": "Ground.Velocity",
-			"value": ["ヒット速度X", "ヒット速度Y"],
-			"type": ["float", "float"],
-			"description": "<p>相手が地上で攻撃を受けて移動する速度です。yに負数を指定すると、宙に浮きます。地上にいる場合、摩擦の影響を受けます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0", "0"],
-			"load_priority": ["50", "51"]
-		},
-		{
-			"parameter": "Ground.CornerPush.VelOff",
-			"value": ["地上コーナープッシュ速度"],
-			"type": ["float"],
-			"description": "<p>画面端で地上の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p><p>相手の移動距離とは無関係で、相手のshaketimeではなく、自分のpausetimeが0になった瞬間に速度がかかります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; AttrがAの場合は0、それ以外の場合は、1.3*guard.velocity"],
-			"load_priority": ["52"]
-		},
-		{
-			"parameter": "Air.HitTime",
-			"value": ["空中でのヒット時間"],
-			"type": ["int"],
-			"description": "<p>相手が空中で攻撃を受けて行動不能になる時間です。この時間を過ぎると、相手はコントロールを取り戻します。ちなみに、このときのグラフィックはairにのみ依存するため、見た目が立ち直っていても、時間内なら行動不能(5035番のアニメが短いとき起きる現象)ですし、時間が経過していれば、見た目がのけぞり中でも行動可能(5035番のアニメが長いとき起きる現象)です。省略時は20。つまり、この値に合わせてair(5035番)を設定する必要があります。fallパラメータが1の場合、このパラメータは無効になります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["20"],
-			"load_priority": ["53"]
-		},
-		{
-			"parameter": "Air.Fall",
-			"value": ["value"],
-			"type": ["int"],
-			"description": "<p>空中ヒットしたときのみ落下状態にしたい場合は1にします。fall = 1だと地上やられでも落下状態になります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; fallと同値"],
-			"load_priority": ["54"]
-		},
-		{
-			"parameter": "Air.Velocity",
-			"value": ["空中ヒット速度X", "空中ヒット速度Y"],
-			"type": ["float", "float"],
-			"description": "<p>相手が空中で攻撃を受けたとき移動する速度です。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0", "0"],
-			"load_priority": ["55", "56"]
-		},
-		{
-			"parameter": "Air.CornerPush.VelOff",
-			"value": ["空中コーナープッシュ速度"],
-			"type": ["float"],
-			"description": "<p>画面端で空中の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; ground.cornerpush.veloffと同値"],
-			"load_priority": ["57"]
-		},
-		{
-			"parameter": "Down.Bounce",
-			"value": ["ダウン追い討ちヒットバウンドフラグ"],
-			"type": ["int"],
-			"description": "<p>1にすると、ダウン追い討ちヒット時、fall.xvelocityとfall.yvelocityでバウンドします。down.velocityの垂直速度が0の時のみ有効。</p><p>0の場合：バウンドしない</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["58"]
-		},
-		{
-			"parameter": "Down.HitTime",
-			"value": ["ダウン追い討ちヒット時間"],
-			"type": ["int"],
-			"description": "<p>ダウン状態の敵に攻撃が当たったとき、スライドする時間です。down.velocityの垂直速度が0の時のみ有効。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["?"],
-			"load_priority": ["59"]
-		},
-		{
-			"parameter": "Down.Velocity",
-			"value": ["ダウン追い討ち水平速度", "ダウン追い討ち垂直速度"],
-			"type": ["float", "float"],
-			"description": "<p>ダウン追い討ちヒット時ののけぞり速度を指定します。垂直方向の速度が0以外の場合、相手は宙に浮きます。0の場合はスライドします。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; air.velocityと同値"],
-			"load_priority": ["60", "61"]
-		},
-		{
-			"parameter": "Down.CornerPush.VelOff",
-			"value": ["ダウンコーナープッシュ速度"],
-			"type": ["float"],
-			"description": "<p>画面端でダウン状態の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; ground.cornerpush.veloffと同値"],
-			"load_priority": ["62"]
-		},
-		{
-			"parameter": "Guard.Velocity",
-			"value": ["ガード速度X"],
-			"type": ["float"],
-			"description": "<p>相手が地上で攻撃をガードしたとき移動する速度です。垂直方向は指定不可。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; ground.velocityと同値"],
-			"load_priority": ["63"]
-		},
-		{
-			"parameter": "Guard.HitTime",
-			"value": ["ガード時間"],
-			"type": ["int"],
-			"description": "<p>相手が攻撃をガードしてから自動的に(キーを後ろに入力しなくても)ガードモーションをとり続ける時間。行動不能時間ではないので注意。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; ground.hittimeと同値"],
-			"load_priority": ["64"]
-		},
-		{
-			"parameter": "Guard.SlideTime",
-			"value": ["ガードバック時間"],
-			"type": ["int"],
-			"description": "<p>ground.slidetimeのガード版。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; guard.hittimeと同値"],
-			"load_priority": ["65"]
-		},
-		{
-			"parameter": "Guard.CtrlTime",
-			"value": ["ガードからの復帰時間"],
-			"type": ["int"],
-			"description": "<p>相手が攻撃をガードしてからコントロールを取り戻すまでの時間。ただし、どんなに大きな値にしてもguard.hittimeが過ぎれば相手はコントロールを取り戻します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; guard.slidetimeと同値"],
-			"load_priority": ["66"]
-		},
-		{
-			"parameter": "Guard.Dist",
-			"value": ["ガード認識距離"],
-			"type": ["int"],
-			"description": "<p>相手がガード操作を行うことでガードポーズを取るようになる距離をピクセルで指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; cns冒頭で設定した値"],
-			"load_priority": ["67"]
-		},
-		{
-			"parameter": "Guard.PauseTime",
-			"value": ["p1停止時間", "p2ブルブル時間"],
-			"type": ["int", "int"],
-			"description": "<p>ガード時の自分と相手の停止時間を整数で指定します。停止時間中、相手はブルブル揺れます(HitShake状態)。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; pausetimeと同値"],
-			"load_priority": ["69, 68"]
-		},
-		{
-			"parameter": "Guard.CornerPush.VelOff",
-			"value": ["地上ガードコーナープッシュ速度"],
-			"type": ["float"],
-			"description": "<p>画面端で地上の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; ground.cornerpush.veloffと同値"],
-			"load_priority": ["70"]
-		},
-		{
-			"parameter": "AirGuard.Velocity",
-			"value": ["空中ガード速度X", "空中ガード速度Y"],
-			"type": ["float", "float"],
-			"description": "<p>相手が空中で攻撃をガードしたとき移動する速度です。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [";air.velocity X * 1.5", "air.velocity Y / 2"],
-			"load_priority": ["71", "72"]
-		},
-		{
-			"parameter": "AirGuard.CtrlTime",
-			"value": ["空中ガード復帰時間"],
-			"type": ["int"],
-			"description": "<p>相手が空中で攻撃をガードしてからコントロールを取り戻すまでの時間。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; guard.ctrltimeと同値。"],
-			"load_priority": ["73"]
-		},
-		{
-			"parameter": "AirGuard.CornerPush.VelOff",
-			"value": ["地上ガードコーナープッシュ速度空中"],
-			"type": ["float"],
-			"description": "<p>画面端で空中の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; ground.cornerpush.veloffと同値"],
-			"load_priority": ["74"]
-		},
-		{
-			"parameter": "YAccel",
-			"value": ["重力"],
-			"type": ["float"],
-			"description": "<p>ヒット時の重力を指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["; 相手の重力に依存"],
-			"load_priority": ["75"]
-		},
-		{
-			"parameter": "PalFX.Time",
-			"value": ["持続時間"],
-			"type": ["int"],
-			"description": "<p>効果の持続時間をフレーム単位で指定します。</p><p>ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、<code>Time=1</code>にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXで<code>Time=1</code>をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>※60フレーム=1秒</p>",
-			"min_value": ["-1"],
-			"max_value": ["2147483647"],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["76"]
-		},
-		{
-			"parameter": "PalFX.Color",
-			"value": ["彩度"],
-			"type": ["int"],
-			"description": "<p>パレットの彩度を下げます。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style=\"background-color: hsl(0, 0%, 100%);border: 1px solid #000;\">　</span><br><span style=\"background-color: hsl(0, 0%, 80%);\">　</span><span style=\"background-color: hsl(0, 10%, 80%);\">　</span><span style=\"background-color: hsl(0, 20%, 80%);\">　</span><span style=\"background-color: hsl(0, 30%, 80%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 60%);\">　</span><span style=\"background-color: hsl(0, 10%, 60%);\">　</span><span style=\"background-color: hsl(0, 20%, 60%);\">　</span><span style=\"background-color: hsl(0, 30%, 60%);\">　</span><span style=\"background-color: hsl(0, 40%, 60%);\">　</span><span style=\"background-color: hsl(0, 50%, 60%);\">　</span><span style=\"background-color: hsl(0, 60%, 60%);\">　</span><span style=\"background-color: hsl(0, 70%, 60%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 50%);\">　</span><span style=\"background-color: hsl(0, 10%, 50%);\">　</span><span style=\"background-color: hsl(0, 20%, 50%);\">　</span><span style=\"background-color: hsl(0, 30%, 50%);\">　</span><span style=\"background-color: hsl(0, 40%, 50%);\">　</span><span style=\"background-color: hsl(0, 50%, 50%);\">　</span><span style=\"background-color: hsl(0, 60%, 50%);\">　</span><span style=\"background-color: hsl(0, 70%, 50%);\">　</span><span style=\"background-color: hsl(0, 80%, 50%);\">　</span><span style=\"background-color: hsl(0, 90%, 50%);\">　</span><span style=\"background-color: hsl(0, 100%, 50%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 40%);\">　</span><span style=\"background-color: hsl(0, 10%, 40%);\">　</span><span style=\"background-color: hsl(0, 20%, 40%);\">　</span><span style=\"background-color: hsl(0, 30%, 40%);\">　</span><span style=\"background-color: hsl(0, 40%, 40%);\">　</span><span style=\"background-color: hsl(0, 50%, 40%);\">　</span><span style=\"background-color: hsl(0, 60%, 40%);\">　</span><span style=\"background-color: hsl(0, 70%, 40%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 20%);\">　</span><span style=\"background-color: hsl(0, 10%, 20%);\">　</span><span style=\"background-color: hsl(0, 20%, 20%);\">　</span><span style=\"background-color: hsl(0, 30%, 20%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 0%);\">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p>",
-			"min_value": ["0 ;グレースケール"],
-			"max_value": ["256 ;変化なし"],
-			"parameter_type": "optional",
-			"default_value": ["256"],
-			"load_priority": ["77"]
-		},
-		{
-			"parameter": "PalFX.Add",
-			"value": ["加算する赤色", "加算する緑色", "加算する青色"],
-			"type": ["int", "int", "int"],
-			"description": "<p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span><code>Add=256,0,0</code>の場合、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>赤(256,0,0)になりますが、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)のままです。</p>",
-			"min_value": ["-256", "-256", "-256 ;黒"],
-			"max_value": ["256", "256", "256 ;白"],
-			"parameter_type": "optional",
-			"default_value": ["0", "0", "0"],
-			"load_priority": ["78", "79", "80"]
-		},
-		{
-			"parameter": "PalFX.Mul",
-			"value": ["合成する赤色", "合成する緑色", "合成する青色"],
-			"type": ["int", "int", "int"],
-			"description": "<p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(64,256,64);\">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(1,256,1);\">　</span>緑(1,256,1)になりますが、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)のままです。</p>",
-			"min_value": ["1", "1", "1"],
-			"max_value": ["256", "256", "256 ;変化なし"],
-			"parameter_type": "optional",
-			"default_value": ["256", "256", "256"],
-			"load_priority": ["81", "82", "83"]
-		},
-		{
-			"parameter": "PalFX.SinAdd",
-			"value": ["周期する赤色", "周期する緑色", "周期する青色", "周期"],
-			"type": ["int", "int", "int", "int"],
-			"description": "<p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,256);\">　</span><code>SinAdd=0,0,256,20</code>,<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)は、5F後<span style=\"border: 1px solid #000;background: rgb(128,128,256);\">　</span>(128,128,256)になり、10F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻り、15F後<span style=\"border: 1px solid #000;background: rgb(128,128,0);\">　</span>(128,128,0)、20F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻る、という周期を繰り返します。</p>",
-			"min_value": ["", "", "", ""],
-			"max_value": ["", "", "", ""],
-			"parameter_type": "optional",
-			"default_value": ["0", "0", "0", "0"],
-			"load_priority": ["84", "85", "86", "(調査中・・・)"],
-			"media": {
-				"image": [
-					{"title": "", "file": "SinAdd.png", "width": "600", "height": "242"}
-				]
-			}
-		},
-		{
-			"parameter": "PalFX.InvertAll",
-			"value": ["色反転フラグ"],
-			"type": ["boolean"],
-			"description": "<p>色を反転するか・しないかのフラグです。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>(0,0,0)→<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>(256,256,256),<span style=\"border: 1px solid #000;background: rgb(0,252,0);\">　</span>(0,252,0)→<span style=\"border: 1px solid #000;background: rgb(256,4,256);\">　</span>(256,4,256),<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>(256,0,0)→<span style=\"border: 1px solid #000;background: rgb(0,256,256);\">　</span>(0,256,256)</p>",
-			"min_value": ["0 ;色が反転しない"],
-			"max_value": ["1 ;色が反転する"],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["87"],
-			"media": {
-				"image": [
-					{"title": "", "file": "InvertAll.png", "width": "167", "height": "167"}
-				]
-			}
-		},
-		{
-			"parameter": "EnvShake.Time",
-			"value": ["ヒット時画面振動時間"],
-			"type": ["int"],
-			"description": "<p>揺れの持続時間を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["?"],
-			"load_priority": ["88"]
-		},
-		{
-			"parameter": "EnvShake.Ampl",
-			"value": ["揺れ幅"],
-			"type": ["int"],
-			"description": "<p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-4"],
-			"load_priority": ["89"]
-		},
-		{
-			"parameter": "EnvShake.Phase",
-			"value": ["位相"],
-			"type": ["float"],
-			"description": "<p>位相を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0 ; 振動数の乗数が90以上の場合：90<!--かなり微妙-->"],
-			"load_priority": ["90"]
-		},
-		{
-			"parameter": "EnvShake.Freq",
-			"value": ["揺れの速度"],
-			"type": ["float"],
-			"description": "<p>揺れるスピードを、0(低速)～180(高速)の間で指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["60"],
-			"load_priority": ["91"]
-		},
-		{
-			"parameter": "Fall.EnvShake.Time",
-			"value": ["落下時画面振動時間"],
-			"type": ["int"],
-			"description": "<p>相手の落下ダウン時に画面を揺らしたい時間を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["?"],
-			"load_priority": ["92"]
-		},
-		{
-			"parameter": "Fall.EnvShake.Ampl",
-			"value": ["振幅"],
-			"type": ["float"],
-			"description": "<p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-4"],
-			"load_priority": ["93"]
-		},
-		{
-			"parameter": "Fall.EnvShake.Phase",
-			"value": ["位相"],
-			"type": ["int"],
-			"description": "<p>位相を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0 ;振動数の乗数が90以上の場合：90かなり微妙"],
-			"load_priority": ["94"]
-		},
-		{
-			"parameter": "Fall.EnvShake.Freq",
-			"value": ["振動数"],
-			"type": ["float"],
-			"description": "<p>揺れるスピードを、0(低速)～180(高速)の間で指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["60"],
-			"load_priority": ["95"]
-		},
-		{
-			"parameter": "; Attack.Width",
-			"value": ["z1", "z2"],
-			"type": ["int", "int"],
-			"description": "<p>現在、使われておりません。</p>",
-			"min_value": ["?"],
-			"max_value": ["?"],
-			"parameter_type": "?<!--optional?-->",
-			"default_value": ["?"],
-			"load_priority": ["?"]
-		}
-	],
+  "parameter": [
+    {
+      "parameter": "Reversal.Attr",
+      "value": ["反撃属性1", "反撃属性2", "..."],
+      "type": ["string", "string", "..."],
+      "description": "<p>どのような攻撃を受けたときに反撃するかを文字で指定。</p><p>反撃属性1には、「S」「C」「A」(順に立ち、屈み、空中)のいずれかを指定します。</p><p>反撃属性2には、「N」「S」「H」「A」（順に通常、必殺、超必殺、すべて）と、「A」「T」「P」（同じく攻撃、投げ、飛び道具）を組み合わせて指定します。</p><p>例えば、reversal.attr = SA,NA,SAとした場合は、立ち又は空中で出す通常攻撃、必殺技に対し、反撃します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "required",
+      "default_value": ["?", "?", "..."],
+      "load_priority": ["?", "?", "..."]
+    },
+    {
+      "parameter": "Attr",
+      "value": ["反撃属性1", "反撃属性2", "..."],
+      "type": ["string", "string", "..."],
+      "description": "<p>攻撃の属性を指定します。</p><p>属性1には、「S」「C」「A」(順に立ち、屈み、空中)のいずれかを指定します。</p><p>属性2には、「N」「S」「H」「A」（順に通常、必殺、超必殺、すべて）と、「A」「T」「P」（同じく攻撃、投げ、飛び道具）を組み合わせて指定します。</p><p>例えば立ちパンチなどなら attr = S,NA、空中で飛び道具を出す超必殺技なら attr = A,HP と記述します。</p><p>空中判定になる地上攻撃(リープアタック等)は、空中扱いにしましょう。ただし、AirやOffsetで見た目のみ浮いている場合は、地上扱いでもかまいません。とりあえず、statetypeと同じにしておけば、問題ないでしょう。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["?", "?", "..."],
+      "load_priority": ["?", "?", "..."]
+    },
+    {
+      "parameter": "HitFlag",
+      "value": ["ヒットフラグ"],
+      "type": ["string"],
+      "description": "<p>敵がどういう状態ならヒットするかフラグを指定します。フラグは複数指定可能。</p><p>投げ技など連続技に組み込めない攻撃で有効。</p>",
+      "parameter_type": "optional",
+      "possible_value": [
+        ["フラグ", ""],
+        ["H", "立ち"],
+        ["L", "屈み"],
+        ["M", "立ち、屈みの両方"],
+        ["A", "空中"],
+        ["F", "落下状態"],
+        ["D", "ダウン状態(ただし、Fと組み合わせなければ機能しない)"],
+        ["P", "飛び道具を消せるようになる。ただし、Windows版のみ。"],
+        ["+", "食らい状態の敵のみにヒット"],
+        ["-", "食らい状態の敵にはヒットしない"]
+      ],
+      "default_value": ["MAF ;ダウン状態にのみヒットしない"],
+      "load_priority": ["?"]
+    },
+    {
+      "parameter": "GuardFlag",
+      "value": ["ガードフラグ"],
+      "type": ["string"],
+      "description": "<p>敵がどういう状態ならガードできるかフラグを指定します。フラグは複数指定可能。</p>",
+      "parameter_type": "optional",
+      "possible_value": [
+        ["フラグ", ""],
+        ["H", "立ち"],
+        ["L", "屈み"],
+        ["M", "立ち、屈みの両方"],
+        ["A", "空中"]
+      ],
+      "default_value": [";値なし(ガード不可能)"],
+      "load_priority": ["?"]
+    },
+    {
+      "parameter": "AffectTeam",
+      "value": ["影響チーム"],
+      "type": ["string"],
+      "description": "<p>チームモード時、どのチームに攻撃が影響するかフラグを指定します。</p>",
+      "possible_value": [
+        ["フラグ", ""],
+        ["B", "敵味方かまわず"],
+        ["E", "敵のみ"],
+        ["F", "味方のみ"]
+      ],
+      "parameter_type": "optional",
+      "default_value": ["E"],
+      "load_priority": ["?"]
+    },
+    {
+      "parameter": "AnimType",
+      "value": ["アニメタイプ"],
+      "type": ["string"],
+      "description": "<p>相手のリアクションアニメの種類を指定します。</p><p>ただし、「up」と「diagup」はオプションで、相手が絵を用意してない場合は、「back」と同じ結果になります。</p>",
+      "possible_value": [
+        ["文字列", "状態"],
+        ["L", "弱 (Lightの略)"],
+        ["M", "中 (Mediumの略)"],
+        ["H", "強 (Hard<!--Heavy-->の略)"],
+        ["B", "ふっとび (Backの略)"],
+        ["U", "真上ふっとび (UPの略)"],
+        ["D", "斜めふっとび (DiagUpの略)"]
+      ],
+      "parameter_type": "optional",
+      "default_value": ["Light"],
+      "load_priority": ["?"]
+    },
+    {
+      "parameter": "Air.AnimType",
+      "value": ["空中でのアニメタイプ"],
+      "type": ["string"],
+      "description": "<p>空中でのアニメタイプを指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": [";AnimTypeと同じ値"],
+      "load_priority": ["?"]
+    },
+    {
+      "parameter": "Fall.AnimType",
+      "value": ["fall状態時のアニメタイプ"],
+      "type": ["string"],
+      "description": "<p>空中でのアニメタイプfall状態のときのアニメタイプです。</p><p>※fall状態・・・fall=1。hittimeを過ぎても、受身を取らない限り空中復帰できず、着地すると落下ダウンする状態。これに対し、fall=0の場合、空中で立ち直り、hittimeを過ぎると操作可能となる。また、hittime中でも、着地すると通常のジャンプ着地となる。なお、一度fall=1になると、fall=0の攻撃を受けてもfall=1のままとなる。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; Air.AnimTypeがUpの場合はUP、それ以外はBack"],
+      "load_priority": ["?"]
+    },
+    {
+      "parameter": "Ground.Type",
+      "value": ["地上でののけぞり方"],
+      "type": ["string"],
+      "description": "<p>相手の地上でののけぞり方を文字列で指定します。</p>",
+      "possible_value": [
+        ["文字列", "状態"],
+        ["H", "上のけぞり (Highの略)"],
+        ["L", "下のけぞり (Lowの略)"],
+        ["T", "転倒 (Tripの略)"],
+        ["N", "なし、使用は非推奨 (Non<!--Null-->の略)"]
+      ],
+      "parameter_type": "optional",
+      "default_value": ["High"],
+      "load_priority": ["?"]
+    },
+    {
+      "parameter": "Air.Type",
+      "value": ["空中でののけぞり方"],
+      "type": ["string"],
+      "description": "<p>相手の空中でののけぞり方を文字列で指定します。設定方法はground.typeと同じ。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; Ground.Typeと同じ値"],
+      "load_priority": ["?"]
+    },
+    {
+      "parameter": "ID",
+      "value": ["ヒットid番号"],
+      "type": ["int"],
+      "description": "<p>識別用のIDをつけることができます。後述と組み合わせることにより、特定の技からは繋がらなかったりするようにできます。</p><p>また、Target系のステコン、トリガーが参照するID(HitID)は、このIDの攻撃によりターゲットとなった敵を示します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["1"]
+    },
+    {
+      "parameter": "ChainID",
+      "value": ["連続ヒットid番号"],
+      "type": ["int"],
+      "description": "<p>ここで指定したIDからのみ、攻撃が繋がるようになります。</p><p>-1を指定した場合、すべての攻撃が繋がります。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["-1"],
+      "load_priority": ["2"]
+    },
+    {
+      "parameter": "NoChainID",
+      "value": ["不連続ヒットid番号1", "不連続ヒットid番号2"],
+      "type": ["int", "int"],
+      "description": "<p>指定したIDからは攻撃が繋がらなくなります。ガードされても攻撃は繋がりません。2つまで指定可。</p><p>-1を指定した場合、すべての攻撃が繋がります。<!--かなり微妙--></p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["-1"],
+      "load_priority": ["3", "4"]
+    },
+    {
+      "parameter": "Kill",
+      "value": ["KOフラグ"],
+      "type": ["int"],
+      "description": "<p>0にすると、その攻撃で相手をKOできなくなります。</p><p>最後の一撃でのみKOしたい多段攻撃などに。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["1"],
+      "load_priority": ["5"]
+    },
+    {
+      "parameter": "Guard.Kill",
+      "value": ["ガードKOフラグ"],
+      "type": ["int"],
+      "description": "<p>0にすると、ガード時のダメージで相手をKOできなくなります。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["1"],
+      "load_priority": ["6"]
+    },
+    {
+      "parameter": "Fall.Kill",
+      "value": [""],
+      "type": ["int"],
+      "description": "<p>0にすると、落下ダウン時のダメージで相手をKOできなくなります。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["1"],
+      "load_priority": ["7"]
+    },
+    {
+      "parameter": "HitOnce",
+      "value": ["1回ヒットフラグ"],
+      "type": ["boolean"],
+      "description": "<p>1にした場合、複数の敵がいても、1方にしかヒットしなくなります。attrがT(投げ)の場合、1になります。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["8"]
+    },
+    {
+      "parameter": "Air.Juggle",
+      "value": ["ジャグルポイント"],
+      "type": ["int"],
+      "description": "<p>fall状態の敵に対する連続技に必要なポイント数を上乗せします。StateDefの\"juggle\"パラメータと混同しないようにしましょう。</p><p>projectile専用のパラメータと思ってよいらしいです。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["9"]
+    },
+    {
+      "parameter": "Damage",
+      "value": ["ヒットダメージ", "ガードダメージ"],
+      "type": ["int", "int"],
+      "description": "<p>ヒット、ガード時のダメージを整数で指定します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0", "0"],
+      "load_priority": ["10", "11"]
+    },
+    {
+      "parameter": "GetPower",
+      "value": ["p1ヒットゲージ増加量", "p1ガードゲージ増加量"],
+      "type": ["int", "int"],
+      "description": "<p>攻撃がヒットした、ガードされたときに増えるゲージ量です。</p><p>省略時は、ヒット時がmugen.cfgのDefault.Attack.LifeToPowerMulパラメータにdamageをかけたものに、ガード時がその半分になります。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; ヒット時：mugen.cfgのDefault.Attack.LifeToPowerMulパラメータにDamageをかけた値、ガード時：ヒット時の半分"],
+      "load_priority": ["12", "13"]
+    },
+    {
+      "parameter": "GivePower",
+      "value": ["p2ヒットゲージ増加量", "p2ガードゲージ増加量"],
+      "type": ["int", "int"],
+      "description": "<p>攻撃がヒットした、ガードされたときに増える相手のゲージ量です。</p><p>省略時は、ヒット時がmugen.cfgのDefault.GetHit.LifeToPowerMulパラメータにdamageをかけたものに、ガード時がその半分になります。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; ヒット時：mugen.cfgのDefault.GetHit.LifeToPowerMulパラメータにDamageをかけた値、ガード時：ヒット時の半分"],
+      "load_priority": ["14", "15"]
+    },
+    {
+      "parameter": "PauseTime",
+      "value": ["p1停止時間", "p2ブルブル時間"],
+      "type": ["int", "int"],
+      "description": "<p>ヒット時の自分と相手の停止時間を整数で指定します。停止時間中、相手はブルブル揺れます(HitShake状態)。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0", "0"],
+      "load_priority": ["17", "16"]
+    },
+    {
+      "parameter": "NumHits",
+      "value": ["ヒットカウント数"],
+      "type": ["int"],
+      "description": "<p>コンボカウンターに加算されるヒット数です。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["1"],
+      "load_priority": ["18"]
+    },
+    {
+      "parameter": "HitSound",
+      "value": ["グループ番号", "アイテム番号"],
+      "type": ["int", "int"],
+      "description": "<p>ヒット音をcommon.sndから指定します。5,0(弱ヒット音)～5,4(大打撃音)から選ぶことになります。自分のsndファイルから指定したい場合は、\"HitSound = S1,0\"のように、先頭にSを記述します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; Defaults to the value set in the player variables"],
+      "load_priority": ["19", "20"]
+    },
+    {
+      "parameter": "GuardSound",
+      "value": ["グループ番号", "アイテム番号"],
+      "type": ["int", "int"],
+      "description": "<p>ガード音をcommon.sndから指定します。といっても、用意されているのは6,0のみ。自分のsndファイルから指定したい場合は、先頭にSを記述します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; Defaults to the value set in the player variables"],
+      "load_priority": ["21", "22"]
+    },
+    {
+      "parameter": "Priority",
+      "value": ["ヒット優先度, 相打ちの挙動"],
+      "type": ["int", "string"],
+      "description": "<p>攻撃の優先度で1から7、相打ち時の挙動を「Hit」「Dodge」「Miss」の内から指定します。</p><p>実行者の攻撃と相手の攻撃が同時に発生した場合、数値の高い方のみヒットします。ヒット優先度が同じ場合、「Hit」「Miss」「Dodge」により以下のようになります。</p>",
+      "possible_value": [
+        ["文字列", "状態"],
+        ["H", "攻撃がヒットする (Hitの略)"],
+        ["M", "自分の攻撃は当たらない (Missの略)"],
+        ["D", "相手が「Hit」でも両者空振り (Dodgeの略)"]
+      ],
+      "parameter_type": "optional",
+      "default_value": ["4, H"],
+      "load_priority": ["23", "?"]
+    },
+    {
+      "parameter": "P1StateNo",
+      "value": ["ヒット時移行するステート番号"],
+      "type": ["int"],
+      "description": "<p>攻撃がヒットした場合に移行するステートの番号を指定します。主に投げ技で使用。-1の場合、ステートは移行しません。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["-1"],
+      "load_priority": ["24"]
+    },
+    {
+      "parameter": "P2StateNo",
+      "value": ["ヒット時相手に参照させるステート番号"],
+      "type": ["int"],
+      "description": "<p>攻撃がヒットした場合に、相手に参照させるステートの番号を指定します。これを指定した場合、HitOverrideを仕込んだ相手(Helper等)に攻撃が当たらなくなります。</p><p>P2StateNo=-1とすると、P2GetP1State=1の効果のみになる。（P2GetP1State=0が指定されている場合はP2GetP1Stateが優先されるためP2GetP1State=0となる。）なお、この際に5000番台に移動するのはGround.Type、Air.TypeがNormal(頭文字がN）以外の場合である。</p><p>投げに使ってもProjectile等と相打ちした時に致命的な不具合が生じることがあるので、できれば全く使わない方が良いです。</p><p>といいたいところですが、代わりに使うことになるTargetStateも扱いが難しいので、不具合を承知で使うのも止むを得ないかもしれません。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["-1 ;無効"],
+      "load_priority": ["25"]
+    },
+    {
+      "parameter": "P2GetP1State",
+      "value": ["ステート奪取フラグ"],
+      "type": ["int"],
+      "description": "<p>0の時はP2StateNoを指定していても対象者のステートを奪わず、対象者自身のステートを読みこませる。1の時は相手のステートを奪います。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": [";相手に実行者の食らいステートを読み込ませる。"],
+      "load_priority": ["26"]
+    },
+    {
+      "parameter": "P1SprPriority",
+      "value": [""],
+      "type": ["int"],
+      "description": "<p>攻撃が接触した場合のスプライトの表示優先度を指定します。1だと相手の手前、-1だと奥に表示されます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["1"],
+      "load_priority": ["27"]
+    },
+    {
+      "parameter": "; SprPriority",
+      "value": ["スプライト表示優先度"],
+      "type": ["int"],
+      "description": "<p>攻撃が接触した場合のスプライトの表示優先度を指定します。1だと相手の手前、-1だと奥に表示されます。SprPriorityのパラメータをP1SprPriorityに改名しているので、どちらも機能は同じです。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["1"],
+      "load_priority": ["27"]
+    },
+    {
+      "parameter": "P2SprPriority",
+      "value": ["スプライト表示優先度"],
+      "type": ["int"],
+      "description": "<p>攻撃がヒットまたはガードした相手のスプライト表示優先度を指定します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["28"]
+    },
+    {
+      "parameter": "ForceStand",
+      "value": ["強制立たせフラグ"],
+      "type": ["int"],
+      "description": "<p>1にすると、しゃがんだ相手にヒットしても立ち食らいポーズをとらせます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; ground.velocity y が0の場合：0、0以外の場合：1"],
+      "load_priority": ["29"]
+    },
+    {
+      "parameter": "ForceNoFall",
+      "value": ["Fall解除フラグ"],
+      "type": ["boolean"],
+      "description": "<p>m.u.g.e.n 1.0から追加されたパラメータ。Fallフラグが一度立ってしまうと、受身を取らない限りfallのままで、これを回避するには、相手のステートを奪う必要があったのですが、このパラメータを1にすることにより、攻撃を当てたときに、P2のfall状態が解除されます。当然、P2がfall状態でなければ、何も起きません。なお、fall=1を指定している場合、このパラメータは無視されます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["30"]
+    },
+    {
+      "parameter": "Fall",
+      "value": ["落下フラグ"],
+      "type": ["int"],
+      "description": "<p>HitTimeの時間が経過した後に、攻撃で浮いた相手を自動で受け身を取り着地させるかどうか指定します。0の場合：自動で受け身をとる、1の場合：自動で受け身を取らず、受身操作をしなければダウンします。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["31"]
+    },
+    {
+      "parameter": "Fall.Damage",
+      "value": ["damage_amt"],
+      "type": ["int"],
+      "description": "<p>落下状態のままダウンした場合に与えるダメージを指定します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["32"]
+    },
+    {
+      "parameter": "Fall.XVelocity",
+      "value": ["落下バウンド水平速度"],
+      "type": ["float"],
+      "description": "<p>落下状態のままダウンした場合の、バウンド水平速度を変更する場合、指定します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": [";速度の変更なし"],
+      "load_priority": ["33"]
+    },
+    {
+      "parameter": "Fall.YVelocity",
+      "value": ["落下バウンド垂直速度"],
+      "type": ["float"],
+      "description": "<p>落下状態のままダウンした場合の、バウンド垂直速度を指定します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["-4.5"],
+      "load_priority": ["34"]
+    },
+    {
+      "parameter": "Fall.Recover",
+      "value": ["受身可能フラグ"],
+      "type": ["int"],
+      "description": "<p>相手が落下状態の時に、受身が取れるか・取れないか指定します。</p><p>0の場合：受け身が取れない、：1の場合：受身可能。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["1"],
+      "load_priority": ["35"]
+    },
+    {
+      "parameter": "Fall.RecoverTime",
+      "value": ["受身可能受付開始時間"],
+      "type": ["int"],
+      "description": "<p>落下状態になってから受身が取れるようになるまでの時間を指定します。pausetimeは含まれません。fall.recover = 0にした場合は無効。</p><p>追撃できることを想定している技の場合、大きな値を設定するか、fall.recover=0にするとよいでしょう。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["4"],
+      "load_priority": ["36"]
+    },
+    {
+      "parameter": "SparkNo",
+      "value": ["ヒットスパークのアクション番号"],
+      "type": ["int"],
+      "description": "<p>ヒットスパークのアクション番号をfightfx.airから指定します。自分のairファイルから指定したい場合は、\"sparkno = S2000,0\"のように、先頭にSを記述します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; cnsで設定した値"],
+      "load_priority": ["37"]
+    },
+    {
+      "parameter": "Guard.SparkNo",
+      "value": ["ガードスパークのアクション番号"],
+      "type": ["int"],
+      "description": "<p>ガードスパークのアクション番号をfightfx.airから指定します。自分のairファイルから指定したい場合は、\"guard.sparkno = S2010,0\"のように、先頭にSを記述します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; cnsで設定した値"],
+      "load_priority": ["38"]
+    },
+    {
+      "parameter": "SparkXY",
+      "value": ["スパークx座標", "スパークy座標"],
+      "type": ["int", "int"],
+      "description": "<p>ヒット、ガードスパークの表示位置を指定します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0", "0"],
+      "load_priority": ["39", "40"]
+    },
+    {
+      "parameter": "P1Facing",
+      "value": ["p1の向き"],
+      "type": ["int"],
+      "description": "<p>攻撃に成功した時、P1の向きを変更します。主に投げ技で使用。1の場合：正面を向く、-1の場合：後ろを向き、0の場合：向きの変更なし。<!--予測--></p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["41"]
+    },
+    {
+      "parameter": "P1GetP2Facing",
+      "value": ["p1の向き"],
+      "type": ["int"],
+      "description": "<p>攻撃がヒットした相手の向きに合わせて、P1の向きを変更します。1の場合：相手と同じ方向、-1の場合：逆を向き、0の場合：向きの変更なし。p1facingより優先されます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["42"]
+    },
+    {
+      "parameter": "Snap",
+      "value": ["x固定座標", "y固定座標"],
+      "type": ["int", "int"],
+      "description": "<p>ヒットした相手を固定する位置を、P1を基準として指定します。</p><p>このパラメータも、通常、使用しません。投げ等で相手を指定位置に固定する場合は、TargetBindを使用します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; 行動範囲に変化なし"],
+      "load_priority": ["(43->45)", "(44->46)"]
+    },
+    {
+      "parameter": "; MinDist",
+      "value": ["x最小座標", "y最小座標"],
+      "type": ["int", "int"],
+      "description": "<p>攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できますが、このパラメータは一般に使用されません。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; 行動範囲に変化なし"],
+      "load_priority": ["43", "44"]
+    },
+    {
+      "parameter": "; MaxDist",
+      "value": ["x最大座標", "y最大座標"],
+      "type": ["int", "int"],
+      "description": "<p>攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できますが、このパラメータは一般に使用されません。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; 行動範囲に変化なし"],
+      "load_priority": ["45", "46"]
+    },
+    {
+      "parameter": "P2Facing",
+      "value": ["p2の向き"],
+      "type": ["int"],
+      "description": "<p>攻撃がヒットした相手の向きを指定します。1：正面、-1：後ろ、0：変化なし。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["47"]
+    },
+    {
+      "parameter": "Ground.HitTime",
+      "value": ["ヒット時間"],
+      "type": ["int"],
+      "description": "<p>相手が攻撃を受けて行動不能になる時間です。長くするほど連続攻撃が繋がりやすくなります。永久コンボが発生しないように、気をつけて設定しましょう。</p><p>相手が地上にいる間のみ有効です。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["48"]
+    },
+    {
+      "parameter": "Ground.SlideTime",
+      "value": ["ヒットバック時間"],
+      "type": ["int"],
+      "description": "<p>相手が攻撃を受けて後ずさる時間です。この時間が経過すると、ブレーキがかかります。ただし、やられステートのphysicsがSやCになっているため、ヒットバックは摩擦によっても停止します。よって、よろけやられのような、ゆっくりとしたヒットバックは、HitDefでは再現できません。</p><p>0の場合、強烈なブレーキがかかるためパラメータの省略は推奨できません。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["49"]
+    },
+    {
+      "parameter": "Ground.Velocity",
+      "value": ["ヒット速度X", "ヒット速度Y"],
+      "type": ["float", "float"],
+      "description": "<p>相手が地上で攻撃を受けて移動する速度です。yに負数を指定すると、宙に浮きます。地上にいる場合、摩擦の影響を受けます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0", "0"],
+      "load_priority": ["50", "51"]
+    },
+    {
+      "parameter": "Ground.CornerPush.VelOff",
+      "value": ["地上コーナープッシュ速度"],
+      "type": ["float"],
+      "description": "<p>画面端で地上の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p><p>相手の移動距離とは無関係で、相手のshaketimeではなく、自分のpausetimeが0になった瞬間に速度がかかります。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; AttrがAの場合は0、それ以外の場合は、1.3*guard.velocity"],
+      "load_priority": ["52"]
+    },
+    {
+      "parameter": "Air.HitTime",
+      "value": ["空中でのヒット時間"],
+      "type": ["int"],
+      "description": "<p>相手が空中で攻撃を受けて行動不能になる時間です。この時間を過ぎると、相手はコントロールを取り戻します。ちなみに、このときのグラフィックはairにのみ依存するため、見た目が立ち直っていても、時間内なら行動不能(5035番のアニメが短いとき起きる現象)ですし、時間が経過していれば、見た目がのけぞり中でも行動可能(5035番のアニメが長いとき起きる現象)です。省略時は20。つまり、この値に合わせてair(5035番)を設定する必要があります。fallパラメータが1の場合、このパラメータは無効になります。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["20"],
+      "load_priority": ["53"]
+    },
+    {
+      "parameter": "Air.Fall",
+      "value": ["value"],
+      "type": ["int"],
+      "description": "<p>空中ヒットしたときのみ落下状態にしたい場合は1にします。fall = 1だと地上やられでも落下状態になります。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; fallと同値"],
+      "load_priority": ["54"]
+    },
+    {
+      "parameter": "Air.Velocity",
+      "value": ["空中ヒット速度X", "空中ヒット速度Y"],
+      "type": ["float", "float"],
+      "description": "<p>相手が空中で攻撃を受けたとき移動する速度です。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0", "0"],
+      "load_priority": ["55", "56"]
+    },
+    {
+      "parameter": "Air.CornerPush.VelOff",
+      "value": ["空中コーナープッシュ速度"],
+      "type": ["float"],
+      "description": "<p>画面端で空中の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; ground.cornerpush.veloffと同値"],
+      "load_priority": ["57"]
+    },
+    {
+      "parameter": "Down.Bounce",
+      "value": ["ダウン追い討ちヒットバウンドフラグ"],
+      "type": ["int"],
+      "description": "<p>1にすると、ダウン追い討ちヒット時、fall.xvelocityとfall.yvelocityでバウンドします。down.velocityの垂直速度が0の時のみ有効。</p><p>0の場合：バウンドしない</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["58"]
+    },
+    {
+      "parameter": "Down.HitTime",
+      "value": ["ダウン追い討ちヒット時間"],
+      "type": ["int"],
+      "description": "<p>ダウン状態の敵に攻撃が当たったとき、スライドする時間です。down.velocityの垂直速度が0の時のみ有効。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["?"],
+      "load_priority": ["59"]
+    },
+    {
+      "parameter": "Down.Velocity",
+      "value": ["ダウン追い討ち水平速度", "ダウン追い討ち垂直速度"],
+      "type": ["float", "float"],
+      "description": "<p>ダウン追い討ちヒット時ののけぞり速度を指定します。垂直方向の速度が0以外の場合、相手は宙に浮きます。0の場合はスライドします。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; air.velocityと同値"],
+      "load_priority": ["60", "61"]
+    },
+    {
+      "parameter": "Down.CornerPush.VelOff",
+      "value": ["ダウンコーナープッシュ速度"],
+      "type": ["float"],
+      "description": "<p>画面端でダウン状態の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; ground.cornerpush.veloffと同値"],
+      "load_priority": ["62"]
+    },
+    {
+      "parameter": "Guard.Velocity",
+      "value": ["ガード速度X"],
+      "type": ["float"],
+      "description": "<p>相手が地上で攻撃をガードしたとき移動する速度です。垂直方向は指定不可。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; ground.velocityと同値"],
+      "load_priority": ["63"]
+    },
+    {
+      "parameter": "Guard.HitTime",
+      "value": ["ガード時間"],
+      "type": ["int"],
+      "description": "<p>相手が攻撃をガードしてから自動的に(キーを後ろに入力しなくても)ガードモーションをとり続ける時間。行動不能時間ではないので注意。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; ground.hittimeと同値"],
+      "load_priority": ["64"]
+    },
+    {
+      "parameter": "Guard.SlideTime",
+      "value": ["ガードバック時間"],
+      "type": ["int"],
+      "description": "<p>ground.slidetimeのガード版。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; guard.hittimeと同値"],
+      "load_priority": ["65"]
+    },
+    {
+      "parameter": "Guard.CtrlTime",
+      "value": ["ガードからの復帰時間"],
+      "type": ["int"],
+      "description": "<p>相手が攻撃をガードしてからコントロールを取り戻すまでの時間。ただし、どんなに大きな値にしてもguard.hittimeが過ぎれば相手はコントロールを取り戻します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; guard.slidetimeと同値"],
+      "load_priority": ["66"]
+    },
+    {
+      "parameter": "Guard.Dist",
+      "value": ["ガード認識距離"],
+      "type": ["int"],
+      "description": "<p>相手がガード操作を行うことでガードポーズを取るようになる距離をピクセルで指定します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; cns冒頭で設定した値"],
+      "load_priority": ["67"]
+    },
+    {
+      "parameter": "Guard.PauseTime",
+      "value": ["p1停止時間", "p2ブルブル時間"],
+      "type": ["int", "int"],
+      "description": "<p>ガード時の自分と相手の停止時間を整数で指定します。停止時間中、相手はブルブル揺れます(HitShake状態)。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; pausetimeと同値"],
+      "load_priority": ["69, 68"]
+    },
+    {
+      "parameter": "Guard.CornerPush.VelOff",
+      "value": ["地上ガードコーナープッシュ速度"],
+      "type": ["float"],
+      "description": "<p>画面端で地上の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; ground.cornerpush.veloffと同値"],
+      "load_priority": ["70"]
+    },
+    {
+      "parameter": "AirGuard.Velocity",
+      "value": ["空中ガード速度X", "空中ガード速度Y"],
+      "type": ["float", "float"],
+      "description": "<p>相手が空中で攻撃をガードしたとき移動する速度です。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": [";air.velocity X * 1.5", "air.velocity Y / 2"],
+      "load_priority": ["71", "72"]
+    },
+    {
+      "parameter": "AirGuard.CtrlTime",
+      "value": ["空中ガード復帰時間"],
+      "type": ["int"],
+      "description": "<p>相手が空中で攻撃をガードしてからコントロールを取り戻すまでの時間。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; guard.ctrltimeと同値。"],
+      "load_priority": ["73"]
+    },
+    {
+      "parameter": "AirGuard.CornerPush.VelOff",
+      "value": ["地上ガードコーナープッシュ速度空中"],
+      "type": ["float"],
+      "description": "<p>画面端で空中の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; ground.cornerpush.veloffと同値"],
+      "load_priority": ["74"]
+    },
+    {
+      "parameter": "YAccel",
+      "value": ["重力"],
+      "type": ["float"],
+      "description": "<p>ヒット時の重力を指定します。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["; 相手の重力に依存"],
+      "load_priority": ["75"]
+    },
+    {
+      "parameter": "PalFX.Time",
+      "value": ["持続時間"],
+      "type": ["int"],
+      "description": "<p>効果の持続時間をフレーム単位で指定します。</p><p>ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、<code>Time=1</code>にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXで<code>Time=1</code>をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>※60フレーム=1秒</p>",
+      "min_value": ["-1"],
+      "max_value": ["2147483647"],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["76"]
+    },
+    {
+      "parameter": "PalFX.Color",
+      "value": ["彩度"],
+      "type": ["int"],
+      "description": "<p>パレットの彩度を下げます。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style=\"background-color: hsl(0, 0%, 100%);border: 1px solid #000;\">　</span><br><span style=\"background-color: hsl(0, 0%, 80%);\">　</span><span style=\"background-color: hsl(0, 10%, 80%);\">　</span><span style=\"background-color: hsl(0, 20%, 80%);\">　</span><span style=\"background-color: hsl(0, 30%, 80%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 60%);\">　</span><span style=\"background-color: hsl(0, 10%, 60%);\">　</span><span style=\"background-color: hsl(0, 20%, 60%);\">　</span><span style=\"background-color: hsl(0, 30%, 60%);\">　</span><span style=\"background-color: hsl(0, 40%, 60%);\">　</span><span style=\"background-color: hsl(0, 50%, 60%);\">　</span><span style=\"background-color: hsl(0, 60%, 60%);\">　</span><span style=\"background-color: hsl(0, 70%, 60%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 50%);\">　</span><span style=\"background-color: hsl(0, 10%, 50%);\">　</span><span style=\"background-color: hsl(0, 20%, 50%);\">　</span><span style=\"background-color: hsl(0, 30%, 50%);\">　</span><span style=\"background-color: hsl(0, 40%, 50%);\">　</span><span style=\"background-color: hsl(0, 50%, 50%);\">　</span><span style=\"background-color: hsl(0, 60%, 50%);\">　</span><span style=\"background-color: hsl(0, 70%, 50%);\">　</span><span style=\"background-color: hsl(0, 80%, 50%);\">　</span><span style=\"background-color: hsl(0, 90%, 50%);\">　</span><span style=\"background-color: hsl(0, 100%, 50%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 40%);\">　</span><span style=\"background-color: hsl(0, 10%, 40%);\">　</span><span style=\"background-color: hsl(0, 20%, 40%);\">　</span><span style=\"background-color: hsl(0, 30%, 40%);\">　</span><span style=\"background-color: hsl(0, 40%, 40%);\">　</span><span style=\"background-color: hsl(0, 50%, 40%);\">　</span><span style=\"background-color: hsl(0, 60%, 40%);\">　</span><span style=\"background-color: hsl(0, 70%, 40%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 20%);\">　</span><span style=\"background-color: hsl(0, 10%, 20%);\">　</span><span style=\"background-color: hsl(0, 20%, 20%);\">　</span><span style=\"background-color: hsl(0, 30%, 20%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 0%);\">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p>",
+      "min_value": ["0 ;グレースケール"],
+      "max_value": ["256 ;変化なし"],
+      "parameter_type": "optional",
+      "default_value": ["256"],
+      "load_priority": ["77"]
+    },
+    {
+      "parameter": "PalFX.Add",
+      "value": ["加算する赤色", "加算する緑色", "加算する青色"],
+      "type": ["int", "int", "int"],
+      "description": "<p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span><code>Add=256,0,0</code>の場合、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>赤(256,0,0)になりますが、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)のままです。</p>",
+      "min_value": ["-256", "-256", "-256 ;黒"],
+      "max_value": ["256", "256", "256 ;白"],
+      "parameter_type": "optional",
+      "default_value": ["0", "0", "0"],
+      "load_priority": ["78", "79", "80"]
+    },
+    {
+      "parameter": "PalFX.Mul",
+      "value": ["合成する赤色", "合成する緑色", "合成する青色"],
+      "type": ["int", "int", "int"],
+      "description": "<p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(64,256,64);\">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(1,256,1);\">　</span>緑(1,256,1)になりますが、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)のままです。</p>",
+      "min_value": ["1", "1", "1"],
+      "max_value": ["256", "256", "256 ;変化なし"],
+      "parameter_type": "optional",
+      "default_value": ["256", "256", "256"],
+      "load_priority": ["81", "82", "83"]
+    },
+    {
+      "parameter": "PalFX.SinAdd",
+      "value": ["周期する赤色", "周期する緑色", "周期する青色", "周期"],
+      "type": ["int", "int", "int", "int"],
+      "description": "<p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,256);\">　</span><code>SinAdd=0,0,256,20</code>,<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)は、5F後<span style=\"border: 1px solid #000;background: rgb(128,128,256);\">　</span>(128,128,256)になり、10F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻り、15F後<span style=\"border: 1px solid #000;background: rgb(128,128,0);\">　</span>(128,128,0)、20F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻る、という周期を繰り返します。</p>",
+      "min_value": ["", "", "", ""],
+      "max_value": ["", "", "", ""],
+      "parameter_type": "optional",
+      "default_value": ["0", "0", "0", "0"],
+      "load_priority": ["84", "85", "86", "(調査中・・・)"],
+      "media": {
+        "image": [
+          {"title": "", "file": "SinAdd.png", "width": "600", "height": "242"}
+        ]
+      }
+    },
+    {
+      "parameter": "PalFX.InvertAll",
+      "value": ["色反転フラグ"],
+      "type": ["boolean"],
+      "description": "<p>色を反転するか・しないかのフラグです。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>(0,0,0)→<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>(256,256,256),<span style=\"border: 1px solid #000;background: rgb(0,252,0);\">　</span>(0,252,0)→<span style=\"border: 1px solid #000;background: rgb(256,4,256);\">　</span>(256,4,256),<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>(256,0,0)→<span style=\"border: 1px solid #000;background: rgb(0,256,256);\">　</span>(0,256,256)</p>",
+      "min_value": ["0 ;色が反転しない"],
+      "max_value": ["1 ;色が反転する"],
+      "parameter_type": "optional",
+      "default_value": ["0"],
+      "load_priority": ["87"],
+      "media": {
+        "image": [
+          {"title": "", "file": "InvertAll.png", "width": "167", "height": "167"}
+        ]
+      }
+    },
+    {
+      "parameter": "EnvShake.Time",
+      "value": ["ヒット時画面振動時間"],
+      "type": ["int"],
+      "description": "<p>揺れの持続時間を指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["?"],
+      "load_priority": ["88"]
+    },
+    {
+      "parameter": "EnvShake.Ampl",
+      "value": ["揺れ幅"],
+      "type": ["int"],
+      "description": "<p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["-4"],
+      "load_priority": ["89"]
+    },
+    {
+      "parameter": "EnvShake.Phase",
+      "value": ["位相"],
+      "type": ["float"],
+      "description": "<p>位相を指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0 ; 振動数の乗数が90以上の場合：90<!--かなり微妙-->"],
+      "load_priority": ["90"]
+    },
+    {
+      "parameter": "EnvShake.Freq",
+      "value": ["揺れの速度"],
+      "type": ["float"],
+      "description": "<p>揺れるスピードを、0(低速)～180(高速)の間で指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["60"],
+      "load_priority": ["91"]
+    },
+    {
+      "parameter": "Fall.EnvShake.Time",
+      "value": ["落下時画面振動時間"],
+      "type": ["int"],
+      "description": "<p>相手の落下ダウン時に画面を揺らしたい時間を指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["?"],
+      "load_priority": ["92"]
+    },
+    {
+      "parameter": "Fall.EnvShake.Ampl",
+      "value": ["振幅"],
+      "type": ["float"],
+      "description": "<p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["-4"],
+      "load_priority": ["93"]
+    },
+    {
+      "parameter": "Fall.EnvShake.Phase",
+      "value": ["位相"],
+      "type": ["int"],
+      "description": "<p>位相を指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["0 ;振動数の乗数が90以上の場合：90かなり微妙"],
+      "load_priority": ["94"]
+    },
+    {
+      "parameter": "Fall.EnvShake.Freq",
+      "value": ["振動数"],
+      "type": ["float"],
+      "description": "<p>揺れるスピードを、0(低速)～180(高速)の間で指定。</p>",
+      "min_value": [""],
+      "max_value": [""],
+      "parameter_type": "optional",
+      "default_value": ["60"],
+      "load_priority": ["95"]
+    },
+    {
+      "parameter": "; Attack.Width",
+      "value": ["z1", "z2"],
+      "type": ["int", "int"],
+      "description": "<p>現在、使われておりません。</p>",
+      "min_value": ["?"],
+      "max_value": ["?"],
+      "parameter_type": "?<!--optional?-->",
+      "default_value": ["?"],
+      "load_priority": ["?"]
+    }
+  ],
 
-	"qanda": [
-		{
-			"q": "Helperが分身して消えない。",
-			"c": "「Helper」側が適正に「HitOverride」を使っていない場合や、 ちゃんと「HitOverride」を使っていても、「Helper」が直に「HitDef」を出しており、 なおかつ相手側が適切に「attr」を設定していない「ReversalDef」を使用した場合などに起こってしまう。「Helper」に行わせていた処理次第で、ひどい不具合を引き起こす可能性があります。",
-			"a": "<ul><li>「Helper」には 必ず 「HitOverride」を使わせる。</li><li>「Helper」には なるべく 直接「HitDef」を持たせない。</li><li>「ReversalDef」で「P2StateNo」を使用するときは 必ず 「attr」を適切に設定する。</li><li>「IsHelper」をトリガーにして、「DestroySelf」や「ChangeState」を記述する。</li></ul>",
-			"r": [
-				{"title": "MUGENにおける分身", "url": "http://www30.atwiki.jp/niconicomugen/pages/1065.html"}
-			]
-		}
-	],
+  "qanda": [
+    {
+      "q": "Helperが分身して消えない。",
+      "a": "<p>「Helper」側が適正に「HitOverride」を使っていない場合や、 ちゃんと「HitOverride」を使っていても、「Helper」が直に「HitDef」を出しており、 なおかつ相手側が適切に「attr」を設定していない「ReversalDef」を使用した場合などに起こってしまう。「Helper」に行わせていた処理次第で、ひどい不具合を引き起こす可能性があります。</p><ul><li>「Helper」には 必ず 「HitOverride」を使わせる。</li><li>「Helper」には なるべく 直接「HitDef」を持たせない。</li><li>「ReversalDef」で「P2StateNo」を使用するときは 必ず 「attr」を適切に設定する。</li><li>「IsHelper」をトリガーにして、「DestroySelf」や「ChangeState」を記述する。</li></ul>"
+    }
+  ],
 
 
-	"quote": [
-		{"title": "ReversalDef - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/ReversalDef"},
-		{"title": "ReversalDef - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ReversalDef&protocol=http"},
-		{"title": "ReversalDef - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/22.html"},
-		{"title": "ReversalDef - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ReversalDef"},
-		{"title": "ReversalDef - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-	]
+  "quote": [
+    {"title": "ReversalDef - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/ReversalDef"},
+    {"title": "ReversalDef - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ReversalDef&protocol=http"},
+    {"title": "ReversalDef - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/22.html"},
+    {"title": "ReversalDef - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ReversalDef"},
+    {"title": "ReversalDef - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"},
+    {"title": "MUGENにおける分身", "url": "http://www30.atwiki.jp/niconicomugen/pages/1065.html"}
+  ]
 }

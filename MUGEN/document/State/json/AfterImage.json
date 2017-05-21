@@ -207,47 +207,27 @@
   "qanda": [
     {
       "q": "他のキャラクターの残像が表示されない。",
-      "c": "表示できる残像の数は、全プレイヤーで共有しているので表示しすぎると他のプレイヤーが表示できなくなります。",
-      "a": "mugen.cfgのAfterImageMaxの数値を増やす、もしくは原因のあるキャラのAfterImageを変更する。"
+      "a": "<p>表示できる残像の数は、全プレイヤーで共有しているので表示しすぎると他のプレイヤーが表示できなくなります。mugen.cfgのAfterImageMaxの数値を増やす、もしくは原因のあるキャラのAfterImageを変更する。</p>"
     },
     {
       "q": "キャラクター自身の残像が表示されない。",
-      "c": "AfterImageが常時監視（Trigger1=1）になっている。",
-      "a": "Trigger1=GameTime%2にするなどAfterImageが常に実行されていない状態にする。",
-      "r": [
-        {"title": "常時監視でAfterImage", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1961.html"},
-        {"title": "毎フレーム実行したafterimageが無効化される理由", "url": "http://lunatic284.blog90.fc2.com/blog-entry-2933.html"}
-      ]
+      "a": "<p>AfterImageが常時監視（Trigger1=1）になっている可能性があります。</p><p>Trigger1=GameTime%2にするなどAfterImageが常に実行されていない状態にしましょう。</p>"
     },
     {
       "q": "キャラクター自身の残像が表示されない。",
-      "c": "AfterImageのパラメータが正しい型で書かれていない。",
-      "a": "AfterImageのTransの値が\"\"で囲まれている。など",
-      "r": [
-        {"title": "エラー", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-325.html"}
-      ]
+      "a": "<p>AfterImageのパラメータが正しい型で書かれていない可能性があります。</p><p>「Transの値が\"\"で囲まれていない」か確認してみましょう。</p>"
     },
     {
       "q": "処理が重い。",
-      "c": "残像の表示数が多い。または、Length,FrameGapの値が原因。",
-      "a": "Lengthの値を小さくする。FrameGapの値を大きくする。Trans=Noneにする。",
-      "r":  [
-        {"title": "AfterImage", "url": "http://www.2500loops.com/lec-process.html#afterimage"}
-      ]
-    },
-    {
-      "q": "ちょいメモ",
-      "a": "<ul><li>履歴は0からlength-1までのlength個保存されている。</li><li>AfterImageの実行時間はTimeが-1でなければTimeGap*Length+Time。</li><li>（この時間内ならAfterImageTimeが動作する）</li><li>（実行時のフレームを含めているので、終了はTimeGap*Length+Time-1フレーム後）</li></ul>"
+      "a": "<p>残像の表示数が多いか、Length,FrameGapの値が原因で処理が重くなっています。</p><p>Lengthの値を小さくする、FrameGapの値を大きくする、Trans=Noneにするなどの調整をしてみましょう。</p>"
     },
     {
       "q": "AfterImageがすぐに切り替わらない・消去したい。",
-      "c": "AfterImageでTimeやLengthで指定した時間だけ残像が残ってしまう。また、AfterImageTimeでTime=0を設定してもLengthが残ってしまう。",
-      "a": "再度AfterImageで1フレームだけTime=0実行すると、完全に消去される。",
-      "r":  [
-        {"title": "afterimageの消去について", "url": "http://cj2.pv.land.to/4/8.htm"},
-        {"title": "afterimageの試合中切り替え", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1231.html"},
-        {"title": "AfterImageTime", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AfterImageTime"}
-      ]
+      "a": "<p>残像はAfterImageのTime・Lengthで指定しただけ残像が残ります。AfterImageTimeでTime=0を指定してもLengthがリセットできないため、残像はすぐに消えません。なので、新しくAfterImageをTime=0で1フレームだけ実行することで、完全に消去できます。</p>"
+    },
+    {
+      "q": "AfterImageについてのメモ",
+      "a": "<ul><li>履歴は0からlength-1までのlength個保存されている。</li><li>AfterImageの実行時間はTimeが-1でなければTimeGap*Length+Time。</li><li>（この時間内ならAfterImageTimeが動作する）</li><li>（実行時のフレームを含めているので、終了はTimeGap*Length+Time-1フレーム後）</li></ul>"
     }
   ],
 
@@ -341,6 +321,11 @@
     {"title": "AfterImage - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AfterImage"},
     {"title": "AfterImage - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/1.htm"},
     {"title": "本体Explod化", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1986.html"},
-    {"title": "AfterImageを研究するためのキャラ", "url": "http://www.2500loops.com/char.html#after-image"}
+    {"title": "AfterImageを研究するためのキャラ", "url": "http://www.2500loops.com/char.html#after-image"},
+    {"title": "afterimageの消去について", "url": "http://cj2.pv.land.to/4/8.htm"},
+    {"title": "afterimageの試合中切り替え", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1231.html"},
+    {"title": "エラー - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-325.html"},
+    {"title": "常時監視でAfterImage", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1961.html"},
+    {"title": "毎フレーム実行したafterimageが無効化される理由", "url": "http://lunatic284.blog90.fc2.com/blog-entry-2933.html"}
   ]
 }

@@ -40,8 +40,9 @@ ReversalDef【当て身投げ用】 | MUGEN State Controller - Name = SURA
   <meta name="author" content="sura">
   <meta name="copyright" content="Copyright© SURA(すら) All rights reserved." />
   <link rel="author" title="sura" href="https://twitter.com/bluesura">
+  
   <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/State/ReversalDef.html">
-  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="ATOM" type="application/atom+xml">
+  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = SURAの更新履歴" type="application/atom+xml">
   <meta name="generator" content="Smarty">
   <!-- 「駄目ね、全然駄目だわ」 -->
 
@@ -2481,10 +2482,10 @@ ReversalDef【当て身投げ用】 | MUGEN State Controller - Name = SURA
 
 
 ﻿    <section id="QandA"><div class="section">
-    <h2>Q＆A(よくありそうな質問)</h2>
+    <h2>Q＆A(よくある質問)</h2>
     <div>
-              <h3></h3>
-        
+              <h3>Helperが分身して消えない。</h3>
+        <p>「Helper」側が適正に「HitOverride」を使っていない場合や、 ちゃんと「HitOverride」を使っていても、「Helper」が直に「HitDef」を出しており、 なおかつ相手側が適切に「attr」を設定していない「ReversalDef」を使用した場合などに起こってしまう。「Helper」に行わせていた処理次第で、ひどい不具合を引き起こす可能性があります。</p><ul><li>「Helper」には 必ず 「HitOverride」を使わせる。</li><li>「Helper」には なるべく 直接「HitDef」を持たせない。</li><li>「ReversalDef」で「P2StateNo」を使用するときは 必ず 「attr」を適切に設定する。</li><li>「IsHelper」をトリガーにして、「DestroySelf」や「ChangeState」を記述する。</li></ul>
           </div>
   </div></section>
   
@@ -2494,11 +2495,12 @@ ReversalDef【当て身投げ用】 | MUGEN State Controller - Name = SURA
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://elecbyte.com/wiki/index.php/ReversalDef" target="_blank" rel="external">ReversalDef - M.U.G.E.N wiki</a></li>
-					<li><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ReversalDef&protocol=http" target="_blank" rel="external">ReversalDef - State Controller</a></li>
-					<li><a href="http://www49.atwiki.jp/mugencns/pages/22.html" target="_blank" rel="external">ReversalDef - MUGEN CNS WIKI CHAOS@予定</a></li>
-					<li><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ReversalDef" target="_blank" rel="external">ReversalDef - 東方夢幻館</a></li>
-					<li><a href="http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm" target="_blank" rel="external">ReversalDef - 地球の応接間</a></li>
+					<li><cite><a href="http://elecbyte.com/wiki/index.php/ReversalDef" target="_blank" rel="external">ReversalDef - M.U.G.E.N wiki</a></cite></li>
+					<li><cite><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ReversalDef&protocol=http" target="_blank" rel="external">ReversalDef - State Controller</a></cite></li>
+					<li><cite><a href="http://www49.atwiki.jp/mugencns/pages/22.html" target="_blank" rel="external">ReversalDef - MUGEN CNS WIKI CHAOS@予定</a></cite></li>
+					<li><cite><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ReversalDef" target="_blank" rel="external">ReversalDef - 東方夢幻館</a></cite></li>
+					<li><cite><a href="http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm" target="_blank" rel="external">ReversalDef - 地球の応接間</a></cite></li>
+					<li><cite><a href="http://www30.atwiki.jp/niconicomugen/pages/1065.html" target="_blank" rel="external">MUGENにおける分身</a></cite></li>
 				</ul>
 	</div></section>
 	
@@ -2849,8 +2851,12 @@ ReversalDef【当て身投げ用】 | MUGEN State Controller - Name = SURA
 
 
 <div id="recruit" class="article-survey-container">
+
+<div class="title">記事に不備があった場合</div>
+<p>不備があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。</p>
+
 <div class="title">記事を編集してみませんか？</div>
-<p>問題点があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。また、ページ編集にご協力いただける方を募集しております。お気軽にご連絡下さい。Please report any problems to the <a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a> · <a href="https://twitter.com/bluesura">Twitter</a> · <a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>. In addition, we are looking for the person who cooperate with page editing and translation. Please do not hesitate to contact me.</p>
+<p>ページ編集・翻訳にご協力いただける方を募集しております。お気軽にご連絡下さい。</p><p>We are looking for someone who can cooperate on page editing / translation. Please feel free to contact us.</p>
 </div>
 
 </div>

@@ -40,8 +40,9 @@ AllPalFX【画面全体の色を変更】 | MUGEN State Controller - Name = SURA
   <meta name="author" content="sura">
   <meta name="copyright" content="Copyright© SURA(すら) All rights reserved." />
   <link rel="author" title="sura" href="https://twitter.com/bluesura">
+  
   <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/State/AllPalFX.html">
-  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="ATOM" type="application/atom+xml">
+  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = SURAの更新履歴" type="application/atom+xml">
   <meta name="generator" content="Smarty">
   <!-- 「駄目ね、全然駄目だわ」 -->
 
@@ -412,10 +413,10 @@ AllPalFX【画面全体の色を変更】 | MUGEN State Controller - Name = SURA
 
 
 ﻿    <section id="QandA"><div class="section">
-    <h2>Q＆A(よくありそうな質問)</h2>
+    <h2>Q＆A(よくある質問)</h2>
     <div>
-              <h3></h3>
-        
+              <h3>表示される色の処理順</h3>
+        ==========各条件を以下のように定義する。==========<br>基本色:<br>Add    = Add_赤色(AR), Add_緑色(AG), Add_青色(AB)<br>SinAdd = Sin_赤色(SR), Sin_緑色(SG), Sin_青色(SB), 周期(P)<br><br>合成色:<br>Mul    = Mul_赤色(MR), Mul_緑色(MG), Mul_青色(MB)<br><br>経過時間:(T) ※単位はフレーム、1秒=60フレーム<br>円周率:(Pi)<br><br>変更する色:<br>Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br><br>==========処理の流れ==========<br>処理する色 = Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br>↓<br>彩度(Color)<br>彩度を調整した色 = Color_赤色(CR), Color_緑色(CG), Color_青色(CB)<br>↓<br>経過時間(T)に表示される色は<br>赤要素(RR) = (CR + AR + SR * Sin(2*Pi*T/P))  *  MR/256<br>緑要素(RG) = (CG + AG + SG * Sin(2*Pi*T/P))  *  MG/256<br>青要素(RB) = (CB + AB + SB * Sin(2*Pi*T/P))  *  MB/256<br>↓<br>色反転(InvertAll)<br>反転した赤要素(IR) = 256-RR<br>反転した緑要素(IG) = 256-RG<br>反転した青要素(IB) = 256-RB<br>↓<br>結果色(IR, IG, IB)が表示されます。<br>
           </div>
   </div></section>
   
@@ -471,12 +472,12 @@ AllPalFX【画面全体の色を変更】 | MUGEN State Controller - Name = SURA
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://elecbyte.com/wiki/index.php/AllPalFX" target="_blank" rel="external">AllPalFX - M.U.G.E.N wiki</a></li>
-					<li><a href="http://www49.atwiki.jp/mugencns/pages/63.html" target="_blank" rel="external">AllPalFX - MUGEN CNS WIKI CHAOS@予定</a></li>
-					<li><a href="http://mugenbinran.web.fc2.com/error.html#12" target="_blank" rel="external">不具合・対策まとめ - MUGENの便覧</a></li>
-					<li><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AllPalFX&protocol=http" target="_blank" rel="external">AllPalFX - State Controller</a></li>
-					<li><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AllPalFX" target="_blank" rel="external">AllPalFX - 東方夢幻館</a></li>
-					<li><a href="http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm" target="_blank" rel="external">AllPalFX - 地球の応接間</a></li>
+					<li><cite><a href="http://elecbyte.com/wiki/index.php/AllPalFX" target="_blank" rel="external">AllPalFX - M.U.G.E.N wiki</a></cite></li>
+					<li><cite><a href="http://www49.atwiki.jp/mugencns/pages/63.html" target="_blank" rel="external">AllPalFX - MUGEN CNS WIKI CHAOS@予定</a></cite></li>
+					<li><cite><a href="http://mugenbinran.web.fc2.com/error.html#12" target="_blank" rel="external">不具合・対策まとめ - MUGENの便覧</a></cite></li>
+					<li><cite><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AllPalFX&protocol=http" target="_blank" rel="external">AllPalFX - State Controller</a></cite></li>
+					<li><cite><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AllPalFX" target="_blank" rel="external">AllPalFX - 東方夢幻館</a></cite></li>
+					<li><cite><a href="http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm" target="_blank" rel="external">AllPalFX - 地球の応接間</a></cite></li>
 				</ul>
 	</div></section>
 	
@@ -827,8 +828,12 @@ AllPalFX【画面全体の色を変更】 | MUGEN State Controller - Name = SURA
 
 
 <div id="recruit" class="article-survey-container">
+
+<div class="title">記事に不備があった場合</div>
+<p>不備があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。</p>
+
 <div class="title">記事を編集してみませんか？</div>
-<p>問題点があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。また、ページ編集にご協力いただける方を募集しております。お気軽にご連絡下さい。Please report any problems to the <a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a> · <a href="https://twitter.com/bluesura">Twitter</a> · <a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>. In addition, we are looking for the person who cooperate with page editing and translation. Please do not hesitate to contact me.</p>
+<p>ページ編集・翻訳にご協力いただける方を募集しております。お気軽にご連絡下さい。</p><p>We are looking for someone who can cooperate on page editing / translation. Please feel free to contact us.</p>
 </div>
 
 </div>

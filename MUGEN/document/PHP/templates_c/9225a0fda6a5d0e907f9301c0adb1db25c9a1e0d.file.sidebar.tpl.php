@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-03-05 05:21:01
+<?php /* Smarty version Smarty-3.1.12, created on 2017-05-21 17:08:30
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\sidebar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1030458bb9f892daad2-45074869%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9225a0fda6a5d0e907f9301c0adb1db25c9a1e0d' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\sidebar.tpl',
-      1 => 1488691255,
+      1 => 1495386020,
       2 => 'file',
     ),
   ),
@@ -64,8 +64,12 @@ $_smarty_tpl->tpl_vars['temp']->_loop = true;
 
 
 <div id="recruit" class="article-survey-container">
+
+<div class="title">記事に不備があった場合</div>
+<p>不備があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。</p>
+
 <div class="title">記事を編集してみませんか？</div>
-<p>問題点があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。また、ページ編集にご協力いただける方を募集しております。お気軽にご連絡下さい。Please report any problems to the <a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a> · <a href="https://twitter.com/bluesura">Twitter</a> · <a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>. In addition, we are looking for the person who cooperate with page editing and translation. Please do not hesitate to contact me.</p>
+<p>ページ編集・翻訳にご協力いただける方を募集しております。お気軽にご連絡下さい。</p><p>We are looking for someone who can cooperate on page editing / translation. Please feel free to contact us.</p>
 </div>
 
 </div><?php }} ?>

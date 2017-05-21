@@ -41,8 +41,9 @@
   <meta name="author" content="sura">
   <meta name="copyright" content="Copyright© SURA(すら) All rights reserved." />
   <link rel="author" title="sura" href="https://twitter.com/bluesura">
+  
   <link rel="canonical" href="{$content.url}">
-  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="ATOM" type="application/atom+xml">
+  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="{$content.site_name|escape}の更新履歴" type="application/atom+xml">
   <meta name="generator" content="Smarty">
   <!-- 「駄目ね、全然駄目だわ」 -->
 

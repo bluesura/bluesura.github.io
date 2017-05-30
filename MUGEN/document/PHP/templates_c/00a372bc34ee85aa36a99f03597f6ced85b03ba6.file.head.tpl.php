@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-05-21 09:54:35
+<?php /* Smarty version Smarty-3.1.12, created on 2017-05-30 14:08:56
          compiled from "F:\bluesura\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:30842592163db1806c5-17580956%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '00a372bc34ee85aa36a99f03597f6ced85b03ba6' => 
     array (
       0 => 'F:\\bluesura\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1495189580,
+      1 => 1496153311,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_592163db314ce5_61140669',
   'variables' => 
   array (
     'content' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_592163db314ce5_61140669',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_592163db314ce5_61140669')) {function content_592163db314ce5_61140669($_smarty_tpl) {?>  <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
@@ -76,7 +76,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 の更新履歴" type="application/atom+xml">
   <meta name="generator" content="Smarty">
   <!-- 「駄目ね、全然駄目だわ」 -->
-
+<meta name="yandex-verification" content="1899f07145a7d36d" />
+<meta name="p:domain_verify" content="78fabf8c78c7428693f52f595b7dd476"/>
   <!-- ジョインジョイン OGP -->
   <meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 

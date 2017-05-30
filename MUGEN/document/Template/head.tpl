@@ -46,7 +46,8 @@
   <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="{$content.site_name|escape}の更新履歴" type="application/atom+xml">
   <meta name="generator" content="Smarty">
   <!-- 「駄目ね、全然駄目だわ」 -->
-
+<meta name="yandex-verification" content="1899f07145a7d36d" />
+<meta name="p:domain_verify" content="78fabf8c78c7428693f52f595b7dd476"/>
   <!-- ジョインジョイン OGP -->
   <meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 {*  <meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻">*}

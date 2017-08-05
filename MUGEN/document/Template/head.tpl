@@ -11,7 +11,7 @@
 
 
   <title itemprop="headline">
-{if $content.page_subtitle}{$content.page_subtitle}{/if}
+{if $content.page_subtitle}{$content.page_subtitle} | {/if}
 {if $content.page.category[1]}【{$content.page.category[1]|escape}】 | {/if}
 {if $content.page_title}{$content.page_title|escape} - {/if}
 {$content.site_name|escape}

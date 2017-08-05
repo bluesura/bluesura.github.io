@@ -14,6 +14,10 @@
 	"description": "<p>変数に乱数を代入します。fvarに代入することはできません。用途は様々。</p><p>相手のステートを奪った状態でこのコントローラを実行すると、相手の変数を変更することになってしまいます。失礼な行為に当たりますので、注意。</p>",
 	"category": "state",
 
+  "version": [
+    {"no": "警告文", "content": "RANDOMIZED VAR OUT OF RANGE (-1): vに-1以下、60以上（最後の数値は指定した数値が表示される）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+  ],
+
 	"parameter": [
 		{
 			"parameter": "v",

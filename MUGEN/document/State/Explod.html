@@ -13,7 +13,7 @@
 
 
   <title itemprop="headline">
-Explod | 【アニメーションを表示】 | MUGEN State Controller - Name = SURA
+Explod | 【アニメーションを表示】 | MUGEN State Controller - Name = すら
   </title>
 
   <!---->
@@ -42,7 +42,7 @@ Explod | 【アニメーションを表示】 | MUGEN State Controller - Name = 
   <link rel="author" title="sura" href="https://twitter.com/bluesura">
   
   <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/State/Explod.html">
-  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = SURAの更新履歴" type="application/atom+xml">
+  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = すらの更新履歴" type="application/atom+xml">
   <meta name="generator" content="Smarty">
   <!-- 「駄目ね、全然駄目だわ」 -->
 
@@ -103,7 +103,9 @@ Explod | 【アニメーションを表示】 | MUGEN State Controller - Name = 
 	<div id="blog-title-inner">
 
 		<div id="blog-title-content">
-			<h1 id="title"><a href="./">MUGEN State Controller</a></h1>
+			<h1 id="title"><a href="./">
+								MUGEN State Controller
+			</a></h1>
 
 			<div id="blog-description"><div class="notice">MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div></div>
 		</div>
@@ -141,21 +143,96 @@ Explod | 【アニメーションを表示】 | MUGEN State Controller - Name = 
 				<tr><th></th><th>内容</th></tr>
 			</thead>
 			<tbody>
-									<tr><td>-</td><td><code>BindTime=0</code>で<code>PosType</code>を指定していても<code>PosType=Left</code>として扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。</td></tr>
-									<tr><td>-</td><td>未検証：<code>ScreenBound</code>で画面を固定していると、<code>Explod</code>が本体に追従できずに数Fの間ずれることがある。</td></tr>
-									<tr><td>-</td><td>未検証：<code>AfterImage</code>系統と異なり、<code>ModifyExplod</code>を用いても<code>RemoveTime</code>で消えるまでの残り時間は変わらない。</td></tr>
-									<tr><td>-</td><td>未検証：<code>IgnoreHitPause=1</code>ではHitPauseTime中にも出る、またAnimが動作する。<code>IgnoreHitPause</code>を省略するとHitPauseTime中には出ない、またAnimeが動く。<code>IgnoreHitPause=0</code>ではHitPauseTime中には出ない、またAnimが動かない。</td></tr>
-									<tr><td>Version1.0より前</td><td><code>Explod</code>を消去する前に、<code>Explod</code>を管理している<code>Helper</code>を<code>DestroySelf</code>で消去してしまうとExplodが残り続けます。</td></tr>
-									<tr><td>Version1.1から</td><td><code>Explod</code>の<code>PosType</code>が<code>P1</code>と<code>P2</code>以外の時に、<code>EnvShake</code>（画面振動）の影響を受けなくなった</td></tr>
-									<tr><td>Version1.1から</td><td><code>-2</code>に記述された<code>Explod</code>はステートが奪われた場合、奪った相手の<code>LocalCoord</code>の影響を受け縮尺がおかしくなります。</td></tr>
-									<tr><td>Version1.1から</td><td><code>Space</code>,<code>Angle</code>,<code>XAngle</code>,<code>YAngle</code>,<code>ReMapPal</code>,<code>BindID</code>,<code>PosType</code>に<code>None</code>が追加されました。</td></tr>
-									<tr><td>Version1.1から</td><td><code>SuperMove</code>が廃止されました。</td></tr>
-									<tr><td>警告文</td><td>ILLEGAL EXPLOD ANIMNO : Animに-1以下</td></tr>
-									<tr><td>警告文</td><td>NEGATIVE EXPLOD ID : IDに-1以下</td></tr>
-									<tr><td>警告文</td><td>ILLEGAL POSBINDTIME FOR EXPLOD : BindTimeに-2以下</td></tr>
-									<tr><td>警告文</td><td>NEGATIVE EXPLOD RANDOM PARAM : Randomに-1以下</td></tr>
-									<tr><td>警告文</td><td>ILLEGAL REMOVETIME FOR EXPLOD : RemoveTimeに-3以下</td></tr>
-									<tr><td>警告文</td><td>ILLEGAL SHADOW COLOR : Colorに-2以下</td></tr>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>BindTime=0</code>で<code>PosType</code>を指定していても<code>PosType=Left</code>として扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										未検証：<code>ScreenBound</code>で画面を固定していると、<code>Explod</code>が本体に追従できずに数Fの間ずれることがある。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										未検証：<code>AfterImage</code>系統と異なり、<code>ModifyExplod</code>を用いても<code>RemoveTime</code>で消えるまでの残り時間は変わらない。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										未検証：<code>IgnoreHitPause=1</code>ではHitPauseTime中にも出る、またAnimが動作する。<code>IgnoreHitPause</code>を省略するとHitPauseTime中には出ない、またAnimeが動く。<code>IgnoreHitPause=0</code>ではHitPauseTime中には出ない、またAnimが動かない。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.0より前</td>
+					<td>
+										<code>Explod</code>を消去する前に、<code>Explod</code>を管理している<code>Helper</code>を<code>DestroySelf</code>で消去してしまうとExplodが残り続けます。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										<code>Explod</code>の<code>PosType</code>が<code>P1</code>と<code>P2</code>以外の時に、<code>EnvShake</code>（画面振動）の影響を受けなくなった
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										<code>-2</code>に記述された<code>Explod</code>はステートが奪われた場合、奪った相手の<code>LocalCoord</code>の影響を受け縮尺がおかしくなります。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										<code>Space</code>,<code>Angle</code>,<code>XAngle</code>,<code>YAngle</code>,<code>ReMapPal</code>,<code>BindID</code>,<code>PosType</code>に<code>None</code>が追加されました。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										<code>SuperMove</code>が廃止されました。
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+										ILLEGAL EXPLOD ANIMNO : Animに-1以下
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+										NEGATIVE EXPLOD ID : IDに-1以下
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+										ILLEGAL POSBINDTIME FOR EXPLOD : BindTimeに-2以下
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+										NEGATIVE EXPLOD RANDOM PARAM : Randomに-1以下
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+										ILLEGAL REMOVETIME FOR EXPLOD : RemoveTimeに-3以下
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+										ILLEGAL SHADOW COLOR : Colorに-2以下
+										</td>
+				</tr>
 							</tbody>
 		</table>
 	</div></section>

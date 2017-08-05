@@ -14,6 +14,10 @@
 	"description": "<p>パートナーがいる時に使用可能。実行者のCtrlは継続されるが、パートナーのCtrlは0になります。<a href=\"./ChangeState.html\">ChangeState</a>と同じくStateNoでループ構造にすると”stopped after 2500 loops”が発生。</p><p>パートナーが存在しない場合、パラメータを読み込まず、StandByを1にしない事以外は<a href=\"./TagOut.html\">TagOut</a>と同じ動作(Timeをリセットせずに実行時の[StateDef]を読み込み直す=TagIn以降のステートコントローラーは実行されない)をします。なので、シングルでも2500ループは発生するためエラーを起こさないようにNumPartnerや変数で対策が必要になります。</p><p>ヘルパー内部では動作しません。<span class=\"decoration-font-size-small\">もしかしたら、同じステートでループした場合Timeがリセットされない可能性があるかもしれません。</span></p><p>使い方は、タッグパトナーとの同時攻撃、魅せる演出に使用します。例えば、”(´・ω・｀)とヘイちゃんのダブルカットインだしてカッコヨク技を発動”させたり”TagInで味方を[StateDef 110]へ飛ばし、味方に攻撃当ててターゲット確保、LifeAdd等を記述した蘇生ステートに飛して蘇生させる”のに使用します。</p>",
 	"category": "state",
 
+	"version": [
+		{"no": "警告文", "content": "ATTEMPTED CHANGE TO NEGATIVE ANI:PartnerStateNoに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
+
 	"parameter": [
 		{
 			"parameter": "StateNo",

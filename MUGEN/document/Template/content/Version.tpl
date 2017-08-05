@@ -7,7 +7,14 @@
 			</thead>
 			<tbody>
 				{foreach $content.version as $array}
-					<tr><td>{$array.no}</td><td>{$array.content}</td></tr>
+				<tr>
+					<td>{$array.no}</td>
+					<td>
+					{if $array.blockquote!=""}<blockquote cite="{{$array.blockquote}}">{/if}
+					{$array.content}
+					{if $array.blockquote!=""}</blockquote>{/if}
+					</td>
+				</tr>
 				{/foreach}
 			</tbody>
 		</table>

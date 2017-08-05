@@ -13,7 +13,7 @@
 
 
   <title itemprop="headline">
-ModifyExplod | 【Explodの設定を変更】 | MUGEN State Controller - Name = SURA
+ModifyExplod | 【Explodの設定を変更】 | MUGEN State Controller - Name = すら
   </title>
 
   <!---->
@@ -42,7 +42,7 @@ ModifyExplod | 【Explodの設定を変更】 | MUGEN State Controller - Name = 
   <link rel="author" title="sura" href="https://twitter.com/bluesura">
   
   <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/State/ModifyExplod.html">
-  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = SURAの更新履歴" type="application/atom+xml">
+  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = すらの更新履歴" type="application/atom+xml">
   <meta name="generator" content="Smarty">
   <!-- 「駄目ね、全然駄目だわ」 -->
 
@@ -103,7 +103,9 @@ ModifyExplod | 【Explodの設定を変更】 | MUGEN State Controller - Name = 
 	<div id="blog-title-inner">
 
 		<div id="blog-title-content">
-			<h1 id="title"><a href="./">MUGEN State Controller</a></h1>
+			<h1 id="title"><a href="./">
+								MUGEN State Controller
+			</a></h1>
 
 			<div id="blog-description"><div class="notice">MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div></div>
 		</div>
@@ -141,11 +143,36 @@ ModifyExplod | 【Explodの設定を変更】 | MUGEN State Controller - Name = 
 				<tr><th></th><th>内容</th></tr>
 			</thead>
 			<tbody>
-									<tr><td>-</td><td>BindTime=0でPosTypeを指定していてもPosType=Leftとして扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。</td></tr>
-									<tr><td>-</td><td>未検証：AfterImage系統と異なり、ModifyExplodを用いてもRemoveTimeで消えるまでの残り時間は変わらない。</td></tr>
-									<tr><td>-</td><td>AnimとOwnPalは設定出来ません。</td></tr>
-									<tr><td>-</td><td>Pos、Facing、VFacing、Vel、Accel、RandomはPosTypeも一緒に指定しなければ読み込まれない。</td></tr>
-									<tr><td>-</td><td>SuperMoveTimeやPauseMoveTimeはModifyExplod自体のパラメータが変更されるだけで、対象となるExplodの該当する値を変更することはできない。</td></tr>
+								<tr>
+					<td>-</td>
+					<td>
+										BindTime=0でPosTypeを指定していてもPosType=Leftとして扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										未検証：AfterImage系統と異なり、ModifyExplodを用いてもRemoveTimeで消えるまでの残り時間は変わらない。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										AnimとOwnPalは設定出来ません。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										Pos、Facing、VFacing、Vel、Accel、RandomはPosTypeも一緒に指定しなければ読み込まれない。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										SuperMoveTimeやPauseMoveTimeはModifyExplod自体のパラメータが変更されるだけで、対象となるExplodの該当する値を変更することはできない。
+										</td>
+				</tr>
 							</tbody>
 		</table>
 	</div></section>

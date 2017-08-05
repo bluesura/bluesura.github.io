@@ -14,6 +14,10 @@
 	"description": "<p>指定した範囲の番号の変数に、一気に同じ値を代入します。整数変数、小数変数ともに代入可能ですが、両方を同時に扱うことはできません。</p>",
 	"category": "state",
 
+  "version": [
+    {"no": "警告文", "content": "SET ILLEGAL VAR RANGE (-1-59): First以上Last以下が-1以下または60以上に被る（最後の数値は指定した数値が表示される）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+  ],
+
 	"parameter": [
 		{
 			"parameter": "value",

@@ -51,7 +51,7 @@ $PROTOCOL   = "https";
 $DOMAIN     = "bluesura.github.io";
 $MUGEN_PATH = "/MUGEN/document";
 $URL        = $PROTOCOL."://".$DOMAIN;
-$SITE_NAME  = "Name = SURA";
+$SITE_NAME  = "Name = すら";
 $MAIN_TITLE = "";
 $sub_title  = "";
 $PATH_LIST  = [];

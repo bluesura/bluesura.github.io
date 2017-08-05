@@ -16,7 +16,8 @@
 
 	"version": [
 		{"no": "Version1.0より前", "content": "var(番号),fvar(番号)で大文字を使用するとエラーが発生します。"},
-		{"no": "Version1.1から", "content": "未検証:値が変化しない場合があります。ヒット硬直やステコンPauseなどの停止系統が作用している時。"}
+		{"no": "Version1.1から", "content": "未検証:値が変化しない場合があります。ヒット硬直やステコンPauseなどの停止系統が作用している時。"},
+		{"no": "警告文", "content": "SET VAR OUT OF RANGE VAR(-1): varなら-1以下または60以上、fvarなら-1以下または40以上の番号に値を代入（対象がfvarであっても警告文にはVARと表示される。）（最後の数値は指定した数値が表示される）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
 	],
 
 	"parameter": [

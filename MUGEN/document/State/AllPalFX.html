@@ -13,7 +13,7 @@
 
 
   <title itemprop="headline">
-AllPalFX | 【画面全体の色を変更】 | MUGEN State Controller - Name = SURA
+AllPalFX | 【画面全体の色を変更】 | MUGEN State Controller - Name = すら
   </title>
 
   <!---->
@@ -42,7 +42,7 @@ AllPalFX | 【画面全体の色を変更】 | MUGEN State Controller - Name = S
   <link rel="author" title="sura" href="https://twitter.com/bluesura">
   
   <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/State/AllPalFX.html">
-  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = SURAの更新履歴" type="application/atom+xml">
+  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = すらの更新履歴" type="application/atom+xml">
   <meta name="generator" content="Smarty">
   <!-- 「駄目ね、全然駄目だわ」 -->
 
@@ -104,7 +104,9 @@ AllPalFX | 【画面全体の色を変更】 | MUGEN State Controller - Name = S
 	<div id="blog-title-inner">
 
 		<div id="blog-title-content">
-			<h1 id="title"><a href="./">MUGEN State Controller</a></h1>
+			<h1 id="title"><a href="./">
+								MUGEN State Controller
+			</a></h1>
 
 			<div id="blog-description"><div class="notice">MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div></div>
 		</div>
@@ -142,16 +144,66 @@ AllPalFX | 【画面全体の色を変更】 | MUGEN State Controller - Name = S
 				<tr><th></th><th>内容</th></tr>
 			</thead>
 			<tbody>
-									<tr><td>mugen 1.0より前</td><td><code>Add</code>の値をマイナスに設定すると画面の色は変更されずにデバッグテキストの文字色が変化。文字色は、マイナスで指定した値の補色に変わります。ただし、赤の値をマイナスに指定した場合、文字色は変更されますが画面が暗くなってしまいます。</td></tr>
-									<tr><td>-</td><td><code>AllPalFX</code>の持続時間中に、呼び出された<code>OwnPal=1</code>の<code>Explod</code>などに効果はおよびません。</td></tr>
-									<tr><td>-</td><td><code>PalFX</code>を実行したキャラは効果の影響を受けません。</td></tr>
-									<tr><td>-</td><td><code>SuperPause</code>による暗転を行うと背景や相手への効果がなくなります。</td></tr>
-									<tr><td>-</td><td>全く同じ数値の<code>Add</code>、<code>Mul</code>を設定した<code>AllPalFX</code>を実行した場合、持続扱いとなり上記の効果が消える不具合を回避できません。違う値に設定した場合回避可能。</td></tr>
-									<tr><td>-</td><td><code>Color</code>で0以下の値が設定可能ですが、警告文が表示され色の表示がおかしくなります。</td></tr>
-									<tr><td>-</td><td><code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。</td></tr>
-									<tr><td>警告文</td><td>INVALID PALFX TIME: Timeに-2以下</td></tr>
-									<tr><td>警告文</td><td>INVALID PALFX COLOR: Colorに-1以下、257以上</td></tr>
-									<tr><td>警告文</td><td>INVALID PALFX MUL VALUE: MULに-1以下</td></tr>
+								<tr>
+					<td>mugen 1.0より前</td>
+					<td>
+										<code>Add</code>の値をマイナスに設定すると画面の色は変更されずにデバッグテキストの文字色が変化。文字色は、マイナスで指定した値の補色に変わります。ただし、赤の値をマイナスに指定した場合、文字色は変更されますが画面が暗くなってしまいます。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>AllPalFX</code>の持続時間中に、呼び出された<code>OwnPal=1</code>の<code>Explod</code>などに効果はおよびません。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>PalFX</code>を実行したキャラは効果の影響を受けません。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>SuperPause</code>による暗転を行うと背景や相手への効果がなくなります。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										全く同じ数値の<code>Add</code>、<code>Mul</code>を設定した<code>AllPalFX</code>を実行した場合、持続扱いとなり上記の効果が消える不具合を回避できません。違う値に設定した場合回避可能。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>Color</code>で0以下の値が設定可能ですが、警告文が表示され色の表示がおかしくなります。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+										INVALID PALFX TIME: Timeに-2以下
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+										INVALID PALFX COLOR: Colorに-1以下、257以上
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+										INVALID PALFX MUL VALUE: MULに-1以下
+										</td>
+				</tr>
 							</tbody>
 		</table>
 	</div></section>

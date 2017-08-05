@@ -13,7 +13,7 @@
 
 
   <title itemprop="headline">
-AssertSpecial | 【消去・制限などの特殊処理】 | MUGEN State Controller - Name = SURA
+AssertSpecial | 【消去・制限などの特殊処理】 | MUGEN State Controller - Name = すら
   </title>
 
   <!---->
@@ -42,7 +42,7 @@ AssertSpecial | 【消去・制限などの特殊処理】 | MUGEN State Control
   <link rel="author" title="sura" href="https://twitter.com/bluesura">
   
   <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/State/AssertSpecial.html">
-  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = SURAの更新履歴" type="application/atom+xml">
+  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = すらの更新履歴" type="application/atom+xml">
   <meta name="generator" content="Smarty">
   <!-- 「駄目ね、全然駄目だわ」 -->
 
@@ -103,7 +103,9 @@ AssertSpecial | 【消去・制限などの特殊処理】 | MUGEN State Control
 	<div id="blog-title-inner">
 
 		<div id="blog-title-content">
-			<h1 id="title"><a href="./">MUGEN State Controller</a></h1>
+			<h1 id="title"><a href="./">
+								MUGEN State Controller
+			</a></h1>
 
 			<div id="blog-description"><div class="notice">MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div></div>
 		</div>
@@ -141,8 +143,18 @@ AssertSpecial | 【消去・制限などの特殊処理】 | MUGEN State Control
 				<tr><th></th><th>内容</th></tr>
 			</thead>
 			<tbody>
-									<tr><td>1.0より前</td><td>プラグインを導入した状態で、<code>NoMusic</code>を実行した場合バグる恐れあり。</td></tr>
-									<tr><td>-</td><td><code>RoundState=3</code>に<code>AssertSpecial</code>の<code>RoundNotOver</code>と、長時間の<code>SuperPause</code>または同時間に<code>ChangeState</code>を利用することで、八百長(配点がされないまま次ラウンドへ移行する)バグが発生します。</td></tr>
+								<tr>
+					<td>1.0より前</td>
+					<td>
+										プラグインを導入した状態で、<code>NoMusic</code>を実行した場合バグる恐れあり。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>RoundState=3</code>に<code>AssertSpecial</code>の<code>RoundNotOver</code>と、長時間の<code>SuperPause</code>または同時間に<code>ChangeState</code>を利用することで、八百長(配点がされないまま次ラウンドへ移行する)バグが発生します。
+										</td>
+				</tr>
 							</tbody>
 		</table>
 	</div></section>

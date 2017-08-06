@@ -12,7 +12,10 @@
 
 	"state": "C",
 	"description": "屈み Crouching",
+	"images": [{"src": "C.gif", "width": "640", "height": "480", "alt": "MUGEN C"}],
 	"category": "statetype",
+	"associated_trigger": ["StateType","P2StateType"],
+	"associated_state": ["S","A","L","U","StateTypeSet"],
 
 	"version": [
 		{"no": "-", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}

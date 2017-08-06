@@ -1,4 +1,4 @@
-﻿	<section id="summary"><div class="summary section">
+	<section id="summary"><div class="summary section">
 		<h2>概要</h2>
 		{$content.summary}
 	</div></section>

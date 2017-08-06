@@ -127,8 +127,7 @@ AILevel | 【AIのレベルは何ですか？】 | MUGEN Trigger - Name = すら
 </div></header>
 	<div class="entry-content">
 
-
-﻿	<section id="summary"><div class="summary section">
+	<section id="summary"><div class="summary section">
 		<h2>概要</h2>
 		<p>AIレベルを返します。</p>
 	</div></section>
@@ -151,22 +150,26 @@ AILevel | 【AIのレベルは何ですか？】 | MUGEN Trigger - Name = すら
 
 
 
-﻿	
+	
 
-﻿		<section id="CodeSample"><div class="section">
+		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3>使用例</h3>						<div class="code"><code><ul>
+			<h3>使用例</h3>
+						<div class="code"><code>
+			<ul>
 							<li>[state -2, AIレベルの確認]</li>
 							<li>Type = DisplayToClipboard</li>
 							<li>Trigger1 = 1</li>
 							<li>Text= "AILevel:%d AILevel:%d"</li>
 							<li>Params = AILevel, EnemyNear,AILevel</li>
-						</ul></code></div>
-
-			</div>
+						</ul>
+			</code></div>
+			</div><br>
 			<div>
-			<h3>旧バージョンとバージョン1.0以上の互換性を持たせる</h3>						<div class="code"><code><ul>
+			<h3>旧バージョンとバージョン1.0以上の互換性を持たせる</h3>
+						<div class="code"><code>
+			<ul>
 							<li>[State -3,AILvFlagSet]</li>
 							<li>Type=VarSet</li>
 							<li>TriggerAll=!Ishelper</li>
@@ -204,15 +207,15 @@ AILevel | 【AIのレベルは何ですか？】 | MUGEN Trigger - Name = すら
 							<li>; Trigger1=AILevel=0||AILevel>var(59)</li>
 							<li>; Trigger1=var(59):=(AILevel>var(59))*AILevel</li>
 							<li>; IgnoreHitPause=1</li>
-						</ul></code></div>
-
-			</div>
+						</ul>
+			</code></div>
+			</div><br>
 				</div></section>
 	
 
-﻿	
+	
 
-﻿		<section id="Quote"><div class="section">
+		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
 					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#ailevel" target="_blank" rel="external">AILevel - Trigger Reference Reference Documentation for version 1.1</a></li>

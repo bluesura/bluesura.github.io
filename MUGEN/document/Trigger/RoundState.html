@@ -127,8 +127,7 @@ RoundState | 【試合前・イントロ・試合中・試合終了・勝敗判�
 </div></header>
 	<div class="entry-content">
 
-
-﻿	<section id="summary"><div class="summary section">
+	<section id="summary"><div class="summary section">
 		<h2>概要</h2>
 		<p>現在のラウンドの状態を返します。</p>
 	</div></section>
@@ -151,12 +150,14 @@ RoundState | 【試合前・イントロ・試合中・試合終了・勝敗判�
 
 
 
-﻿	
+	
 
-﻿		<section id="CodeSample"><div class="section">
+		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3>フライング防止</h3>						<div class="code"><code><ul>
+			<h3>フライング防止</h3>
+						<div class="code"><code>
+			<ul>
 							<li>[State -3, 変数リセット]</li>
 							<li>Type = VarSet</li>
 							<li>Trigger1 = RoundState != 2</li>
@@ -172,15 +173,15 @@ RoundState | 【試合前・イントロ・試合中・試合終了・勝敗判�
 							<li>Trigger3 = MoveType = H</li>
 							<li>var(45) = 1</li>
 							<li>IgnoreHitPause = 1</li>
-						</ul></code></div>
-
-			</div>
+						</ul>
+			</code></div>
+			</div><br>
 				</div></section>
 	
 
-﻿	
+	
 
-﻿		<section id="Quote"><div class="section">
+		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
 					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#roundstate" target="_blank" rel="external">RoundState - Trigger Reference Reference Documentation for version 1.1</a></li>

@@ -1,20 +1,29 @@
-﻿	{if $content.code_sample}
+	{if $content.code_sample}
 	<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			{foreach $content.code_sample as $code_sample}
 <div>
-			{if $code_sample.title != NULL}<h3>{$code_sample.title}</h3>{/if}
+			<h3>{$code_sample.title}</h3>
 			{if $code_sample.description != ""}
 			<div class="description">{$code_sample.description}</div>
 			{/if}
-			<div class="code"><code><ul>
+			<div class="code"><code>
+			<ul>
 			{foreach $code_sample.code as $code}
 				<li>{$code}</li>
 			{/foreach}
-			</ul></code></div>
-
+			</ul>
+			</code></div>
 			{if $code_sample.media != NULL}
 			<div class="media">
+				{if $code_sample.media.youtube != []}
+				<div>
+					{foreach $code_sample.media.youtube as $youtube}
+					<h4>{$video.title}</h4>
+					<div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;"><iframe style="position: absolute; top: 0;  left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/{$youtube.file}" frameborder="0" allowfullscreen></iframe></div>
+					{/foreach}
+				</div>
+				{/if}
 				{if $code_sample.media.video != []}
 				<div class="video-group">
 					{foreach $code_sample.media.video as $video}
@@ -40,7 +49,7 @@
 				{/if}
 			</div>
 			{/if}
-</div>
+</div><br>
 			{/foreach}
 	</div></section>
 	{/if}

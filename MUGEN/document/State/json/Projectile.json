@@ -12,6 +12,7 @@
 
 	"state": "Projectile",
 	"description": "<p>飛び道具を出現させます。独自のパラメータ以外に<code>HitDef</code>の全てのパラメータを設定可能。</p><p>ちなみに、飛び道具でもやられ判定を付けないと相殺しません。</p><p>割と細かい設定が可能ですが、それでもあまり複雑な動きはできません。</p><p>このステートコントローラーで役不足な場合は<code>Helper</code>を使用します。</p><p>なお、<code>Win</code>ではプレイヤーへの<code>PalFX</code>の影響を受けてしまいます(バグ？)。<code>OwnPal=1</code>を指定してもエラーとはなりませんが、無効です。</p><p>ちなみに、<code>Helper</code>が出した<code>Projectile</code>も、本体管理となります。当然、パレットも本体と共用です。</p>",
+	"images": [{"src": "Projectile.gif", "width": "640", "height": "480", "alt": "MUGEN Projectile"}],
 	"category": "state",
 
 	"associated_trigger": ["NumProj", "NumProjID"],

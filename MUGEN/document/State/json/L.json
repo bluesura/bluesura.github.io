@@ -12,7 +12,10 @@
 
 	"state": "L",
 	"description": "転倒 Lying down",
+	"images": [{"src": "L.gif", "width": "640", "height": "480", "alt": "MUGEN L"}],
 	"category": "statetype",
+	"associated_trigger": ["StateType","P2StateType"],
+	"associated_state": ["S","C","A","U","StateTypeSet"],
 
 	"version": [
 		{"no": "-", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}

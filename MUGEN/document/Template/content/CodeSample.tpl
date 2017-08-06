@@ -1,4 +1,4 @@
-﻿	{if $content.code_sample}
+	{if $content.code_sample}
 	<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			{foreach $content.code_sample as $code_sample}

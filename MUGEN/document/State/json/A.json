@@ -12,7 +12,10 @@
 
 	"state": "A",
 	"description": "<p>空中 Air 地上にいても「A」なら攻撃を受けると空中へ吹っ飛びます。</p>",
+	"images": [{"src": "A.gif", "width": "640", "height": "480", "alt": "MUGEN A"}],
 	"category": "statetype",
+	"associated_trigger": ["StateType","P2StateType"],
+	"associated_state": ["S","C","L","U","StateTypeSet"],
 
 	"version": [
 		{"no": "-", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}

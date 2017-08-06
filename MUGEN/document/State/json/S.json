@@ -12,6 +12,9 @@
 
 	"state": "S",
 	"description": "立ち Standing",
+	"images": [{"src": "S.gif", "width": "640", "height": "480", "alt": "MUGEN S"}],
+	"associated_trigger": ["StateType","P2StateType"],
+	"associated_state": ["C","A","L","U","StateTypeSet"],
 	"category": "statetype",
 
 	"version": [

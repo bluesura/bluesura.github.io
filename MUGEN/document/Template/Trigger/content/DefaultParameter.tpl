@@ -1,4 +1,4 @@
-﻿	<section id="DefaultParameter"><div class="section">
+	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
 		<ul>

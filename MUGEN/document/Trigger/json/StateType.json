@@ -10,6 +10,8 @@
 		"level": "3"
 	},
 	"category": "trigger",
+	"associated_trigger": ["P2StateType"],
+	"associated_state": ["S","C","A","U","StateTypeSet"],
 
 	"trigger": "StateType",
 	"summary": "<p>現在のStateTypeを判定し、真偽を返します。</p>",
@@ -24,7 +26,7 @@
 		"StateType != L"
 	],
 
-	"description": "<p>cmdファイルでの条件指定に有効。state_typeには、S, C, A(順に立ち、しゃがみ、空中を表す)の文字のうち、いずれかを指定します。戻り値の型:  boolean int (1 or 0) </p>",
+	"description": "<p>cmdファイルでの条件指定に有効。state_typeには、S, C, A(順に立ち、しゃがみ、空中を表す)の文字のうち、いずれかを指定します。戻り値の型:  boolean int (1 or 0)</p>",
 
 	"code_sample": [
 		{

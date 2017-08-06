@@ -128,15 +128,15 @@ StateTypeSet | MUGEN State Controller - Name = すら
 
   <div class="entry-content">
 
-﻿	<div class="description" itemprop="articleBody">
+	<div class="description" itemprop="articleBody">
 <div><p>プレイヤーのステートタイプ、行動状態、物理状態を変更します。技の途中で宙に浮いたりする場合に使用します。</p></div>
 
 
 
-				
+		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/S.html"><code>S</code></a>, <a href="./../State/C.html"><code>C</code></a>, <a href="./../State/A.html"><code>A</code></a>, <a href="./../State/L.html"><code>L</code></a>, <a href="./../State/U.html"><code>U</code></a>, <a href="./../State/StateTypeSet.html"><code>StateTypeSet</code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/P2StateType.html"><code>P2StateType</code></a></div>
 	</div>
 
-﻿  <section id="Parameter"><div class="section">
+  <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
             <dl class="parameter">
       <dt class="main" id="StateType">
@@ -269,7 +269,7 @@ StateTypeSet | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main" id="Persistent">
-                  Persistent = HitPause無視時間                (整数)
+                  Persistent = ステートを再度読み込むフラグ                (整数)
       </dt>
       <dd>
         <div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
@@ -293,7 +293,7 @@ StateTypeSet | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main" id="IgnoreHitPause">
-                  IgnoreHitPause = HitPauseを無視フラグ                (0か1)
+                  IgnoreHitPause = HitPauseを無視するフラグ                (0か1)
       </dt>
       <dd>
         <div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
@@ -317,9 +317,9 @@ StateTypeSet | MUGEN State Controller - Name = すら
     </dl>
           </div></section>
 
-﻿	
+	
 
-﻿	<section id="DefaultParameter"><div class="section">
+	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
 		<ul>
@@ -338,11 +338,11 @@ StateTypeSet | MUGEN State Controller - Name = すら
 		
 	</div></section>
 
-﻿  
+  
 
-﻿	
+	
 
-﻿	<section id="LoadParameter"><div class="section">
+	<section id="LoadParameter"><div class="section">
 		<h2>パラメーターの読み込み順</h2>
 
 
@@ -362,7 +362,7 @@ StateTypeSet | MUGEN State Controller - Name = すら
 	</div></section>
 
 
-﻿		<section id="Quote"><div class="section">
+		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
 					<li><cite><a href="http://elecbyte.com/wiki/index.php/StateTypeSet" target="_blank" rel="external">StateTypeSet - M.U.G.E.N wiki</a></cite></li>

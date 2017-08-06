@@ -13,6 +13,8 @@
 	"state": "U",
 	"description": "直前のステートから引き継ぐ Unchanged",
 	"category": "statetype",
+	"associated_trigger": ["StateType","P2StateType"],
+	"associated_state": ["S","C","A","L","StateTypeSet"],
 
 	"version": [
 		{"no": "-", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}

@@ -129,7 +129,7 @@ HitDef | 【攻撃判定】 | MUGEN State Controller - Name = すら
 
   <div class="entry-content">
 
-﻿	<div class="description" itemprop="articleBody">
+	<div class="description" itemprop="articleBody">
 <div><p><code>AIR</code>ファイルで設定されている、実行者の<code>Clsn1</code>(攻撃判定：赤い四角)が相手の<code>Clsn2</code>(やられ判定：青い四角)に重なった時の処理を設定。設定された各種パラメーターの条件が相手の状態を満たしていた場合にヒットし、くらいアニメ・ダメージ・ふっとび速度などの処理が実行されます。</p><p><code>HitDef</code>の処理は、ステートを移動する<code>ReversalDef</code>が実行されるまで続きます。</p><p>そのステート中効果が持続しますが、<code>1</code>回ヒットしたキャラに対しては、効果を及ぼさなくなります。このため、複数ヒットする技の場合は、ヒットさせたい数だけ<code>HitDef</code>を定義するか、複数回効果があるようにトリガーを設定する必要があります。</p><p><code>Clsn1</code>がない、または実行者の<code>MoveType</code>が<code>I</code>だった場合、<code>HitDef</code>は機能しません。</p><p><code>HitDef</code>の定義をもった攻撃判定へヒットするのが<code>ReversalDef</code>。仕様上<code>ReversalDef</code>とは併用できません。</p></div>
 
 
@@ -137,7 +137,7 @@ HitDef | 【攻撃判定】 | MUGEN State Controller - Name = すら
 		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/ReversalDef.html"><code>ReversalDef</code></a></div>		
 	</div>
 
-﻿  <section id="Parameter"><div class="section">
+  <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
             <dl class="parameter">
       <dt class="main" id="Attr">
@@ -2239,7 +2239,7 @@ HitDef | 【攻撃判定】 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main" id="Persistent">
-                  Persistent = HitPause無視時間                (整数)
+                  Persistent = ステートを再度読み込むフラグ                (整数)
       </dt>
       <dd>
         <div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
@@ -2263,7 +2263,7 @@ HitDef | 【攻撃判定】 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main" id="IgnoreHitPause">
-                  IgnoreHitPause = HitPauseを無視フラグ                (0か1)
+                  IgnoreHitPause = HitPauseを無視するフラグ                (0か1)
       </dt>
       <dd>
         <div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
@@ -2287,7 +2287,7 @@ HitDef | 【攻撃判定】 | MUGEN State Controller - Name = すら
     </dl>
           </div></section>
 
-﻿		<section id="Version"><div class="section">
+		<section id="Version"><div class="section">
 		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
 		<table>
 
@@ -2501,7 +2501,7 @@ HitDef | 【攻撃判定】 | MUGEN State Controller - Name = すら
 	</div></section>
 	
 
-﻿	<section id="DefaultParameter"><div class="section">
+	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
 		<ul>
@@ -2603,11 +2603,11 @@ HitDef | 【攻撃判定】 | MUGEN State Controller - Name = すら
 		
 	</div></section>
 
-﻿  
+  
 
-﻿	
+	
 
-﻿	<section id="LoadParameter"><div class="section">
+	<section id="LoadParameter"><div class="section">
 		<h2>パラメーターの読み込み順</h2>
 
 
@@ -2710,7 +2710,7 @@ HitDef | 【攻撃判定】 | MUGEN State Controller - Name = すら
 	</div></section>
 
 
-﻿		<section id="Quote"><div class="section">
+		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
 					<li><cite><a href="http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#hitdef" target="_blank" rel="external">HitDef - State Controller Reference Documentation for version 1.1</a></cite></li>

@@ -127,8 +127,7 @@ WinTime | 【ラウンドで時間切れ勝利をしたか？】 | MUGEN Trigger
 </div></header>
 	<div class="entry-content">
 
-
-﻿	<section id="summary"><div class="summary section">
+	<section id="summary"><div class="summary section">
 		<h2>概要</h2>
 		<p>ラウンドで時間切れ勝利したかどうかを返します。</p>
 	</div></section>
@@ -151,27 +150,29 @@ WinTime | 【ラウンドで時間切れ勝利をしたか？】 | MUGEN Trigger
 
 
 
-﻿	
+	
 
-﻿		<section id="CodeSample"><div class="section">
+		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3>フラグ管理</h3>						<div class="description">時間切れ勝利していて、キャラクターが指定したアニメーションだった場合にフラグを立てる。</div>
-						<div class="code"><code><ul>
+			<h3>フラグ管理</h3>
+						<div class="description">時間切れ勝利していて、キャラクターが指定したアニメーションだった場合にフラグを立てる。</div>
+						<div class="code"><code>
+			<ul>
 							<li>[State ]</li>
 							<li>Type=VarSet</li>
 							<li>TriggerAll=Time=0&&(Root,StateNo=[1100,1199])&&Root,Alive=1&&WinTime=1</li>
 							<li>Trigger1=Anim=10205||Anim=10229||Anim=10405||Anim=10705||Anim=10711||Anim=11000||Anim=11015||Anim=11100||Anim=11110||Anim=11301||Anim=11317||Root,var(57)=19</li>
 							<li>var(0)=2</li>
-						</ul></code></div>
-
-			</div>
+						</ul>
+			</code></div>
+			</div><br>
 				</div></section>
 	
 
-﻿	
+	
 
-﻿		<section id="Quote"><div class="section">
+		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
 					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#win" target="_blank" rel="external">Win - Trigger Reference Reference Documentation for version 1.1</a></li>

@@ -11,7 +11,6 @@
 </div></header>
 	<div class="entry-content">
 
-
 {include file="./../Trigger/content/Description.tpl"}
 
 {*include file="./../Trigger/content/Parameter.tpl"*}

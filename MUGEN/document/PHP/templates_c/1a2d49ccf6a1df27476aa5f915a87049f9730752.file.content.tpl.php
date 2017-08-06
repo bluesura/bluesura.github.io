@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-06 10:19:29
+<?php /* Smarty version Smarty-3.1.12, created on 2017-08-06 14:23:06
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\Trigger\content.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12247208205985635a334c64-36052411%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1a2d49ccf6a1df27476aa5f915a87049f9730752' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\Trigger\\content.tpl',
-      1 => 1502007557,
+      1 => 1502021940,
       2 => 'file',
     ),
   ),
@@ -58,7 +58,6 @@ px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"<?php } ?>><?p
 
 </div></header>
 	<div class="entry-content">
-
 
 <?php echo $_smarty_tpl->getSubTemplate ("./../Trigger/content/Description.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 

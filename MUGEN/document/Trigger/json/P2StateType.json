@@ -10,21 +10,33 @@
 		"level": "3"
 	},
 	"category": "trigger",
+	"associated_trigger": ["StateType"],
+	"associated_state": ["S","C","A","U","StateTypeSet"],
+
 
 	"trigger": "P2StateType",
 	"summary": "<p>P2のStateTypeを判定し、真偽を返します。</p>",
 	"syntax":[
-		"P2StateType = ステートの状態",
-		"P2StateType != ステートの状態"
+		"P2StateType = S",
+		"P2StateType = C",
+		"P2StateType = A",
+		"P2StateType = L",
+		"P2StateType != S",
+		"P2StateType != C",
+		"P2StateType != A",
+		"P2StateType != L"
 	],
 
-	"description": "<p>エラー条件:ゲームクリア、ゲームオーバー画面など、P2が存在しない場合、SFalseを返します。</p>",
+	"description": "<p>ゲームクリア、ゲームオーバー画面など、P2が存在しない場合は0を返します。</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "分身バグ対策",
+			"description": "ヘルパーがキャラに分身することを防ぎます。[StateDef 0]内に記述して下さい。",
 			"code": [
-				""
+				"[State 0]",
+				"Type     = DestroySelf",
+				"Trigger1 = IsHelper"
 			]
 		}
 	],

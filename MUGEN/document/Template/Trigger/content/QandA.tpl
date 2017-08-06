@@ -1,4 +1,4 @@
-﻿	{if $content.qanda != NULL}
+	{if $content.qanda != NULL}
 	<section id="QandA"><div class="section">
 		<h2>注意事項</h2>
 		{foreach $content.qanda as $qanda}

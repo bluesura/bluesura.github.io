@@ -1,4 +1,4 @@
-﻿	<section id="Parameter"><div class="section">
+	<section id="Parameter"><div class="section">
 		<h2>パラメーター</h2>
 		{if $content.parameter == []}
 		<div>なし</div>

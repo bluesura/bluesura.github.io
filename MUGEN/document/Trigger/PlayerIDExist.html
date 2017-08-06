@@ -127,8 +127,7 @@ PlayerIDExist | 【指定したIDのキャラクター・ヘルパーは存在�
 </div></header>
 	<div class="entry-content">
 
-
-﻿	<section id="summary"><div class="summary section">
+	<section id="summary"><div class="summary section">
 		<h2>概要</h2>
 		<p>IDのプレイヤーが存在するかどうかを返します。</p>
 	</div></section>
@@ -151,25 +150,29 @@ PlayerIDExist | 【指定したIDのキャラクター・ヘルパーは存在�
 
 
 
-﻿	
+	
 
-﻿		<section id="CodeSample"><div class="section">
+		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3>リダイレクトを使用できるか確認</h3>						<div class="description">変数を間違って相手ヘルパーに代入しないようにするためのトリガー。PlayerExistでHelper自身が存在しているか確認してからリダイレクト(PlayerID)を使用して、自分・相手どちらのヘルパーかTeamSideで確認しています。</div>
-						<div class="code"><code><ul>
+			<h3>リダイレクトを使用できるか確認</h3>
+						<div class="description">変数を間違って相手ヘルパーに代入しないようにするためのトリガー。PlayerExistでHelper自身が存在しているか確認してからリダイレクト(PlayerID)を使用して、自分・相手どちらのヘルパーかTeamSideで確認しています。</div>
+						<div class="code"><code>
+			<ul>
 							<li>[State ]</li>
 							<li>Type = Null</li>
 							<li>Trigger1 = var(0) := var(0) + 1 * (var(0)=0)*ID</li>
 							<li>Trigger1 = PlayerExist(var(0))</li>
 							<li>Trigger1 = PlayerID(var(0)),Teamside != TeamSide</li>
 							<li>Trigger1 = var(20) := 999</li>
-						</ul></code></div>
-
-			</div>
+						</ul>
+			</code></div>
+			</div><br>
 			<div>
-			<h3>Helper消去時のHelper・Explod召喚フリーズ対策</h3>						<div class="description">DestroySelf移行に設置しているExplodへ必ず記述して下さい。</div>
-						<div class="code"><code><ul>
+			<h3>Helper消去時のHelper・Explod召喚フリーズ対策</h3>
+						<div class="description">DestroySelf移行に設置しているExplodへ必ず記述して下さい。</div>
+						<div class="code"><code>
+			<ul>
 							<li>[State ]</li>
 							<li>Type          = Explod</li>
 							<li>TriggerAll    = PlayerIDExist(ID)</li>
@@ -184,15 +187,15 @@ PlayerIDExist | 【指定したIDのキャラクター・ヘルパーは存在�
 							<li>Scale         = .8,.8</li>
 							<li>PauseMoveTime = 999999</li>
 							<li>SuperMoveTime = 999999</li>
-						</ul></code></div>
-
-			</div>
+						</ul>
+			</code></div>
+			</div><br>
 				</div></section>
 	
 
-﻿	
+	
 
-﻿		<section id="Quote"><div class="section">
+		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
 					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#playeridexist" target="_blank" rel="external">PlayerIDExist - Trigger Reference Reference Documentation for version 1.1</a></li>

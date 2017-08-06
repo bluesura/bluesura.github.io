@@ -14,36 +14,48 @@
 	"description": "<p>Helperのステートに記述します。そのHelperを消すことができます。パラメータはありません。</p><p>Helperは同時に存在する数に上限がありますので、常駐させるとき以外は、必ず消すようにしましょう(ラウンド終了時も自動で消えますが)。Helper以外のステートでは無効。</p>",
 	"category": "state",
 
-  "version": [
-    {"no": "Version1.1から", "content": "<code>recursive</code>,<code>removeexplods</code>が追加されました。"},
-    {"no": "Version1.0より前", "content": "Explodを消去する前に、Explodを管理しているHelperをDestroySelfで消去してしまうとExplodが残り続けます。"},
-    {"no": "-", "content": "DestroySelfを実行した直後に、Helperを射出するとエラーで落ちます。。"}
-  ],
+	"version": [
+		{"no": "Version1.1から", "content": "<code>recursive</code>,<code>removeexplods</code>が追加されました。"},
+		{"no": "Version1.0より前", "content": "Explodを消去する前に、Explodを管理しているHelperをDestroySelfで消去してしまうとExplodが残り続けます。"},
+		{"no": "-", "content": "DestroySelfを実行した直後に、Helperを射出するとエラーで落ちます。。"}
+	],
 
-  "parameter": [
-    {
-      "parameter": "recursive ",
-      "value": ["recursive_flag "],
-      "type": ["int"],
-      "description": "<p>If 1, all helper descendents of this helper will also be destroyed.</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "load_priority": ["?"]
-    },
-    {
-      "parameter": "removeexplods",
-      "value": ["remove_explods "],
-      "type": ["int"],
-      "description": "<p>If 1, all explods belonging to the helper will also be removed. If recursive_flag is 1, explods belonging to descendents of the helper will also be removed. </p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "load_priority": ["?"]
-    }
-  ],
+	"parameter": [
+		{
+			"parameter": "Recursive",
+			"value": ["再帰的にヘルパーを消去するフラグ"],
+			"type": ["int"],
+			"description": "<p>1だった場合、宣言したHelperが生み出した子Helperも全て消去します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "RemoveExplods",
+			"value": ["画像を全て消去するフラグ"],
+			"type": ["int"],
+			"description": "<p>1の場合、宣言したHelperが生み出した画像を全て消去。Recursiveも1だった場合、子Helperの生み出したExplodも全て消去します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["?"]
+		}
+	],
+
+	"code_sample": [
+		{
+			"title": "分身バグ対策",
+			"description": "ヘルパーがキャラに分身することを防ぎます。[StateDef 0]内に記述して下さい。",
+			"code": [
+				"[State 0]",
+				"Type     = DestroySelf",
+				"Trigger1 = IsHelper"
+			]
+		}
+	],
 
 	"quote": [
 		{"title": "DestroySelf - State Controller Reference", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#destroyself"},

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-05 08:19:06
+<?php /* Smarty version Smarty-3.1.12, created on 2017-08-06 14:23:07
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\Trigger\content\QandA.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3478967175985635a586125-46745996%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '468c266ddeb5ab3cfb130e0ddaae21d6f9905988' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\Trigger\\content\\QandA.tpl',
-      1 => 1428780807,
+      1 => 1502022147,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5985635a5aeb41_67062498',
   'variables' => 
   array (
     'content' => 0,
@@ -22,10 +24,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'reference' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5985635a5aeb41_67062498',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5985635a5aeb41_67062498')) {function content_5985635a5aeb41_67062498($_smarty_tpl) {?>﻿	<?php if ($_smarty_tpl->tpl_vars['content']->value['qanda']!=null){?>
+<?php if ($_valid && !is_callable('content_5985635a5aeb41_67062498')) {function content_5985635a5aeb41_67062498($_smarty_tpl) {?>	<?php if ($_smarty_tpl->tpl_vars['content']->value['qanda']!=null){?>
 	<section id="QandA"><div class="section">
 		<h2>注意事項</h2>
 		<?php  $_smarty_tpl->tpl_vars['qanda'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['qanda']->_loop = false;

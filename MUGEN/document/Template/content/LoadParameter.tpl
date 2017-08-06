@@ -1,4 +1,4 @@
-﻿	<section id="LoadParameter"><div class="section">
+	<section id="LoadParameter"><div class="section">
 		<h2>パラメーターの読み込み順</h2>
 
 {*

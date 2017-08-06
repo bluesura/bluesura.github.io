@@ -1,4 +1,4 @@
-﻿	{if $content.version}
+	{if $content.version}
 	<section id="Version"><div class="section">
 		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
 		<table>

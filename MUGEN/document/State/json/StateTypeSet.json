@@ -13,6 +13,8 @@
 	"state": "StateTypeSet",
 	"description": "<p>プレイヤーのステートタイプ、行動状態、物理状態を変更します。技の途中で宙に浮いたりする場合に使用します。</p>",
 	"category": "state",
+	"associated_trigger": ["P2StateType"],
+	"associated_state": ["S","C","A","L","U","StateTypeSet"],
 
 	"parameter": [
 		{

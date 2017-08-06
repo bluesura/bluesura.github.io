@@ -137,24 +137,6 @@ PosSet | 【指定した値の位置へ移動】 | MUGEN State Controller - Name
 				<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/PosX.html"><code>PosX</code></a>, <a href="./../Trigger/PosY.html"><code>PosY</code></a>, <a href="./../Trigger/ScreenPosX.html"><code>ScreenPosX</code></a>, <a href="./../Trigger/ScreenPosY.html"><code>ScreenPosY</code></a>, <a href="./../Trigger/P2DistX.html"><code>P2DistX</code></a>, <a href="./../Trigger/P2DistY.html"><code>P2DistY</code></a>, <a href="./../Trigger/P2BodyDistX.html"><code>P2BodyDistX</code></a>, <a href="./../Trigger/P2BodyDistY.html"><code>P2BodyDistY</code></a>, <a href="./../Trigger/FrontEdgeDist.html"><code>FrontEdgeDist</code></a>, <a href="./../Trigger/BackEdgeDist.html"><code>BackEdgeDist</code></a>, <a href="./../Trigger/FrontEdgeBodyDist.html"><code>FrontEdgeBodyDist</code></a>, <a href="./../Trigger/BackEdgeBodyDist.html"><code>BackEdgeBodyDist</code></a>, <a href="./../Trigger/E.html"><code>E</code></a>, <a href="./../Trigger/Pi.html"><code>Pi</code></a></div>
 	</div>
 
-﻿		<section id="Version"><div class="section">
-		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
-		<table>
-			<thead>
-				<tr><th></th><th>内容</th></tr>
-			</thead>
-			<tbody>
-								<tr>
-					<td>-</td>
-					<td>
-										<span style="text-decoration: line-through">公式では、X,Yはfloat型と記述されているが、なぜかエラーメッセージが出る。必ずパラメータには、FloorやCeilトリガーで対策をしないといけない。</span>※2015/09/06削除 エラーメッセージは出ません。正常に動作します。
-										</td>
-				</tr>
-							</tbody>
-		</table>
-	</div></section>
-	
-
 ﻿  <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
             <dl class="parameter">
@@ -251,6 +233,22 @@ PosSet | 【指定した値の位置へ移動】 | MUGEN State Controller - Name
     </dl>
           </div></section>
 
+﻿		<section id="Version"><div class="section">
+		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
+		<table>
+
+			<tbody>
+								<tr>
+					<td>-</td>
+					<td>
+										<span style="text-decoration: line-through">公式では、X,Yはfloat型と記述されているが、なぜかエラーメッセージが出る。必ずパラメータには、FloorやCeilトリガーで対策をしないといけない。</span>※2015/09/06削除 エラーメッセージは出ません。正常に動作します。
+										</td>
+				</tr>
+							</tbody>
+		</table>
+	</div></section>
+	
+
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
@@ -268,25 +266,6 @@ PosSet | 【指定した値の位置へ移動】 | MUGEN State Controller - Name
 		</div>
 		
 	</div></section>
-
-﻿	<section id="LoadParameter"><div class="section">
-		<h2>パラメーターの読み込み順</h2>
-
-
-
-		<div>
-			<p>
-				X(1) => 
-				Y(2) => 
-				Persistent(?) => 
-				IgnoreHitPause(?) => 
-			</p>
-		</div>
-
-		<div class="supplement"><br>*バージョンや実行環境,パラーメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。</div>
-
-	</div></section>
-
 
 ﻿  
 
@@ -318,6 +297,25 @@ PosSet | 【指定した値の位置へ移動】 | MUGEN State Controller - Name
 			</div><br>
 				</div></section>
 	
+
+﻿	<section id="LoadParameter"><div class="section">
+		<h2>パラメーターの読み込み順</h2>
+
+
+
+		<div>
+			<p>
+				X(1) => 
+				Y(2) => 
+				Persistent(?) => 
+				IgnoreHitPause(?) => 
+			</p>
+		</div>
+
+		<div class="supplement"><br>*バージョンや実行環境,パラーメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。</div>
+
+	</div></section>
+
 
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>

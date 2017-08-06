@@ -136,36 +136,6 @@ ReversalDef | 【当て身投げ用】 | MUGEN State Controller - Name = すら
 				
 	</div>
 
-﻿		<section id="Version"><div class="section">
-		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
-		<table>
-			<thead>
-				<tr><th></th><th>内容</th></tr>
-			</thead>
-			<tbody>
-								<tr>
-					<td>全バージョン共通</td>
-					<td>
-										HitDefを常時使用している「Helper」が、相手側の「Attr」を適切に設定していない「ReversalDef」に衝突すると<span class="warning">”分身バグ”</span>が発生します。
-										</td>
-				</tr>
-								<tr>
-					<td>微検証(v1.0)</td>
-					<td>
-										GivePowerが動作しない？オプションは読み込む？
-										</td>
-				</tr>
-								<tr>
-					<td>-</td>
-					<td>
-										<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。
-										</td>
-				</tr>
-							</tbody>
-		</table>
-	</div></section>
-	
-
 ﻿  <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
             <dl class="parameter">
@@ -2291,6 +2261,220 @@ ReversalDef | 【当て身投げ用】 | MUGEN State Controller - Name = すら
     </dl>
           </div></section>
 
+﻿		<section id="Version"><div class="section">
+		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
+		<table>
+
+			<tbody>
+								<tr>
+					<td>全バージョン共通</td>
+					<td>
+										HitDefを常時使用している「Helper」が、相手側の「Attr」を適切に設定していない「ReversalDef」に衝突すると<span class="warning">”分身バグ”</span>が発生します。
+										</td>
+				</tr>
+								<tr>
+					<td>微検証(v1.0)</td>
+					<td>
+										GivePowerが動作しない？オプションは読み込む？
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ASSIGNED NEGATIVE HITID:IDに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE HIT PRIORITY:Priorityに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE PAUSETIME:PauseTime第1引数に-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE P2SHAKETIME:PauseTime第2引数に-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GUARD.P1PAUSETIME:Guard.PauseTIME第1引数に-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GUARD.P2SHAKETIME:Guard.PauseTIME第2引数に-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL SPARK NO:SparkNoに-3以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL GSPARK NO:Guard.SparkNoに-3以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED ILLEGAL SOUND GROUP:HitSound第1引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED ILLEGAL SOUND NO:HitSound第2引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED ILLEGAL GSOUND GROUP:GuardSound第1引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED ILLEGAL GSOUND NO:GuardSound第2引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GROUND.P2SLIDTIME:Ground.SlideTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GUARD.P2SLIDTIME:Guard.SlideTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GROUND.P2HITTIME:Ground.HitTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GUARD.P2HITTIME:Guard.HitTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE AIR．P2HITTIME:Air.HitTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GUARD.P2CTRLTIME:Guard.CtrlTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED ILLEGAL P2BINDTIME:snapの第4引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE AIR．P2CTRLTIME:Air.CtrlTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE P1STATENO:P1SteteNoに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE P2STATENO:P2SteteNoに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE RECOVERTIME:RecoverTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE DOWN.P2HITTIME:DownHitTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE CHAINID:ChainIDに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE NOCHAINID:NoChainID第1引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE NOCHAINID2:NoChainID第2引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					INVALID PALFX TIME:Palfx.Timeに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					INVALID PALFX MUL VALUE:PalFX.Mulに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE FREQ FOR ENVSHAKE:EnvShake.Freqに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE FREQ FOR ENVSHAKE:Fall.EnvShake.Freqに-1以下
+					</blockquote>					</td>
+				</tr>
+							</tbody>
+		</table>
+	</div></section>
+	
+
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
@@ -2393,6 +2577,17 @@ ReversalDef | 【当て身投げ用】 | MUGEN State Controller - Name = すら
 		</div>
 		
 	</div></section>
+
+﻿    <section id="QandA"><div class="section">
+    <h2>Q＆A(よくある質問)</h2>
+    <div>
+              <h3>Helperが分身して消えない。</h3>
+        <p>「Helper」側が適正に「HitOverride」を使っていない場合や、 ちゃんと「HitOverride」を使っていても、「Helper」が直に「HitDef」を出しており、 なおかつ相手側が適切に「attr」を設定していない「ReversalDef」を使用した場合などに起こってしまう。「Helper」に行わせていた処理次第で、ひどい不具合を引き起こす可能性があります。</p><ul><li>「Helper」には 必ず 「HitOverride」を使わせる。</li><li>「Helper」には なるべく 直接「HitDef」を持たせない。</li><li>「ReversalDef」で「P2StateNo」を使用するときは 必ず 「attr」を適切に設定する。</li><li>「IsHelper」をトリガーにして、「DestroySelf」や「ChangeState」を記述する。</li></ul>
+          </div>
+  </div></section>
+  
+
+﻿	
 
 ﻿	<section id="LoadParameter"><div class="section">
 		<h2>パラメーターの読み込み順</h2>
@@ -2498,17 +2693,6 @@ ReversalDef | 【当て身投げ用】 | MUGEN State Controller - Name = すら
 	</div></section>
 
 
-﻿    <section id="QandA"><div class="section">
-    <h2>Q＆A(よくある質問)</h2>
-    <div>
-              <h3>Helperが分身して消えない。</h3>
-        <p>「Helper」側が適正に「HitOverride」を使っていない場合や、 ちゃんと「HitOverride」を使っていても、「Helper」が直に「HitDef」を出しており、 なおかつ相手側が適切に「attr」を設定していない「ReversalDef」を使用した場合などに起こってしまう。「Helper」に行わせていた処理次第で、ひどい不具合を引き起こす可能性があります。</p><ul><li>「Helper」には 必ず 「HitOverride」を使わせる。</li><li>「Helper」には なるべく 直接「HitDef」を持たせない。</li><li>「ReversalDef」で「P2StateNo」を使用するときは 必ず 「attr」を適切に設定する。</li><li>「IsHelper」をトリガーにして、「DestroySelf」や「ChangeState」を記述する。</li></ul>
-          </div>
-  </div></section>
-  
-
-﻿	
-
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
@@ -2522,7 +2706,7 @@ ReversalDef | 【当て身投げ用】 | MUGEN State Controller - Name = すら
 	</div></section>
 	
 
-<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2014-12-30">2014.12.30</time></div></div>
+<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-08-06">2017.08.06</time></div></div>
 
   </div>
 </article></div>

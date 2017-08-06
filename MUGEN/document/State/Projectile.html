@@ -136,42 +136,6 @@ Projectile | 【飛び道具】 | MUGEN State Controller - Name = すら
 		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/.html"><code></code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/NumProj.html"><code>NumProj</code></a>, <a href="./../Trigger/NumProjID.html"><code>NumProjID</code></a></div>
 	</div>
 
-﻿		<section id="Version"><div class="section">
-		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
-		<table>
-			<thead>
-				<tr><th></th><th>内容</th></tr>
-			</thead>
-			<tbody>
-								<tr>
-					<td>Version1.1から</td>
-					<td>
-										<code>ReMapPal</code>が追加されました。
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.1から</td>
-					<td>
-										PosTypeにNが追加されました。
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.1から</td>
-					<td>
-										※未検証 PosTypeのL,R,F,B,Nが正しく動作しない。
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.0から</td>
-					<td>
-										※未検証 PosTypeのL,Rの挙動がおかしい。
-										</td>
-				</tr>
-							</tbody>
-		</table>
-	</div></section>
-	
-
 ﻿  <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
             <dl class="parameter">
@@ -3163,6 +3127,280 @@ Projectile | 【飛び道具】 | MUGEN State Controller - Name = すら
     </dl>
           </div></section>
 
+﻿		<section id="Version"><div class="section">
+		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
+		<table>
+
+			<tbody>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										<code>ReMapPal</code>が追加されました。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										PosTypeにNが追加されました。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										※未検証 PosTypeのL,R,F,B,Nが正しく動作しない。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.0から</td>
+					<td>
+										※未検証 PosTypeのL,Rの挙動がおかしい。
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE PROJECTILE ID:ProjIDに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLIGAL PROJANIM:ProjAnimに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLIGAL PROJHIT ACTIONID:ProjHitAnimに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLIGAL PROJREMOVE ACTIONID:ProjRemAnimに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLIGAL PROJCANCEL ACTIONID:ProjCanselAnimに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLIGAL PROJREMOVETIME:ProjRemoveTimeに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE # OF PROJECTILE HITS:ProjHitsに0以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE PROJECTILE MISS TIME:ProjMissTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL:SHADOWCOLOR:ProjShdowに-2以下、256以上
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ASSIGNED NEGATIVE HITID:IDに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE HIT PRIORITY:Priorityに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE PAUSETIME:PauseTime第1引数に-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE P2SHAKETIME:PauseTime第2引数に-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GUARD.P1PAUSETIME:Guard.PauseTIME第1引数に-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GUARD.P2SHAKETIME:Guard.PauseTIME第2引数に-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL SPARK NO:SparkNoに-3以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL GSPARK NO:Guard.SparkNoに-3以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED ILLEGAL SOUND GROUP:HitSound第1引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED ILLEGAL SOUND NO:HitSound第2引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED ILLEGAL GSOUND GROUP:GuardSound第1引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED ILLEGAL GSOUND NO:GuardSound第2引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GROUND.P2SLIDTIME:Ground.SlideTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GUARD.P2SLIDTIME:Guard.SlideTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GROUND.P2HITTIME:Ground.HitTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GUARD.P2HITTIME:Guard.HitTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE AIR．P2HITTIME:Air.HitTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE GUARD.P2CTRLTIME:Guard.CtrlTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED ILLEGAL P2BINDTIME:snapの第4引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE AIR．P2CTRLTIME:Air.CtrlTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE P1STATENO:P1SteteNoに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE P2STATENO:P2SteteNoに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE RECOVERTIME:RecoverTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE DOWN.P2HITTIME:DownHitTimeに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE CHAINID:ChainIDに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE NOCHAINID:NoChainID第1引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					SPECIFIED NEGATIVE NOCHAINID2:NoChainID第2引数に-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					INVALID PALFX TIME:Palfx.Timeに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					INVALID PALFX MUL VALUE:PalFX.Mulに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE FREQ FOR ENVSHAKE:EnvShake.Freqに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE FREQ FOR ENVSHAKE:Fall.EnvShake.Freqに-1以下
+					</blockquote>					</td>
+				</tr>
+							</tbody>
+		</table>
+	</div></section>
+	
+
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
@@ -3300,6 +3538,10 @@ Projectile | 【飛び道具】 | MUGEN State Controller - Name = すら
 		</div>
 		
 	</div></section>
+
+﻿  
+
+﻿	
 
 ﻿	<section id="LoadParameter"><div class="section">
 		<h2>パラメーターの読み込み順</h2>
@@ -3440,10 +3682,6 @@ Projectile | 【飛び道具】 | MUGEN State Controller - Name = すら
 	</div></section>
 
 
-﻿  
-
-﻿	
-
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
@@ -3455,7 +3693,7 @@ Projectile | 【飛び道具】 | MUGEN State Controller - Name = すら
 	</div></section>
 	
 
-<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2016-12-21">2016.12.21</time></div></div>
+<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-08-06">2017.08.06</time></div></div>
 
   </div>
 </article></div>

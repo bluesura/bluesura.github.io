@@ -12,16 +12,15 @@
 	<div class="entry-content">
 
 
-
 {include file="./../Trigger/content/Description.tpl"}
-
-{include file="./../Trigger/content/Version.tpl"}
 
 {*include file="./../Trigger/content/Parameter.tpl"*}
 
 {include file="./../Trigger/content/QandA.tpl"}
 
 {include file="./../Trigger/content/CodeSample.tpl"}
+
+{include file="./../Trigger/content/Version.tpl"}
 
 {include file="./../Trigger/content/Quote.tpl"}
 

@@ -1,80 +1,80 @@
 {
-  "page": {
-    "title": "MUGEN State Controller",
-    "subtitle": "Pause",
-    "target": "時間",
-    "category": ["時間停止", "時間と処理を止めます。"],
-    "version": "2002.04.14",
-    "update": "2017.02.12",
-    "type": "document",
-    "level": "3"
-  },
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "Pause",
+		"target": "時間",
+		"category": ["時間停止", "時間と処理を止めます。"],
+		"version": "2002.04.14",
+		"update": "2017.08.06",
+		"type": "document",
+		"level": "3"
+	},
 
-  "state": "Pause",
-  "description": "<p>時間を止めます。画面上の全てのスプライト、キャラクター、背景に効果を及ぼします。また、-1,-2,-3ステート等はPause中実行されません。(未検証)</p><p>ですが、Helper、Explod等は設定により停止時間中も動くことが可能。</p><p>このコントローラによる停止時間中に同じコントローラが実行されると、それまでのPauseは無効となります。</p><p>SuperPause停止時間中にPauseが実行された場合は、SuperPauseの効果時間が切れてからPauseが有効になります。</p>",
-  "images": [{"src": "Pause.gif", "width": "640", "height": "480", "alt": "MUGEN Pause"}],
-  "category": "state",
+	"state": "Pause",
+	"description": "<p>時間を止めます。画面上の全てのスプライト、キャラクター、背景に効果を及ぼします。また、-1,-2,-3ステート等はPause中実行されません。(未検証)</p><p>ですが、Helper、Explod等は設定により停止時間中も動くことが可能。</p><p>このコントローラによる停止時間中に同じコントローラが実行されると、それまでのPauseは無効となります。</p><p>SuperPause停止時間中にPauseが実行された場合は、SuperPauseの効果時間が切れてからPauseが有効になります。</p>",
+	"images": [{"src": "Pause.gif", "width": "640", "height": "480", "alt": "MUGEN Pause"}],
+	"category": "state",
 
-  "associated_state": ["SuperPause"],
+	"associated_state": ["SuperPause"],
 
-  "version": [
-    {"no": "警告文", "content": "SET ILLEGAL PAUSETIME: Timeに0以下"},
-    {"no": "警告文", "content": "SET ILLEGAL PAUSEMOVETIME: MoveTimeに -1以下またはパラメータのTime+1以上"},
-    {"no": "警告文", "content": "SET ILLEGAL ENDCMDBUFTIME: EndCmdBufTimeに-1以下"}
-  ],
+	"version": [
+		{"no": "警告文", "content": "SET ILLEGAL PAUSETIME:Timeに0以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "SET ILLEGAL PAUSEMOVETIME:MoveTimeに -1以下またはパラメータのTime+1以上", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "SET ILLEGAL ENDCMDBUFTIME:EndCmdBufTimeに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
 
-  "parameter": [
-    {
-      "parameter": "Time",
-      "value": ["停止時間"],
-      "type": ["int"],
-      "description": "<p>止める時間をフレーム単位の整数で指定。Timeは必ずMoveTimeより大きい値にしてください。</p><p>※1秒=60フレーム</p>",
-      "min_value": ["0"],
-      "max_value": ["2147483647"],
-      "parameter_type": "required",
-      "default_value": ["?"],
-      "load_priority": ["1"]
-    },
-    {
-      "parameter": "MoveTime",
-      "value": ["停止無視時間"],
-      "type": ["int"],
-      "description": "<p>停止時間中に動ける時間をフレーム単位で指定。時間内は全てのステートが通常通り動きます。<!--by vesperさん--></p><p>※1秒=60フレーム</p>",
-      "min_value": ["0"],
-      "max_value": ["2147483647"],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "load_priority": ["2"]
-    },
-    {
-      "parameter": "PauseBG",
-      "value": ["背景停止フラグ"],
-      "type": ["boolean"],
-      "description": "<p>もし、1が設定されていた場合、Pauseで停止している間は背景もストップします。0の場合、停止中でも背景は動き続けます。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["1"],
-      "load_priority": ["3"]
-    },
-    {
-      "parameter": "EndCmdBufTime",
-      "value": ["bt"],
-      "type": ["int"],
-      "description": "<p>相手がPause中にコマンドを入力した場合,tフレーム経過後、btフレームの間コマンドが成功している状態を維持する。Pause中動けないキャラのみ有効。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "load_priority": ["4"]
-    }
-  ],
+	"parameter": [
+		{
+			"parameter": "Time",
+			"value": ["停止時間"],
+			"type": ["int"],
+			"description": "<p>止める時間をフレーム単位の整数で指定。Timeは必ずMoveTimeより大きい値にしてください。</p><p>※1秒=60フレーム</p>",
+			"min_value": ["0"],
+			"max_value": ["2147483647"],
+			"parameter_type": "required",
+			"default_value": ["?"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "MoveTime",
+			"value": ["停止無視時間"],
+			"type": ["int"],
+			"description": "<p>停止時間中に動ける時間をフレーム単位で指定。時間内は全てのステートが通常通り動きます。<!--by vesperさん--></p><p>※1秒=60フレーム</p>",
+			"min_value": ["0"],
+			"max_value": ["2147483647"],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "PauseBG",
+			"value": ["背景停止フラグ"],
+			"type": ["boolean"],
+			"description": "<p>もし、1が設定されていた場合、Pauseで停止している間は背景もストップします。0の場合、停止中でも背景は動き続けます。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["3"]
+		},
+		{
+			"parameter": "EndCmdBufTime",
+			"value": ["bt"],
+			"type": ["int"],
+			"description": "<p>相手がPause中にコマンドを入力した場合,tフレーム経過後、btフレームの間コマンドが成功している状態を維持する。Pause中動けないキャラのみ有効。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["4"]
+		}
+	],
 
-  "quote": [
-    {"title": "Pause - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/Pause"},
-    {"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-    {"title": "Pause - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Pause&protocol=http"},
-    {"title": "Pause - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Pause"},
-    {"title": "Pause - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
-  ]
+	"quote": [
+		{"title": "Pause - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/Pause"},
+		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
+		{"title": "Pause - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Pause&protocol=http"},
+		{"title": "Pause - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Pause"},
+		{"title": "Pause - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
+	]
 }

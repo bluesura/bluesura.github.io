@@ -136,108 +136,6 @@ Explod | 【アニメーションを表示】 | MUGEN State Controller - Name = 
 		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/RemoveExplod.html"><code>RemoveExplod</code></a>, <a href="./../State/ModifyExplod.html"><code>ModifyExplod</code></a>, <a href="./../State/ExplodBindTime.html"><code>ExplodBindTime</code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/NumExplod.html"><code>NumExplod</code></a>, <a href="./../Trigger/PlayerIDExist.html"><code>PlayerIDExist</code></a></div>
 	</div>
 
-﻿		<section id="Version"><div class="section">
-		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
-		<table>
-			<thead>
-				<tr><th></th><th>内容</th></tr>
-			</thead>
-			<tbody>
-								<tr>
-					<td>-</td>
-					<td>
-										<code>BindTime=0</code>で<code>PosType</code>を指定していても<code>PosType=Left</code>として扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。
-										</td>
-				</tr>
-								<tr>
-					<td>-</td>
-					<td>
-										未検証：<code>ScreenBound</code>で画面を固定していると、<code>Explod</code>が本体に追従できずに数Fの間ずれることがある。
-										</td>
-				</tr>
-								<tr>
-					<td>-</td>
-					<td>
-										未検証：<code>AfterImage</code>系統と異なり、<code>ModifyExplod</code>を用いても<code>RemoveTime</code>で消えるまでの残り時間は変わらない。
-										</td>
-				</tr>
-								<tr>
-					<td>-</td>
-					<td>
-										未検証：<code>IgnoreHitPause=1</code>ではHitPauseTime中にも出る、またAnimが動作する。<code>IgnoreHitPause</code>を省略するとHitPauseTime中には出ない、またAnimeが動く。<code>IgnoreHitPause=0</code>ではHitPauseTime中には出ない、またAnimが動かない。
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.0より前</td>
-					<td>
-										<code>Explod</code>を消去する前に、<code>Explod</code>を管理している<code>Helper</code>を<code>DestroySelf</code>で消去してしまうとExplodが残り続けます。
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.1から</td>
-					<td>
-										<code>Explod</code>の<code>PosType</code>が<code>P1</code>と<code>P2</code>以外の時に、<code>EnvShake</code>（画面振動）の影響を受けなくなった
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.1から</td>
-					<td>
-										<code>-2</code>に記述された<code>Explod</code>はステートが奪われた場合、奪った相手の<code>LocalCoord</code>の影響を受け縮尺がおかしくなります。
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.1から</td>
-					<td>
-										<code>Space</code>,<code>Angle</code>,<code>XAngle</code>,<code>YAngle</code>,<code>ReMapPal</code>,<code>BindID</code>,<code>PosType</code>に<code>None</code>が追加されました。
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.1から</td>
-					<td>
-										<code>SuperMove</code>が廃止されました。
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										ILLEGAL EXPLOD ANIMNO : Animに-1以下
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										NEGATIVE EXPLOD ID : IDに-1以下
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										ILLEGAL POSBINDTIME FOR EXPLOD : BindTimeに-2以下
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										NEGATIVE EXPLOD RANDOM PARAM : Randomに-1以下
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										ILLEGAL REMOVETIME FOR EXPLOD : RemoveTimeに-3以下
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										ILLEGAL SHADOW COLOR : Colorに-2以下
-										</td>
-				</tr>
-							</tbody>
-		</table>
-	</div></section>
-	
-
 ﻿  <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
             <dl class="parameter">
@@ -1049,6 +947,106 @@ Explod | 【アニメーションを表示】 | MUGEN State Controller - Name = 
     </dl>
           </div></section>
 
+﻿		<section id="Version"><div class="section">
+		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
+		<table>
+
+			<tbody>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>BindTime=0</code>で<code>PosType</code>を指定していても<code>PosType=Left</code>として扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										未検証：<code>ScreenBound</code>で画面を固定していると、<code>Explod</code>が本体に追従できずに数Fの間ずれることがある。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										未検証：<code>AfterImage</code>系統と異なり、<code>ModifyExplod</code>を用いても<code>RemoveTime</code>で消えるまでの残り時間は変わらない。
+										</td>
+				</tr>
+								<tr>
+					<td>-</td>
+					<td>
+										未検証：<code>IgnoreHitPause=1</code>ではHitPauseTime中にも出る、またAnimが動作する。<code>IgnoreHitPause</code>を省略するとHitPauseTime中には出ない、またAnimeが動く。<code>IgnoreHitPause=0</code>ではHitPauseTime中には出ない、またAnimが動かない。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.0より前</td>
+					<td>
+										<code>Explod</code>を消去する前に、<code>Explod</code>を管理している<code>Helper</code>を<code>DestroySelf</code>で消去してしまうとExplodが残り続けます。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										<code>Explod</code>の<code>PosType</code>が<code>P1</code>と<code>P2</code>以外の時に、<code>EnvShake</code>（画面振動）の影響を受けなくなった
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										<code>-2</code>に記述された<code>Explod</code>はステートが奪われた場合、奪った相手の<code>LocalCoord</code>の影響を受け縮尺がおかしくなります。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										<code>Space</code>,<code>Angle</code>,<code>XAngle</code>,<code>YAngle</code>,<code>ReMapPal</code>,<code>BindID</code>,<code>PosType</code>に<code>None</code>が追加されました。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										<code>SuperMove</code>が廃止されました。
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL EXPLOD ANIMNO:Animに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE EXPLOD ID:IDに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL POSBINDTIME FOR EXPLOD:BindTimeに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE EXPLOD RANDOM PARAM:Randomに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL REMOVETIME FOR EXPLOD:RemoveTimeに-3以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL SHADOW COLOR:Colorに-2以下
+					</blockquote>					</td>
+				</tr>
+							</tbody>
+		</table>
+	</div></section>
+	
+
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
@@ -1092,51 +1090,6 @@ Explod | 【アニメーションを表示】 | MUGEN State Controller - Name = 
 		</div>
 		
 	</div></section>
-
-﻿	<section id="LoadParameter"><div class="section">
-		<h2>パラメーターの読み込み順</h2>
-
-
-
-		<div>
-			<p>
-				ID(1) => 
-				Facing(2) => 
-				VFacing(3) => 
-				Pos(4, 5) => 
-				PosType(?) => 
-				Space(?) => 
-				Random(6, 7) => 
-				Vel(8, 9) => 
-				Accel(10, 11) => 
-				Scale(12, 13) => 
-				Angle(?) => 
-				XAngle(?) => 
-				YAccelAngle(?) => 
-				BindID(?) => 
-				BindTime(14) => 
-				SprPriority(15) => 
-				OnTop(16) => 
-				RemoveTime(17) => 
-				SuperMove(18) => 
-				SuperMoveTime(19) => 
-				PauseMoveTime(20) => 
-				Shadow(21, 22, 23) => 
-				RemoveOnGethit(24) => 
-				Trans(?) => 
-				Alpha(25, 26) => 
-				Anim(27) => 
-				OwnPal(28) => 
-				ReMapPal(?) => 
-				Persistent(?) => 
-				IgnoreHitPause(?) => 
-			</p>
-		</div>
-
-		<div class="supplement"><br>*バージョンや実行環境,パラーメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。</div>
-
-	</div></section>
-
 
 ﻿  
 
@@ -1205,6 +1158,51 @@ Explod | 【アニメーションを表示】 | MUGEN State Controller - Name = 
 				</div></section>
 	
 
+﻿	<section id="LoadParameter"><div class="section">
+		<h2>パラメーターの読み込み順</h2>
+
+
+
+		<div>
+			<p>
+				ID(1) => 
+				Facing(2) => 
+				VFacing(3) => 
+				Pos(4, 5) => 
+				PosType(?) => 
+				Space(?) => 
+				Random(6, 7) => 
+				Vel(8, 9) => 
+				Accel(10, 11) => 
+				Scale(12, 13) => 
+				Angle(?) => 
+				XAngle(?) => 
+				YAccelAngle(?) => 
+				BindID(?) => 
+				BindTime(14) => 
+				SprPriority(15) => 
+				OnTop(16) => 
+				RemoveTime(17) => 
+				SuperMove(18) => 
+				SuperMoveTime(19) => 
+				PauseMoveTime(20) => 
+				Shadow(21, 22, 23) => 
+				RemoveOnGethit(24) => 
+				Trans(?) => 
+				Alpha(25, 26) => 
+				Anim(27) => 
+				OwnPal(28) => 
+				ReMapPal(?) => 
+				Persistent(?) => 
+				IgnoreHitPause(?) => 
+			</p>
+		</div>
+
+		<div class="supplement"><br>*バージョンや実行環境,パラーメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。</div>
+
+	</div></section>
+
+
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
@@ -1222,7 +1220,7 @@ Explod | 【アニメーションを表示】 | MUGEN State Controller - Name = 
 	</div></section>
 	
 
-<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2016-01-24">2016.01.24</time></div></div>
+<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-08-06">2017.08.06</time></div></div>
 
   </div>
 </article></div>

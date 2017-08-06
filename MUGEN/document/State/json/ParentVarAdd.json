@@ -5,7 +5,7 @@
 		"target": "実行者の親",
 		"category": ["変数", "親の指定変数に値を加算"],
 		"version": "2002.04.14",
-		"update": "2013.11.27",
+		"update": "2017.08.06",
 		"type": "document",
 		"level": "3"
 	},
@@ -13,9 +13,11 @@
 	"state": "ParentVarAdd",
 	"description": "<p>Helperのステート内で記述。Helperの親の変数を増減します。Helper以外のステートで書いても意味なし。</p><p>Helperは固有の変数を持ちますので、VarAddだとHelper自身の変数を増減することになります。</p>",
 	"category": "state",
+	"associated_state": ["ParentVarSet"],
 
 	"version": [
-		{"no": "-", "content": "var(番号),fvar(番号)で大文字を使用するとエラーが発生します。"}
+		{"no": "エラー", "content": "var(番号),fvar(番号)で大文字を使用するとエラーが発生します。"},
+		{"no": "警告文", "content": "SET PARENTVAR OUT OF RANGE:varなら-1以下または60以上、fvarなら-1以下または40以上に値を代入（対象がfvarであっても警告文にはVARと表示される。）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
 	],
 
 	"parameter": [

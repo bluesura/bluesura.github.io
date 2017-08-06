@@ -136,60 +136,6 @@ Helper | 【飛び道具・分身・特殊ゲージ等のサポート】 | MUGEN
 		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/.html"><code></code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/NumHelper.html"><code>NumHelper</code></a></div>
 	</div>
 
-﻿		<section id="Version"><div class="section">
-		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
-		<table>
-			<thead>
-				<tr><th></th><th>内容</th></tr>
-			</thead>
-			<tbody>
-								<tr>
-					<td>-</td>
-					<td>
-										<code>Helper</code>が射出した<code>Projectile</code>は、プレイヤーの管理。
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.0から</td>
-					<td>
-										<code>PauseMoveTime</code>に<code>-1</code>を指定しても効果時間は永続にはなりません。
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.1から</td>
-					<td>
-										<code>ReMapPal</code>が追加されました。
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										NEGATIVE HELPER ID: IDに-1以下
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										ILLEGAL HELPER STATENO: StateNoに-1以下
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										ILLEGAL SUPERMOVETIME: SuperMoveTimeに-1以下(mugen1.0では警告文が出ないが機能していない)
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										ILLEGAL PAUSEMOVETIME: PauseMoveTimeに-1以下(mugen1.0では警告文が出ないが機能していない)
-										</td>
-				</tr>
-							</tbody>
-		</table>
-	</div></section>
-	
-
 ﻿  <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
             <dl class="parameter">
@@ -911,6 +857,58 @@ Helper | 【飛び道具・分身・特殊ゲージ等のサポート】 | MUGEN
     </dl>
           </div></section>
 
+﻿		<section id="Version"><div class="section">
+		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
+		<table>
+
+			<tbody>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>Helper</code>が射出した<code>Projectile</code>は、プレイヤーの管理。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.0から</td>
+					<td>
+										<code>PauseMoveTime</code>に<code>-1</code>を指定しても効果時間は永続にはなりません。
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.1から</td>
+					<td>
+										<code>ReMapPal</code>が追加されました。
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					NEGATIVE HELPER ID:IDに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL HELPER STATENO:StateNoに-1以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL SUPERMOVETIME:SuperMoveTimeに-1以下(mugen1.0では警告文が出ないが機能していない)
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL PAUSEMOVETIME:PauseMoveTimeに-1以下(mugen1.0では警告文が出ないが機能していない)
+					</blockquote>					</td>
+				</tr>
+							</tbody>
+		</table>
+	</div></section>
+	
+
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
@@ -949,6 +947,29 @@ Helper | 【飛び道具・分身・特殊ゲージ等のサポート】 | MUGEN
 		</div>
 		
 	</div></section>
+
+﻿  
+
+﻿		<section id="CodeSample"><div class="section">
+		<h2>コードサンプル</h2>
+			<div>
+			<h3>Helper分身バグ対策</h3>
+						<div class="description"><p>コモンステートの[StateDef 0, 立ちステート]と[StateDef 5150, 死亡ステート]の最後に記述することで、分身したヘルパー自身が自分を消去します。</p></div>
+						<div class="code"><code>
+			<ul>
+							<li>; [StateDef 0]記述省略</li>
+							<li>[State 0]</li>
+							<li>Type = DestroySelf</li>
+							<li>Trigger1 = IsHelper</li>
+							<li>; [StateDef 5150]記述省略</li>
+							<li>[State 5150]</li>
+							<li>Type = DestroySelf</li>
+							<li>Trigger1 = IsHelper</li>
+						</ul>
+			</code></div>
+			</div><br>
+				</div></section>
+	
 
 ﻿	<section id="LoadParameter"><div class="section">
 		<h2>パラメーターの読み込み順</h2>
@@ -990,29 +1011,6 @@ Helper | 【飛び道具・分身・特殊ゲージ等のサポート】 | MUGEN
 	</div></section>
 
 
-﻿  
-
-﻿		<section id="CodeSample"><div class="section">
-		<h2>コードサンプル</h2>
-			<div>
-			<h3>Helper分身バグ対策</h3>
-						<div class="description"><p>コモンステートの[StateDef 0, 立ちステート]と[StateDef 5150, 死亡ステート]の最後に記述することで、分身したヘルパー自身が自分を消去します。</p></div>
-						<div class="code"><code>
-			<ul>
-							<li>; [StateDef 0]記述省略</li>
-							<li>[State 0]</li>
-							<li>Type = DestroySelf</li>
-							<li>Trigger1 = IsHelper</li>
-							<li>; [StateDef 5150]記述省略</li>
-							<li>[State 5150]</li>
-							<li>Type = DestroySelf</li>
-							<li>Trigger1 = IsHelper</li>
-						</ul>
-			</code></div>
-			</div><br>
-				</div></section>
-	
-
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
@@ -1030,7 +1028,7 @@ Helper | 【飛び道具・分身・特殊ゲージ等のサポート】 | MUGEN
 	</div></section>
 	
 
-<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2016-12-21">2016.12.21</time></div></div>
+<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-08-06">2017.08.06</time></div></div>
 
   </div>
 </article></div>

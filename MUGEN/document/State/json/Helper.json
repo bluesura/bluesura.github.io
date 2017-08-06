@@ -1,383 +1,383 @@
 {
-  "page": {
-    "title": "MUGEN State Controller",
-    "subtitle": "Helper",
-    "target": "召喚",
-    "category": ["Helper", "飛び道具・分身・特殊ゲージ等のサポート"],
-    "version": "2002.04.14",
-    "update": "2016.12.21",
-    "type": "document",
-    "level": "3"
-  },
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "Helper",
+		"target": "召喚",
+		"category": ["Helper", "飛び道具・分身・特殊ゲージ等のサポート"],
+		"version": "2002.04.14",
+		"update": "2017.08.06",
+		"type": "document",
+		"level": "3"
+	},
 
-  "state": "Helper",
-  "description": "<p>プレイヤー以外のキャラクターを出現させます。<code>Helper</code>が参照するステートを別に記述する必要がありますが、様々な動きが可能。<span class=\"decoration-font-line-green\">複雑な動作の飛び道具</span>・プレイヤーについて動き回る<span class=\"decoration-font-line-green\">サポートキャラ</span>・<span class=\"decoration-font-line-green\">特殊ゲージなどの特殊システム</span>や<span class=\"decoration-font-line-green\">自分自身の分身</span>などに利用します。</p><p>攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。</p><p><code>Helper</code>は、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。<code>Helper</code>が消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。但し、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。</p><p>なお、<span class=\"decoration-font-highlight-red\">全プレイヤーの<code>Helper</code>合計数には上限</span>があり、初期設定は32個で最大56個まで増やせます。上限は<code>mugen.cfg</code>にて設定可能。設定数を超えると<code>Helper</code>を射出できなくなります。</p>",
-  "category": "state",
+	"state": "Helper",
+	"description": "<p>プレイヤー以外のキャラクターを出現させます。<code>Helper</code>が参照するステートを別に記述する必要がありますが、様々な動きが可能。<span class=\"decoration-font-line-green\">複雑な動作の飛び道具</span>・プレイヤーについて動き回る<span class=\"decoration-font-line-green\">サポートキャラ</span>・<span class=\"decoration-font-line-green\">特殊ゲージなどの特殊システム</span>や<span class=\"decoration-font-line-green\">自分自身の分身</span>などに利用します。</p><p>攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。</p><p><code>Helper</code>は、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。<code>Helper</code>が消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。但し、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。</p><p>なお、<span class=\"decoration-font-highlight-red\">全プレイヤーの<code>Helper</code>合計数には上限</span>があり、初期設定は32個で最大56個まで増やせます。上限は<code>mugen.cfg</code>にて設定可能。設定数を超えると<code>Helper</code>を射出できなくなります。</p>",
+	"category": "state",
 
-  "associated_trigger": ["NumHelper"],
-  "associated_state": [""],
+	"associated_trigger": ["NumHelper"],
+	"associated_state": [""],
 
-  "version": [
-    {"no": "-", "content": "<code>Helper</code>が射出した<code>Projectile</code>は、プレイヤーの管理。"},
-    {"no": "Version1.0から", "content": "<code>PauseMoveTime</code>に<code>-1</code>を指定しても効果時間は永続にはなりません。"},
-    {"no": "Version1.1から", "content": "<code>ReMapPal</code>が追加されました。"},
-    {"no": "警告文", "content": "NEGATIVE HELPER ID: IDに-1以下"},
-    {"no": "警告文", "content": "ILLEGAL HELPER STATENO: StateNoに-1以下"},
-    {"no": "警告文", "content": "ILLEGAL SUPERMOVETIME: SuperMoveTimeに-1以下(mugen1.0では警告文が出ないが機能していない)"},
-    {"no": "警告文", "content": "ILLEGAL PAUSEMOVETIME: PauseMoveTimeに-1以下(mugen1.0では警告文が出ないが機能していない)"}
-  ],
+	"version": [
+		{"no": "-", "content": "<code>Helper</code>が射出した<code>Projectile</code>は、プレイヤーの管理。"},
+		{"no": "Version1.0から", "content": "<code>PauseMoveTime</code>に<code>-1</code>を指定しても効果時間は永続にはなりません。"},
+		{"no": "Version1.1から", "content": "<code>ReMapPal</code>が追加されました。"},
+		{"no": "警告文", "content": "NEGATIVE HELPER ID:IDに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "ILLEGAL HELPER STATENO:StateNoに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "ILLEGAL SUPERMOVETIME:SuperMoveTimeに-1以下(mugen1.0では警告文が出ないが機能していない)", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "ILLEGAL PAUSEMOVETIME:PauseMoveTimeに-1以下(mugen1.0では警告文が出ないが機能していない)", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
 
-  "parameter": [
-    {
-      "parameter": "HelperType",
-      "value": ["ヘルパーの種類"],
-      "type": ["string"],
-      "description": "<p>ヘルパーのタイプを<code>Normal</code>か<code>Player</code>で選択します。</p>",
-      "parameter_type": "optional",
-      "default_value": ["Normal"],
-      "possible_value": [
-        ["タイプ", "詳細"],
-        ["Normal", "カメラはヘルパーを追いません。飛び道具等はこれを使います。"],
-        ["Player", "プレイヤーと同様自動で基本ステートを参照、カメラが追うなど、通常のプレイヤーと同じ扱いとなります。特殊な処理のため、基本的に使用は推奨できません。"],
-        ["Proj&lt;英数字なら何でもOK&gt;", "Normalと変わらない。使う意味なし？"]
-      ],
-      "load_priority": ["?"]
-    },
-    {
-      "parameter": "Name",
-      "value": ["\"ヘルパー名\""], 
-      "type": ["string"],
-      "description": "<p>ヘルパーの名前を付けます。</p><p><code>Name</code>(トリガー)による探知や判定枠表示(<code>Ctrl+C</code>)でのヘルパー判別に利用します。</p>",
-      "parameter_type": "optional",
-      "default_value": ["\"&lt;ヘルパーを呼び出したキャラ名&gt;\"'s helper"],
-      "possible_value": ["英数字なら何でもOK"],
-      "load_priority": ["?"],
-      "associated_trigger": ["Name"],
-      "media": {
-        "image": [
-          {"title": "", "file": "Helper_Name.png", "width": "359", "height": "321"}
-        ]
-      }
-    },
-    {
-      "parameter": "OwnPal",
-      "value": ["独自パレットフラグ"],
-      "type": ["boolean"],
-      "description": "<p>子が親と共通のパレットを持つか持たないか、フラグを指定します。</p><p><code>0</code>で共通にした場合、親が燃えやられや金カラー(<code>PalFX</code>)で色に変化があると子も同様の変化を受けます。また、子で<code>PalFX</code>を使用しても有効になりません。特殊ゲージや飛び道具等、やられ演出の影響を受けたくない場合、<code>1</code>を指定しましょう。</p>",
-      "min_value": ["0"],
-      "max_value": ["1"],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "possible_value": [
-        ["パレット", "効果"],
-        ["0", "子は親と共通のパレットを持ちます。(子の<code>PalFX</code>無効)"],
-        ["1", "子は独自のパレットを持ちます。(子の<code>PalFX</code>有効)"]
-      ],
-      "load_priority": ["1"]
-    },
-    {
-      "parameter": "Size.XScale",
-      "value": ["横縮尺"],
-      "type": ["float"],
-      "description": "<p>水平方向の縮尺</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["2"],
-      "media": {
-        "image": [
-          {"title": "", "file": "Size.XScale.png", "width": "640", "height": "480"}
-        ]
-      }
-    },
-    {
-      "parameter": "Size.YScale",
-      "value": ["縮尺"],
-      "type": ["float"],
-      "description": "<p>垂直方向の縮尺</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["3"],
-      "media": {
-        "image": [
-          {"title": "", "file": "Size.YScale.png", "width": "640", "height": "480"}
-        ]
-      }
-    },
-    {
-      "parameter": "Size.Ground.Back",
-      "value": ["前ぶつかり判定"],
-      "type": ["int"],
-      "description": "<p>キャラクターの幅（後方、地上）を指定。</p><p><code>Nomal</code>ヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、<code>PlayerPush</code>を使用します。</p><p>ちなみに、<code>Ground.Back</code>～<code>Height</code>まで、すべて<code>0</code>にした場合、<code>PlayerPush</code>でぶつかりを発生させても、相手をすり抜けるようになります。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["4"],
-      "media": {
-        "image": [
-          {"title": "", "file": "Size.Ground.Back.png", "width": "640", "height": "480"}
-        ]
-      }
-    },
-    {
-      "parameter": "Size.Ground.Front",
-      "value": ["後ぶつかり判定"],
-      "type": ["int"],
-      "description": "<p>キャラクターの幅（後方、地上）を指定。</p><p><code>Nomal</code>ヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、<code>PlayerPush</code>を使用します。</p><p>ちなみに、<code>Ground.Back</code>～<code>Height</code>まで、すべて<code>0</code>にした場合、<code>PlayerPush</code>でぶつかりを発生させても、相手をすり抜けるようになります。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["5"],
-      "media": {
-        "image": [
-          {"title": "", "file": "Size.Ground.Front.png", "width": "640", "height": "480"}
-        ]
-      }
-    },
-    {
-      "parameter": "Size.Air.Back",
-      "value": ["空中での前ぶつかり判定"],
-      "type": ["int"],
-      "description": "<p>キャラクターの幅（後方、空中）を指定。</p><code>Nomal</code>ヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、<code>PlayerPush</code>を使用します。</p><p>ちなみに、<code>Ground.Back</code>～<code>Height</code>まで、すべて<code>0</code>にした場合、<code>PlayerPush</code>でぶつかりを発生させても、相手をすり抜けるようになります。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["6"],
-      "media": {
-        "image": [
-          {"title": "", "file": "Size.Air.Back.png", "width": "640", "height": "480"}
-        ]
-      }
-    },
-    {
-      "parameter": "Size.Air.Front",
-      "value": ["空中での後ぶつかり判定"],
-      "type": ["int"],
-      "description": "<p>キャラクターの幅（前方、空中）を指定。</p><code>Nomal</code>ヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、<code>PlayerPush</code>を使用します。</p><p>ちなみに、<code>Ground.Back</code>～<code>Height</code>まで、すべて<code>0</code>にした場合、<code>PlayerPush</code>でぶつかりを発生させても、相手をすり抜けるようになります。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["7"],
-      "media": {
-        "image": [
-          {"title": "", "file": "Size.Air.Front.png", "width": "640", "height": "480"}
-        ]
-      }
-    },
-    {
-      "parameter": "Size.Height",
-      "value": ["縦ぶつかり判定"],
-      "type": ["int"],
-      "description": "<p>キャラクターの高さを指定。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["8"]
-    },
-    {
-      "parameter": "Size.Proj.DoScale",
-      "value": ["飛び道具縮尺適用フラグ"],
-      "type": ["Boolean"],
-      "description": "<p><code>XScale</code>,<code> YScale</code>の設定が発射物にも適用するかどうか（<code>1</code>で有効）</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["9"]
-    },
-    {
-      "parameter": "Size.Head.Pos",
-      "value": ["頭の位置"],
-      "type": ["int", "int"],
-      "description": "<p>頭の大体の座標（BindToTarget使用時に必要）を指定。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["10", "11"]
-    },
-    {
-      "parameter": "Size.Mid.Pos",
-      "value": ["体の中間の位置"],
-      "type": ["int", "int"],
-      "description": "<p>体中心の大体の座標（BindToTarget使用時に必要）を指定。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["12", "13"]
-    },
-    {
-      "parameter": "Size.ShadowOffset",
-      "value": ["影の表示位置"],
-      "type": ["int"],
-      "description": "<p>影の垂直方向オフセットを指定。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": [";親から継承"],
-      "load_priority": ["14"],
-      "media": {
-        "image": [
-          {"title": "", "file": "Size.ShadowOffset.png", "width": "640", "height": "480"}
-        ]
-      }
-    },
-    {
-      "parameter": "StateNo",
-      "value": ["ステート番号"],
-      "type": ["int"],
-      "description": "<p>ヘルパーが参照するステート番号を指定。</p><p>省略すると立ちステートに飛ばされるので、基本的に省略することはほとんどない。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["0 ;通常モーション"],
-      "load_priority": ["15"]
-    },
-    {
-      "parameter": "KeyCtrl",
-      "value": ["コントロールフラグ"],
-      "type": ["boolean"],
-      "description": "<p><code>Helper</code>がコマンド操作を受け取るかどうかを指定します。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "possible_value": [
-        ["フラグ", "状態"],
-        ["0", "<code>Helper</code>自身の<code>[Command]</code>,<code>Command</code>トリガー,<code>[StateDef -1]</code>が無効になる。"],
-        ["1", "<code>Helper</code>自身の<code>[Command]</code>,<code>Command</code>トリガー,<code>[StateDef -1]</code>が有効になる。"]
-      ],
-      "load_priority": ["(16->17)"]
-    },
-    {
-      "parameter": "ID",
-      "value": ["ヘルパーID"],
-      "type": ["int"],
-      "description": "<p>ヘルパーのIDを指定。</p><p>HelperリダイレクトやIsHelper・NumHelperトリガーで、ヘルパーの状態を取得したりする際に必要。プレイヤーID・ヒットIDとは別物なので注意。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "load_priority": ["18"]
-    },
-    {
-      "parameter": "Pos",
-      "value": ["x座標, y座標"],
-      "type": ["int", "int"],
-      "description": "<p>ヘルパーの初期出現位置を指定します。</p>",
-      "min_value": ["-2147483647", "-2147483647"],
-      "max_value": ["2147483647", "2147483647"],
-      "parameter_type": "optional",
-      "default_value": ["0", "0"],
-      "load_priority": ["19", "20"]
-    },
-    {
-      "parameter": "PosType",
-      "value": ["基準点の位置"],
-      "type": ["string"],
-      "description": "<p>ヘルパーを出現させるための基準点(0,0)をどこにするか、以下の文字列から指定します。</p>",
-      "parameter_type": "optional",
-      "default_value": ["P1"],
-      "possible_value": [
-        ["タイプ", "基準"],
-        ["P1", "<p>実行者が基準点(0,0)になります。X軸の正数は実行者の正面・Y軸の負数は実行者の頭上。</p><div><img src=\"./media/img/PosType_P1.png\" alt=\"MUGEN PosType P1\"></div>"],
-        ["P2", "<p>実行者に最も近い敵が基準点(0,0)になります。X軸の正数は最も近い敵の正面・Y軸の負数は最も近い敵の頭上。</p><div><img src=\"./media/img/PosType_P2.png\" alt=\"MUGEN PosType P2\"></div>"],
-        ["F", "<p>FはFrontの略。実行者の正面の画面端が基準点(0,0)になります。X軸の負数は基準点から実行者の方向・Y軸の負数は地面から上。</p><div><img src=\"./media/img/PosType_Front_1.png\" alt=\"MUGEN PosType Front\"></div>"],
-        ["B", "<p>BはBackの略。実行者の背面の画面端が基準点(0,0)になります。X軸の正数は基準点から実行者の方向・Y軸の負数は地面から上。</p><div><img src=\"./media/img/PosType_Back_1.png\" alt=\"MUGEN PosType Back\"></div>"],
-        ["L", "<p>LはLeftの略。画面左上が基準点(0,0)になります。X軸の正数は画面右方向・Y軸の正数は画面下方向。</p><div><img src=\"./media/img/PosType_Left_Helper.png\" alt=\"MUGEN PosType Left\"></div>"],
-        ["R", "<p>RはRightの略。画面右上が基準点(0,0)になります。X軸の負数は画面左方向・Y軸の正数は画面下方向。</p><div><img src=\"./media/img/PosType_Right_Helper.png\" alt=\"MUGEN PosType Right\"></div>"],
-        ["N", "<p>NはNoneの略。ステージ中央が基準点(0,0)になります。他のPosTypeと違い基準点は絶対に動きません。X軸は右方向が正数・左方向が負数。Y軸は上方向が負数・下方向が正数。</p><p>Version1.1から追加された値です。</p><div><img src=\"./media/img/PosType_None.png\" alt=\"MUGEN PosType None\"></div>"]
-      ],
-      "load_priority": ["?"]
-    },
+	"parameter": [
+		{
+			"parameter": "HelperType",
+			"value": ["ヘルパーの種類"],
+			"type": ["string"],
+			"description": "<p>ヘルパーのタイプを<code>Normal</code>か<code>Player</code>で選択します。</p>",
+			"parameter_type": "optional",
+			"default_value": ["Normal"],
+			"possible_value": [
+				["タイプ", "詳細"],
+				["Normal", "カメラはヘルパーを追いません。飛び道具等はこれを使います。"],
+				["Player", "プレイヤーと同様自動で基本ステートを参照、カメラが追うなど、通常のプレイヤーと同じ扱いとなります。特殊な処理のため、基本的に使用は推奨できません。"],
+				["Proj&lt;英数字なら何でもOK&gt;", "Normalと変わらない。使う意味なし？"]
+			],
+			"load_priority": ["?"]
+		},
+		{
+			"parameter": "Name",
+			"value": ["\"ヘルパー名\""], 
+			"type": ["string"],
+			"description": "<p>ヘルパーの名前を付けます。</p><p><code>Name</code>(トリガー)による探知や判定枠表示(<code>Ctrl+C</code>)でのヘルパー判別に利用します。</p>",
+			"parameter_type": "optional",
+			"default_value": ["\"&lt;ヘルパーを呼び出したキャラ名&gt;\"'s helper"],
+			"possible_value": ["英数字なら何でもOK"],
+			"load_priority": ["?"],
+			"associated_trigger": ["Name"],
+			"media": {
+				"image": [
+					{"title": "", "file": "Helper_Name.png", "width": "359", "height": "321"}
+				]
+			}
+		},
+		{
+			"parameter": "OwnPal",
+			"value": ["独自パレットフラグ"],
+			"type": ["boolean"],
+			"description": "<p>子が親と共通のパレットを持つか持たないか、フラグを指定します。</p><p><code>0</code>で共通にした場合、親が燃えやられや金カラー(<code>PalFX</code>)で色に変化があると子も同様の変化を受けます。また、子で<code>PalFX</code>を使用しても有効になりません。特殊ゲージや飛び道具等、やられ演出の影響を受けたくない場合、<code>1</code>を指定しましょう。</p>",
+			"min_value": ["0"],
+			"max_value": ["1"],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"possible_value": [
+				["パレット", "効果"],
+				["0", "子は親と共通のパレットを持ちます。(子の<code>PalFX</code>無効)"],
+				["1", "子は独自のパレットを持ちます。(子の<code>PalFX</code>有効)"]
+			],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Size.XScale",
+			"value": ["横縮尺"],
+			"type": ["float"],
+			"description": "<p>水平方向の縮尺</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["2"],
+			"media": {
+				"image": [
+					{"title": "", "file": "Size.XScale.png", "width": "640", "height": "480"}
+				]
+			}
+		},
+		{
+			"parameter": "Size.YScale",
+			"value": ["縮尺"],
+			"type": ["float"],
+			"description": "<p>垂直方向の縮尺</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["3"],
+			"media": {
+				"image": [
+					{"title": "", "file": "Size.YScale.png", "width": "640", "height": "480"}
+				]
+			}
+		},
+		{
+			"parameter": "Size.Ground.Back",
+			"value": ["前ぶつかり判定"],
+			"type": ["int"],
+			"description": "<p>キャラクターの幅（後方、地上）を指定。</p><p><code>Nomal</code>ヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、<code>PlayerPush</code>を使用します。</p><p>ちなみに、<code>Ground.Back</code>～<code>Height</code>まで、すべて<code>0</code>にした場合、<code>PlayerPush</code>でぶつかりを発生させても、相手をすり抜けるようになります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["4"],
+			"media": {
+				"image": [
+					{"title": "", "file": "Size.Ground.Back.png", "width": "640", "height": "480"}
+				]
+			}
+		},
+		{
+			"parameter": "Size.Ground.Front",
+			"value": ["後ぶつかり判定"],
+			"type": ["int"],
+			"description": "<p>キャラクターの幅（後方、地上）を指定。</p><p><code>Nomal</code>ヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、<code>PlayerPush</code>を使用します。</p><p>ちなみに、<code>Ground.Back</code>～<code>Height</code>まで、すべて<code>0</code>にした場合、<code>PlayerPush</code>でぶつかりを発生させても、相手をすり抜けるようになります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["5"],
+			"media": {
+				"image": [
+					{"title": "", "file": "Size.Ground.Front.png", "width": "640", "height": "480"}
+				]
+			}
+		},
+		{
+			"parameter": "Size.Air.Back",
+			"value": ["空中での前ぶつかり判定"],
+			"type": ["int"],
+			"description": "<p>キャラクターの幅（後方、空中）を指定。</p><code>Nomal</code>ヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、<code>PlayerPush</code>を使用します。</p><p>ちなみに、<code>Ground.Back</code>～<code>Height</code>まで、すべて<code>0</code>にした場合、<code>PlayerPush</code>でぶつかりを発生させても、相手をすり抜けるようになります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["6"],
+			"media": {
+				"image": [
+					{"title": "", "file": "Size.Air.Back.png", "width": "640", "height": "480"}
+				]
+			}
+		},
+		{
+			"parameter": "Size.Air.Front",
+			"value": ["空中での後ぶつかり判定"],
+			"type": ["int"],
+			"description": "<p>キャラクターの幅（前方、空中）を指定。</p><code>Nomal</code>ヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、<code>PlayerPush</code>を使用します。</p><p>ちなみに、<code>Ground.Back</code>～<code>Height</code>まで、すべて<code>0</code>にした場合、<code>PlayerPush</code>でぶつかりを発生させても、相手をすり抜けるようになります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["7"],
+			"media": {
+				"image": [
+					{"title": "", "file": "Size.Air.Front.png", "width": "640", "height": "480"}
+				]
+			}
+		},
+		{
+			"parameter": "Size.Height",
+			"value": ["縦ぶつかり判定"],
+			"type": ["int"],
+			"description": "<p>キャラクターの高さを指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["8"]
+		},
+		{
+			"parameter": "Size.Proj.DoScale",
+			"value": ["飛び道具縮尺適用フラグ"],
+			"type": ["Boolean"],
+			"description": "<p><code>XScale</code>,<code> YScale</code>の設定が発射物にも適用するかどうか（<code>1</code>で有効）</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["9"]
+		},
+		{
+			"parameter": "Size.Head.Pos",
+			"value": ["頭の位置"],
+			"type": ["int", "int"],
+			"description": "<p>頭の大体の座標（BindToTarget使用時に必要）を指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["10", "11"]
+		},
+		{
+			"parameter": "Size.Mid.Pos",
+			"value": ["体の中間の位置"],
+			"type": ["int", "int"],
+			"description": "<p>体中心の大体の座標（BindToTarget使用時に必要）を指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["12", "13"]
+		},
+		{
+			"parameter": "Size.ShadowOffset",
+			"value": ["影の表示位置"],
+			"type": ["int"],
+			"description": "<p>影の垂直方向オフセットを指定。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": [";親から継承"],
+			"load_priority": ["14"],
+			"media": {
+				"image": [
+					{"title": "", "file": "Size.ShadowOffset.png", "width": "640", "height": "480"}
+				]
+			}
+		},
+		{
+			"parameter": "StateNo",
+			"value": ["ステート番号"],
+			"type": ["int"],
+			"description": "<p>ヘルパーが参照するステート番号を指定。</p><p>省略すると立ちステートに飛ばされるので、基本的に省略することはほとんどない。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0 ;通常モーション"],
+			"load_priority": ["15"]
+		},
+		{
+			"parameter": "KeyCtrl",
+			"value": ["コントロールフラグ"],
+			"type": ["boolean"],
+			"description": "<p><code>Helper</code>がコマンド操作を受け取るかどうかを指定します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"possible_value": [
+				["フラグ", "状態"],
+				["0", "<code>Helper</code>自身の<code>[Command]</code>,<code>Command</code>トリガー,<code>[StateDef -1]</code>が無効になる。"],
+				["1", "<code>Helper</code>自身の<code>[Command]</code>,<code>Command</code>トリガー,<code>[StateDef -1]</code>が有効になる。"]
+			],
+			"load_priority": ["(16->17)"]
+		},
+		{
+			"parameter": "ID",
+			"value": ["ヘルパーID"],
+			"type": ["int"],
+			"description": "<p>ヘルパーのIDを指定。</p><p>HelperリダイレクトやIsHelper・NumHelperトリガーで、ヘルパーの状態を取得したりする際に必要。プレイヤーID・ヒットIDとは別物なので注意。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["18"]
+		},
+		{
+			"parameter": "Pos",
+			"value": ["x座標, y座標"],
+			"type": ["int", "int"],
+			"description": "<p>ヘルパーの初期出現位置を指定します。</p>",
+			"min_value": ["-2147483647", "-2147483647"],
+			"max_value": ["2147483647", "2147483647"],
+			"parameter_type": "optional",
+			"default_value": ["0", "0"],
+			"load_priority": ["19", "20"]
+		},
+		{
+			"parameter": "PosType",
+			"value": ["基準点の位置"],
+			"type": ["string"],
+			"description": "<p>ヘルパーを出現させるための基準点(0,0)をどこにするか、以下の文字列から指定します。</p>",
+			"parameter_type": "optional",
+			"default_value": ["P1"],
+			"possible_value": [
+				["タイプ", "基準"],
+				["P1", "<p>実行者が基準点(0,0)になります。X軸の正数は実行者の正面・Y軸の負数は実行者の頭上。</p><div><img src=\"./media/img/PosType_P1.png\" alt=\"MUGEN PosType P1\"></div>"],
+				["P2", "<p>実行者に最も近い敵が基準点(0,0)になります。X軸の正数は最も近い敵の正面・Y軸の負数は最も近い敵の頭上。</p><div><img src=\"./media/img/PosType_P2.png\" alt=\"MUGEN PosType P2\"></div>"],
+				["F", "<p>FはFrontの略。実行者の正面の画面端が基準点(0,0)になります。X軸の負数は基準点から実行者の方向・Y軸の負数は地面から上。</p><div><img src=\"./media/img/PosType_Front_1.png\" alt=\"MUGEN PosType Front\"></div>"],
+				["B", "<p>BはBackの略。実行者の背面の画面端が基準点(0,0)になります。X軸の正数は基準点から実行者の方向・Y軸の負数は地面から上。</p><div><img src=\"./media/img/PosType_Back_1.png\" alt=\"MUGEN PosType Back\"></div>"],
+				["L", "<p>LはLeftの略。画面左上が基準点(0,0)になります。X軸の正数は画面右方向・Y軸の正数は画面下方向。</p><div><img src=\"./media/img/PosType_Left_Helper.png\" alt=\"MUGEN PosType Left\"></div>"],
+				["R", "<p>RはRightの略。画面右上が基準点(0,0)になります。X軸の負数は画面左方向・Y軸の正数は画面下方向。</p><div><img src=\"./media/img/PosType_Right_Helper.png\" alt=\"MUGEN PosType Right\"></div>"],
+				["N", "<p>NはNoneの略。ステージ中央が基準点(0,0)になります。他のPosTypeと違い基準点は絶対に動きません。X軸は右方向が正数・左方向が負数。Y軸は上方向が負数・下方向が正数。</p><p>Version1.1から追加された値です。</p><div><img src=\"./media/img/PosType_None.png\" alt=\"MUGEN PosType None\"></div>"]
+			],
+			"load_priority": ["?"]
+		},
 
-    {
-      "parameter": "Facing",
-      "value": ["ヘルパーの向き"],
-      "type": ["int"],
-      "description": "<p>ヘルパーの出現時の向きを指定。</p>",
-      "min_value": ["-1"],
-      "max_value": ["1"],
-      "parameter_type": "optional",
-      "default_value": ["1"],
-      "possible_value": [
-        ["タイプ", "基準"],
-        ["1", "<code>PosType</code>が<code>P1</code>,<code>F</code>,<code>B</code>の場合、実行者と同じ向き。<code>P2</code>の場合、実行者に1番近い敵と同じ向き。<code>L</code>,<code>R</code>の場合、右。"],
-        ["-1", "<code>PosType</code>が<code>P1</code>,<code>F</code>,<code>B</code>の場合、実行者と逆向き。<code>P2</code>の場合、実行者に1番近い敵と逆向き。<code>L</code>,<code>R</code>の場合、左。"]
-      ],
-      "load_priority": ["21"]
-    },
-    {
-      "parameter": "PauseMoveTime",
-      "value": ["Pause無視時間"],
-      "type": ["int"],
-      "description": "<p><code>Pause</code>コントローラーの影響を無視する時間をフレーム単位で指定。</p><p>※60フレーム=1秒</p>",
-      "min_value": ["0"],
-      "max_value": ["2147483647"],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "load_priority": ["22"]
-    },
-    {
-      "parameter": "SuperMoveTime",
-      "value": ["SuperPause無視時間"],
-      "type": ["int"],
-      "description": "<p><code>SuperPause</code>コントローラーの影響を無視する時間をフレーム単位で指定。</p><p>※60フレーム=1秒</p>",
-      "min_value": ["0"],
-      "max_value": ["2147483647"],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "load_priority": ["23"]
-    },
-    {
-      "parameter": "ReMapPal",
-      "value": ["dst_pal_grp", "dst_pal_item"],
-      "type": ["int", "int"],
-      "description": "<p>Forces a palette remap of the helper's indexed-color sprites to the specified palette. This parameter is used only if ownpal_flag is non-zero. If dst_pal_grp is -1, this parameter will be ignored.</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["-1", "0"],
-      "load_priority": ["?", "?"]
-    }
-  ],
+		{
+			"parameter": "Facing",
+			"value": ["ヘルパーの向き"],
+			"type": ["int"],
+			"description": "<p>ヘルパーの出現時の向きを指定。</p>",
+			"min_value": ["-1"],
+			"max_value": ["1"],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"possible_value": [
+				["タイプ", "基準"],
+				["1", "<code>PosType</code>が<code>P1</code>,<code>F</code>,<code>B</code>の場合、実行者と同じ向き。<code>P2</code>の場合、実行者に1番近い敵と同じ向き。<code>L</code>,<code>R</code>の場合、右。"],
+				["-1", "<code>PosType</code>が<code>P1</code>,<code>F</code>,<code>B</code>の場合、実行者と逆向き。<code>P2</code>の場合、実行者に1番近い敵と逆向き。<code>L</code>,<code>R</code>の場合、左。"]
+			],
+			"load_priority": ["21"]
+		},
+		{
+			"parameter": "PauseMoveTime",
+			"value": ["Pause無視時間"],
+			"type": ["int"],
+			"description": "<p><code>Pause</code>コントローラーの影響を無視する時間をフレーム単位で指定。</p><p>※60フレーム=1秒</p>",
+			"min_value": ["0"],
+			"max_value": ["2147483647"],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["22"]
+		},
+		{
+			"parameter": "SuperMoveTime",
+			"value": ["SuperPause無視時間"],
+			"type": ["int"],
+			"description": "<p><code>SuperPause</code>コントローラーの影響を無視する時間をフレーム単位で指定。</p><p>※60フレーム=1秒</p>",
+			"min_value": ["0"],
+			"max_value": ["2147483647"],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["23"]
+		},
+		{
+			"parameter": "ReMapPal",
+			"value": ["dst_pal_grp", "dst_pal_item"],
+			"type": ["int", "int"],
+			"description": "<p>Forces a palette remap of the helper's indexed-color sprites to the specified palette. This parameter is used only if ownpal_flag is non-zero. If dst_pal_grp is -1, this parameter will be ignored.</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1", "0"],
+			"load_priority": ["?", "?"]
+		}
+	],
 
-  "code_sample": [
-    {
-      "title": "Helper分身バグ対策",
-      "description": "<p>コモンステートの[StateDef 0, 立ちステート]と[StateDef 5150, 死亡ステート]の最後に記述することで、分身したヘルパー自身が自分を消去します。</p>",
-      "code": [
-        "; [StateDef 0]記述省略",
-        "[State 0]",
-        "Type = DestroySelf",
-        "Trigger1 = IsHelper",
-        "; [StateDef 5150]記述省略",
-        "[State 5150]",
-        "Type = DestroySelf",
-        "Trigger1 = IsHelper"
-      ]
-    }
-  ],
+	"code_sample": [
+		{
+			"title": "Helper分身バグ対策",
+			"description": "<p>コモンステートの[StateDef 0, 立ちステート]と[StateDef 5150, 死亡ステート]の最後に記述することで、分身したヘルパー自身が自分を消去します。</p>",
+			"code": [
+				"; [StateDef 0]記述省略",
+				"[State 0]",
+				"Type = DestroySelf",
+				"Trigger1 = IsHelper",
+				"; [StateDef 5150]記述省略",
+				"[State 5150]",
+				"Type = DestroySelf",
+				"Trigger1 = IsHelper"
+			]
+		}
+	],
 
-  "quote": [
-    {"title": "Helper - State Controller Reference", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#helper"},
-    {"title": "M.U.G.E.N Update History", "url": "http://network.mugenguild.com/justnopoint/1.1docs/history.html"},
-    {"title": "Helper - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/Helper"},
-    {"title": "Helper - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/231.html"},
-    {"title": "Helper技術 - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/233.html"},
-    {"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-    {"title": "Helper - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Helper&protocol=http"},
-    {"title": "AI用ヘルパーに関してのメモ　（ｂｙＡＤＩ）", "url": "http://homepage3.nifty.com/andil/mugen/Helper.txt"},
-    {"title": "Helper - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Helper"},
-    {"title": "Helper - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/helper.htm"}
-  ]
+	"quote": [
+		{"title": "Helper - State Controller Reference", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#helper"},
+		{"title": "M.U.G.E.N Update History", "url": "http://network.mugenguild.com/justnopoint/1.1docs/history.html"},
+		{"title": "Helper - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/Helper"},
+		{"title": "Helper - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/231.html"},
+		{"title": "Helper技術 - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/233.html"},
+		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
+		{"title": "Helper - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Helper&protocol=http"},
+		{"title": "AI用ヘルパーに関してのメモ　（ｂｙＡＤＩ）", "url": "http://homepage3.nifty.com/andil/mugen/Helper.txt"},
+		{"title": "Helper - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Helper"},
+		{"title": "Helper - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/helper.htm"}
+	]
 }

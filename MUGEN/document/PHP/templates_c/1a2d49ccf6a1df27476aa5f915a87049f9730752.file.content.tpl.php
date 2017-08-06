@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-05 08:19:06
+<?php /* Smarty version Smarty-3.1.12, created on 2017-08-06 10:19:29
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\Trigger\content.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12247208205985635a334c64-36052411%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1a2d49ccf6a1df27476aa5f915a87049f9730752' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\Trigger\\content.tpl',
-      1 => 1482311807,
+      1 => 1502007557,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5985635a36c1e6_99717988',
   'variables' => 
   array (
     'content' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'contributor' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5985635a36c1e6_99717988',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5985635a36c1e6_99717988')) {function content_5985635a36c1e6_99717988($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_replace')) include 'C:\\libs\\php\\smarty\\plugins\\modifier.replace.php';
 ?><div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
@@ -60,11 +60,7 @@ px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"<?php } ?>><?p
 	<div class="entry-content">
 
 
-
 <?php echo $_smarty_tpl->getSubTemplate ("./../Trigger/content/Description.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-
-
-<?php echo $_smarty_tpl->getSubTemplate ("./../Trigger/content/Version.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
 
@@ -73,6 +69,9 @@ px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"<?php } ?>><?p
 
 
 <?php echo $_smarty_tpl->getSubTemplate ("./../Trigger/content/CodeSample.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
+<?php echo $_smarty_tpl->getSubTemplate ("./../Trigger/content/Version.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
 <?php echo $_smarty_tpl->getSubTemplate ("./../Trigger/content/Quote.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>

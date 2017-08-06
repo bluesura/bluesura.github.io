@@ -1,72 +1,72 @@
 {
-  "page": {
-    "title": "MUGEN State Controller",
-    "subtitle": "EnvShake",
-    "target": "",
-    "category": ["", ""],
-    "version": "2002.04.14",
-    "update": "2013.11.27",
-    "type": "document",
-    "level": "3"
-  },
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "EnvShake",
+		"target": "",
+		"category": ["", ""],
+		"version": "2002.04.14",
+		"update": "2017.08.06",
+		"type": "document",
+		"level": "3"
+	},
 
-  "state": "EnvShake",
-  "description": "<p>画面を揺らします。ただし、ライフバーは揺れません。</p><p>次のフレームからTime-1フレーム後まで作用。1フレーム毎に実行すると、前回の効果に上書きされるため、内容が同じだと画面が揺れません。</p><p>揺れは正弦波であり、初期位相Phase°、角周波数Freq°/フレーム、振幅Amplピクセル。（正弦波は円周上を回る点を縦軸に映した影と見ることが出来、円の半径をAmpl、1フレームに反時計回りに回る角度をFreq、スタート地点をPhaseと考えることが出来る。）</p>",
-  "images": [{"src": "EnvShake.gif", "width": "640", "height": "480", "alt": "MUGEN EnvShake"}],
-  "category": "state",
+	"state": "EnvShake",
+	"description": "<p>画面を揺らします。ただし、ライフバーは揺れません。</p><p>次のフレームからTime-1フレーム後まで作用。1フレーム毎に実行すると、前回の効果に上書きされるため、内容が同じだと画面が揺れません。</p><p>揺れは正弦波であり、初期位相Phase°、角周波数Freq°/フレーム、振幅Amplピクセル。（正弦波は円周上を回る点を縦軸に映した影と見ることが出来、円の半径をAmpl、1フレームに反時計回りに回る角度をFreq、スタート地点をPhaseと考えることが出来る。）</p>",
+	"images": [{"src": "EnvShake.gif", "width": "640", "height": "480", "alt": "MUGEN EnvShake"}],
+	"category": "state",
 
-  "version": [
-    {"no": "警告文", "content": "NEGATIVE FREQ FOR ENVSHAKE: Freqに-1以下"}
-  ],
+	"version": [
+		{"no": "警告文", "content": "NEGATIVE FREQ FOR ENVSHAKE:Freqに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
 
-  "parameter": [
-    {
-      "parameter": "Time",
-      "value": ["揺れる時間"],
-      "type": ["int"],
-      "description": "<p>揺れの持続時間をフレーム単位で指定。</p><p>※60フレーム=1秒</p>",
-      "min_value": ["0 ;効果なし"],
-      "max_value": ["2147483647"],
-      "parameter_type": "required",
-      "load_priority": ["1"]
-    },
-    {
-      "parameter": "Ampl",
-      "value": ["揺れ幅"],
-      "type": ["int"],
-      "description": "<p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p><p>ハイレゾ(1024×768ドット以上の解像度)のステージでは背景の振れ幅は半減します。</p>",
-      "parameter_type": "optional",
-      "default_value": ["-4 ;ただし、画面の縦が240ピクセル：-4, 480ピクセル：-8, 720ピクセル：-16"],
-      "load_priority": ["2"]
-    },
-    {
-      "parameter": "Phase",
-      "value": ["位相開始位置"],
-      "type": ["float"],
-      "description": "<p>揺れ幅をどこから始めるか指定出来ます。</p>",
-      "parameter_type": "optional",
-      "default_value": ["0 ;ただし、Freqが90以上の場合、90になります。"],
-      "load_priority": ["3"]
-    },
-    {
-      "parameter": "Freq",
-      "value": ["揺れの速度"],
-      "type": ["float"],
-      "description": "<p>揺れるスピードを、0(固定),1(低速)～180(高速)の間で指定。180を「中心からズレて中心に戻るまで」とした速度数値。半周が180なので一周＝360。360/Freq値＝一周にかかるフレーム数。</p>",
-      "min_value": ["0"],
-      "max_value": ["180"],
-      "parameter_type": "optional",
-      "default_value": ["60"],
-      "load_priority": ["4"]
-    }
-  ],
+	"parameter": [
+		{
+			"parameter": "Time",
+			"value": ["揺れる時間"],
+			"type": ["int"],
+			"description": "<p>揺れの持続時間をフレーム単位で指定。</p><p>※60フレーム=1秒</p>",
+			"min_value": ["0 ;効果なし"],
+			"max_value": ["2147483647"],
+			"parameter_type": "required",
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Ampl",
+			"value": ["揺れ幅"],
+			"type": ["int"],
+			"description": "<p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p><p>ハイレゾ(1024×768ドット以上の解像度)のステージでは背景の振れ幅は半減します。</p>",
+			"parameter_type": "optional",
+			"default_value": ["-4 ;ただし、画面の縦が240ピクセル：-4, 480ピクセル：-8, 720ピクセル：-16"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "Phase",
+			"value": ["位相開始位置"],
+			"type": ["float"],
+			"description": "<p>揺れ幅をどこから始めるか指定出来ます。</p>",
+			"parameter_type": "optional",
+			"default_value": ["0 ;ただし、Freqが90以上の場合、90になります。"],
+			"load_priority": ["3"]
+		},
+		{
+			"parameter": "Freq",
+			"value": ["揺れの速度"],
+			"type": ["float"],
+			"description": "<p>揺れるスピードを、0(固定),1(低速)～180(高速)の間で指定。180を「中心からズレて中心に戻るまで」とした速度数値。半周が180なので一周＝360。360/Freq値＝一周にかかるフレーム数。</p>",
+			"min_value": ["0"],
+			"max_value": ["180"],
+			"parameter_type": "optional",
+			"default_value": ["60"],
+			"load_priority": ["4"]
+		}
+	],
 
-  "quote": [
-    {"title": "EnvShake - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/EnvShake"},
-    {"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-    {"title": "EnvShake - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?EnvShake&protocol=http"},
-    {"title": "EnvShake - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/214.html"},
-    {"title": "EnvShake - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#EnvShake"},
-    {"title": "EnvShake - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
-  ]
+	"quote": [
+		{"title": "EnvShake - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/EnvShake"},
+		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
+		{"title": "EnvShake - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?EnvShake&protocol=http"},
+		{"title": "EnvShake - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/214.html"},
+		{"title": "EnvShake - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#EnvShake"},
+		{"title": "EnvShake - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
+	]
 }

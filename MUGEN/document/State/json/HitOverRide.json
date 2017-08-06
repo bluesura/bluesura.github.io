@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-		"update": "2013.11.27",
+		"update": "2017.08.06",
 		"type": "document",
 		"level": "3"
 	},
@@ -13,6 +13,12 @@
 	"state": "HitOverRide",
 	"description": "<p>指定した種類の攻撃を受けたときに、指定したステートに移行することができます。カウンター技や、helperのやられなどに。ただし、攻撃側がp2Statenoを設定していると、攻撃が当たらなくなります(不具合防止のため？)。</p><p>なお、このコントローラでMovetypeがH以外のステートに移行すると、HitDefを無効にできますが、ヒットスパークとヒット音は必ず発生してしまいます。</p><p>一度に8種類の指定が可能。</p>",
 	"category": "state",
+
+	"version": [
+		{"no": "警告文", "content": "ILLEGAL OVERRIDE SLOT 0 ASSUMED:Slotに-1以下、8以上", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "ILLEGAL HITOVERRIDE TIME:Timeに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "ILLEGAL HITOVERRIDE STATENO.:StateNoに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
 
 	"parameter": [
 		{

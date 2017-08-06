@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-		"update": "2013.11.27",
+		"update": "2017.08.06",
 		"type": "document",
 		"level": "3"
 	},
@@ -13,6 +13,11 @@
 	"state": "SelfState",
 	"description": "<p>ChangeStateと同じく、ステートを変更するコントローラですが、相手のステートを参照している場合に、自分のステートに変更するという点で異なります。</p><p>HitDefのP2StateパラメータやTargetStateを使った場合、必ずSelfStateで元に戻すようにしましょう。</p><p>また、ChangeStateの代わりとして普通に使えます。-2ステートに記述すれば、相手のステートから無理矢理抜けることもできますが、不具合の元です。</p>",
 	"category": "state",
+
+	"version": [
+		{"no": "警告文", "content": "ATTEMPTED SELFSTATE TO NEGATIVE STATE:Valueに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "ATTEMPTED CHANGE TO NEGATIVE STATE:Animに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
 
 	"parameter": [
 		{

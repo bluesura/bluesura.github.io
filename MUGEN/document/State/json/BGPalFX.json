@@ -1,118 +1,119 @@
 {
-  "page": {
-    "title": "MUGEN State Controller",
-    "subtitle": "BGPalFX",
-    "target": "背景",
-    "category": ["色の操作", "背景の色を変更"],
-    "version": "2002.04.14",
-    "update": "2013.11.27",
-    "type": "document",
-    "level": "3"
-  },
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "BGPalFX",
+		"target": "背景",
+		"category": ["色の操作", "背景の色を変更"],
+		"version": "2002.04.14",
+		"update": "2017.08.06",
+		"type": "document",
+		"level": "3"
+	},
 
-  "state": "BGPalFX",
-  "description": "<p>背景のパレットに指定色を加算・乗算します。</p><p>全画面に加算する場合は<a href=\"AllPalFX.html\"><code>AllPalFX</code></a>,キャラクターのみに加算する場合は<a href=\"PalFX.html\"><code>PalFX</code></a>,指定色で塗りつぶしたい場合は<a href=\"EnvColor.html\"><code>EnvColor</code></a>。</p>",
-  "category": "state",
+	"state": "BGPalFX",
+	"description": "<p>背景のパレットに指定色を加算・乗算します。</p><p>全画面に加算する場合は<code>AllPalFX</code>,キャラクターのみに加算する場合は<code>PalFX</code>,指定色で塗りつぶしたい場合は<code>EnvColor</code>。</p>",
+	"category": "state",
+	"associated_state": ["PalFX","AllPalFX","EnvColor"],
 
-  "version": [
-    {"no": "-", "content": "<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。"},
-    {"no": "警告文", "content": "INVALID PALFX TIME: Timeに-2以下"},
-    {"no": "警告文", "content": "INVALID PALFX COLOR: Colorに-1以下、257以上"},
-    {"no": "警告文", "content": "INVALID PALFX MUL VALUE: MULに-1以下"}
-  ],
+	"version": [
+		{"no": "-", "content": "<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。"},
+		{"no": "警告文", "content": "INVALID PALFX TIME:Timeに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "INVALID PALFX COLOR:Colorに-1以下、257以上", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "INVALID PALFX MUL VALUE:MULに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
 
-  "parameter": [
-    {
-      "parameter": "Time",
-      "value": ["持続時間"],
-      "type": ["int"],
-      "description": "<p>効果の持続時間をフレーム単位で指定します。</p><p>ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、<code>Time=1</code>にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXで<code>Time=1</code>をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>※60フレーム=1秒</p>",
-      "min_value": ["-1"],
-      "max_value": ["2147483647"],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "load_priority": ["1"]
-    },
-    {
-      "parameter": "Color",
-      "value": ["彩度"],
-      "type": ["int"],
-      "description": "<p>パレットの彩度を下げます。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style=\"background-color: hsl(0, 0%, 100%);border: 1px solid #000;\">　</span><br><span style=\"background-color: hsl(0, 0%, 80%);\">　</span><span style=\"background-color: hsl(0, 10%, 80%);\">　</span><span style=\"background-color: hsl(0, 20%, 80%);\">　</span><span style=\"background-color: hsl(0, 30%, 80%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 60%);\">　</span><span style=\"background-color: hsl(0, 10%, 60%);\">　</span><span style=\"background-color: hsl(0, 20%, 60%);\">　</span><span style=\"background-color: hsl(0, 30%, 60%);\">　</span><span style=\"background-color: hsl(0, 40%, 60%);\">　</span><span style=\"background-color: hsl(0, 50%, 60%);\">　</span><span style=\"background-color: hsl(0, 60%, 60%);\">　</span><span style=\"background-color: hsl(0, 70%, 60%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 50%);\">　</span><span style=\"background-color: hsl(0, 10%, 50%);\">　</span><span style=\"background-color: hsl(0, 20%, 50%);\">　</span><span style=\"background-color: hsl(0, 30%, 50%);\">　</span><span style=\"background-color: hsl(0, 40%, 50%);\">　</span><span style=\"background-color: hsl(0, 50%, 50%);\">　</span><span style=\"background-color: hsl(0, 60%, 50%);\">　</span><span style=\"background-color: hsl(0, 70%, 50%);\">　</span><span style=\"background-color: hsl(0, 80%, 50%);\">　</span><span style=\"background-color: hsl(0, 90%, 50%);\">　</span><span style=\"background-color: hsl(0, 100%, 50%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 40%);\">　</span><span style=\"background-color: hsl(0, 10%, 40%);\">　</span><span style=\"background-color: hsl(0, 20%, 40%);\">　</span><span style=\"background-color: hsl(0, 30%, 40%);\">　</span><span style=\"background-color: hsl(0, 40%, 40%);\">　</span><span style=\"background-color: hsl(0, 50%, 40%);\">　</span><span style=\"background-color: hsl(0, 60%, 40%);\">　</span><span style=\"background-color: hsl(0, 70%, 40%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 20%);\">　</span><span style=\"background-color: hsl(0, 10%, 20%);\">　</span><span style=\"background-color: hsl(0, 20%, 20%);\">　</span><span style=\"background-color: hsl(0, 30%, 20%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 0%);\">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p>",
-      "min_value": ["0 ;グレースケール"],
-      "max_value": ["256 ;変化なし"],
-      "parameter_type": "optional",
-      "default_value": ["256"],
-      "load_priority": ["2"]
-    },
-    {
-      "parameter": "Add",
-      "value": ["加算する赤色", "加算する緑色", "加算する青色"],
-      "type": ["int", "int", "int"],
-      "description": "<p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span><code>Add=256,0,0</code>の場合、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>赤(256,0,0)になりますが、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)のままです。</p>",
-      "min_value": ["-256", "-256", "-256 ;黒"],
-      "max_value": ["256", "256", "256 ;白"],
-      "parameter_type": "optional",
-      "default_value": ["0", "0", "0"],
-      "load_priority": ["3", "4", "5"]
-    },
-    {
-      "parameter": "Mul",
-      "value": ["合成する赤色", "合成する緑色", "合成する青色"],
-      "type": ["int", "int", "int"],
-      "description": "<p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(64,256,64);\">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(1,256,1);\">　</span>緑(1,256,1)になりますが、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)のままです。</p>",
-      "min_value": ["1", "1", "1"],
-      "max_value": ["256", "256", "256 ;変化なし"],
-      "parameter_type": "optional",
-      "default_value": ["256", "256", "256"],
-      "load_priority": ["6", "7", "8"]
-    },
-    {
-      "parameter": "SinAdd",
-      "value": ["周期する赤色", "周期する緑色", "周期する青色", "周期"],
-      "type": ["int", "int", "int", "int"],
-      "description": "<p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,256);\">　</span><code>SinAdd=0,0,256,20</code>,<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)は、5F後<span style=\"border: 1px solid #000;background: rgb(128,128,256);\">　</span>(128,128,256)になり、10F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻り、15F後<span style=\"border: 1px solid #000;background: rgb(128,128,0);\">　</span>(128,128,0)、20F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻る、という周期を繰り返します。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["0", "0", "0", "0"],
-      "load_priority": ["9", "10", "11", "12"],
-      "media": {
-        "image": [
-          {"title": "", "file": "SinAdd.png", "width": "600", "height": "242"}
-        ]
-      }
-    },
-    {
-      "parameter": "InvertAll",
-      "value": ["色反転フラグ"],
-      "type": ["boolean"],
-      "description": "<p>色を反転するか・しないかのフラグです。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>(0,0,0)→<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>(256,256,256),<span style=\"border: 1px solid #000;background: rgb(0,252,0);\">　</span>(0,252,0)→<span style=\"border: 1px solid #000;background: rgb(256,4,256);\">　</span>(256,4,256),<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>(256,0,0)→<span style=\"border: 1px solid #000;background: rgb(0,256,256);\">　</span>(0,256,256)</p>",
-      "min_value": ["0 ;色が反転しない"],
-      "max_value": ["1 ;色が反転する"],
-      "parameter_type": "optional",
-      "default_value": ["0"],
-      "load_priority": ["13"],
-      "media": {
-        "image": [
-          {"title": "", "file": "InvertAll.png", "width": "167", "height": "167"}
-        ]
-      }
-    }
-  ],
+	"parameter": [
+		{
+			"parameter": "Time",
+			"value": ["持続時間"],
+			"type": ["int"],
+			"description": "<p>効果の持続時間をフレーム単位で指定します。</p><p>ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、<code>Time=1</code>にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXで<code>Time=1</code>をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>※60フレーム=1秒</p>",
+			"min_value": ["-1"],
+			"max_value": ["2147483647"],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Color",
+			"value": ["彩度"],
+			"type": ["int"],
+			"description": "<p>パレットの彩度を下げます。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style=\"background-color: hsl(0, 0%, 100%);border: 1px solid #000;\">　</span><br><span style=\"background-color: hsl(0, 0%, 80%);\">　</span><span style=\"background-color: hsl(0, 10%, 80%);\">　</span><span style=\"background-color: hsl(0, 20%, 80%);\">　</span><span style=\"background-color: hsl(0, 30%, 80%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 60%);\">　</span><span style=\"background-color: hsl(0, 10%, 60%);\">　</span><span style=\"background-color: hsl(0, 20%, 60%);\">　</span><span style=\"background-color: hsl(0, 30%, 60%);\">　</span><span style=\"background-color: hsl(0, 40%, 60%);\">　</span><span style=\"background-color: hsl(0, 50%, 60%);\">　</span><span style=\"background-color: hsl(0, 60%, 60%);\">　</span><span style=\"background-color: hsl(0, 70%, 60%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 50%);\">　</span><span style=\"background-color: hsl(0, 10%, 50%);\">　</span><span style=\"background-color: hsl(0, 20%, 50%);\">　</span><span style=\"background-color: hsl(0, 30%, 50%);\">　</span><span style=\"background-color: hsl(0, 40%, 50%);\">　</span><span style=\"background-color: hsl(0, 50%, 50%);\">　</span><span style=\"background-color: hsl(0, 60%, 50%);\">　</span><span style=\"background-color: hsl(0, 70%, 50%);\">　</span><span style=\"background-color: hsl(0, 80%, 50%);\">　</span><span style=\"background-color: hsl(0, 90%, 50%);\">　</span><span style=\"background-color: hsl(0, 100%, 50%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 40%);\">　</span><span style=\"background-color: hsl(0, 10%, 40%);\">　</span><span style=\"background-color: hsl(0, 20%, 40%);\">　</span><span style=\"background-color: hsl(0, 30%, 40%);\">　</span><span style=\"background-color: hsl(0, 40%, 40%);\">　</span><span style=\"background-color: hsl(0, 50%, 40%);\">　</span><span style=\"background-color: hsl(0, 60%, 40%);\">　</span><span style=\"background-color: hsl(0, 70%, 40%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 20%);\">　</span><span style=\"background-color: hsl(0, 10%, 20%);\">　</span><span style=\"background-color: hsl(0, 20%, 20%);\">　</span><span style=\"background-color: hsl(0, 30%, 20%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 0%);\">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p>",
+			"min_value": ["0 ;グレースケール"],
+			"max_value": ["256 ;変化なし"],
+			"parameter_type": "optional",
+			"default_value": ["256"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "Add",
+			"value": ["加算する赤色", "加算する緑色", "加算する青色"],
+			"type": ["int", "int", "int"],
+			"description": "<p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span><code>Add=256,0,0</code>の場合、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>赤(256,0,0)になりますが、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)のままです。</p>",
+			"min_value": ["-256", "-256", "-256 ;黒"],
+			"max_value": ["256", "256", "256 ;白"],
+			"parameter_type": "optional",
+			"default_value": ["0", "0", "0"],
+			"load_priority": ["3", "4", "5"]
+		},
+		{
+			"parameter": "Mul",
+			"value": ["合成する赤色", "合成する緑色", "合成する青色"],
+			"type": ["int", "int", "int"],
+			"description": "<p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(64,256,64);\">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(1,256,1);\">　</span>緑(1,256,1)になりますが、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)のままです。</p>",
+			"min_value": ["1", "1", "1"],
+			"max_value": ["256", "256", "256 ;変化なし"],
+			"parameter_type": "optional",
+			"default_value": ["256", "256", "256"],
+			"load_priority": ["6", "7", "8"]
+		},
+		{
+			"parameter": "SinAdd",
+			"value": ["周期する赤色", "周期する緑色", "周期する青色", "周期"],
+			"type": ["int", "int", "int", "int"],
+			"description": "<p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,256);\">　</span><code>SinAdd=0,0,256,20</code>,<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)は、5F後<span style=\"border: 1px solid #000;background: rgb(128,128,256);\">　</span>(128,128,256)になり、10F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻り、15F後<span style=\"border: 1px solid #000;background: rgb(128,128,0);\">　</span>(128,128,0)、20F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻る、という周期を繰り返します。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["0", "0", "0", "0"],
+			"load_priority": ["9", "10", "11", "12"],
+			"media": {
+				"image": [
+					{"title": "", "file": "SinAdd.png", "width": "600", "height": "242"}
+				]
+			}
+		},
+		{
+			"parameter": "InvertAll",
+			"value": ["色反転フラグ"],
+			"type": ["boolean"],
+			"description": "<p>色を反転するか・しないかのフラグです。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>(0,0,0)→<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>(256,256,256),<span style=\"border: 1px solid #000;background: rgb(0,252,0);\">　</span>(0,252,0)→<span style=\"border: 1px solid #000;background: rgb(256,4,256);\">　</span>(256,4,256),<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>(256,0,0)→<span style=\"border: 1px solid #000;background: rgb(0,256,256);\">　</span>(0,256,256)</p>",
+			"min_value": ["0 ;色が反転しない"],
+			"max_value": ["1 ;色が反転する"],
+			"parameter_type": "optional",
+			"default_value": ["0"],
+			"load_priority": ["13"],
+			"media": {
+				"image": [
+					{"title": "", "file": "InvertAll.png", "width": "167", "height": "167"}
+				]
+			}
+		}
+	],
 
-  "qanda": [
-    {
-      "q": "表示される色の処理順",
-      "a": "<p>各条件を以下のように定義する。</p><ul><li>Add    = Add_赤色(AR), Add_緑色(AG), Add_青色(AB)</li><li>SinAdd = Sin_赤色(SR), Sin_緑色(SG), Sin_青色(SB), 周期(P)</li><li>Mul    = Mul_赤色(MR), Mul_緑色(MG), Mul_青色(MB)</li></ul><br><br><br><br>経過時間:(T) ※単位はフレーム、1秒=60フレーム<br>円周率:(Pi)<br><br>変更する色:<br>Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br><br>==========処理の流れ==========<br>処理する色 = Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br>↓<br>彩度(Color)<br>彩度を調整した色 = Color_赤色(CR), Color_緑色(CG), Color_青色(CB)<br>↓<br>経過時間(T)に表示される色は<br>赤要素(RR) = (CR + AR + SR * Sin(2*Pi*T/P))  *  MR/256<br>緑要素(RG) = (CG + AG + SG * Sin(2*Pi*T/P))  *  MG/256<br>青要素(RB) = (CB + AB + SB * Sin(2*Pi*T/P))  *  MB/256<br>↓<br>色反転(InvertAll)<br>反転した赤要素(IR) = 256-RR<br>反転した緑要素(IG) = 256-RG<br>反転した青要素(IB) = 256-RB<br>↓<br>結果色(IR, IG, IB)が表示されます。</p>"
-    }
-  ],
+	"qanda": [
+		{
+			"q": "表示される色の処理順",
+			"a": "<p>各条件を以下のように定義する。</p><ul><li>Add    = Add_赤色(AR), Add_緑色(AG), Add_青色(AB)</li><li>SinAdd = Sin_赤色(SR), Sin_緑色(SG), Sin_青色(SB), 周期(P)</li><li>Mul    = Mul_赤色(MR), Mul_緑色(MG), Mul_青色(MB)</li></ul><br><br><br><br>経過時間:(T) ※単位はフレーム、1秒=60フレーム<br>円周率:(Pi)<br><br>変更する色:<br>Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br><br>==========処理の流れ==========<br>処理する色 = Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br>↓<br>彩度(Color)<br>彩度を調整した色 = Color_赤色(CR), Color_緑色(CG), Color_青色(CB)<br>↓<br>経過時間(T)に表示される色は<br>赤要素(RR) = (CR + AR + SR * Sin(2*Pi*T/P))  *  MR/256<br>緑要素(RG) = (CG + AG + SG * Sin(2*Pi*T/P))  *  MG/256<br>青要素(RB) = (CB + AB + SB * Sin(2*Pi*T/P))  *  MB/256<br>↓<br>色反転(InvertAll)<br>反転した赤要素(IR) = 256-RR<br>反転した緑要素(IG) = 256-RG<br>反転した青要素(IB) = 256-RB<br>↓<br>結果色(IR, IG, IB)が表示されます。</p>"
+		}
+	],
 
-  "quote": [
-    {"title": "BGPalFX - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/BGPalFX"},
-    {"title": "BGPalFX - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/65.html"},
-    {"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-    {"title": "BGPalFX - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BGPalFX&protocol=http"},
-    {"title": "BGPalFX - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#BGPalFX"},
-    {"title": "BGPalFX - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-  ]
+	"quote": [
+		{"title": "BGPalFX - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/BGPalFX"},
+		{"title": "BGPalFX - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/65.html"},
+		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
+		{"title": "BGPalFX - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BGPalFX&protocol=http"},
+		{"title": "BGPalFX - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#BGPalFX"},
+		{"title": "BGPalFX - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
+	]
 }

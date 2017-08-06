@@ -5,7 +5,7 @@
 		"target": "画像",
 		"category": ["Explod", "Explodの設定を変更"],
 		"version": "2002.04.14",
-		"update": "2015.11.15",
+		"update": "2017.08.06",
 		"type": "document",
 		"level": "3"
 	},
@@ -13,13 +13,18 @@
 	"state": "ModifyExplod",
 	"description": "<p>既に出したExplodの設定を変える命令。指定したIDのExplodが存在しない場合は、ID以降のパラメータは読み込まれません。</p><p>IgnoreHitPause = 1ではHitPauseTime中にも出る、またAnimが動く。IgnoreHitPauseを省略するとHitPauseTime中には出ない、またAnimeが動く。IgnoreHitPause = 0ではHitPauseTime中には出ない、またAnimが動かない。</p>",
 	"category": "state",
+	"associated_state": ["Explod"],
 
 	"version": [
-		{"no": "-", "content": "BindTime=0でPosTypeを指定していてもPosType=Leftとして扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。"},
-		{"no": "-", "content": "未検証：AfterImage系統と異なり、ModifyExplodを用いてもRemoveTimeで消えるまでの残り時間は変わらない。"},
-		{"no": "-", "content": "AnimとOwnPalは設定出来ません。"},
-		{"no": "-", "content": "Pos、Facing、VFacing、Vel、Accel、RandomはPosTypeも一緒に指定しなければ読み込まれない。"},
-		{"no": "-", "content": "SuperMoveTimeやPauseMoveTimeはModifyExplod自体のパラメータが変更されるだけで、対象となるExplodの該当する値を変更することはできない。"}
+		{"no": "", "content": "BindTime=0でPosTypeを指定していてもPosType=Leftとして扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。"},
+		{"no": "", "content": "未検証：AfterImage系統と異なり、ModifyExplodを用いてもRemoveTimeで消えるまでの残り時間は変わらない。"},
+		{"no": "バグ", "content": "AnimとOwnPalは設定出来ません。"},
+		{"no": "仕様", "content": "Pos、Facing、VFacing、Vel、Accel、RandomはPosTypeも一緒に指定しなければ読み込まれない。"},
+		{"no": "", "content": "SuperMoveTimeやPauseMoveTimeはModifyExplod自体のパラメータが変更されるだけで、対象となるExplodの該当する値を変更することはできない。"},
+		{"no": "警告文", "content": "ILLEGAL POSBINDTIME FOR EXPLOD:BindTimeに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "NEGATIVE EXPLOD RANDOM PARAM:Randomに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "ILLEGAL REMOVETIME FOR EXPLOD:RemoveTimeに-3以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "ILLEGAL SHADOW COLOR:Colorに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
 	],
 
 	"parameter": [

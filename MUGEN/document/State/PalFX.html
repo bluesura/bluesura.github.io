@@ -129,48 +129,12 @@ PalFX | 【キャラクターなどの色を変更】 | MUGEN State Controller -
   <div class="entry-content">
 
 ﻿	<div class="description" itemprop="articleBody">
-<div><p>キャラクターなどのパレットに加算・乗算します。</p><p>全画面に加算する場合は<a href="AllPalFX.html"><code>AllPalFX</code></a>,背景のみに加算する場合は<a href="BGPalFX.html"><code>BGPalFX</code></a>,指定色で塗りつぶしたい場合は<a href="EnvColor.html"><code>EnvColor</code></a>。</p></div>
+<div><p>キャラクターなどのパレットに加算・乗算します。</p><p>全画面に加算する場合は<code>AllPalFX</code>,背景のみに加算する場合は<code>BGPalFX</code>,指定色で塗りつぶしたい場合は<code>EnvColor</code>。</p></div>
 
 
 
-				
+		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/BGPalFX.html"><code>BGPalFX</code></a>, <a href="./../State/AllPalFX.html"><code>AllPalFX</code></a>, <a href="./../State/EnvColor.html"><code>EnvColor</code></a></div>		
 	</div>
-
-﻿		<section id="Version"><div class="section">
-		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
-		<table>
-			<thead>
-				<tr><th></th><th>内容</th></tr>
-			</thead>
-			<tbody>
-								<tr>
-					<td>-</td>
-					<td>
-										<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										INVALID PALFX TIME: Timeに-2以下
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										INVALID PALFX COLOR: Colorに-1以下、257以上
-										</td>
-				</tr>
-								<tr>
-					<td>警告文</td>
-					<td>
-										INVALID PALFX MUL VALUE: MULに-1以下
-										</td>
-				</tr>
-							</tbody>
-		</table>
-	</div></section>
-	
 
 ﻿  <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
@@ -382,6 +346,40 @@ PalFX | 【キャラクターなどの色を変更】 | MUGEN State Controller -
     </dl>
           </div></section>
 
+﻿		<section id="Version"><div class="section">
+		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
+		<table>
+
+			<tbody>
+								<tr>
+					<td>-</td>
+					<td>
+										<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。
+										</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					INVALID PALFX TIME:Timeに-2以下
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					INVALID PALFX COLOR:Colorに-1以下、257以上
+					</blockquote>					</td>
+				</tr>
+								<tr>
+					<td>警告文</td>
+					<td>
+					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					INVALID PALFX MUL VALUE:MULに-1以下
+					</blockquote>					</td>
+				</tr>
+							</tbody>
+		</table>
+	</div></section>
+	
+
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
@@ -403,6 +401,17 @@ PalFX | 【キャラクターなどの色を変更】 | MUGEN State Controller -
 		</div>
 		
 	</div></section>
+
+﻿    <section id="QandA"><div class="section">
+    <h2>Q＆A(よくある質問)</h2>
+    <div>
+              <h3>表示される色の処理順</h3>
+        ==========各条件を以下のように定義する。==========<br>基本色:<br>Add    = Add_赤色(AR), Add_緑色(AG), Add_青色(AB)<br>SinAdd = Sin_赤色(SR), Sin_緑色(SG), Sin_青色(SB), 周期(P)<br><br>合成色:<br>Mul    = Mul_赤色(MR), Mul_緑色(MG), Mul_青色(MB)<br><br>経過時間:(T) ※単位はフレーム、1秒=60フレーム<br>円周率:(Pi)<br><br>変更する色:<br>Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br><br>==========処理の流れ==========<br>処理する色 = Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br>↓<br>彩度(Color)<br>彩度を調整した色 = Color_赤色(CR), Color_緑色(CG), Color_青色(CB)<br>↓<br>経過時間(T)に表示される色は<br>赤要素(RR) = (CR + AR + SR * Sin(2*Pi*T/P))  *  MR/256<br>緑要素(RG) = (CG + AG + SG * Sin(2*Pi*T/P))  *  MG/256<br>青要素(RB) = (CB + AB + SB * Sin(2*Pi*T/P))  *  MB/256<br>↓<br>色反転(InvertAll)<br>反転した赤要素(IR) = 256-RR<br>反転した緑要素(IG) = 256-RG<br>反転した青要素(IB) = 256-RB<br>↓<br>結果色(IR, IG, IB)が表示されます。<br>
+          </div>
+  </div></section>
+  
+
+﻿	
 
 ﻿	<section id="LoadParameter"><div class="section">
 		<h2>パラメーターの読み込み順</h2>
@@ -427,17 +436,6 @@ PalFX | 【キャラクターなどの色を変更】 | MUGEN State Controller -
 	</div></section>
 
 
-﻿    <section id="QandA"><div class="section">
-    <h2>Q＆A(よくある質問)</h2>
-    <div>
-              <h3>表示される色の処理順</h3>
-        ==========各条件を以下のように定義する。==========<br>基本色:<br>Add    = Add_赤色(AR), Add_緑色(AG), Add_青色(AB)<br>SinAdd = Sin_赤色(SR), Sin_緑色(SG), Sin_青色(SB), 周期(P)<br><br>合成色:<br>Mul    = Mul_赤色(MR), Mul_緑色(MG), Mul_青色(MB)<br><br>経過時間:(T) ※単位はフレーム、1秒=60フレーム<br>円周率:(Pi)<br><br>変更する色:<br>Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br><br>==========処理の流れ==========<br>処理する色 = Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br>↓<br>彩度(Color)<br>彩度を調整した色 = Color_赤色(CR), Color_緑色(CG), Color_青色(CB)<br>↓<br>経過時間(T)に表示される色は<br>赤要素(RR) = (CR + AR + SR * Sin(2*Pi*T/P))  *  MR/256<br>緑要素(RG) = (CG + AG + SG * Sin(2*Pi*T/P))  *  MG/256<br>青要素(RB) = (CB + AB + SB * Sin(2*Pi*T/P))  *  MB/256<br>↓<br>色反転(InvertAll)<br>反転した赤要素(IR) = 256-RR<br>反転した緑要素(IG) = 256-RG<br>反転した青要素(IB) = 256-RB<br>↓<br>結果色(IR, IG, IB)が表示されます。<br>
-          </div>
-  </div></section>
-  
-
-﻿	
-
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
@@ -451,7 +449,7 @@ PalFX | 【キャラクターなどの色を変更】 | MUGEN State Controller -
 	</div></section>
 	
 
-<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2013-11-27">2013.11.27</time></div></div>
+<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-08-06">2017.08.06</time></div></div>
 
   </div>
 </article></div>

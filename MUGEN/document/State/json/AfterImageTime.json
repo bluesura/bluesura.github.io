@@ -1,146 +1,146 @@
 {
-  "page": {
-    "title": "MUGEN State Controller",
-    "subtitle": "AfterImageTime",
-    "target": "ステート実行者自身",
-    "category": ["残像", "AfterImageの残像時間を変更"],
-    "version": "2002.04.14",
-    "update": "2013.11.27",
-    "type": "document",
-    "level": "3"
-  },
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "AfterImageTime",
+		"target": "ステート実行者自身",
+		"category": ["残像", "AfterImageの残像時間を変更"],
+		"version": "2002.04.14",
+		"update": "2017.08.06",
+		"type": "document",
+		"level": "3"
+	},
 
-  "state": "AfterImageTime",
-  "description": "<p>AfterImageのTime(残像表示時間)を上書きすることができます。</p><p>AfterImageを連続で実行した場合、今まで表示されていた残像が消えてしまいます。なので、AfterImageのTimeを持続させたい場合はAfterImageTimeを使用します。</p><p>ただし、AfterImageTimeで残像を消去する処理は厳しいです。なぜなら、残像が表示される時間を変更するだけなので、残像の履歴が残っており履歴がなくなるまで残像が表示され続けます。ですので、完全に消去した場合はAfterImageでTime=0に設定し、1フレームだけ実行することによって一瞬で残像を消去できます。</p><p>また、AfterImageが実行されていない時は、AfterImageTimeのパラメータは無視されます。例えば、\"Time = var(0) := 9\"としていた場合、代入が実行されません。</p>",
-  "category": "state",
+	"state": "AfterImageTime",
+	"description": "<p>AfterImageのTime(残像表示時間)を上書きすることができます。</p><p>AfterImageを連続で実行した場合、今まで表示されていた残像が消えてしまいます。なので、AfterImageのTimeを持続させたい場合はAfterImageTimeを使用します。</p><p>ただし、AfterImageTimeで残像を消去する処理は厳しいです。なぜなら、残像が表示される時間を変更するだけなので、残像の履歴が残っており履歴がなくなるまで残像が表示され続けます。ですので、完全に消去した場合はAfterImageでTime=0に設定し、1フレームだけ実行することによって一瞬で残像を消去できます。</p><p>また、AfterImageが実行されていない時は、AfterImageTimeのパラメータは無視されます。例えば、\"Time = var(0) := 9\"としていた場合、代入が実行されません。</p>",
+	"category": "state",
 
-  "associated_state": ["AfterImage"],
+	"associated_state": ["AfterImage"],
 
-  "version": [
-    {"no": "不明", "content": "AfterImageのTimeGapが1に設定されていない状態で、AfterImageTimeを使用するとフレームの位置がリセットされる？"},
-    {"no": "警告文", "content": "SET ILLEGAL AFTERIMAGETIME: Timeに-2以下"}
-  ],
+	"version": [
+		{"no": "不明", "content": "AfterImageのTimeGapが1に設定されていない状態で、AfterImageTimeを使用するとフレームの位置がリセットされる？"},
+		{"no": "警告文", "content": "SET ILLEGAL AFTERIMAGETIME:Timeに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
 
-  "parameter": [
-    {
-      "parameter": "Time",
-      "value": ["新しい継続時間"],
-      "type": ["int"],
-      "description": "<p>AfterImageのTimeパラメータを上書きします。</p><p>また、AfterImageの終了時間はそのフレームから元のAfterTimeのTimeGapとLengthのTimeGap*Length+Time-1になります。</p><p>-1で表示を永続化。0・1では表示されず、2以上か-1を指定しなければなりません。</p><p>※60フレーム=1秒</p>",
-      "min_value": ["-1"],
-      "max_value": ["2147483627"],
-      "parameter_type": "optional",
-      "default_value": ["?"],
-      "load_priority": ["1"]
-    },
-    {
-      "parameter": "; Value",
-      "value": ["新しい時間"],
-      "type": ["int"],
-      "description": "<p>Timeの代わりにValueと書いても同じ動作をします。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "instead",
-      "default_value": ["?"],
-      "load_priority": ["1"]
-    }
-  ],
-    
-  "code_sample": [
-    {
-      "title": "Timeの時間で残像が消える場合",
-      "code": [
-        "[State 100]",
-        "Type = Afterimage",
-        "Trigger1 = Time = 0",
-        "Trans          = None",
-        "Length         = 60",
-        "TimeGap        = 1",
-        "FrameGap       = 1",
-        "Time           = 60",
-        "PalColor       = 256",
-        "PalInvertAll   = 0",
-        "PalBright      = 0, 0, 0",
-        "PalContrast    = 256, 256, 256",
-        "PalPostBright  = 0, 0, 0",
-        "PalAdd         = 0, 0, 0",
-        "PalMul         = 1, 1, 1"
-      ],
-      "media": {
-        "youtube": [
-          {"title": "60F経過しても残像は残る", "file": "4Lcs-al3_zw"}
-        ]
-      }
-    },
-    {
-      "title": "AfterTimeImage value = 0にした場合",
-      "code": [
-        "[State 100]",
-        "Type = Afterimage",
-        "Trigger1 = Time = 0",
-        "Trans          = None",
-        "Length         = 60",
-        "TimeGap        = 1",
-        "FrameGap       = 1",
-        "Time           = 60",
-        "PalColor       = 256",
-        "PalInvertAll   = 0",
-        "PalBright      = 0, 0, 0",
-        "PalContrast    = 256, 256, 256",
-        "PalPostBright  = 0, 0, 0",
-        "PalAdd         = 0, 0, 0",
-        "PalMul         = 1, 1, 1",
-        "<br>",
-        "[State 100]",
-        "Type = AfterImageTime",
-        "Trigger1 = Time = 60",
-        "Value           = 0"
-      ],
-      "media": {
-        "youtube": [
-          {"title": "残像は残る", "file": "Ip9oXOX8Bd0"}
-        ]
-      }
-    },
-    {
-      "title": "AfterImageでAfterImageを消去した場合",
-      "code": [
-        "[State 100]",
-        "Type = Afterimage",
-        "Trigger1 = Time = 0",
-        "Trans          = None",
-        "Length         = 60",
-        "TimeGap        = 1",
-        "FrameGap       = 1",
-        "Time           = 60",
-        "PalColor       = 256",
-        "PalInvertAll   = 0",
-        "PalBright      = 0, 0, 0",
-        "PalContrast    = 256, 256, 256",
-        "PalPostBright  = 0, 0, 0",
-        "PalAdd         = 0, 0, 0",
-        "PalMul         = 1, 1, 1",
-        "<br>",
-        "[State ]",
-        "Type = AfterImage",
-        "Trigger1 = Time = 60",
-        "Time = 0"
-      ],
-      "media": {
-        "youtube": [
-          {"title": "一瞬で消えるよ！", "file": "vYOYg7DjCUw"}
-        ]
-      }
-    }
-  ],
+	"parameter": [
+		{
+			"parameter": "Time",
+			"value": ["新しい継続時間"],
+			"type": ["int"],
+			"description": "<p>AfterImageのTimeパラメータを上書きします。</p><p>また、AfterImageの終了時間はそのフレームから元のAfterTimeのTimeGapとLengthのTimeGap*Length+Time-1になります。</p><p>-1で表示を永続化。0・1では表示されず、2以上か-1を指定しなければなりません。</p><p>※60フレーム=1秒</p>",
+			"min_value": ["-1"],
+			"max_value": ["2147483627"],
+			"parameter_type": "optional",
+			"default_value": ["?"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "; Value",
+			"value": ["新しい時間"],
+			"type": ["int"],
+			"description": "<p>Timeの代わりにValueと書いても同じ動作をします。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "instead",
+			"default_value": ["?"],
+			"load_priority": ["1"]
+		}
+	],
+		
+	"code_sample": [
+		{
+			"title": "Timeの時間で残像が消える場合",
+			"code": [
+				"[State 100]",
+				"Type = Afterimage",
+				"Trigger1 = Time = 0",
+				"Trans          = None",
+				"Length         = 60",
+				"TimeGap        = 1",
+				"FrameGap       = 1",
+				"Time           = 60",
+				"PalColor       = 256",
+				"PalInvertAll   = 0",
+				"PalBright      = 0, 0, 0",
+				"PalContrast    = 256, 256, 256",
+				"PalPostBright  = 0, 0, 0",
+				"PalAdd         = 0, 0, 0",
+				"PalMul         = 1, 1, 1"
+			],
+			"media": {
+				"youtube": [
+					{"title": "60F経過しても残像は残る", "file": "4Lcs-al3_zw"}
+				]
+			}
+		},
+		{
+			"title": "AfterTimeImage value = 0にした場合",
+			"code": [
+				"[State 100]",
+				"Type = Afterimage",
+				"Trigger1 = Time = 0",
+				"Trans          = None",
+				"Length         = 60",
+				"TimeGap        = 1",
+				"FrameGap       = 1",
+				"Time           = 60",
+				"PalColor       = 256",
+				"PalInvertAll   = 0",
+				"PalBright      = 0, 0, 0",
+				"PalContrast    = 256, 256, 256",
+				"PalPostBright  = 0, 0, 0",
+				"PalAdd         = 0, 0, 0",
+				"PalMul         = 1, 1, 1",
+				"<br>",
+				"[State 100]",
+				"Type = AfterImageTime",
+				"Trigger1 = Time = 60",
+				"Value           = 0"
+			],
+			"media": {
+				"youtube": [
+					{"title": "残像は残る", "file": "Ip9oXOX8Bd0"}
+				]
+			}
+		},
+		{
+			"title": "AfterImageでAfterImageを消去した場合",
+			"code": [
+				"[State 100]",
+				"Type = Afterimage",
+				"Trigger1 = Time = 0",
+				"Trans          = None",
+				"Length         = 60",
+				"TimeGap        = 1",
+				"FrameGap       = 1",
+				"Time           = 60",
+				"PalColor       = 256",
+				"PalInvertAll   = 0",
+				"PalBright      = 0, 0, 0",
+				"PalContrast    = 256, 256, 256",
+				"PalPostBright  = 0, 0, 0",
+				"PalAdd         = 0, 0, 0",
+				"PalMul         = 1, 1, 1",
+				"<br>",
+				"[State ]",
+				"Type = AfterImage",
+				"Trigger1 = Time = 60",
+				"Time = 0"
+			],
+			"media": {
+				"youtube": [
+					{"title": "一瞬で消えるよ！", "file": "vYOYg7DjCUw"}
+				]
+			}
+		}
+	],
 
-  "quote": [
-    {"title": "AfterImage - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/AfterImageTime"},
-    {"title": "AfterImage - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/61.html"},
-    {"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-    {"title": "AfterImage - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AfterImageTime&protocol=http"},
-    {"title": "AfterImage - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AfterImageTime"},
-    {"title": "AfterImage - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/1.htm"},
-    {"title": "afterimageの消去について", "url": "http://cj2.pv.land.to/4/8.htm"}
-  ]
+	"quote": [
+		{"title": "AfterImage - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/AfterImageTime"},
+		{"title": "AfterImage - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/61.html"},
+		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
+		{"title": "AfterImage - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AfterImageTime&protocol=http"},
+		{"title": "AfterImage - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AfterImageTime"},
+		{"title": "AfterImage - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/1.htm"},
+		{"title": "afterimageの消去について", "url": "http://cj2.pv.land.to/4/8.htm"}
+	]
 }

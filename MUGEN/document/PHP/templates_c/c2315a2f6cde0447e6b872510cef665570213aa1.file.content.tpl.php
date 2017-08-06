@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-05 08:19:02
+<?php /* Smarty version Smarty-3.1.12, created on 2017-08-06 10:18:26
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:174921311359856356937294-25017316%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c2315a2f6cde0447e6b872510cef665570213aa1' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content.tpl',
-      1 => 1494719844,
+      1 => 1502007503,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_598563569aad31_95813353',
   'variables' => 
   array (
     'content' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'contributor' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_598563569aad31_95813353',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_598563569aad31_95813353')) {function content_598563569aad31_95813353($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_replace')) include 'C:\\libs\\php\\smarty\\plugins\\modifier.replace.php';
 ?><div id="main-inner"><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
@@ -64,22 +64,22 @@ px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;"<?php } ?>><?p
 <?php echo $_smarty_tpl->getSubTemplate ("./content/Description.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
-<?php echo $_smarty_tpl->getSubTemplate ("./content/Version.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-
-
 <?php echo $_smarty_tpl->getSubTemplate ("./content/Parameter.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
+<?php echo $_smarty_tpl->getSubTemplate ("./content/Version.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
 <?php echo $_smarty_tpl->getSubTemplate ("./content/DefaultParameter.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-
-
-<?php echo $_smarty_tpl->getSubTemplate ("./content/LoadParameter.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
 <?php echo $_smarty_tpl->getSubTemplate ("./content/QandA.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
 <?php echo $_smarty_tpl->getSubTemplate ("./content/CodeSample.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+
+<?php echo $_smarty_tpl->getSubTemplate ("./content/LoadParameter.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 
 <?php echo $_smarty_tpl->getSubTemplate ("./content/Quote.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>

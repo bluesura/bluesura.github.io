@@ -1,66 +1,66 @@
 {
-  "page": {
-    "title": "MUGEN State Controller",
-    "subtitle": "BindToTarget",
-    "target": "実行者自身",
-    "category": ["バインド", "ターゲットをプレイヤーの位置に固定"],
-    "version": "2002.04.14",
-    "update": "2013.11.27",
-    "type": "document",
-    "level": "3"
-  },
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "BindToTarget",
+		"target": "実行者自身",
+		"category": ["バインド", "ターゲットをプレイヤーの位置に固定"],
+		"version": "2002.04.14",
+		"update": "2017.08.06",
+		"type": "document",
+		"level": "3"
+	},
 
-  "state": "BindToTarget",
-  "description": "<p>特定のターゲット(プレイヤーの攻撃を受けてヒット・ガード状態になっている敵)を基準にプレイヤーの位置を固定します。</p>",
-  "category": "state",
+	"state": "BindToTarget",
+	"description": "<p>特定のターゲット(プレイヤーの攻撃を受けてヒット・ガード状態になっている敵)を基準にプレイヤーの位置を固定します。</p>",
+	"category": "state",
 
-  "version": [
-    {"no": "-", "content": "BindToTargetを実行した次のフレームに自身のPosをTargetの基準とした位置に移動する。"},
-    {"no": "-", "content": "”Time-1”フレーム まではTargetの速度が実行者の速度と同じになる。（Time-1フレーム後はTargetが速度を変えない限り、速度はほぼそのままである。）残りのTimeは相手がこちらを基準として動いてしまう。"},
-    {"no": "警告文", "content": "Set ILLEGAL TARGET BINDTIME: Timeに-2以下"}
-  ],
+	"version": [
+		{"no": "", "content": "BindToTargetを実行した次のフレームに自身のPosをTargetの基準とした位置に移動する。"},
+		{"no": "", "content": "”Time-1”フレーム まではTargetの速度が実行者の速度と同じになる。（Time-1フレーム後はTargetが速度を変えない限り、速度はほぼそのままである。）残りのTimeは相手がこちらを基準として動いてしまう。"},
+		{"no": "警告文", "content": "Set ILLEGAL TARGET BINDTIME:Timeに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
 
-  "parameter": [
-    {
-      "parameter": "ID",
-      "value": ["ヒットID"],
-      "type": ["int"],
-      "description": "<p>基準にするターゲットをIDで指定。</p><p>ちなみに、ターゲットIDは、自動で割り当てられるIDではなく、ターゲットにされた攻撃のHitDefのIDパラメータで指定した値となります。 よって、大抵の場合、デフォルト値の0となります。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["-1 ;無差別に1つのターゲットをを選択"],
-      "load_priority": ["1"]
-    },
-    {
-      "parameter": "Time",
-      "value": ["固定時間"],
-      "type": ["int"],
-      "description": "<p>ターゲットを取ったプレイヤーの固定する時間をフレーム単位で指定します。</p><p><span class=\"decoration-font-color-red\">-1で効果が永続する</span>ので注意。</p><p>※60フレーム=1秒</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["1"],
-      "load_priority": ["2"]
-    },
-    {
-      "parameter": "Pos",
-      "value": ["x座標 , y座標 , 基準位置"],
-      "type": ["float", "float", "string"],
-      "description": "<p>基準位置(\"Head\",\"Foot\",\"Mid\"のいずれか)の座標を(0,0)として、座標を指定。\"Head\"の場合は、ターゲットのcnsのhead.pos、\"Foot\"の場合は、(0,0)座標、\"Mid\"の場合はMid.posを基準にします。</p><p>省略した場合、Targetを実行者から<code>”P2BodyDist x = -1025, P2BodyDist y = -1025”</code>の位置に移動させるため、<span class=\"decoration-font-highlight-red\">Posの省略はダメ</span>です。</p>",
-      "min_value": [""],
-      "max_value": [""],
-      "parameter_type": "optional",
-      "default_value": ["?"],
-      "load_priority": ["3", "4", "?"]
-    }
-  ],
+	"parameter": [
+		{
+			"parameter": "ID",
+			"value": ["ヒットID"],
+			"type": ["int"],
+			"description": "<p>基準にするターゲットをIDで指定。</p><p>ちなみに、ターゲットIDは、自動で割り当てられるIDではなく、ターゲットにされた攻撃のHitDefのIDパラメータで指定した値となります。 よって、大抵の場合、デフォルト値の0となります。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["-1 ;無差別に1つのターゲットをを選択"],
+			"load_priority": ["1"]
+		},
+		{
+			"parameter": "Time",
+			"value": ["固定時間"],
+			"type": ["int"],
+			"description": "<p>ターゲットを取ったプレイヤーの固定する時間をフレーム単位で指定します。</p><p><span class=\"decoration-font-color-red\">-1で効果が永続する</span>ので注意。</p><p>※60フレーム=1秒</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["1"],
+			"load_priority": ["2"]
+		},
+		{
+			"parameter": "Pos",
+			"value": ["x座標 , y座標 , 基準位置"],
+			"type": ["float", "float", "string"],
+			"description": "<p>基準位置(\"Head\",\"Foot\",\"Mid\"のいずれか)の座標を(0,0)として、座標を指定。\"Head\"の場合は、ターゲットのcnsのhead.pos、\"Foot\"の場合は、(0,0)座標、\"Mid\"の場合はMid.posを基準にします。</p><p>省略した場合、Targetを実行者から<code>”P2BodyDist x = -1025, P2BodyDist y = -1025”</code>の位置に移動させるため、<span class=\"decoration-font-highlight-red\">Posの省略はダメ</span>です。</p>",
+			"min_value": [""],
+			"max_value": [""],
+			"parameter_type": "optional",
+			"default_value": ["?"],
+			"load_priority": ["3", "4", "?"]
+		}
+	],
 
-  "quote": [
-    {"title": "BindToTarget - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/BindToTarget"},
-    {"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-    {"title": "BindToTarget - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BindToTarget&protocol=http"},
-    {"title": "BindToTarget - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#BindToTarget"},
-    {"title": "BindToTarget - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-  ]
+	"quote": [
+		{"title": "BindToTarget - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/BindToTarget"},
+		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
+		{"title": "BindToTarget - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BindToTarget&protocol=http"},
+		{"title": "BindToTarget - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#BindToTarget"},
+		{"title": "BindToTarget - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+	]
 }

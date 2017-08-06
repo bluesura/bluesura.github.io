@@ -2,9 +2,9 @@
 	<section id="Version"><div class="section">
 		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
 		<table>
-			<thead>
+{*			<thead>
 				<tr><th></th><th>内容</th></tr>
-			</thead>
+			</thead>*}
 			<tbody>
 				{foreach $content.version as $array}
 				<tr>

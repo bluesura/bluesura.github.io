@@ -137,30 +137,6 @@ AngleDraw | 【実行者自身を回転させます】 | MUGEN State Controller 
 				
 	</div>
 
-﻿		<section id="Version"><div class="section">
-		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
-		<table>
-			<thead>
-				<tr><th></th><th>内容</th></tr>
-			</thead>
-			<tbody>
-								<tr>
-					<td>Version1.0より前</td>
-					<td>
-										<code>HitPause</code>中に<code>IgnoreHitPause=1</code>の<code>AngleDraw</code>が実行されると、<code>HitPause</code>が終わるまで<code>AngleDraw</code>は終了せずに<code>Scale</code>が重ねがけされます。<!--animに関係するようなのは全て継続？-->
-										</td>
-				</tr>
-								<tr>
-					<td>Version1.0から</td>
-					<td>
-										<code>IgnoreHitPause=1</code>を記述しないと縮尺が固定されません。
-										</td>
-				</tr>
-							</tbody>
-		</table>
-	</div></section>
-	
-
 ﻿  <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
             <dl class="parameter">
@@ -257,6 +233,28 @@ AngleDraw | 【実行者自身を回転させます】 | MUGEN State Controller 
     </dl>
           </div></section>
 
+﻿		<section id="Version"><div class="section">
+		<h2>バージョンごとの変更点・バグ・エラー・仕様</h2>
+		<table>
+
+			<tbody>
+								<tr>
+					<td>Version1.0より前</td>
+					<td>
+										<code>HitPause</code>中に<code>IgnoreHitPause=1</code>の<code>AngleDraw</code>が実行されると、<code>HitPause</code>が終わるまで<code>AngleDraw</code>は終了せずに<code>Scale</code>が重ねがけされます。<!--animに関係するようなのは全て継続？-->
+										</td>
+				</tr>
+								<tr>
+					<td>Version1.0から</td>
+					<td>
+										<code>IgnoreHitPause=1</code>を記述しないと縮尺が固定されません。
+										</td>
+				</tr>
+							</tbody>
+		</table>
+	</div></section>
+	
+
 ﻿	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
@@ -274,6 +272,10 @@ AngleDraw | 【実行者自身を回転させます】 | MUGEN State Controller 
 		</div>
 		
 	</div></section>
+
+﻿  
+
+﻿	
 
 ﻿	<section id="LoadParameter"><div class="section">
 		<h2>パラメーターの読み込み順</h2>
@@ -293,10 +295,6 @@ AngleDraw | 【実行者自身を回転させます】 | MUGEN State Controller 
 
 	</div></section>
 
-
-﻿  
-
-﻿	
 
 ﻿		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>

@@ -5,7 +5,7 @@
 		"target": "音声",
 		"category": ["音声", ""],
 		"version": "2002.04.14",
-		"update": "2013.11.27",
+		"update": "2017.08.06",
 		"type": "document",
 		"level": "3"
 	},
@@ -13,6 +13,13 @@
 	"state": "PlaySnd",
 	"description": "<p>音を鳴らします。</p>",
 	"category": "state",
+
+	"version": [
+		{"no": "警告文", "content": "ILLEGAL PLAYSND GROUPNO:Value第1引数に-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "ILLEGAL PLAYSND SNDNO:Value第2引数に-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "ILLEGAL PLAYSND CHANNEL.:Channelに-2以下、32以上", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
+		{"no": "警告文", "content": "NON-POSITIVE FREQMUL.:FreqMulに0以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
 
 	"parameter": [
 		{

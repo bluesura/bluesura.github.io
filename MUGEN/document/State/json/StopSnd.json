@@ -5,7 +5,7 @@
 		"target": "音声",
 		"category": ["音声", ""],
 		"version": "2002.04.14",
-		"update": "2013.11.27",
+		"update": "2017.08.06",
 		"type": "document",
 		"level": "3"
 	},
@@ -13,6 +13,10 @@
 	"state": "StopSnd",
 	"description": "<p>特定チャンネルのサウンドを止めます。</p>",
 	"category": "state",
+
+	"version": [
+		{"no": "警告文", "content": "STOPPED ILLEGAL CHANNEL NUMBER -2:Channelに-2以下、32以上。（最後の数値は指定した数値が表示される）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+	],
 
 	"parameter": [
 		{

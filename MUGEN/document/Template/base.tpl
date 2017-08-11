@@ -20,6 +20,7 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+	<script src="https://embed.small.chat/T0F4QF673G6M8EPAEN.js" async></script>
 {/literal}
 
 <div id="container"><div id="content-inner">

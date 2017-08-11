@@ -47,7 +47,7 @@ ProjGuarded | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
+  <meta name="description" content="また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjGuardedTimeの方を使った方がよいしょう。もちろん、単体ではファンクショントリガーとして使用できません。書式: 1. ProjGuarded[ID] = 値 2. ProjGuarded[ID] = 値, [符号] 値2 概要: [ID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、ガードされたかを調べる場合1を、ガードされていないかを調べる場合0を指定。[符号]には、 =, !=, , = のうちのいずれかを指定します。値2には、比較する時間を指定します。戻り値の型: boolean int (1 or 0)  詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveGuardedとは異なり、ガード後1フレームしか値を返しません。様式2は、正の整数nが条件式&quot;n [符号] 値2&quot;を満たす場合、ガードされてからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。 使用例: 1. Trigger1 = ProjGuarded1234 = 1 ID1234のProjectileがガードされた瞬間のトリガーです。2. Trigger1 = ProjGuarded = 1, &lt; 15 プレイヤーのProjectileがガードされてから15フレーム未満のときのトリガーです。">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/ProjGuarded.html">
   <meta property="og:title" content="ProjGuarded | MUGEN Trigger">
@@ -500,6 +500,28 @@ ProjGuarded | MUGEN Trigger - Name = すら
     </div>
 </div>
 
+
+<div class="article-survey-container">
+<div class="toc" id="toc">
+<div class="title">目次</div>
+<ul>
+	<script>
+var a = document.getElementsByTagName("section");
+for(var i = 0; i < a.length; i++) {
+	document.write("<li><a href=\"#"+a[i].id+"\">" + a[i].getElementsByTagName("h2")[0].innerText + "</a></li>");
+	var b = a[i].getElementsByTagName("h3");
+	document.write("<ul>");
+	for(var j = 0; j < b.length; j++) {
+		b[j].id=i+"-"+j;
+		document.write("<li><a href=\"#"+i+"-"+j+"\">" + b[j].innerText + "</a></li>");
+	}
+	document.write("</ul>");
+}
+	</script>
+</ul></div>
+</div>
+
+</a>
 
 <div class="article-survey-container">
 <!-- start feedwind code --><script type="text/javascript">(function() {var params = {rssmikle_url: "https://github.com/bluesura/bluesura.github.io/commits/master.atom",rssmikle_frame_width: "100%",rssmikle_frame_height: "100%",frame_height_by_article: "5",rssmikle_target: "_blank",rssmikle_font: "'Roboto', '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Verdana, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;",rssmikle_font_size: "",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "off",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "更新履歴",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#383838",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#3367D6",rssmikle_item_border_bottom: "off",rssmikle_item_description: "off",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#383838",rssmikle_item_date: "ja",rssmikle_timezone: "Etc/GMT",datetime_format: "",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "5",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><!--  end  feedwind code -->

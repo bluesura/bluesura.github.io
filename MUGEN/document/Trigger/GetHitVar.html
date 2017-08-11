@@ -47,7 +47,7 @@ GetHitVar | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
+  <meta name="description" content="movetypeがH以外の場合、たとえ共通やられステート(5000番台)にいても0しか返しません。書式: GetHitVar(パラメータ名)概要:パラメータ名は以下の文字列から指定します。詳しい内容については詳細を参照のこと。xveladd, yveladd, type, animtype, airtype, groundtype, damage, hitcount, fallcount, hitshaketime, hittime, slidetime, ctrltime,recovertime, xoff, yoff, zoff, xvel, yvel, yaccel, hitid, chainid, guarded, fall, fall.damage, fall.xvel, fall.yvel, fall.recover, fall.time, fall.recovertime.戻り値の型:パラメータに依存します。詳細を参照のこと。詳細:xveladd: KOされたときの横方向の加算速度を返します。(float)yveladd: KOされたときの垂直方向の加算速度を返します。(float)type: HitDefのtypeパラメータを数字で返します。: 0 - non, 1 - high, 2 - low, 3 - trip (地上ヒット時のみ) animtype:HitDefのanimtypeパラメータを数字で返します。(0 - light, 1 - medium, 2 - hard, 3 - back, 4 - up, 5 - diag-up)airtype: HitDefのairtypeパラメータを数字で返します。groundtype: HitDefのgroundtypeパラメータを数字で返します。damage: コンタクトの瞬間のみ、ダメージ値を返します。ガードのときは、削りダメージを返します。(int)hitcount:攻撃をうけている間のヒット数を返します。3ヒット目なら3を返します。画面に表示されているヒット数ではなく、自分が受けたコンボのヒット数です。(int)fallcount: 攻撃をうけている間の、地面に落下した回数を返します。(int)hitshaketime:攻撃を受けてブルブルする時間の残り時間を返します。具体的には、ヒットの瞬間にHitDefのpausetimeを返し、0になるまで1フレームにつき1づつ減っていきます。(int)hittime: ヒット(ガード)が終了するまでの残り時間を返します。(int)slidetime: 地上ヒット(ガード)時、スライドが終了するまでの残り時間を返します。(int)ctrltime: ガード時、コントロール可能になるまでの残り時間を返します。(int)recovertime:ダウン状態から起き上がるまでの残り時間を返します。ボタン連打で短縮されます。(int)xoff: &quot;Snap&quot; の x オフセットを返します。(謎)yoff: &quot;Snap&quot; の y オフセットを返します。(謎)zoff: &quot;Snap&quot; の z オフセットを返します。(謎)xvel: 横方向の速度を返します。(float)yvel: 垂直方向の速度を返します。(float)yaccel: 垂直方向の加速度を返します。(float)chainid: HitDefのchainidを返します。(int)guarded: ガードのとき1を、それ以外で0を返します。(int)fall: fallのとき1を、それ以外で0を返します。(int)fall.damage: 落下で受けるダメージを返します。(int)fall.xvel: 落下バウンド時の横方向の速度を返します。(float)fall.yvel: 落下バウンド時の垂直方向の速度を返します。(float)fall.recover: 空中復帰(x+y)が可能なとき1を、それ以外のとき0を返します。fall.recovertime: 空中復帰(x+y)が可能になるまでの残り時間を返します。(int)fall.kill: HitDefのfall.kill パラメータを返します。(int)fall.envshake.time: HitDefのfall.envshake.time パラメータを返します。(int)fall.envshake.freq: HitDefのfall.envshake.freq パラメータを返します。(float)fall.envshake.ampl: HitDefのfall.envshake.ampl パラメータを返します。(int)fall.envshake.phase: HitDefのfall.envshake.phase パラメータを返します。(float)使用例:Trigger1 = GetHitVar(yvel) &lt; -5.5攻撃を受けたときのY方向への吹き飛び速度が-5.5未満だったときのトリガー。">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/GetHitVar.html">
   <meta property="og:title" content="GetHitVar | MUGEN Trigger">
@@ -534,6 +534,28 @@ GetHitVar | MUGEN Trigger - Name = すら
     </div>
 </div>
 
+
+<div class="article-survey-container">
+<div class="toc" id="toc">
+<div class="title">目次</div>
+<ul>
+	<script>
+var a = document.getElementsByTagName("section");
+for(var i = 0; i < a.length; i++) {
+	document.write("<li><a href=\"#"+a[i].id+"\">" + a[i].getElementsByTagName("h2")[0].innerText + "</a></li>");
+	var b = a[i].getElementsByTagName("h3");
+	document.write("<ul>");
+	for(var j = 0; j < b.length; j++) {
+		b[j].id=i+"-"+j;
+		document.write("<li><a href=\"#"+i+"-"+j+"\">" + b[j].innerText + "</a></li>");
+	}
+	document.write("</ul>");
+}
+	</script>
+</ul></div>
+</div>
+
+</a>
 
 <div class="article-survey-container">
 <!-- start feedwind code --><script type="text/javascript">(function() {var params = {rssmikle_url: "https://github.com/bluesura/bluesura.github.io/commits/master.atom",rssmikle_frame_width: "100%",rssmikle_frame_height: "100%",frame_height_by_article: "5",rssmikle_target: "_blank",rssmikle_font: "'Roboto', '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Verdana, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;",rssmikle_font_size: "",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "off",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "更新履歴",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#383838",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#3367D6",rssmikle_item_border_bottom: "off",rssmikle_item_description: "off",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#383838",rssmikle_item_date: "ja",rssmikle_timezone: "Etc/GMT",datetime_format: "",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "5",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><!--  end  feedwind code -->

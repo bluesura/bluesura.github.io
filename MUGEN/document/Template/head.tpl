@@ -12,7 +12,7 @@
 
   <title itemprop="headline">
 {if $content.page_subtitle}{$content.page_subtitle} | {/if}
-{if $content.page.category[1]}【{$content.page.category[1]|escape}】 | {/if}
+{if $content.page.category[1]}{$content.page.category[1]|escape} | {/if}
 {if $content.page_title}{$content.page_title|escape} - {/if}
 {$content.site_name|escape}
   </title>
@@ -48,7 +48,7 @@
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
+  <meta name="description" content="{if $content.description==""}MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。{else}{$content.description|strip_tags:true|escape}{/if}">
 {*  <meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻">*}
   <meta property="og:url" content="{$content.url}">
   <meta property="og:title" content="{$content.page_subtitle} | {$content.page_title}">
@@ -73,7 +73,7 @@
 
 
   <!---->
-  <link rel="stylesheet" href="/lib/css/material.css?version=20161230">
+  <link rel="stylesheet" href="/lib/css/material.css?version=2017811">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
   <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>

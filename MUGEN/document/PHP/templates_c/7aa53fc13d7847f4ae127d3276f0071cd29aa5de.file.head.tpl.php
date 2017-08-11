@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-05 09:02:39
+<?php /* Smarty version Smarty-3.1.12, created on 2017-08-11 12:05:34
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:92329205059856355aa4755-89030705%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7aa53fc13d7847f4ae127d3276f0071cd29aa5de' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1501916552,
+      1 => 1502445929,
       2 => 'file',
     ),
   ),
@@ -37,8 +37,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <title itemprop="headline">
 <?php if ($_smarty_tpl->tpl_vars['content']->value['page_subtitle']){?><?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
  | <?php }?>
-<?php if ($_smarty_tpl->tpl_vars['content']->value['page']['category'][1]){?>【<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page']['category'][1], ENT_QUOTES, 'UTF-8', true);?>
-】 | <?php }?>
+<?php if ($_smarty_tpl->tpl_vars['content']->value['page']['category'][1]){?><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page']['category'][1], ENT_QUOTES, 'UTF-8', true);?>
+ | <?php }?>
 <?php if ($_smarty_tpl->tpl_vars['content']->value['page_title']){?><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page_title'], ENT_QUOTES, 'UTF-8', true);?>
  - <?php }?>
 <?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['site_name'], ENT_QUOTES, 'UTF-8', true);?>
@@ -78,7 +78,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
+  <meta name="description" content="<?php if ($_smarty_tpl->tpl_vars['content']->value['description']==''){?>MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。<?php }else{ ?><?php echo htmlspecialchars(strip_tags($_smarty_tpl->tpl_vars['content']->value['description']), ENT_QUOTES, 'UTF-8', true);?>
+<?php }?>">
 
   <meta property="og:url" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['url'];?>
 ">

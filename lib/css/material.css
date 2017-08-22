@@ -596,6 +596,9 @@ input {
 		//padding-top: .6em;
 		font-size: 1.6em;
 	}
+	.entry-content {
+		padding: 12px;
+	}
 	/*
 	#menu a{color:#ffffff;position:relative;padding-bottom:5px}
 	#menu a:hover {text-decoration: none;}
@@ -684,6 +687,9 @@ input {
 	.entry {
 		box-shadow: none;
 		margin-bottom: 0;
+	}
+	#Version table td:nth-child(1), #Parameter table th:nth-child(1) {
+		width: 20%;
 	}
 }
 

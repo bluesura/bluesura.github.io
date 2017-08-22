@@ -98,3 +98,6 @@
 		</ul>
 	</div></section>
 {/if}
+
+
+{include file="./nav.tpl"}

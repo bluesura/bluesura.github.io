@@ -67,7 +67,7 @@ TargetLifeAdd | ターゲットのライフに指定値を加算 | MUGEN State C
 
 
   <!---->
-  <link rel="stylesheet" href="/lib/css/material.css?version=20161230">
+  <link rel="stylesheet" href="/lib/css/material.css?version=2017811">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
   <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
@@ -134,7 +134,7 @@ TargetLifeAdd | ターゲットのライフに指定値を加算 | MUGEN State C
 
 
 
-				
+		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/LifeAdd.html"><code>LifeAdd</code></a>, <a href="./../State/LifeSet.html"><code>LifeSet</code></a></div>		
 	</div>
 
   <section id="Parameter"><div class="section">
@@ -283,9 +283,27 @@ TargetLifeAdd | ターゲットのライフに指定値を加算 | MUGEN State C
 
 			<tbody>
 								<tr>
-					<td>-</td>
+					<td>仕様</td>
 					<td>
 										<code>RoundState=3</code>ではライフが増減されません。<br>※ただし、パラメーターは読み込まれます。
+										</td>
+				</tr>
+								<tr>
+					<td>仕様</td>
+					<td>
+										ガードステートにいる場合、TargetLifeAddでライフを増減できません。
+										</td>
+				</tr>
+								<tr>
+					<td>仕様</td>
+					<td>
+										Pause,SuperPauseで時止めしている場合、ガードステートにいてもTargetLifeAddでライフを増減できます。(未検証)
+										</td>
+				</tr>
+								<tr>
+					<td>仕様</td>
+					<td>
+										ライフ操作で相手をKOすると自殺扱いになります。
 										</td>
 				</tr>
 							</tbody>
@@ -313,6 +331,13 @@ TargetLifeAdd | ターゲットのライフに指定値を加算 | MUGEN State C
 		
 	</div></section>
 
+    <section id="QandA"><div class="section">
+    <h2>Q＆A(よくある質問)</h2>
+    <div>
+              <h3><!--強制死の宣告とは？--></h3>
+        
+          </div>
+  </div></section>
   
 
 	
@@ -345,32 +370,31 @@ TargetLifeAdd | ターゲットのライフに指定値を加算 | MUGEN State C
 					<li><cite><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetLifeAdd&protocol=http" target="_blank" rel="external">TargetLifeAdd - State Controller</a></cite></li>
 					<li><cite><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetLifeAdd" target="_blank" rel="external">TargetLifeAdd - 東方夢幻館</a></cite></li>
 					<li><cite><a href="http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm" target="_blank" rel="external">TargetLifeAdd - 地球の応接間</a></cite></li>
+					<li><cite><a href="http://skeleton12.blog.fc2.com/blog-entry-288.html" target="_blank" rel="external">死の宣告とKO表示</a></cite></li>
+					<li><cite><a href="https://twitter.com/i/moments/895934923969765378" target="_blank" rel="external">ライフに関するTwitetrのつぶやき</a></cite></li>
 				</ul>
 	</div></section>
 	
 
 <div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2014-12-30">2014.12.30</time></div></div>
 
+    <nav class="breadcrumb">
+      <div>
+        <ul>
+          <li itemscope><a href="/" target="_top" itemprop="url"><span itemprop="title">Home</span></a></li>
+          <li> > </li>
+          <li itemscope><a href="./" target="_top" itemprop="url"><span itemprop="title">MUGEN State Controller</span></a></li>
+          
+        </ul>
+      </div>
+    </nav>
+
   </div>
 </article></div>
 
   
 
-<style>
 
-.sosial_buttons{list-style-type:none;padding-left:0;margin-bottom:20px}
-.sosial_buttons:before,.sosial_buttons:after{content:" ";display:table}
-.sosial_buttons:after{clear:both}
-.sosial_buttons li{width:25%;text-align:center;font-size:130%;height:44px;line-height:44px;float:left}
-.sosial_buttons li a{text-decoration:none;display:block;color:white}
-.sosial_buttons li a .fa{color:white;padding-right:6px}
-.sosial_buttons li.sb_facebook{background:#315096}
-.sosial_buttons li.sb_twitter{background:#55acee}
-.sosial_buttons li.sb_hatena{background:#008fde}
-.sosial_buttons li.sb_gplus{background:#dd4b39}
-.fa-hatena:before{content:"B!";font-family:Verdana;font-weight:bold}
-
-</style>
 <ul class="sosial_buttons">
     <li class="sb_facebook">
         <a href="" onclick="window.open('https://www.facebook.com/share.php?u='+encodeURIComponent(document.location.href), 'FBwindow', 'width=320, height=320, menubar=no, toolbar=no, scrollbars=yes'); return false;" target="_blank">
@@ -732,7 +756,7 @@ for(var i = 0; i < a.length; i++) {
 
 
 
-﻿<footer id="footer">
+<footer id="footer">
   <div id="footer-inner">
     <nav id="footer-main">
       <h2>おすすめのツール</h2>

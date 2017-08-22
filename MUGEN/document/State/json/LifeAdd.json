@@ -13,9 +13,11 @@
 	"state": "LifeAdd",
 	"description": "<p>体力を増減します。回復技、自爆技などに。相手の防御力は考慮されますが、無視することも可能。</p>",
 	"category": "state",
+	"associated_state": ["LifeSet","TargetLifeAdd"],
 
 	"version": [
-		{"no": "-", "content": "<code>RoundState=3</code>ではライフが増減されません。<br>※ただし、パラメーターは読み込まれます。"}
+		{"no": "仕様", "content": "<code>RoundState=3</code>ではライフが増減されません。<br>※ただし、パラメーターは読み込まれます。"},
+		{"no": "仕様", "content": "ライフ操作で相手をKOすると自殺扱いになります。"}
 	],
 
 	"parameter": [
@@ -58,6 +60,8 @@
 		{"title": "LifeAdd - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/LifeAdd"},
 		{"title": "LifeAdd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?LifeAdd&protocol=http"},
 		{"title": "LifeAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#LifeAdd"},
-		{"title": "LifeAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
+		{"title": "LifeAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"},
+		{"title": "ライフに関するTwitetrのつぶやき", "url": "https://twitter.com/i/moments/895934923969765378"}
+
 	]
 }

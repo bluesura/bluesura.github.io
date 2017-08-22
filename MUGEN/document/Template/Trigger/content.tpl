@@ -25,5 +25,7 @@
 
 <div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div>{if $content.page.update != NULL}<div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="{$content.page.update|replace:'.':'-'}">{$content.page.update}</time></div>{/if}{if $content.page.contributor != NULL}<div><strong>貢献者:</strong>{foreach $content.page.contributor as $contributor}{$contributor}氏{if $contributor@last != true}, {/if}{/foreach}</div>{/if}</div>
 
+{include file="./nav.tpl"}
+
 	</div>
 </article></div>

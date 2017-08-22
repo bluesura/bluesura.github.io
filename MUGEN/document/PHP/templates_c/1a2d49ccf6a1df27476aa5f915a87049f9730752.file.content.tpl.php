@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-06 14:23:06
+<?php /* Smarty version Smarty-3.1.12, created on 2017-08-22 16:02:43
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\Trigger\content.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12247208205985635a334c64-36052411%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1a2d49ccf6a1df27476aa5f915a87049f9730752' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\Trigger\\content.tpl',
-      1 => 1502021940,
+      1 => 1503410550,
       2 => 'file',
     ),
   ),
@@ -88,6 +88,9 @@ $_smarty_tpl->tpl_vars['contributor']->_loop = true;
  $_smarty_tpl->tpl_vars['contributor']->last = $_smarty_tpl->tpl_vars['contributor']->iteration === $_smarty_tpl->tpl_vars['contributor']->total;
 ?><?php echo $_smarty_tpl->tpl_vars['contributor']->value;?>
 氏<?php if ($_smarty_tpl->tpl_vars['contributor']->last!=true){?>, <?php }?><?php } ?></div><?php }?></div>
+
+<?php echo $_smarty_tpl->getSubTemplate ("./nav.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
 
 	</div>
 </article></div><?php }} ?>

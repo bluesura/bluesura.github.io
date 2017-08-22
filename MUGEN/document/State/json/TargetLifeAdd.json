@@ -13,9 +13,13 @@
 	"state": "TargetLifeAdd",
 	"description": "<p>ターゲットの体力を増減します。投げなどに使用。攻撃力、防御力も考慮されます。</p>",
 	"category": "state",
+	"associated_state": ["LifeAdd","LifeSet"],
 
 	"version": [
-		{"no": "-", "content": "<code>RoundState=3</code>ではライフが増減されません。<br>※ただし、パラメーターは読み込まれます。"}
+		{"no": "仕様", "content": "<code>RoundState=3</code>ではライフが増減されません。<br>※ただし、パラメーターは読み込まれます。"},
+		{"no": "仕様", "content": "ガードステートにいる場合、TargetLifeAddでライフを増減できません。"},
+		{"no": "仕様", "content": "Pause,SuperPauseで時止めしている場合、ガードステートにいてもTargetLifeAddでライフを増減できます。(未検証)"},
+		{"no": "仕様", "content": "ライフ操作で相手をKOすると自殺扱いになります。"}
 	],
 
 	"parameter": [
@@ -65,10 +69,20 @@
 		}
 	],
 
+	"qanda": [
+		{
+			"q": "<!--強制死の宣告とは？-->",
+			"c": "",
+			"a": ""
+		}
+	],
+
 	"quote": [
 		{"title": "TargetLifeAdd - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/TargetLifeAdd"},
 		{"title": "TargetLifeAdd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetLifeAdd&protocol=http"},
 		{"title": "TargetLifeAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetLifeAdd"},
-		{"title": "TargetLifeAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"}
+		{"title": "TargetLifeAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"},
+		{"title": "死の宣告とKO表示", "url": "http://skeleton12.blog.fc2.com/blog-entry-288.html"},
+		{"title": "ライフに関するTwitetrのつぶやき", "url": "https://twitter.com/i/moments/895934923969765378"}
 	]
 }

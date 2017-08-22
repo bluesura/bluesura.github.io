@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-05 08:19:02
+<?php /* Smarty version Smarty-3.1.12, created on 2017-08-22 16:36:33
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\thanks.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:16395599405985635685b8f0-07222606%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1d0e51ac264803ec812bf7034822077ea84d065b' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\thanks.tpl',
-      1 => 1484401527,
+      1 => 1503412573,
       2 => 'file',
     ),
   ),
@@ -15,11 +15,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.12',
   'unifunc' => 'content_598563568987d3_84731641',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_598563568987d3_84731641')) {function content_598563568987d3_84731641($_smarty_tpl) {?>﻿		<h2>参考にさせてもらったサイト一覧</h2>
+<?php if ($_valid && !is_callable('content_598563568987d3_84731641')) {function content_598563568987d3_84731641($_smarty_tpl) {?>		<h2>参考にさせてもらったサイト一覧</h2>
 		<ul>
 			<li><a href="/redirect/?url=homotaro.s44.xrea.com/scr.htm&protocol=http" target="_blank" rel="external">ステートコントローラー一覧</a></li>
 			<li><a href="/redirect/?url=homotaro.s44.xrea.com/etc.htm&protocol=http" target="_blank" rel="external">その他</a></li>
@@ -50,8 +50,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<li><a href="http://hitotume.iza-yoi.net/txt/mogen.txt" target="_blank" rel="external">どうでもよさそうでよくないかもしれないMUGENの仕様＋＋ - ＦｒｅｅｄｏＭｕｇｅｎ</a></li>
 		</ul>
 
-		<h2>情報提供者</h2>
+		<h2>情報提供</h2>
 		<ul>
 			<li>Iwakick氏 - PowerAddの仕様について情報提供ありがとうございます。</li>
+			<li>MUGENの便覧 - 警告文の使用許諾を頂き引用しております。</li>
 		</ul>
 <?php }} ?>

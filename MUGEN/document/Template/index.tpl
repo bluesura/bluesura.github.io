@@ -29,12 +29,13 @@
 				</ul>
 			</div>
 		</div>
-{/foreach}{include file="./thanks.tpl"}</div>
+{/foreach}{include file="./thanks.tpl"}{include file="./nav.tpl"}</div>
 
 
 {elseif $content.page_category == "Trigger"}
 <header class="entry-header"><div class="entry-title"><h1>トリガー一覧</h1></div></header>
-<div class="entry-content">{foreach $content.categories as $temp}
+<div class="entry-content">
+{foreach $content.categories as $temp}
 		<div class="section">
 			<h2><a href="./{$temp.page_subtitle}.html">{$temp.page_subtitle}</a></h2>
 			<div>{$temp.description}</div>
@@ -46,17 +47,15 @@
 				</ul>
 			</div>
 		</div>
-{/foreach}{include file="./thanks.tpl"}</div>
+{/foreach}{include file="./thanks.tpl"}{include file="./nav.tpl"}</div>
 
 {elseif $content.page_category == "Lifebar"}
 <div class="entry-content">
 <div class="section">
 {$content.html}
+{include file="./nav.tpl"}
 </div>
 </div>
 {/if}
-
-
-
 
 </article></div>

@@ -53,21 +53,7 @@
     
 {/if}
 
-<style>
-{literal}
-.sosial_buttons{list-style-type:none;padding-left:0;margin-bottom:20px}
-.sosial_buttons:before,.sosial_buttons:after{content:" ";display:table}
-.sosial_buttons:after{clear:both}
-.sosial_buttons li{width:25%;text-align:center;font-size:130%;height:44px;line-height:44px;float:left}
-.sosial_buttons li a{text-decoration:none;display:block;color:white}
-.sosial_buttons li a .fa{color:white;padding-right:6px}
-.sosial_buttons li.sb_facebook{background:#315096}
-.sosial_buttons li.sb_twitter{background:#55acee}
-.sosial_buttons li.sb_hatena{background:#008fde}
-.sosial_buttons li.sb_gplus{background:#dd4b39}
-.fa-hatena:before{content:"B!";font-family:Verdana;font-weight:bold}
-{/literal}
-</style>
+
 <ul class="sosial_buttons">
     <li class="sb_facebook">
         <a href="" onclick="window.open('https://www.facebook.com/share.php?u='+encodeURIComponent(document.location.href), 'FBwindow', 'width=320, height=320, menubar=no, toolbar=no, scrollbars=yes'); return false;" target="_blank">

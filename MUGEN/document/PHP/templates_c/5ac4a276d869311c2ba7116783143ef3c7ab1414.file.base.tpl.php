@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-11 10:00:27
+<?php /* Smarty version Smarty-3.1.12, created on 2017-08-22 16:41:58
          compiled from ".\..\Template\base.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2963558cd8974caeb00-16025641%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5ac4a276d869311c2ba7116783143ef3c7ab1414' => 
     array (
       0 => '.\\..\\Template\\base.tpl',
-      1 => 1502438419,
+      1 => 1503412911,
       2 => 'file',
     ),
   ),
@@ -86,21 +86,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     
 <?php }?>
 
-<style>
 
-.sosial_buttons{list-style-type:none;padding-left:0;margin-bottom:20px}
-.sosial_buttons:before,.sosial_buttons:after{content:" ";display:table}
-.sosial_buttons:after{clear:both}
-.sosial_buttons li{width:25%;text-align:center;font-size:130%;height:44px;line-height:44px;float:left}
-.sosial_buttons li a{text-decoration:none;display:block;color:white}
-.sosial_buttons li a .fa{color:white;padding-right:6px}
-.sosial_buttons li.sb_facebook{background:#315096}
-.sosial_buttons li.sb_twitter{background:#55acee}
-.sosial_buttons li.sb_hatena{background:#008fde}
-.sosial_buttons li.sb_gplus{background:#dd4b39}
-.fa-hatena:before{content:"B!";font-family:Verdana;font-weight:bold}
-
-</style>
 <ul class="sosial_buttons">
     <li class="sb_facebook">
         <a href="" onclick="window.open('https://www.facebook.com/share.php?u='+encodeURIComponent(document.location.href), 'FBwindow', 'width=320, height=320, menubar=no, toolbar=no, scrollbars=yes'); return false;" target="_blank">

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-06 14:24:53
+<?php /* Smarty version Smarty-3.1.12, created on 2017-08-18 17:21:53
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content\Parameter.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:85016312059856356bc1644-15374232%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '712e292ff00e8c07abca5d37afe4b167464d0e54' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content\\Parameter.tpl',
-      1 => 1502022241,
+      1 => 1502508450,
       2 => 'file',
     ),
   ),
@@ -149,7 +149,7 @@ $_smarty_tpl->tpl_vars['max_value']->_loop = true;
           <div class="required-parameter">省略不可</div>
           <?php }elseif($_smarty_tpl->tpl_vars['array']->value['parameter_type']=="instead"){?>
           <div class="instead-parameter">代替書式</div>
-          <?php }else{ ?>
+          <?php }elseif($_smarty_tpl->tpl_vars['array']->value['default_value']!=array('')){?>
           <div class="default-value">省略時のデフォルト値： <?php  $_smarty_tpl->tpl_vars['default_value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['default_value']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['default_value']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
  $_smarty_tpl->tpl_vars['default_value']->total= $_smarty_tpl->_count($_from);
@@ -160,6 +160,7 @@ $_smarty_tpl->tpl_vars['default_value']->_loop = true;
  $_smarty_tpl->tpl_vars['default_value']->last = $_smarty_tpl->tpl_vars['default_value']->iteration === $_smarty_tpl->tpl_vars['default_value']->total;
 ?><?php echo $_smarty_tpl->tpl_vars['default_value']->value;?>
 <?php if ($_smarty_tpl->tpl_vars['default_value']->last!=true){?>, <?php }?><?php } ?></div>
+          <?php }else{ ?>
           <?php }?>
 
           <?php if (isset($_smarty_tpl->tpl_vars['array']->value['associated_trigger'])){?><div class="associated-trigger">関連するトリガー： <?php  $_smarty_tpl->tpl_vars['associated_trigger'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['associated_trigger']->_loop = false;

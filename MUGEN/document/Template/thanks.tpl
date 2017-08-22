@@ -1,4 +1,4 @@
-﻿		<h2>参考にさせてもらったサイト一覧</h2>
+		<h2>参考にさせてもらったサイト一覧</h2>
 		<ul>
 			<li><a href="/redirect/?url=homotaro.s44.xrea.com/scr.htm&protocol=http" target="_blank" rel="external">ステートコントローラー一覧</a></li>
 			<li><a href="/redirect/?url=homotaro.s44.xrea.com/etc.htm&protocol=http" target="_blank" rel="external">その他</a></li>
@@ -29,7 +29,8 @@
 			<li><a href="http://hitotume.iza-yoi.net/txt/mogen.txt" target="_blank" rel="external">どうでもよさそうでよくないかもしれないMUGENの仕様＋＋ - ＦｒｅｅｄｏＭｕｇｅｎ</a></li>
 		</ul>
 
-		<h2>情報提供者</h2>
+		<h2>情報提供</h2>
 		<ul>
 			<li>Iwakick氏 - PowerAddの仕様について情報提供ありがとうございます。</li>
+			<li>MUGENの便覧 - 警告文の使用許諾を頂き引用しております。</li>
 		</ul>

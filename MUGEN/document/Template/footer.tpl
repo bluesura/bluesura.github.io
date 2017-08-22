@@ -1,4 +1,4 @@
-﻿<footer id="footer">
+<footer id="footer">
   <div id="footer-inner">
     <nav id="footer-main">
       <h2>おすすめのツール</h2>

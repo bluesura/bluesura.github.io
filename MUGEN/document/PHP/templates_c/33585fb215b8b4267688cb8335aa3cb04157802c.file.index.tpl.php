@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-05 08:19:02
+<?php /* Smarty version Smarty-3.1.12, created on 2017-08-22 16:08:05
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:57629682259856356744441-43996048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '33585fb215b8b4267688cb8335aa3cb04157802c' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\index.tpl',
-      1 => 1488698019,
+      1 => 1503410881,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5985635676ee33_51905538',
   'variables' => 
   array (
     'content' => 0,
@@ -23,8 +25,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'syntax' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5985635676ee33_51905538',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5985635676ee33_51905538')) {function content_5985635676ee33_51905538($_smarty_tpl) {?><div id="main-inner">
 <article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
@@ -71,12 +71,14 @@ $_smarty_tpl->tpl_vars['parameter']->_loop = true;
 			</div>
 		</div>
 <?php } ?><?php echo $_smarty_tpl->getSubTemplate ("./thanks.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+<?php echo $_smarty_tpl->getSubTemplate ("./nav.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 </div>
 
 
 <?php }elseif($_smarty_tpl->tpl_vars['content']->value['page_category']=="Trigger"){?>
 <header class="entry-header"><div class="entry-title"><h1>トリガー一覧</h1></div></header>
-<div class="entry-content"><?php  $_smarty_tpl->tpl_vars['temp'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['temp']->_loop = false;
+<div class="entry-content">
+<?php  $_smarty_tpl->tpl_vars['temp'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['temp']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['content']->value['categories']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['temp']->key => $_smarty_tpl->tpl_vars['temp']->value){
 $_smarty_tpl->tpl_vars['temp']->_loop = true;
@@ -101,6 +103,7 @@ $_smarty_tpl->tpl_vars['syntax']->_loop = true;
 			</div>
 		</div>
 <?php } ?><?php echo $_smarty_tpl->getSubTemplate ("./thanks.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+<?php echo $_smarty_tpl->getSubTemplate ("./nav.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 </div>
 
 <?php }elseif($_smarty_tpl->tpl_vars['content']->value['page_category']=="Lifebar"){?>
@@ -108,11 +111,10 @@ $_smarty_tpl->tpl_vars['syntax']->_loop = true;
 <div class="section">
 <?php echo $_smarty_tpl->tpl_vars['content']->value['html'];?>
 
+<?php echo $_smarty_tpl->getSubTemplate ("./nav.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
 </div>
 </div>
 <?php }?>
-
-
-
 
 </article></div><?php }} ?>

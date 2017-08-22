@@ -53,8 +53,9 @@
           <div class="required-parameter">省略不可</div>
           {elseif $array.parameter_type == "instead"}
           <div class="instead-parameter">代替書式</div>
-          {else}
+          {elseif $array.default_value != [""]}
           <div class="default-value">省略時のデフォルト値： {foreach $array.default_value as $default_value}{$default_value}{if $default_value@last != true}, {/if}{/foreach}</div>
+          {else}
           {/if}
 
           {if isset($array.associated_trigger)}<div class="associated-trigger">関連するトリガー： {foreach $array.associated_trigger as $associated_trigger}<code>{$associated_trigger}</code>{if $associated_trigger@last != true}, {/if}{/foreach}</div>{/if}

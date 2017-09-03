@@ -124,7 +124,7 @@ MUGEN State Controller - Name = すら
 
 <div class="entry-content">			<div class="section">
 			<h2><a href="./A.html">A</a></h2>
-			<div><p>空中 Air 地上にいても「A」なら攻撃を受けると空中へ吹っ飛びます。</p></div>
+			<div><p>空中(Air)。地上にいてもAなら攻撃を受けると空中へ吹っ飛びます。</p></div>
 			<div class="code" contenteditable="true">
 				<ul>
 										<li>[StateDef 『正の整数』]</li>
@@ -568,7 +568,7 @@ MUGEN State Controller - Name = すら
 					<li>Type                       = DisplayToClipboard</li>
 					<li>Trigger1                   = 1</li>
 					
-											<li>text                       = "所定の文字列"</li>
+											<li>Text                       = "所定の文字列"</li>
 											<li>Params                     = 引数1, 引数2, 引数3, 引数4, 引数5, 引数6</li>
 					
 										<li>Persistent                 = ?</li>
@@ -745,7 +745,7 @@ MUGEN State Controller - Name = すら
 		</div>
 			<div class="section">
 			<h2><a href="./Helper.html">Helper</a></h2>
-			<div><p>プレイヤー以外のキャラクターを出現させます。<code>Helper</code>が参照するステートを別に記述する必要がありますが、様々な動きが可能。<span class="decoration-font-line-green">複雑な動作の飛び道具</span>・プレイヤーについて動き回る<span class="decoration-font-line-green">サポートキャラ</span>・<span class="decoration-font-line-green">特殊ゲージなどの特殊システム</span>や<span class="decoration-font-line-green">自分自身の分身</span>などに利用します。</p><p>攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。</p><p><code>Helper</code>は、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。<code>Helper</code>が消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。但し、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。</p><p>なお、<span class="decoration-font-highlight-red">全プレイヤーの<code>Helper</code>合計数には上限</span>があり、初期設定は32個で最大56個まで増やせます。上限は<code>mugen.cfg</code>にて設定可能。設定数を超えると<code>Helper</code>を射出できなくなります。</p></div>
+			<div><p>プレイヤー以外のキャラクターを出現させます。<code>Helper</code>が参照するステートを別に記述する必要がありますが、様々な動きが可能。<span class="decoration-font-line-green">複雑な動作の飛び道具</span>・プレイヤーについて動き回る<span class="decoration-font-line-green">サポートキャラ</span>・<span class="decoration-font-line-green">特殊ゲージなどの特殊システム</span>や<span class="decoration-font-line-green">自分自身の分身</span>などに利用します。</p><p>攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。</p><p><code>Helper</code>は、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。<code>Helper</code>が消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。ただし、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。</p><p>なお、<span class="decoration-font-highlight-red">全プレイヤーの<code>Helper</code>合計数には上限</span>があり、初期設定は32個で最大56個まで増やせます。上限は<code>mugen.cfg</code>にて設定可能。設定数を超えると<code>Helper</code>を射出できなくなります。</p></div>
 			<div class="code" contenteditable="true">
 				<ul>
 										<li>[State ]</li>
@@ -799,7 +799,7 @@ MUGEN State Controller - Name = すら
 		</div>
 			<div class="section">
 			<h2><a href="./HitBy.html">HitBy</a></h2>
-			<div><p>一時的に特定の攻撃以外食らわないようにします。回り込み(投げのみ食らう)などに。</p><p>ジャンプの瞬間など「投げのみ食らわない」といった場合は姉妹品のNotHitByを使います。</p><p>また、HitBy効果持続中に、同じスロットのHitBy、NotHitByが実行されると、それまでのHitByの効果は無効となります。</p><p>2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>HitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p></div>
+			<div><p>一時的に特定の攻撃以外食らわないようにします。回り込み(投げのみ食らう)などに。</p><p>ジャンプの瞬間など投げのみ食らわないといった場合は姉妹品のNotHitByを使います。</p><p>また、HitBy効果持続中に、同じスロットのHitBy、NotHitByが実行されると、それまでのHitByの効果は無効となります。</p><p>2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>HitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p></div>
 			<div class="code" contenteditable="true">
 				<ul>
 										<li>[State ]</li>

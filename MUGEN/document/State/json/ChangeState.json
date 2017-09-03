@@ -46,7 +46,7 @@
 			"parameter": "Anim",
 			"value": ["アクション番号"],
 			"type": ["int"],
-			"description": "<p>アクション番号も同時に変更可能。省略時は変更なし。どうやら、ignorehitpauseを指定してもhitpauseの影響を受けてしまう模様。</p><p>指定先の[StateDef]で、Animを設定しているとそちらに上書きされるので、注意してください。</p>",
+			"description": "<p>アクション番号も同時に変更可能。どうやら、IgnoreHitPauseを指定してもHitPauseの影響を受けてしまう模様。</p><p>指定先の[StateDef]で、Animを設定しているとそちらに上書きされるので、注意してください。</p>",
 			"min_value": [""],
 			"max_value": [""],
 			"parameter_type": "optional",

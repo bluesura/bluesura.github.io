@@ -38,7 +38,7 @@
 				["GlobalNoShadow", "画面中に存在する全てのプレイヤー（ヘルパーと<code>Projectile</code>も含む）の影を消します。しかし、残像（<code>AfterImage</code>）や判定は消せません。"],
 				["NoShadow", "自分の影・床の反射を消します。しかし、残像（<code>AfterImage</code>）や判定は消せません。また、<code>-1</code>,<code>-2</code>,<code>-3</code>ステートでは自分の<code>Heplper</code>・<code>Projectile</code>全ての姿が消えます。"],
 				["NoBarDisplay", "ライフ・パワーゲージバー・勝利アイコン・ポートレート・キャラクター名・タイムカウントを非表示にします。<!--オリジナルのライフバーの表示に-->"],
-				["NoBG", "ステージ奥(<code>LayerNo=0</code>)の画像を非表示にし、「真っ黒な(正確には描画が更新されない)背景」にします。"],
+				["NoBG", "ステージ奥(<code>LayerNo=0</code>)の画像を非表示にし、真っ黒な(正確には描画が更新されない)背景にします。"],
 				["NoFG", "ステージ手前(<code>LayerNo=1</code>)の画像を非表示にします。"],
 				["NoKOSnd", "KO時の音声（<code>11,0</code>）を鳴らさないようにします。画面中に存在する全員に有効なので注意。"],
 				["NoKOSlow", "KO時のスローモーションを無効にします。（KO直前に有効にしないといけない）"],

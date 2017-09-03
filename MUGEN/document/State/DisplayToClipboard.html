@@ -141,15 +141,60 @@ DisplayToClipboard | クリップボードに変数・トリガー等の値を�
   <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
             <dl class="parameter">
-      <dt class="main" id="text">
-                  text = "所定の文字列"                (文字列)
+      <dt class="main" id="Text">
+                  Text = "所定の文字列"                (文字列)
       </dt>
       <dd>
-        <div class="description"><p>画面に出力したい文字列を、定められた書式に従って指定します。</p><p>基本的には""で括った文字列がそのまま出力されますが、特別な書式として、</p><p>「\n」が改行、「\t」がタブ、「%%」が%、「%d」がint値、「%f」がfloat値として出力されます。</p><p>Version1.0より前では「%o」が8進数、「%x」が16進数、「%u」が負の補数表現、「%c」が整数値を文字で表示、「%p」がポインタ表示、「%n」がアドレス書き込み、「%s」が文字列として出力できます。</p></div>
+        <div class="description"><p>画面に出力したい文字列を、定められた書式に従って指定します。</p><p>基本的には""で括った文字列がそのまま出力されます。引数の値を表示させたり、特殊な文字を表示させる場合は下記のような記述をます。</p></div>
 
         <div class="option-value">
 
-          
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>書式</th>
+              <th>内容</th>
+            </tr>
+            <tr>
+              <td>\n</td>
+              <td>改行します。</td>
+            </tr><tr>
+              <td>\t</td>
+              <td>タブを表示します。</td>
+            </tr><tr>
+              <td>%%</td>
+              <td>%を表示します。</td>
+            </tr><tr>
+              <td>%d</td>
+              <td>引数の値をint値で表示します。</td>
+            </tr><tr>
+              <td>%f</td>
+              <td>引数の値をfloat値で表示します。</td>
+            </tr><tr>
+              <td>%o</td>
+              <td>引数の値を8進数で表示します。(Version1.0より前で使用可能)</td>
+            </tr><tr>
+              <td>%x</td>
+              <td>引数の値を16進数で表示します。(Version1.0より前で使用可能)</td>
+            </tr><tr>
+              <td>%u</td>
+              <td>引数の値を負の補数表現で表示します。(Version1.0より前で使用可能)</td>
+            </tr><tr>
+              <td>%c</td>
+              <td>引数の値を文字で表示します。(Version1.0より前で使用可能)</td>
+            </tr><tr>
+              <td>%p</td>
+              <td>引数の値をポインタで表示します。(Version1.0より前で使用可能)</td>
+            </tr><tr>
+              <td>%n</td>
+              <td>引数の値のメモリアドレスに、そこまでに出力した文字数(4byte)を書き込みます。パソコンを破損させる危険性があるバグです。わからない人は絶対に使用してはいけません。(Version1.0より前で使用可能)</td>
+            </tr><tr>
+              <td>%s</td>
+              <td>引数の値を文字列で表示します。(Version1.0より前で使用可能)</td>
+            </tr>          </table>
+          </div>
+                      </div>
           
                     <div class="required-parameter">省略不可</div>
           
@@ -271,7 +316,7 @@ DisplayToClipboard | クリップボードに変数・トリガー等の値を�
 						<li>[State ,DisplayToClipboard]</li>
 			<li>Type                       = DisplayToClipboard</li>
 			<li>Trigger1                   = 1</li>
-															<li class="required-parameter">text                       = ?</li>
+															<li class="required-parameter">Text                       = ?</li>
 									<li class="optional-parameter">Params                     = ;なし</li>
 									<li class="optional-parameter">Persistent                 = 1</li>
 									<li class="optional-parameter">IgnoreHitPause             = 0</li>
@@ -284,6 +329,48 @@ DisplayToClipboard | クリップボードに変数・トリガー等の値を�
 
   
 
+		<section id="CodeSample"><div class="section">
+		<h2>コードサンプル</h2>
+			<div>
+			<h3>IDの確認</h3>
+						<div class="code"><code>
+			<ul>
+							<li>[StateDef -2]</li>
+							<li>[State ]</li>
+							<li>Type     = DisplayToClipboard</li>
+							<li>Trigger1 = 1</li>
+							<li>Text     = "MyID:%d, EnemyID:%d"</li>
+							<li>Params   = ID, EnemyNear,ID</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>変数の確認</h3>
+						<div class="code"><code>
+			<ul>
+							<li>[StateDef -2]</li>
+							<li>[State ]</li>
+							<li>Type     = DisplayToClipboard</li>
+							<li>Trigger1 = 1</li>
+							<li>Text     = "v0:%d fv0:%f"</li>
+							<li>Params   = var(0), fvar(0)</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>コンボの確認</h3>
+						<div class="code"><code>
+			<ul>
+							<li>[StateDef -2]</li>
+							<li>[State ]</li>
+							<li>Type     = DisplayToClipboard</li>
+							<li>Trigger1 = 1</li>
+							<li>Text     = "HC:%d UHC:%d GHVHC:%d EGHVHC:%d vC:%d"</li>
+							<li>Params   = HitCount, UniqHitCount, GetHitVar(HitCount), enemy,GetHitVar(HitCount), var(0)</li>
+						</ul>
+			</code></div>
+			</div><br>
+				</div></section>
 	
 
 	<section id="LoadParameter"><div class="section">
@@ -293,7 +380,7 @@ DisplayToClipboard | クリップボードに変数・トリガー等の値を�
 
 		<div>
 			<p>
-				text(?) => 
+				Text(?) => 
 				Params(1, 2, 3, 4, 5, 6) => 
 				Persistent(?) => 
 				IgnoreHitPause(?) => 
@@ -311,6 +398,7 @@ DisplayToClipboard | クリップボードに変数・トリガー等の値を�
 					<li><cite><a href="http://elecbyte.com/wiki/index.php/DisplayToClipboard" target="_blank" rel="external">DisplayToClipboard - M.U.G.E.N wiki</a></cite></li>
 					<li><cite><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?DisplayToClipboard&protocol=http" target="_blank" rel="external">DisplayToClipboard - State Controller</a></cite></li>
 					<li><cite><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#DisplayToClipboard" target="_blank" rel="external">DisplayToClipboard - 東方夢幻館</a></cite></li>
+					<li><cite><a href="http://drabs.blog40.fc2.com/blog-entry-101.html" target="_blank" rel="external">%nの説明</a></cite></li>
 				</ul>
 	</div></section>
 	

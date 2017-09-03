@@ -47,7 +47,7 @@ Helper | 飛び道具・分身・特殊ゲージ等のサポート | MUGEN State
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="プレイヤー以外のキャラクターを出現させます。Helperが参照するステートを別に記述する必要がありますが、様々な動きが可能。複雑な動作の飛び道具・プレイヤーについて動き回るサポートキャラ・特殊ゲージなどの特殊システムや自分自身の分身などに利用します。攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。Helperは、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。Helperが消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。但し、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。なお、全プレイヤーのHelper合計数には上限があり、初期設定は32個で最大56個まで増やせます。上限はmugen.cfgにて設定可能。設定数を超えるとHelperを射出できなくなります。">
+  <meta name="description" content="プレイヤー以外のキャラクターを出現させます。Helperが参照するステートを別に記述する必要がありますが、様々な動きが可能。複雑な動作の飛び道具・プレイヤーについて動き回るサポートキャラ・特殊ゲージなどの特殊システムや自分自身の分身などに利用します。攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。Helperは、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。Helperが消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。ただし、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。なお、全プレイヤーのHelper合計数には上限があり、初期設定は32個で最大56個まで増やせます。上限はmugen.cfgにて設定可能。設定数を超えるとHelperを射出できなくなります。">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/State/Helper.html">
   <meta property="og:title" content="Helper | MUGEN State Controller">
@@ -131,11 +131,11 @@ Helper | 飛び道具・分身・特殊ゲージ等のサポート | MUGEN State
   <div class="entry-content">
 
 	<div class="description" itemprop="articleBody">
-<div><p>プレイヤー以外のキャラクターを出現させます。<code>Helper</code>が参照するステートを別に記述する必要がありますが、様々な動きが可能。<span class="decoration-font-line-green">複雑な動作の飛び道具</span>・プレイヤーについて動き回る<span class="decoration-font-line-green">サポートキャラ</span>・<span class="decoration-font-line-green">特殊ゲージなどの特殊システム</span>や<span class="decoration-font-line-green">自分自身の分身</span>などに利用します。</p><p>攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。</p><p><code>Helper</code>は、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。<code>Helper</code>が消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。但し、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。</p><p>なお、<span class="decoration-font-highlight-red">全プレイヤーの<code>Helper</code>合計数には上限</span>があり、初期設定は32個で最大56個まで増やせます。上限は<code>mugen.cfg</code>にて設定可能。設定数を超えると<code>Helper</code>を射出できなくなります。</p></div>
+<div><p>プレイヤー以外のキャラクターを出現させます。<code>Helper</code>が参照するステートを別に記述する必要がありますが、様々な動きが可能。<span class="decoration-font-line-green">複雑な動作の飛び道具</span>・プレイヤーについて動き回る<span class="decoration-font-line-green">サポートキャラ</span>・<span class="decoration-font-line-green">特殊ゲージなどの特殊システム</span>や<span class="decoration-font-line-green">自分自身の分身</span>などに利用します。</p><p>攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。</p><p><code>Helper</code>は、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。<code>Helper</code>が消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。ただし、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。</p><p>なお、<span class="decoration-font-highlight-red">全プレイヤーの<code>Helper</code>合計数には上限</span>があり、初期設定は32個で最大56個まで増やせます。上限は<code>mugen.cfg</code>にて設定可能。設定数を超えると<code>Helper</code>を射出できなくなります。</p></div>
 
 
 
-		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/.html"><code></code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/NumHelper.html"><code>NumHelper</code></a></div>
+				<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/NumHelper.html"><code>NumHelper</code></a></div>
 	</div>
 
   <section id="Parameter"><div class="section">

@@ -1,8 +1,8 @@
 ﻿@charset "utf-8";
 
 /* RESET */
-article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
-audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
+article,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block;vertical-align:baseline}
 audio:not([controls]){display:none;height:0}
 [hidden],template{display:none}
 a{background:transparent}
@@ -40,30 +40,30 @@ html,body {margin: 0;padding: 0;}
 img {border: none;}
 /****/
 blockquote {
-		-webkit-margin-before: 0;
-		-webkit-margin-after: 0;
-		-webkit-margin-start: 0;
-		-webkit-margin-end: 0;
-		font-style: italic;
-		color: #555;
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
+	font-style: italic;
+	color: #555;
 }
 
 blockquote:before{
-		display: inline-block;
-		position: absolute;
-		top: 5px;
-		left: 0;
-		vertical-align: middle;
-		content: "“";
-		font-family: sans-serif;
-		color: #cfcfcf;
-		font-size: 2em;
-		line-height: 1;
+	display: inline-block;
+	position: absolute;
+	top: 5px;
+	left: 0;
+	vertical-align: middle;
+	content: "“";
+	font-family: sans-serif;
+	color: #cfcfcf;
+	font-size: 2em;
+	line-height: 1;
 }
 
 cite {
-		display: block;
-		font-style: none;
+	display: block;
+	font-style: none;
 }
 
 /* Responsive */

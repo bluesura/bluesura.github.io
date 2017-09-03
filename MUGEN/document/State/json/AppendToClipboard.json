@@ -29,10 +29,25 @@
 			"parameter": "Text",
 			"value": ["\"所定の文字列\""],
 			"type": ["string"],
-			"description": "<p>画面に出力したい文字列を、定められた書式に従って指定します。</p><p>基本的には\"\"で括った文字列がそのまま出力されますが、特別な書式として、</p><p>「\\n」が改行、「\\t」がタブ、「%%」が%、「%d」がint値、「%f」がfloat値として出力されます。</p><p>Version1.0より前では「%o」が8進数、「%x」が16進数、「%u」が負の補数表現、「%c」が整数値を文字で表示、「%p」がポインタ表示、「%n」がアドレス書き込み、「%s」が文字列として出力できます。</p>",
+			"description": "<p>画面に出力したい文字列を、定められた書式に従って指定します。</p><p>基本的には\"\"で括った文字列がそのまま出力されます。引数の値を表示させたり、特殊な文字を表示させる場合は下記のような記述をます。</p>",
 			"parameter_type": "required",
 			"default_value": ["?"],
-			"load_priority": ["?"]
+			"load_priority": ["?"],
+			"possible_value": [
+				["書式", "内容"],
+				["\\n", "改行します。"],
+				["\\t", "タブを表示します。"],
+				["%%", "%を表示します。"],
+				["%d", "引数の値をint値で表示します。"],
+				["%f", "引数の値をfloat値で表示します。"],
+				["%o", "引数の値を8進数で表示します。(Version1.0より前で使用可能)"],
+				["%x", "引数の値を16進数で表示します。(Version1.0より前で使用可能)"],
+				["%u", "引数の値を負の補数表現で表示します。(Version1.0より前で使用可能)"],
+				["%c", "引数の値を文字で表示します。(Version1.0より前で使用可能)"],
+				["%p", "引数の値をポインタで表示します。(Version1.0より前で使用可能)"],
+				["%n", "引数の値のメモリアドレスに、そこまでに出力した文字数(4byte)を書き込みます。パソコンを破損させる危険性があるバグです。わからない人は絶対に使用してはいけません。(Version1.0より前で使用可能)"],
+				["%s", "引数の値を文字列で表示します。(Version1.0より前で使用可能)"]
+			]
 		},
 		{
 			"parameter": "Params",
@@ -45,9 +60,46 @@
 		}
 	],
 
+	"code_sample": [
+		{
+			"title": "IDの確認",
+			"code": [
+				"[StateDef -2]",
+				"[State ]",
+				"Type     = AppendToClipboard",
+				"Trigger1 = 1",
+				"Text     = \"MyID:%d, EnemyID:%d\"",
+				"Params   = ID, EnemyNear,ID"
+			]
+		},
+		{
+			"title": "変数の確認",
+			"code": [
+				"[StateDef -2]",
+				"[State ]",
+				"Type     = AppendToClipboard",
+				"Trigger1 = 1",
+				"Text     = \"v0:%d fv0:%f\"",
+				"Params   = var(0), fvar(0)"
+			]
+		},
+		{
+			"title": "コンボの確認",
+			"code": [
+				"[StateDef -2]",
+				"[State ]",
+				"Type     = AppendToClipboard",
+				"Trigger1 = 1",
+				"Text     = \"HC:%d UHC:%d GHVHC:%d EGHVHC:%d vC:%d\"",
+				"Params   = HitCount, UniqHitCount, GetHitVar(HitCount), enemy,GetHitVar(HitCount), var(0)"
+			]
+		}
+	],
+
 	"quote": [
 		{"title": "AppendToClipboard - M.U.G.E.N wiki", "url": "http://elecbyte.com/wiki/index.php/AppendToClipboard"},
 		{"title": "AppendToClipboard - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AppendToClipboard&protocol=http"},
-		{"title": "AppendToClipboard - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AppendToClipboard"}
+		{"title": "AppendToClipboard - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AppendToClipboard"},
+		{"title": "%nの説明", "url": "http://drabs.blog40.fc2.com/blog-entry-101.html"}
 	]
 }

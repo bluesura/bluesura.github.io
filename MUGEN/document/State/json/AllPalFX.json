@@ -118,7 +118,7 @@
 				"Time           = 2",
 				"Add            = 250 - Abs(15-(GameTime%30))*6, 250 - Abs(15-(GameTime%30))*6, 250 - Abs(15-(GameTime%30))*6",
 				"Mul            = 250 - Abs(15-(GameTime%30))*6, 250 - Abs(15-(GameTime%30))*6, 250 - Abs(15-(GameTime%30))*6",
-				"Ignorehitpause = 1"
+				"IgnoreHitPause = 1"
 			],
 			"media": {
 				"youtube": [
@@ -136,7 +136,7 @@
 				"Time           = 1",
 				"Color          = 256",
 				"Add            = 0, 0, -256",
-				"Ignorehitpause = 1"
+				"IgnoreHitPause = 1"
 			],
 			"media": {
 				"image": [

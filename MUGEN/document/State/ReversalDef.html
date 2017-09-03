@@ -166,7 +166,7 @@ ReversalDef | 当て身投げ用 | MUGEN State Controller - Name = すら
                   Attr = 反撃属性1, 反撃属性2, ...                (文字列, 文字列, )
       </dt>
       <dd>
-        <div class="description"><p>攻撃の属性を指定します。</p><p>属性1には、「S」「C」「A」(順に立ち、屈み、空中)のいずれかを指定します。</p><p>属性2には、「N」「S」「H」「A」（順に通常、必殺、超必殺、すべて）と、「A」「T」「P」（同じく攻撃、投げ、飛び道具）を組み合わせて指定します。</p><p>例えば立ちパンチなどなら attr = S,NA、空中で飛び道具を出す超必殺技なら attr = A,HP と記述します。</p><p>空中判定になる地上攻撃(リープアタック等)は、空中扱いにしましょう。ただし、AirやOffsetで見た目のみ浮いている場合は、地上扱いでもかまいません。とりあえず、statetypeと同じにしておけば、問題ないでしょう。</p></div>
+        <div class="description"><p>攻撃の属性を指定します。</p><p>属性1には、「S」「C」「A」(順に立ち、屈み、空中)のいずれかを指定します。</p><p>属性2には、「N」「S」「H」「A」（順に通常、必殺、超必殺、すべて）と、「A」「T」「P」（同じく攻撃、投げ、飛び道具）を組み合わせて指定します。</p><p>例えば立ちパンチなどならAttr = S,NA、空中で飛び道具を出す超必殺技ならAttr = A,HP と記述します。</p><p>空中判定になる地上攻撃(リープアタック等)は、空中扱いにしましょう。ただし、AirやOffsetで見た目のみ浮いている場合は、地上扱いでもかまいません。とりあえず、statetypeと同じにしておけば、問題ないでしょう。</p></div>
 
         <div class="option-value">
 
@@ -609,7 +609,7 @@ ReversalDef | 当て身投げ用 | MUGEN State Controller - Name = すら
                   HitOnce = 1回ヒットフラグ                (0か1)
       </dt>
       <dd>
-        <div class="description"><p>1にした場合、複数の敵がいても、1方にしかヒットしなくなります。attrがT(投げ)の場合、1になります。</p></div>
+        <div class="description"><p>1にした場合、複数の敵がいても、1方にしかヒットしなくなります。AttrがT(投げ)の場合、1になります。</p></div>
 
         <div class="option-value">
 
@@ -631,7 +631,7 @@ ReversalDef | 当て身投げ用 | MUGEN State Controller - Name = すら
                   Air.Juggle = ジャグルポイント                (整数)
       </dt>
       <dd>
-        <div class="description"><p>fall状態の敵に対する連続技に必要なポイント数を上乗せします。StateDefの"juggle"パラメータと混同しないようにしましょう。</p><p>projectile専用のパラメータと思ってよいらしいです。</p></div>
+        <div class="description"><p>Fall状態の敵に対する連続技に必要なポイント数を上乗せ。StateDefのJuggleパラメータとは違う値です。</p><p>Projectile専用パラメータ。</p></div>
 
         <div class="option-value">
 
@@ -675,7 +675,7 @@ ReversalDef | 当て身投げ用 | MUGEN State Controller - Name = すら
                   GetPower = p1ヒットゲージ増加量, p1ガードゲージ増加量                (整数, 整数)
       </dt>
       <dd>
-        <div class="description"><p>攻撃がヒットした、ガードされたときに増えるゲージ量です。</p><p>省略時は、ヒット時がmugen.cfgのDefault.Attack.LifeToPowerMulパラメータにdamageをかけたものに、ガード時がその半分になります。</p></div>
+        <div class="description"><p>攻撃がヒットした、ガードされたときに増えるゲージ量です。</p></div>
 
         <div class="option-value">
 
@@ -683,7 +683,7 @@ ReversalDef | 当て身投げ用 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    <div class="default-value">省略時のデフォルト値： ; ヒット時：mugen.cfgのDefault.Attack.LifeToPowerMulパラメータにDamageをかけた値、ガード時：ヒット時の半分</div>
+                    <div class="default-value">省略時のデフォルト値： ;ヒット時：mugen.cfgのDefault.Attack.LifeToPowerMulパラメータにDamageをかけた値、ガード時：ヒット時の半分</div>
           
           
         
@@ -697,7 +697,7 @@ ReversalDef | 当て身投げ用 | MUGEN State Controller - Name = すら
                   GivePower = p2ヒットゲージ増加量, p2ガードゲージ増加量                (整数, 整数)
       </dt>
       <dd>
-        <div class="description"><p>攻撃がヒットした、ガードされたときに増える相手のゲージ量です。</p><p>省略時は、ヒット時がmugen.cfgのDefault.GetHit.LifeToPowerMulパラメータにdamageをかけたものに、ガード時がその半分になります。</p></div>
+        <div class="description"><p>攻撃がヒットした、ガードされたときに増える相手のゲージ量です。</p></div>
 
         <div class="option-value">
 
@@ -2502,7 +2502,7 @@ ReversalDef | 当て身投げ用 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">HitOnce                    = 0</li>
 									<li class="optional-parameter">Air.Juggle                 = 0</li>
 									<li class="optional-parameter">Damage                     = 0, 0</li>
-									<li class="optional-parameter">GetPower                   = ; ヒット時：mugen.cfgのDefault.Attack.LifeToPowerMulパラメータにDamageをかけた値、ガード時：ヒット時の半分</li>
+									<li class="optional-parameter">GetPower                   = ;ヒット時：mugen.cfgのDefault.Attack.LifeToPowerMulパラメータにDamageをかけた値、ガード時：ヒット時の半分</li>
 									<li class="optional-parameter">GivePower                  = ; ヒット時：mugen.cfgのDefault.GetHit.LifeToPowerMulパラメータにDamageをかけた値、ガード時：ヒット時の半分</li>
 									<li class="optional-parameter">PauseTime                  = 0, 0</li>
 									<li class="optional-parameter">NumHits                    = 1</li>
@@ -2583,7 +2583,7 @@ ReversalDef | 当て身投げ用 | MUGEN State Controller - Name = すら
     <h2>Q＆A(よくある質問)</h2>
     <div>
               <h3>Helperが分身して消えない。</h3>
-        <p>「Helper」側が適正に「HitOverride」を使っていない場合や、 ちゃんと「HitOverride」を使っていても、「Helper」が直に「HitDef」を出しており、 なおかつ相手側が適切に「attr」を設定していない「ReversalDef」を使用した場合などに起こってしまう。「Helper」に行わせていた処理次第で、ひどい不具合を引き起こす可能性があります。</p><ul><li>「Helper」には 必ず 「HitOverride」を使わせる。</li><li>「Helper」には なるべく 直接「HitDef」を持たせない。</li><li>「ReversalDef」で「P2StateNo」を使用するときは 必ず 「attr」を適切に設定する。</li><li>「IsHelper」をトリガーにして、「DestroySelf」や「ChangeState」を記述する。</li></ul>
+        <p>「Helper」側が適正に「HitOverride」を使っていない場合や、HitOverride」を使っていても、「Helper」が直に「HitDef」を出しており、 なおかつ相手側が適切にAttrを設定していない「ReversalDef」を使用した場合などに起こってしまう。「Helper」に行わせていた処理次第で、ひどい不具合を引き起こす可能性があります。</p><ul><li>「Helper」には 必ず 「HitOverride」を使わせる。</li><li>「Helper」には なるべく 直接「HitDef」を持たせない。</li><li>「ReversalDef」で「P2StateNo」を使用するときは 必ずAttrを適切に設定する。</li><li>「IsHelper」をトリガーにして、「DestroySelf」や「ChangeState」を記述する。</li></ul>
           </div>
   </div></section>
   

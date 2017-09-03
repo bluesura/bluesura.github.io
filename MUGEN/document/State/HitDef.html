@@ -326,13 +326,13 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
             </tr>
             <tr>
               <td>B</td>
-              <td>敵味方かまわず</td>
+              <td>敵味方(Both Teams)かまわず。</td>
             </tr><tr>
               <td>E</td>
-              <td>敵のみ</td>
+              <td>敵(Enemy Team)のみ。</td>
             </tr><tr>
               <td>F</td>
-              <td>味方のみ</td>
+              <td>味方(Friendly Team)のみ。</td>
             </tr>          </table>
           </div>
                       </div>
@@ -351,7 +351,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   AnimType = アニメタイプ                (文字列)
       </dt>
       <dd>
-        <div class="description"><p>相手のリアクションアニメの種類を指定します。ただし、「up」と「diagup」はオプションで、相手が絵を用意してない場合は、「Back」と同じ結果になります。</p></div>
+        <div class="description"><p>相手のリアクションアニメの種類を指定します。ただし、UとDは相手が絵を用意してない場合、Bと同じ結果になります。</p></div>
 
         <div class="option-value">
 
@@ -384,7 +384,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
           </div>
                       </div>
           
-                    <div class="default-value">省略時のデフォルト値： Light</div>
+                    <div class="default-value">省略時のデフォルト値： L</div>
           
           
         
@@ -469,7 +469,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
           </div>
                       </div>
           
-                    <div class="default-value">省略時のデフォルト値： High</div>
+                    <div class="default-value">省略時のデフォルト値： H</div>
           
           
         
@@ -637,7 +637,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   HitOnce = 1回ヒットフラグ                (0か1)
       </dt>
       <dd>
-        <div class="description"><p>1にした場合、複数の敵がいても、1方にしかヒットしなくなります。attrがT(投げ)の場合、1になります。</p></div>
+        <div class="description"><p>1にした場合、複数の敵がいても、1方にしかヒットしなくなります。AttrがT(投げ)の場合、1になります。</p></div>
 
         <div class="option-value">
 
@@ -659,7 +659,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Air.Juggle = ジャグルポイント                (整数)
       </dt>
       <dd>
-        <div class="description"><p>Fall状態の敵に対する連続技に必要なポイント数を上乗せします。StateDefの"juggle"パラメータと混同しないようにしましょう。</p><p>projectile専用のパラメータと思ってよいらしいです。</p></div>
+        <div class="description"><p>Fall状態の敵に対する連続技に必要なポイント数を上乗せ。StateDefのJuggleパラメータとは違う値です。</p><p>Projectile専用パラメータ。</p></div>
 
         <div class="option-value">
 
@@ -711,7 +711,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    <div class="default-value">省略時のデフォルト値： (mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage, mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage÷2</div>
+                    <div class="default-value">省略時のデフォルト値： ;(mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage, ;mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage÷2</div>
           
           
         
@@ -733,7 +733,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    <div class="default-value">省略時のデフォルト値： (mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage, (mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage÷2</div>
+                    <div class="default-value">省略時のデフォルト値： ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage, ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage÷2</div>
           
           
         
@@ -835,7 +835,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Priority = ヒット優先度, 相打ちの挙動                (整数, 文字列)
       </dt>
       <dd>
-        <div class="description"><p>攻撃の優先度で1から7、相打ち時の挙動を「Hit」「Dodge」「Miss」の内から指定します。</p><p>実行者の攻撃と相手の攻撃が同時に発生した場合、数値の高い方のみヒットします。ヒット優先度が同じ場合、「Hit」「Miss」「Dodge」により以下のようになります。</p></div>
+        <div class="description"><p>攻撃の優先度で1から7、相打ち時の挙動をヒット・両者空振り・ミスから指定します。</p><p>実行者の攻撃と相手の攻撃が同時に発生した場合、数値の高い方のみヒットします。ヒット優先度が同じ場合、H・M・Dにより以下のようになります。</p></div>
 
         <div class="option-value">
 
@@ -854,7 +854,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
               <td>自分の攻撃は当たらない (Missの略)</td>
             </tr><tr>
               <td>D</td>
-              <td>相手が「Hit」でも両者空振り (Dodgeの略)</td>
+              <td>相手がHでも両者空振り (Dodgeの略)</td>
             </tr>          </table>
           </div>
                       </div>
@@ -961,7 +961,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   P2SprPriority =                 (整数)
       </dt>
       <dd>
-        <div class="description"><p></p></div>
+        <div class="description"><p>This is the drawing priority of P2's sprite if the move hits or is guarded by P2.</p></div>
 
         <div class="option-value">
 
@@ -969,7 +969,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
           
         
         </div>
@@ -982,7 +983,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   ; SprPriority = スプライト表示優先度                (整数)
       </dt>
       <dd>
-        <div class="description"><p></p></div>
+        <div class="description"><p>pr specifies the drawing priority for the explod. Animations with higher priority get drawn over animations with lesser priority. For instances, setting sprpriority = -3 will cause the explod to be drawn under most characters and other explods, which usually have sprpriority >= -2.</p></div>
 
         <div class="option-value">
 
@@ -990,7 +991,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
           
         
         </div>
@@ -1011,7 +1013,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    <div class="default-value">省略時のデフォルト値： Ground.VelocityのY速度が0なら0、0以外1。</div>
+                    <div class="default-value">省略時のデフォルト値： ;Ground.VelocityのY速度が0なら0、0以外1。</div>
           
           
         
@@ -1025,7 +1027,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   ForceNoFall =                 (整数)
       </dt>
       <dd>
-        <div class="description"><p>fall状態強制解除</p></div>
+        <div class="description"><p>fall状態強制解除。Set to 1 to force P2 out of a "fall" state, if he is in one. This parameter has no effect on P2 if he is not in a "fall" state. This parameter is ignored if the "fall" parameter is set to 1.</p></div>
 
         <div class="option-value">
 
@@ -1033,7 +1035,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
           
         
         </div>
@@ -1046,7 +1049,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Fall = 落下フラグ                (整数)
       </dt>
       <dd>
-        <div class="description"><p>通常、相手を浮かせるような攻撃でも、HitTimeが終了すれば、相手は立ち直り、着地しますが、Fall = 1にした場合、相手は自動では立ち直らず、受身操作（x+y）をしなければダウンします</p></div>
+        <div class="description"><p>通常、相手を浮かせるような攻撃でも、HitTimeが終了すれば、相手は立ち直り、着地しますが、Fall = 1にした場合、相手は自動では立ち直らず、受身操作（x+y）をしなければダウンします。Set to 1 if you want P2 to go into a "fall" state (where P2 hits the ground without regaining control in the air). Use if you want a move to "knock down" P2. </p></div>
 
         <div class="option-value">
 
@@ -1054,7 +1057,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
           
         
         </div>
@@ -1287,7 +1291,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Snap = x固定座標, y固定座標                (整数, 整数)
       </dt>
       <dd>
-        <div class="description"><p>ヒットした相手を固定する位置を、P1を基準として指定します。</p><p>このパラメータも、通常、使用しません。投げ等で相手を指定位置に固定する場合は、TargetBindを使用します。</p></div>
+        <div class="description"><p>ヒットした相手を固定する位置を、P1を基準として指定します。</p><p>このパラメータも、通常、使用しません。投げ等で相手を指定位置に固定する場合は、TargetBindを使用します。This moves P2 to the specified position relative to P1 if hit. This parameter is not normally used. If you want to snap P2 to a particular position for a throw, it is recommended you use a "TargetBind" controller in P1's throwing state instead.</p></div>
 
         <div class="option-value">
 
@@ -1295,7 +1299,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;no change in P2's position</div>
+          
           
         
         </div>
@@ -1316,7 +1321,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;no change in P2's position</div>
+          
           
         
         </div>
@@ -1329,7 +1335,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   ; MaxDist = x最大座標, y最大座標                (整数, 整数)
       </dt>
       <dd>
-        <div class="description"><p>攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できます。</p></div>
+        <div class="description"><p>攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できます。These let you control the minimum and maximum distance of P2 relative to P1, after P2 has been hit. These parameters are not commonly used.</p></div>
 
         <div class="option-value">
 
@@ -1337,7 +1343,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;no change in P2's position</div>
+          
           
         
         </div>
@@ -1657,7 +1664,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Guard.HitTime = ガード時間                (整数)
       </dt>
       <dd>
-        <div class="description"><p>相手が攻撃をガードしてから自動的に(キーを後ろに入力しなくても)ガードモーションをとり続ける時間。行動不能時間ではないので注意。</p><p><span class="decoration-font-size-small">DOS版実際にゲームに反映されるのは、指定値の半分になります。「ガードされると凄く不利」というのがDOSの仕様です。DOSでの使用を想定している場合は、ちゃんと設定したほうがよいでしょう。WIN版では、指定値がそのまま適応されます。</span></p></div>
+        <div class="description"><p>相手が攻撃をガードしてから自動的に(キーを後ろに入力しなくても)ガードモーションをとり続ける時間。行動不能時間ではないので注意。</p><p><span class="decoration-font-size-small">DOS版実際にゲームに反映されるのは、指定値の半分になります。ガードされると凄く不利というのがDOSの仕様です。DOSでの使用を想定している場合は、ちゃんと設定したほうがよいでしょう。WIN版では、指定値がそのまま適応されます。</span></p></div>
 
         <div class="option-value">
 
@@ -1665,7 +1672,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    <div class="default-value">省略時のデフォルト値： ;Ground.HitTimeと同値になりますが、前述の仕様により、実際のガード時間はGround.HitTimeの半分となり、硬直は、Guard.CtrlTime(省略時Guard.SlideTime)か「Ground.HitTimeの半分」のどちらか低い方、ということにになります。</div>
+                    <div class="default-value">省略時のデフォルト値： ;Ground.HitTimeと同値になりますが、前述の仕様により、実際のガード時間はGround.HitTimeの半分となり、硬直は、Guard.CtrlTime(省略時Guard.SlideTime)かGround.HitTimeの半分のどちらか低い方、ということにになります。</div>
           
           
         
@@ -1679,7 +1686,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Guard.SlideTime = ガードバック時間                (整数)
       </dt>
       <dd>
-        <div class="description"><p>Ground.SlideTimeのガード版。省略時はGuard.HitTimeと同値になります。</p></div>
+        <div class="description"><p>Ground.SlideTimeのガード版。</p></div>
 
         <div class="option-value">
 
@@ -1687,7 +1694,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Guard.HitTimeと同じ値になります。</div>
+          
           
         
         </div>
@@ -1700,7 +1708,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Guard.CtrlTime = ガードからの復帰時間                (整数)
       </dt>
       <dd>
-        <div class="description"><p>相手が攻撃をガードしてからコントロールを取り戻すまでの時間。ただし、どんなに大きな値にしてもGuard.HitTimeが過ぎれば相手はコントロールを取り戻します。</p><p>省略時は、なぜかGuard.SlideTimeと同値。ちゃんと設定した方がよいパラメータです。</p></div>
+        <div class="description"><p>相手が攻撃をガードしてからコントロールを取り戻すまでの時間。ただし、どんなに大きな値にしてもGuard.HitTimeが過ぎれば相手はコントロールを取り戻します。</p></div>
 
         <div class="option-value">
 
@@ -1708,7 +1716,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Guard.SlideTimeと同じ値になります。</div>
+          
           
         
         </div>
@@ -1721,7 +1730,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Guard.Dist = ガード認識距離                (整数)
       </dt>
       <dd>
-        <div class="description"><p>相手がガード操作を行うことでガードポーズを取るようになる距離をピクセルで指定します。省略時は、cns冒頭で設定した値と同じになります。</p><p>基本的に、使用されることのないパラメータです。</p></div>
+        <div class="description"><p>相手がガード操作を行うことでガードポーズを取るようになる距離をピクセルで指定します。</p><p>基本的に、使用されることのないパラメータです。</p></div>
 
         <div class="option-value">
 
@@ -1729,7 +1738,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;CNSの[Size]のAttack.Distで設定した値になります。</div>
+          
           
         
         </div>
@@ -1763,7 +1773,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Guard.CornerPush.VelOff = 地上ガードコーナープッシュ速度                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>画面端で地上の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p><p>省略時は、Ground.CornerPush.VelOffと同値になります。</p></div>
+        <div class="description"><p>画面端で地上の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p></div>
 
         <div class="option-value">
 
@@ -1771,7 +1781,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Ground.CornerPush.VelOffと同じ値になります</div>
+          
           
         
         </div>
@@ -1784,7 +1795,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   AirGuard.Velocity = 空中ガード速度X, 空中ガード速度Y                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>相手が空中で攻撃をガードしたとき移動する速度です。省略時は、Air.Velocityの空中ヒット速度X * 1.5, 空中ヒット速度Y / 2。</p></div>
+        <div class="description"><p>相手が空中で攻撃をガードしたとき移動する速度です。</p></div>
 
         <div class="option-value">
 
@@ -1792,7 +1803,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Air.Velocityの空中ヒット速度X * 1.5, 空中ヒット速度Y / 2</div>
+          
           
         
         </div>
@@ -1805,7 +1817,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   AirGuard.CtrlTime = 空中ガード復帰時間                (整数)
       </dt>
       <dd>
-        <div class="description"><p>相手が空中で攻撃をガードしてからコントロールを取り戻すまでの時間。省略時はGuard.CtrlTimeと同値。</p></div>
+        <div class="description"><p>相手が空中で攻撃をガードしてからコントロールを取り戻すまでの時間。</p></div>
 
         <div class="option-value">
 
@@ -1813,7 +1825,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： Guard.CtrlTimeと同じ値になります。</div>
+          
           
         
         </div>
@@ -1826,7 +1839,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   AirGuard.CornerPush.VelOff = 地上ガードコーナープッシュ速度空中                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>画面端で空中の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p><p>省略時は、Ground.CornerPush.VelOffと同値になります。</p></div>
+        <div class="description"><p>画面端で空中の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p></div>
 
         <div class="option-value">
 
@@ -1834,7 +1847,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Ground.CornerPush.VelOffと同じ値になります。</div>
+          
           
         
         </div>
@@ -1855,7 +1869,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    <div class="default-value">省略時のデフォルト値： .35 ;解像度で値が変化、240p:.35, 480p:.7, 720p:1.4.</div>
+                    <div class="default-value">省略時のデフォルト値： 0.35 ;解像度で値が変化、240p:.35, 480p:.7, 720p:1.4.</div>
           
           <div class="associated-trigger">関連するトリガー： <code>GetHitVar(YAccel)</code></div>
         
@@ -2050,7 +2064,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   EnvShake.Ampl = 揺れ幅                (整数)
       </dt>
       <dd>
-        <div class="description"><p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。省略時-4。</p></div>
+        <div class="description"><p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p></div>
 
         <div class="option-value">
 
@@ -2058,7 +2072,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： -4</div>
+          
           
         
         </div>
@@ -2071,7 +2086,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   EnvShake.Phase = 位相                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>位相を指定。省略時0。但し、振動数の乗数が90以上のときは、省略時90。よくわかりません。</p></div>
+        <div class="description"><p>位相を指定。</p></div>
 
         <div class="option-value">
 
@@ -2079,7 +2094,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0 ;振動数の乗数が90以上のときは90。</div>
+          
           
         
         </div>
@@ -2092,7 +2108,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   EnvShake.Freq = 揺れの速度                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>揺れるスピードを、0(低速)～180(高速)の間で指定。省略時60。</p></div>
+        <div class="description"><p>揺れるスピードを、0(低速)～180(高速)の間で指定。</p></div>
 
         <div class="option-value">
 
@@ -2100,7 +2116,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 60</div>
+          
           
         
         </div>
@@ -2134,7 +2151,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Fall.EnvShake.Ampl = 振幅                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。省略時-4。</p></div>
+        <div class="description"><p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p></div>
 
         <div class="option-value">
 
@@ -2142,7 +2159,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： -4</div>
+          
           
         
         </div>
@@ -2155,7 +2173,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Fall.EnvShake.Phase = 位相                (整数)
       </dt>
       <dd>
-        <div class="description"><p>位相を指定。省略時0。但し、振動数の乗数が90以上のときは、省略時90。よくわかりません。</p></div>
+        <div class="description"><p>位相を指定。</p></div>
 
         <div class="option-value">
 
@@ -2163,7 +2181,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0 ;振動数の乗数が90以上のときは90。</div>
+          
           
         
         </div>
@@ -2176,7 +2195,7 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                   Fall.EnvShake.Freq = 振動数                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>揺れるスピードを、0(低速)～180(高速)の間で指定。省略時60。</p></div>
+        <div class="description"><p>揺れるスピードを、0(低速)～180(高速)の間で指定。</p></div>
 
         <div class="option-value">
 
@@ -2184,7 +2203,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 60</div>
+          
           
         
         </div>
@@ -2488,10 +2508,10 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">HitFlag                    = MAF ;ダウン状態にのみヒットしない</li>
 									<li class="optional-parameter">GuardFlag                  = ;空文字列=ガード不可</li>
 									<li class="optional-parameter">AffectTeam                 = E</li>
-									<li class="optional-parameter">AnimType                   = Light</li>
+									<li class="optional-parameter">AnimType                   = L</li>
 									<li class="optional-parameter">Air.AnimType               = ;AnimTypeと同じ</li>
 									<li class="optional-parameter">Fall.AnimType              = ;Air.AnimTypeがUpならUp、それ以外はBack</li>
-									<li class="optional-parameter">Ground.Type                = High</li>
+									<li class="optional-parameter">Ground.Type                = H</li>
 									<li class="optional-parameter">Air.Type                   = ;Ground.Typeと同じ</li>
 									<li class="optional-parameter">ID                         = 0</li>
 									<li class="optional-parameter">ChainID                    = -1 ;すべての攻撃が繋がります。</li>
@@ -2502,8 +2522,8 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">HitOnce                    = 0 ;ただし、<code>Attr</code>で<code>T</code>を指定していると1に変更されます。</li>
 									<li class="optional-parameter">Air.Juggle                 = 0</li>
 									<li class="optional-parameter">Damage                     = 0, 0</li>
-									<li class="optional-parameter">GetPower                   = (mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage, mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage÷2</li>
-									<li class="optional-parameter">GivePower                  = (mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage, (mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage÷2</li>
+									<li class="optional-parameter">GetPower                   = ;(mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage, ;mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage÷2</li>
+									<li class="optional-parameter">GivePower                  = ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage, ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage÷2</li>
 									<li class="optional-parameter">PauseTime                  = 0, 0</li>
 									<li class="optional-parameter">NumHits                    = 1</li>
 									<li class="optional-parameter">HitSound                   = ?, ? ;多分、MUGENのデフォルト音声に設定される。</li>
@@ -2513,11 +2533,11 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">P2StateNo                  = -1 ;無効</li>
 									<li class="optional-parameter">P2GetP1State               = ;相手に実行者の食らいステートを読み込ませる。</li>
 									<li class="optional-parameter">P1SprPriority              = 1</li>
-									<li class="optional-parameter">P2SprPriority              = </li>
-									<li class="optional-parameter">; SprPriority               = </li>
-									<li class="optional-parameter">ForceStand                 = Ground.VelocityのY速度が0なら0、0以外1。</li>
-									<li class="optional-parameter">ForceNoFall                = </li>
-									<li class="optional-parameter">Fall                       = </li>
+									<li class="optional-parameter">P2SprPriority              = 0</li>
+									<li class="optional-parameter">; SprPriority               = 0</li>
+									<li class="optional-parameter">ForceStand                 = ;Ground.VelocityのY速度が0なら0、0以外1。</li>
+									<li class="optional-parameter">ForceNoFall                = 0</li>
+									<li class="optional-parameter">Fall                       = 0</li>
 									<li class="optional-parameter">Fall.Damage                = 0</li>
 									<li class="optional-parameter">Fall.XVelocity             = ;速度変更なし</li>
 									<li class="optional-parameter">Fall.YVelocity             = -4.5</li>
@@ -2528,9 +2548,9 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">SparkXY                    = 0, 0</li>
 									<li class="optional-parameter">P1Facing                   = ;向きを変更しない</li>
 									<li class="optional-parameter">P1GetP2Facing              = 0 ;向きを変えない</li>
-									<li class="optional-parameter">Snap                       = </li>
-									<li class="optional-parameter">; MinDist                   = </li>
-									<li class="optional-parameter">; MaxDist                   = </li>
+									<li class="optional-parameter">Snap                       = ;no change in P2's position</li>
+									<li class="optional-parameter">; MinDist                   = ;no change in P2's position</li>
+									<li class="optional-parameter">; MaxDist                   = ;no change in P2's position</li>
 									<li class="optional-parameter">P2Facing                   = ;向きを変更しない</li>
 									<li class="optional-parameter">Ground.HitTime             = 0</li>
 									<li class="optional-parameter">Ground.SlideTime           = 0</li>
@@ -2545,16 +2565,16 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">Down.Velocity              = ;Air.Velocityと同値</li>
 									<li class="optional-parameter">Down.CornerPush.VelOff     = ;Ground.CornerPush.VelOffと同値</li>
 									<li class="optional-parameter">Guard.Velocity             = ;Ground.Velocityと同値。</li>
-									<li class="optional-parameter">Guard.HitTime              = ;Ground.HitTimeと同値になりますが、前述の仕様により、実際のガード時間はGround.HitTimeの半分となり、硬直は、Guard.CtrlTime(省略時Guard.SlideTime)か「Ground.HitTimeの半分」のどちらか低い方、ということにになります。</li>
-									<li class="optional-parameter">Guard.SlideTime            = </li>
-									<li class="optional-parameter">Guard.CtrlTime             = </li>
-									<li class="optional-parameter">Guard.Dist                 = </li>
+									<li class="optional-parameter">Guard.HitTime              = ;Ground.HitTimeと同値になりますが、前述の仕様により、実際のガード時間はGround.HitTimeの半分となり、硬直は、Guard.CtrlTime(省略時Guard.SlideTime)かGround.HitTimeの半分のどちらか低い方、ということにになります。</li>
+									<li class="optional-parameter">Guard.SlideTime            = ;Guard.HitTimeと同じ値になります。</li>
+									<li class="optional-parameter">Guard.CtrlTime             = ;Guard.SlideTimeと同じ値になります。</li>
+									<li class="optional-parameter">Guard.Dist                 = ;CNSの[Size]のAttack.Distで設定した値になります。</li>
 									<li class="optional-parameter">Guard.PauseTime            = </li>
-									<li class="optional-parameter">Guard.CornerPush.VelOff    = </li>
-									<li class="optional-parameter">AirGuard.Velocity          = </li>
-									<li class="optional-parameter">AirGuard.CtrlTime          = </li>
-									<li class="optional-parameter">AirGuard.CornerPush.VelOff = </li>
-									<li class="optional-parameter">YAccel                     = .35 ;解像度で値が変化、240p:.35, 480p:.7, 720p:1.4.</li>
+									<li class="optional-parameter">Guard.CornerPush.VelOff    = ;Ground.CornerPush.VelOffと同じ値になります</li>
+									<li class="optional-parameter">AirGuard.Velocity          = ;Air.Velocityの空中ヒット速度X * 1.5, 空中ヒット速度Y / 2</li>
+									<li class="optional-parameter">AirGuard.CtrlTime          = Guard.CtrlTimeと同じ値になります。</li>
+									<li class="optional-parameter">AirGuard.CornerPush.VelOff = ;Ground.CornerPush.VelOffと同じ値になります。</li>
+									<li class="optional-parameter">YAccel                     = 0.35 ;解像度で値が変化、240p:.35, 480p:.7, 720p:1.4.</li>
 									<li class="optional-parameter">PalFX.Time                 = 0</li>
 									<li class="optional-parameter">PalFX.Color                = 256</li>
 									<li class="optional-parameter">PalFX.Add                  = 0, 0, 0</li>
@@ -2562,13 +2582,13 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">PalFX.SinAdd               = 0, 0, 0, 0</li>
 									<li class="optional-parameter">PalFX.InvertAll            = 0</li>
 									<li class="optional-parameter">EnvShake.Time              = </li>
-									<li class="optional-parameter">EnvShake.Ampl              = </li>
-									<li class="optional-parameter">EnvShake.Phase             = </li>
-									<li class="optional-parameter">EnvShake.Freq              = </li>
+									<li class="optional-parameter">EnvShake.Ampl              = -4</li>
+									<li class="optional-parameter">EnvShake.Phase             = 0 ;振動数の乗数が90以上のときは90。</li>
+									<li class="optional-parameter">EnvShake.Freq              = 60</li>
 									<li class="optional-parameter">Fall.EnvShake.Time         = </li>
-									<li class="optional-parameter">Fall.EnvShake.Ampl         = </li>
-									<li class="optional-parameter">Fall.EnvShake.Phase        = </li>
-									<li class="optional-parameter">Fall.EnvShake.Freq         = </li>
+									<li class="optional-parameter">Fall.EnvShake.Ampl         = -4</li>
+									<li class="optional-parameter">Fall.EnvShake.Phase        = 0 ;振動数の乗数が90以上のときは90。</li>
+									<li class="optional-parameter">Fall.EnvShake.Freq         = 60</li>
 									<li class="optional-parameter">Attack.Width               = </li>
 									<li class="optional-parameter">Persistent                 = 1</li>
 									<li class="optional-parameter">IgnoreHitPause             = 0</li>
@@ -2581,6 +2601,41 @@ HitDef | 攻撃判定 | MUGEN State Controller - Name = すら
 
   
 
+		<section id="CodeSample"><div class="section">
+		<h2>コードサンプル</h2>
+			<div>
+			<h3>味方殺しの記述</h3>
+						<div class="code"><code>
+			<ul>
+							<li></li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>敵を一掃する記述</h3>
+						<div class="code"><code>
+			<ul>
+							<li></li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>皆殺しの記述</h3>
+						<div class="code"><code>
+			<ul>
+							<li></li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>ライフを回復させる記述</h3>
+						<div class="code"><code>
+			<ul>
+							<li></li>
+						</ul>
+			</code></div>
+			</div><br>
+				</div></section>
 	
 
 	<section id="LoadParameter"><div class="section">

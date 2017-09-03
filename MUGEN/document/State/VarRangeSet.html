@@ -210,7 +210,7 @@ VarRangeSet | 複数の変数に値をまとめて代入 | MUGEN State Controlle
                   Last = 最後の変数番                (整数)
       </dt>
       <dd>
-        <div class="description"><p>値を変更する変数の範囲のうち、最初の変数の番号を指定します。</p><p>省略時の値は、整数変数に代入する場合は59、小数の場合は39です。すなわち、first、lastともに省略した場合、全ての整数または小数変数に同じ値を代入することになります。</p></div>
+        <div class="description"><p>値を変更する変数の範囲のうち、最初の変数の番号を指定します。</p></div>
 
         <div class="option-value">
 
@@ -218,7 +218,8 @@ VarRangeSet | 複数の変数に値をまとめて代入 | MUGEN State Controlle
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;整数変数に代入する場合は59、小数変数の場合は39になります。</div>
+          
           
         
         </div>
@@ -302,7 +303,7 @@ VarRangeSet | 複数の変数に値をまとめて代入 | MUGEN State Controlle
 															<li class="required-parameter">value                      = </li>
 									<li class="required-parameter">; fvalue                    = </li>
 									<li class="optional-parameter">First                      = 0</li>
-									<li class="optional-parameter">Last                       = </li>
+									<li class="optional-parameter">Last                       = ;整数変数に代入する場合は59、小数変数の場合は39になります。</li>
 									<li class="optional-parameter">Persistent                 = 1</li>
 									<li class="optional-parameter">IgnoreHitPause             = 0</li>
 				

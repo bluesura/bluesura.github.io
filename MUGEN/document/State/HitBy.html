@@ -47,7 +47,7 @@ HitBy | MUGEN State Controller - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="一時的に特定の攻撃以外食らわないようにします。回り込み(投げのみ食らう)などに。ジャンプの瞬間など「投げのみ食らわない」といった場合は姉妹品のNotHitByを使います。また、HitBy効果持続中に、同じスロットのHitBy、NotHitByが実行されると、それまでのHitByの効果は無効となります。2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。HitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。">
+  <meta name="description" content="一時的に特定の攻撃以外食らわないようにします。回り込み(投げのみ食らう)などに。ジャンプの瞬間など投げのみ食らわないといった場合は姉妹品のNotHitByを使います。また、HitBy効果持続中に、同じスロットのHitBy、NotHitByが実行されると、それまでのHitByの効果は無効となります。2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。HitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/State/HitBy.html">
   <meta property="og:title" content="HitBy | MUGEN State Controller">
@@ -130,7 +130,7 @@ HitBy | MUGEN State Controller - Name = すら
   <div class="entry-content">
 
 	<div class="description" itemprop="articleBody">
-<div><p>一時的に特定の攻撃以外食らわないようにします。回り込み(投げのみ食らう)などに。</p><p>ジャンプの瞬間など「投げのみ食らわない」といった場合は姉妹品のNotHitByを使います。</p><p>また、HitBy効果持続中に、同じスロットのHitBy、NotHitByが実行されると、それまでのHitByの効果は無効となります。</p><p>2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>HitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p></div>
+<div><p>一時的に特定の攻撃以外食らわないようにします。回り込み(投げのみ食らう)などに。</p><p>ジャンプの瞬間など投げのみ食らわないといった場合は姉妹品のNotHitByを使います。</p><p>また、HitBy効果持続中に、同じスロットのHitBy、NotHitByが実行されると、それまでのHitByの効果は無効となります。</p><p>2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>HitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p></div>
 
 
 
@@ -166,7 +166,7 @@ HitBy | MUGEN State Controller - Name = すら
                   value2 = 攻撃属性                (文字列)
       </dt>
       <dd>
-        <div class="description"><p>攻撃属性で指定できる値は、HitDefのattrパラメータで指定できる値と同じです。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p></div>
+        <div class="description"><p>攻撃属性で指定できる値は、HitDefのAttrパラメータで指定できる値と同じです。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p></div>
 
         <div class="option-value">
 

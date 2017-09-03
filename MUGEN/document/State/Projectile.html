@@ -135,7 +135,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
 
 
 
-		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/.html"><code></code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/NumProj.html"><code>NumProj</code></a>, <a href="./../Trigger/NumProjID.html"><code>NumProjID</code></a></div>
+				<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/NumProj.html"><code>NumProj</code></a>, <a href="./../Trigger/NumProjID.html"><code>NumProjID</code></a></div>
 	</div>
 
   <section id="Parameter"><div class="section">
@@ -145,7 +145,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Attr = 反撃属性1, 反撃属性2, ...                (文字列, 文字列, )
       </dt>
       <dd>
-        <div class="description"><p>攻撃の属性を指定します。</p><p>属性1には、「S」「C」「A」(順に立ち、屈み、空中)のいずれかを指定します。</p><p>属性2には、「N」「S」「H」「A」（順に通常、必殺、超必殺、すべて）と、「A」「T」「P」（同じく攻撃、投げ、飛び道具）を組み合わせて指定します。</p><p>例えば立ちパンチなどなら attr = S,NA、空中で飛び道具を出す超必殺技なら attr = A,HP と記述します。</p><p>空中判定になる地上攻撃(リープアタック等)は、空中扱いにしましょう。ただし、AirやOffsetで見た目のみ浮いている場合は、地上扱いでもかまいません。とりあえず、StateTypeと同じにしておけば、問題ないでしょう。</p></div>
+        <div class="description"><p>攻撃の属性を指定します。</p><p>属性1には、「S」「C」「A」(順に立ち、屈み、空中)のいずれかを指定します。</p><p>属性2には、「N」「S」「H」「A」（順に通常、必殺、超必殺、すべて）と、「A」「T」「P」（同じく攻撃、投げ、飛び道具）を組み合わせて指定します。</p><p>例えば立ちパンチなどならAttr = S,NA、空中で飛び道具を出す超必殺技ならAttr = A,HP と記述します。</p><p>空中判定になる地上攻撃(リープアタック等)は、空中扱いにしましょう。ただし、AirやOffsetで見た目のみ浮いている場合は、地上扱いでもかまいません。とりあえず、StateTypeと同じにしておけば、問題ないでしょう。</p></div>
 
         <div class="option-value">
 
@@ -347,7 +347,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Air.AnimType = 空中でのアニメタイプ                (文字列)
       </dt>
       <dd>
-        <div class="description"><p>空中でのアニメタイプを指定。省略時はanimtypeと同じ。</p></div>
+        <div class="description"><p>空中でのアニメタイプを指定。</p></div>
 
         <div class="option-value">
 
@@ -355,7 +355,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;AnimTypeと同じ値になります。</div>
+          
           
         
         </div>
@@ -368,7 +369,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Fall.AnimType = fall状態時のアニメタイプ                (文字列)
       </dt>
       <dd>
-        <div class="description"><p>空中でのアニメタイプfall状態のときのアニメタイプです。省略時は、air.animtypeがupの時はup、それ以外ならbackです。</p><p>※fall状態・・・fall=1。hittimeを過ぎても、受身を取らない限り空中復帰できず、着地すると落下ダウンする状態。これに対し、fall=0の場合、空中で立ち直り、hittimeを過ぎると操作可能となる。また、hittime中でも、着地すると通常のジャンプ着地となる。なお、一度fall=1になると、fall=0の攻撃を受けてもfall=1のままとなる。</p><p></p></div>
+        <div class="description"><p>空中でのアニメタイプfall状態のときのアニメタイプです。</p><p>※fall状態・・・fall=1。hittimeを過ぎても、受身を取らない限り空中復帰できず、着地すると落下ダウンする状態。これに対し、fall=0の場合、空中で立ち直り、hittimeを過ぎると操作可能となる。また、hittime中でも、着地すると通常のジャンプ着地となる。なお、一度fall=1になると、fall=0の攻撃を受けてもfall=1のままとなる。</p><p></p></div>
 
         <div class="option-value">
 
@@ -376,7 +377,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Air.AnimTypeがUの時はU、それ以外ならBになります。</div>
+          
           
         
         </div>
@@ -430,7 +432,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Air.Type = 空中でののけぞり方                (文字列)
       </dt>
       <dd>
-        <div class="description"><p>相手の空中でののけぞり方を文字列で指定します。設定方法はground.typeと同じ。省略時はground.typeと同じ値になります。</p></div>
+        <div class="description"><p>相手の空中でののけぞり方を文字列で指定します。設定方法はground.typeと同じ。</p></div>
 
         <div class="option-value">
 
@@ -438,7 +440,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Ground.Typeと同じ値になります。</div>
+          
           
         
         </div>
@@ -472,7 +475,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ProjRemove = 消滅フラグ                (整数)
       </dt>
       <dd>
-        <div class="description"><p>0以外を指定すると、ヒット時に消えるようになります。省略時1。</p></div>
+        <div class="description"><p>0以外を指定すると、ヒット時に消えるようになります。</p></div>
 
         <div class="option-value">
 
@@ -480,7 +483,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 1</div>
+          
           
         
         </div>
@@ -493,7 +497,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ProjRemoveTime = 射程時間                (整数)
       </dt>
       <dd>
-        <div class="description"><p>画面に出現してから、消滅するまでの時間を指定。省略時-1(消えない)。</p></div>
+        <div class="description"><p>画面に出現してから、消滅するまでの時間を指定。-1で消えなくなります。</p></div>
 
         <div class="option-value">
 
@@ -501,7 +505,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： -1</div>
+          
           
         
         </div>
@@ -514,7 +519,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ProjShadow = 赤影, 緑影, 青影                (整数, 整数, 整数)
       </dt>
       <dd>
-        <div class="description"><p>影の色を指定。-1でステージ依存。省略時0,0,0(影なし)。255,255,255でまっくろ。</p></div>
+        <div class="description"><p>影の色を指定。-1でステージ依存、0,0,0で影なし、255,255,255でまっくろになります。</p></div>
 
         <div class="option-value">
 
@@ -522,7 +527,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0, 0, 0</div>
+          
           
         
         </div>
@@ -556,7 +562,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ProjHits = ヒット数                (整数)
       </dt>
       <dd>
-        <div class="description"><p>ヒット数を指定。省略時1。</p></div>
+        <div class="description"><p>ヒット数を指定。</p></div>
 
         <div class="option-value">
 
@@ -564,7 +570,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 1</div>
+          
           
         
         </div>
@@ -577,7 +584,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ProjPriority = 飛び道具優先度                (整数)
       </dt>
       <dd>
-        <div class="description"><p>飛び道具の優先度を指定。ヒット数に関係なく、高い方が低い方をかき消します。但し、かき消した場合、優先度が1下がります。省略時1。</p><p>例えば、3ヒットするprojpriority = 3の飛び道具は、飛び道具を2つかき消した後でヒットしても、3ヒットします。</p></div>
+        <div class="description"><p>飛び道具の優先度を指定。ヒット数に関係なく、高い方が低い方をかき消します。ただし、かき消した場合、優先度が1下がります。省略時1。</p><p>例えば、3ヒットするprojpriority = 3の飛び道具は、飛び道具を2つかき消した後でヒットしても、3ヒットします。</p></div>
 
         <div class="option-value">
 
@@ -598,7 +605,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ProjHitAnim = ヒット時のアニメ番号                (整数)
       </dt>
       <dd>
-        <div class="description"><p>飛び道具が当たったときのアニメを指定。省略時-1(変更なし)。</p></div>
+        <div class="description"><p>飛び道具が当たったときのアニメを指定。-1にするとアニメは変更されません。</p></div>
 
         <div class="option-value">
 
@@ -606,7 +613,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： -1</div>
+          
           
         
         </div>
@@ -661,7 +669,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Velocity = 水平速度, 垂直速度                (浮動小数点数, 浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>初速度を指定。省略時0,0。</p></div>
+        <div class="description"><p>初速度を指定。</p></div>
 
         <div class="option-value">
 
@@ -669,7 +677,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0, 0</div>
+          
           
         
         </div>
@@ -682,7 +691,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   VelMul = 水平速度係数, 垂直速度係数                (浮動小数点数, 浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>加速度を倍数で指定。省略時1,1。</p></div>
+        <div class="description"><p>加速度を倍数で指定。</p></div>
 
         <div class="option-value">
 
@@ -690,7 +699,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 1, 1</div>
+          
           
         
         </div>
@@ -703,7 +713,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   RemVelocity = 消滅時水平速度, 消滅時垂直速度                (浮動小数点数, 浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>消滅時の速度を指定。省略時0,0。</p></div>
+        <div class="description"><p>消滅時の速度を指定。</p></div>
 
         <div class="option-value">
 
@@ -711,7 +721,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0, 0</div>
+          
           
         
         </div>
@@ -724,7 +735,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Accel = 水平加速度, 垂直加速度                (浮動小数点数, 浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>加速度を指定。省略時0,0。</p></div>
+        <div class="description"><p>加速度を指定。</p></div>
 
         <div class="option-value">
 
@@ -732,7 +743,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0, 0</div>
+          
           
         
         </div>
@@ -829,7 +841,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Kill = KOフラグ                (整数)
       </dt>
       <dd>
-        <div class="description"><p>0にすると、その攻撃で相手をKOできなくなります。省略時1。</p><p>最後の一撃でのみKOしたい多段攻撃などに。</p></div>
+        <div class="description"><p>0にすると、その攻撃で相手をKOできなくなります。</p><p>最後の一撃でのみKOしたい多段攻撃などに。</p></div>
 
         <div class="option-value">
 
@@ -837,7 +849,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 1</div>
+          
           
         
         </div>
@@ -850,7 +863,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Guard.Kill = ガードKOフラグ                (整数)
       </dt>
       <dd>
-        <div class="description"><p>0にすると、ガード時のダメージで相手をKOできなくなります。省略時1。</p></div>
+        <div class="description"><p>0にすると、ガード時のダメージで相手をKOできなくなります。</p></div>
 
         <div class="option-value">
 
@@ -858,7 +871,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 1</div>
+          
           
         
         </div>
@@ -871,7 +885,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Fall.Kill =                 (整数)
       </dt>
       <dd>
-        <div class="description"><p>0にすると、落下ダウン時のダメージで相手をKOできなくなります。省略時1。</p></div>
+        <div class="description"><p>0にすると、落下ダウン時のダメージで相手をKOできなくなります。</p></div>
 
         <div class="option-value">
 
@@ -879,7 +893,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 1</div>
+          
           
         
         </div>
@@ -892,7 +907,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   HitOnce = 1回ヒットフラグ                (0か1)
       </dt>
       <dd>
-        <div class="description"><p>省略時0。1にした場合、複数の敵がいても、1方にしかヒットしなくなります。attrがT(投げ)の場合、1になります。</p></div>
+        <div class="description"><p>省略時0。1にした場合、複数の敵がいても、1方にしかヒットしなくなります。AttrがT(投げ)の場合、1になります。</p></div>
 
         <div class="option-value">
 
@@ -913,7 +928,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Air.Juggle = ジャグルポイント                (整数)
       </dt>
       <dd>
-        <div class="description"><p>fall状態の敵に対する連続技に必要なポイント数を上乗せします。StateDefの"juggle"パラメータと混同しないようにしましょう。</p><p>projectile専用のパラメータと思ってよいらしいです。省略時0。</p></div>
+        <div class="description"><p>Fall状態の敵に対する連続技に必要なポイント数を上乗せ。StateDefのJuggleパラメータとは違う値です。</p><p>Projectile専用パラメータ。</p></div>
 
         <div class="option-value">
 
@@ -921,7 +936,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
           
         
         </div>
@@ -1018,7 +1034,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   NumHits = ヒットカウント数                (整数)
       </dt>
       <dd>
-        <div class="description"><p>コンボカウンターに加算されるヒット数です。省略時1。</p></div>
+        <div class="description"><p>コンボカウンターに加算されるヒット数です。</p></div>
 
         <div class="option-value">
 
@@ -1026,7 +1042,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 1</div>
+          
           
         
         </div>
@@ -1248,7 +1265,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ForceStand = 強制立たせフラグ                (整数)
       </dt>
       <dd>
-        <div class="description"><p>1にすると、しゃがんだ相手にヒットしても立ち食らいポーズをとらせます。省略時は、ground.velocityのy速度が0なら0、0でなければ1です。</p></div>
+        <div class="description"><p>1にすると、しゃがんだ相手にヒットしても立ち食らいポーズをとらせます。</p></div>
 
         <div class="option-value">
 
@@ -1256,7 +1273,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Ground.VelocityのY速度が0なら0、0でなければ1になります。</div>
+          
           
         
         </div>
@@ -1311,7 +1329,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Fall.Damage = damage_amt                (整数)
       </dt>
       <dd>
-        <div class="description"><p>落下状態のままダウンした場合に与えるダメージを指定します。省略時0。</p></div>
+        <div class="description"><p>落下状態のままダウンした場合に与えるダメージを指定します。</p></div>
 
         <div class="option-value">
 
@@ -1319,7 +1337,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
           
         
         </div>
@@ -1332,7 +1351,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Fall.XVelocity = 落下バウンド水平速度                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>落下状態のままダウンした場合の、バウンド水平速度を変更する場合、指定します。省略時は速度変更なし。</p></div>
+        <div class="description"><p>落下状態のままダウンした場合の、バウンド水平速度を変更する場合、指定します。</p></div>
 
         <div class="option-value">
 
@@ -1340,7 +1359,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;速度は変更されません。</div>
+          
           
         
         </div>
@@ -1353,7 +1373,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Fall.YVelocity = 落下バウンド垂直速度                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>落下状態のままダウンした場合の、バウンド垂直速度を指定します。省略時-4.5。</p></div>
+        <div class="description"><p>落下状態のままダウンした場合の、バウンド垂直速度を指定します。</p></div>
 
         <div class="option-value">
 
@@ -1361,7 +1381,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： -4.5</div>
+          
           
         
         </div>
@@ -1395,7 +1416,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Fall.RecoverTime = 受身可能受付開始時間                (整数)
       </dt>
       <dd>
-        <div class="description"><p>落下状態になってから受身が取れるようになるまでの時間を指定します。pausetimeは含まれません。省略時4。fall.recover = 0にした場合は無効。</p><p>追撃できることを想定している技の場合、大きな値を設定するか、fall.recover=0にするとよいでしょう。</p></div>
+        <div class="description"><p>落下状態になってから受身が取れるようになるまでの時間を指定します。PauseTimeは含まれません。Fall.Recover = 0にした場合は無効。</p><p>追撃することを想定している場合は、大きな値を設定するか、Fall.Recover = 0にします。</p></div>
 
         <div class="option-value">
 
@@ -1403,7 +1424,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 4</div>
+          
           
         
         </div>
@@ -1584,7 +1606,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   P2Facing = p2の向き                (整数)
       </dt>
       <dd>
-        <div class="description"><p>1にすると、攻撃がヒットした場合、相手に正面を向かせます。-1にすると後ろを向かせます。省略時は向きを変えません。</p></div>
+        <div class="description"><p>1にすると、攻撃がヒットした場合、相手に正面を向かせます。-1にすると後ろを向かせます。</p></div>
 
         <div class="option-value">
 
@@ -1592,7 +1614,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;向きは変わりません。</div>
+          
           
         
         </div>
@@ -1668,7 +1691,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Ground.CornerPush.VelOff = 地上コーナープッシュ速度                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>画面端で地上の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p><p>省略時は、attrがAの場合は0、それ以外の場合は、1.3*guard.velocityとなります。</p><p>相手の移動距離とは無関係で、相手のshaketimeではなく、自分のpausetimeが0になった瞬間に速度がかかります。</p></div>
+        <div class="description"><p>画面端で地上の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p><p>相手の移動距離とは無関係で、相手のshaketimeではなく、自分のpausetimeが0になった瞬間に速度がかかります。</p></div>
 
         <div class="option-value">
 
@@ -1676,7 +1699,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;AttrがAの場合は0、それ以外の場合は、1.3*Guard.Velocityとなります。</div>
+          
           
         
         </div>
@@ -1731,7 +1755,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Air.Velocity = 空中ヒット速度X, 空中ヒット速度Y                (浮動小数点数, 浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>相手が空中で攻撃を受けたとき移動する速度です。省略時0,0。</p></div>
+        <div class="description"><p>相手が空中で攻撃を受けたとき移動する速度です。</p></div>
 
         <div class="option-value">
 
@@ -1739,7 +1763,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0, 0</div>
+          
           
         
         </div>
@@ -1752,7 +1777,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Air.CornerPush.VelOff = 空中コーナープッシュ速度                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>画面端で空中の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p><p>省略時は、ground.cornerpush.veloffと同値になります。</p></div>
+        <div class="description"><p>画面端で空中の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p></div>
 
         <div class="option-value">
 
@@ -1760,7 +1785,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Ground.CornerPush.VelOffと同じ値になります。</div>
+          
           
         
         </div>
@@ -1857,7 +1883,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Guard.Velocity = ガード速度X                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>相手が地上で攻撃をガードしたとき移動する速度です。垂直方向は指定不可。</p><p>省略時はground.velocityと同値。</p></div>
+        <div class="description"><p>相手が地上で攻撃をガードしたとき移動する速度です。垂直方向は指定不可。</p></div>
 
         <div class="option-value">
 
@@ -1865,7 +1891,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Ground.Velocityと同じ値になります</div>
+          
           
         
         </div>
@@ -1886,7 +1913,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Guard.SlideTime</div>
+          
           
         
         </div>
@@ -1899,7 +1927,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Guard.SlideTime = ガードバック時間                (整数)
       </dt>
       <dd>
-        <div class="description"><p>ground.slidetimeのガード版。省略時はguard.hittimeと同値になります。</p></div>
+        <div class="description"><p>Ground.SlideTimeのガード版。</p></div>
 
         <div class="option-value">
 
@@ -1907,7 +1935,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Guard.HitTimeと同じ値になります。</div>
+          
           
         
         </div>
@@ -1920,7 +1949,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Guard.CtrlTime = ガードからの復帰時間                (整数)
       </dt>
       <dd>
-        <div class="description"><p>相手が攻撃をガードしてからコントロールを取り戻すまでの時間。ただし、どんなに大きな値にしてもguard.hittimeが過ぎれば相手はコントロールを取り戻します。</p><p>省略時は、なぜかguard.slidetimeと同値。ちゃんと設定した方がよいパラメータです。</p></div>
+        <div class="description"><p>相手が攻撃をガードしてからコントロールを取り戻すまでの時間。ただし、どんなに大きな値にしてもguard.hittimeが過ぎれば相手はコントロールを取り戻します。</p></div>
 
         <div class="option-value">
 
@@ -1928,7 +1957,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Guard.SlideTimeと同じ値になります。</div>
+          
           
         
         </div>
@@ -1941,7 +1971,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Guard.Dist = ガード認識距離                (整数)
       </dt>
       <dd>
-        <div class="description"><p>相手がガード操作を行うことでガードポーズを取るようになる距離をピクセルで指定します。省略時は、cns冒頭で設定した値と同じになります。</p><p>基本的に、使用されることのないパラメータです。</p></div>
+        <div class="description"><p>相手がガード操作を行うことでガードポーズを取るようになる距離をピクセルで指定します。</p></div>
 
         <div class="option-value">
 
@@ -1949,7 +1979,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;CNSの[Size]のAttack.Distで設定した値になります。</div>
+          
           
         
         </div>
@@ -1983,7 +2014,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Guard.CornerPush.VelOff = 地上ガードコーナープッシュ速度                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>画面端で地上の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p><p>省略時は、ground.cornerpush.veloffと同値になります。</p></div>
+        <div class="description"><p>画面端で地上の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p></div>
 
         <div class="option-value">
 
@@ -1991,7 +2022,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： Ground.CornerPush.VelOffと同じ値になります。</div>
+          
           
         
         </div>
@@ -2004,7 +2036,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   AirGuard.Velocity = 空中ガード速度X, 空中ガード速度Y                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>相手が空中で攻撃をガードしたとき移動する速度です。省略時は、air.velocityの空中ヒット速度X * 1.5, 空中ヒット速度Y / 2。</p></div>
+        <div class="description"><p>相手が空中で攻撃をガードしたとき移動する速度です。</p></div>
 
         <div class="option-value">
 
@@ -2012,7 +2044,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Air.Velocityの空中ヒット速度X * 1.5, ;空中ヒット速度Y / 2</div>
+          
           
         
         </div>
@@ -2025,7 +2058,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   AirGuard.CtrlTime = 空中ガード復帰時間                (整数)
       </dt>
       <dd>
-        <div class="description"><p>相手が空中で攻撃をガードしてからコントロールを取り戻すまでの時間。省略時はguard.ctrltimeと同値。</p></div>
+        <div class="description"><p>相手が空中で攻撃をガードしてからコントロールを取り戻すまでの時間。</p></div>
 
         <div class="option-value">
 
@@ -2033,7 +2066,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Guard.CtrlTimeと同じ値になります。</div>
+          
           
         
         </div>
@@ -2046,7 +2080,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   AirGuard.CornerPush.VelOff = 地上ガードコーナープッシュ速度空中                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>画面端で空中の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p><p>省略時は、ground.cornerpush.veloffと同値になります。</p></div>
+        <div class="description"><p>画面端で空中の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p></div>
 
         <div class="option-value">
 
@@ -2054,7 +2088,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Ground.CornerPush.VelOffと同じ値になります。</div>
+          
           
         
         </div>
@@ -2067,7 +2102,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   YAccel = 重力                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>ヒット時の重力を指定します。省略時は、相手の重力に依存。</p></div>
+        <div class="description"><p>ヒット時の重力を指定します。</p></div>
 
         <div class="option-value">
 
@@ -2075,7 +2110,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;相手の重力に依存します。</div>
+          
           
         
         </div>
@@ -2269,7 +2305,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   EnvShake.Ampl = 揺れ幅                (整数)
       </dt>
       <dd>
-        <div class="description"><p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。省略時-4。</p></div>
+        <div class="description"><p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p></div>
 
         <div class="option-value">
 
@@ -2277,7 +2313,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： -4</div>
+          
           
         
         </div>
@@ -2290,7 +2327,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   EnvShake.Phase = 位相                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>位相を指定。省略時0。但し、振動数の乗数が90以上のときは、省略時90。よくわかりません。</p></div>
+        <div class="description"><p>位相を指定。</p></div>
 
         <div class="option-value">
 
@@ -2298,7 +2335,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0 ;振動数の乗数が90以上のときは90。</div>
+          
           
         
         </div>
@@ -2311,7 +2349,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   EnvShake.Freq = 揺れの速度                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>揺れるスピードを、0(低速)～180(高速)の間で指定。省略時60。</p></div>
+        <div class="description"><p>揺れるスピードを、0(低速)～180(高速)の間で指定。</p></div>
 
         <div class="option-value">
 
@@ -2319,7 +2357,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 60</div>
+          
           
         
         </div>
@@ -2353,7 +2392,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Fall.EnvShake.Ampl = 振幅                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。省略時-4。</p></div>
+        <div class="description"><p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p></div>
 
         <div class="option-value">
 
@@ -2361,7 +2400,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： -4</div>
+          
           
         
         </div>
@@ -2374,7 +2414,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Fall.EnvShake.Phase = 位相                (整数)
       </dt>
       <dd>
-        <div class="description"><p>位相を指定。省略時0。但し、振動数の乗数が90以上のときは、省略時90。よくわかりません。</p></div>
+        <div class="description"><p>位相を指定。</p></div>
 
         <div class="option-value">
 
@@ -2382,7 +2422,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0 ;振動数の乗数が90以上のときは90。</div>
+          
           
         
         </div>
@@ -2395,7 +2436,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   Fall.EnvShake.Freq = 振動数                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>揺れるスピードを、0(低速)～180(高速)の間で指定。省略時60。</p></div>
+        <div class="description"><p>揺れるスピードを、0(低速)～180(高速)の間で指定。</p></div>
 
         <div class="option-value">
 
@@ -2403,7 +2444,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 60</div>
+          
           
         
         </div>
@@ -2490,7 +2532,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ProjSprPriority = スプライト表示優先度                (整数)
       </dt>
       <dd>
-        <div class="description"><p>飛び道具のスプライト表示優先度を指定。省略時3。結構高いです。</p></div>
+        <div class="description"><p>飛び道具のスプライト表示優先度を指定。</p></div>
 
         <div class="option-value">
 
@@ -2498,7 +2540,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 3</div>
+          
           
         
         </div>
@@ -2511,7 +2554,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ProjStageBound = ステージ外射程                (整数)
       </dt>
       <dd>
-        <div class="description"><p>ステージ外に出てから消滅するまでの距離をピクセル(ドット)で指定。省略時40。消滅アニメの半径より大きくしましょう。</p></div>
+        <div class="description"><p>ステージ外に出てから消滅するまでの距離をピクセル(ドット)で指定。</p></div>
 
         <div class="option-value">
 
@@ -2519,7 +2562,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 40</div>
+          
           
         
         </div>
@@ -2532,7 +2576,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ProjEdgeBound = 画面外射程                (整数)
       </dt>
       <dd>
-        <div class="description"><p>画面外に出てから消滅するまでの距離をピクセル(ドット)で指定。省略時40。消滅アニメの半径より小さいと、消滅アニメが画面にはみ出ます。</p></div>
+        <div class="description"><p>画面外に出てから消滅するまでの距離をピクセル(ドット)で指定。消滅アニメの半径より小さいと、消滅アニメが画面にはみ出ます。</p></div>
 
         <div class="option-value">
 
@@ -2540,7 +2584,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 40</div>
+          
           
         
         </div>
@@ -2553,7 +2598,7 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                   ProjHeightBound = 上空射程, 地上射程                (整数, 整数)
       </dt>
       <dd>
-        <div class="description"><p>飛び道具の上下射程を指定。この範囲を超えると、消滅します。</p><p>省略時-240,1。上空240ピクセル、地下1ピクセルで消滅します。</p></div>
+        <div class="description"><p>飛び道具の上下射程を指定。この範囲を超えると、消滅します。</p></div>
 
         <div class="option-value">
 
@@ -2561,7 +2606,8 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： -240, 1</div>
+          
           
         
         </div>
@@ -3324,38 +3370,38 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">GuardFlag                  = MA ;どのような状態でもガード可</li>
 									<li class="optional-parameter">AffectTeam                 = E</li>
 									<li class="optional-parameter">AnimType                   = Light</li>
-									<li class="optional-parameter">Air.AnimType               = </li>
-									<li class="optional-parameter">Fall.AnimType              = </li>
+									<li class="optional-parameter">Air.AnimType               = ;AnimTypeと同じ値になります。</li>
+									<li class="optional-parameter">Fall.AnimType              = ;Air.AnimTypeがUの時はU、それ以外ならBになります。</li>
 									<li class="optional-parameter">Ground.Type                = High</li>
-									<li class="optional-parameter">Air.Type                   = </li>
+									<li class="optional-parameter">Air.Type                   = ;Ground.Typeと同じ値になります。</li>
 									<li class="optional-parameter">ProjID                     = </li>
-									<li class="optional-parameter">ProjRemove                 = </li>
-									<li class="optional-parameter">ProjRemoveTime             = </li>
-									<li class="optional-parameter">ProjShadow                 = </li>
+									<li class="optional-parameter">ProjRemove                 = 1</li>
+									<li class="optional-parameter">ProjRemoveTime             = -1</li>
+									<li class="optional-parameter">ProjShadow                 = 0, 0, 0</li>
 									<li class="optional-parameter">ProjMissTime               = </li>
-									<li class="optional-parameter">ProjHits                   = </li>
+									<li class="optional-parameter">ProjHits                   = 1</li>
 									<li class="optional-parameter">ProjPriority               = </li>
-									<li class="optional-parameter">ProjHitAnim                = </li>
+									<li class="optional-parameter">ProjHitAnim                = -1</li>
 									<li class="optional-parameter">ProjRemAnim                = </li>
 									<li class="optional-parameter">ProjCancelAnim             = </li>
-									<li class="optional-parameter">Velocity                   = </li>
-									<li class="optional-parameter">VelMul                     = </li>
-									<li class="optional-parameter">RemVelocity                = </li>
-									<li class="optional-parameter">Accel                      = </li>
+									<li class="optional-parameter">Velocity                   = 0, 0</li>
+									<li class="optional-parameter">VelMul                     = 1, 1</li>
+									<li class="optional-parameter">RemVelocity                = 0, 0</li>
+									<li class="optional-parameter">Accel                      = 0, 0</li>
 									<li class="optional-parameter">ProjScale                  = </li>
 									<li class="optional-parameter">ID                         = </li>
 									<li class="optional-parameter">ChainID                    = </li>
 									<li class="optional-parameter">NoChainID                  = </li>
-									<li class="optional-parameter">Kill                       = </li>
-									<li class="optional-parameter">Guard.Kill                 = </li>
-									<li class="optional-parameter">Fall.Kill                  = </li>
+									<li class="optional-parameter">Kill                       = 1</li>
+									<li class="optional-parameter">Guard.Kill                 = 1</li>
+									<li class="optional-parameter">Fall.Kill                  = 1</li>
 									<li class="optional-parameter">HitOnce                    = </li>
-									<li class="optional-parameter">Air.Juggle                 = </li>
+									<li class="optional-parameter">Air.Juggle                 = 0</li>
 									<li class="optional-parameter">Damage                     = </li>
 									<li class="optional-parameter">GetPower                   = </li>
 									<li class="optional-parameter">GivePower                  = </li>
 									<li class="optional-parameter">PauseTime                  = </li>
-									<li class="optional-parameter">NumHits                    = </li>
+									<li class="optional-parameter">NumHits                    = 1</li>
 									<li class="optional-parameter">HitSound                   = </li>
 									<li class="optional-parameter">GuardSound                 = </li>
 									<li class="optional-parameter">Priority                   = 4, H</li>
@@ -3365,14 +3411,14 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">P1SprPriority              = </li>
 									<li class="optional-parameter">; SprPriority               = </li>
 									<li class="optional-parameter">P2SprPriority              = </li>
-									<li class="optional-parameter">ForceStand                 = </li>
+									<li class="optional-parameter">ForceStand                 = ;Ground.VelocityのY速度が0なら0、0でなければ1になります。</li>
 									<li class="optional-parameter">ForceNoFall                = </li>
 									<li class="optional-parameter">Fall                       = </li>
-									<li class="optional-parameter">Fall.Damage                = </li>
-									<li class="optional-parameter">Fall.XVelocity             = </li>
-									<li class="optional-parameter">Fall.YVelocity             = </li>
+									<li class="optional-parameter">Fall.Damage                = 0</li>
+									<li class="optional-parameter">Fall.XVelocity             = ;速度は変更されません。</li>
+									<li class="optional-parameter">Fall.YVelocity             = -4.5</li>
 									<li class="optional-parameter">Fall.Recover               = </li>
-									<li class="optional-parameter">Fall.RecoverTime           = </li>
+									<li class="optional-parameter">Fall.RecoverTime           = 4</li>
 									<li class="optional-parameter">SparkNo                    = </li>
 									<li class="optional-parameter">Guard.SparkNo              = </li>
 									<li class="optional-parameter">SparkXY                    = </li>
@@ -3381,30 +3427,30 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">Snap                       = </li>
 									<li class="optional-parameter">; MinDist                   = </li>
 									<li class="optional-parameter">; MaxDist                   = </li>
-									<li class="optional-parameter">P2Facing                   = </li>
+									<li class="optional-parameter">P2Facing                   = ;向きは変わりません。</li>
 									<li class="optional-parameter">Ground.HitTime             = </li>
 									<li class="optional-parameter">Ground.SlideTime           = </li>
 									<li class="optional-parameter">Ground.Velocity            = </li>
-									<li class="optional-parameter">Ground.CornerPush.VelOff   = </li>
+									<li class="optional-parameter">Ground.CornerPush.VelOff   = ;AttrがAの場合は0、それ以外の場合は、1.3*Guard.Velocityとなります。</li>
 									<li class="optional-parameter">Air.HitTime                = </li>
 									<li class="optional-parameter">Air.Fall                   = </li>
-									<li class="optional-parameter">Air.Velocity               = </li>
-									<li class="optional-parameter">Air.CornerPush.VelOff      = </li>
+									<li class="optional-parameter">Air.Velocity               = 0, 0</li>
+									<li class="optional-parameter">Air.CornerPush.VelOff      = ;Ground.CornerPush.VelOffと同じ値になります。</li>
 									<li class="optional-parameter">Down.Bounce                = </li>
 									<li class="optional-parameter">Down.HitTime               = </li>
 									<li class="optional-parameter">Down.Velocity              = </li>
 									<li class="optional-parameter">Down.CornerPush.VelOff     = </li>
-									<li class="optional-parameter">Guard.Velocity             = </li>
-									<li class="optional-parameter">Guard.HitTime              = </li>
-									<li class="optional-parameter">Guard.SlideTime            = </li>
-									<li class="optional-parameter">Guard.CtrlTime             = </li>
-									<li class="optional-parameter">Guard.Dist                 = </li>
+									<li class="optional-parameter">Guard.Velocity             = ;Ground.Velocityと同じ値になります</li>
+									<li class="optional-parameter">Guard.HitTime              = ;Guard.SlideTime</li>
+									<li class="optional-parameter">Guard.SlideTime            = ;Guard.HitTimeと同じ値になります。</li>
+									<li class="optional-parameter">Guard.CtrlTime             = ;Guard.SlideTimeと同じ値になります。</li>
+									<li class="optional-parameter">Guard.Dist                 = ;CNSの[Size]のAttack.Distで設定した値になります。</li>
 									<li class="optional-parameter">Guard.PauseTime            = </li>
-									<li class="optional-parameter">Guard.CornerPush.VelOff    = </li>
-									<li class="optional-parameter">AirGuard.Velocity          = </li>
-									<li class="optional-parameter">AirGuard.CtrlTime          = </li>
-									<li class="optional-parameter">AirGuard.CornerPush.VelOff = </li>
-									<li class="optional-parameter">YAccel                     = </li>
+									<li class="optional-parameter">Guard.CornerPush.VelOff    = Ground.CornerPush.VelOffと同じ値になります。</li>
+									<li class="optional-parameter">AirGuard.Velocity          = ;Air.Velocityの空中ヒット速度X * 1.5, ;空中ヒット速度Y / 2</li>
+									<li class="optional-parameter">AirGuard.CtrlTime          = ;Guard.CtrlTimeと同じ値になります。</li>
+									<li class="optional-parameter">AirGuard.CornerPush.VelOff = ;Ground.CornerPush.VelOffと同じ値になります。</li>
+									<li class="optional-parameter">YAccel                     = ;相手の重力に依存します。</li>
 									<li class="optional-parameter">PalFX.Time                 = 0</li>
 									<li class="optional-parameter">PalFX.Color                = 256</li>
 									<li class="optional-parameter">PalFX.Add                  = 0, 0, 0</li>
@@ -3412,19 +3458,19 @@ Projectile | 飛び道具 | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">PalFX.SinAdd               = 0, 0, 0, 0</li>
 									<li class="optional-parameter">PalFX.InvertAll            = 0</li>
 									<li class="optional-parameter">EnvShake.Time              = </li>
-									<li class="optional-parameter">EnvShake.Ampl              = </li>
-									<li class="optional-parameter">EnvShake.Phase             = </li>
-									<li class="optional-parameter">EnvShake.Freq              = </li>
+									<li class="optional-parameter">EnvShake.Ampl              = -4</li>
+									<li class="optional-parameter">EnvShake.Phase             = 0 ;振動数の乗数が90以上のときは90。</li>
+									<li class="optional-parameter">EnvShake.Freq              = 60</li>
 									<li class="optional-parameter">Fall.EnvShake.Time         = </li>
-									<li class="optional-parameter">Fall.EnvShake.Ampl         = </li>
-									<li class="optional-parameter">Fall.EnvShake.Phase        = </li>
-									<li class="optional-parameter">Fall.EnvShake.Freq         = </li>
+									<li class="optional-parameter">Fall.EnvShake.Ampl         = -4</li>
+									<li class="optional-parameter">Fall.EnvShake.Phase        = 0 ;振動数の乗数が90以上のときは90。</li>
+									<li class="optional-parameter">Fall.EnvShake.Freq         = 60</li>
 									<li class="optional-parameter">Offset                     = 0, 0</li>
 									<li class="optional-parameter">PosType                    = P1</li>
-									<li class="optional-parameter">ProjSprPriority            = </li>
-									<li class="optional-parameter">ProjStageBound             = </li>
-									<li class="optional-parameter">ProjEdgeBound              = </li>
-									<li class="optional-parameter">ProjHeightBound            = </li>
+									<li class="optional-parameter">ProjSprPriority            = 3</li>
+									<li class="optional-parameter">ProjStageBound             = 40</li>
+									<li class="optional-parameter">ProjEdgeBound              = 40</li>
+									<li class="optional-parameter">ProjHeightBound            = -240, 1</li>
 									<li class="optional-parameter">ProjAnim                   = 0</li>
 									<li class="optional-parameter">PauseMoveTime              = </li>
 									<li class="optional-parameter">SuperMoveTime              = </li>

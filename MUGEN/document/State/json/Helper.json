@@ -235,11 +235,11 @@
 			"parameter": "StateNo",
 			"value": ["ステート番号"],
 			"type": ["int"],
-			"description": "<p>ヘルパーが参照するステート番号を指定。</p><p>省略すると立ちステートに飛ばされるので、基本的に省略することはほとんどない。</p>",
+			"description": "<p>ヘルパーが参照するステート番号を指定。</p><p>0にすると立ちステートに飛ばされます。</p>",
 			"min_value": [""],
 			"max_value": [""],
 			"parameter_type": "optional",
-			"default_value": ["0 ;通常モーション"],
+			"default_value": ["0"],
 			"load_priority": ["15"]
 		},
 		{

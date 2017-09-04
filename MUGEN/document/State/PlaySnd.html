@@ -144,7 +144,7 @@ PlaySnd | MUGEN State Controller - Name = すら
                   Channel = チャンネル番号                (整数)
       </dt>
       <dd>
-        <div class="description"><p>チャンネルを指定。同じチャンネルのPlaySndが実行されると、それまで鳴っていた音は止まります。StopSndで特定の音を止める場合にも必要。また、チャンネル0は、ボイス再生専用で、再生中にmovetypeがH(やられ)になると、音が停止するという特性を持っています。省略時は-1で、空いてるチャンネルを使用することになり、再生間隔が短いと、音声がオーバーラップします。キャラ音声の場合は、激しく不自然となるので、忘れずに0を指定しましょう。</p></div>
+        <div class="description"><p>チャンネルを指定。同じチャンネルのPlaySndが実行されると、それまで鳴っていた音は止まります。StopSndで特定の音を止める場合にも必要。また、チャンネル0は、ボイス再生専用で、再生中にmovetypeがH(やられ)になると、音が停止するという特性を持っています。-1で空いてるチャンネルを使用することになり、再生間隔が短いと、音声がオーバーラップします。キャラ音声の場合は、激しく不自然となるので、忘れずに0を指定しましょう。</p></div>
 
         <div class="option-value">
 
@@ -272,7 +272,7 @@ PlaySnd | MUGEN State Controller - Name = すら
                   Pan = パノラマ位置                (整数)
       </dt>
       <dd>
-        <div class="description"><p>音が出る位置を変更することができるようです。左右のスピーカーのバランスで調節するのでしょうか。正で自分の前方、負で後方位置から音が鳴ることになります。単位はピクセル。</p><p>うまく使えば、臨場感あふれるサウンドを実現できるかもしれません。MUGENでまともに音が鳴れば。</p><p>省略時0。プレイヤーの位置から音が鳴っているはずです。ステレオ環境の方は、気をつけて聞いてみましょう。</p></div>
+        <div class="description"><p>音が出る位置を変更します。正で自分の前方、負で後方位置から音が鳴ります。単位はピクセル。</p><p>0でプレイヤーの位置から音が鳴ります。<!--未検証--></p></div>
 
         <div class="option-value">
 
@@ -280,7 +280,8 @@ PlaySnd | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
           
         
         </div>
@@ -406,7 +407,7 @@ PlaySnd | MUGEN State Controller - Name = すら
 									<li class="optional-parameter">LowPriority                = </li>
 									<li class="optional-parameter">FreqMul                    = </li>
 									<li class="optional-parameter">Loop                       = </li>
-									<li class="optional-parameter">Pan                        = </li>
+									<li class="optional-parameter">Pan                        = 0</li>
 									<li class="optional-parameter">AbsPan                     = </li>
 									<li class="optional-parameter">Persistent                 = 1</li>
 									<li class="optional-parameter">IgnoreHitPause             = 0</li>

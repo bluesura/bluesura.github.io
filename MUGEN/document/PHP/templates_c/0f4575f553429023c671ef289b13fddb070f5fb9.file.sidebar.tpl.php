@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-11 13:00:00
+<?php /* Smarty version Smarty-3.1.12, created on 2017-09-06 14:19:32
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\sidebar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:177649319359856355d5ed93-27807919%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0f4575f553429023c671ef289b13fddb070f5fb9' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\sidebar.tpl',
-      1 => 1502449190,
+      1 => 1504700365,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59856355ddcc79_99827366')) {function content_59856355ddcc79_99827366($_smarty_tpl) {?><div id="box2" class="slideout-sidebar">
+<?php if ($_valid && !is_callable('content_59856355ddcc79_99827366')) {function content_59856355ddcc79_99827366($_smarty_tpl) {?><div id="box2">
 
 <div class="article-survey-container">
   <div class="menu">
@@ -43,38 +43,49 @@ $_smarty_tpl->tpl_vars['temp']->_loop = true;
   </div>
 </div>
 
+</div>
+
+<div id="box2">
 
 <div class="article-survey-container">
 <div class="toc" id="toc">
 <div class="title">目次</div>
-<ul>
+<ul style="">
+
 	<script>
 var a = document.getElementsByTagName("section");
 for(var i = 0; i < a.length; i++) {
-	document.write("<li><a href=\"#"+a[i].id+"\">" + a[i].getElementsByTagName("h2")[0].innerText + "</a></li>");
+	document.write("<li style=\"white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\"><a href=\"#"+a[i].id+"\">" + a[i].getElementsByTagName("h2")[0].innerText + "</a></li>");
 	var b = a[i].getElementsByTagName("h3");
+	if (b.length == 0) {b = a[i].getElementsByTagName("dt");}
 	document.write("<ul>");
 	for(var j = 0; j < b.length; j++) {
 		b[j].id=i+"-"+j;
-		document.write("<li><a href=\"#"+i+"-"+j+"\">" + b[j].innerText + "</a></li>");
+		document.write("<li style=\"white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\"><a href=\"#"+i+"-"+j+"\">" + b[j].innerText.replace(/\s+.*$/,"") + "</a></li>");
 	}
 	document.write("</ul>");
 }
 	</script>
+
 </ul></div>
 </div>
 
-</a>
+</div>
+
+<div id="box2">
 
 <div class="article-survey-container">
 <!-- start feedwind code --><script type="text/javascript">(function() {var params = {rssmikle_url: "https://github.com/bluesura/bluesura.github.io/commits/master.atom",rssmikle_frame_width: "100%",rssmikle_frame_height: "100%",frame_height_by_article: "5",rssmikle_target: "_blank",rssmikle_font: "'Roboto', '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Verdana, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;",rssmikle_font_size: "",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "off",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "更新履歴",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#383838",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#3367D6",rssmikle_item_border_bottom: "off",rssmikle_item_description: "off",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#383838",rssmikle_item_date: "ja",rssmikle_timezone: "Etc/GMT",datetime_format: "",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "5",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><!--  end  feedwind code -->
 </div>
 
+</div>
 
 
 
 
 
+
+<div id="box2">
 <div id="survey" class="article-survey-container">
 <div class="as"><div class="title">この記事は役に立ちましたか？</div><button id="survey-yes" class="as-button" type="button" onclick="document.getElementById('survey').innerHTML = '<div class=\'as\'><div class=\'title\'>貴重なご意見をお寄せいただきありがとうございます。</div></div>';">はい</button><button id="survey-no" class="as-button" type="button" onclick="document.getElementById('survey').innerHTML='<iframe src=\'https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true\' width=\'100%\' height=\'1000\' frameborder=\'0\' marginheight=\'0\' marginwidth=\'0\'>読み込んでいます...</iframe>';">いいえ</button></div>
 </div>

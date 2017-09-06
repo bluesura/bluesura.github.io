@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-18 17:21:53
+<?php /* Smarty version Smarty-3.1.12, created on 2017-09-06 14:26:35
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content\Parameter.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:85016312059856356bc1644-15374232%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '712e292ff00e8c07abca5d37afe4b167464d0e54' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content\\Parameter.tpl',
-      1 => 1502508450,
+      1 => 1504700785,
       2 => 'file',
     ),
   ),
@@ -46,8 +46,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['array']->key => $_smarty_tpl->tpl_var
 $_smarty_tpl->tpl_vars['array']->_loop = true;
 ?>
     <dl class="parameter">
-      <dt class="main" id="<?php echo $_smarty_tpl->tpl_vars['array']->value['parameter'];?>
-">
+      <dt class="main">
         <?php if ($_smarty_tpl->tpl_vars['array']->value['main']==''){?>
           <?php echo $_smarty_tpl->tpl_vars['array']->value['parameter'];?>
  = <?php  $_smarty_tpl->tpl_vars['value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['value']->_loop = false;
@@ -183,8 +182,8 @@ $_smarty_tpl->tpl_vars['associated_trigger']->_loop = true;
 foreach ($_from as $_smarty_tpl->tpl_vars['youtube']->key => $_smarty_tpl->tpl_vars['youtube']->value){
 $_smarty_tpl->tpl_vars['youtube']->_loop = true;
 ?>
-            <h4><?php echo $_smarty_tpl->tpl_vars['youtube']->value['title'];?>
-</h4>
+            <div><?php echo $_smarty_tpl->tpl_vars['youtube']->value['title'];?>
+</div>
             <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;"><iframe style="position: absolute; top: 0;  left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/<?php echo $_smarty_tpl->tpl_vars['youtube']->value['file'];?>
 " frameborder="0" allowfullscreen></iframe></div>
             <?php } ?>
@@ -217,8 +216,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['image']->key => $_smarty_tpl->tpl_var
 $_smarty_tpl->tpl_vars['image']->_loop = true;
 ?>
             <div class="image">
-              <h4><?php echo $_smarty_tpl->tpl_vars['image']->value['title'];?>
-</h4>
+              <div><?php echo $_smarty_tpl->tpl_vars['image']->value['title'];?>
+</div>
               <div class="image-frame"><img src="./media/img/<?php echo $_smarty_tpl->tpl_vars['image']->value['file'];?>
 " alt="<?php echo $_smarty_tpl->tpl_vars['image']->value['title'];?>
 " width="<?php echo $_smarty_tpl->tpl_vars['image']->value['width'];?>

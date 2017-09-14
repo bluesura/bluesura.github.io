@@ -13,6 +13,11 @@
 	"state": "TargetFacing",
 	"description": "<p>ターゲットの向きを変更します。投げ技などに使用。</p>",
 	"category": "state",
+	"associated_state": [
+		"BindToTarget","TargetBind",
+		"TargetDrop","TargetLifeAdd","TargetPowerAdd",
+		"TargetState","TargetVelAdd","TargetVelSet"
+	],
 
 	"version": [
 		{"no": "-", "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。"}

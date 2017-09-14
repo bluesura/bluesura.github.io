@@ -13,6 +13,11 @@
 	"state": "TargetVelAdd",
 	"description": "<p>ターゲットの速度を増減します。</p>",
 	"category": "state",
+	"associated_state": [
+		"BindToTarget","TargetBind",
+		"TargetDrop","TargetFacing","TargetLifeAdd","TargetPowerAdd",
+		"TargetState","TargetVelSet"
+	],
 
 	"parameter": [
 		{

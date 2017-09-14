@@ -13,6 +13,11 @@
 	"state": "TargetPowerAdd",
 	"description": "<p>ターゲットのパワーゲージを増減します。</p>",
 	"category": "state",
+	"associated_state": [
+		"BindToTarget","TargetBind",
+		"TargetDrop","TargetFacing","TargetLifeAdd",
+		"TargetState","TargetVelAdd","TargetVelSet"
+	],
 
 	"version": [
 		{"no": "-", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}

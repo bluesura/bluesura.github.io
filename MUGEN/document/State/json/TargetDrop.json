@@ -13,6 +13,11 @@
 	"state": "TargetDrop",
 	"description": "<p>複数のターゲットがいる場合、特定のもの以外をターゲットから除外します。</p>",
 	"category": "state",
+	"associated_state": [
+		"BindToTarget","TargetBind",
+		"TargetFacing","TargetLifeAdd","TargetPowerAdd",
+		"TargetState","TargetVelAdd","TargetVelSet"
+	],
 
 	"parameter": [
 		{

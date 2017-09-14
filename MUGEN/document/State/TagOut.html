@@ -130,11 +130,11 @@ TagOut | TagInの専用ステート？ | MUGEN State Controller - Name = すら
   <div class="entry-content">
 
 	<div class="description" itemprop="articleBody">
-<div><p><span class="decoration-font-color-blue">実行時の[StateDef]を読み込み直す</span>が、ChangeStateなどと異なり<a href="#" onclick="return false;">Time</a>はリセットされません。また、<a href="#" onclick="return false;">StandBy</a>トリガーを1にします。<a href="#" onclick="return false;">StandBy</a>を0に戻す方法は不明、ステートが変わっても<a href="#" onclick="return false;">StandBy</a>は維持されます。さらに、TagOut実行中(トリガーの条件成立時)はTagOutより下のステートは読み込まれません。</p><p><a href="./TagIn.html">TagIn</a>,<a href="./ChangeState.html">ChangeState</a>のStateNoの指定したステートで、<a href="./TagOut.html">TagOut</a>のトリガーに『Time=0』や『1』などのステートを読み込んですぐに実行できる状態で<a href="./TagOut.html">TagOut</a>を実行すると”stopped after 2500 loops”(通称：2500ループ)が発生します。また、<a href="#" onclick="return false;">Persistent</a>を指定しても2500ループは発生します。</p></div>
+<div><p><span class="decoration-font-color-blue">実行時の[StateDef]を読み込み直す</span>が、ChangeStateなどと異なりTimeはリセットされません。また、StandByトリガーを1にします。StandByを0に戻す方法は不明、ステートが変わってもStandByは維持されます。さらに、TagOut実行中(トリガーの条件成立時)はTagOutより下のステートは読み込まれません。</p><p>TagIn,ChangeStateのStateNoの指定したステートで、TagOutのトリガーに『Time=0』や『1』などのステートを読み込んですぐに実行できる状態でTagOutを実行すると”stopped after 2500 loops”(通称：2500ループ)が発生します。また、Persistentを指定しても2500ループは発生します。</p></div>
 
 
 
-				
+		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/TagIn.html"><code>TagIn</code></a>, <a href="./../State/ChangeState.html"><code>ChangeState</code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/StandBy.html"><code>StandBy</code></a>, <a href="./../Trigger/Time.html"><code>Time</code></a></div>
 	</div>
 
   <section id="Parameter"><div class="section">

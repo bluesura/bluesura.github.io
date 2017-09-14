@@ -1807,7 +1807,7 @@ MUGEN State Controller - Name = すら
 		</div>
 			<div class="section">
 			<h2><a href="./TagIn.html">TagIn</a></h2>
-			<div><p>パートナーがいる時に使用可能。実行者のCtrlは継続されるが、パートナーのCtrlは0になります。<a href="./ChangeState.html">ChangeState</a>と同じくStateNoでループ構造にすると”stopped after 2500 loops”が発生。</p><p>パートナーが存在しない場合、パラメータを読み込まず、StandByを1にしない事以外は<a href="./TagOut.html">TagOut</a>と同じ動作(Timeをリセットせずに実行時の[StateDef]を読み込み直す=TagIn以降のステートコントローラーは実行されない)をします。なので、シングルでも2500ループは発生するためエラーを起こさないようにNumPartnerや変数で対策が必要になります。</p><p>ヘルパー内部では動作しません。<span class="decoration-font-size-small">もしかしたら、同じステートでループした場合Timeがリセットされない可能性があるかもしれません。</span></p><p>使い方は、タッグパトナーとの同時攻撃、魅せる演出に使用します。例えば、”(´・ω・｀)とヘイちゃんのダブルカットインだしてカッコヨク技を発動”させたり”TagInで味方を[StateDef 110]へ飛ばし、味方に攻撃当ててターゲット確保、LifeAdd等を記述した蘇生ステートに飛して蘇生させる”のに使用します。</p></div>
+			<div><p>パートナーがいる時に使用可能。実行者のCtrlは継続されるが、パートナーのCtrlは0になります。ChangeStateと同じくStateNoでループ構造にすると”stopped after 2500 loops”が発生。</p><p>パートナーが存在しない場合、パラメータを読み込まず、StandByを1にしない事以外はTagOutと同じ動作(Timeをリセットせずに実行時の[StateDef]を読み込み直す=TagIn以降のステートコントローラーは実行されない)をします。なので、シングルでも2500ループは発生するためエラーを起こさないようにNumPartnerや変数で対策が必要になります。</p><p>ヘルパー内部では動作しません。<span class="decoration-font-size-small">もしかしたら、同じステートでループした場合Timeがリセットされない可能性があるかもしれません。</span></p><p>使い方は、タッグパトナーとの同時攻撃、魅せる演出に使用します。例えば、”(´・ω・｀)とヘイちゃんのダブルカットインだしてカッコヨク技を発動”させたり”TagInで味方を[StateDef 110]へ飛ばし、味方に攻撃当ててターゲット確保、LifeAdd等を記述した蘇生ステートに飛して蘇生させる”のに使用します。</p></div>
 			<div class="code" contenteditable="true">
 				<ul>
 										<li>[State ]</li>
@@ -1824,7 +1824,7 @@ MUGEN State Controller - Name = すら
 		</div>
 			<div class="section">
 			<h2><a href="./TagOut.html">TagOut</a></h2>
-			<div><p><span class="decoration-font-color-blue">実行時の[StateDef]を読み込み直す</span>が、ChangeStateなどと異なり<a href="#" onclick="return false;">Time</a>はリセットされません。また、<a href="#" onclick="return false;">StandBy</a>トリガーを1にします。<a href="#" onclick="return false;">StandBy</a>を0に戻す方法は不明、ステートが変わっても<a href="#" onclick="return false;">StandBy</a>は維持されます。さらに、TagOut実行中(トリガーの条件成立時)はTagOutより下のステートは読み込まれません。</p><p><a href="./TagIn.html">TagIn</a>,<a href="./ChangeState.html">ChangeState</a>のStateNoの指定したステートで、<a href="./TagOut.html">TagOut</a>のトリガーに『Time=0』や『1』などのステートを読み込んですぐに実行できる状態で<a href="./TagOut.html">TagOut</a>を実行すると”stopped after 2500 loops”(通称：2500ループ)が発生します。また、<a href="#" onclick="return false;">Persistent</a>を指定しても2500ループは発生します。</p></div>
+			<div><p><span class="decoration-font-color-blue">実行時の[StateDef]を読み込み直す</span>が、ChangeStateなどと異なりTimeはリセットされません。また、StandByトリガーを1にします。StandByを0に戻す方法は不明、ステートが変わってもStandByは維持されます。さらに、TagOut実行中(トリガーの条件成立時)はTagOutより下のステートは読み込まれません。</p><p>TagIn,ChangeStateのStateNoの指定したステートで、TagOutのトリガーに『Time=0』や『1』などのステートを読み込んですぐに実行できる状態でTagOutを実行すると”stopped after 2500 loops”(通称：2500ループ)が発生します。また、Persistentを指定しても2500ループは発生します。</p></div>
 			<div class="code" contenteditable="true">
 				<ul>
 										<li>[State ]</li>

@@ -18,6 +18,10 @@
 	],
 
 	"description": "<p>エラー条件:ゲームクリア、ゲームオーバー画面など、P2が存在しない場合、SFalseを返します。</p>",
+	"associated_trigger": ["StateNo","PrevStateNo"],
+	"associated_state": [
+		"ChangeState","SelfState","HitOverride","TargetState"
+	],
 
 	"code_sample": [
 		{

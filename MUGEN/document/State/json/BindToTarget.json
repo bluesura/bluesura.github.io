@@ -13,6 +13,11 @@
 	"state": "BindToTarget",
 	"description": "<p>特定のターゲット(プレイヤーの攻撃を受けてヒット・ガード状態になっている敵)を基準にプレイヤーの位置を固定します。</p>",
 	"category": "state",
+	"associated_state": [
+		"TargetBind",
+		"TargetDrop","TargetFacing","TargetLifeAdd","TargetPowerAdd",
+		"TargetState","TargetVelAdd","TargetVelSet"
+	],
 
 	"version": [
 		{"no": "", "content": "BindToTargetを実行した次のフレームに自身のPosをTargetの基準とした位置に移動する。"},

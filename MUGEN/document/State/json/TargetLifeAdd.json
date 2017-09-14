@@ -13,7 +13,12 @@
 	"state": "TargetLifeAdd",
 	"description": "<p>ターゲットの体力を増減します。投げなどに使用。攻撃力、防御力も考慮されます。</p>",
 	"category": "state",
-	"associated_state": ["LifeAdd","LifeSet"],
+	"associated_state": [
+		"LifeAdd","LifeSet",
+		"BindToTarget","TargetBind",
+		"TargetDrop","TargetFacing","TargetPowerAdd",
+		"TargetState","TargetVelAdd","TargetVelSet"
+	],
 
 	"version": [
 		{"no": "仕様", "content": "<code>RoundState=3</code>ではライフが増減されません。<br>※ただし、パラメーターは読み込まれます。"},

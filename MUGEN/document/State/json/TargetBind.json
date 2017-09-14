@@ -13,6 +13,11 @@
 	"state": "TargetBind",
 	"description": "<p>自分の位置を基点にターゲット(自分の攻撃によりヒット/ガード中の相手)を実行したフレームからTime - 1フレーム後までTargetを実行者を基準とした位置に固定し続けます。</p><p>注意点が2点あり、実行したフレームからTime - 1フレーム後まで、Targetの速度は実行者の速度と同じになる。Target系のステートコントローラーは、特定のターゲットを指定できないため、敵が2以上いるSimulモードでは不具合が出やすいです。</p><p>例えば、1方がヒット、1方がガードだった場合でも、両方巻き込んでしまいます。両方ともヒットIDは同じであるため、ヒットの方だけ対象にすることは不可能です。</p><p>主に投げ技に使用。</p>",
 	"category": "state",
+	"associated_state": [
+		"BindToTarget",
+		"TargetDrop","TargetFacing","TargetLifeAdd","TargetPowerAdd",
+		"TargetState","TargetVelAdd","TargetVelSet"
+	],
 
 
 	"version": [

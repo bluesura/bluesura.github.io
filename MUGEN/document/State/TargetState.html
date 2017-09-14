@@ -13,7 +13,7 @@
 
 
   <title itemprop="headline">
-TargetState | ターゲットのステートを実行者のステートに移動 | MUGEN State Controller - Name = すら
+TargetState | ターゲットのステートを奪う | MUGEN State Controller - Name = すら
   </title>
 
   <!---->
@@ -122,7 +122,7 @@ TargetState | ターゲットのステートを実行者のステートに移動
   <img src="https://bluesura.github.io/MUGEN/document/State/media/img/" alt="" style="display:none;">
   <div class="entry-title" itemprop="name"><div>
   <h1 id="TargetState">Type = TargetState</h1>
-  <div class="category">ターゲット操作 > ターゲットのステートを実行者のステートに移動 | 実装されたバージョン: 2002.04.14 | 対象: ターゲット</div>
+  <div class="category">ターゲット操作 > ターゲットのステートを奪う | 実装されたバージョン: 2002.04.14 | 対象: ターゲット</div>
 </div></div>
 
 </div></header>
@@ -134,7 +134,7 @@ TargetState | ターゲットのステートを実行者のステートに移動
 
 
 
-				
+		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/ChangeState.html"><code>ChangeState</code></a>, <a href="./../State/SelfState.html"><code>SelfState</code></a>, <a href="./../State/HitOverride.html"><code>HitOverride</code></a>, <a href="./../State/BindToTarget.html"><code>BindToTarget</code></a>, <a href="./../State/TargetBind.html"><code>TargetBind</code></a>, <a href="./../State/TargetDrop.html"><code>TargetDrop</code></a>, <a href="./../State/TargetFacing.html"><code>TargetFacing</code></a>, <a href="./../State/TargetLifeAdd.html"><code>TargetLifeAdd</code></a>, <a href="./../State/TargetPowerAdd.html"><code>TargetPowerAdd</code></a>, <a href="./../State/TargetVelAdd.html"><code>TargetVelAdd</code></a>, <a href="./../State/TargetVelSet.html"><code>TargetVelSet</code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/StateNo.html"><code>StateNo</code></a>, <a href="./../Trigger/P2StateNo.html"><code>P2StateNo</code></a>, <a href="./../Trigger/PrevStateNo.html"><code>PrevStateNo</code></a></div>
 	</div>
 
   <section id="Parameter"><div class="section">
@@ -170,7 +170,196 @@ TargetState | ターゲットのステートを実行者のステートに移動
 
         <div class="option-value">
 
-          
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>基本ステート番号</th>
+              <th>基本動作</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>ニュートラル・立ち</td>
+            </tr><tr>
+              <td>10</td>
+              <td>屈み移行</td>
+            </tr><tr>
+              <td>11</td>
+              <td>屈み待機</td>
+            </tr><tr>
+              <td>12</td>
+              <td>立ち上がり</td>
+            </tr><tr>
+              <td>20</td>
+              <td>歩き</td>
+            </tr><tr>
+              <td>40</td>
+              <td>ジャンプ始動</td>
+            </tr><tr>
+              <td>45</td>
+              <td>空中ジャンプ始動</td>
+            </tr><tr>
+              <td>50</td>
+              <td>ジャンプ中</td>
+            </tr><tr>
+              <td>51</td>
+              <td>空中動作後</td>
+            </tr><tr>
+              <td>52</td>
+              <td>着地</td>
+            </tr><tr>
+              <td></td>
+              <td>ダッシュ</td>
+            </tr><tr>
+              <td>100</td>
+              <td>ダッシュ</td>
+            </tr><tr>
+              <td>105</td>
+              <td>バックステップ</td>
+            </tr><tr>
+              <td>106</td>
+              <td>バックステップ着地</td>
+            </tr><tr>
+              <td>110</td>
+              <td>Z軸用のステップ型ダッシュ</td>
+            </tr><tr>
+              <td>115</td>
+              <td>Z軸用のステップ型ダッシュ</td>
+            </tr><tr>
+              <td></td>
+              <td>ガード動作</td>
+            </tr><tr>
+              <td>120</td>
+              <td>ガード始動</td>
+            </tr><tr>
+              <td>130</td>
+              <td>立ちガード</td>
+            </tr><tr>
+              <td>131</td>
+              <td>屈みガード</td>
+            </tr><tr>
+              <td>132</td>
+              <td>空中ガード</td>
+            </tr><tr>
+              <td>140</td>
+              <td>ガード終了</td>
+            </tr><tr>
+              <td>150</td>
+              <td>立ちガード/HitShake硬直</td>
+            </tr><tr>
+              <td>151</td>
+              <td>立ちガード/ノックバック</td>
+            </tr><tr>
+              <td>152</td>
+              <td>屈みガード/HitShake硬直</td>
+            </tr><tr>
+              <td>153</td>
+              <td>屈みガード/ノックバック</td>
+            </tr><tr>
+              <td>154</td>
+              <td>空中ガード/HitShake硬直</td>
+            </tr><tr>
+              <td>155</td>
+              <td>空中ガード/ノックバック</td>
+            </tr><tr>
+              <td></td>
+              <td>特殊動作</td>
+            </tr><tr>
+              <td>170</td>
+              <td>敗北演出</td>
+            </tr><tr>
+              <td>175</td>
+              <td>引き分け演出</td>
+            </tr><tr>
+              <td>180</td>
+              <td>勝利演出</td>
+            </tr><tr>
+              <td>190</td>
+              <td>イントロ開始</td>
+            </tr><tr>
+              <td>191</td>
+              <td>イントロ用</td>
+            </tr><tr>
+              <td>5500</td>
+              <td>コンテニュー画面</td>
+            </tr><tr>
+              <td>5900</td>
+              <td>導入</td>
+            </tr><tr>
+              <td></td>
+              <td>やられ動作</td>
+            </tr><tr>
+              <td>5000</td>
+              <td>立ちくらい/ヒットシェイク</td>
+            </tr><tr>
+              <td>5001</td>
+              <td>立ちくらい/ヒットバック</td>
+            </tr><tr>
+              <td>5010</td>
+              <td>屈みくらい/ヒットシェイク</td>
+            </tr><tr>
+              <td>5011</td>
+              <td>屈みくらい/ヒットバック</td>
+            </tr><tr>
+              <td>5020</td>
+              <td>空中くらい/ヒットシェイク</td>
+            </tr><tr>
+              <td>5030</td>
+              <td>空中くらい/ヒットバック・ふっとび開始</td>
+            </tr><tr>
+              <td>5035</td>
+              <td>空中くらい/ふっとび経過</td>
+            </tr><tr>
+              <td>5040</td>
+              <td>空中くらい/ふっとび・戻り</td>
+            </tr><tr>
+              <td>5050</td>
+              <td>空中くらい/ふっとび・倒れまで</td>
+            </tr><tr>
+              <td>5070</td>
+              <td>空中くらい/転ばされヒットストップ</td>
+            </tr><tr>
+              <td>5071</td>
+              <td>空中くらい/転ばされヒットバック</td>
+            </tr><tr>
+              <td>5080</td>
+              <td>倒れくらい/ヒットシェイク</td>
+            </tr><tr>
+              <td>5081</td>
+              <td>倒れくらい/ヒットバック</td>
+            </tr><tr>
+              <td>5100</td>
+              <td>倒れくらい/空中～着地</td>
+            </tr><tr>
+              <td>5101</td>
+              <td>倒れくらい/バウンド中</td>
+            </tr><tr>
+              <td>5110</td>
+              <td>倒れくらい/倒れ待機</td>
+            </tr><tr>
+              <td></td>
+              <td>起き上がり・リカバリー動作</td>
+            </tr><tr>
+              <td>5120</td>
+              <td>倒れ/起き上がり</td>
+            </tr><tr>
+              <td>5200</td>
+              <td>倒れ受身/開始</td>
+            </tr><tr>
+              <td>5201</td>
+              <td>倒れ受身/着地</td>
+            </tr><tr>
+              <td>5210</td>
+              <td>空中受身　空中受身</td>
+            </tr><tr>
+              <td></td>
+              <td>死亡ステート</td>
+            </tr><tr>
+              <td>5150</td>
+              <td>死亡</td>
+            </tr>          </table>
+          </div>
+                      </div>
                     <div class="range-value">
                                               </div>
           
@@ -301,7 +490,7 @@ TargetState | ターゲットのステートを実行者のステートに移動
 	</div></section>
 	
 
-<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-08-06">2017.08.06</time></div></div>
+<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-09-13">2017.09.13</time></div></div>
 
     <nav class="breadcrumb">
       <div>

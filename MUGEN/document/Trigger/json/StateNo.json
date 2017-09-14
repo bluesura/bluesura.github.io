@@ -18,6 +18,10 @@
 	],
 
 	"description": "<p>cmdファイルでの条件指定に有効。 戻り値の型: int</p>",
+	"associated_trigger": ["P2StateNo","PrevStateNo"],
+	"associated_state": [
+		"ChangeState","SelfState","HitOverride","TargetState"
+	],
 
 	"code_sample": [
 		{

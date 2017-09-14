@@ -18,6 +18,10 @@
 	],
 
 	"description": "<p>戻り値の型: int</p>",
+	"associated_trigger": ["StateNo","P2StateNo"],
+	"associated_state": [
+		"ChangeState","SelfState","HitOverride","TargetState"
+	],
 
 	"code_sample": [
 		{

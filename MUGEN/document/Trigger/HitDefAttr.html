@@ -47,7 +47,7 @@ HitDefAttr | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="主にcmdファイル内で使用されます。書式: HitDefAttr [符号] 値1, 値2概要:[符号]には、 = 又は != を指定します。他は無効。値1には、「立ち」、「しゃがみ」、「空中」を表す&quot;S&quot;、&quot;C&quot;、&quot;A&quot;の文字のうちから、少なくとも1つを指定します。複数の指定も可能で、例えば、&quot;SA&quot;であれば、「立ち又は空中」を意味します。値2には、「通常」、「必殺」、「超必殺」を表す&quot;N&quot;、&quot;S&quot;、&quot;H&quot;と、「攻撃」、「投げ」を表す&quot;A&quot;、&quot;T&quot;を組み合わせた2文字で指定します。例えば、通常攻撃は&quot;NA&quot;です。また、複数の組み合わせをコンマで区切って指定できます。例えば、&quot;SA, ST, HA, HT&quot;で必殺攻撃、必殺投げ、 超必殺攻撃、超必殺投げを意味します。HitDefの攻撃属性指定の書式を、属性1, 属性2とすると、このトリガーは、属性1、属性2がそれぞれ値1、値2に含まれていた場合に1を返します。戻り値の型: boolean int (1 or 0)使用例:Trigger1 = HitDefAttr = A, HAプレイヤーが空中超必殺技を出しているときのトリガー。Trigger1 = HitDefAttr = SC, NA, SAプレイヤーが立ち又はしゃがみ状態で通常攻撃又は必殺技を出しているときのトリガー。">
+  <meta name="description" content="主にcmdファイル内で使用されます。概要:値1には、「立ち」、「しゃがみ」、「空中」を表す&quot;S&quot;、&quot;C&quot;、&quot;A&quot;の文字のうちから、少なくとも1つを指定します。複数の指定も可能で、例えば、&quot;SA&quot;であれば、「立ち又は空中」を意味します。値2には、「通常」、「必殺」、「超必殺」を表す&quot;N&quot;、&quot;S&quot;、&quot;H&quot;と、「攻撃」、「投げ」を表す&quot;A&quot;、&quot;T&quot;を組み合わせた2文字で指定します。例えば、通常攻撃は&quot;NA&quot;です。また、複数の組み合わせをコンマで区切って指定できます。例えば、&quot;SA, ST, HA, HT&quot;で必殺攻撃、必殺投げ、 超必殺攻撃、超必殺投げを意味します。HitDefの攻撃属性指定の書式を、属性1, 属性2とすると、このトリガーは、属性1、属性2がそれぞれ値1、値2に含まれていた場合に1を返します。戻り値の型: boolean int (1 or 0)">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/HitDefAttr.html">
   <meta property="og:title" content="HitDefAttr | MUGEN Trigger">
@@ -136,14 +136,15 @@ HitDefAttr | MUGEN Trigger - Name = すら
 	<section id="syntax"><div class="syntax section">
 		<h2>構文</h2>
 		<div class="code"><code><ul>
-					<li>HitDefAttr</li>
+					<li>HitDefAttr = 値1, 値2</li>
+					<li>HitDefAttr != 値1, 値2</li>
 				</ul></code></div>
 	</div></section>
 
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>主にcmdファイル内で使用されます。書式: HitDefAttr [符号] 値1, 値2概要:[符号]には、 = 又は != を指定します。他は無効。値1には、「立ち」、「しゃがみ」、「空中」を表す"S"、"C"、"A"の文字のうちから、少なくとも1つを指定します。複数の指定も可能で、例えば、"SA"であれば、「立ち又は空中」を意味します。値2には、「通常」、「必殺」、「超必殺」を表す"N"、"S"、"H"と、「攻撃」、「投げ」を表す"A"、"T"を組み合わせた2文字で指定します。例えば、通常攻撃は"NA"です。また、複数の組み合わせをコンマで区切って指定できます。例えば、"SA, ST, HA, HT"で必殺攻撃、必殺投げ、 超必殺攻撃、超必殺投げを意味します。HitDefの攻撃属性指定の書式を、属性1, 属性2とすると、このトリガーは、属性1、属性2がそれぞれ値1、値2に含まれていた場合に1を返します。戻り値の型: boolean int (1 or 0)使用例:Trigger1 = HitDefAttr = A, HAプレイヤーが空中超必殺技を出しているときのトリガー。Trigger1 = HitDefAttr = SC, NA, SAプレイヤーが立ち又はしゃがみ状態で通常攻撃又は必殺技を出しているときのトリガー。</p>
+			<p>主にcmdファイル内で使用されます。概要:値1には、「立ち」、「しゃがみ」、「空中」を表す"S"、"C"、"A"の文字のうちから、少なくとも1つを指定します。複数の指定も可能で、例えば、"SA"であれば、「立ち又は空中」を意味します。値2には、「通常」、「必殺」、「超必殺」を表す"N"、"S"、"H"と、「攻撃」、「投げ」を表す"A"、"T"を組み合わせた2文字で指定します。例えば、通常攻撃は"NA"です。また、複数の組み合わせをコンマで区切って指定できます。例えば、"SA, ST, HA, HT"で必殺攻撃、必殺投げ、 超必殺攻撃、超必殺投げを意味します。HitDefの攻撃属性指定の書式を、属性1, 属性2とすると、このトリガーは、属性1、属性2がそれぞれ値1、値2に含まれていた場合に1を返します。戻り値の型: boolean int (1 or 0)</p>
 		</div>
 
 					</div></section>
@@ -156,10 +157,18 @@ HitDefAttr | MUGEN Trigger - Name = すら
 		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3></h3>
+			<h3>プレイヤーが空中超必殺技を出しているときのトリガー。</h3>
 						<div class="code"><code>
 			<ul>
-							<li></li>
+							<li>Trigger1 = HitDefAttr = A, HA</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>プレイヤーが立ち又はしゃがみ状態で通常攻撃又は必殺技を出しているときのトリガー。</h3>
+						<div class="code"><code>
+			<ul>
+							<li>Trigger1 = HitDefAttr = SC, NA, SA</li>
 						</ul>
 			</code></div>
 			</div><br>
@@ -171,7 +180,9 @@ HitDefAttr | MUGEN Trigger - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#hitdefattr" target="_blank" rel="external">HitDefAttr - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitdefattr" target="_blank" rel="external">HitDefAttr - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitDefAttr" target="_blank" rel="external">HitDefAttr - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

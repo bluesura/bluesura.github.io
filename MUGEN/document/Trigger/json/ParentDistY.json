@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.14",
+		"update": "2016.01.14",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,18 +17,23 @@
 		"ParentDist Y"
 	],
 
-	"description": "<p>ヘルパーのステート内で使用します。P2Distと同じような働きをします。書式: ParentDist [要素] 概要: [要素]には、 Xまたは Yを指定します。間の半角スペースは、必須です。戻り値の型: floatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。エラー条件: 親がdestroyselfしている場合、SFalseを返します。詳細: ParentDist Y は、自分のY軸のheightとの座標差を返します。負の値は、親が頭上にいることを意味します。ParentDist X は、ヘルパーの中心軸から親の中心軸までの座標差を返します。正の値は、親がヘルパーの前にいることを意味します。使用例: Trigger1 = ParentDist X != 0 ヘルパーのX座標が親と同じでない場合のトリガー。</p>",
+	"description": "<p>ヘルパーのステート内で使用します。P2Distと同じような働きをします。戻り値の型: floatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。詳細: ParentDist Y は、自分のY軸のheightとの座標差を返します。負の値は、親が頭上にいることを意味します。ParentDist X は、ヘルパーの中心軸から親の中心軸までの座標差を返します。正の値は、親がヘルパーの前にいることを意味します。</p>",
+	"version": [
+		{"no": "エラー", "content": "親がdestroyselfしている場合、SFalseを返します。"}
+	],
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "ヘルパーのX座標が親と同じでない場合のトリガー。",
 			"code": [
-				""
+				"Trigger1 = ParentDist X != 0"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "ParentDist - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#parentdist"},
+		{"title": "ParentDist - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#parentdist"},
+		{"title": "ParentDist - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ParentDist"}
 	]
 }

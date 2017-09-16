@@ -47,7 +47,7 @@ PalNo | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="パレット番号はキャラセレクト時の決定ボタンで変化します。決定カラーで戦闘スタイルが異なるキャラや、カラーによってCPUアルゴリズムを変える場合などに。書式: PalNo 概要: なし 戻り値の型: int  詳細: 選択ボタンとパレット番号は次のとおり（スト2配置で言えば、弱キックが1番）: X Y Z 4 5 6 A B C 1 2 3 スタートボタンを押しながら選択すると、上記番号に6を足したものがパレット番号になります。大抵の格ゲーでは、左上のボタンが標準パレットなので、palnoは4となりますが、1を標準パレットにする人も多いです。使用例: Trigger1 = PalNo = 5 パレット番号5番（Yボタンで選んだときの色） のときのトリガー。">
+  <meta name="description" content="パレット番号はキャラセレクト時の決定ボタンで変化します。決定カラーで戦闘スタイルが異なるキャラや、カラーによってCPUアルゴリズムを変える場合などに。戻り値の型: int  詳細: 選択ボタンとパレット番号は次のとおり（スト2配置で言えば、弱キックが1番）: X Y Z 4 5 6 A B C 1 2 3 スタートボタンを押しながら選択すると、上記番号に6を足したものがパレット番号になります。大抵の格ゲーでは、左上のボタンが標準パレットなので、palnoは4となりますが、1を標準パレットにする人も多いです。">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/PalNo.html">
   <meta property="og:title" content="PalNo | MUGEN Trigger">
@@ -143,7 +143,7 @@ PalNo | MUGEN Trigger - Name = すら
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>パレット番号はキャラセレクト時の決定ボタンで変化します。決定カラーで戦闘スタイルが異なるキャラや、カラーによってCPUアルゴリズムを変える場合などに。書式: PalNo 概要: なし 戻り値の型: int  詳細: 選択ボタンとパレット番号は次のとおり（スト2配置で言えば、弱キックが1番）: X Y Z 4 5 6 A B C 1 2 3 スタートボタンを押しながら選択すると、上記番号に6を足したものがパレット番号になります。大抵の格ゲーでは、左上のボタンが標準パレットなので、palnoは4となりますが、1を標準パレットにする人も多いです。使用例: Trigger1 = PalNo = 5 パレット番号5番（Yボタンで選んだときの色） のときのトリガー。</p>
+			<p>パレット番号はキャラセレクト時の決定ボタンで変化します。決定カラーで戦闘スタイルが異なるキャラや、カラーによってCPUアルゴリズムを変える場合などに。戻り値の型: int  詳細: 選択ボタンとパレット番号は次のとおり（スト2配置で言えば、弱キックが1番）: X Y Z 4 5 6 A B C 1 2 3 スタートボタンを押しながら選択すると、上記番号に6を足したものがパレット番号になります。大抵の格ゲーでは、左上のボタンが標準パレットなので、palnoは4となりますが、1を標準パレットにする人も多いです。</p>
 		</div>
 
 					</div></section>
@@ -156,10 +156,10 @@ PalNo | MUGEN Trigger - Name = すら
 		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3></h3>
+			<h3>パレット番号5番（Yボタンで選んだときの色）のときのトリガー。</h3>
 						<div class="code"><code>
 			<ul>
-							<li></li>
+							<li>Trigger1 = PalNo = 5</li>
 						</ul>
 			</code></div>
 			</div><br>
@@ -171,7 +171,9 @@ PalNo | MUGEN Trigger - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#palno" target="_blank" rel="external">PalNo - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#palno" target="_blank" rel="external">PalNo - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PalNo" target="_blank" rel="external">PalNo - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

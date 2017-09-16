@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -18,18 +18,26 @@
 		"IsHelper(HelperのID)"
 	],
 
-	"description": "<p>プレイヤーがヘルパーなら1を、それ以外なら0を返します。ヘルパーのIDを引数に指定することができ、その場合はプレイヤーが指定されたIDのヘルパーのとき1を返します。書式:IsHelperIsHelper(引数) 概要: なし戻り値の型: boolean int (1 or 0)使用例:1. Trigger1 = !IsHelperプレイヤーがヘルパーでないときのトリガー。2. Trigger1 = IsHelper(1234)プレイヤーがID1234のヘルパーの場合のトリガー。</p>",
+	"description": "<p>プレイヤーがヘルパーなら1を、それ以外なら0を返します。ヘルパーのIDを引数に指定することができ、その場合はプレイヤーが指定されたIDのヘルパーのとき1を返します。戻り値の型: boolean int (1 or 0)</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "プレイヤーがヘルパーでないときのトリガー。",
 			"code": [
-				""
+				"Trigger1 = !IsHelper"
+			]
+		},
+		{
+			"title": "プレイヤーがID1234のヘルパーの場合のトリガー。",
+			"code": [
+				"Trigger1 = IsHelper(1234)"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "IsHelper - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#ishelper"},
+		{"title": "IsHelper - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#ishelper"},
+		{"title": "IsHelper - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IsHelper"}
 	]
 }

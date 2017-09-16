@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,18 +17,27 @@
 		"MoveContact"
 	],
 
-	"description": "<p>攻撃判定のあるステートでのみ効果のあるトリガーで、プレイヤーの攻撃がヒット、ガードにかかわらず相手に接触した場合、1を返します。winmugenでは仕様が異なり、接触してからの時間を返します。cmdファイル内で\"StateNo\"、\"Command\"と組み合わせ、キャンセル条件としてよく使われます。書式: MoveContact概要: なし戻り値の型:Dos版はboolean int (1 or 0)Win版はint詳細:Win版では、攻撃が接触した瞬間に1を返し、以降、同じステートにいる間は、1フレームに1ずつ増加します。ただし、pausetime中は増加しません。この仕様は、MoveGuarded、MoveHit、MoveReversedで共通です。注意1MoveContact、MoveGuarded、MoveHit及びMoveReversedは、同時にそれぞれの値がセットされます。例えば、あるHitDefがヒットし、MoveHitが0以外を返したとします。その攻撃中に、同じHitDefがガードされた場合、MoveGuardedが0以外を返すと同時に、他の3つは0を返します。注意2上記4つのトリガーは、ステートが変わると0になり、増加も止まります。直前のステートのヒット状態を引き継ぎたい場合は、StateDefの冒頭で、\"movehitpersist = 1\"を指定する必要があります。使用例:Trigger1 = MoveContactプレイヤーの攻撃が空振りしなかったときのトリガー。Trigger1 = MoveContact = 1こう記述すると、DosとWinで差が出ます。Dosでは「攻撃が接触してからステートが終了するまで」を意味しますが、Winでは「攻撃接触後1フレーム目(ヒットポーズが終わった瞬間)」を意味します。</p>",
+	"description": "<p>攻撃判定のあるステートでのみ効果のあるトリガーで、プレイヤーの攻撃がヒット、ガードにかかわらず相手に接触した場合、1を返します。winmugenでは仕様が異なり、接触してからの時間を返します。cmdファイル内で\"StateNo\"、\"Command\"と組み合わせ、キャンセル条件としてよく使われます。戻り値の型:Dos版はboolean int (1 or 0)Win版はint詳細:Win版では、攻撃が接触した瞬間に1を返し、以降、同じステートにいる間は、1フレームに1ずつ増加します。ただし、pausetime中は増加しません。この仕様は、MoveGuarded、MoveHit、MoveReversedで共通です。注意1MoveContact、MoveGuarded、MoveHit及びMoveReversedは、同時にそれぞれの値がセットされます。例えば、あるHitDefがヒットし、MoveHitが0以外を返したとします。その攻撃中に、同じHitDefがガードされた場合、MoveGuardedが0以外を返すと同時に、他の3つは0を返します。注意2上記4つのトリガーは、ステートが変わると0になり、増加も止まります。直前のステートのヒット状態を引き継ぎたい場合は、StateDefの冒頭で、\"movehitpersist = 1\"を指定する必要があります。</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "プレイヤーの攻撃が空振りしなかったときのトリガー。",
 			"code": [
-				""
+				"Trigger1 = MoveContact"
+			]
+		},
+		{
+			"title": "攻撃が接触したときのトリガー。",
+			"description": "<p>DosとWinで差が出ます。Dosでは「攻撃が接触してからステートが終了するまで」を意味しますが、Winでは「攻撃接触後1フレーム目(ヒットポーズが終わった瞬間)」を意味します。</p>",
+			"code": [
+				"Trigger1 = MoveContact = 1"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "MoveContact - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#movecontact"},
+		{"title": "MoveContact - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#movecontact"},
+		{"title": "MoveContact - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveContact"}
 	]
 }

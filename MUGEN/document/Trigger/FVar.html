@@ -47,7 +47,7 @@ FVar | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="書式: FVar(引数)概要:引数には、0から39までの変数番号を指定します。戻り値の型: floatエラー条件:引数がSFalse、または小数変数番号として無効な値の場合、SFalseを返します。使用例:Trigger1 = FVar(5) = -1.23FVar(5)の値が-1.23のときのトリガー。">
+  <meta name="description" content="概要:引数には、0から39までの変数番号を指定します。戻り値の型: float">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/FVar.html">
   <meta property="og:title" content="FVar | MUGEN Trigger">
@@ -144,7 +144,7 @@ FVar | MUGEN Trigger - Name = すら
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>書式: FVar(引数)概要:引数には、0から39までの変数番号を指定します。戻り値の型: floatエラー条件:引数がSFalse、または小数変数番号として無効な値の場合、SFalseを返します。使用例:Trigger1 = FVar(5) = -1.23FVar(5)の値が-1.23のときのトリガー。</p>
+			<p>概要:引数には、0から39までの変数番号を指定します。戻り値の型: float</p>
 		</div>
 
 					</div></section>
@@ -157,22 +157,36 @@ FVar | MUGEN Trigger - Name = すら
 		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3></h3>
+			<h3>FVar(5)の値が-1.23のときのトリガー。</h3>
 						<div class="code"><code>
 			<ul>
-							<li></li>
+							<li>Trigger1 = FVar(5) = -1.23</li>
 						</ul>
 			</code></div>
 			</div><br>
 				</div></section>
 	
 
+		<section id="Version"><div class="section">
+		<h2>仕様・バグ・エラー・変更点</h2>
+		<table class="version">
+
+		<tbody>
+							<tr>
+					<td>エラー</td>
+					<td>引数がSFalse、または小数変数番号として無効な値の場合、SFalseを返します。</td>
+				</tr>
+					</tbody>
+		</table>
+	</div></section>
 	
 
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#fvar" target="_blank" rel="external">FVar - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#fvar" target="_blank" rel="external">FVar - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/FVar" target="_blank" rel="external">FVar - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

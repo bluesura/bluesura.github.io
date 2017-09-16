@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,18 +17,20 @@
 		"ScreenPos Y"
 	],
 
-	"description": "<p>Posとは異なり、座標がステージに依存しないのが特徴。書式: ScreenPos [要素]概要:[要素]には、 Xまたは Yを指定します。間の半角スペースは、必須です。戻り値の型:floatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。詳細:ScreenPos X は、画面左端が0、それより左側(つまり画面外)が負、右側が正です。ScreenPos Y は、画面上端が0、それより上側(つまり画面外)が負、下側が正です。使用例:Trigger1 = ScreenPos Y = [0,239]プレイヤーの垂直座標が画面内にあるときのトリガーです。</p>",
+	"description": "<p>Posとは異なり、座標がステージに依存しないのが特徴。戻り値の型:floatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。詳細:ScreenPos X は、画面左端が0、それより左側(つまり画面外)が負、右側が正です。ScreenPos Y は、画面上端が0、それより上側(つまり画面外)が負、下側が正です。</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "プレイヤーの垂直座標が画面内にあるときのトリガー。",
 			"code": [
-				""
+				"Trigger1 = ScreenPos Y = [0,239]"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "ScreenPos - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#screenpos"},
+		{"title": "ScreenPos - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#screenpos"},
+		{"title": "ScreenPos - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ScreenPos"}
 	]
 }

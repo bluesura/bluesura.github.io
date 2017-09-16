@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.07.18",
+		"update": "2016.07.18",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,11 +17,11 @@
 		"AnimElemTime(x)"
 	],
 
-	"description": "<p>特定のアニメ順番の経過時間を返します。アニメの順番は0からでなく、1から数えます。AnimElemトリガーの代わりに登場したトリガー。ファンクションとして使う場合はこちら。引数には、経過時間をチェックしたいアニメ順番をintで指定します。また、存在しないアニメ順番を指定した場合も、SFalseを返します。</p>",
-
+	"description": "<p>特定のアニメ順番の経過時間を返します。アニメの順番は0からでなく、1から数えます。AnimElemトリガーの代わりに登場したトリガー。ファンクションとして使う場合はこちら。引数には、経過時間をチェックしたいアニメ順番をintで指定します。</p>",
 	"version": [
-		{"no":"", "content": ""}
+		{"no": "エラー", "content": "存在しないアニメ順番を指定した場合も、SFalseを返します。"}
 	],
+
 
 	"code_sample": [
 		{
@@ -33,6 +33,8 @@
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "AnimElemTime - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#animelemtime"},
+		{"title": "AnimElemTime - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#animelemtime"},
+		{"title": "AnimElemTime - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimElemTime"}
 	]
 }

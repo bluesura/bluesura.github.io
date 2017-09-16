@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -14,21 +14,24 @@
 	"trigger": "Name",
 	"summary": "<p>defファイルで設定してあるnameを判定し、真偽を返します。</p>",
 	"syntax":[
-		"Name"
+		"Name = \"名前\"",
+		"Name != \"名前\""
 	],
 
-	"description": "<p>画面に表示されるキャラクター名とは、必ずしも一致しません。書式: Name [符号] \"名前\"概要:[符号]には、=または != を指定します(他は無効)。\"名前\"には、判定する名前を\"\"で括ってstringで指定。戻り値の型: boolean int (1 or 0)使用例:Trigger1 = Name = \"Kumquat\"プレイヤーの名称が「Kumquat（キンカン）」さんの場合のトリガー。</p>",
+	"description": "<p>画面に表示されるキャラクター名とは、必ずしも一致しません。概要:\"名前\"には、判定する名前を\"\"で括ってstringで指定。戻り値の型: boolean int (1 or 0)</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "プレイヤーの名称が「Kumquat（キンカン）」さんの場合のトリガー。",
 			"code": [
-				""
+				"Trigger1 = Name = \"Kumquat\""
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "Name - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#name"},
+		{"title": "Name - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#name"},
+		{"title": "Name - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Name"}
 	]
 }

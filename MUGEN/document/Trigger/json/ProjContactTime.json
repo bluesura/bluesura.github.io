@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,18 +17,26 @@
 		"ProjContactTime(ProjectileのID)"
 	],
 
-	"description": "<p>引数として、正の整数をID番号として指定することを必要とします。IDに0を指定した場合、チェックされません。これらの条件に該当しない場合、-1を返します。書式: ProjContactTime(引数) 概要: 引数には、調べたいProjectileのID番号を、0または正のintで指定します。省略不可。戻り値の型: int また、IDに負数を指定した場合、0を返します。使用例: 1. Trigger1 = ProjContactTime(1234) = 1 ID1234のProjectileが相手に接触した瞬間のトリガーです。 2. Trigger1 = ProjContactTime(0) != -1 && ProjContactTime(0) < 15 プレイヤーのProjectileが相手に接触してから15フレーム未満のときのトリガーです。 </p>",
+	"description": "<p>引数として、正の整数をID番号として指定することを必要とします。IDに0を指定した場合、チェックされません。これらの条件に該当しない場合、-1を返します。概要: 引数には、調べたいProjectileのID番号を、0または正のintで指定します。省略不可。戻り値の型: int また、IDに負数を指定した場合、0を返します。</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "ID1234のProjectileが相手に接触した瞬間のトリガー。",
 			"code": [
-				""
+				"Trigger1 = ProjContactTime(1234) = 1"
+			]
+		},
+		{
+			"title": "プレイヤーのProjectileが相手に接触してから15フレーム未満のときのトリガー。",
+			"code": [
+				"Trigger1 = ProjContactTime(0) != -1 && ProjContactTime(0) < 15"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "ProjContactTime - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#projcontacttime"},
+		{"title": "ProjContactTime - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#projcontacttime"},
+		{"title": "ProjContactTime - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ProjContactTime"}
 	]
 }

@@ -47,7 +47,7 @@ Random | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="同じステートコントローラ内で複数のrandomを記述しても、それぞれ異なる値を返します。書式: Random概要: なし戻り値の型: int使用例:Trigger1 = Random ">
+  <meta name="description" content="同じステートコントローラ内で複数のrandomを記述しても、それぞれ異なる値を返します。戻り値の型: int">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/Random.html">
   <meta property="og:title" content="Random | MUGEN Trigger">
@@ -143,7 +143,7 @@ Random | MUGEN Trigger - Name = すら
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>同じステートコントローラ内で複数のrandomを記述しても、それぞれ異なる値を返します。書式: Random概要: なし戻り値の型: int使用例:Trigger1 = Random <= 249乱数が249以下のときのトリガーです。25%の確率を意味します。Ceil、Floor、%演算子などと組み合わせることにより、任意の範囲の乱数を発生させることもできます。</p>
+			<p>同じステートコントローラ内で複数のrandomを記述しても、それぞれ異なる値を返します。戻り値の型: int</p>
 		</div>
 
 					</div></section>
@@ -156,10 +156,11 @@ Random | MUGEN Trigger - Name = すら
 		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3></h3>
+			<h3>乱数が249以下のときのトリガー。</h3>
+						<div class="description"><p>25%の確率を意味します。Ceil、Floor、%演算子などと組み合わせることにより、任意の範囲の乱数を発生させることもできます。</p></div>
 						<div class="code"><code>
 			<ul>
-							<li></li>
+							<li>Trigger1 = Random <= 249</li>
 						</ul>
 			</code></div>
 			</div><br>
@@ -171,7 +172,9 @@ Random | MUGEN Trigger - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#random" target="_blank" rel="external">Random - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#random" target="_blank" rel="external">Random - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Random" target="_blank" rel="external">Random - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

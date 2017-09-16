@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,18 +17,20 @@
 		"MoveReversed"
 	],
 
-	"description": "<p>攻撃判定のあるステートでのみ効果のあるトリガーで、プレイヤーの攻撃が相手の反撃を受けたとき(ReversalDefが定義された攻撃判定枠に接触したとき)、0以外の値を返します。Win版から追加されたトリガーで、このトリガーを使用しているキャラは、Dos版で使うとエラーが出ます。書式: MoveReversed概要: なし戻り値の型: int詳細:MoveContactを参照のこと。使用例:Trigger1 = MoveReversed攻撃が反撃された場合のトリガー。</p>",
+	"description": "<p>攻撃判定のあるステートでのみ効果のあるトリガーで、プレイヤーの攻撃が相手の反撃を受けたとき(ReversalDefが定義された攻撃判定枠に接触したとき)、0以外の値を返します。Win版から追加されたトリガーで、このトリガーを使用しているキャラは、Dos版で使うとエラーが出ます。戻り値の型: int詳細:MoveContactを参照のこと。</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "攻撃が反撃された場合のトリガー。",
 			"code": [
-				""
+				"Trigger1 = MoveReversed"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "MoveReversed - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#movereversed"},
+		{"title": "MoveReversed - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#movereversed"},
+		{"title": "MoveReversed - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveReversed"}
 	]
 }

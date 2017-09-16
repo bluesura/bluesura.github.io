@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,18 +17,21 @@
 		"Random"
 	],
 
-	"description": "<p>同じステートコントローラ内で複数のrandomを記述しても、それぞれ異なる値を返します。書式: Random概要: なし戻り値の型: int使用例:Trigger1 = Random <= 249乱数が249以下のときのトリガーです。25%の確率を意味します。Ceil、Floor、%演算子などと組み合わせることにより、任意の範囲の乱数を発生させることもできます。</p>",
+	"description": "<p>同じステートコントローラ内で複数のrandomを記述しても、それぞれ異なる値を返します。戻り値の型: int</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "乱数が249以下のときのトリガー。",
+			"description": "<p>25%の確率を意味します。Ceil、Floor、%演算子などと組み合わせることにより、任意の範囲の乱数を発生させることもできます。</p>",
 			"code": [
-				""
+				"Trigger1 = Random <= 249"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "Random - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#random"},
+		{"title": "Random - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#random"},
+		{"title": "Random - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Random"}
 	]
 }

@@ -47,7 +47,7 @@ MoveType | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="書式:MoveType [符号] 動作型概要:[符号]には、=または !=を指定します(他は無効)。動作型には、A, I, Hのいずれかを指定します。順に、攻撃、待機、くらいを意味します。戻り値の型: boolean int (1 or 0) 使用例:Trigger1 = movetype != Hプレイヤーが攻撃を受けている状態でないときのトリガー。">
+  <meta name="description" content="動作型には、A, I, Hのいずれかを指定します。順に、攻撃、待機、くらいを意味します。戻り値の型: boolean int (1 or 0)">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/MoveType.html">
   <meta property="og:title" content="MoveType | MUGEN Trigger">
@@ -136,15 +136,15 @@ MoveType | MUGEN Trigger - Name = すら
 	<section id="syntax"><div class="syntax section">
 		<h2>構文</h2>
 		<div class="code"><code><ul>
-					<li>MoveType = MoveType</li>
-					<li>MoveType != MoveType</li>
+					<li>MoveType = 動作型</li>
+					<li>MoveType != 動作型</li>
 				</ul></code></div>
 	</div></section>
 
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>書式:MoveType [符号] 動作型概要:[符号]には、=または !=を指定します(他は無効)。動作型には、A, I, Hのいずれかを指定します。順に、攻撃、待機、くらいを意味します。戻り値の型: boolean int (1 or 0) 使用例:Trigger1 = movetype != Hプレイヤーが攻撃を受けている状態でないときのトリガー。</p>
+			<p>動作型には、A, I, Hのいずれかを指定します。順に、攻撃、待機、くらいを意味します。戻り値の型: boolean int (1 or 0)</p>
 		</div>
 
 					</div></section>
@@ -157,10 +157,10 @@ MoveType | MUGEN Trigger - Name = すら
 		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3></h3>
+			<h3>プレイヤーが攻撃を受けている状態でないときのトリガー。</h3>
 						<div class="code"><code>
 			<ul>
-							<li></li>
+							<li>Trigger1 = movetype != H</li>
 						</ul>
 			</code></div>
 			</div><br>
@@ -172,7 +172,9 @@ MoveType | MUGEN Trigger - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#movetype" target="_blank" rel="external">MoveType - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#movetype" target="_blank" rel="external">MoveType - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveType" target="_blank" rel="external">MoveType - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

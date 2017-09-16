@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["距離", "ヘルパーから本体までの高さはどれぐらいですか？"],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,7 +17,10 @@
 		"RootDist Y"
 	],
 
-	"description": "<p>ヘルパーのステート内で使用します。P2Distと同じような働きをします。ルートは、最初のヘルパーを呼び出したキャラのことで、メインプレイヤーを指します。例えば、プレイヤー\"キンカン\"が、ヘルパー\"キウイ\"を出し、\"キウイ\"が、ヘルパー\"ペンギン\"を出した場合、\"ペンギン\"のルートは、\"キンカン\"になります。なお、親ヘルパーが存在しない場合、ルートを参照できなくなるようです。上の例で、\"キウイ\"がDestroySelfした場合、\"ペンギン\"は、\"キンカン\"を参照できなくなります。戻り値の型:floatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。エラー条件:ルートがいない場合、SFalseを返します。詳細:RootDist Y は、自分のY軸のheightとの座標差を返します。負の値は、ルートが頭上にいることを意味します。RootDist X は、ヘルパーの中心軸からルートの中心軸までの座標差を返します。正の値は、ルートがヘルパーの前にいることを意味します。</p>",
+	"description": "<p>ヘルパーのステート内で使用します。P2Distと同じような働きをします。ルートは、最初のヘルパーを呼び出したキャラのことで、メインプレイヤーを指します。例えば、プレイヤー\"キンカン\"が、ヘルパー\"キウイ\"を出し、\"キウイ\"が、ヘルパー\"ペンギン\"を出した場合、\"ペンギン\"のルートは、\"キンカン\"になります。なお、親ヘルパーが存在しない場合、ルートを参照できなくなるようです。上の例で、\"キウイ\"がDestroySelfした場合、\"ペンギン\"は、\"キンカン\"を参照できなくなります。戻り値の型:floatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。詳細:RootDist Y は、自分のY軸のheightとの座標差を返します。負の値は、ルートが頭上にいることを意味します。RootDist X は、ヘルパーの中心軸からルートの中心軸までの座標差を返します。正の値は、ルートがヘルパーの前にいることを意味します。</p>",
+	"version": [
+		{"no": "エラー", "content": "ルートがいない場合、SFalseを返します。"}
+	],
 
 	"code_sample": [
 		{
@@ -29,6 +32,8 @@
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "RootDist - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#rootdist"},
+		{"title": "RootDist - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#rootdist"},
+		{"title": "RootDist - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/RootDist"}
 	]
 }

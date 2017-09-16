@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -14,10 +14,11 @@
 	"trigger": "Command",
 	"summary": "<p>コマンド名があっているかどうかを返します。</p>",
 	"syntax":[
-		"Command = \"コマンド名\""
+		"Command = \"コマンド名\"",
+		"Command != \"コマンド名\""
 	],
 
-	"description": "<p>cmdファイルで設定したコマンド名を判断し、真偽を返します。書式:Command [符号] \"コマンド名\"概要:[符号]には、次のいずれかを指定します(他は無効)。=, != \"コマンド名\"には、cmdファイルで設定したコマンド名を文字列で指定します。ダブルクォーテーションで括る必要があります。同じ名前の複数のコマンドがある場合、どのコマンドも有効となります。</p><p>戻り値の型: boolean int (1 or 0)</p>",
+	"description": "<p>cmdファイルで設定したコマンド名を判断し、真偽を返します。概要:[符号]には、次のいずれかを指定します(他は無効)。=, != \"コマンド名\"には、cmdファイルで設定したコマンド名を文字列で指定します。ダブルクォーテーションで括る必要があります。同じ名前の複数のコマンドがある場合、どのコマンドも有効となります。</p><p>戻り値の型: boolean int (1 or 0)</p>",
 
 	"code_sample": [
 		{
@@ -29,6 +30,8 @@
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "Command - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#command"},
+		{"title": "Command - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#command"},
+		{"title": "Command - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Command"}
 	]
 }

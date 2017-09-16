@@ -47,7 +47,7 @@ ID | IDは何番ですか？ | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="このIDは、helperを含むプレイヤーが発生すると、自動で割り付けられ、その試合中は変更できません。自分で指定することもできません。&quot;playerID&quot;リダイレクトキーワードに使用するため、敵のIDを取得するのが主な使用方法でしょうか。書式: ID概要: なし戻り値の型: int使用例:value = IDプレイヤーのID番号をvalueに代入します。value = EnemyNear, IDプレイヤーに最も近い敵のID番号をvalueに代入します。&quot;EnemyNear()&quot;もリダイレクトキーワードです。">
+  <meta name="description" content="このIDは、helperを含むプレイヤーが発生すると、自動で割り付けられ、その試合中は変更できません。自分で指定することもできません。&quot;playerID&quot;リダイレクトキーワードに使用するため、敵のIDを取得するのが主な使用方法でしょうか。戻り値の型: int">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/ID.html">
   <meta property="og:title" content="ID | MUGEN Trigger">
@@ -143,7 +143,7 @@ ID | IDは何番ですか？ | MUGEN Trigger - Name = すら
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>このIDは、helperを含むプレイヤーが発生すると、自動で割り付けられ、その試合中は変更できません。自分で指定することもできません。"playerID"リダイレクトキーワードに使用するため、敵のIDを取得するのが主な使用方法でしょうか。書式: ID概要: なし戻り値の型: int使用例:value = IDプレイヤーのID番号をvalueに代入します。value = EnemyNear, IDプレイヤーに最も近い敵のID番号をvalueに代入します。"EnemyNear()"もリダイレクトキーワードです。</p>
+			<p>このIDは、helperを含むプレイヤーが発生すると、自動で割り付けられ、その試合中は変更できません。自分で指定することもできません。"playerID"リダイレクトキーワードに使用するため、敵のIDを取得するのが主な使用方法でしょうか。戻り値の型: int</p>
 		</div>
 
 					</div></section>
@@ -156,10 +156,18 @@ ID | IDは何番ですか？ | MUGEN Trigger - Name = すら
 		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3></h3>
+			<h3>プレイヤーのID番号をvalueに代入します。</h3>
 						<div class="code"><code>
 			<ul>
-							<li></li>
+							<li>value = ID</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>プレイヤーに最も近い敵のID番号をvalueに代入します。</h3>
+						<div class="code"><code>
+			<ul>
+							<li>value = EnemyNear, ID</li>
 						</ul>
 			</code></div>
 			</div><br>
@@ -171,7 +179,9 @@ ID | IDは何番ですか？ | MUGEN Trigger - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#id" target="_blank" rel="external">ID - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#id" target="_blank" rel="external">ID - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ID" target="_blank" rel="external">ID - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

@@ -47,7 +47,7 @@ AnimElemNo | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="特定の経過時間におけるアニメの絵が何枚目かを返します。使用に当たっては、時間の経過をよく考慮する必要があります。引数には、現時点からの経過時間をintで指定します。例えば、0なら現在、-1なら1フレーム前、1なら1フレーム後です。引数に、0枚目以前を返すことになるような時間を指定すると、SFalseを返します。注意:ループアニメ部分が表示されている場合、引数にどんな値を指定しても、ループ部分のアニメ順番しか返しません。">
+  <meta name="description" content="特定の経過時間におけるアニメの絵が何枚目かを返します。使用に当たっては、時間の経過をよく考慮する必要があります。引数には、現時点からの経過時間をintで指定します。例えば、0なら現在、-1なら1フレーム前、1なら1フレーム後です。注意:ループアニメ部分が表示されている場合、引数にどんな値を指定しても、ループ部分のアニメ順番しか返しません。">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/AnimElemNo.html">
   <meta property="og:title" content="AnimElemNo | MUGEN Trigger">
@@ -143,7 +143,7 @@ AnimElemNo | MUGEN Trigger - Name = すら
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>特定の経過時間におけるアニメの絵が何枚目かを返します。使用に当たっては、時間の経過をよく考慮する必要があります。引数には、現時点からの経過時間をintで指定します。例えば、0なら現在、-1なら1フレーム前、1なら1フレーム後です。引数に、0枚目以前を返すことになるような時間を指定すると、SFalseを返します。注意:ループアニメ部分が表示されている場合、引数にどんな値を指定しても、ループ部分のアニメ順番しか返しません。</p>
+			<p>特定の経過時間におけるアニメの絵が何枚目かを返します。使用に当たっては、時間の経過をよく考慮する必要があります。引数には、現時点からの経過時間をintで指定します。例えば、0なら現在、-1なら1フレーム前、1なら1フレーム後です。注意:ループアニメ部分が表示されている場合、引数にどんな値を指定しても、ループ部分のアニメ順番しか返しません。</p>
 		</div>
 
 					</div></section>
@@ -166,12 +166,26 @@ AnimElemNo | MUGEN Trigger - Name = すら
 				</div></section>
 	
 
+		<section id="Version"><div class="section">
+		<h2>仕様・バグ・エラー・変更点</h2>
+		<table class="version">
+
+		<tbody>
+							<tr>
+					<td>エラー</td>
+					<td>引数に、0枚目以前を返すことになるような時間を指定すると、SFalseを返します。</td>
+				</tr>
+					</tbody>
+		</table>
+	</div></section>
 	
 
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#animelemno" target="_blank" rel="external">AnimElemNo - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#animelemno" target="_blank" rel="external">AnimElemNo - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimElemNo" target="_blank" rel="external">AnimElemNo - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

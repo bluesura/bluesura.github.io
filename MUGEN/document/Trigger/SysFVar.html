@@ -47,7 +47,7 @@ SysFVar | システム変数に入っている浮動小数点数は何ですか�
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content=" システム変数はcommon1ファイル内で使われています。 システム変数を使用しているステートを上書きするとき以外は、使わない方がよいでしょう。書式:  FVar(引数)概要: 引数には、0から4までの変数番号を指定します。戻り値の型:  floatまた、引数に有効範囲外の値を指定しても、SFalseを返します。">
+  <meta name="description" content=" システム変数はcommon1ファイル内で使われています。システム変数を使用しているステートを上書きするとき以外は、使わない方がよいでしょう。概要: 引数には、0から4までの変数番号を指定します。戻り値の型:float">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/SysFVar.html">
   <meta property="og:title" content="SysFVar | MUGEN Trigger">
@@ -137,14 +137,14 @@ SysFVar | システム変数に入っている浮動小数点数は何ですか�
 		<h2>構文</h2>
 		<div class="code"><code><ul>
 					<li>sysfvar(整数)</li>
-					<li>sysfvar(整数):=小数</li>
+					<li>sysfvar(整数) := 小数</li>
 				</ul></code></div>
 	</div></section>
 
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p> システム変数はcommon1ファイル内で使われています。 システム変数を使用しているステートを上書きするとき以外は、使わない方がよいでしょう。書式:  FVar(引数)概要: 引数には、0から4までの変数番号を指定します。戻り値の型:  floatまた、引数に有効範囲外の値を指定しても、SFalseを返します。</p>
+			<p> システム変数はcommon1ファイル内で使われています。システム変数を使用しているステートを上書きするとき以外は、使わない方がよいでしょう。概要: 引数には、0から4までの変数番号を指定します。戻り値の型:float</p>
 		</div>
 
 					</div></section>
@@ -167,12 +167,26 @@ SysFVar | システム変数に入っている浮動小数点数は何ですか�
 				</div></section>
 	
 
+		<section id="Version"><div class="section">
+		<h2>仕様・バグ・エラー・変更点</h2>
+		<table class="version">
+
+		<tbody>
+							<tr>
+					<td>エラー</td>
+					<td>引数に有効範囲外の値を指定しても、SFalseを返します。</td>
+				</tr>
+					</tbody>
+		</table>
+	</div></section>
 	
 
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#sysfvar" target="_blank" rel="external">SysFVar - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#sysfvar" target="_blank" rel="external">SysFVar - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SysFVar" target="_blank" rel="external">SysFVar - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

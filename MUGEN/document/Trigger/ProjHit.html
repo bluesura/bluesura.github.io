@@ -47,7 +47,7 @@ ProjHit | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjHitTimeの方を使った方がよいしょう。もちろん、単体ではファンクショントリガーとして使用できません。書式: 1. ProjHit[ID] = 値 2. ProjHit[ID] = 値, [符号] 値2 概要: [ID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、ヒットを調べる場合1を、非ヒットを調べる場合0を指定。[符号]には、 =, !=, , = のうちのいずれかを指定します。値2には、比較する時間を指定します。戻り値の型: boolean int  詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveHitとは異なり、ヒット後1フレームしか値を返しません。様式2は、正の整数nが条件式&quot;n [符号] 値2&quot;を満たす場合、ヒットしてからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。 使用例: 1. Trigger1 = ProjHit1234 = 1 ID1234のProjectileがヒットした瞬間のトリガーです。 2. Trigger1 = ProjHit = 1, &lt; 15 プレイヤーのProjectileがヒットしてから15フレーム未満のときのトリガーです。">
+  <meta name="description" content="また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjHitTimeの方を使った方がよいしょう。もちろん、単体ではファンクショントリガーとして使用できません。概要: [ProjectileのID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、ヒットを調べる場合1を、非ヒットを調べる場合0を指定。値2には、比較する時間を指定します。戻り値の型: boolean int  詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveHitとは異なり、ヒット後1フレームしか値を返しません。様式2は、正の整数nが条件式&quot;n [符号] 値2&quot;を満たす場合、ヒットしてからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/ProjHit.html">
   <meta property="og:title" content="ProjHit | MUGEN Trigger">
@@ -136,14 +136,27 @@ ProjHit | MUGEN Trigger - Name = すら
 	<section id="syntax"><div class="syntax section">
 		<h2>構文</h2>
 		<div class="code"><code><ul>
-					<li>ProjHit(ProjectileのID)</li>
+					<li>ProjHit[ProjectileのID] = 値</li>
+					<li>ProjHit[ProjectileのID] 値 = 値2</li>
+					<li>ProjHit[ProjectileのID] 値 != 値2</li>
+					<li>ProjHit[ProjectileのID] 値 < 値2</li>
+					<li>ProjHit[ProjectileのID] 値 > 値2</li>
+					<li>ProjHit[ProjectileのID] 値 <= 値2</li>
+					<li>ProjHit[ProjectileのID] 値 >= 値2</li>
+					<li>ProjHit[ProjectileのID,ProjectileのID] = 値</li>
+					<li>ProjHit[ProjectileのID,ProjectileのID] 値 = 値2</li>
+					<li>ProjHit[ProjectileのID,ProjectileのID] 値 != 値2</li>
+					<li>ProjHit[ProjectileのID,ProjectileのID] 値 < 値2</li>
+					<li>ProjHit[ProjectileのID,ProjectileのID] 値 > 値2</li>
+					<li>ProjHit[ProjectileのID,ProjectileのID] 値 <= 値2</li>
+					<li>ProjHit[ProjectileのID,ProjectileのID] 値 >= 値2</li>
 				</ul></code></div>
 	</div></section>
 
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjHitTimeの方を使った方がよいしょう。もちろん、単体ではファンクショントリガーとして使用できません。書式: 1. ProjHit[ID] = 値 2. ProjHit[ID] = 値, [符号] 値2 概要: [ID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、ヒットを調べる場合1を、非ヒットを調べる場合0を指定。[符号]には、 =, !=, <, >, <=, >= のうちのいずれかを指定します。値2には、比較する時間を指定します。戻り値の型: boolean int  詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveHitとは異なり、ヒット後1フレームしか値を返しません。様式2は、正の整数nが条件式"n [符号] 値2"を満たす場合、ヒットしてからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。 使用例: 1. Trigger1 = ProjHit1234 = 1 ID1234のProjectileがヒットした瞬間のトリガーです。 2. Trigger1 = ProjHit = 1, < 15 プレイヤーのProjectileがヒットしてから15フレーム未満のときのトリガーです。</p>
+			<p>また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjHitTimeの方を使った方がよいしょう。もちろん、単体ではファンクショントリガーとして使用できません。概要: [ProjectileのID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、ヒットを調べる場合1を、非ヒットを調べる場合0を指定。値2には、比較する時間を指定します。戻り値の型: boolean int  詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveHitとは異なり、ヒット後1フレームしか値を返しません。様式2は、正の整数nが条件式"n [符号] 値2"を満たす場合、ヒットしてからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。</p>
 		</div>
 
 					</div></section>
@@ -156,10 +169,18 @@ ProjHit | MUGEN Trigger - Name = すら
 		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3></h3>
+			<h3>ID1234のProjectileがヒットした瞬間のトリガー。</h3>
 						<div class="code"><code>
 			<ul>
-							<li></li>
+							<li>Trigger1 = ProjHit1234 = 1</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>プレイヤーのProjectileがヒットしてから15フレーム未満のときのトリガー。</h3>
+						<div class="code"><code>
+			<ul>
+							<li>Trigger1 = ProjHit = 1, < 15</li>
 						</ul>
 			</code></div>
 			</div><br>
@@ -171,7 +192,9 @@ ProjHit | MUGEN Trigger - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#projhit" target="_blank" rel="external">ProjHit - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#projhit" target="_blank" rel="external">ProjHit - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ProjHit" target="_blank" rel="external">ProjHit - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

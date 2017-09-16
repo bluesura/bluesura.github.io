@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -14,21 +14,42 @@
 	"trigger": "ProjHit",
 	"summary": "<p>プレイヤーのProjectile(飛び道具)がヒットしたか、していないかを判定し、真偽を返します。</p>",
 	"syntax":[
-		"ProjHit(ProjectileのID)"
+		"ProjHit[ProjectileのID] = 値",
+		"ProjHit[ProjectileのID] 値 = 値2",
+		"ProjHit[ProjectileのID] 値 != 値2",
+		"ProjHit[ProjectileのID] 値 < 値2",
+		"ProjHit[ProjectileのID] 値 > 値2",
+		"ProjHit[ProjectileのID] 値 <= 値2",
+		"ProjHit[ProjectileのID] 値 >= 値2",
+		"ProjHit[ProjectileのID,ProjectileのID] = 値",
+		"ProjHit[ProjectileのID,ProjectileのID] 値 = 値2",
+		"ProjHit[ProjectileのID,ProjectileのID] 値 != 値2",
+		"ProjHit[ProjectileのID,ProjectileのID] 値 < 値2",
+		"ProjHit[ProjectileのID,ProjectileのID] 値 > 値2",
+		"ProjHit[ProjectileのID,ProjectileのID] 値 <= 値2",
+		"ProjHit[ProjectileのID,ProjectileのID] 値 >= 値2"
 	],
 
-	"description": "<p>また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjHitTimeの方を使った方がよいしょう。もちろん、単体ではファンクショントリガーとして使用できません。書式: 1. ProjHit[ID] = 値 2. ProjHit[ID] = 値, [符号] 値2 概要: [ID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、ヒットを調べる場合1を、非ヒットを調べる場合0を指定。[符号]には、 =, !=, <, >, <=, >= のうちのいずれかを指定します。値2には、比較する時間を指定します。戻り値の型: boolean int  詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveHitとは異なり、ヒット後1フレームしか値を返しません。様式2は、正の整数nが条件式\"n [符号] 値2\"を満たす場合、ヒットしてからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。 使用例: 1. Trigger1 = ProjHit1234 = 1 ID1234のProjectileがヒットした瞬間のトリガーです。 2. Trigger1 = ProjHit = 1, < 15 プレイヤーのProjectileがヒットしてから15フレーム未満のときのトリガーです。</p>",
+	"description": "<p>また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjHitTimeの方を使った方がよいしょう。もちろん、単体ではファンクショントリガーとして使用できません。概要: [ProjectileのID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、ヒットを調べる場合1を、非ヒットを調べる場合0を指定。値2には、比較する時間を指定します。戻り値の型: boolean int  詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveHitとは異なり、ヒット後1フレームしか値を返しません。様式2は、正の整数nが条件式\"n [符号] 値2\"を満たす場合、ヒットしてからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "ID1234のProjectileがヒットした瞬間のトリガー。",
 			"code": [
-				""
+				"Trigger1 = ProjHit1234 = 1"
+			]
+		},
+		{
+			"title": "プレイヤーのProjectileがヒットしてから15フレーム未満のときのトリガー。",
+			"code": [
+				"Trigger1 = ProjHit = 1, < 15"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "ProjHit - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#projhit"},
+		{"title": "ProjHit - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#projhit"},
+		{"title": "ProjHit - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ProjHit"}
 	]
 }

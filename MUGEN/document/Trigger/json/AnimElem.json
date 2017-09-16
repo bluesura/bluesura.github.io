@@ -5,7 +5,7 @@
 		"target": "実行者",
 		"category": ["アニメーション", "特定のアニメーションが指定した時間を経過したか？"],
 		"version": "2002.04.14",
-    "update": "2016.12.30",
+		"update": "2016.12.30",
 		"type": "document",
 		"level": "3"
 	},
@@ -14,10 +14,10 @@
 	"trigger": "AnimElem",
 	"summary": "<p>アニメの順番とその経過時間を判断します。</p>",
 	"syntax":[
-    ";アニメが「値1」枚目になった瞬間に真(1)を返すトリガー",
+		";アニメが「値1」枚目になった瞬間に真(1)を返すトリガー",
 		"AnimElem = 値1",
 		"",
-    ";アニメが「値1」枚目に切り替わってからの経過時間を値2と比較し、真偽を返すトリガー",
+		";アニメが「値1」枚目に切り替わってからの経過時間を値2と比較し、真偽を返すトリガー",
 		"AnimElem = 値1, =  値2",
 		"AnimElem = 値1, != 値2",
 		"AnimElem = 値1, <= 値2",
@@ -29,12 +29,13 @@
 	"description": "<p>アニメの順番と、その経過時間を判断するトリガー。</p><p>値1には、何枚目のアニメをチェックするかをintで指定。値2には、比較する時間をintで指定します。</p>",
 
 	"associated_trigger": [
-    "Anim", "AnimTime", "AnimElemNo", "AnimElemTime",
-    "AnimExist", "SelfAnimExist"
-  ],
-	"associated_state": [""],
+		"Anim", "AnimTime", "AnimElemNo", "AnimElemTime",
+		"AnimExist", "SelfAnimExist"
+	],
 
 	"quote": [
-		{"title": "AnimElem - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#animelem"}
+		{"title": "AnimElem - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#animelem"},
+		{"title": "AnimElem - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#animelem"},
+		{"title": "AnimElem - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimElem"}
 	]
 }

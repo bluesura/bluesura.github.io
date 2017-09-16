@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["", ""],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,18 +17,20 @@
 		"Pos X"
 	],
 
-	"description": "<p>Pos X = 0で画面中央を、Pos Y = 0で地面を意味します。 書式: Pos [要素] 概要: [要素]には、 Xまたは Yを指定します。間の半角スペースは、必須です。戻り値の型:floatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。 詳細: Pos X は、画面中央を0、左方向を正、右方向を負とした、相対距離を返します。Pos Y は、地面を0、下方向を正、上方向を負とした、相対距離を返します。使用例: Trigger1 = Pos Y >= 0 プレイヤーが地面より下にいる場合のトリガーです。 </p>",
+	"description": "<p>Pos X = 0で画面中央を、Pos Y = 0で地面を意味します。戻り値の型:floatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。 詳細: Pos X は、画面中央を0、左方向を正、右方向を負とした、相対距離を返します。Pos Y は、地面を0、下方向を正、上方向を負とした、相対距離を返します。</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "プレイヤーが地面より下にいる場合のトリガー。",
 			"code": [
-				""
+				"Trigger1 = Pos Y >= 0"
 			]
 		}
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "Pos - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#pos"},
+		{"title": "Pos - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#pos"},
+		{"title": "Pos - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Pos"}
 	]
 }

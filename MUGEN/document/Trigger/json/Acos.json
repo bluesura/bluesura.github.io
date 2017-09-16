@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["数値計算", "Xラジアンの逆余弦は何ですか？"],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -17,7 +17,10 @@
 		"Acos(ラジアン)"
 	],
 
-	"description": "<p>引数には、アークコサイン（逆余弦）を計算したいfloat値を指定します。引数には、アークコサイン（逆余弦）を計算したいfloat値を指定します。float(少数型)</p>エラー条件:引数がSFalseの場合、SFalseを返します。または、引数がアークコサインの範囲外([-1.0,1.0])の場合もSFalseとなります。",
+	"description": "<p>引数には、アークコサイン（逆余弦）を計算したいfloat値を指定します。引数には、アークコサイン（逆余弦）を計算したいfloat値を指定します。float(少数型)</p>",
+	"version": [
+		{"no": "エラー", "content": "引数がSFalseの場合、SFalseを返します。または、引数がアークコサインの範囲外([-1.0,1.0])の場合もSFalseとなります。"}
+	],
 
 	"code_sample": [
 		{
@@ -29,6 +32,8 @@
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "Acos - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#acos-math"},
+		{"title": "Acos - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#acos-math"},
+		{"title": "Acos - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Acos"}
 	]
 }

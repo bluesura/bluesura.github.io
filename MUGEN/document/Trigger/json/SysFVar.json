@@ -5,7 +5,7 @@
 		"target": "",
 		"category": ["変数", "システム変数に入っている浮動小数点数は何ですか？"],
 		"version": "2002.04.14",
-    "update": "2016.01.17",
+		"update": "2016.01.17",
 		"type": "document",
 		"level": "3"
 	},
@@ -15,11 +15,13 @@
 	"summary": "<p>システムの小数変数を参照します。</p>",
 	"syntax":[
 		"sysfvar(整数)",
-		"sysfvar(整数):=小数"
+		"sysfvar(整数) := 小数"
 	],
 
-	"description": "<p> システム変数はcommon1ファイル内で使われています。 システム変数を使用しているステートを上書きするとき以外は、使わない方がよいでしょう。書式:  FVar(引数)概要: 引数には、0から4までの変数番号を指定します。戻り値の型:  floatまた、引数に有効範囲外の値を指定しても、SFalseを返します。</p>",
-
+	"description": "<p> システム変数はcommon1ファイル内で使われています。システム変数を使用しているステートを上書きするとき以外は、使わない方がよいでしょう。概要: 引数には、0から4までの変数番号を指定します。戻り値の型:float</p>",
+	"version": [
+		{"no": "エラー", "content": "引数に有効範囲外の値を指定しても、SFalseを返します。"}
+	],
 	"code_sample": [
 		{
 			"title": "SysFVar(0)に-1.23が代入されているときのトリガー。",
@@ -30,6 +32,8 @@
 	],
 
 	"quote": [
-		{"title": " - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html"}
+		{"title": "SysFVar - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#sysfvar"},
+		{"title": "SysFVar - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#sysfvar"},
+		{"title": "SysFVar - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SysFVar"}
 	]
 }

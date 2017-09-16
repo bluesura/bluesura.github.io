@@ -5,7 +5,7 @@
 		"target": "敵",
 		"category": ["数を数える", "敵は何人いますか？"],
 		"version": "2002.04.14",
-    "update": "2016.12.21",
+		"update": "2016.12.21",
 		"type": "document",
 		"level": "3"
 	},
@@ -24,12 +24,14 @@
 			"title": "敵が2人いて、2番目に近い敵の名前がSquashだったときのトリガー",
 			"code": [
 				"Trigger1 = NumEnemy = 2",
-        "Trigger1 = EnemyNear(1),Name = \"Squash\""
+		    "Trigger1 = EnemyNear(1),Name = \"Squash\""
 			]
 		}
 	],
 
 	"quote": [
-		{"title": "NumEnemy - Trigger Reference Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/trigger.html#numenemy"}
+		{"title": "NumEnemy - Trigger Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/trigger.html#numenemy"},
+		{"title": "NumEnemy - Trigger Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#numenemy"},
+		{"title": "NumEnemy - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumEnemy"}
 	]
 }

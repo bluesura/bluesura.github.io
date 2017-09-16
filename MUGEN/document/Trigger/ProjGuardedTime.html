@@ -47,7 +47,7 @@ ProjGuardedTime | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="引数として、正の整数をID番号として指定することを必要とします。IDに0を指定した場合、チェックされません。これらの条件に該当しない場合、-1を返します。書式: ProjCancelTime(引数) 概要: 引数には、調べたいProjectileのID番号を、0または正のintで指定します。省略不可。戻り値の型: int また、IDに負数を指定した場合、0を返します。使用例: 1. Trigger1 = ProjGuardedTime(1234) = 1 ID1234のProjectileがガードされた瞬間のトリガーです。 2. Trigger1 = ProjGuardedTime(0) != -1 &amp;&amp; ProjGuardedTime(0) &lt; 15 プレイヤーのProjectileがガードされてから15フレーム未満のときのトリガーです。 ">
+  <meta name="description" content="引数として、正の整数をID番号として指定することを必要とします。IDに0を指定した場合、チェックされません。これらの条件に該当しない場合、-1を返します。概要: 引数には、調べたいProjectileのID番号を、0または正のintで指定します。省略不可。戻り値の型: int また、IDに負数を指定した場合、0を返します。">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/ProjGuardedTime.html">
   <meta property="og:title" content="ProjGuardedTime | MUGEN Trigger">
@@ -143,7 +143,7 @@ ProjGuardedTime | MUGEN Trigger - Name = すら
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>引数として、正の整数をID番号として指定することを必要とします。IDに0を指定した場合、チェックされません。これらの条件に該当しない場合、-1を返します。書式: ProjCancelTime(引数) 概要: 引数には、調べたいProjectileのID番号を、0または正のintで指定します。省略不可。戻り値の型: int また、IDに負数を指定した場合、0を返します。使用例: 1. Trigger1 = ProjGuardedTime(1234) = 1 ID1234のProjectileがガードされた瞬間のトリガーです。 2. Trigger1 = ProjGuardedTime(0) != -1 && ProjGuardedTime(0) < 15 プレイヤーのProjectileがガードされてから15フレーム未満のときのトリガーです。 </p>
+			<p>引数として、正の整数をID番号として指定することを必要とします。IDに0を指定した場合、チェックされません。これらの条件に該当しない場合、-1を返します。概要: 引数には、調べたいProjectileのID番号を、0または正のintで指定します。省略不可。戻り値の型: int また、IDに負数を指定した場合、0を返します。</p>
 		</div>
 
 					</div></section>
@@ -156,10 +156,18 @@ ProjGuardedTime | MUGEN Trigger - Name = すら
 		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3></h3>
+			<h3>ID1234のProjectileがガードされた瞬間のトリガー。</h3>
 						<div class="code"><code>
 			<ul>
-							<li></li>
+							<li>Trigger1 = ProjGuardedTime(1234) = 1</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>プレイヤーのProjectileがガードされてから15フレーム未満のときのトリガー。</h3>
+						<div class="code"><code>
+			<ul>
+							<li>Trigger1 = ProjGuardedTime(0) != -1 && ProjGuardedTime(0) < 15</li>
 						</ul>
 			</code></div>
 			</div><br>
@@ -171,7 +179,9 @@ ProjGuardedTime | MUGEN Trigger - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#projguardedtime" target="_blank" rel="external">ProjGuardedTime - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#projguardedtime" target="_blank" rel="external">ProjGuardedTime - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ProjGuardedTime" target="_blank" rel="external">ProjGuardedTime - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

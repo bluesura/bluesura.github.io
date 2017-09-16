@@ -47,7 +47,7 @@ IsHelper | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="プレイヤーがヘルパーなら1を、それ以外なら0を返します。ヘルパーのIDを引数に指定することができ、その場合はプレイヤーが指定されたIDのヘルパーのとき1を返します。書式:IsHelperIsHelper(引数) 概要: なし戻り値の型: boolean int (1 or 0)使用例:1. Trigger1 = !IsHelperプレイヤーがヘルパーでないときのトリガー。2. Trigger1 = IsHelper(1234)プレイヤーがID1234のヘルパーの場合のトリガー。">
+  <meta name="description" content="プレイヤーがヘルパーなら1を、それ以外なら0を返します。ヘルパーのIDを引数に指定することができ、その場合はプレイヤーが指定されたIDのヘルパーのとき1を返します。戻り値の型: boolean int (1 or 0)">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/IsHelper.html">
   <meta property="og:title" content="IsHelper | MUGEN Trigger">
@@ -144,7 +144,7 @@ IsHelper | MUGEN Trigger - Name = すら
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>プレイヤーがヘルパーなら1を、それ以外なら0を返します。ヘルパーのIDを引数に指定することができ、その場合はプレイヤーが指定されたIDのヘルパーのとき1を返します。書式:IsHelperIsHelper(引数) 概要: なし戻り値の型: boolean int (1 or 0)使用例:1. Trigger1 = !IsHelperプレイヤーがヘルパーでないときのトリガー。2. Trigger1 = IsHelper(1234)プレイヤーがID1234のヘルパーの場合のトリガー。</p>
+			<p>プレイヤーがヘルパーなら1を、それ以外なら0を返します。ヘルパーのIDを引数に指定することができ、その場合はプレイヤーが指定されたIDのヘルパーのとき1を返します。戻り値の型: boolean int (1 or 0)</p>
 		</div>
 
 					</div></section>
@@ -157,10 +157,18 @@ IsHelper | MUGEN Trigger - Name = すら
 		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3></h3>
+			<h3>プレイヤーがヘルパーでないときのトリガー。</h3>
 						<div class="code"><code>
 			<ul>
-							<li></li>
+							<li>Trigger1 = !IsHelper</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>プレイヤーがID1234のヘルパーの場合のトリガー。</h3>
+						<div class="code"><code>
+			<ul>
+							<li>Trigger1 = IsHelper(1234)</li>
 						</ul>
 			</code></div>
 			</div><br>
@@ -172,7 +180,9 @@ IsHelper | MUGEN Trigger - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#ishelper" target="_blank" rel="external">IsHelper - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#ishelper" target="_blank" rel="external">IsHelper - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IsHelper" target="_blank" rel="external">IsHelper - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

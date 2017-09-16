@@ -47,7 +47,7 @@ Command | MUGEN Trigger - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="cmdファイルで設定したコマンド名を判断し、真偽を返します。書式:Command [符号] &quot;コマンド名&quot;概要:[符号]には、次のいずれかを指定します(他は無効)。=, != &quot;コマンド名&quot;には、cmdファイルで設定したコマンド名を文字列で指定します。ダブルクォーテーションで括る必要があります。同じ名前の複数のコマンドがある場合、どのコマンドも有効となります。戻り値の型: boolean int (1 or 0)">
+  <meta name="description" content="cmdファイルで設定したコマンド名を判断し、真偽を返します。概要:[符号]には、次のいずれかを指定します(他は無効)。=, != &quot;コマンド名&quot;には、cmdファイルで設定したコマンド名を文字列で指定します。ダブルクォーテーションで括る必要があります。同じ名前の複数のコマンドがある場合、どのコマンドも有効となります。戻り値の型: boolean int (1 or 0)">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/Command.html">
   <meta property="og:title" content="Command | MUGEN Trigger">
@@ -137,13 +137,14 @@ Command | MUGEN Trigger - Name = すら
 		<h2>構文</h2>
 		<div class="code"><code><ul>
 					<li>Command = "コマンド名"</li>
+					<li>Command != "コマンド名"</li>
 				</ul></code></div>
 	</div></section>
 
 		<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>
-			<p>cmdファイルで設定したコマンド名を判断し、真偽を返します。書式:Command [符号] "コマンド名"概要:[符号]には、次のいずれかを指定します(他は無効)。=, != "コマンド名"には、cmdファイルで設定したコマンド名を文字列で指定します。ダブルクォーテーションで括る必要があります。同じ名前の複数のコマンドがある場合、どのコマンドも有効となります。</p><p>戻り値の型: boolean int (1 or 0)</p>
+			<p>cmdファイルで設定したコマンド名を判断し、真偽を返します。概要:[符号]には、次のいずれかを指定します(他は無効)。=, != "コマンド名"には、cmdファイルで設定したコマンド名を文字列で指定します。ダブルクォーテーションで括る必要があります。同じ名前の複数のコマンドがある場合、どのコマンドも有効となります。</p><p>戻り値の型: boolean int (1 or 0)</p>
 		</div>
 
 					</div></section>
@@ -171,7 +172,9 @@ Command | MUGEN Trigger - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><a href="http://network.mugenguild.com/justnopoint/1.1docs/trigger.html" target="_blank" rel="external"> - Trigger Reference Reference Documentation for version 1.1</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs/trigger.html#command" target="_blank" rel="external">Command - Trigger Reference(version 1.0)</a></li>
+					<li><a href="http://www.elecbyte.com/mugendocs-11b1/trigger.html#command" target="_blank" rel="external">Command - Trigger Reference(version 1.1)</a></li>
+					<li><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Command" target="_blank" rel="external">Command - M.U.G.E.N wiki</a></li>
 				</ul>
 	</div></section>
 	

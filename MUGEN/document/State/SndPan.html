@@ -13,7 +13,7 @@
 
 
   <title itemprop="headline">
-SndPan | MUGEN State Controller - Name = すら
+SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = すら
   </title>
 
   <!---->
@@ -47,7 +47,7 @@ SndPan | MUGEN State Controller - Name = すら
   <!-- 「駄目ね、全然駄目だわ」 -->
 
   <!-- ジョインジョイン OGP -->
-  <meta name="description" content="PlaySnd実行中、特定チャンネルのサウンドのpan/abspanパラメータを変更します。PlaySndで音が再生されていて、指定したチャンネル存在しないとPan,AbsPanは読み込まれません。">
+  <meta name="description" content="PlaySnd実行中、特定チャンネルのサウンドのPan,AbsPanパラメータを変更します。PlaySndで音が再生されていて、指定したチャンネル存在しないとPan,AbsPanは読み込まれません。">
 
   <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/State/SndPan.html">
   <meta property="og:title" content="SndPan | MUGEN State Controller">
@@ -122,7 +122,7 @@ SndPan | MUGEN State Controller - Name = すら
   <img src="https://bluesura.github.io/MUGEN/document/State/media/img/" alt="" style="display:none;">
   <div class="entry-title" itemprop="name"><div>
   <h1 id="SndPan">Type = SndPan</h1>
-  <div class="category">音声 >  | 実装されたバージョン: 2002.04.14 | 対象: 音声</div>
+  <div class="category">音声 > 音が再生される位置を調整 | 実装されたバージョン: 2002.04.14 | 対象: 音声</div>
 </div></div>
 
 </div></header>
@@ -130,11 +130,11 @@ SndPan | MUGEN State Controller - Name = すら
   <div class="entry-content">
 
 	<div class="description" itemprop="articleBody">
-<div><p>PlaySnd実行中、特定チャンネルのサウンドのpan/abspanパラメータを変更します。PlaySndで音が再生されていて、指定したチャンネル存在しないとPan,AbsPanは読み込まれません。</p></div>
+<div><p>PlaySnd実行中、特定チャンネルのサウンドのPan,AbsPanパラメータを変更します。PlaySndで音が再生されていて、指定したチャンネル存在しないとPan,AbsPanは読み込まれません。</p></div>
 
 
 
-				
+		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/PlaySnd.html"><code>PlaySnd</code></a>, <a href="./../State/StopSnd.html"><code>StopSnd</code></a></div>		
 	</div>
 
   <section id="Parameter"><div class="section">
@@ -174,7 +174,8 @@ SndPan | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
           
         
         </div>
@@ -195,7 +196,8 @@ SndPan | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Panが優先して実行されます。</div>
+          
           
         
         </div>
@@ -277,8 +279,8 @@ SndPan | MUGEN State Controller - Name = すら
 			<li>Type                       = SndPan</li>
 			<li>Trigger1                   = 1</li>
 															<li class="required-parameter">Channel                    = ?</li>
-									<li class="optional-parameter">Pan                        = </li>
-									<li class="optional-parameter">AbsPan                     = </li>
+									<li class="optional-parameter">Pan                        = 0</li>
+									<li class="optional-parameter">AbsPan                     = ;Panが優先して実行されます。</li>
 									<li class="optional-parameter">Persistent                 = 1</li>
 									<li class="optional-parameter">IgnoreHitPause             = 0</li>
 				
@@ -315,8 +317,9 @@ SndPan | MUGEN State Controller - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><cite><a href="http://www.elecbyte.com/mugendocs/sctrls.html#sndpan" target="_blank" rel="external">SndPan - State Controller Reference(version 1.0)</a></cite></li>
-					<li><cite><a href="http://www.elecbyte.com/mugendocs-11b1/sctrls.html#sndpan" target="_blank" rel="external">SndPan - State Controller Reference(version 1.1)</a></cite></li>
+					<li><cite><a href="/MUGEN/document/Official/2002.04.14/sctrls.html#SndPan" target="_blank" rel="external">SndPan - State Controller Reference(version 2002.04.14)</a></cite></li>
+					<li><cite><a href="https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#sndpan" target="_blank" rel="external">SndPan - State Controller Reference(version 1.0)</a></cite></li>
+					<li><cite><a href="https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#sndpan" target="_blank" rel="external">SndPan - State Controller Reference(version 1.1)</a></cite></li>
 					<li><cite><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SndPan" target="_blank" rel="external">SndPan - M.U.G.E.N wiki</a></cite></li>
 					<li><cite><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?SndPan&protocol=http" target="_blank" rel="external">SndPan - State Controller</a></cite></li>
 					<li><cite><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#SndPan" target="_blank" rel="external">SndPan - 東方夢幻館</a></cite></li>
@@ -372,6 +375,33 @@ SndPan | MUGEN State Controller - Name = すら
 
 <div id="box2">
 
+<div class="article-survey-container">
+<div class="toc" id="toc">
+<div class="title">目次</div>
+<ul style="">
+
+	<script>
+var a = document.getElementsByTagName("section");
+for(var i = 0; i < a.length; i++) {
+	document.write("<li style=\"white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\"><a href=\"#"+a[i].id+"\">" + a[i].getElementsByTagName("h2")[0].innerText + "</a></li>");
+	var b = a[i].getElementsByTagName("h3");
+	if (b.length == 0) {b = a[i].getElementsByTagName("dt");}
+	document.write("<ul>");
+	for(var j = 0; j < b.length; j++) {
+		b[j].id=i+"-"+j;
+		document.write("<li style=\"white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\"><a href=\"#"+i+"-"+j+"\">" + b[j].innerText.replace(/\s+.*$/,"") + "</a></li>");
+	}
+	document.write("</ul>");
+}
+	</script>
+
+</ul></div>
+</div>
+
+</div>
+
+
+<div id="box2">
 <div class="article-survey-container">
   <div class="menu">
       
@@ -651,33 +681,6 @@ SndPan | MUGEN State Controller - Name = すら
 <div id="box2">
 
 <div class="article-survey-container">
-<div class="toc" id="toc">
-<div class="title">目次</div>
-<ul style="">
-
-	<script>
-var a = document.getElementsByTagName("section");
-for(var i = 0; i < a.length; i++) {
-	document.write("<li style=\"white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\"><a href=\"#"+a[i].id+"\">" + a[i].getElementsByTagName("h2")[0].innerText + "</a></li>");
-	var b = a[i].getElementsByTagName("h3");
-	if (b.length == 0) {b = a[i].getElementsByTagName("dt");}
-	document.write("<ul>");
-	for(var j = 0; j < b.length; j++) {
-		b[j].id=i+"-"+j;
-		document.write("<li style=\"white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\"><a href=\"#"+i+"-"+j+"\">" + b[j].innerText.replace(/\s+.*$/,"") + "</a></li>");
-	}
-	document.write("</ul>");
-}
-	</script>
-
-</ul></div>
-</div>
-
-</div>
-
-<div id="box2">
-
-<div class="article-survey-container">
 <!-- start feedwind code --><script type="text/javascript">(function() {var params = {rssmikle_url: "https://github.com/bluesura/bluesura.github.io/commits/master.atom",rssmikle_frame_width: "100%",rssmikle_frame_height: "100%",frame_height_by_article: "5",rssmikle_target: "_blank",rssmikle_font: "'Roboto', '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Verdana, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;",rssmikle_font_size: "",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "off",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "更新履歴",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#383838",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#3367D6",rssmikle_item_border_bottom: "off",rssmikle_item_description: "off",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#383838",rssmikle_item_date: "ja",rssmikle_timezone: "Etc/GMT",datetime_format: "",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "5",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><!--  end  feedwind code -->
 </div>
 
@@ -724,7 +727,7 @@ for(var i = 0; i < a.length; i++) {
         <li><a href="http://www.elecbyte.com/mugen">M.U.G.E.N</a></li>
         <li><a href="http://network.mugenguild.com/justnopoint/1.0docs/mugen.html">M.U.G.E.N 1.0 と 1.1b</a></li>
         <li><a href="http://mug3.anikipedia.com/mugen.htm">M.U.G.E.N 1.1</a></li>
-        <li><a href="http://homepage2.nifty.com/oriheus/ikemen/">I.K.E.M.E.N</a></li>
+        <li><a href="https://www64.atwiki.jp/ikemen_wiki/pages/4.html">I.K.E.M.E.N</a><!--http://homepage2.nifty.com/oriheus/ikemen/--></li>
       </ul>
 
       <ul>

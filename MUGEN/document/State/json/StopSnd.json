@@ -3,7 +3,7 @@
 		"title": "MUGEN State Controller",
 		"subtitle": "StopSnd",
 		"target": "音声",
-		"category": ["音声", ""],
+		"category": ["音声", "音を停止"],
 		"version": "2002.04.14",
 		"update": "2017.08.06",
 		"type": "document",
@@ -11,8 +11,9 @@
 	},
 
 	"state": "StopSnd",
-	"description": "<p>特定チャンネルのサウンドを止めます。</p>",
+	"description": "<p>特定チャンネルの音を止めます。</p>",
 	"category": "state",
+	"associated_state": ["PlaySnd", "SndPan"],
 
 	"version": [
 		{"no": "警告文", "content": "STOPPED ILLEGAL CHANNEL NUMBER -2:Channelに-2以下、32以上。（最後の数値は指定した数値が表示される）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
@@ -23,7 +24,7 @@
 			"parameter": "Channel",
 			"value": ["チャンネル番号"],
 			"type": ["int"],
-			"description": "<p>止めたい音のチャンネルを指定。</p><p>-1で全ての音を止めることができますが、全プレイヤーが対象ですので、乱用してはいけません。</p>",
+			"description": "<p>停止させたい音のチャンネルを指定。</p><p>-1で全プレイヤーの全チャンネルの音を停止させます。</p>",
 			"min_value": [""],
 			"max_value": [""],
 			"parameter_type": "required",
@@ -32,9 +33,33 @@
 		}
 	],
 
+	"code_sample": [
+		{
+			"title": "必殺技の演出で無音にする",
+			"code": [
+				"[State ]",
+				"Type           = StopSnd",
+				"Trigger1       = Time = 0",
+				"Channel        = -1",
+				"Ignorehitpause = 1"
+			]
+		},
+		{
+			"title": "コンボや特殊動作中に音声がかぶらないように停止",
+			"code": [
+				"[State ]",
+				"Type           = StopSnd",
+				"Trigger1       = StateNo != 2000",
+				"Channel        = 2",
+				"Ignorehitpause = 1"
+			]
+		}
+	],
+
 	"quote": [
-		{"title": "StopSnd - State Controller Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/sctrls.html#stopsnd"},
-		{"title": "StopSnd - State Controller Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/sctrls.html#stopsnd"},
+		{"title": "StopSnd - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#StopSnd"},
+		{"title": "StopSnd - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#stopsnd"},
+		{"title": "StopSnd - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#stopsnd"},
 		{"title": "StopSnd - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StopSnd"},
 		{"title": "StopSnd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?StopSnd&protocol=http"},
 		{"title": "StopSnd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#StopSnd"}

@@ -3,7 +3,7 @@
 		"title": "MUGEN State Controller",
 		"subtitle": "PlaySnd",
 		"target": "音声",
-		"category": ["音声", ""],
+		"category": ["音声", "音を再生"],
 		"version": "2002.04.14",
 		"update": "2017.08.06",
 		"type": "document",
@@ -13,8 +13,10 @@
 	"state": "PlaySnd",
 	"description": "<p>音を鳴らします。</p>",
 	"category": "state",
+	"associated_state": ["StopSnd", "SndPan"],
 
 	"version": [
+		{"no": "", "content": ""},
 		{"no": "警告文", "content": "ILLEGAL PLAYSND GROUPNO:Value第1引数に-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
 		{"no": "警告文", "content": "ILLEGAL PLAYSND SNDNO:Value第2引数に-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
 		{"no": "警告文", "content": "ILLEGAL PLAYSND CHANNEL.:Channelに-2以下、32以上", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
@@ -26,7 +28,7 @@
 			"parameter": "Channel",
 			"value": ["チャンネル番号"],
 			"type": ["int"],
-			"description": "<p>チャンネルを指定。同じチャンネルのPlaySndが実行されると、それまで鳴っていた音は止まります。StopSndで特定の音を止める場合にも必要。また、チャンネル0は、ボイス再生専用で、再生中にmovetypeがH(やられ)になると、音が停止するという特性を持っています。-1で空いてるチャンネルを使用することになり、再生間隔が短いと、音声がオーバーラップします。キャラ音声の場合は、激しく不自然となるので、忘れずに0を指定しましょう。</p>",
+			"description": "<p>チャンネルを指定。</p><p>同じチャンネルのPlaySndが実行されると、それまで鳴っていた音は止まります。StopSndで特定の音を止める場合にも必要。また、チャンネル0は、ボイス再生専用で、再生中にmovetypeがH(やられ)になると、音が停止するという特性を持っています。-1で空いてるチャンネルを使用することになり、再生間隔が短いと、音声がオーバーラップします。キャラ音声の場合は、激しく不自然となるので、忘れずに0を指定しましょう。</p>",
 			"min_value": [""],
 			"max_value": [""],
 			"parameter_type": "optional",
@@ -37,22 +39,46 @@
 			"parameter": "value",
 			"value": ["グループ番号, サウンド番号"],
 			"type": ["int", "int"],
-			"description": "",
+			"description": "<p>再生する音声を指定。</p><p>10,1のようにDEFファイルのSoundで指定したSNDファイルに登録されている音声を指定して再生します。</p><p>F0,5のようにFをつけるとcommon.sndから共通の音声を再生できます。</p>",
 			"min_value": [""],
 			"max_value": [""],
 			"parameter_type": "required",
-			"default_value": [""],
-			"load_priority": ["2, 3"]
+			"default_value": ["?", "?"],
+			"load_priority": ["2", "3"],
+			"possible_value": [
+				["common.sndグループ", "音"],
+				["F5,0","打撃音(弱)"],
+				["F5,1","打撃音(やや弱)"],
+				["F5,2","打撃音(中)"],
+				["F5,3","打撃音(やや強)"],
+				["F5,4","打撃音(強)"],
+				["F6,0","ガード音"],
+				["F7,0","倒れ着地音(弱)"],
+				["F7,1","倒れ着地音(中)"],
+				["F7,2","倒れ着地音(強)"],
+				["F20,0","暗転音"]
+			]
 		},
 		{
 			"parameter": "Volume",
 			"value": ["音量"],
 			"type": ["int"],
-			"description": "<p>音量を指定。0が標準で、正数だと音が大きく、負数だと小さくなるようです。</p>",
-			"min_value": [""],
-			"max_value": [""],
+			"description": "<p>音量の強弱を調整。</p><p>0が標準で、正数だと音が大きく、負数だと小さくなります。</p>",
+			"min_value": ["-255"],
+			"max_value": ["255"],
 			"parameter_type": "optional",
-			"default_value": [""],
+			"default_value": ["0"],
+			"load_priority": ["4"]
+		},
+		{
+			"parameter": ";VolumeScale",
+			"value": ["音量"],
+			"type": ["float"],
+			"description": "<p>音量を調整。</p><p>Version1.0からVolumeがVolumeScaleに変更されました。</p><p>100は100%、50は50%になります。0で無音。</p>",
+			"min_value": ["0"],
+			"max_value": ["100"],
+			"parameter_type": "optional",
+			"default_value": ["100"],
 			"load_priority": ["4"]
 		},
 		{
@@ -63,18 +89,18 @@
 			"min_value": [""],
 			"max_value": [""],
 			"parameter_type": "optional",
-			"default_value": [""],
+			"default_value": [";LowPriorityが実行されません。"],
 			"load_priority": ["5"]
 		},
 		{
 			"parameter": "FreqMul",
 			"value": ["周波数"],
 			"type": ["float"],
-			"description": "<p>周波数を倍数で指定。例えば1.1にすると、ピッチが1割り増しとなります。たぶん。</p>",
+			"description": "<p>周波数を倍数で指定。</p><p>1.0で音声に変化はなし、1.0より小さくすると低音、1.0より大きくすると高音になります。</p>",
 			"min_value": [""],
 			"max_value": [""],
 			"parameter_type": "optional",
-			"default_value": [""],
+			"default_value": ["1.0"],
 			"load_priority": ["6"]
 		},
 		{
@@ -85,7 +111,7 @@
 			"min_value": [""],
 			"max_value": [""],
 			"parameter_type": "optional",
-			"default_value": [""],
+			"default_value": ["0"],
 			"load_priority": ["7"]
 		},
 		{
@@ -107,14 +133,15 @@
 			"min_value": [""],
 			"max_value": [""],
 			"parameter_type": "optional",
-			"default_value": [""],
+			"default_value": [";Panが優先して実行されます。"],
 			"load_priority": ["8"]
 		}
 	],
 
 	"quote": [
-		{"title": "PlaySnd - State Controller Reference(version 1.0)", "url": "http://www.elecbyte.com/mugendocs/sctrls.html#playsnd"},
-		{"title": "PlaySnd - State Controller Reference(version 1.1)", "url": "http://www.elecbyte.com/mugendocs-11b1/sctrls.html#playsnd"},
+		{"title": "PlaySnd - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PlaySnd"},
+		{"title": "PlaySnd - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#playsnd"},
+		{"title": "PlaySnd - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#playsnd"},
 		{"title": "PlaySnd - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PlaySnd"},
 		{"title": "PlaySnd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PlaySnd&protocol=http"},
 		{"title": "PlaySnd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PlaySnd"},

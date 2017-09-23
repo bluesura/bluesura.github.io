@@ -7,7 +7,7 @@
         <li><a href="http://www.elecbyte.com/mugen">M.U.G.E.N</a></li>
         <li><a href="http://network.mugenguild.com/justnopoint/1.0docs/mugen.html">M.U.G.E.N 1.0 と 1.1b</a></li>
         <li><a href="http://mug3.anikipedia.com/mugen.htm">M.U.G.E.N 1.1</a></li>
-        <li><a href="http://homepage2.nifty.com/oriheus/ikemen/">I.K.E.M.E.N</a></li>
+        <li><a href="https://www64.atwiki.jp/ikemen_wiki/pages/4.html">I.K.E.M.E.N</a><!--http://homepage2.nifty.com/oriheus/ikemen/--></li>
       </ul>
 
       <ul>

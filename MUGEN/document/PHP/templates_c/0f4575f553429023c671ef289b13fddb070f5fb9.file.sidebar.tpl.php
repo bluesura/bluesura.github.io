@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-09-06 14:19:32
+<?php /* Smarty version Smarty-3.1.12, created on 2017-09-23 13:13:08
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\sidebar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:177649319359856355d5ed93-27807919%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0f4575f553429023c671ef289b13fddb070f5fb9' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\sidebar.tpl',
-      1 => 1504700365,
+      1 => 1506165182,
       2 => 'file',
     ),
   ),
@@ -25,27 +25,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_59856355ddcc79_99827366')) {function content_59856355ddcc79_99827366($_smarty_tpl) {?><div id="box2">
-
-<div class="article-survey-container">
-  <div class="menu">
-  <?php if ($_smarty_tpl->tpl_vars['content']->value!=null){?>
-    
-  <?php  $_smarty_tpl->tpl_vars['temp'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['temp']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['content']->value['sidebar']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['temp']->key => $_smarty_tpl->tpl_vars['temp']->value){
-$_smarty_tpl->tpl_vars['temp']->_loop = true;
-?>
-        <?php echo $_smarty_tpl->tpl_vars['temp']->value;?>
-
-  <?php } ?>
-      
-  <?php }?>
-  </div>
-</div>
-
-</div>
-
-<div id="box2">
 
 <div class="article-survey-container">
 <div class="toc" id="toc">
@@ -68,6 +47,27 @@ for(var i = 0; i < a.length; i++) {
 	</script>
 
 </ul></div>
+</div>
+
+</div>
+
+
+<div id="box2">
+<div class="article-survey-container">
+  <div class="menu">
+  <?php if ($_smarty_tpl->tpl_vars['content']->value!=null){?>
+    
+  <?php  $_smarty_tpl->tpl_vars['temp'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['temp']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['content']->value['sidebar']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['temp']->key => $_smarty_tpl->tpl_vars['temp']->value){
+$_smarty_tpl->tpl_vars['temp']->_loop = true;
+?>
+        <?php echo $_smarty_tpl->tpl_vars['temp']->value;?>
+
+  <?php } ?>
+      
+  <?php }?>
+  </div>
 </div>
 
 </div>

@@ -1,20 +1,4 @@
 <div id="box2">
-
-<div class="article-survey-container">
-  <div class="menu">
-  {if $content != NULL}
-    {*<ul><li><div>*}
-  {foreach $content.sidebar as $temp}
-        {$temp}
-  {/foreach}
-      {*</div></li></ul>*}
-  {/if}
-  </div>
-</div>
-
-</div>
-
-<div id="box2">
 {literal}
 <div class="article-survey-container">
 <div class="toc" id="toc">
@@ -39,6 +23,22 @@ for(var i = 0; i < a.length; i++) {
 </ul></div>
 </div>
 {/literal}
+</div>
+
+
+<div id="box2">
+<div class="article-survey-container">
+  <div class="menu">
+  {if $content != NULL}
+    {*<ul><li><div>*}
+  {foreach $content.sidebar as $temp}
+        {$temp}
+  {/foreach}
+      {*</div></li></ul>*}
+  {/if}
+  </div>
+</div>
+
 </div>
 
 <div id="box2">

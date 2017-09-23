@@ -13,7 +13,7 @@
 
 
   <title itemprop="headline">
-PlaySnd | MUGEN State Controller - Name = すら
+PlaySnd | 音を再生 | MUGEN State Controller - Name = すら
   </title>
 
   <!---->
@@ -122,7 +122,7 @@ PlaySnd | MUGEN State Controller - Name = すら
   <img src="https://bluesura.github.io/MUGEN/document/State/media/img/" alt="" style="display:none;">
   <div class="entry-title" itemprop="name"><div>
   <h1 id="PlaySnd">Type = PlaySnd</h1>
-  <div class="category">音声 >  | 実装されたバージョン: 2002.04.14 | 対象: 音声</div>
+  <div class="category">音声 > 音を再生 | 実装されたバージョン: 2002.04.14 | 対象: 音声</div>
 </div></div>
 
 </div></header>
@@ -134,7 +134,7 @@ PlaySnd | MUGEN State Controller - Name = すら
 
 
 
-				
+		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/StopSnd.html"><code>StopSnd</code></a>, <a href="./../State/SndPan.html"><code>SndPan</code></a></div>		
 	</div>
 
   <section id="Parameter"><div class="section">
@@ -166,11 +166,50 @@ PlaySnd | MUGEN State Controller - Name = すら
                   value = グループ番号, サウンド番号                (整数, 整数)
       </dt>
       <dd>
-        <div class="description"></div>
+        <div class="description"><p>再生する音声を指定。</p><p>10,1のようにDEFファイルのSoundで指定したSNDファイルに登録した音声を指定して再生します。</p><p>F0,5のようにFをつけるとcommon.sndから共通の音声を再生できます。</p></div>
 
         <div class="option-value">
 
-          
+          <div class="possible-value">
+                    <div>
+          <table>
+            <tr>
+              <th>common.sndグループ</th>
+              <th>音</th>
+            </tr>
+            <tr>
+              <td>F5,0</td>
+              <td>打撃音(弱)</td>
+            </tr><tr>
+              <td>F5,1</td>
+              <td>打撃音(やや弱)</td>
+            </tr><tr>
+              <td>F5,2</td>
+              <td>打撃音(中)</td>
+            </tr><tr>
+              <td>F5,3</td>
+              <td>打撃音(やや強)</td>
+            </tr><tr>
+              <td>F5,4</td>
+              <td>打撃音(強)</td>
+            </tr><tr>
+              <td>F6,0</td>
+              <td>ガード音</td>
+            </tr><tr>
+              <td>F7,0</td>
+              <td>倒れ着地音(弱)</td>
+            </tr><tr>
+              <td>F7,1</td>
+              <td>倒れ着地音(中)</td>
+            </tr><tr>
+              <td>F7,2</td>
+              <td>倒れ着地音(強)</td>
+            </tr><tr>
+              <td>F20,0</td>
+              <td>暗転音</td>
+            </tr>          </table>
+          </div>
+                      </div>
                     <div class="range-value">
                                               </div>
           
@@ -188,15 +227,42 @@ PlaySnd | MUGEN State Controller - Name = すら
                   Volume = 音量                (整数)
       </dt>
       <dd>
-        <div class="description"><p>音量を指定。0が標準で、正数だと音が大きく、負数だと小さくなるようです。</p></div>
+        <div class="description"><p>音量の強弱を調整。</p><p>0が標準で、正数だと音が大きく、負数だと小さくなります。</p></div>
 
         <div class="option-value">
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: -255</span>
+                        ,                        <span class="max-value">最大値: 255</span>
+                      </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
+          
+        
+        </div>
+
+
+      </dd>
+    </dl>
+        <dl class="parameter">
+      <dt class="main">
+                  ;VolumeScale = 音量                (浮動小数点数)
+      </dt>
+      <dd>
+        <div class="description"><p>音量を調整。</p><p>Version1.0からVolumeがVolumeScaleに変更されました。</p><p>100は100%、50は50%になります。0で無音。</p></div>
+
+        <div class="option-value">
+
+          
+                    <div class="range-value">
+                        <span class="min-value">最小値: 0</span>
+                        ,                        <span class="max-value">最大値: 100</span>
+                      </div>
+          
+                    <div class="default-value">省略時のデフォルト値： 100</div>
+          
           
         
         </div>
@@ -217,7 +283,8 @@ PlaySnd | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;LowPriorityが実行されません。</div>
+          
           
         
         </div>
@@ -230,7 +297,7 @@ PlaySnd | MUGEN State Controller - Name = すら
                   FreqMul = 周波数                (浮動小数点数)
       </dt>
       <dd>
-        <div class="description"><p>周波数を倍数で指定。例えば1.1にすると、ピッチが1割り増しとなります。たぶん。</p></div>
+        <div class="description"><p>周波数を倍数で指定。</p><p>1.0で音声に変化はなし、1.0より小さくすると低音、1.0より大きくすると高音になります。</p></div>
 
         <div class="option-value">
 
@@ -238,7 +305,8 @@ PlaySnd | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 1.0</div>
+          
           
         
         </div>
@@ -259,7 +327,8 @@ PlaySnd | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： 0</div>
+          
           
         
         </div>
@@ -302,7 +371,8 @@ PlaySnd | MUGEN State Controller - Name = すら
                     <div class="range-value">
                                               </div>
           
-                    
+                    <div class="default-value">省略時のデフォルト値： ;Panが優先して実行されます。</div>
+          
           
         
         </div>
@@ -366,6 +436,12 @@ PlaySnd | MUGEN State Controller - Name = すら
 
 			<tbody>
 								<tr>
+					<td></td>
+					<td>
+										
+										</td>
+				</tr>
+								<tr>
 					<td>警告文</td>
 					<td>
 					<blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">					ILLEGAL PLAYSND GROUPNO:Value第1引数に-2以下
@@ -402,13 +478,14 @@ PlaySnd | MUGEN State Controller - Name = すら
 			<li>Type                       = PlaySnd</li>
 			<li>Trigger1                   = 1</li>
 															<li class="optional-parameter">Channel                    = -1</li>
-									<li class="required-parameter">value                      = </li>
-									<li class="optional-parameter">Volume                     = </li>
-									<li class="optional-parameter">LowPriority                = </li>
-									<li class="optional-parameter">FreqMul                    = </li>
-									<li class="optional-parameter">Loop                       = </li>
+									<li class="required-parameter">value                      = ?, ?</li>
+									<li class="optional-parameter">Volume                     = 0</li>
+									<li class="optional-parameter">;VolumeScale               = 100</li>
+									<li class="optional-parameter">LowPriority                = ;LowPriorityが実行されません。</li>
+									<li class="optional-parameter">FreqMul                    = 1.0</li>
+									<li class="optional-parameter">Loop                       = 0</li>
 									<li class="optional-parameter">Pan                        = 0</li>
-									<li class="optional-parameter">AbsPan                     = </li>
+									<li class="optional-parameter">AbsPan                     = ;Panが優先して実行されます。</li>
 									<li class="optional-parameter">Persistent                 = 1</li>
 									<li class="optional-parameter">IgnoreHitPause             = 0</li>
 				
@@ -432,6 +509,7 @@ PlaySnd | MUGEN State Controller - Name = すら
 				Channel(1) => 
 				value(2, 3) => 
 				Volume(4) => 
+				;VolumeScale(4) => 
 				LowPriority(5) => 
 				FreqMul(6) => 
 				Loop(7) => 
@@ -450,8 +528,9 @@ PlaySnd | MUGEN State Controller - Name = すら
 		<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>
-					<li><cite><a href="http://www.elecbyte.com/mugendocs/sctrls.html#playsnd" target="_blank" rel="external">PlaySnd - State Controller Reference(version 1.0)</a></cite></li>
-					<li><cite><a href="http://www.elecbyte.com/mugendocs-11b1/sctrls.html#playsnd" target="_blank" rel="external">PlaySnd - State Controller Reference(version 1.1)</a></cite></li>
+					<li><cite><a href="/MUGEN/document/Official/2002.04.14/sctrls.html#PlaySnd" target="_blank" rel="external">PlaySnd - State Controller Reference(version 2002.04.14)</a></cite></li>
+					<li><cite><a href="https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#playsnd" target="_blank" rel="external">PlaySnd - State Controller Reference(version 1.0)</a></cite></li>
+					<li><cite><a href="https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#playsnd" target="_blank" rel="external">PlaySnd - State Controller Reference(version 1.1)</a></cite></li>
 					<li><cite><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PlaySnd" target="_blank" rel="external">PlaySnd - M.U.G.E.N wiki</a></cite></li>
 					<li><cite><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PlaySnd&protocol=http" target="_blank" rel="external">PlaySnd - State Controller</a></cite></li>
 					<li><cite><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PlaySnd" target="_blank" rel="external">PlaySnd - 東方夢幻館</a></cite></li>
@@ -508,6 +587,33 @@ PlaySnd | MUGEN State Controller - Name = すら
 
 <div id="box2">
 
+<div class="article-survey-container">
+<div class="toc" id="toc">
+<div class="title">目次</div>
+<ul style="">
+
+	<script>
+var a = document.getElementsByTagName("section");
+for(var i = 0; i < a.length; i++) {
+	document.write("<li style=\"white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\"><a href=\"#"+a[i].id+"\">" + a[i].getElementsByTagName("h2")[0].innerText + "</a></li>");
+	var b = a[i].getElementsByTagName("h3");
+	if (b.length == 0) {b = a[i].getElementsByTagName("dt");}
+	document.write("<ul>");
+	for(var j = 0; j < b.length; j++) {
+		b[j].id=i+"-"+j;
+		document.write("<li style=\"white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\"><a href=\"#"+i+"-"+j+"\">" + b[j].innerText.replace(/\s+.*$/,"") + "</a></li>");
+	}
+	document.write("</ul>");
+}
+	</script>
+
+</ul></div>
+</div>
+
+</div>
+
+
+<div id="box2">
 <div class="article-survey-container">
   <div class="menu">
       
@@ -787,33 +893,6 @@ PlaySnd | MUGEN State Controller - Name = すら
 <div id="box2">
 
 <div class="article-survey-container">
-<div class="toc" id="toc">
-<div class="title">目次</div>
-<ul style="">
-
-	<script>
-var a = document.getElementsByTagName("section");
-for(var i = 0; i < a.length; i++) {
-	document.write("<li style=\"white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\"><a href=\"#"+a[i].id+"\">" + a[i].getElementsByTagName("h2")[0].innerText + "</a></li>");
-	var b = a[i].getElementsByTagName("h3");
-	if (b.length == 0) {b = a[i].getElementsByTagName("dt");}
-	document.write("<ul>");
-	for(var j = 0; j < b.length; j++) {
-		b[j].id=i+"-"+j;
-		document.write("<li style=\"white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\"><a href=\"#"+i+"-"+j+"\">" + b[j].innerText.replace(/\s+.*$/,"") + "</a></li>");
-	}
-	document.write("</ul>");
-}
-	</script>
-
-</ul></div>
-</div>
-
-</div>
-
-<div id="box2">
-
-<div class="article-survey-container">
 <!-- start feedwind code --><script type="text/javascript">(function() {var params = {rssmikle_url: "https://github.com/bluesura/bluesura.github.io/commits/master.atom",rssmikle_frame_width: "100%",rssmikle_frame_height: "100%",frame_height_by_article: "5",rssmikle_target: "_blank",rssmikle_font: "'Roboto', '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Verdana, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;",rssmikle_font_size: "",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "off",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "更新履歴",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#383838",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#3367D6",rssmikle_item_border_bottom: "off",rssmikle_item_description: "off",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#383838",rssmikle_item_date: "ja",rssmikle_timezone: "Etc/GMT",datetime_format: "",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "5",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><!--  end  feedwind code -->
 </div>
 
@@ -860,7 +939,7 @@ for(var i = 0; i < a.length; i++) {
         <li><a href="http://www.elecbyte.com/mugen">M.U.G.E.N</a></li>
         <li><a href="http://network.mugenguild.com/justnopoint/1.0docs/mugen.html">M.U.G.E.N 1.0 と 1.1b</a></li>
         <li><a href="http://mug3.anikipedia.com/mugen.htm">M.U.G.E.N 1.1</a></li>
-        <li><a href="http://homepage2.nifty.com/oriheus/ikemen/">I.K.E.M.E.N</a></li>
+        <li><a href="https://www64.atwiki.jp/ikemen_wiki/pages/4.html">I.K.E.M.E.N</a><!--http://homepage2.nifty.com/oriheus/ikemen/--></li>
       </ul>
 
       <ul>

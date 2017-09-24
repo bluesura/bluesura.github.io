@@ -3,7 +3,7 @@
 		"title": "MUGEN Trigger",
 		"subtitle": "Asin",
 		"target": "",
-		"category": ["", ""],
+		"category": ["数値計算", "Xラジアンの逆正弦は何ですか？ "],
 		"version": "2002.04.14",
 		"update": "2016.01.17",
 		"type": "document",
@@ -17,16 +17,17 @@
 		"Asin(ラジアン)"
 	],
 
-	"description": "<p>引数のアークサイン（逆正弦）値を返します。つまり、sinθ=引数となるθを、ラジアンで返します。概要:引数には、アークサインを計算したい値をfloatで指定します。戻り値の型: float</p>",
+	"description": "<p>引数のアークサイン（逆正弦）値を返します。つまり、sinθ=引数となるθを、ラジアンで返します。</p><p>戻り値の型: float</p>",
 	"version": [
 		{"no": "エラー", "content": "引数がアークサインの範囲外([-1.0,1.0])の場合もSFalseとなります。"}
 	],
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "アークサイン1",
 			"code": [
-				""
+				";およそ π/2",
+				"value = Asin(1)"
 			]
 		}
 	],

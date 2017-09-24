@@ -3,7 +3,7 @@
 		"title": "MUGEN Trigger",
 		"subtitle": "MatchNo",
 		"target": "",
-		"category": ["", ""],
+		"category": ["試合の情報", "何試合目ですか？"],
 		"version": "2002.04.14",
 		"update": "2015.12.28",
 		"type": "document",
@@ -12,18 +12,23 @@
 	"category": "trigger",
 
 	"trigger": "MatchNo",
-	"summary": "<p>現在の試合番号を返します。</p>",
+	"summary": "<p>現在の試合数を返します。</p>",
 	"syntax":[
 		"MatchNo"
 	],
 
-	"description": "<p>アーケードモードで勝利するたび1増えます。対戦時は常に1です。 戻り値の型: int詳細:MatchNoは、対戦モードでは常に1です。アーケード、チームアーケードモードでは、コンティニューや勝利により試合が切り替わるごとに、1ずつ増え、ゲームオーバー、ゲームクリアーなどでゲームを終わらせた場合、1に戻ります。</p>",
+	"description": "<p>初期値は1。アーケード・チームアーケードモードで勝利・コンティニューするたびに試合数が1増えます。ゲームオーバー・クリアで試合が終わると1に戻ります。</p><p>通常の対戦モードでは常に1を返します。</p><p>戻り値の型: int</p>",
 
 	"code_sample": [
 		{
-			"title": "",
+			"title": "特殊ゲージを初期化するための設定",
+			"description": "1試合目の1ラウンド目だけ、特殊ゲージの値を初期化するようにフラグをたてます。",
 			"code": [
-				""
+				"[State ]",
+				"Type       = VarSet",
+				"TriggerAll = !NumPartner",
+				"Trigger1   = var(51) != 10 || MatchNo = 1 && RoundNo = 1 && var(52) = 2",
+				"var(50)    = 1"
 			]
 		}
 	],

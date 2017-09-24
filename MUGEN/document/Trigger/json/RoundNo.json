@@ -25,6 +25,17 @@
 			"code": [
 				"Trigger1 = RoundNo = 3"
 			]
+		},
+		{
+			"title": "特殊ゲージを初期化するための設定",
+			"description": "1試合目の1ラウンド目だけ、特殊ゲージの値を初期化するようにフラグをたてます。",
+			"code": [
+				"[State ]",
+				"Type       = VarSet",
+				"TriggerAll = !NumPartner",
+				"Trigger1   = var(51) != 10 || MatchNo = 1 && RoundNo = 1 && var(52) = 2",
+				"var(50)    = 1"
+			]
 		}
 	],
 

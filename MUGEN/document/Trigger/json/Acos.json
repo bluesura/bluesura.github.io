@@ -17,7 +17,10 @@
 		"Acos(ラジアン)"
 	],
 
-	"description": "<p>引数には、アークコサイン（逆余弦）を計算したいfloat値を指定します。引数には、アークコサイン（逆余弦）を計算したいfloat値を指定します。float(少数型)</p>",
+	"description": "<p>引数には、アークコサイン（逆余弦）を計算したいfloat値を指定します。引数には、アークコサイン（逆余弦）を計算したいfloat値を指定します。</p><p>戻り値の型: float</p>",
+
+	"associated_trigger": ["Asin", "Atan", "Cos", "Sin", "Tan"],
+
 	"version": [
 		{"no": "エラー", "content": "引数がSFalseの場合、SFalseを返します。または、引数がアークコサインの範囲外([-1.0,1.0])の場合もSFalseとなります。"}
 	],

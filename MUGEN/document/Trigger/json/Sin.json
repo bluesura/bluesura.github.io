@@ -3,7 +3,7 @@
 		"title": "MUGEN Trigger",
 		"subtitle": "Sin",
 		"target": "",
-		"category": ["数値計算", "Xラジアンの正弦はどれくらいですか？"],
+		"category": ["数値計算", "Xラジアンの正弦は何ですか？"],
 		"version": "2002.04.14",
 		"update": "2016.01.17",
 		"type": "document",
@@ -17,7 +17,9 @@
 		"Sin(ラジアン)"
 	],
 
-	"description": "<p>引数には、サインを計算したい値をfloatで指定します。 time等を引数にしてパレットのフラッシュや振動する軌道に。戻り値の型: float</p>",
+	"description": "<p>引数には、サインを計算したい値をfloatで指定します。 time等を引数にしてパレットのフラッシュや振動する軌道に。</p><p>戻り値の型: float</p>",
+
+	"associated_trigger": ["Acos", "Asin", "Atan", "Cos", "Tan"],
 
 	"code_sample": [
 		{

@@ -3,7 +3,7 @@
 		"title": "MUGEN Trigger",
 		"subtitle": "Tan",
 		"target": "",
-		"category": ["三角関数", "正接は何ですか？"],
+		"category": ["数値計算", "Xラジアンの正接は何ですか？"],
 		"version": "2002.04.14",
 		"update": "2015.12.28",
 		"type": "document",
@@ -17,7 +17,9 @@
 		"Tan(ラジアン)"
 	],
 
-	"description": "<p>正接を浮動小数点数で返します。引数には、浮動小数点数のタンジェントで指定します。</p>",
+	"description": "<p>正接を浮動小数点数で返します。引数には、浮動小数点数のタンジェントで指定します。</p><p>戻り値の型: float</p>",
+
+	"associated_trigger": ["Acos", "Asin", "Atan", "Cos", "Sin"],
 
 	"version": [
 		{"no": "エラー", "content": "引数がSFalseの場合、SFalseを返します。"}

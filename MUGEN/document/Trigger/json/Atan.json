@@ -3,7 +3,7 @@
 		"title": "MUGEN Trigger",
 		"subtitle": "Atan",
 		"target": "",
-		"category": ["", ""],
+		"category": ["数値計算", "Xラジアンの逆正接は何ですか？"],
 		"version": "2002.04.14",
 		"update": "2016.01.17",
 		"type": "document",
@@ -17,7 +17,9 @@
 		"Atan(ラジアン)"
 	],
 
-	"description": "<p>引数のアークタンジェント（逆正接）値を返します。つまり、tanθ=引数となるθを、ラジアンで返します。概要:引数には、アークタンジェントを計算したい値をfloatで指定します。戻り値の型: float</p>",
+	"description": "<p>引数のアークタンジェント（逆正接）値を返します。つまり、tanθ=引数となるθを、ラジアンで返します。概要:引数には、アークタンジェントを計算したい値をfloatで指定します。</p><p>戻り値の型: float</p>",
+
+	"associated_trigger": ["Asin", "Acos", "Cos", "Sin", "Tan"],
 
 	"code_sample": [
 		{

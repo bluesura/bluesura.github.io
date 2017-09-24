@@ -3,7 +3,7 @@
 		"title": "MUGEN Trigger",
 		"subtitle": "Cos",
 		"target": "",
-		"category": ["", ""],
+		"category": ["数値計算", "Xラジアンの余弦は何ですか？"],
 		"version": "2002.04.14",
 		"update": "2016.01.17",
 		"type": "document",
@@ -17,7 +17,9 @@
 		"Cos(ラジアン)"
 	],
 
-	"description": "<p>引数には、コサインを計算したい値をfloatで指定します。戻り値の型: float余弦波を点滅や軌道に利用します。</p>",
+	"description": "<p>引数には、コサインを計算したい値をfloatで指定します。余弦波を点滅や軌道に利用します。</p><p>戻り値の型: float</p>",
+
+	"associated_trigger": ["Acos", "Asin", "Atan", "Sin", "Tan"],
 
 	"code_sample": [
 		{

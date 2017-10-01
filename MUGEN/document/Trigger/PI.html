@@ -174,6 +174,86 @@ PI | 円周率は？ | MUGEN Trigger - Name = すら
 
 	
 
+		<section id="CodeSample"><div class="section">
+		<h2>コードサンプル</h2>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type     = Angleset</li>
+							<li>Trigger1 = Time = 0</li>
+							<li>value    = -180/PI * Atan((Vel Y) / (Vel X))</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type           = ModifyExplod</li>
+							<li>Trigger1       = NumExplod(8865)</li>
+							<li>Trigger1       = Root,StateNo = 3703</li>
+							<li>Scale          = fvar(32) ** .5 * .7 , fvar(32) * (1.0 + .3 * Sin(PI * 2.0 / 32.0 * (Time % 32 + Random % 8)))</li>
+							<li>Trans          = AddAlpha</li>
+							<li>Alpha          = 100, 255</li>
+							<li>ID             = 8865</li>
+							<li>IgnoreHitPause = 1</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type     = AngleSet</li>
+							<li>Trigger1 = Vel X != 0 || Vel Y != 0</li>
+							<li>Value    = ATan ( Vel Y / Vel X ) * ( -180.0 / PI )</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type     = VarSet</li>
+							<li>Trigger1 = var(0) = [0,1]</li>
+							<li>var(3)   = Atan((-1*(P2BodyDist Y-50)/(P2BodyDist X+50)))*180/PI +(IfElse(Random%2=0,-1,1)*Random%10)</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type     = VarAdd</li>
+							<li>Trigger1 = fvar(4) >= 1*PI || fvar(4) <= -1*PI</li>
+							<li>fv       = 4</li>
+							<li>value    = IfElse(fvar(4)>=1*PI,-2*PI,2*PI)</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type       = VarSet</li>
+							<li>TriggerAll = Var(20) = 1 && StateNo = 640</li>
+							<li>Trigger1   = P2Dist X - (39) > 0</li>
+							<li>Trigger1   = Atan((P2Dist Y-(-53)+EnemyNear,Const(Size.Mid.Pos.Y))/(P2Dist X - (39)))*180/PI <= 25</li>
+							<li>Trigger2   = P2Dist X - (39) < 0</li>
+							<li>Trigger2   = Atan((P2Dist Y-(-53)+EnemyNear,Const(Size.Mid.Pos.Y))/(P2Dist X - (39)))*180/PI >= -25</li>
+							<li>fv         = 0</li>
+							<li>value      = 25</li>
+						</ul>
+			</code></div>
+			</div><br>
+				</div></section>
 	
 
 	

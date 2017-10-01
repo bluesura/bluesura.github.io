@@ -19,6 +19,75 @@
 
 	"description": "<p> 定数(<script>document.write(Math.PI)</script>)です。ラジアンに180/piをかけると度になります。</p><p>戻り値の型: float</p>",
 
+
+	"code_sample": [
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type     = Angleset",
+				"Trigger1 = Time = 0",
+				"value    = -180/PI * Atan((Vel Y) / (Vel X))"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type           = ModifyExplod",
+				"Trigger1       = NumExplod(8865)",
+				"Trigger1       = Root,StateNo = 3703",
+				"Scale          = fvar(32) ** .5 * .7 , fvar(32) * (1.0 + .3 * Sin(PI * 2.0 / 32.0 * (Time % 32 + Random % 8)))",
+				"Trans          = AddAlpha",
+				"Alpha          = 100, 255",
+				"ID             = 8865",
+				"IgnoreHitPause = 1"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type     = AngleSet",
+				"Trigger1 = Vel X != 0 || Vel Y != 0",
+				"Value    = ATan ( Vel Y / Vel X ) * ( -180.0 / PI )"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type     = VarSet",
+				"Trigger1 = var(0) = [0,1]",
+				"var(3)   = Atan((-1*(P2BodyDist Y-50)/(P2BodyDist X+50)))*180/PI +(IfElse(Random%2=0,-1,1)*Random%10)"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type     = VarAdd",
+				"Trigger1 = fvar(4) >= 1*PI || fvar(4) <= -1*PI",
+				"fv       = 4",
+				"value    = IfElse(fvar(4)>=1*PI,-2*PI,2*PI)"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type       = VarSet",
+				"TriggerAll = Var(20) = 1 && StateNo = 640",
+				"Trigger1   = P2Dist X - (39) > 0",
+				"Trigger1   = Atan((P2Dist Y-(-53)+EnemyNear,Const(Size.Mid.Pos.Y))/(P2Dist X - (39)))*180/PI <= 25",
+				"Trigger2   = P2Dist X - (39) < 0",
+				"Trigger2   = Atan((P2Dist Y-(-53)+EnemyNear,Const(Size.Mid.Pos.Y))/(P2Dist X - (39)))*180/PI >= -25",
+				"fv         = 0",
+				"value      = 25"
+			]
+		}
+	],
+
 	"quote": [
 		{"title": "PI - Trigger Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PI"},
 		{"title": "PI - Trigger Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#pi-math"},

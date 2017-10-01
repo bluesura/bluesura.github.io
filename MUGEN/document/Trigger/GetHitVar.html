@@ -1,80 +1,101 @@
 <!DOCTYPE html>
 <html lang="ja" itemscope itemtype="http://schema.org/Article">
 <head>
-  <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
+	<!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Language" content="ja">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="referrer" content="unsafe-url" />
-  <meta name="robots" content="INDEX,FOLLOW">
-  <meta name="viewport" content="width=device-width">
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Language" content="ja">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="referrer" content="unsafe-url">
+	<meta name="robots" content="INDEX,FOLLOW">
+	<meta name="viewport" content="width=device-width">
 
 
-  <title itemprop="headline">
+	<title itemprop="headline">
 GetHitVar | MUGEN Trigger - Name = すら
-  </title>
+	</title>
 
-  <!---->
-  <meta name="apple-mobile-web-app-title" content="MUGEN Document" />
-  <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN Document">
-  <link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
-  <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
-  <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
-  <link rel="apple-touch-icon" sizes="128x128" href="/media/img/icon-128x128.png">
-  <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/media/img/icon-128x128.png">
-  <link rel="icon" sizes="192x192" href="/media/img/icon-192x192.png">
-  <meta name="msapplication-TileImage" content="/media/img/icon-512x512.png">
+	<!---->
+	<meta name="apple-mobile-web-app-title" content="MUGEN Document">
+	<link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN Document">
+	<link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
+	<link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
+	<link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
+	<link rel="apple-touch-icon" sizes="128x128" href="/media/img/icon-128x128.png">
+	<link rel="apple-touch-icon-precomposed" sizes="128x128" href="/media/img/icon-128x128.png">
+	<link rel="icon" sizes="192x192" href="/media/img/icon-192x192.png">
+	<meta name="msapplication-TileImage" content="/media/img/icon-512x512.png">
 
-  <link rel="mask-icon" href="/media/img/infinite-M.svg" color="#1E88E5">
-  <meta name="theme-color" content="#1E88E5">
-  <meta name="msapplication-TileColor" content="#1E88E5">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="manifest" href="/manifest.json">
-  <!---->
+	<link rel="mask-icon" href="/media/img/infinite-M.svg" color="#1E88E5">
+	<meta name="theme-color" content="#1E88E5">
+	<meta name="msapplication-TileColor" content="#1E88E5">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="manifest" href="/manifest.json">
+	<!---->
 
-  <!-- 「チェス盤を引っくり返す！」 -->
-  <meta name="author" content="sura">
-  <meta name="copyright" content="Copyright© SURA(すら) All rights reserved." />
-  <link rel="author" title="sura" href="https://twitter.com/bluesura">
-  
-  <link rel="canonical" href="https://bluesura.github.io/MUGEN/document/Trigger/GetHitVar.html">
-  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = すらの更新履歴" type="application/atom+xml">
-  <meta name="generator" content="Smarty">
-  <!-- 「駄目ね、全然駄目だわ」 -->
+	<!-- 「チェス盤を引っくり返す！」 -->
+	<meta name="author" content="SURA(すら)">
+	<meta name="author" content="https://plus.google.com/115204078302617252163">
+	<meta name="copyright" content="Copyright© SURA(すら) All rights reserved.">
+	<meta name="rating" content="General">
+	<meta name="referrer" content="unsafe-url">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="me" href="https://twitter.com/bluesura">
+	<link rel="me" href="https://github.com/bluesura/">
+	<link rel="me" href="mailto:suteadddayov@gmail.com">
+	<link rel="index" href="https://bluesura.github.io/">
 
-  <!-- ジョインジョイン OGP -->
-  <meta name="description" content="movetypeがH以外の場合、たとえ共通やられステート(5000番台)にいても0しか返しません。概要:パラメータ名は以下の文字列から指定します。詳しい内容については詳細を参照のこと。xveladd, yveladd, type, animtype, airtype, groundtype, damage, hitcount, fallcount, hitshaketime, hittime, slidetime, ctrltime,recovertime, xoff, yoff, zoff, xvel, yvel, yaccel, hitid, chainid, guarded, fall, fall.damage, fall.xvel, fall.yvel, fall.recover, fall.time, fall.recovertime.戻り値の型:パラメータに依存します。詳細を参照のこと。詳細:xveladd: KOされたときの横方向の加算速度を返します。(float)yveladd: KOされたときの垂直方向の加算速度を返します。(float)type: HitDefのtypeパラメータを数字で返します。: 0 - non, 1 - high, 2 - low, 3 - trip (地上ヒット時のみ) animtype:HitDefのanimtypeパラメータを数字で返します。(0 - light, 1 - medium, 2 - hard, 3 - back, 4 - up, 5 - diag-up)airtype: HitDefのairtypeパラメータを数字で返します。groundtype: HitDefのgroundtypeパラメータを数字で返します。damage: コンタクトの瞬間のみ、ダメージ値を返します。ガードのときは、削りダメージを返します。(int)hitcount:攻撃をうけている間のヒット数を返します。3ヒット目なら3を返します。画面に表示されているヒット数ではなく、自分が受けたコンボのヒット数です。(int)fallcount: 攻撃をうけている間の、地面に落下した回数を返します。(int)hitshaketime:攻撃を受けてブルブルする時間の残り時間を返します。具体的には、ヒットの瞬間にHitDefのpausetimeを返し、0になるまで1フレームにつき1づつ減っていきます。(int)hittime: ヒット(ガード)が終了するまでの残り時間を返します。(int)slidetime: 地上ヒット(ガード)時、スライドが終了するまでの残り時間を返します。(int)ctrltime: ガード時、コントロール可能になるまでの残り時間を返します。(int)recovertime:ダウン状態から起き上がるまでの残り時間を返します。ボタン連打で短縮されます。(int)xoff: &quot;Snap&quot; の x オフセットを返します。(謎)yoff: &quot;Snap&quot; の y オフセットを返します。(謎)zoff: &quot;Snap&quot; の z オフセットを返します。(謎)xvel: 横方向の速度を返します。(float)yvel: 垂直方向の速度を返します。(float)yaccel: 垂直方向の加速度を返します。(float)chainid: HitDefのchainidを返します。(int)guarded: ガードのとき1を、それ以外で0を返します。(int)fall: fallのとき1を、それ以外で0を返します。(int)fall.damage: 落下で受けるダメージを返します。(int)fall.xvel: 落下バウンド時の横方向の速度を返します。(float)fall.yvel: 落下バウンド時の垂直方向の速度を返します。(float)fall.recover: 空中復帰(x+y)が可能なとき1を、それ以外のとき0を返します。fall.recovertime: 空中復帰(x+y)が可能になるまでの残り時間を返します。(int)fall.kill: HitDefのfall.kill パラメータを返します。(int)fall.envshake.time: HitDefのfall.envshake.time パラメータを返します。(int)fall.envshake.freq: HitDefのfall.envshake.freq パラメータを返します。(float)fall.envshake.ampl: HitDefのfall.envshake.ampl パラメータを返します。(int)fall.envshake.phase: HitDefのfall.envshake.phase パラメータを返します。(float)">
+	<link rel="canonical" href="https://bluesura.github.io/MUGEN/document/Trigger/GetHitVar.html">
+	<link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="Name = すらの更新履歴" type="application/atom+xml">
+	<meta name="generator" content="Smarty">
+	<!-- 「駄目ね、全然駄目だわ」 -->
 
-  <meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/GetHitVar.html">
-  <meta property="og:title" content="GetHitVar | MUGEN Trigger">
-  <meta property="og:description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ja_JP">
-  <meta property="og:site_name" content="Name = sura">
-  <meta name="twitter:site" content="@bluesura">
-  <meta name="twitter:creator" content="@bluesura">
-  <meta name="twitter:url" content="https://bluesura.github.io/MUGEN/document/Trigger/GetHitVar.html">
-  <meta name="twitter:title" content="GetHitVar | MUGEN Trigger">
-  <meta name="twitter:description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
-  <meta name="twitter:card" content="summary_large_image">
+	<!-- ジョインジョイン OGP -->
+	<meta name="description" content="movetypeがH以外の場合、たとえ共通やられステート(5000番台)にいても0しか返しません。概要:パラメータ名は以下の文字列から指定します。詳しい内容については詳細を参照のこと。xveladd, yveladd, type, animtype, airtype, groundtype, damage, hitcount, fallcount, hitshaketime, hittime, slidetime, ctrltime,recovertime, xoff, yoff, zoff, xvel, yvel, yaccel, hitid, chainid, guarded, fall, fall.damage, fall.xvel, fall.yvel, fall.recover, fall.time, fall.recovertime.戻り値の型:パラメータに依存します。詳細を参照のこと。詳細:xveladd: KOされたときの横方向の加算速度を返します。(float)yveladd: KOされたときの垂直方向の加算速度を返します。(float)type: HitDefのtypeパラメータを数字で返します。: 0 - non, 1 - high, 2 - low, 3 - trip (地上ヒット時のみ) animtype:HitDefのanimtypeパラメータを数字で返します。(0 - light, 1 - medium, 2 - hard, 3 - back, 4 - up, 5 - diag-up)airtype: HitDefのairtypeパラメータを数字で返します。groundtype: HitDefのgroundtypeパラメータを数字で返します。damage: コンタクトの瞬間のみ、ダメージ値を返します。ガードのときは、削りダメージを返します。(int)hitcount:攻撃をうけている間のヒット数を返します。3ヒット目なら3を返します。画面に表示されているヒット数ではなく、自分が受けたコンボのヒット数です。(int)fallcount: 攻撃をうけている間の、地面に落下した回数を返します。(int)hitshaketime:攻撃を受けてブルブルする時間の残り時間を返します。具体的には、ヒットの瞬間にHitDefのpausetimeを返し、0になるまで1フレームにつき1づつ減っていきます。(int)hittime: ヒット(ガード)が終了するまでの残り時間を返します。(int)slidetime: 地上ヒット(ガード)時、スライドが終了するまでの残り時間を返します。(int)ctrltime: ガード時、コントロール可能になるまでの残り時間を返します。(int)recovertime:ダウン状態から起き上がるまでの残り時間を返します。ボタン連打で短縮されます。(int)xoff: &quot;Snap&quot; の x オフセットを返します。(謎)yoff: &quot;Snap&quot; の y オフセットを返します。(謎)zoff: &quot;Snap&quot; の z オフセットを返します。(謎)xvel: 横方向の速度を返します。(float)yvel: 垂直方向の速度を返します。(float)yaccel: 垂直方向の加速度を返します。(float)chainid: HitDefのchainidを返します。(int)guarded: ガードのとき1を、それ以外で0を返します。(int)fall: fallのとき1を、それ以外で0を返します。(int)fall.damage: 落下で受けるダメージを返します。(int)fall.xvel: 落下バウンド時の横方向の速度を返します。(float)fall.yvel: 落下バウンド時の垂直方向の速度を返します。(float)fall.recover: 空中復帰(x+y)が可能なとき1を、それ以外のとき0を返します。fall.recovertime: 空中復帰(x+y)が可能になるまでの残り時間を返します。(int)fall.kill: HitDefのfall.kill パラメータを返します。(int)fall.envshake.time: HitDefのfall.envshake.time パラメータを返します。(int)fall.envshake.freq: HitDefのfall.envshake.freq パラメータを返します。(float)fall.envshake.ampl: HitDefのfall.envshake.ampl パラメータを返します。(int)fall.envshake.phase: HitDefのfall.envshake.phase パラメータを返します。(float)">
+
+	<meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Trigger/GetHitVar.html">
+	<meta property="og:title" content="GetHitVar | MUGEN Trigger">
+	<meta property="og:description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="ja_JP">
+	<meta property="og:site_name" content="Name = sura">
+	<meta name="twitter:site" content="@bluesura">
+	<meta name="twitter:creator" content="@bluesura">
+	<meta name="twitter:url" content="https://bluesura.github.io/MUGEN/document/Trigger/GetHitVar.html">
+	<meta name="twitter:title" content="GetHitVar | MUGEN Trigger">
+	<meta name="twitter:description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
+	<meta name="twitter:card" content="summary_large_image">
 
 
-  <!-- もういい、ここまでだっ・・・ -->
+	<!-- もういい、ここまでだっ・・・ -->
 
 
-  <!---->
-  <link rel="stylesheet" href="/lib/css/material.css?version=2017811">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<!---->
+	<link rel="stylesheet" href="/lib/css/material.css?version=2017811">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-  <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
-  <script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
+	<script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
 
-  <!---->
+
+	<script type="application/ld+json">
+	{
+	"@context": "http://schema.org",
+	"@type": "WebSite",
+	"url": "https://www.google.co.jp/",
+	"potentialAction": {
+	 "@type": "SearchAction",
+	 "target": "https://www.google.co.jp/search?q=site%3Ahttps%3A%2F%2Fbluesura.github.io%2F+{q}&num=10",
+	 "query-input": "required name=q"
+	 }
+	}
+	</script>
+
+	<!---->
 
 
 

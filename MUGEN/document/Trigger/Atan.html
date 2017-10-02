@@ -167,7 +167,7 @@ Atan | Xラジアンの逆正接は何ですか？ | MUGEN Trigger - Name = す�
 			<p>引数のアークタンジェント（逆正接）値を返します。つまり、tanθ=引数となるθを、ラジアンで返します。概要:引数には、アークタンジェントを計算したい値をfloatで指定します。</p><p>戻り値の型: float</p>
 		</div>
 
-				<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/Asin.html"><code>Asin</code></a>, <a href="./../Trigger/Acos.html"><code>Acos</code></a>, <a href="./../Trigger/Cos.html"><code>Cos</code></a>, <a href="./../Trigger/Sin.html"><code>Sin</code></a>, <a href="./../Trigger/Tan.html"><code>Tan</code></a></div>	</div></section>
+				<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/Asin.html"><code>Asin</code></a>, <a href="./../Trigger/Acos.html"><code>Acos</code></a>, <a href="./../Trigger/Cos.html"><code>Cos</code></a>, <a href="./../Trigger/Sin.html"><code>Sin</code></a>, <a href="./../Trigger/Tan.html"><code>Tan</code></a>, <a href="./../Trigger/PI.html"><code>PI</code></a></div>	</div></section>
 	
 
 
@@ -181,7 +181,56 @@ Atan | Xラジアンの逆正接は何ですか？ | MUGEN Trigger - Name = す�
 						<div class="description"><p>結果は約π/4です。位置や速度から角度を計算するのに使えます。単位はラジアンなので、180/piをかけて度にすると良いです。戻り値の型はfloatなので注意。</p></div>
 						<div class="code"><code>
 			<ul>
-							<li>value = atan(1)</li>
+							<li>value = Atan(1)</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type     = AngleSet</li>
+							<li>Trigger1 = Time = 0</li>
+							<li>value    = -180/PI * Atan((Vel Y) / (Vel X))</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type     = AngleSet</li>
+							<li>Trigger1 = Vel X != 0 || Vel Y != 0</li>
+							<li>Value    = Atan ( Vel Y / Vel X ) * ( -180.0 / PI )</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type     = VarSet</li>
+							<li>Trigger1 = var(0) = [0,1]</li>
+							<li>var(3)   = Atan((-1*(P2BodyDist Y-50)/(P2BodyDist X+50)))*180/PI +(IfElse(Random%2=0,-1,1)*Random%10)</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type       = VarSet</li>
+							<li>TriggerAll = Var(20) = 1 && StateNo = 640</li>
+							<li>Trigger1   = P2Dist X - (39) > 0</li>
+							<li>Trigger1   = Atan((P2Dist Y-(-53)+EnemyNear,Const(Size.Mid.Pos.Y))/(P2Dist X - (39)))*180/PI <= 25</li>
+							<li>Trigger2   = P2Dist X - (39) < 0</li>
+							<li>Trigger2   = Atan((P2Dist Y-(-53)+EnemyNear,Const(Size.Mid.Pos.Y))/(P2Dist X - (39)))*180/PI >= -25</li>
+							<li>fv         = 0</li>
+							<li>value      = 25</li>
 						</ul>
 			</code></div>
 			</div><br>

@@ -167,7 +167,7 @@ Sin | Xラジアンの正弦は何ですか？ | MUGEN Trigger - Name = すら
 			<p>引数には、サインを計算したい値をfloatで指定します。 time等を引数にしてパレットのフラッシュや振動する軌道に。</p><p>戻り値の型: float</p>
 		</div>
 
-				<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/Acos.html"><code>Acos</code></a>, <a href="./../Trigger/Asin.html"><code>Asin</code></a>, <a href="./../Trigger/Atan.html"><code>Atan</code></a>, <a href="./../Trigger/Cos.html"><code>Cos</code></a>, <a href="./../Trigger/Tan.html"><code>Tan</code></a></div>	</div></section>
+				<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/Acos.html"><code>Acos</code></a>, <a href="./../Trigger/Asin.html"><code>Asin</code></a>, <a href="./../Trigger/Atan.html"><code>Atan</code></a>, <a href="./../Trigger/Cos.html"><code>Cos</code></a>, <a href="./../Trigger/Tan.html"><code>Tan</code></a>, <a href="./../Trigger/PI.html"><code>PI</code></a></div>	</div></section>
 	
 
 
@@ -180,7 +180,23 @@ Sin | Xラジアンの正弦は何ですか？ | MUGEN Trigger - Name = すら
 			<h3>Sin(π/2)をvalueに代入</h3>
 						<div class="code"><code>
 			<ul>
-							<li>value = Sin(Pi/2)</li>
+							<li>value = Sin(PI/2)</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State ]</li>
+							<li>Type           = ModifyExplod</li>
+							<li>Trigger1       = NumExplod(8865)</li>
+							<li>Trigger1       = Root,StateNo = 3703</li>
+							<li>Scale          = fvar(32) ** .5 * .7 , fvar(32) * (1.0 + .3 * Sin(PI * 2.0 / 32.0 * (Time % 32 + Random % 8)))</li>
+							<li>Trans          = AddAlpha</li>
+							<li>Alpha          = 100, 255</li>
+							<li>ID             = 8865</li>
+							<li>IgnoreHitPause = 1</li>
 						</ul>
 			</code></div>
 			</div><br>

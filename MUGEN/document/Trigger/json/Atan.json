@@ -19,14 +19,55 @@
 
 	"description": "<p>引数のアークタンジェント（逆正接）値を返します。つまり、tanθ=引数となるθを、ラジアンで返します。概要:引数には、アークタンジェントを計算したい値をfloatで指定します。</p><p>戻り値の型: float</p>",
 
-	"associated_trigger": ["Asin", "Acos", "Cos", "Sin", "Tan"],
+	"associated_trigger": ["Asin", "Acos", "Cos", "Sin", "Tan", "PI"],
 
 	"code_sample": [
 		{
 			"title": "Atan(1)の計算結果をvalueに代入します。",
 			"description": "<p>結果は約π/4です。位置や速度から角度を計算するのに使えます。単位はラジアンなので、180/piをかけて度にすると良いです。戻り値の型はfloatなので注意。</p>",
 			"code": [
-				"value = atan(1)"
+				"value = Atan(1)"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type     = AngleSet",
+				"Trigger1 = Time = 0",
+				"value    = -180/PI * Atan((Vel Y) / (Vel X))"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type     = AngleSet",
+				"Trigger1 = Vel X != 0 || Vel Y != 0",
+				"Value    = Atan ( Vel Y / Vel X ) * ( -180.0 / PI )"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type     = VarSet",
+				"Trigger1 = var(0) = [0,1]",
+				"var(3)   = Atan((-1*(P2BodyDist Y-50)/(P2BodyDist X+50)))*180/PI +(IfElse(Random%2=0,-1,1)*Random%10)"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type       = VarSet",
+				"TriggerAll = Var(20) = 1 && StateNo = 640",
+				"Trigger1   = P2Dist X - (39) > 0",
+				"Trigger1   = Atan((P2Dist Y-(-53)+EnemyNear,Const(Size.Mid.Pos.Y))/(P2Dist X - (39)))*180/PI <= 25",
+				"Trigger2   = P2Dist X - (39) < 0",
+				"Trigger2   = Atan((P2Dist Y-(-53)+EnemyNear,Const(Size.Mid.Pos.Y))/(P2Dist X - (39)))*180/PI >= -25",
+				"fv         = 0",
+				"value      = 25"
 			]
 		}
 	],

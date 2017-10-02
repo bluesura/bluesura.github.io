@@ -19,13 +19,27 @@
 
 	"description": "<p>引数には、サインを計算したい値をfloatで指定します。 time等を引数にしてパレットのフラッシュや振動する軌道に。</p><p>戻り値の型: float</p>",
 
-	"associated_trigger": ["Acos", "Asin", "Atan", "Cos", "Tan"],
+	"associated_trigger": ["Acos", "Asin", "Atan", "Cos", "Tan", "PI"],
 
 	"code_sample": [
 		{
 			"title": "Sin(π/2)をvalueに代入",
 			"code": [
-				"value = Sin(Pi/2)"
+				"value = Sin(PI/2)"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State ]",
+				"Type           = ModifyExplod",
+				"Trigger1       = NumExplod(8865)",
+				"Trigger1       = Root,StateNo = 3703",
+				"Scale          = fvar(32) ** .5 * .7 , fvar(32) * (1.0 + .3 * Sin(PI * 2.0 / 32.0 * (Time % 32 + Random % 8)))",
+				"Trans          = AddAlpha",
+				"Alpha          = 100, 255",
+				"ID             = 8865",
+				"IgnoreHitPause = 1"
 			]
 		}
 	],

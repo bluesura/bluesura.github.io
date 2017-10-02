@@ -50,7 +50,7 @@
 				"[State ]",
 				"Type     = AngleSet",
 				"Trigger1 = Vel X != 0 || Vel Y != 0",
-				"Value    = ATan ( Vel Y / Vel X ) * ( -180.0 / PI )"
+				"Value    = Atan ( Vel Y / Vel X ) * ( -180.0 / PI )"
 			]
 		},
 		{

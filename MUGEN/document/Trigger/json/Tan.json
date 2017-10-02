@@ -19,7 +19,7 @@
 
 	"description": "<p>正接を浮動小数点数で返します。引数には、浮動小数点数のタンジェントで指定します。</p><p>戻り値の型: float</p>",
 
-	"associated_trigger": ["Acos", "Asin", "Atan", "Cos", "Sin"],
+	"associated_trigger": ["Acos", "Asin", "Atan", "Cos", "Sin", "PI"],
 
 	"version": [
 		{"no": "エラー", "content": "引数がSFalseの場合、SFalseを返します。"}
@@ -29,7 +29,7 @@
 		{
 			"title": "Tan(π/4)をvalueに代入",
 			"code": [
-				"value = Tan(Pi/4)"
+				"value = Tan(PI/4)"
 			]
 		}
 	],

@@ -19,7 +19,7 @@
 
 	"description": "<p>引数のアークサイン（逆正弦）値を返します。つまり、sinθ=引数となるθを、ラジアンで返します。</p><p>戻り値の型: float</p>",
 
-	"associated_trigger": ["Acos", "Atan", "Cos", "Sin", "Tan"],
+	"associated_trigger": ["Acos", "Atan", "Cos", "Sin", "Tan", "PI"],
 
 	"version": [
 		{"no": "エラー", "content": "引数がアークサインの範囲外([-1.0,1.0])の場合もSFalseとなります。"}

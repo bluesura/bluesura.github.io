@@ -2,8 +2,8 @@
 	"page": {
 		"title": "MUGEN Trigger",
 		"subtitle": "Power",
-		"target": "",
-		"category": ["", ""],
+		"target": "実行者",
+		"category": ["ゲージ", "ゲージはどれだけありますか？"],
 		"version": "2002.04.14",
 		"update": "2015.12.24",
 		"type": "document",
@@ -21,9 +21,89 @@
 
 	"code_sample": [
 		{
-			"title": "ゲージ残量が1,000(レベル1)以上のときのトリガー。",
+			"title": "ゲージ残量が1,000(レベル1)以上のときのトリガー",
 			"code": [
-				"Trigger1 = Power >= 1000 "
+				"Trigger1 = Power >= 1000"
+			]
+		},
+		{
+			"title": "技の発動条件にする",
+			"code": [
+				"[State -1, Power Gathering]",
+				"Type       = ChangeState",
+				"value      = 300",
+				"TriggerAll = Command = \"A\"",
+				"TriggerAll = Command != \"HoldDown\"",
+				"TriggerAll = StateType = S",
+				"TriggerAll = Power < 3000",
+				"Trigger1   = Ctrl"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State -1, Kung Fu Whip_Ex]",
+				"Type       = ChangeState",
+				"value      = 1440",
+				"TriggerAll = var(59)=0||var(59)<=-2",
+				"TriggerAll = Command = \"baem_ex\"",
+				"TriggerAll = Power >= IfElse((PalNo>6),300,500)",
+				"Trigger1   = StateType != A && (Ctrl || var(41)=1)"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State -1, Guard Recovery]",
+				"Type           = ChangeState",
+				"TriggerAll     = var(59)=0||var(59)<=-2",
+				"TriggerAll     = Command = \"Recovery\"",
+				"Trigger1       = Power >= 500 && (StateNo = [150,153])",
+				"value          = IfElse(Command = \"HoldBack\", 161, 166)",
+				"IgnoreHitPause = 1"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State -3]",
+				"Type       = ChangeState",
+				"TriggerAll = var(59)",
+				"TriggerAll = RoundState = 2",
+				"TriggerAll = StateType != A ",
+				"TriggerAll = P2Life > 0",
+				"TriggerAll = (P2StateType = S) || (P2StateType = C)",
+				"TriggerAll = Random <= var(59) * 5 * 80",
+				"TriggerAll = P2BodyDist X >= 0",
+				"TriggerAll = IsHelper(1111)",
+				"Trigger1   = P2MoveType != A",
+				"Trigger1   = Power >= 1333",
+				"Trigger1   = Random <= var(59) * 8",
+				"Trigger1   = P2BodyDist X = [55, 75]",
+				"Trigger1   = P2StateNo != 130 && P2StateNo != 131",
+				"Trigger1   = ctrl",
+				"Trigger2   = StateNo = 210 && MoveHit && P2bodydist X > 30 && Power >= 340",
+				"Trigger3   = StateNo = 240 && MoveHit && P2bodydist X > 30 && Power >= 340",
+				"Trigger4   = StateNo = 410 && MoveHit && P2bodydist X > 30 && Power >= 340 && AnimElemTime(4) > 0 && AnimTime <= 0",
+				"value      = 1020"
+			]
+		},
+		{
+			"title": "",
+			"code": [
+				"[State -1]",
+				"type       = ChangeState",
+				"value      = 6060",
+				"TriggerAll = var(59)  = [0,1]",
+				"TriggerAll = Command = \"ulu\"",
+				"TriggerAll = Power >= 2000",
+				"TriggerAll = StateType != A",
+				"TriggerAll = StateNo != 6470",
+				"TriggerAll = StateNo != 6471",
+				"TriggerAll = StateNo != 6600",
+				"Trigger1   = Ctrl",
+				"Trigger2   = HitDefAttr = SC, NA, SA, HA",
+				"Trigger3   = MoveContact = 1"
 			]
 		}
 	],

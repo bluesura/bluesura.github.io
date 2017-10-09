@@ -13,7 +13,7 @@
 
 
 	<title itemprop="headline">
-Power | MUGEN Trigger - Name = すら
+Power | ゲージはどれだけありますか？ | MUGEN Trigger - Name = すら
 	</title>
 
 	<!---->
@@ -143,7 +143,7 @@ Power | MUGEN Trigger - Name = すら
 	<div>
 	<div class="entry-title" itemprop="name"><div>
 	<h1 id="Power">Power</h1>
-	<div class="category"> >  | 実装されたバージョン: 2002.04.14 | </div>
+	<div class="category">ゲージ > ゲージはどれだけありますか？ | 実装されたバージョン: 2002.04.14 | 対象: 実行者</div>
 </div></div>
 
 </div></header>
@@ -177,10 +177,100 @@ Power | MUGEN Trigger - Name = すら
 		<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<div>
-			<h3>ゲージ残量が1,000(レベル1)以上のときのトリガー。</h3>
+			<h3>ゲージ残量が1,000(レベル1)以上のときのトリガー</h3>
 						<div class="code"><code>
 			<ul>
-							<li>Trigger1 = Power >= 1000 </li>
+							<li>Trigger1 = Power >= 1000</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3>技の発動条件にする</h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State -1, Power Gathering]</li>
+							<li>Type       = ChangeState</li>
+							<li>value      = 300</li>
+							<li>TriggerAll = Command = "A"</li>
+							<li>TriggerAll = Command != "HoldDown"</li>
+							<li>TriggerAll = StateType = S</li>
+							<li>TriggerAll = Power < 3000</li>
+							<li>Trigger1   = Ctrl</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State -1, Kung Fu Whip_Ex]</li>
+							<li>Type       = ChangeState</li>
+							<li>value      = 1440</li>
+							<li>TriggerAll = var(59)=0||var(59)<=-2</li>
+							<li>TriggerAll = Command = "baem_ex"</li>
+							<li>TriggerAll = Power >= IfElse((PalNo>6),300,500)</li>
+							<li>Trigger1   = StateType != A && (Ctrl || var(41)=1)</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State -1, Guard Recovery]</li>
+							<li>Type           = ChangeState</li>
+							<li>TriggerAll     = var(59)=0||var(59)<=-2</li>
+							<li>TriggerAll     = Command = "Recovery"</li>
+							<li>Trigger1       = Power >= 500 && (StateNo = [150,153])</li>
+							<li>value          = IfElse(Command = "HoldBack", 161, 166)</li>
+							<li>IgnoreHitPause = 1</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State -3]</li>
+							<li>Type       = ChangeState</li>
+							<li>TriggerAll = var(59)</li>
+							<li>TriggerAll = RoundState = 2</li>
+							<li>TriggerAll = StateType != A </li>
+							<li>TriggerAll = P2Life > 0</li>
+							<li>TriggerAll = (P2StateType = S) || (P2StateType = C)</li>
+							<li>TriggerAll = Random <= var(59) * 5 * 80</li>
+							<li>TriggerAll = P2BodyDist X >= 0</li>
+							<li>TriggerAll = IsHelper(1111)</li>
+							<li>Trigger1   = P2MoveType != A</li>
+							<li>Trigger1   = Power >= 1333</li>
+							<li>Trigger1   = Random <= var(59) * 8</li>
+							<li>Trigger1   = P2BodyDist X = [55, 75]</li>
+							<li>Trigger1   = P2StateNo != 130 && P2StateNo != 131</li>
+							<li>Trigger1   = ctrl</li>
+							<li>Trigger2   = StateNo = 210 && MoveHit && P2bodydist X > 30 && Power >= 340</li>
+							<li>Trigger3   = StateNo = 240 && MoveHit && P2bodydist X > 30 && Power >= 340</li>
+							<li>Trigger4   = StateNo = 410 && MoveHit && P2bodydist X > 30 && Power >= 340 && AnimElemTime(4) > 0 && AnimTime <= 0</li>
+							<li>value      = 1020</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
+			<h3></h3>
+						<div class="code"><code>
+			<ul>
+							<li>[State -1]</li>
+							<li>type       = ChangeState</li>
+							<li>value      = 6060</li>
+							<li>TriggerAll = var(59)  = [0,1]</li>
+							<li>TriggerAll = Command = "ulu"</li>
+							<li>TriggerAll = Power >= 2000</li>
+							<li>TriggerAll = StateType != A</li>
+							<li>TriggerAll = StateNo != 6470</li>
+							<li>TriggerAll = StateNo != 6471</li>
+							<li>TriggerAll = StateNo != 6600</li>
+							<li>Trigger1   = Ctrl</li>
+							<li>Trigger2   = HitDefAttr = SC, NA, SA, HA</li>
+							<li>Trigger3   = MoveContact = 1</li>
 						</ul>
 			</code></div>
 			</div><br>

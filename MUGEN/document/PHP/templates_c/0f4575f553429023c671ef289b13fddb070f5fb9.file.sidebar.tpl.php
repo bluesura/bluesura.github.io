@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-10-10 07:17:36
+<?php /* Smarty version Smarty-3.1.12, created on 2017-10-14 16:50:11
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\sidebar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:177649319359856355d5ed93-27807919%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0f4575f553429023c671ef289b13fddb070f5fb9' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\sidebar.tpl',
-      1 => 1507612645,
+      1 => 1507992600,
       2 => 'file',
     ),
   ),
@@ -97,9 +97,6 @@ $_smarty_tpl->tpl_vars['temp']->_loop = true;
 
 
 <div id="recruit" class="article-survey-container">
-
-<div class="title">お知らせ</div>
-<p>実験的に <a href="https://coinhive.com">coinhive</a> を導入しております。CPUの使用率が上昇しますがウィルスではございませんのでご安心下さい。</p>
 
 <div class="title">記事に不備があった場合</div>
 <p>不備があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。</p>

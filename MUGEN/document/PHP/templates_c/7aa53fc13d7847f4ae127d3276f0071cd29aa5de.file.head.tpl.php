@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-10-01 19:34:07
+<?php /* Smarty version Smarty-3.1.12, created on 2017-10-16 20:01:37
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:92329205059856355aa4755-89030705%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7aa53fc13d7847f4ae127d3276f0071cd29aa5de' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1506879244,
+      1 => 1508176780,
       2 => 'file',
     ),
   ),
@@ -131,7 +131,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 	<!---->
 	<link rel="stylesheet" href="/lib/css/material.css?version=2017811">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/lib/css/yakuhanjp.min.css">
 
 	<script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>

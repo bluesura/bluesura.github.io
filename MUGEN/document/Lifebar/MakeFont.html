@@ -13,7 +13,7 @@
 
 
 	<title itemprop="headline">
-MakeFont | MUGEN Lifebar - Name = すら
+M.U.G.E.N専用フォントの作成方法.fnt | MUGEN Lifebar Reference - Name = すら
 	</title>
 
 	<!---->
@@ -57,7 +57,7 @@ MakeFont | MUGEN Lifebar - Name = すら
 	<meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 
 	<meta property="og:url" content="https://bluesura.github.io/MUGEN/document/Lifebar/MakeFont.html">
-	<meta property="og:title" content="MakeFont | MUGEN Lifebar">
+	<meta property="og:title" content="M.U.G.E.N専用フォントの作成方法.fnt | MUGEN Lifebar Reference">
 	<meta property="og:description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 	<meta property="og:type" content="website">
 	<meta property="og:locale" content="ja_JP">
@@ -65,7 +65,7 @@ MakeFont | MUGEN Lifebar - Name = すら
 	<meta name="twitter:site" content="@bluesura">
 	<meta name="twitter:creator" content="@bluesura">
 	<meta name="twitter:url" content="https://bluesura.github.io/MUGEN/document/Lifebar/MakeFont.html">
-	<meta name="twitter:title" content="MakeFont | MUGEN Lifebar">
+	<meta name="twitter:title" content="M.U.G.E.N専用フォントの作成方法.fnt | MUGEN Lifebar Reference">
 	<meta name="twitter:description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 	<meta name="twitter:card" content="summary_large_image">
 
@@ -127,7 +127,7 @@ MakeFont | MUGEN Lifebar - Name = すら
 
 		<div id="blog-title-content">
 			<h1 id="title"><a href="./">
-								MUGEN Lifebar
+								MUGEN Lifebar Reference
 			</a></h1>
 
 			<div id="blog-description"><div class="notice">MUGENで良いキャラを作るポイントは…　<span title="小技とかメモの書き方とか色々参考になります。">「良いキャラのソースコードを読む」</span>-><span title="コピーすることは悪いことじゃない。良いコードを手際よく使いまわすのはいいプログラマーの証。">「コピペ」</span>-><span title="解らなければ掲示板で相談！">「記述を理解」</span>-><span title="その記述が絶対にいいわけではない。車輪の再発明。">「自分でアレンジ」</span></div></div>
@@ -144,17 +144,15 @@ MakeFont | MUGEN Lifebar - Name = すら
 
 <div class="entry-content">
 <div class="section">
-﻿<div>
-	<h3>準備するツール</h3>
+﻿<h1>M.U.G.E.N専用フォントの作成方法.fnt</h1>
+
+<section><div>
+	<h2>準備</h2>
 	<ul>
-		<li><a href="http://www8.plala.or.jp/kusutaku/iview/" target="_blank">IrfanView</a>
+		<li><a href="https://forest.watch.impress.co.jp/library/software/irfanview/" target="_blank">IrfanView</a>
 		<div>- 多機能なツール。今回は画像の減色に使用。軽いしいろいろ便利なので入れておいて損はなし。</div>
 		</li>
-		<li>FontFactory<br>
-		<ul>
-			<li><a href="http://www.virtualltek.com/downloads" target="_blank">download1</a></li>
-			<li><a href="http://mugensh.kr/mugendownload/4292" target="_blank">download2</a></li>
-		</ul>
+		<li><a href="http://www.mugeno.pro/load/other/tools/font_factory/45-1-0-188" target="_blank">FontFactory</a><br>
 		<div>- 名前の通りフォント作成ツール。他にもあるけど個人的に１番使いやすいかな</div>
 		</li>
 		<li><a href="http://www.woodybells.com/jtrim.html" target="_blank">Jtrim</a>と<a href="http://www.vector.co.jp/soft/winnt/art/se267746.html" target="_blank">jointogether</a>
@@ -167,11 +165,11 @@ MakeFont | MUGEN Lifebar - Name = すら
 		<div>- 画像の余白部分をカットしてくれる。</div>
 		</li>
 	</ul>
-</div>
+</div></section>
 	
 
-<div>
-	<h3>準備編</h3>
+<section><div>
+	<h2>データ作成</h2>
 	<div>
 	フォントに使用したい画像準備。<br>
 	<img src="./img/make_font00.jpg" alt="今回使用する元画像" /><br>
@@ -196,10 +194,10 @@ MakeFont | MUGEN Lifebar - Name = すら
 	<img src="./img/make_font08.jpg" alt="edgeを使ってパレットを編集している様子" /><br>
 	IrfanViewを使ってPCXに変換
 	</div>
-</div>
+</div></section>
 
-<div>
-	<h3>さあ作ろうか</h3>
+<section><div>
+	<h2>フォント作成</h2>
 	<div>
 	ここでようやくFontFactoryを起動<br>
 	Open Imageボタン（フォルダから画像が出でるやつ）をクリック。先ほど作ったPCXファイルを読み込む。
@@ -236,20 +234,19 @@ MakeFont | MUGEN Lifebar - Name = すら
 	で、本来ならStart in the pixelとwidthの値で、画像の黄色い線が表示されるはずなんだけど、これはなぜか一度作成したフォントファイルを読み込み直さないと表示されません。なので、一度保存して読み込み直すとイイかも。フォントファイルの保存は左上のフロッピーボタンで保存できます。<br>
 	<img src="./img/make_font09.jpg" alt="FontFactoryで作ったfntファイルを読み込んだ時" /><br>
 	</div>
-</div>
+</div></section>
 
 
-<div>
-	<h3>■設定できる文字一覧</h3>
+<section><div>
+	<h2>設定できる文字一覧</h2>
 	<div>
 	<style type="text/css">
 	.chartable tbody tr td {
 		width: 8em;
 		padding: 2px;
-		text-align: center;
 	}
 	</style>
-	<table class="chartable" id="setting_character">
+	<table class="chartable" id="setting_character" style="text-align: center;">
 	<tbody>
 	<tr>
 	<td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td>
@@ -292,40 +289,46 @@ MakeFont | MUGEN Lifebar - Name = すら
 	</table>
 	MUGEN本体のfntより、引用。赤いのは、予約文字といって直接その文字を使用できないので、別の形に置き換えられています。0x3Bみたいに入力したらそれは;として扱われます。別に全部設定しなくても大丈夫です。ですが、設定しなかった文字は空白として表示されます。
 	</div>
-</div>
+</div></section>
 
-<div>
-<h3>引用記事</h3>
+<section><div>
+<h2>引用記事</h2>
 	<ul>
 		<li><a href="https://docs.google.com/viewer?a=v&amp;q=cache:wk0WfSKcE1UJ:moogen.piiym.net/files/LifeBar_tutorial.doc+&amp;hl=ja&amp;gl=jp&amp;pid=bl&amp;srcid=ADGEESjMMLACx97cJMbe_PLaOB4LIuGXjLUNCCX1oBR6A31VtVR1MH9gRGgTR-gQP9aDqukKTvHoFMgSgdkWv_6LmQZxnMwFH3e8ylyHvzVehxlEv5NQ1sDesHoDQPK2ABxZxR4F0Spl&amp;sig=AHIEtbR4dlMgJl-_ZzZAvDxFlEzHe3WnDA" target="_blank">Cabbit007's LifeBar Tutorial - RANDOM SELECT</a></li>
 		<li><a href="http://gorogorom.blog44.fc2.com/" target="_blank">ごろごろむ</a></li>
-		<li><a href="http://page.freett.com/mugen_m3/NewMugen-3.html#2-5" target="_blank">新Mugenについて - 気まぐれ猫</a></li>
-		<li><a href="http://elecbyte.com/wiki/index.php/Fonts/ja" target="_blank">Fonts/ja - M.U.G.E.N Wiki</a></li>
+		<li><a href="https://web.archive.org/web/20130412195348/http://page.freett.com/mugen_m3/NewMugen-3.html" target="_blank">新Mugenについて - 気まぐれ猫</a></li>
+		<li><a href="https://web.archive.org/web/20141230125910/http://elecbyte.com/wiki/index.php/Fonts/ja" target="_blank">Fonts/ja - M.U.G.E.N Wiki</a></li>
 		<li><a href="http://mug3.anikipedia.com/hokanko/tinshiva/font1.htm" target="_blank">フォント製作術 - 無限高校</a></li>
 	</ul>
-</div>
+</div></section>
 
 <hr>
-<h3>■おまけ</h3>
-<ol>
-<li><a href="http://elecbyte.com/wiki/index.php/Fonts/ja" target="_blank">公式のFont Document</a></li>
-<li><a href="http://www.vector.co.jp/soft/win95/art/se119281.html" target="_blank">Capture STAFF</a>
-<div>- 画像のキャプチャ</div>
-</li>
-<li><a href="http://spring-fragrance.mints.ne.jp/aviutl/" target="_blank">aviutl</a> + <a href="http://www.vector.co.jp/soft/winnt/art/se368508.html" target="_blank">Display2AVI</a>
-<div>- 動きが早いものを録画して、フレーム単位で確認できる</div>
-</li>
-</ol>
-<br>
-<h3 id="apply">■ちょっと応用</h3>
-<ol>
-<li>コンボとかの表示について・・・
-<div><a href="./Combo.html">[Combo]</a>の設定を見てもらうと分かるんですけど、コンボでは背景画像を設定できません。そこでフォントファイルに背景画像をあらかじめ読み込んでおき、数字以外の何か適当な文字に設定しておきます。そして、textに「%i 【設定した文字】」みたいに書いてやると背景画像を表示できます。ただし、文字に変わりないので調整とかは難しいかもです。</div>
-</li>
-<li>Color Bankを使って、複数のカラーを使えるようにしてみよう
-<div><a href="http://mug3.anikipedia.com/hokanko/tinshiva/font8.htm">応用編（Color Bank）</a>の説明がわかりやすいです。自分の言葉で説明すると、さっきカラーパレットで、背景色以外の色を設定しましたが、その後ろに空きがあるなら、先ほどと同じ数だけの適当な色を設定しておけばfontの設定で色を変更することができます。</div>
-</li>
-</ol>
+
+
+<section><div>
+	<h2>おまけ</h2>
+	<ol>
+	<li><a href="http://www.vector.co.jp/soft/win95/art/se119281.html" target="_blank">Capture STAFF</a>
+	<div>- 画像のキャプチャ</div>
+	</li>
+	<li><a href="http://spring-fragrance.mints.ne.jp/aviutl/" target="_blank">aviutl</a> + <a href="http://www.vector.co.jp/soft/winnt/art/se368508.html" target="_blank">Display2AVI</a>
+	<div>- 動きが早いものを録画して、フレーム単位で確認できる</div>
+	</li>
+	</ol>
+</div></section>
+
+
+<section><div>
+	<h3 id="apply">ちょっと応用</h2>
+	<ol>
+	<li>コンボとかの表示について・・・
+	<div><a href="./Combo.html">[Combo]</a>の設定を見てもらうと分かるんですけど、コンボでは背景画像を設定できません。そこでフォントファイルに背景画像をあらかじめ読み込んでおき、数字以外の何か適当な文字に設定しておきます。そして、textに「%i 【設定した文字】」みたいに書いてやると背景画像を表示できます。ただし、文字に変わりないので調整とかは難しいかもです。</div>
+	</li>
+	<li>Color Bankを使って、複数のカラーを使えるようにしてみよう
+	<div><a href="http://mug3.anikipedia.com/hokanko/tinshiva/font8.htm">応用編（Color Bank）</a>の説明がわかりやすいです。自分の言葉で説明すると、さっきカラーパレットで、背景色以外の色を設定しましたが、その後ろに空きがあるなら、先ほどと同じ数だけの適当な色を設定しておけばfontの設定で色を変更することができます。</div>
+	</li>
+	</ol>
+</div></section>
     <nav class="breadcrumb">
       <div>
         <ul>

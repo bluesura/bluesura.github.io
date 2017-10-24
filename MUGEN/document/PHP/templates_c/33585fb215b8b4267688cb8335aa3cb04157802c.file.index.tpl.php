@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-22 16:08:05
+<?php /* Smarty version Smarty-3.1.12, created on 2017-10-24 16:52:54
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:57629682259856356744441-43996048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '33585fb215b8b4267688cb8335aa3cb04157802c' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\index.tpl',
-      1 => 1503410881,
+      1 => 1508856606,
       2 => 'file',
     ),
   ),

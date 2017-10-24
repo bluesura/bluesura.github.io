@@ -106,7 +106,7 @@ for ($i = 0; $i < $loop_end; $i++) {
 $categorie["page"]["level"] = "2";
 $categorie["site_name"] = $SITE_NAME;
 $categorie["page_category"] = "State";
-$categorie["page_title"] = "MUGEN State Controller";
+$categorie["page_title"] = "MUGEN State Controller Reference";
 $categorie["page_subtitle"] = "";
 $categorie["categories"] = $categories;
 $categorie["description"] = "";
@@ -180,7 +180,7 @@ for ($i = 0; $i < $loop_end; $i++) {
 $categorie["page"]["level"] = "2";
 $categorie["site_name"] = $SITE_NAME;
 $categorie["page_category"] = "Trigger";
-$categorie["page_title"] = "MUGEN Trigger";
+$categorie["page_title"] = "MUGEN Trigger Reference";
 $categorie["page_subtitle"] = "";
 $categorie["categories"] = $categories;
 $categorie["description"] = "";
@@ -223,7 +223,7 @@ for ($i = 0; $i < $loop_end; $i++) {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 /* 初期化 */
 $RELATIVE_PATH = "Lifebar";
-$PAGE_TITLE = "MUGEN Lifebar";
+$PAGE_TITLE = "MUGEN Lifebar Reference";
 $PAGE_SUBTITLE = "";
 
 /*
@@ -327,7 +327,9 @@ for ($i = 0; $i < $loop_end; $i++) {
   $categorie["page_category"] = "Lifebar";
   $categorie["page_title"] = $PAGE_TITLE;
   $categorie["page"]["level"] = "2";
-  $categorie["page_subtitle"] = $name;
+	$array_result = [];
+	preg_match('/<h1>(.+?)<\/h1>/',$categorie["html"],$array_result);
+  $categorie["page_subtitle"] = $array_result[1];
   $categorie["categories"] = $categories;
   $categorie["sidebar"] = $sidebar;
   $filename = $name.".html";

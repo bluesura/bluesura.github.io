@@ -32,13 +32,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</article></section>
 
 	<section><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
-		<div class="entry-header"><h2 class="entry-title">当サイトのアクセス数</h2></div>
-		<ul>
-		  <li><a href="https://datastudio.google.com/reporting/0B2d-4YUWlRbGdFhoRUdoQkc2ck0/page/JkmF">レポート</a></li>
-		</ul>
-	</article></section>
-
-	<section><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
 		<div class="entry-header"><h2 class="entry-title">連絡先</h2></div>
 		<ul>
 			<li><a href="https://twitter.com/bluesura">Twitter</a></li>

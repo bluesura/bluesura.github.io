@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-10-24 16:53:50
+<?php /* Smarty version Smarty-3.1.12, created on 2017-10-26 16:44:04
          compiled from ".\..\Template\top_page.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:244445693d7abd15318-77658589%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd2e2dcfa06c7dc4c655a5a2ff320851c72d02598' => 
     array (
       0 => '.\\..\\Template\\top_page.tpl',
-      1 => 1508856826,
+      1 => 1509029012,
       2 => 'file',
     ),
   ),
@@ -51,13 +51,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		  <li><a href="/MUGEN/document/Lifebar/index.html">LifeBar Reference</a></li>
 		  <li><a href="/MUGEN/document/State/index.html">State Controller Reference</a></li>
 		  <li><a href="/MUGEN/document/Trigger/index.html">Trigger Reference</a></li>
-		</ul>
-	</article></section>
-
-	<section><article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
-		<div class="entry-header"><h2 class="entry-title">当サイトのアクセス数</h2></div>
-		<ul>
-		  <li><a href="https://datastudio.google.com/reporting/0B2d-4YUWlRbGdFhoRUdoQkc2ck0/page/JkmF">レポート</a></li>
 		</ul>
 	</article></section>
 

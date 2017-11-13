@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-22 15:52:51
+<?php /* Smarty version Smarty-3.1.12, created on 2017-11-13 17:18:15
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:174921311359856356937294-25017316%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c2315a2f6cde0447e6b872510cef665570213aa1' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content.tpl',
-      1 => 1503409963,
+      1 => 1510589891,
       2 => 'file',
     ),
   ),
@@ -100,6 +100,17 @@ $_smarty_tpl->tpl_vars['contributor']->_loop = true;
 
 <?php echo $_smarty_tpl->getSubTemplate ("./nav.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-ex+6c-2-c9+mp"
+     data-ad-client="ca-pub-9960110085246197"
+     data-ad-slot="8121105860"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
   </div>
 </article></div>

@@ -13,6 +13,7 @@
 	"state": "TargetLifeAdd",
 	"description": "<p>ターゲットの体力を増減します。投げなどに使用。攻撃力、防御力も考慮されます。</p>",
 	"category": "state",
+	"associated_trigger": ["Life", "LifeMax"],
 	"associated_state": [
 		"LifeAdd","LifeSet",
 		"BindToTarget","TargetBind",

@@ -3,7 +3,7 @@
 		"title": "MUGEN State Controller",
 		"subtitle": "LifeSet",
 		"target": "実行者自身",
-		"category": ["ライフ操作", "指定した値にライフを変更"],
+		"category": ["ライフ", "指定した値にライフを変更"],
 		"version": "2002.04.14",
 		"update": "2014.12.30",
 		"type": "document",
@@ -13,7 +13,8 @@
 	"state": "LifeSet",
 	"description": "<p>体力を指定値に変更します。全回復技、自分が瀕死になる技などに。</p>",
 	"category": "state",
-	"associated_state": ["LifeAdd","TargetLifeAdd"],
+	"associated_trigger": ["Life", "LifeMax"],
+	"associated_state": ["LifeAdd", "TargetLifeAdd"],
 
 	"version": [
 		{"no": "仕様", "content": "<code>RoundState=3</code>ではライフが増減されません。<br>※ただし、パラメーターは読み込まれます。"},

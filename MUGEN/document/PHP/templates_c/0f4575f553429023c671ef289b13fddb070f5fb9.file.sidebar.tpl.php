@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-11-13 17:30:30
+<?php /* Smarty version Smarty-3.1.12, created on 2017-12-17 19:39:03
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\sidebar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:177649319359856355d5ed93-27807919%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0f4575f553429023c671ef289b13fddb070f5fb9' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\sidebar.tpl',
-      1 => 1510590625,
+      1 => 1513493980,
       2 => 'file',
     ),
   ),
@@ -110,6 +110,10 @@ $_smarty_tpl->tpl_vars['temp']->_loop = true;
 
 
 <div id="recruit" class="article-survey-container">
+<div class="title">プロフィール</div>
+<p>管理者：SURA(すら)</p>
+<p>M.U.G.E.Nのリファレンスほそぼそと更新。本サイトは「なるべくわかりやすい」と「ない情報を集める」を目標にしています。詳しい動作を調べたい場合は<a href="https://www49.atwiki.jp/mugencns/">MUGEN CNS WIKI CHAOS@予定</a>をオススメします。</p>
+<p>Twitter：<a href="https://twitter.com/bluesura">@bluesura</a></p>
 
 <div class="title">記事に不備があった場合</div>
 <p>不備があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。</p>

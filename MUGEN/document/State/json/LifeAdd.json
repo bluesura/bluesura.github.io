@@ -57,6 +57,37 @@
 		}
 	],
 
+	"code_sample": [
+		{
+			"title": "ライフを-1ずつ減少させる記述",
+			"description": "<p>ADI氏のMUGENストーリーの話より。</p>",
+			"code": [
+				"[StateDef -2]",
+				"[State ];ライフ自動減少",
+				"Type           = LifeAdd ;ライフ増減",
+				"value          = -1 ;-1",
+				"Trigger1       = GameTime % 12 = 0 ;12F1回。（ライフ1000で約12000F。）",
+				"Trigger1       = RoundState = 2 ;試合中",
+				"IgnoreHitPause = 1;ヒットポーズ無視",
+				"Kill           = 0 ;このライフ減少でK.O.にならない。（省略時1でK.O.になる）",
+				";ライフ1000なら約200秒。ダメージを考慮するとそれ以下"
+			]
+		},
+		{
+			"title": "ライフを1ずつ回復させる記述",
+			"description": "<p>ADI氏のMUGENストーリーの話より。</p>",
+			"code": [
+				"[StateDef -2]",
+				"[State ];ライフ自動増加",
+				"Type  = LifeAdd ;ライフ増減",
+				"Value = 1",
+				"Trigger1 = GameTime % 6 = 0 ;6F1回。（ライフ100まで約600F。）",
+				"Trigger1 = RoundState = 2 ;試合中",
+				"IgnoreHitPause = 1;ヒットポーズ無視"
+			]
+		}
+	],
+
 	"quote": [
 		{"title": "LifeAdd - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#LifeAdd"},
 		{"title": "LifeAdd - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#lifeadd"},
@@ -65,7 +96,7 @@
 		{"title": "LifeAdd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?LifeAdd&protocol=http"},
 		{"title": "LifeAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#LifeAdd"},
 		{"title": "LifeAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"},
-		{"title": "ライフに関するTwitetrのつぶやき", "url": "https://twitter.com/i/moments/895934923969765378"}
-
+		{"title": "ライフに関するTwitetrのつぶやき", "url": "https://twitter.com/i/moments/895934923969765378"},
+		{"title": "ADIのMUGENメモ", "url": "http://mugen.niza.nobody.jp"}
 	]
 }

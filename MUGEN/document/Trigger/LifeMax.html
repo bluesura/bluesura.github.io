@@ -347,6 +347,21 @@ LifeMax | 体力の最大値は？ | MUGEN Trigger - Name = すら
 			</code></div>
 			</div><br>
 			<div>
+			<h3>根性の補正を条件分岐させる記述</h3>
+						<div class="description"><p>匿名スマブラー氏作成のアルカナハート ゼニア・ヴァロフの記述より。</p></div>
+						<div class="code"><code>
+			<ul>
+							<li>[State ];根性補正 敷居40最大補正35</li>
+							<li>Type           = VarSet</li>
+							<li>Trigger1       = !IsHelper</li>
+							<li>fvar(19)       =</li>
+							<li>IfElse((Life*1000/(LifeMax)<=400),IfElse(Helper(60000),var(19)=0,(1-0.35)+(0.35*Life/(LifeMax*0.40)),1),1)</li>
+							<li>IgnoreHitPause = 1</li>
+							<li>Persistent     = 1</li>
+						</ul>
+			</code></div>
+			</div><br>
+			<div>
 			<h3></h3>
 						<div class="description"><p></p></div>
 						<div class="code"><code>
@@ -372,7 +387,7 @@ LifeMax | 体力の最大値は？ | MUGEN Trigger - Name = すら
 	</div></section>
 	
 
-<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2015-12-24">2015.12.24</time></div></div>
+<div><div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div><div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-12-26">2017.12.26</time></div></div>
 
     <nav class="breadcrumb">
       <div>

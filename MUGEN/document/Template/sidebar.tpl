@@ -42,7 +42,7 @@ for(var i = 0; i < a.length; i++) {
 <div id="box2">
 <div class="article-survey-container">
   <div class="menu">
-  {if $content != NULL}
+  {if !empty($content)}
     {*<ul><li><div>*}
   {foreach $content.sidebar as $temp}
         {$temp}
@@ -56,9 +56,7 @@ for(var i = 0; i < a.length; i++) {
 
 <div id="box2">
 {literal}
-<div class="article-survey-container">
-<!-- start feedwind code --><script type="text/javascript">(function() {var params = {rssmikle_url: "https://github.com/bluesura/bluesura.github.io/commits/master.atom",rssmikle_frame_width: "100%",rssmikle_frame_height: "100%",frame_height_by_article: "5",rssmikle_target: "_blank",rssmikle_font: "'Roboto', '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Verdana, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;",rssmikle_font_size: "",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "off",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "更新履歴",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#383838",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#3367D6",rssmikle_item_border_bottom: "off",rssmikle_item_description: "off",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#383838",rssmikle_item_date: "ja",rssmikle_timezone: "Etc/GMT",datetime_format: "",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "5",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><!--  end  feedwind code -->
-</div>
+<div class="mamewaza_blog"><div><div class="mamewaza_blog_exp"><span class="mamewaza_assembled">powered by <a href="http://mamewaza.com/tools/" target="_blank" rel="nofollow">まめわざ</a></span></div></div></div><script type="text/javascript" src="https://mamewaza.net/blog.js?200311"></script><script type="text/javascript">mamewaza_blog({selector:"#mamewaza_blog",feed:"https://github.com/bluesura/bluesura.github.io/commits/master.atom",rpp:"5",height:"auto",exp:true,url:false,date:"0",style:"div.mamewaza_blog > div{background-color:transparent;}div.mamewaza_blog ul.mamewaza_blog{background-color:transparent;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog li,div.mamewaza_blog div.mamewaza_blog_exp{padding:10px;}div.mamewaza_blog > div{padding:0px;border:1px solid #eeeeee;font-size:12px;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog ul.mamewaza_blog,div.mamewaza_blog li{border-bottom:1px solid #eeeeee;}div.mamewaza_blog h5.mamewaza_blog a,div.mamewaza_blog a.mamewaza_blog_title{color:#000;font-size:14px;text-shadow:none;}div.mamewaza_blog a.mamewaza_blog_title{font-weight:normal;}div.mamewaza_blog,div.mamewaza_blog a{color:#999999;}div.mamewaza_blog a.mamewaza_blog_url{color:#999999;}"})</script>
 {/literal}
 </div>
 

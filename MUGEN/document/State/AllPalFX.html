@@ -54,7 +54,7 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
 	<!-- 「駄目ね、全然駄目だわ」 -->
 
 	<!-- ジョインジョイン OGP -->
-	<meta name="description" content="画面全体のパレットに指定色を加算・乗算します。OwnPalパラメーターを無視して、画面,ステージ,ライフバー,キャラクター(Explod,Helperを含む)などのオブジェクトに適用されます。ただし、AllPalFXは影響を受けない,PalFX系で上書き,SuperPauseによる暗転を行うと背景や相手への効果が消える,AfterImageの残像,ライフバーのアニメーション,キャラクターの影など例外があります。キャラクターのみに加算する場合はPalFX,背景のみに加算する場合はBGPalFX,指定色で塗りつぶしたい場合はEnvColor。">
+	<meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 
 	<meta property="og:url" content="https://bluesura.github.io/MUGEN/document/State/AllPalFX.html">
 	<meta property="og:title" content="AllPalFX | MUGEN State Controller">
@@ -84,7 +84,6 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
 	<link rel="stylesheet" href="/lib/css/yakuhanjp.min.css">
 
 	<script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
 	<script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
 
 
@@ -122,7 +121,6 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-	<script src="https://embed.small.chat/T0F4QF673G6M8EPAEN.js" async></script>
 
 
 <div id="container"><div id="content-inner">
@@ -168,7 +166,7 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
     <h2>パラメーター</h2>
             <dl class="parameter">
       <dt class="main">
-                  Time = 持続時間                (整数)
+          Time = 持続時間        (整数)
       </dt>
       <dd>
         <div class="description"><p>効果の持続時間をフレーム単位で指定します。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>ステートが変わっても有効のため、効果持続中にやられステートへ移行しても効果は持続します。回避方法は、<code>AllPalFX</code>を<code>Time=1</code>に設定してトリガーで時間を調整します。ただし、<code>SinAdd</code>が機能しないので注意。別の方法は、効果を終わらせたいタイミングで<code>Time=0</code>だけを指定した<code>AllPalFX</code>を実行して値を上書きします。ただし、相手プレイヤーの<code>AllPalFX</code>を打ち消すことがあるので管理に注意。</p><p>※60フレーム=1秒</p></div>
@@ -192,7 +190,7 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Color = 彩度                (整数)
+          Color = 彩度        (整数)
       </dt>
       <dd>
         <div class="description"><p>パレットの彩度を下げます。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style="background-color: hsl(0, 0%, 100%);border: 1px solid #000;">　</span><br><span style="background-color: hsl(0, 0%, 80%);">　</span><span style="background-color: hsl(0, 10%, 80%);">　</span><span style="background-color: hsl(0, 20%, 80%);">　</span><span style="background-color: hsl(0, 30%, 80%);">　</span><br><span style="background-color: hsl(0, 0%, 60%);">　</span><span style="background-color: hsl(0, 10%, 60%);">　</span><span style="background-color: hsl(0, 20%, 60%);">　</span><span style="background-color: hsl(0, 30%, 60%);">　</span><span style="background-color: hsl(0, 40%, 60%);">　</span><span style="background-color: hsl(0, 50%, 60%);">　</span><span style="background-color: hsl(0, 60%, 60%);">　</span><span style="background-color: hsl(0, 70%, 60%);">　</span><br><span style="background-color: hsl(0, 0%, 50%);">　</span><span style="background-color: hsl(0, 10%, 50%);">　</span><span style="background-color: hsl(0, 20%, 50%);">　</span><span style="background-color: hsl(0, 30%, 50%);">　</span><span style="background-color: hsl(0, 40%, 50%);">　</span><span style="background-color: hsl(0, 50%, 50%);">　</span><span style="background-color: hsl(0, 60%, 50%);">　</span><span style="background-color: hsl(0, 70%, 50%);">　</span><span style="background-color: hsl(0, 80%, 50%);">　</span><span style="background-color: hsl(0, 90%, 50%);">　</span><span style="background-color: hsl(0, 100%, 50%);">　</span><br><span style="background-color: hsl(0, 0%, 40%);">　</span><span style="background-color: hsl(0, 10%, 40%);">　</span><span style="background-color: hsl(0, 20%, 40%);">　</span><span style="background-color: hsl(0, 30%, 40%);">　</span><span style="background-color: hsl(0, 40%, 40%);">　</span><span style="background-color: hsl(0, 50%, 40%);">　</span><span style="background-color: hsl(0, 60%, 40%);">　</span><span style="background-color: hsl(0, 70%, 40%);">　</span><br><span style="background-color: hsl(0, 0%, 20%);">　</span><span style="background-color: hsl(0, 10%, 20%);">　</span><span style="background-color: hsl(0, 20%, 20%);">　</span><span style="background-color: hsl(0, 30%, 20%);">　</span><br><span style="background-color: hsl(0, 0%, 0%);">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p></div>
@@ -216,7 +214,7 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Add = 加算する赤色, 加算する緑色, 加算する青色                (整数, 整数, 整数)
+          Add = 加算する赤色, 加算する緑色, 加算する青色        (整数, 整数, 整数)
       </dt>
       <dd>
         <div class="description"><p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style="border: 1px solid #000;background: rgb(256,0,0);">　</span><code>Add=256,0,0</code>の場合、<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)は<span style="border: 1px solid #000;background: rgb(256,0,0);">　</span>赤(256,0,0)になりますが、<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)は<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)のままです。</p></div>
@@ -240,7 +238,7 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Mul = 合成する赤色, 合成する緑色, 合成する青色                (整数, 整数, 整数)
+          Mul = 合成する赤色, 合成する緑色, 合成する青色        (整数, 整数, 整数)
       </dt>
       <dd>
         <div class="description"><p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style="border: 1px solid #000;background: rgb(64,256,64);">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)は<span style="border: 1px solid #000;background: rgb(1,256,1);">　</span>緑(1,256,1)になりますが、<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)は<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)のままです。</p></div>
@@ -264,7 +262,7 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  SinAdd = 周期する赤色, 周期する緑色, 周期する青色, 周期                (整数, 整数, 整数, 整数)
+          SinAdd = 周期する赤色, 周期する緑色, 周期する青色, 周期        (整数, 整数, 整数, 整数)
       </dt>
       <dd>
         <div class="description"><p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style="border: 1px solid #000;background: rgb(0,0,256);">　</span><code>SinAdd=0,0,256,20</code>,<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)は、5F後<span style="border: 1px solid #000;background: rgb(128,128,256);">　</span>(128,128,256)になり、10F後<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)に戻り、15F後<span style="border: 1px solid #000;background: rgb(128,128,0);">　</span>(128,128,0)、20F後<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)に戻る、という周期を繰り返します。</p></div>
@@ -273,7 +271,9 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0, 0, 0, 0</div>
           
@@ -294,7 +294,7 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  InvertAll = 色反転フラグ                (0か1)
+          InvertAll = 色反転フラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p>色を反転するか・しないかのフラグです。</p><p>例: <span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>(0,0,0)→<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>(256,256,256),<span style="border: 1px solid #000;background: rgb(0,252,0);">　</span>(0,252,0)→<span style="border: 1px solid #000;background: rgb(256,4,256);">　</span>(256,4,256),<span style="border: 1px solid #000;background: rgb(256,0,0);">　</span>(256,0,0)→<span style="border: 1px solid #000;background: rgb(0,256,256);">　</span>(0,256,256)</p></div>
@@ -326,7 +326,7 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Persistent = ステートを再度読み込むフラグ                (整数)
+          Persistent = ステートを再度読み込むフラグ        (整数)
       </dt>
       <dd>
         <div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
@@ -350,7 +350,7 @@ AllPalFX | 画面全体の色を変更 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  IgnoreHitPause = HitPauseを無視するフラグ                (0か1)
+          IgnoreHitPause = HitPauseを無視するフラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
@@ -939,9 +939,7 @@ for(var i = 0; i < a.length; i++) {
 
 <div id="box2">
 
-<div class="article-survey-container">
-<!-- start feedwind code --><script type="text/javascript">(function() {var params = {rssmikle_url: "https://github.com/bluesura/bluesura.github.io/commits/master.atom",rssmikle_frame_width: "100%",rssmikle_frame_height: "100%",frame_height_by_article: "5",rssmikle_target: "_blank",rssmikle_font: "'Roboto', '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Verdana, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;",rssmikle_font_size: "",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "off",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "更新履歴",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#383838",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#3367D6",rssmikle_item_border_bottom: "off",rssmikle_item_description: "off",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#383838",rssmikle_item_date: "ja",rssmikle_timezone: "Etc/GMT",datetime_format: "",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "5",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><!--  end  feedwind code -->
-</div>
+<div class="mamewaza_blog"><div><div class="mamewaza_blog_exp"><span class="mamewaza_assembled">powered by <a href="http://mamewaza.com/tools/" target="_blank" rel="nofollow">まめわざ</a></span></div></div></div><script type="text/javascript" src="https://mamewaza.net/blog.js?200311"></script><script type="text/javascript">mamewaza_blog({selector:"#mamewaza_blog",feed:"https://github.com/bluesura/bluesura.github.io/commits/master.atom",rpp:"5",height:"auto",exp:true,url:false,date:"0",style:"div.mamewaza_blog > div{background-color:transparent;}div.mamewaza_blog ul.mamewaza_blog{background-color:transparent;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog li,div.mamewaza_blog div.mamewaza_blog_exp{padding:10px;}div.mamewaza_blog > div{padding:0px;border:1px solid #eeeeee;font-size:12px;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog ul.mamewaza_blog,div.mamewaza_blog li{border-bottom:1px solid #eeeeee;}div.mamewaza_blog h5.mamewaza_blog a,div.mamewaza_blog a.mamewaza_blog_title{color:#000;font-size:14px;text-shadow:none;}div.mamewaza_blog a.mamewaza_blog_title{font-weight:normal;}div.mamewaza_blog,div.mamewaza_blog a{color:#999999;}div.mamewaza_blog a.mamewaza_blog_url{color:#999999;}"})</script>
 
 </div>
 
@@ -1015,7 +1013,7 @@ for(var i = 0; i < a.length; i++) {
         <ul>
           <li>デバッグ</li>
           <li><a href="http://jbbs.shitaraba.net/bbs/read.cgi/game/54714/1340533542/135">窓無限の十徳ナイフ</a></li>
-          <li><a href="http://u1.getuploader.com/sample/download/12117/sample_12117.zip">CNSチェッカー cnslint</a></li>
+          <li>CNSチェッカー cnslint</li>
         </ul>
         
         <ul>

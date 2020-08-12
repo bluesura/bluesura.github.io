@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-06 14:23:07
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:23
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\Trigger\content\Description.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:11559728385985635a470aa3-61238473%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:14063249645f33ad13f016b7-89528508%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '982ddc350765fc87f17843f0cb71d534e454daba' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\Trigger\\content\\Description.tpl',
-      1 => 1502022165,
+      1 => 1597220944,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '11559728385985635a470aa3-61238473',
+  'nocache_hash' => '14063249645f33ad13f016b7-89528508',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5985635a49a363_56538086',
   'variables' => 
   array (
     'content' => 0,
@@ -25,8 +23,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'associated_trigger' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad14028074_68484183',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5985635a49a363_56538086')) {function content_5985635a49a363_56538086($_smarty_tpl) {?>	<section id="summary"><div class="summary section">
+<?php if ($_valid && !is_callable('content_5f33ad14028074_68484183')) {function content_5f33ad14028074_68484183($_smarty_tpl) {?>	<section id="summary"><div class="summary section">
 		<h2>概要</h2>
 		<?php echo $_smarty_tpl->tpl_vars['content']->value['summary'];?>
 
@@ -46,7 +46,7 @@ $_smarty_tpl->tpl_vars['code']->_loop = true;
 		</ul></code></div>
 	</div></section>
 
-	<?php if ($_smarty_tpl->tpl_vars['content']->value['description']!=null){?>
+	<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['description'])){?>
 	<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>

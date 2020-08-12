@@ -7,7 +7,7 @@
 		<dl class="parameter">
 			<dt>
 				<span class="main">
-				{if $array.main == ""}
+				{if empty($array.main)}
 					{$array.parameter}
 				{else}
 					{$array.main}
@@ -21,7 +21,7 @@
 			</dt>
 			<dd>
 				<div class="description">{$array.description}</div>
-				{if $array.media != NULL}
+				{if !empty($array.media)}
 				<div class="media">
 					{if $array.media.image != []}
 					<div class="image-group">

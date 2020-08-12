@@ -1,4 +1,4 @@
-  {if $content.qanda}
+  {if !empty($content.qanda)}
   <section id="QandA"><div class="section">
     <h2>Q＆A(よくある質問)</h2>
     <div>

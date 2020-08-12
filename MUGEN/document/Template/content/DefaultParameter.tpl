@@ -15,17 +15,17 @@
 				{/foreach}
 
 			{else}
-				{if $content.default_parameter.required_parameter != []}
+				{if !empty($content.default_parameter.required_parameter)}
 					{foreach $content.default_parameter.required_parameter as $required_parameter}
 						<li class="required-parameter">{$required_parameter}</li>
 					{/foreach}
 				{/if}
-				{if $content.default_parameter.instead_parameter != []}
+				{if !empty($content.default_parameter.instead_parameter)}
 					{foreach $content.default_parameter.instead_parameter as $instead_parameter}
 						<li class="instead-parameter">{$instead_parameter}</li>
 					{/foreach}
 				{/if}
-				{if $content.default_parameter.optional_parameter != []}
+				{if !empty($content.default_parameter.optional_parameter)}
 					{foreach $content.default_parameter.optional_parameter as $optional_parameter}
 						<li class="optional-parameter">{$optional_parameter}</li>
 					{/foreach}

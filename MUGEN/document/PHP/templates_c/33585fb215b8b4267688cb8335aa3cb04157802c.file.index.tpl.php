@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-11-13 17:22:13
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:04
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\index.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:57629682259856356744441-43996048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:20081718095f33ad00931432-38397407%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,12 +11,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '57629682259856356744441-43996048',
+  'nocache_hash' => '20081718095f33ad00931432-38397407',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5985635676ee33_51905538',
   'variables' => 
   array (
     'content' => 0,
@@ -25,8 +23,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'syntax' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad009c8790_73642855',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5985635676ee33_51905538')) {function content_5985635676ee33_51905538($_smarty_tpl) {?><div id="main-inner">
+<?php if ($_valid && !is_callable('content_5f33ad009c8790_73642855')) {function content_5f33ad009c8790_73642855($_smarty_tpl) {?><div id="main-inner">
 <article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
 
 <?php if ($_smarty_tpl->tpl_vars['content']->value['page_category']=="State"){?>

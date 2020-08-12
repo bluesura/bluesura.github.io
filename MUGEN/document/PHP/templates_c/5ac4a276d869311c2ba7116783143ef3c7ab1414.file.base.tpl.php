@@ -1,29 +1,29 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-11-13 17:18:15
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:04
          compiled from ".\..\Template\base.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:2963558cd8974caeb00-16025641%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:6178568025f33ad004dfc61-83182244%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5ac4a276d869311c2ba7116783143ef3c7ab1414' => 
     array (
       0 => '.\\..\\Template\\base.tpl',
-      1 => 1510589678,
+      1 => 1597211959,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2963558cd8974caeb00-16025641',
+  'nocache_hash' => '6178568025f33ad004dfc61-83182244',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_58cd8974da6617_17254143',
   'variables' => 
   array (
     'content' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad00556035_85557623',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_58cd8974da6617_17254143')) {function content_58cd8974da6617_17254143($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_5f33ad00556035_85557623')) {function content_5f33ad00556035_85557623($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="ja" itemscope itemtype="http://schema.org/Article">
 <head>
 <?php echo $_smarty_tpl->getSubTemplate ("./head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
@@ -46,7 +46,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-	<script src="https://embed.small.chat/T0F4QF673G6M8EPAEN.js" async></script>
 
 
 <div id="container"><div id="content-inner">

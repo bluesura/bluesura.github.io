@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-22 16:02:47
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:49
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\LifeBar\content_l.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:6743301295985635dd2b294-46261695%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:17861574175f33ad2d9066a6-74056550%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '4dd01ca729490443bc073279f62f0f4e94a8119d' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\LifeBar\\content_l.tpl',
-      1 => 1503410540,
+      1 => 1597221807,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '6743301295985635dd2b294-46261695',
+  'nocache_hash' => '17861574175f33ad2d9066a6-74056550',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5985635dd7edf4_67003630',
   'variables' => 
   array (
     'content' => 0,
@@ -29,11 +27,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'quote' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad2db58714_21185060',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5985635dd7edf4_67003630')) {function content_5985635dd7edf4_67003630($_smarty_tpl) {?>  <p class="description" itemprop="articleBody"><?php echo $_smarty_tpl->tpl_vars['content']->value['description'];?>
+<?php if ($_valid && !is_callable('content_5f33ad2db58714_21185060')) {function content_5f33ad2db58714_21185060($_smarty_tpl) {?>  <p class="description" itemprop="articleBody"><?php echo $_smarty_tpl->tpl_vars['content']->value['description'];?>
 </p>
 
-<?php if ($_smarty_tpl->tpl_vars['content']->value['sample_code']!=null){?>
+<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['sample_code'])){?>
 	<section id="SampleCode"><div class="section">
 		<h2>設定可能なパラメータ一覧</h2>
 		<div class="code">
@@ -51,7 +51,7 @@ $_smarty_tpl->tpl_vars['code']->_loop = true;
 	</div></section>
 <?php }?>
 
-<?php if ($_smarty_tpl->tpl_vars['content']->value['parameter']!=null){?>
+<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['parameter'])){?>
 	<section id="Parameter"><div class="section">
 		<h2>パラメーター</h2>
 		<?php  $_smarty_tpl->tpl_vars['array'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['array']->_loop = false;
@@ -63,7 +63,7 @@ $_smarty_tpl->tpl_vars['array']->_loop = true;
 			<dt>
 				<span class="main" id="<?php echo $_smarty_tpl->tpl_vars['array']->value['parameter'];?>
 ">
-				<?php if ($_smarty_tpl->tpl_vars['array']->value['main']==''){?>
+				<?php if (empty($_smarty_tpl->tpl_vars['array']->value['main'])){?>
 					<?php echo $_smarty_tpl->tpl_vars['array']->value['parameter'];?>
  = <?php  $_smarty_tpl->tpl_vars['value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['value']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['value']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -94,20 +94,20 @@ $_smarty_tpl->tpl_vars['type']->_loop = true;
 				<div class="description"><?php echo $_smarty_tpl->tpl_vars['array']->value['description'];?>
 </div>
 				<div class="option-value">
-					<?php if ($_smarty_tpl->tpl_vars['array']->value['min_value']!=''||$_smarty_tpl->tpl_vars['array']->value['max_value']!=''){?>
+					<?php if (!empty($_smarty_tpl->tpl_vars['array']->value['min_value'])||!empty($_smarty_tpl->tpl_vars['array']->value['max_value'])){?>
 					<div class="range-value">
-						<?php if ($_smarty_tpl->tpl_vars['array']->value['min_value']!=''){?>
+						<?php if (!empty($_smarty_tpl->tpl_vars['array']->value['min_value'])){?>
 						<span class="min-value">最小値: <?php echo $_smarty_tpl->tpl_vars['array']->value['min_value'];?>
 </span>
 						<?php }?>
 						<?php if (($_smarty_tpl->tpl_vars['array']->value['min_value']!='')&&($_smarty_tpl->tpl_vars['array']->value['max_value']!='')){?>,<?php }?>
-						<?php if ($_smarty_tpl->tpl_vars['array']->value['max_value']!=''){?>
+						<?php if (!empty($_smarty_tpl->tpl_vars['array']->value['max_value'])){?>
 						<span class="max-value">最大値: <?php echo $_smarty_tpl->tpl_vars['array']->value['max_value'];?>
 </span>
 						<?php }?>
 					</div>
 					<?php }?>
-					<?php if ($_smarty_tpl->tpl_vars['array']->value['possible_value']!=''){?>
+					<?php if (!empty($_smarty_tpl->tpl_vars['array']->value['possible_value'])){?>
 					<div class="possible-value">選択可能な文字列: <?php echo $_smarty_tpl->tpl_vars['array']->value['possible_value'];?>
 </div>
 					<?php }?>
@@ -115,12 +115,12 @@ $_smarty_tpl->tpl_vars['type']->_loop = true;
 					<div class="required-parameter">省略不可</div>
 					<?php }elseif($_smarty_tpl->tpl_vars['array']->value['default_value']=="instead"){?>
 					<div class="instead-parameter">代替書式</div>
-					<?php }elseif($_smarty_tpl->tpl_vars['array']->value['default_value']!=''){?>
+					<?php }elseif(!empty($_smarty_tpl->tpl_vars['array']->value['default_value'])){?>
 					<div class="default-value">省略時のデフォルト値： <?php echo $_smarty_tpl->tpl_vars['array']->value['default_value'];?>
 </div>
 					<?php }?>
 				</div>
-				<?php if ($_smarty_tpl->tpl_vars['array']->value['media']!=null){?>
+				<?php if (!empty($_smarty_tpl->tpl_vars['array']->value['media'])){?>
 				<div class="media">
 					<?php if ($_smarty_tpl->tpl_vars['array']->value['media']['video']!=array()){?>
 					<div class="video-group">
@@ -173,7 +173,7 @@ $_smarty_tpl->tpl_vars['image']->_loop = true;
 	</div></section>
 <?php }?>
 
-<?php if ($_smarty_tpl->tpl_vars['content']->value['quote']!=null){?>
+<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['quote'])){?>
 	<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>

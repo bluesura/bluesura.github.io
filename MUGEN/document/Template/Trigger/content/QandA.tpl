@@ -1,21 +1,21 @@
-	{if $content.qanda != NULL}
+	{if !empty($content.qanda)}
 	<section id="QandA"><div class="section">
 		<h2>注意事項</h2>
 		{foreach $content.qanda as $qanda}
 		<table class="qanda">
-			{if $qanda.q != NULL}<tr>
+			{if !empty($qanda.q)}<tr>
 				<th class="question">問</th>
 				<td>{$qanda.q}</td>
 			</tr>{/if}
-			{if $qanda.c != NULL}<tr>
+			{if !empty($qanda.c)}<tr>
 				<th class="problem">原</th>
 				<td>{$qanda.c}</td>
 			</tr>{/if}
-			{if $qanda.a != NULL}<tr>
+			{if !empty($qanda.a)}<tr>
 				<th class="answer">答</th>
 				<td>{$qanda.a}</td>
 			</tr>{/if}
-			{if $qanda.r != NULL}<tr>
+			{if !empty($qanda.r)}<tr>
 				<th class="quote">参</th>
 				<td>
 				{foreach $qanda.r as $reference}

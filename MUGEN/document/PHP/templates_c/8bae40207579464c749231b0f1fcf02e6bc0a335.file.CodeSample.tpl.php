@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-09-06 14:26:39
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:24
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\Trigger\content\CodeSample.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:16712356185985635a63d1e5-01165144%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1357634505f33ad1466e874-19493571%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '8bae40207579464c749231b0f1fcf02e6bc0a335' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\Trigger\\content\\CodeSample.tpl',
-      1 => 1504700789,
+      1 => 1597220934,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '16712356185985635a63d1e5-01165144',
+  'nocache_hash' => '1357634505f33ad1466e874-19493571',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5985635a66d6b9_05525745',
   'variables' => 
   array (
     'content' => 0,
@@ -27,8 +25,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'image' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad1472d8e4_41634029',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5985635a66d6b9_05525745')) {function content_5985635a66d6b9_05525745($_smarty_tpl) {?>	<?php if ($_smarty_tpl->tpl_vars['content']->value['code_sample']){?>
+<?php if ($_valid && !is_callable('content_5f33ad1472d8e4_41634029')) {function content_5f33ad1472d8e4_41634029($_smarty_tpl) {?>	<?php if ($_smarty_tpl->tpl_vars['content']->value['code_sample']){?>
 	<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			<?php  $_smarty_tpl->tpl_vars['code_sample'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['code_sample']->_loop = false;
@@ -39,7 +39,7 @@ $_smarty_tpl->tpl_vars['code_sample']->_loop = true;
 <div>
 			<h3><?php echo $_smarty_tpl->tpl_vars['code_sample']->value['title'];?>
 </h3>
-			<?php if ($_smarty_tpl->tpl_vars['code_sample']->value['description']!=''){?>
+			<?php if (!empty($_smarty_tpl->tpl_vars['code_sample']->value['description'])){?>
 			<div class="description"><?php echo $_smarty_tpl->tpl_vars['code_sample']->value['description'];?>
 </div>
 			<?php }?>
@@ -55,7 +55,7 @@ $_smarty_tpl->tpl_vars['code']->_loop = true;
 			<?php } ?>
 			</ul>
 			</code></div>
-			<?php if ($_smarty_tpl->tpl_vars['code_sample']->value['media']!=null){?>
+			<?php if (!empty($_smarty_tpl->tpl_vars['code_sample']->value['media'])){?>
 			<div class="media">
 				<?php if ($_smarty_tpl->tpl_vars['code_sample']->value['media']['youtube']!=array()){?>
 				<div>

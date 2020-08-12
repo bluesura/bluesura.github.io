@@ -4,7 +4,7 @@
 			{foreach $content.code_sample as $code_sample}
 <div>
 			<h3>{$code_sample.title}</h3>
-			{if $code_sample.description != ""}
+			{if !empty($code_sample.description)}
 			<div class="description">{$code_sample.description}</div>
 			{/if}
 			<div class="code"><code>
@@ -14,7 +14,7 @@
 			{/foreach}
 			</ul>
 			</code></div>
-			{if $code_sample.media != NULL}
+			{if !empty($code_sample.media)}
 			<div class="media">
 				{if $code_sample.media.youtube != []}
 				<div>

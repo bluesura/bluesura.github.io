@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-09-06 14:26:35
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:05
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content\Parameter.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:85016312059856356bc1644-15374232%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1393905645f33ad01df7e72-56986802%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '712e292ff00e8c07abca5d37afe4b167464d0e54' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content\\Parameter.tpl',
-      1 => 1504700785,
+      1 => 1597219399,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '85016312059856356bc1644-15374232',
+  'nocache_hash' => '1393905645f33ad01df7e72-56986802',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_59856356c73853_39754070',
   'variables' => 
   array (
     'content' => 0,
@@ -34,8 +32,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'image' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad020ed202_03263952',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59856356c73853_39754070')) {function content_59856356c73853_39754070($_smarty_tpl) {?>  <section id="Parameter"><div class="section">
+<?php if ($_valid && !is_callable('content_5f33ad020ed202_03263952')) {function content_5f33ad020ed202_03263952($_smarty_tpl) {?>  <section id="Parameter"><div class="section">
     <h2>パラメーター</h2>
     <?php if ($_smarty_tpl->tpl_vars['content']->value['parameter']==array()){?>
     <div>なし</div>
@@ -47,7 +47,6 @@ $_smarty_tpl->tpl_vars['array']->_loop = true;
 ?>
     <dl class="parameter">
       <dt class="main">
-        <?php if ($_smarty_tpl->tpl_vars['array']->value['main']==''){?>
           <?php echo $_smarty_tpl->tpl_vars['array']->value['parameter'];?>
  = <?php  $_smarty_tpl->tpl_vars['value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['value']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['value']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -59,10 +58,6 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
  $_smarty_tpl->tpl_vars['value']->last = $_smarty_tpl->tpl_vars['value']->iteration === $_smarty_tpl->tpl_vars['value']->total;
 ?><?php echo $_smarty_tpl->tpl_vars['value']->value;?>
 <?php if ($_smarty_tpl->tpl_vars['value']->last!=true){?>, <?php }?><?php } ?>
-        <?php }else{ ?>
-          <?php echo $_smarty_tpl->tpl_vars['array']->value['main'];?>
-
-        <?php }?>
         (<?php  $_smarty_tpl->tpl_vars['type'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['type']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['type']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
  $_smarty_tpl->tpl_vars['type']->total= $_smarty_tpl->_count($_from);
@@ -79,7 +74,7 @@ $_smarty_tpl->tpl_vars['type']->_loop = true;
 
         <div class="option-value">
 
-          <?php if ($_smarty_tpl->tpl_vars['array']->value['possible_value']!=''){?><div class="possible-value">
+          <?php if (!empty($_smarty_tpl->tpl_vars['array']->value['possible_value'])){?><div class="possible-value">
           <?php if (is_array($_smarty_tpl->tpl_vars['array']->value['possible_value'][0])){?>
           <div>
           <table>
@@ -114,9 +109,9 @@ $_smarty_tpl->tpl_vars['possible_value']->_loop = true;
             </div><?php }?>
           </div><?php }?>
 
-          <?php if ($_smarty_tpl->tpl_vars['array']->value['min_value']!=''||$_smarty_tpl->tpl_vars['array']->value['max_value']!=''){?>
+          <?php if (!empty($_smarty_tpl->tpl_vars['array']->value['min_value'])||!empty($_smarty_tpl->tpl_vars['array']->value['max_value'])){?>
           <div class="range-value">
-            <?php if ($_smarty_tpl->tpl_vars['array']->value['min_value']!=array('')){?>
+            <?php if (!empty($_smarty_tpl->tpl_vars['array']->value['min_value'])){?>
             <span class="min-value">最小値: <?php  $_smarty_tpl->tpl_vars['min_value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['min_value']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['min_value']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
  $_smarty_tpl->tpl_vars['min_value']->total= $_smarty_tpl->_count($_from);
@@ -128,8 +123,8 @@ $_smarty_tpl->tpl_vars['min_value']->_loop = true;
 ?><?php echo $_smarty_tpl->tpl_vars['min_value']->value;?>
 <?php if ($_smarty_tpl->tpl_vars['min_value']->last!=true){?>, <?php }?><?php } ?></span>
             <?php }?>
-            <?php if (($_smarty_tpl->tpl_vars['array']->value['min_value']!=array(''))&&($_smarty_tpl->tpl_vars['array']->value['max_value']!=array(''))){?>,<?php }?>
-            <?php if ($_smarty_tpl->tpl_vars['array']->value['max_value']!=array('')){?>
+            <?php if (!empty($_smarty_tpl->tpl_vars['array']->value['min_value'])&&!empty($_smarty_tpl->tpl_vars['array']->value['max_value'])){?>,<?php }?>
+            <?php if (!empty($_smarty_tpl->tpl_vars['array']->value['max_value'])){?>
             <span class="max-value">最大値: <?php  $_smarty_tpl->tpl_vars['max_value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['max_value']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['max_value']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
  $_smarty_tpl->tpl_vars['max_value']->total= $_smarty_tpl->_count($_from);
@@ -173,9 +168,9 @@ $_smarty_tpl->tpl_vars['associated_trigger']->_loop = true;
 ?><code><?php echo $_smarty_tpl->tpl_vars['associated_trigger']->value;?>
 </code><?php if ($_smarty_tpl->tpl_vars['associated_trigger']->last!=true){?>, <?php }?><?php } ?></div><?php }?>
 
-        <?php if ($_smarty_tpl->tpl_vars['array']->value['media']!=null){?>
+        <?php if (!empty($_smarty_tpl->tpl_vars['array']->value['media'])){?>
         <div class="media">
-          <?php if ($_smarty_tpl->tpl_vars['array']->value['media']['youtube']!=array()){?>
+          <?php if (!empty($_smarty_tpl->tpl_vars['array']->value['media']['youtube'])){?>
           <div class="video-group">
             <?php  $_smarty_tpl->tpl_vars['youtube'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['youtube']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['media']['youtube']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -189,7 +184,7 @@ $_smarty_tpl->tpl_vars['youtube']->_loop = true;
             <?php } ?>
           </div>
           <?php }?>
-          <?php if ($_smarty_tpl->tpl_vars['array']->value['media']['video']!=array()){?>
+          <?php if (!empty($_smarty_tpl->tpl_vars['array']->value['media']['video'])){?>
           <div class="video-group">
             <?php  $_smarty_tpl->tpl_vars['video'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['video']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['media']['video']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -208,7 +203,7 @@ $_smarty_tpl->tpl_vars['video']->_loop = true;
             <?php } ?>
           </div>
           <?php }?>
-          <?php if ($_smarty_tpl->tpl_vars['array']->value['media']['image']!=array()){?>
+          <?php if (!empty($_smarty_tpl->tpl_vars['array']->value['media']['image'])){?>
           <div class="image-group">
             <?php  $_smarty_tpl->tpl_vars['image'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['image']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['array']->value['media']['image']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}

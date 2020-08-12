@@ -54,7 +54,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
 	<!-- 「駄目ね、全然駄目だわ」 -->
 
 	<!-- ジョインジョイン OGP -->
-	<meta name="description" content="直前のステートから引き継ぐ Unchanged">
+	<meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 
 	<meta property="og:url" content="https://bluesura.github.io/MUGEN/document/State/U.html">
 	<meta property="og:title" content="U | MUGEN State Controller">
@@ -79,7 +79,6 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
 	<link rel="stylesheet" href="/lib/css/yakuhanjp.min.css">
 
 	<script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
 	<script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
 
 
@@ -117,7 +116,6 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-	<script src="https://embed.small.chat/T0F4QF673G6M8EPAEN.js" async></script>
 
 
 <div id="container"><div id="content-inner">
@@ -163,7 +161,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     <h2>パラメーター</h2>
             <dl class="parameter">
       <dt class="main">
-                  Type = 状態                (文字列)
+          Type = 状態        (文字列)
       </dt>
       <dd>
         <div class="description"><p>ステートの状態を指定。</p></div>
@@ -207,7 +205,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Physics = 重力                (文字列)
+          Physics = 重力        (文字列)
       </dt>
       <dd>
         <div class="description"><p>ステートの物理的な姿勢。</p></div>
@@ -251,7 +249,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  MoveType = 行動状態                (文字列)
+          MoveType = 行動状態        (文字列)
       </dt>
       <dd>
         <div class="description"><p>ステートの行動内容を指定。</p></div>
@@ -292,7 +290,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  HitCountPersist = 引継ぎフラグ                (0か1)
+          HitCountPersist = 引継ぎフラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p>直前のステートからの「HitCount」「UniqHitCount」の効果を引き継ぐか否か。</p></div>
@@ -331,7 +329,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  MoveHitPersist = 引継ぎフラグ                (0か1)
+          MoveHitPersist = 引継ぎフラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p>直前のステートのヒット、ガード、空振り状態を引き継ぐか否か。</p></div>
@@ -370,7 +368,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  HitDefPersist = 引継ぎフラグ                (0か1)
+          HitDefPersist = 引継ぎフラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p>直前のステートの「HitDef」の効果を引き継ぐか否か。</p></div>
@@ -409,7 +407,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  SprPriority = 画像の表示優先度                (整数)
+          SprPriority = 画像の表示優先度        (整数)
       </dt>
       <dd>
         <div class="description"><p>画像表示優先度。5 ～ -5の間で指定します。数値が大きければ手前に、小さければ奥に優先されます。</p></div>
@@ -433,7 +431,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  FaceP2 = 相手へ振り向くフラグ                (0か1)
+          FaceP2 = 相手へ振り向くフラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p>ステートの開始時に相手の方向へ振り向くか否か。</p></div>
@@ -472,7 +470,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Juggle = ジャグル値に加算する値                (整数)
+          Juggle = ジャグル値に加算する値        (整数)
       </dt>
       <dd>
         <div class="description"><p>攻撃を当てた時に溜まるジャグルポイントの設定。</p></div>
@@ -481,7 +479,9 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： ;前の攻撃ステートで成功した時のジャグル値を引き継ぐ。</div>
           
@@ -494,7 +494,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  VelSet = X軸の移動速度, Y軸の移動速度                (整数, 整数)
+          VelSet = X軸の移動速度, Y軸の移動速度        (整数, 整数)
       </dt>
       <dd>
         <div class="description"><p>移動速度の設定。</p></div>
@@ -518,7 +518,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Anim = アニメ番号                (整数)
+          Anim = アニメ番号        (整数)
       </dt>
       <dd>
         <div class="description"><p>AIRに登録したアニメを呼び出す。<code>Anim = 1000 ;[Begin Action 1000]を表示します。</code></p></div>
@@ -542,7 +542,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Ctrl = キー入力受付可能フラグ                (0か1)
+          Ctrl = キー入力受付可能フラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p>ステート中にキー入力を受け付けるか否か。</p></div>
@@ -581,7 +581,7 @@ U | ステートタイプを引き継ぐ | MUGEN State Controller - Name = す�
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  PowerAdd = パワーゲージの増減量                (整数)
+          PowerAdd = パワーゲージの増減量        (整数)
       </dt>
       <dd>
         <div class="description"><p>パワーゲージの増減量。</p></div>
@@ -1065,9 +1065,7 @@ for(var i = 0; i < a.length; i++) {
 
 <div id="box2">
 
-<div class="article-survey-container">
-<!-- start feedwind code --><script type="text/javascript">(function() {var params = {rssmikle_url: "https://github.com/bluesura/bluesura.github.io/commits/master.atom",rssmikle_frame_width: "100%",rssmikle_frame_height: "100%",frame_height_by_article: "5",rssmikle_target: "_blank",rssmikle_font: "'Roboto', '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Verdana, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;",rssmikle_font_size: "",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "off",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "更新履歴",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#383838",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#3367D6",rssmikle_item_border_bottom: "off",rssmikle_item_description: "off",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#383838",rssmikle_item_date: "ja",rssmikle_timezone: "Etc/GMT",datetime_format: "",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "5",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><!--  end  feedwind code -->
-</div>
+<div class="mamewaza_blog"><div><div class="mamewaza_blog_exp"><span class="mamewaza_assembled">powered by <a href="http://mamewaza.com/tools/" target="_blank" rel="nofollow">まめわざ</a></span></div></div></div><script type="text/javascript" src="https://mamewaza.net/blog.js?200311"></script><script type="text/javascript">mamewaza_blog({selector:"#mamewaza_blog",feed:"https://github.com/bluesura/bluesura.github.io/commits/master.atom",rpp:"5",height:"auto",exp:true,url:false,date:"0",style:"div.mamewaza_blog > div{background-color:transparent;}div.mamewaza_blog ul.mamewaza_blog{background-color:transparent;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog li,div.mamewaza_blog div.mamewaza_blog_exp{padding:10px;}div.mamewaza_blog > div{padding:0px;border:1px solid #eeeeee;font-size:12px;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog ul.mamewaza_blog,div.mamewaza_blog li{border-bottom:1px solid #eeeeee;}div.mamewaza_blog h5.mamewaza_blog a,div.mamewaza_blog a.mamewaza_blog_title{color:#000;font-size:14px;text-shadow:none;}div.mamewaza_blog a.mamewaza_blog_title{font-weight:normal;}div.mamewaza_blog,div.mamewaza_blog a{color:#999999;}div.mamewaza_blog a.mamewaza_blog_url{color:#999999;}"})</script>
 
 </div>
 
@@ -1141,7 +1139,7 @@ for(var i = 0; i < a.length; i++) {
         <ul>
           <li>デバッグ</li>
           <li><a href="http://jbbs.shitaraba.net/bbs/read.cgi/game/54714/1340533542/135">窓無限の十徳ナイフ</a></li>
-          <li><a href="http://u1.getuploader.com/sample/download/12117/sample_12117.zip">CNSチェッカー cnslint</a></li>
+          <li>CNSチェッカー cnslint</li>
         </ul>
         
         <ul>

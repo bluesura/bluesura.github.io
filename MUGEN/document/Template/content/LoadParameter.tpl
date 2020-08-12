@@ -19,7 +19,7 @@
 					<li>{$parameter.parameter}{for $loop=1+$parameter.parameter|count_characters to 27} {/for}= {foreach $parameter.load_priority as $value}{$value}{if $value@last != true}, {/if}{/foreach}</li>
 				{/foreach}
 
-			{elseif $content.load_parameter.parameter != []}
+			{elseif !empty($content.load_parameter.parameter)}
 				{foreach $content.load_parameter.parameter as $parameter}
 					<li>{$parameter}</li>
 				{/foreach}

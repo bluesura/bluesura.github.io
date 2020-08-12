@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-06 14:24:53
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:06
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content\DefaultParameter.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:170755084159856356e4d827-84230418%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:5068908825f33ad02dcbba8-40331766%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '20ea362bde1b91a82509a23859fdc872e6502ad4' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content\\DefaultParameter.tpl',
-      1 => 1502022273,
+      1 => 1597217480,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '170755084159856356e4d827-84230418',
+  'nocache_hash' => '5068908825f33ad02dcbba8-40331766',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_59856356eaec27_16027387',
   'variables' => 
   array (
     'content' => 0,
@@ -27,8 +25,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'optional_parameter' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad02e78bb9_23065668',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59856356eaec27_16027387')) {function content_59856356eaec27_16027387($_smarty_tpl) {?>	<section id="DefaultParameter"><div class="section">
+<?php if ($_valid && !is_callable('content_5f33ad02e78bb9_23065668')) {function content_5f33ad02e78bb9_23065668($_smarty_tpl) {?>	<section id="DefaultParameter"><div class="section">
 		<h2>省略した時のデフォルト値</h2>
 		<div class="code" contenteditable="true">
 		<ul>
@@ -65,7 +65,7 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
 				<?php } ?>
 
 			<?php }else{ ?>
-				<?php if ($_smarty_tpl->tpl_vars['content']->value['default_parameter']['required_parameter']!=array()){?>
+				<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['default_parameter']['required_parameter'])){?>
 					<?php  $_smarty_tpl->tpl_vars['required_parameter'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['required_parameter']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['content']->value['default_parameter']['required_parameter']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['required_parameter']->key => $_smarty_tpl->tpl_vars['required_parameter']->value){
@@ -75,7 +75,7 @@ $_smarty_tpl->tpl_vars['required_parameter']->_loop = true;
 </li>
 					<?php } ?>
 				<?php }?>
-				<?php if ($_smarty_tpl->tpl_vars['content']->value['default_parameter']['instead_parameter']!=array()){?>
+				<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['default_parameter']['instead_parameter'])){?>
 					<?php  $_smarty_tpl->tpl_vars['instead_parameter'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['instead_parameter']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['content']->value['default_parameter']['instead_parameter']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['instead_parameter']->key => $_smarty_tpl->tpl_vars['instead_parameter']->value){
@@ -85,7 +85,7 @@ $_smarty_tpl->tpl_vars['instead_parameter']->_loop = true;
 </li>
 					<?php } ?>
 				<?php }?>
-				<?php if ($_smarty_tpl->tpl_vars['content']->value['default_parameter']['optional_parameter']!=array()){?>
+				<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['default_parameter']['optional_parameter'])){?>
 					<?php  $_smarty_tpl->tpl_vars['optional_parameter'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['optional_parameter']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['content']->value['default_parameter']['optional_parameter']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['optional_parameter']->key => $_smarty_tpl->tpl_vars['optional_parameter']->value){

@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-09-23 16:38:57
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:04
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\footer.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:127101832459856355e40b28-23151195%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:19981283125f33ad000468a9-26075379%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'cfc25a17752dbe47c4b3d44cab807a4c75cf8669' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\footer.tpl',
-      1 => 1506177525,
+      1 => 1597211786,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '127101832459856355e40b28-23151195',
+  'nocache_hash' => '19981283125f33ad000468a9-26075379',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_59856355e65c03_58971954',
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad0004b580_81603814',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59856355e65c03_58971954')) {function content_59856355e65c03_58971954($_smarty_tpl) {?><footer id="footer">
+<?php if ($_valid && !is_callable('content_5f33ad0004b580_81603814')) {function content_5f33ad0004b580_81603814($_smarty_tpl) {?><footer id="footer">
   <div id="footer-inner">
     <nav id="footer-main">
       <h2>おすすめのツール</h2>
@@ -53,7 +53,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <ul>
           <li>デバッグ</li>
           <li><a href="http://jbbs.shitaraba.net/bbs/read.cgi/game/54714/1340533542/135">窓無限の十徳ナイフ</a></li>
-          <li><a href="http://u1.getuploader.com/sample/download/12117/sample_12117.zip">CNSチェッカー cnslint</a></li>
+          <li>CNSチェッカー cnslint</li>
         </ul>
         
         <ul>

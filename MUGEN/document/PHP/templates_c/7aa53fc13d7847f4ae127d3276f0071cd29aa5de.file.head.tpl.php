@@ -1,29 +1,29 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-10-22 18:35:34
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 11:21:35
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:92329205059856355aa4755-89030705%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:17627296245f33acff6963f0-10332032%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '7aa53fc13d7847f4ae127d3276f0071cd29aa5de' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\head.tpl',
-      1 => 1508690124,
+      1 => 1597224088,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '92329205059856355aa4755-89030705',
+  'nocache_hash' => '17627296245f33acff6963f0-10332032',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_59856355c40476_63591690',
+  'unifunc' => 'content_5f33acff767403_81893379',
   'variables' => 
   array (
     'content' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59856355c40476_63591690')) {function content_59856355c40476_63591690($_smarty_tpl) {?>	<!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
+<?php if ($_valid && !is_callable('content_5f33acff767403_81893379')) {function content_5f33acff767403_81893379($_smarty_tpl) {?>	<!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
 
 	<meta charset="UTF-8">
 	<meta http-equiv="Content-Language" content="ja">
@@ -35,11 +35,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 
 	<title itemprop="headline">
-<?php if ($_smarty_tpl->tpl_vars['content']->value['page_subtitle']){?><?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
+<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['page_subtitle'])){?><?php echo $_smarty_tpl->tpl_vars['content']->value['page_subtitle'];?>
  | <?php }?>
-<?php if ($_smarty_tpl->tpl_vars['content']->value['page']['category'][1]){?><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page']['category'][1], ENT_QUOTES, 'UTF-8', true);?>
+<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['page']['category'][1])){?><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page']['category'][1], ENT_QUOTES, 'UTF-8', true);?>
  | <?php }?>
-<?php if ($_smarty_tpl->tpl_vars['content']->value['page_title']){?><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page_title'], ENT_QUOTES, 'UTF-8', true);?>
+<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['page_title'])){?><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['page_title'], ENT_QUOTES, 'UTF-8', true);?>
  - <?php }?>
 <?php echo htmlspecialchars($_smarty_tpl->tpl_vars['content']->value['site_name'], ENT_QUOTES, 'UTF-8', true);?>
 
@@ -85,7 +85,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<!-- 「駄目ね、全然駄目だわ」 -->
 
 	<!-- ジョインジョイン OGP -->
-	<meta name="description" content="<?php if ($_smarty_tpl->tpl_vars['content']->value['description']==''){?>MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。<?php }else{ ?><?php echo htmlspecialchars(strip_tags($_smarty_tpl->tpl_vars['content']->value['description']), ENT_QUOTES, 'UTF-8', true);?>
+	<meta name="description" content="<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['description'])){?>MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。<?php }else{ ?><?php echo htmlspecialchars(strip_tags($_smarty_tpl->tpl_vars['content']->value['description']), ENT_QUOTES, 'UTF-8', true);?>
 <?php }?>">
 
 	<meta property="og:url" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['url'];?>
@@ -106,21 +106,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ">
 	<meta name="twitter:description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 	<meta name="twitter:card" content="summary_large_image">
-<?php if ($_smarty_tpl->tpl_vars['content']->value['images'][0]['src']!=''){?>
+<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['images'][0]['src'])){?>
 	<meta property="og:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
 ">
 <?php }?>
-<?php if ($_smarty_tpl->tpl_vars['content']->value['images'][0]['src']!=''){?>
+<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['images'][0]['src'])){?>
 	<meta name="twitter:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
 ">
 <?php }?>
 
-<?php if ($_smarty_tpl->tpl_vars['content']->value['images'][0]['src']!=''){?>
+<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['images'][0]['src'])){?>
 	<link rel="image_src" href="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
 ">
 <?php }?>
 
-<?php if ($_smarty_tpl->tpl_vars['content']->value['images'][0]['src']!=''){?>
+<?php if (!empty($_smarty_tpl->tpl_vars['content']->value['images'][0]['src'])){?>
 	<meta property="pin:media" content="https://bluesura.github.io/MUGEN/document/State/media/img/<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['src'];?>
 ">
 	<meta property="pin:description" content="<?php echo $_smarty_tpl->tpl_vars['content']->value['images'][0]['alt'];?>
@@ -135,7 +135,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<link rel="stylesheet" href="/lib/css/yakuhanjp.min.css">
 
 	<script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
 	<script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
 
 

@@ -54,7 +54,7 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
 	<!-- 「駄目ね、全然駄目だわ」 -->
 
 	<!-- ジョインジョイン OGP -->
-	<meta name="description" content="PlaySnd実行中、特定チャンネルのサウンドのPan,AbsPanパラメータを変更します。PlaySndで音が再生されていて、指定したチャンネル存在しないとPan,AbsPanは読み込まれません。">
+	<meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 
 	<meta property="og:url" content="https://bluesura.github.io/MUGEN/document/State/SndPan.html">
 	<meta property="og:title" content="SndPan | MUGEN State Controller">
@@ -79,7 +79,6 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
 	<link rel="stylesheet" href="/lib/css/yakuhanjp.min.css">
 
 	<script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
 	<script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
 
 
@@ -117,7 +116,6 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-	<script src="https://embed.small.chat/T0F4QF673G6M8EPAEN.js" async></script>
 
 
 <div id="container"><div id="content-inner">
@@ -163,7 +161,7 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
     <h2>パラメーター</h2>
             <dl class="parameter">
       <dt class="main">
-                  Channel = チャンネル番号                (整数)
+          Channel = チャンネル番号        (整数)
       </dt>
       <dd>
         <div class="description"><p>パンしたいチャンネルの番号を指定。</p></div>
@@ -172,7 +170,9 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="required-parameter">省略不可</div>
           
@@ -185,7 +185,7 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Pan = パノラマ距離                (整数)
+          Pan = パノラマ距離        (整数)
       </dt>
       <dd>
         <div class="description"><p>音を鳴らしたい位置を、ピクセルで指定。基準位置(0)は、panの場合が、プレイヤー位置、abspanの場合がスクリーン中央です。省略不可。</p><p>これらのパラメータは、同時に指定できません。</p></div>
@@ -194,7 +194,9 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0</div>
           
@@ -207,7 +209,7 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  AbsPan = パノラマ距離                (整数)
+          AbsPan = パノラマ距離        (整数)
       </dt>
       <dd>
         <div class="description"><p>音を鳴らしたい位置を、ピクセルで指定。基準位置(0)は、panの場合が、プレイヤー位置、abspanの場合がスクリーン中央です。省略不可。</p><p>これらのパラメータは、同時に指定できません。</p></div>
@@ -216,7 +218,9 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： ;Panが優先して実行されます。</div>
           
@@ -229,7 +233,7 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Persistent = ステートを再度読み込むフラグ                (整数)
+          Persistent = ステートを再度読み込むフラグ        (整数)
       </dt>
       <dd>
         <div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
@@ -253,7 +257,7 @@ SndPan | 音が再生される位置を調整 | MUGEN State Controller - Name = 
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  IgnoreHitPause = HitPauseを無視するフラグ                (0か1)
+          IgnoreHitPause = HitPauseを無視するフラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
@@ -726,9 +730,7 @@ for(var i = 0; i < a.length; i++) {
 
 <div id="box2">
 
-<div class="article-survey-container">
-<!-- start feedwind code --><script type="text/javascript">(function() {var params = {rssmikle_url: "https://github.com/bluesura/bluesura.github.io/commits/master.atom",rssmikle_frame_width: "100%",rssmikle_frame_height: "100%",frame_height_by_article: "5",rssmikle_target: "_blank",rssmikle_font: "'Roboto', '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Verdana, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;",rssmikle_font_size: "",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "off",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "更新履歴",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#383838",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#3367D6",rssmikle_item_border_bottom: "off",rssmikle_item_description: "off",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#383838",rssmikle_item_date: "ja",rssmikle_timezone: "Etc/GMT",datetime_format: "",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "5",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><!--  end  feedwind code -->
-</div>
+<div class="mamewaza_blog"><div><div class="mamewaza_blog_exp"><span class="mamewaza_assembled">powered by <a href="http://mamewaza.com/tools/" target="_blank" rel="nofollow">まめわざ</a></span></div></div></div><script type="text/javascript" src="https://mamewaza.net/blog.js?200311"></script><script type="text/javascript">mamewaza_blog({selector:"#mamewaza_blog",feed:"https://github.com/bluesura/bluesura.github.io/commits/master.atom",rpp:"5",height:"auto",exp:true,url:false,date:"0",style:"div.mamewaza_blog > div{background-color:transparent;}div.mamewaza_blog ul.mamewaza_blog{background-color:transparent;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog li,div.mamewaza_blog div.mamewaza_blog_exp{padding:10px;}div.mamewaza_blog > div{padding:0px;border:1px solid #eeeeee;font-size:12px;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog ul.mamewaza_blog,div.mamewaza_blog li{border-bottom:1px solid #eeeeee;}div.mamewaza_blog h5.mamewaza_blog a,div.mamewaza_blog a.mamewaza_blog_title{color:#000;font-size:14px;text-shadow:none;}div.mamewaza_blog a.mamewaza_blog_title{font-weight:normal;}div.mamewaza_blog,div.mamewaza_blog a{color:#999999;}div.mamewaza_blog a.mamewaza_blog_url{color:#999999;}"})</script>
 
 </div>
 
@@ -802,7 +804,7 @@ for(var i = 0; i < a.length; i++) {
         <ul>
           <li>デバッグ</li>
           <li><a href="http://jbbs.shitaraba.net/bbs/read.cgi/game/54714/1340533542/135">窓無限の十徳ナイフ</a></li>
-          <li><a href="http://u1.getuploader.com/sample/download/12117/sample_12117.zip">CNSチェッカー cnslint</a></li>
+          <li>CNSチェッカー cnslint</li>
         </ul>
         
         <ul>

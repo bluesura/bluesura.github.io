@@ -1,6 +1,6 @@
   <p class="description" itemprop="articleBody">{$content.description}</p>
 
-{if $content.sample_code != NULL}
+{if !empty($content.sample_code)}
 	<section id="SampleCode"><div class="section">
 		<h2>設定可能なパラメータ一覧</h2>
 		<div class="code">
@@ -13,14 +13,14 @@
 	</div></section>
 {/if}
 
-{if $content.parameter != NULL}
+{if !empty($content.parameter)}
 	<section id="Parameter"><div class="section">
 		<h2>パラメーター</h2>
 		{foreach $content.parameter as $array}
 		<dl class="parameter">
 			<dt>
 				<span class="main" id="{$array.parameter}">
-				{if $array.main == ""}
+				{if empty($array.main)}
 					{$array.parameter} = {foreach $array.value as $value}{$value}{if $value@last != true}, {/if}{/foreach}
 				{else}
 					{$array.main}
@@ -31,29 +31,29 @@
 			<dd>
 				<div class="description">{$array.description}</div>
 				<div class="option-value">
-					{if $array.min_value != "" || $array.max_value != ""}
+					{if !empty($array.min_value) || !empty($array.max_value)}
 					<div class="range-value">
-						{if $array.min_value != ""}
+						{if !empty($array.min_value)}
 						<span class="min-value">最小値: {$array.min_value}</span>
 						{/if}
 						{if ($array.min_value != "") && ($array.max_value != "")},{/if}
-						{if $array.max_value != ""}
+						{if !empty($array.max_value)}
 						<span class="max-value">最大値: {$array.max_value}</span>
 						{/if}
 					</div>
 					{/if}
-					{if $array.possible_value != ""}
+					{if !empty($array.possible_value)}
 					<div class="possible-value">選択可能な文字列: {$array.possible_value}</div>
 					{/if}
 					{if $array.default_value == "required"}
 					<div class="required-parameter">省略不可</div>
 					{elseif $array.default_value == "instead"}
 					<div class="instead-parameter">代替書式</div>
-					{elseif $array.default_value != ""}
+					{elseif !empty($array.default_value)}
 					<div class="default-value">省略時のデフォルト値： {$array.default_value}</div>
 					{/if}
 				</div>
-				{if $array.media != NULL}
+				{if !empty($array.media)}
 				<div class="media">
 					{if $array.media.video != []}
 					<div class="video-group">
@@ -88,7 +88,7 @@
 	</div></section>
 {/if}
 
-{if $content.quote != NULL}
+{if !empty($content.quote)}
 	<section id="Quote"><div class="section">
 		<h2>引用記事</h2>
 		<ul>

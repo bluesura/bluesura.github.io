@@ -1,4 +1,4 @@
-	{if $content.version}
+	{if !empty($content.version)}
 	<section id="Version"><div class="section">
 		<h2>仕様・バグ・エラー・変更点</h2>
 		<table>
@@ -10,9 +10,9 @@
 				<tr>
 					<td>{$array.no}</td>
 					<td>
-					{if $array.blockquote!=""}<blockquote cite="{{$array.blockquote}}">{/if}
+					{if !empty($array.blockquote)}<blockquote cite="{{$array.blockquote}}">{/if}
 					{$array.content}
-					{if $array.blockquote!=""}</blockquote>{/if}
+					{if !empty($array.blockquote)}</blockquote>{/if}
 					</td>
 				</tr>
 				{/foreach}

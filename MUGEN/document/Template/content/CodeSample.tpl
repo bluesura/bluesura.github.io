@@ -1,10 +1,10 @@
-	{if $content.code_sample}
+	{if !empty($content.code_sample)}
 	<section id="CodeSample"><div class="section">
 		<h2>コードサンプル</h2>
 			{foreach $content.code_sample as $code_sample}
 <div>
 			<h3>{$code_sample.title}</h3>
-			{if $code_sample.description != ""}
+			{if !empty($code_sample.description)}
 			<div class="description">{$code_sample.description}</div>
 			{/if}
 			<div class="code"><code>
@@ -14,9 +14,9 @@
 			{/foreach}
 			</ul>
 			</code></div>
-			{if $code_sample.media != NULL}
+			{if !empty($code_sample.media)}
 			<div class="media">
-				{if $code_sample.media.youtube != []}
+				{if !empty($code_sample.media.youtube)}
 				<div>
 					{foreach $code_sample.media.youtube as $youtube}
 					<div>{$video.title}</div>
@@ -24,7 +24,7 @@
 					{/foreach}
 				</div>
 				{/if}
-				{if $code_sample.media.video != []}
+				{if !empty($code_sample.media.video)}
 				<div class="video-group">
 					{foreach $code_sample.media.video as $video}
 					<div>{$video.title}</div>
@@ -37,7 +37,7 @@
 					{/foreach}
 				</div>
 				{/if}
-				{if $code_sample.media.image != []}
+				{if !empty($code_sample.media.image)}
 				<div class="image-group">
 					{foreach $code_sample.media.image as $image}
 					<div class="image">

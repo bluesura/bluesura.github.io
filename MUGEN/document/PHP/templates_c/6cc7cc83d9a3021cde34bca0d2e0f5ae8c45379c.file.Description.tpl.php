@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-06 14:24:53
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:05
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content\Description.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:133060036959856356ab97b3-92632761%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:11973910915f33ad01b550b4-70676671%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,12 +11,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '133060036959856356ab97b3-92632761',
+  'nocache_hash' => '11973910915f33ad01b550b4-70676671',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_59856356adc4b5_49993037',
   'variables' => 
   array (
     'content' => 0,
@@ -24,8 +22,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'associated_trigger' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad01b8f5e0_16931862',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_59856356adc4b5_49993037')) {function content_59856356adc4b5_49993037($_smarty_tpl) {?>	<div class="description" itemprop="articleBody">
+<?php if ($_valid && !is_callable('content_5f33ad01b8f5e0_16931862')) {function content_5f33ad01b8f5e0_16931862($_smarty_tpl) {?>	<div class="description" itemprop="articleBody">
 <div><?php echo $_smarty_tpl->tpl_vars['content']->value['description'];?>
 </div>
 

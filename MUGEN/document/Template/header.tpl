@@ -3,7 +3,7 @@
 
 		<div id="blog-title-content">
 			<h1 id="title"><a href="./">
-				{if $content.page_title==""}{$content.site_name}{/if}
+				{if empty($content.page_title)}{$content.site_name}{/if}
 				{$content.page_title}
 			</a></h1>
 

@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-08-22 16:36:33
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:04
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\thanks.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:16395599405985635685b8f0-07222606%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:16062549365f33ad00e31511-39827859%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,15 +11,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '16395599405985635685b8f0-07222606',
+  'nocache_hash' => '16062549365f33ad00e31511-39827859',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_598563568987d3_84731641',
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad00e34215_91725219',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_598563568987d3_84731641')) {function content_598563568987d3_84731641($_smarty_tpl) {?>		<h2>参考にさせてもらったサイト一覧</h2>
+<?php if ($_valid && !is_callable('content_5f33ad00e34215_91725219')) {function content_5f33ad00e34215_91725219($_smarty_tpl) {?>		<h2>参考にさせてもらったサイト一覧</h2>
 		<ul>
 			<li><a href="/redirect/?url=homotaro.s44.xrea.com/scr.htm&protocol=http" target="_blank" rel="external">ステートコントローラー一覧</a></li>
 			<li><a href="/redirect/?url=homotaro.s44.xrea.com/etc.htm&protocol=http" target="_blank" rel="external">その他</a></li>

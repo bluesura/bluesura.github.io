@@ -6,11 +6,7 @@
     {foreach $content.parameter as $array}
     <dl class="parameter">
       <dt class="main">
-        {if $array.main == ""}
           {$array.parameter} = {foreach $array.value as $value}{$value}{if $value@last != true}, {/if}{/foreach}
-        {else}
-          {$array.main}
-        {/if}
         ({foreach $array.type as $type}{if $type=="boolean"}0か1{/if}{if $type=="int"}整数{/if}{if $type=="float"}浮動小数点数{/if}{if $type=="string"}文字列{/if}{if $type@last != true}, {/if}{/foreach})
       </dt>
       <dd>
@@ -18,7 +14,7 @@
 
         <div class="option-value">
 
-          {if $array.possible_value != ""}<div class="possible-value">
+          {if !empty($array.possible_value)}<div class="possible-value">
           {if is_array($array.possible_value[0])}
           <div>
           <table>
@@ -37,13 +33,13 @@
             </div>{/if}
           </div>{/if}
 
-          {if $array.min_value != "" || $array.max_value != ""}
+          {if !empty($array.min_value) || !empty($array.max_value)}
           <div class="range-value">
-            {if $array.min_value != [""]}
+            {if !empty($array.min_value)}
             <span class="min-value">最小値: {foreach $array.min_value as $min_value}{$min_value}{if $min_value@last != true}, {/if}{/foreach}</span>
             {/if}
-            {if ($array.min_value != [""]) && ($array.max_value != [""])},{/if}
-            {if $array.max_value != [""]}
+            {if !empty($array.min_value) && !empty($array.max_value)},{/if}
+            {if !empty($array.max_value)}
             <span class="max-value">最大値: {foreach $array.max_value as $max_value}{$max_value}{if $max_value@last != true}, {/if}{/foreach}</span>
             {/if}
           </div>
@@ -60,9 +56,9 @@
 
           {if isset($array.associated_trigger)}<div class="associated-trigger">関連するトリガー： {foreach $array.associated_trigger as $associated_trigger}<code>{$associated_trigger}</code>{if $associated_trigger@last != true}, {/if}{/foreach}</div>{/if}
 
-        {if $array.media != NULL}
+        {if !empty($array.media)}
         <div class="media">
-          {if $array.media.youtube != []}
+          {if !empty($array.media.youtube)}
           <div class="video-group">
             {foreach $array.media.youtube as $youtube}
             <div>{$youtube.title}</div>
@@ -70,7 +66,7 @@
             {/foreach}
           </div>
           {/if}
-          {if $array.media.video != []}
+          {if !empty($array.media.video)}
           <div class="video-group">
             {foreach $array.media.video as $video}
             <div class="video image-frame">
@@ -82,7 +78,7 @@
             {/foreach}
           </div>
           {/if}
-          {if $array.media.image != []}
+          {if !empty($array.media.image)}
           <div class="image-group">
             {foreach $array.media.image as $image}
             <div class="image">

@@ -12,7 +12,7 @@
 		</ul></code></div>
 	</div></section>
 
-	{if $content.description != NULL}
+	{if !empty($content.description)}
 	<section id="description" itemprop="articleBody"><div class="description section">
 		<h2>詳細</h2>
 		<div>

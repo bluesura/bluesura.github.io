@@ -4,6 +4,9 @@ require_once('C:\libs\php\smarty\Smarty.class.php');
 $smarty = new Smarty();
 ini_set( 'display_errors', 0 );
 $smarty->debugging = false;
+set_time_limit(120);//30秒でファイルが出力しきれなかったため
+
+echo "<br>===================start===================<br>";
 
 /*
  sidebar
@@ -91,13 +94,20 @@ for ($i = 0; $i < $loop_end; $i++) {
   $json = file_get_contents("./../State/json/".$state_name.".json");
   $json = json_decode($json, true);
 
+// print_r($json);
+
   $categorie = [];
   $categorie["page_subtitle"] = $json["state"];
   $categorie["description"] = $json["description"];
   $categorie["category"] = $json["category"];
-    // // echo $json["state"] . "-------------------------------<br>";
-  for ($j = 0; $j < count($json["parameter"]); $j++) {
-    $categorie["parameter"][$j] = $json["parameter"][$j]["parameter"]. str_repeat(' ', 27-strlen($json["parameter"][$j]["parameter"]))."= " . implode(", ",$json["parameter"][$j]["value"]);
+
+    echo $state_name . "-------------------------------<br>";
+    // echo $json["parameter"] . "-------------------------------<br>";
+
+  if (!empty($json["parameter"])) {
+    for ($j = 0; $j < count($json["parameter"]); $j++) {
+      $categorie["parameter"][$j] = $json["parameter"][$j]["parameter"]. str_repeat(' ', 27-strlen($json["parameter"][$j]["parameter"]))."= " . implode(", ",$json["parameter"][$j]["value"]);
+    }
   }
   array_push($categories, $categorie);
 }

@@ -54,7 +54,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 	<!-- 「駄目ね、全然駄目だわ」 -->
 
 	<!-- ジョインジョイン OGP -->
-	<meta name="description" content="指定した番号のアニメーションをAIRファイルから呼び出して表示します。同時に存在できる総数には上限があり、標準では64個(Mugen1.0から256個)となっています。仮にプレイヤー1(P1)が64個出してしまった場合、プレイヤー2(2P)は1つも出せなくなります。総数の上限はmugen.cfgのExplodMaxで変更できます。大きい値にするほど、PCへの負荷が大きくなります。動作が重かったりする場合は、この値を下げることにより改善する場合があります。">
+	<meta name="description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 
 	<meta property="og:url" content="https://bluesura.github.io/MUGEN/document/State/Explod.html">
 	<meta property="og:title" content="Explod | MUGEN State Controller">
@@ -79,7 +79,6 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 	<link rel="stylesheet" href="/lib/css/yakuhanjp.min.css">
 
 	<script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
 	<script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
 
 
@@ -117,7 +116,6 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-	<script src="https://embed.small.chat/T0F4QF673G6M8EPAEN.js" async></script>
 
 
 <div id="container"><div id="content-inner">
@@ -163,7 +161,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     <h2>パラメーター</h2>
             <dl class="parameter">
       <dt class="main">
-                  ID = ExplodのID                (整数)
+          ID = ExplodのID        (整数)
       </dt>
       <dd>
         <div class="description"><p>Explodに割り当てるIDを指定します。</p></div>
@@ -172,7 +170,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0</div>
           
@@ -185,7 +185,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Facing = 向き                (整数)
+          Facing = 向き        (整数)
       </dt>
       <dd>
         <div class="description"><p>スプライトの向きを指定。1で正、-1で負の方向を向きます。</p></div>
@@ -194,7 +194,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 1</div>
           
@@ -207,7 +209,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  VFacing = 上下の向き                (整数)
+          VFacing = 上下の向き        (整数)
       </dt>
       <dd>
         <div class="description"><p>-1にすると、垂直方向に反転表示されます。</p></div>
@@ -216,7 +218,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 1</div>
           
@@ -229,7 +233,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Pos = x座標, y座標                (整数, 整数)
+          Pos = x座標, y座標        (整数, 整数)
       </dt>
       <dd>
         <div class="description"><p>スプライトの初期出現位置を指定します。</p></div>
@@ -253,7 +257,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  PosType = 基準点の位置                (文字列)
+          PosType = 基準点の位置        (文字列)
       </dt>
       <dd>
         <div class="description"><p>アニメーションを出現させるための基準点(0,0)をどこにするか、以下の文字列から指定します。</p></div>
@@ -303,7 +307,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Space = 座標の方法                (文字列)
+          Space = 座標の方法        (文字列)
       </dt>
       <dd>
         <div class="description"><p>アニメーションを表示する座標をどのようにするかを指定します。</p><p>Version1.1から利用可能なパラメーター。<code>PosType</code>の代替パラメーターで、優先してSpaceが読み込まれます。</p></div>
@@ -338,7 +342,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Random = x範囲, y範囲                (整数, 整数)
+          Random = x範囲, y範囲        (整数, 整数)
       </dt>
       <dd>
         <div class="description"><p>出現位置をランダムにする場合の、出現範囲を指定。</p><p>pos = 0,0で、random = 40,80の場合、0,0の位置から左右-20～20ピクセル、上下-40～40ピクセルの範囲内でランダムに出現します。</p></div>
@@ -347,7 +351,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0, 0</div>
           
@@ -360,7 +366,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Vel = x速度, y速度                (浮動小数点数, 浮動小数点数)
+          Vel = x速度, y速度        (浮動小数点数, 浮動小数点数)
       </dt>
       <dd>
         <div class="description"><p>スプライトの初速度を指定。</p></div>
@@ -369,7 +375,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0, 0</div>
           
@@ -382,7 +390,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Accel = x加速度, y加速度                (浮動小数点数, 浮動小数点数)
+          Accel = x加速度, y加速度        (浮動小数点数, 浮動小数点数)
       </dt>
       <dd>
         <div class="description"><p>スプライトの加速度を指定。</p></div>
@@ -391,7 +399,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0, 0</div>
           
@@ -404,7 +414,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Scale = 横縮尺 [,縦縮尺]                (浮動小数点数)
+          Scale = 横縮尺 [,縦縮尺]        (浮動小数点数)
       </dt>
       <dd>
         <div class="description"><p>縮尺を指定。</p></div>
@@ -413,7 +423,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 1, 1</div>
           
@@ -426,7 +438,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Angle = 角度                (浮動小数点数)
+          Angle = 角度        (浮動小数点数)
       </dt>
       <dd>
         <div class="description"><p>アニメーションを回転させる角度を度単位で指定。</p><!--なんと、この二つのパラメータを使うとExplodの立体変形が可能になる（RenderModeがOpenGLの時のみ）手前や奥行きに向かって遠近感のある表示をさせる事も出来るようになったOpenGLの恩恵がここに顕れてる--></div>
@@ -435,7 +447,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0</div>
           
@@ -448,7 +462,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  XAngle = 角度                (浮動小数点数)
+          XAngle = 角度        (浮動小数点数)
       </dt>
       <dd>
         <div class="description"><p>X軸を中心にアニメーションを回転させる角度を指定。</p></div>
@@ -457,7 +471,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0</div>
           
@@ -470,7 +486,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  YAccelAngle = 角度                (浮動小数点数)
+          YAccelAngle = 角度        (浮動小数点数)
       </dt>
       <dd>
         <div class="description"><p>Y軸を中心にアニメーションを回転させる角度を指定。</p></div>
@@ -479,7 +495,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0</div>
           
@@ -492,7 +510,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  BindID = bind_id                (整数)
+          BindID = bind_id        (整数)
       </dt>
       <dd>
         <div class="description">拘束元のプレイヤーＩＤを指定, デフォルトは-2, -1なら任意・-2なら拘束しない, ヘルパーからExplodを出した場合、HelperTypeがPlayerでないと無効<p>ID number of a player or helper to bind to. The position of a bound explod is relative to the object that it is bound to. Special values are -1 (bind to any single player) and -2 (do not bind). Defaults to -2. The bindtime parameter is required if bindID is not -2. Screen space explods cannot be bound.</p></div>
@@ -501,7 +519,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     
           
@@ -513,7 +533,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  BindTime = 固定時間                (整数)
+          BindTime = 固定時間        (整数)
       </dt>
       <dd>
         <div class="description"><p>ここで指定した時間内は、基準位置からの相対位置で表示されます。つまり、基準位置が移動すると、それに合わせてスプライトも移動します。</p><p>-1以下で固定時間が永続化。ただし-2以下は警告文を出すので永続にする場合は、-1のみしか指定してはいけません。</p></div>
@@ -522,7 +542,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 1</div>
           
@@ -535,7 +557,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  SprPriority = スプライト表示優先順位                (整数)
+          SprPriority = スプライト表示優先順位        (整数)
       </dt>
       <dd>
         <div class="description"><p>スプライトの表示優先順位を指定。-3にすると、大抵のスプライトより奥に表示されます。</p></div>
@@ -544,7 +566,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0</div>
           
@@ -557,7 +581,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  OnTop = 手前表示フラグ                (0か1)
+          OnTop = 手前表示フラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p>1にすると、sprpriorityは無視され、全てのスプライト、背景レイヤーより手前に表示されます。ただし、ヒット/ガードスパークより手前に表示させることはできません。</p></div>
@@ -566,7 +590,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0</div>
           
@@ -579,7 +605,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  RemoveTime = 消滅時間                (整数)
+          RemoveTime = 消滅時間        (整数)
       </dt>
       <dd>
         <div class="description"><p>発生してから消滅するまでの時間を指定。-1で永久に表示。特定の条件下で消すような場合は、Expoldを消すコントローラーを使うとよいでしょう。</p></div>
@@ -588,7 +614,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： -2 ;スプライトのアニメが終了すると消える。</div>
           
@@ -601,7 +629,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  SuperMove = superpause無視フラグ                (0か1)
+          SuperMove = superpause無視フラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p><code>1</code>にすると、<code>SuperPause</code>コントローラーの影響を受けなくなります。</p><p>Version1.1では廃止されているため使わないほうがいいです。<code>SuperMoveTime</code>で代用してください。</p></div>
@@ -610,7 +638,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0</div>
           
@@ -623,7 +653,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  SuperMoveTime = SuperPause無視時間                (整数)
+          SuperMoveTime = SuperPause無視時間        (整数)
       </dt>
       <dd>
         <div class="description"><p><code>SuperPause</code>コントローラーの影響を無視する時間を指定。-1または-2で無視時間永続化。</p><p>※60フレーム=1秒</p></div>
@@ -647,7 +677,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  PauseMoveTime = Pause無視時間                (整数)
+          PauseMoveTime = Pause無視時間        (整数)
       </dt>
       <dd>
         <div class="description"><p><code>Pause</code>コントローラーの影響を無視する時間フレーム単位を指定。-1以下で無視時間が永続化。</p><p>※60フレーム=1秒</p></div>
@@ -671,7 +701,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Shadow = 赤影, 緑影, 青影                (整数, 整数, 整数)
+          Shadow = 赤影, 緑影, 青影        (整数, 整数, 整数)
       </dt>
       <dd>
         <div class="description"><p>影の色をR,G,Bで指定。-1でステージ依存。</p></div>
@@ -680,7 +710,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0, 0, 0 ;影なし</div>
           
@@ -693,7 +725,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  RemoveOnGethit = やられ消滅フラグ                (0か1)
+          RemoveOnGethit = やられ消滅フラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p>1にすると、プレイヤーが攻撃を受けた場合、消滅します。</p></div>
@@ -702,7 +734,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0</div>
           
@@ -715,7 +749,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Trans = 透過型                (文字列)
+          Trans = 透過型        (文字列)
       </dt>
       <dd>
         <div class="description"><p>透過型には、以下のいずれかの文字列を指定します。</p></div>
@@ -766,7 +800,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Alpha = ソースアルファ, デスティネーションアルファ                (整数, 整数)
+          Alpha = ソースアルファ, デスティネーションアルファ        (整数, 整数)
       </dt>
       <dd>
         <div class="description"><p>透過型が"AddAlpha"の場合に指定します。有効範囲は0(低)から256(高)です。</p><p>ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。</p></div>
@@ -775,7 +809,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 256, 0<!--no check--></div>
           
@@ -788,7 +824,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Anim = [F]アクション番号                (整数)
+          Anim = [F]アクション番号        (整数)
       </dt>
       <dd>
         <div class="description"><p>表示させるスプライトのアクション番号を指定。<code>FightFx.air</code>のものを使う場合は、先頭にFを記述。</p></div>
@@ -863,7 +899,8 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
           </div>
                       </div>
                     <div class="range-value">
-                                                <span class="max-value">最大値: 2147483647</span>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: 2147483647</span>
                       </div>
           
                     <div class="required-parameter">省略不可</div>
@@ -877,7 +914,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  OwnPal = 独自パレットフラグ                (0か1)
+          OwnPal = 独自パレットフラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p>例えば、プレイヤーが青く点滅すると、Explodも青く点滅します。</p><p>1にすると、独自のパレットを持つようになります。</p></div>
@@ -886,7 +923,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： 0 ;プレイヤーと共通のパレットを持ちます。</div>
           
@@ -899,7 +938,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  ReMapPal = dst_pal_grp, dst_pal_item                (整数, 整数)
+          ReMapPal = dst_pal_grp, dst_pal_item        (整数, 整数)
       </dt>
       <dd>
         <div class="description"><p>SFFv2で登録したカラーパレットの読み込みForces a palette remap of the explod's indexed-color sprites to the specified palette. This parameter is used only if ownpal_flag is non-zero and a fight.def anim is not used. If dst_pal_grp is -1, this parameter will be ignored.</p></div>
@@ -908,7 +947,9 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
 
           
                     <div class="range-value">
-                                              </div>
+                        <span class="min-value">最小値: </span>
+                        ,                        <span class="max-value">最大値: </span>
+                      </div>
           
                     <div class="default-value">省略時のデフォルト値： -1, 0</div>
           
@@ -921,7 +962,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  Persistent = ステートを再度読み込むフラグ                (整数)
+          Persistent = ステートを再度読み込むフラグ        (整数)
       </dt>
       <dd>
         <div class="description"><p><code>Persistent</code>の値をNに設定した場合、設定したステートコントローラーはNフレーム後にもう一度実行されます。0の場合、トリガーが成立しても1回しかステートコントローラーが実行されません。※トリガーは読み込みますが、パラメーターは完全に無視されます。</p><p><code>Persistent</code>が管理されている配列が初期化される条件は、ステート処理開始(<code>ChangeState</code>,<code>SelfState</code>,<code>TagOut</code>,<code>TagIn</code>などでステート移動)で<code>Time=0</code>の場合に実行されます。また、初期化される個数が決まっており、10個の<code>Persistent</code>しか初期化されません。ですので、<code>Persistent</code>の多様や<code>ChangeState</code>での使用は避けましょう。もし、特定のステートが実行されない場合は、この仕様を疑ったほうがいいかもしれません。</p><p>その他にも、<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できない・常時ステート(<code>[StateDef -1]</code>,<code>[StateDef -2]</code>,<code>[StateDef -3]</code>)では、常に<code>Persistent=1</code>の状態・<code>IgnoreHitPause=1</code>が設定されていた場合、アドレスを書き換え(<code>Alive</code>偽装・<code>Persistent</code>偽装？など)・バージョンによる動作の違いなどバグが満載です。</p><p>結論、<code>Persistent</code>の値が<code>0</code>以外の場合は省略して、<code>Trigger</code>で<code>Time</code>や<code>var</code>を使って管理した方がいいです。</p></div>
@@ -945,7 +986,7 @@ Explod | アニメーションを表示 | MUGEN State Controller - Name = すら
     </dl>
         <dl class="parameter">
       <dt class="main">
-                  IgnoreHitPause = HitPauseを無視するフラグ                (0か1)
+          IgnoreHitPause = HitPauseを無視するフラグ        (0か1)
       </dt>
       <dd>
         <div class="description"><p><code>IgnoreHitPause</code>の記述されたステートコントローラー処理が<code>HitPause</code>(ヒット停止時間)を無視して実行されます。基本的に1に設定しておくべきパラメーター。</p><p>パラメーター自身に<code>var</code>,<code>fvar</code>,<code>sysvar</code>変数は利用できません。</p><p>攻撃を当てたり受けたりした時に<code>VarSet</code>したり、<code>Explod</code>の演出をずれないようにしたり用途はさまざま。</p></div>
@@ -1622,9 +1663,7 @@ for(var i = 0; i < a.length; i++) {
 
 <div id="box2">
 
-<div class="article-survey-container">
-<!-- start feedwind code --><script type="text/javascript">(function() {var params = {rssmikle_url: "https://github.com/bluesura/bluesura.github.io/commits/master.atom",rssmikle_frame_width: "100%",rssmikle_frame_height: "100%",frame_height_by_article: "5",rssmikle_target: "_blank",rssmikle_font: "'Roboto', '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Verdana, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;",rssmikle_font_size: "",rssmikle_border: "off",responsive: "on",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "off",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "更新履歴",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFFFFF",rssmikle_title_color: "#383838",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#3367D6",rssmikle_item_border_bottom: "off",rssmikle_item_description: "off",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#383838",rssmikle_item_date: "ja",rssmikle_timezone: "Etc/GMT",datetime_format: "",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "5",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><!--  end  feedwind code -->
-</div>
+<div class="mamewaza_blog"><div><div class="mamewaza_blog_exp"><span class="mamewaza_assembled">powered by <a href="http://mamewaza.com/tools/" target="_blank" rel="nofollow">まめわざ</a></span></div></div></div><script type="text/javascript" src="https://mamewaza.net/blog.js?200311"></script><script type="text/javascript">mamewaza_blog({selector:"#mamewaza_blog",feed:"https://github.com/bluesura/bluesura.github.io/commits/master.atom",rpp:"5",height:"auto",exp:true,url:false,date:"0",style:"div.mamewaza_blog > div{background-color:transparent;}div.mamewaza_blog ul.mamewaza_blog{background-color:transparent;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog li,div.mamewaza_blog div.mamewaza_blog_exp{padding:10px;}div.mamewaza_blog > div{padding:0px;border:1px solid #eeeeee;font-size:12px;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog ul.mamewaza_blog,div.mamewaza_blog li{border-bottom:1px solid #eeeeee;}div.mamewaza_blog h5.mamewaza_blog a,div.mamewaza_blog a.mamewaza_blog_title{color:#000;font-size:14px;text-shadow:none;}div.mamewaza_blog a.mamewaza_blog_title{font-weight:normal;}div.mamewaza_blog,div.mamewaza_blog a{color:#999999;}div.mamewaza_blog a.mamewaza_blog_url{color:#999999;}"})</script>
 
 </div>
 
@@ -1698,7 +1737,7 @@ for(var i = 0; i < a.length; i++) {
         <ul>
           <li>デバッグ</li>
           <li><a href="http://jbbs.shitaraba.net/bbs/read.cgi/game/54714/1340533542/135">窓無限の十徳ナイフ</a></li>
-          <li><a href="http://u1.getuploader.com/sample/download/12117/sample_12117.zip">CNSチェッカー cnslint</a></li>
+          <li>CNSチェッカー cnslint</li>
         </ul>
         
         <ul>

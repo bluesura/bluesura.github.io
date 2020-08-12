@@ -11,9 +11,9 @@
 
 
 	<title itemprop="headline">
-{if $content.page_subtitle}{$content.page_subtitle} | {/if}
-{if $content.page.category[1]}{$content.page.category[1]|escape} | {/if}
-{if $content.page_title}{$content.page_title|escape} - {/if}
+{if !empty($content.page_subtitle)}{$content.page_subtitle} | {/if}
+{if !empty($content.page.category[1])}{$content.page.category[1]|escape} | {/if}
+{if !empty($content.page_title)}{$content.page_title|escape} - {/if}
 {$content.site_name|escape}
 	</title>
 
@@ -55,7 +55,7 @@
 	<!-- 「駄目ね、全然駄目だわ」 -->
 
 	<!-- ジョインジョイン OGP -->
-	<meta name="description" content="{if $content.description==""}MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。{else}{$content.description|strip_tags:true|escape}{/if}">
+	<meta name="description" content="{if !empty($content.description)}MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。{else}{$content.description|strip_tags:true|escape}{/if}">
 {*  <meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻">*}
 	<meta property="og:url" content="{$content.url}">
 	<meta property="og:title" content="{$content.page_subtitle} | {$content.page_title}">
@@ -69,18 +69,18 @@
 	<meta name="twitter:title" content="{$content.page_subtitle} | {$content.page_title}">
 	<meta name="twitter:description" content="MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。">
 	<meta name="twitter:card" content="summary_large_image">
-{if $content.images[0].src != ""}
+{if !empty($content.images[0].src)}
 	<meta property="og:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/{$content.images[0].src}">
 {/if}
-{if $content.images[0].src != ""}
+{if !empty($content.images[0].src)}
 	<meta name="twitter:image" content="https://bluesura.github.io/MUGEN/document/State/media/img/{$content.images[0].src}">
 {/if}
 
-{if $content.images[0].src != ""}
+{if !empty($content.images[0].src)}
 	<link rel="image_src" href="https://bluesura.github.io/MUGEN/document/State/media/img/{$content.images[0].src}">
 {/if}
 
-{if $content.images[0].src != ""}
+{if !empty($content.images[0].src)}
 	<meta property="pin:media" content="https://bluesura.github.io/MUGEN/document/State/media/img/{$content.images[0].src}">
 	<meta property="pin:description" content="{$content.images[0].alt}">
 {/if}
@@ -93,7 +93,6 @@
 	<link rel="stylesheet" href="/lib/css/yakuhanjp.min.css">
 
 	<script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script async type="text/javascript" src="//feed.mikle.com/js/rssmikle.js"></script>
 	<script async type="text/javascript" src="/lib/js/code.js?version=20161230"></script>
 {*  <script type="text/javascript" src="/lib/js/isMobile.min.js?version=20161230"></script>
 	<script async type="text/javascript" src="/lib/js/js-ctrl.js?version=20161230"></script>

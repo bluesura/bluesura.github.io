@@ -13,6 +13,7 @@
 	"state": "RemoveExplod",
 	"description": "<p>Explodで出現させたスプライトを消滅させます。</p>",
 	"category": "state",
+	"associated_state": ["Explod"],
 
 	"version": [
 		{"no": "警告文", "content": "REMOVAL OF ILLEGAL EXPLOD ID:IDに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}

@@ -10,6 +10,7 @@
 		"level": "3"
 	},
 	"category": "trigger",
+	"associated_state": ["HitDef"],
 
 	"trigger": "MoveContact",
 	"summary": "<p>プレイヤーの攻撃が相手に接触したかどうかを返します。</p>",

@@ -10,6 +10,7 @@
 		"level": "3"
 	},
 	"category": "trigger",
+	"associated_state": ["HitDef"],
 
 	"trigger": "HitPauseTime",
 	"summary": "<p>プレイヤーの攻撃がヒットしたときの停止時間が終了するまでの時間を返します。</p>",

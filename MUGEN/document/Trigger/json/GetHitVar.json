@@ -10,6 +10,7 @@
 		"level": "3"
 	},
 	"category": "trigger",
+	"associated_state": ["HitDef"],
 
 	"trigger": "GetHitVar",
 	"summary": "<p>攻撃を受けてmovetypeがHのステートにいるとき、相手のHitDefで設定された各値を参照できます。</p>",

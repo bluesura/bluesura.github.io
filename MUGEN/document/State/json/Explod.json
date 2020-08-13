@@ -16,7 +16,6 @@
 	"associated_state": ["RemoveExplod", "ModifyExplod", "ExplodBindTime"],
 	"associated_trigger": ["NumExplod", "PlayerIDExist"],
 
-
 	"version": [
 		{"no": "-", "content": "<code>BindTime=0</code>で<code>PosType</code>を指定していても<code>PosType=Left</code>として扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。"},
 		{"no": "-", "content": "未検証：<code>ScreenBound</code>で画面を固定していると、<code>Explod</code>が本体に追従できずに数Fの間ずれることがある。"},

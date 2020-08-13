@@ -13,7 +13,6 @@
 	"state": "AfterImageTime",
 	"description": "<p>AfterImageのTime(残像表示時間)を上書きすることができます。</p><p>AfterImageを連続で実行した場合、今まで表示されていた残像が消えてしまいます。なので、AfterImageのTimeを持続させたい場合はAfterImageTimeを使用します。</p><p>ただし、AfterImageTimeで残像を消去する処理は厳しいです。なぜなら、残像が表示される時間を変更するだけなので、残像の履歴が残っており履歴がなくなるまで残像が表示され続けます。ですので、完全に消去した場合はAfterImageでTime=0に設定し、1フレームだけ実行することによって一瞬で残像を消去できます。</p><p>また、AfterImageが実行されていない時は、AfterImageTimeのパラメータは無視されます。例えば、\"Time = var(0) := 9\"としていた場合、代入が実行されません。</p>",
 	"category": "state",
-
 	"associated_state": ["AfterImage"],
 
 	"version": [

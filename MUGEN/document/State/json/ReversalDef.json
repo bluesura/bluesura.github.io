@@ -13,6 +13,7 @@
 	"state": "ReversalDef",
 	"description": "<p>プレイヤーの攻撃判定枠Clns1(赤い四角)と敵の攻撃判定枠(つまり攻撃判定同士)が接触したときの動作(以下、「反撃」)を設定します。</p><p>設定できるのはHitDefのパラメータのうちpausetime, sparkno, sparkxy, hitsound, p1stateno, p2statenoと、以下の必須パラメータです。</p><p>当て身投げ、弾き、回避技などに。</p>",
 	"category": "state",
+	"associated_state": ["HitDef"],
 
 	"パラメータについて": "<!--HitDefの丸コピ-->",
 

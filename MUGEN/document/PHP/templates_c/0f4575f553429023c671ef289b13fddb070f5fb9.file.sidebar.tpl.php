@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 12:12:43
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-13 10:02:34
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\sidebar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:13805206095f33acffcf56d0-08050607%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0f4575f553429023c671ef289b13fddb070f5fb9' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\sidebar.tpl',
-      1 => 1597227146,
+      1 => 1597305741,
       2 => 'file',
     ),
   ),
@@ -117,7 +117,7 @@ $_smarty_tpl->tpl_vars['temp']->_loop = true;
 <p>不備があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。</p>
 
 <div class="title">記事を編集してみませんか？</div>
-<p>ページ編集・翻訳にご協力いただける方を募集しております。お気軽にご連絡下さい。</p><p>We are looking for someone who can cooperate on page editing / translation. Please feel free to contact us.</p>
+<p>ページ編集・翻訳にご協力いただける方を募集しております。お気軽に<a href="https://twitter.com/bluesura">ご連絡</a>下さい。</p>
 </div>
 
 </div><?php }} ?>

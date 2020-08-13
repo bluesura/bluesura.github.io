@@ -15,6 +15,7 @@
 	"images": [{"src": "HitDef.png", "width": "640", "height": "480", "alt": "MUGEN HitDef"}],
 	"category": "state",
 	"associated_state": ["ReversalDef"],
+	"associated_trigger": ["GetHitVar", "HitDefAttr", "HitPauseTime", "InGuardDist", "MoveContact"],
 
 	"version": [
 		{"no": "-", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"},

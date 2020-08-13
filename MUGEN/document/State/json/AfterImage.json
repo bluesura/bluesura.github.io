@@ -14,7 +14,6 @@
 	"description": "<p>キャラクターやノーマルヘルパーにに残像を付けます。パラメータはすべて省略可能で、省略した場合、残像は青くなります。</p><p><code>AfterImage</code>実行後、別の<code>AfterImage</code>を実行すると設定が上書きされ、直前まで表示していた残像は消去されます。</p><p>表示できる残像の数を増やしたい場合は、<code>mugen.cfg</code>の<code>AfterImageMax</code>で設定が可能。初期値は8、最小値は0、最大値は100。</p>",
 	"images": [{"src": "AfterImage.gif", "width": "640", "height": "480", "alt": "MUGEN AfterImage"}],
 	"category": "state",
-
 	"associated_state": ["AfterImageTime"],
 
 	"version": [

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2020-08-12 10:49:07
+<?php /* Smarty version Smarty-3.1.12, created on 2020-08-15 13:19:43
          compiled from "D:\Dropbox\Public\www\mugen.github.io\MUGEN\document\Template\content\LoadParameter.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:14396515245f33ad03e5b829-35905639%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1a1686d67d3533c2e5774f965cc80e6ff4092f6e' => 
     array (
       0 => 'D:\\Dropbox\\Public\\www\\mugen.github.io\\MUGEN\\document\\Template\\content\\LoadParameter.tpl',
-      1 => 1597218903,
+      1 => 1597487570,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.12',
+  'unifunc' => 'content_5f33ad03e80ba5_25569958',
   'variables' => 
   array (
     'content' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'value' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.12',
-  'unifunc' => 'content_5f33ad03e80ba5_25569958',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5f33ad03e80ba5_25569958')) {function content_5f33ad03e80ba5_25569958($_smarty_tpl) {?>	<section id="LoadParameter"><div class="section">
 		<h2>パラメーターの読み込み順</h2>
@@ -52,7 +52,7 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
 			</p>
 		</div>
 
-		<div class="supplement"><br>*バージョンや実行環境,パラーメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。</div>
+		<div class="supplement"><br>*バージョンや実行環境,パラーメータの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。</div>
 
 	</div></section>
 <?php }} ?>

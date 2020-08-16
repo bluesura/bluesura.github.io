@@ -13,7 +13,7 @@
 
 
 	<title itemprop="headline">
-TagIn | 自分とパートナーを指定のステートに移動。 | MUGEN State Controller - Name = すら
+TagIn | 自分とパートナーを指定のステートに移動 | MUGEN State Controller - Name = すら
 	</title>
 
 	<!---->
@@ -142,7 +142,7 @@ TagIn | 自分とパートナーを指定のステートに移動。 | MUGEN Sta
   <img src="https://bluesura.github.io/MUGEN/document/State/media/img/" alt="" style="display:none;">
   <div class="entry-title" itemprop="name"><div>
   <h1 id="TagIn">Type = TagIn</h1>
-  <div class="category">タッグ演出 > 自分とパートナーを指定のステートに移動。 | 実装されたバージョン: 2002.04.14 | 対象: 自分とタッグパートナー</div>
+  <div class="category">タッグ > 自分とパートナーを指定のステートに移動 | 実装されたバージョン: 2002.04.14 | 対象: 自分とタッグパートナー</div>
 </div></div>
 
 </div></header>
@@ -150,11 +150,11 @@ TagIn | 自分とパートナーを指定のステートに移動。 | MUGEN Sta
   <div class="entry-content">
 
 	<div class="description" itemprop="articleBody">
-<div><p>パートナーがいる時に使用可能。実行者のCtrlは継続されるが、パートナーのCtrlは0になります。ChangeStateと同じくStateNoでループ構造にすると”stopped after 2500 loops”が発生。</p><p>パートナーが存在しない場合、パラメータを読み込まず、StandByを1にしない事以外はTagOutと同じ動作(Timeをリセットせずに実行時の[StateDef]を読み込み直す=TagIn以降のステートコントローラーは実行されない)をします。なので、シングルでも2500ループは発生するためエラーを起こさないようにNumPartnerや変数で対策が必要になります。</p><p>ヘルパー内部では動作しません。<span class="decoration-font-size-small">もしかしたら、同じステートでループした場合Timeがリセットされない可能性があるかもしれません。</span></p><p>使い方は、タッグパトナーとの同時攻撃、魅せる演出に使用します。例えば、”(´・ω・｀)とヘイちゃんのダブルカットインだしてカッコヨク技を発動”させたり”TagInで味方を[StateDef 110]へ飛ばし、味方に攻撃当ててターゲット確保、LifeAdd等を記述した蘇生ステートに飛して蘇生させる”のに使用します。</p></div>
+<div><p>パートナーが存在する場合に使用可能。<code>StandBy</code>の値は変更されません。実行者の<code>Ctrl</code>は継続され、パートナーの<code>Ctrl</code>は<code>0</code>に変更されます。パートナーが存在しない場合はパラメータを読み込ません。</p><p><code>StateNo</code>でループ構造にすると「<code>stopped after 2500 loops</code>」が発生します。そのため2500ループエラー対策に<code>NumPartner</code>や変数での管理が必要です。</p><p>またヘルパー内部では動作しません。同じステートでループした場合は、<code>Time</code>がリセットされない可能性があります。</p><p>使用例としては、「<a href="https://www.nicovideo.jp/watch/sm12241526">白黒スタイリッシュ</a>のダブルカットイン」や「<code>TagIn</code>で味方を<code>[StateDef 110]</code>へ移動させ、味方に攻撃をヒットさせターゲット確保して、<code>LifeAdd,LifeSet</code>を記述したステートへ移動させ蘇生する」ことに使用します。</p></div>
 
 
 
-		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/TagOut.html"><code>TagOut</code></a>, <a href="./../State/ChangeState.html"><code>ChangeState</code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/StandBy.html"><code>StandBy</code></a>, <a href="./../Trigger/Time.html"><code>Time</code></a></div>
+		<div class="associated-trigger">関連するステートコントローラー： <a href="./../State/TagOut.html"><code>TagOut</code></a>, <a href="./../State/ChangeState.html"><code>ChangeState</code></a></div>		<div class="associated-trigger">関連するトリガー： <a href="./../Trigger/StandBy.html"><code>StandBy</code></a>, <a href="./../Trigger/Time.html"><code>Time</code></a>, <a href="./../Trigger/NumPartner.html"><code>NumPartner</code></a></div>
 	</div>
 
   <section id="Parameter"><div class="section">
@@ -309,7 +309,7 @@ TagIn | 自分とパートナーを指定のステートに移動。 | MUGEN Sta
 			</p>
 		</div>
 
-		<div class="supplement"><br>*バージョンや実行環境,パラーメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。</div>
+		<div class="supplement"><br>*バージョンや実行環境,パラーメータの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。</div>
 
 	</div></section>
 

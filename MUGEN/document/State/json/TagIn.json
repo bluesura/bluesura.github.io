@@ -3,7 +3,7 @@
 		"title": "MUGEN State Controller",
 		"subtitle": "TagIn",
 		"target": "自分とタッグパートナー",
-		"category": ["タッグ演出", "自分とパートナーを指定のステートに移動。"],
+		"category": ["タッグ", "自分とパートナーを指定のステートに移動"],
 		"version": "2002.04.14",
 		"update": "2017.08.06",
 		"type": "document",
@@ -11,10 +11,10 @@
 	},
 
 	"state": "TagIn",
-	"description": "<p>パートナーがいる時に使用可能。実行者のCtrlは継続されるが、パートナーのCtrlは0になります。ChangeStateと同じくStateNoでループ構造にすると”stopped after 2500 loops”が発生。</p><p>パートナーが存在しない場合、パラメータを読み込まず、StandByを1にしない事以外はTagOutと同じ動作(Timeをリセットせずに実行時の[StateDef]を読み込み直す=TagIn以降のステートコントローラーは実行されない)をします。なので、シングルでも2500ループは発生するためエラーを起こさないようにNumPartnerや変数で対策が必要になります。</p><p>ヘルパー内部では動作しません。<span class=\"decoration-font-size-small\">もしかしたら、同じステートでループした場合Timeがリセットされない可能性があるかもしれません。</span></p><p>使い方は、タッグパトナーとの同時攻撃、魅せる演出に使用します。例えば、”(´・ω・｀)とヘイちゃんのダブルカットインだしてカッコヨク技を発動”させたり”TagInで味方を[StateDef 110]へ飛ばし、味方に攻撃当ててターゲット確保、LifeAdd等を記述した蘇生ステートに飛して蘇生させる”のに使用します。</p>",
+	"description": "<p>パートナーが存在する場合に使用可能。<code>StandBy</code>の値は変更されません。実行者の<code>Ctrl</code>は継続され、パートナーの<code>Ctrl</code>は<code>0</code>に変更されます。パートナーが存在しない場合はパラメータを読み込ません。</p><p><code>StateNo</code>でループ構造にすると「<code>stopped after 2500 loops</code>」が発生します。そのため2500ループエラー対策に<code>NumPartner</code>や変数での管理が必要です。</p><p>またヘルパー内部では動作しません。同じステートでループした場合は、<code>Time</code>がリセットされない可能性があります。</p><p>使用例としては、「<a href=\"https://www.nicovideo.jp/watch/sm12241526\">白黒スタイリッシュ</a>のダブルカットイン」や「<code>TagIn</code>で味方を<code>[StateDef 110]</code>へ移動させ、味方に攻撃をヒットさせターゲット確保して、<code>LifeAdd,LifeSet</code>を記述したステートへ移動させ蘇生する」ことに使用します。</p>",
 	"category": "state",
-	"associated_trigger": ["StandBy","Time"],
 	"associated_state": ["TagOut","ChangeState"],
+	"associated_trigger": ["StandBy","Time","NumPartner"],
 
 	"version": [
 		{"no": "警告文", "content": "ATTEMPTED CHANGE TO NEGATIVE ANI:PartnerStateNoに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
@@ -25,9 +25,9 @@
 			"parameter": "StateNo",
 			"value": ["ステート番号"],
 			"type": ["int"],
-			"description": "<p>ChangeStateのパラメータと同じ使い方。プレイヤー自身を指定したステート番号に移動します。指定先の</p>",
+			"description": "<p>プレイヤー自身を指定したステート番号に移動します。</p>",
 			"min_value": [""],
-			"max_value": [""],
+			"max_value": ["2147483647"],
 			"parameter_type": "required",
 			"default_value": ["?"],
 			"load_priority": ["1"]
@@ -36,11 +36,11 @@
 			"parameter": "PartnerStateNo",
 			"value": ["パートナーのステート番号"],
 			"type": ["int"],
-			"description": "<p>パートナーを、パートナー自身のステートに移動させます。省略した場合、実行者と同じステートに移動。また、警告文が表示されます。</p>",
+			"description": "<p>パートナーをパートナー自身のステートに移動させます。省略した場合、<code>StateNo</code>と同じステートに移動。また、警告文が表示されます。</p>",
 			"min_value": [""],
-			"max_value": [""],
+			"max_value": ["2147483647"],
 			"parameter_type": "optional",
-			"default_value": ["-1 ;実行者と同じステートに移動させる。"],
+			"default_value": ["-1 ;<code>StateNo</code>と同じステートに移動します。"],
 			"load_priority": ["2"]
 		}
 	],

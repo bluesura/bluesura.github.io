@@ -164,14 +164,14 @@ TagIn | 自分とパートナーを指定のステートに移動 | MUGEN State 
           StateNo = ステート番号        (整数)
       </dt>
       <dd>
-        <div class="description"><p>ChangeStateのパラメータと同じ使い方。プレイヤー自身を指定したステート番号に移動します。指定先の</p></div>
+        <div class="description"><p>プレイヤー自身を指定したステート番号に移動します。</p></div>
 
         <div class="option-value">
 
           
                     <div class="range-value">
                         <span class="min-value">最小値: </span>
-                        ,                        <span class="max-value">最大値: </span>
+                        ,                        <span class="max-value">最大値: 2147483647</span>
                       </div>
           
                     <div class="required-parameter">省略不可</div>
@@ -188,17 +188,17 @@ TagIn | 自分とパートナーを指定のステートに移動 | MUGEN State 
           PartnerStateNo = パートナーのステート番号        (整数)
       </dt>
       <dd>
-        <div class="description"><p>パートナーを、パートナー自身のステートに移動させます。省略した場合、実行者と同じステートに移動。また、警告文が表示されます。</p></div>
+        <div class="description"><p>パートナーをパートナー自身のステートに移動させます。省略した場合、<code>StateNo</code>と同じステートに移動。また、警告文が表示されます。</p></div>
 
         <div class="option-value">
 
           
                     <div class="range-value">
                         <span class="min-value">最小値: </span>
-                        ,                        <span class="max-value">最大値: </span>
+                        ,                        <span class="max-value">最大値: 2147483647</span>
                       </div>
           
-                    <div class="default-value">省略時のデフォルト値： -1 ;実行者と同じステートに移動させる。</div>
+                    <div class="default-value">省略時のデフォルト値： -1 ;<code>StateNo</code>と同じステートに移動します。</div>
           
           
         
@@ -281,7 +281,7 @@ TagIn | 自分とパートナーを指定のステートに移動 | MUGEN State 
 			<li>Type                       = TagIn</li>
 			<li>Trigger1                   = 1</li>
 															<li class="required-parameter">StateNo                    = ?</li>
-									<li class="optional-parameter">PartnerStateNo             = -1 ;実行者と同じステートに移動させる。</li>
+									<li class="optional-parameter">PartnerStateNo             = -1 ;<code>StateNo</code>と同じステートに移動します。</li>
 									<li class="optional-parameter">Persistent                 = 1</li>
 									<li class="optional-parameter">IgnoreHitPause             = 0</li>
 				
@@ -344,6 +344,27 @@ TagIn | 自分とパートナーを指定のステートに移動 | MUGEN State 
         </ul>
       </div>
     </nav>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-bluesura-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"

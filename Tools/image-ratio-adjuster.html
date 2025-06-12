@@ -588,6 +588,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- 画像ドラッグ＆ドロップ領域 -->
 <div class="drop-area" id="dropArea">
     <p>画像をここにドラッグ＆ドロップ</p>
+    <p>または Ctrl+V でペースト</p> <!-- ===== 追加 ===== -->
     <p>または</p>
     <input type="file" id="fileInput" accept="image/*" style="display:none;">
     <button id="browseButton">画像を選択</button>
@@ -753,6 +754,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     dropArea.addEventListener('drop', handleDrop, false);
 
+    // ===== 追加 =====
+    // クリップボードからのペースト（Ctrl+V）を監視するイベントリスナー
+    window.addEventListener('paste', handlePaste, false);
+    // ===== ここまで追加 =====
+
     function handleDrop(e) {
         const dt = e.dataTransfer;
         const files = dt.files;
@@ -760,6 +766,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             handleFiles(files);
         }
     }
+
+    // ===== 追加 =====
+    /**
+     * クリップボードからのペーストイベントを処理する関数
+     * @param {ClipboardEvent} e - ペーストイベントオブジェクト
+     */
+    function handlePaste(e) {
+        const clipboardData = e.clipboardData || window.clipboardData;
+        if (!clipboardData) {
+            return;
+        }
+
+        const items = clipboardData.items;
+        if (!items) {
+            return;
+        }
+        
+        let imageFile = null;
+        // クリップボードのアイテムをループして画像を探す
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].type.indexOf('image') !== -1) {
+                imageFile = items[i].getAsFile();
+                break; // 最初に見つかった画像を使用
+            }
+        }
+
+        if (imageFile) {
+            // 画像が見つかった場合、ブラウザのデフォルトのペースト動作をキャンセル
+            e.preventDefault();
+            e.stopPropagation();
+
+            // 既存のファイル処理関数にFileオブジェクトを配列として渡す
+            handleFiles([imageFile]);
+        }
+    }
+    // ===== ここまで追加 =====
 
     function handleFileSelect(e) {
         const files = e.target.files;

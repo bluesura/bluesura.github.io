@@ -5,8 +5,9 @@ import { Image } from 'astro:assets';
 // このコンポーネントが受け取るプロパティの型定義
 export interface Props {
   parameter?: any[];
+  collection: string;
 }
-const { parameter } = Astro.props;
+const { parameter, collection } = Astro.props;
 
 // パラメータの型を日本語に変換するヘルパー関数
 function formatType(type: string): string {
@@ -21,7 +22,12 @@ function formatType(type: string): string {
 ---
 <section id="Parameter">
   <div class="section">
-    <h2>パラメーター</h2>
+    <h2>
+		{collection === 'triggers' 
+		  ? `引数`
+		  : `パラメーター`
+		}
+	</h2>
     {/* パラメータが存在しない場合の表示 */}
     {(!parameter || parameter.length === 0 || parameter[0].parameter === "") ? (
       <div>なし</div>

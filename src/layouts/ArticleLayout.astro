@@ -116,7 +116,7 @@ const headerInnerStyle = firstImage
         )}
 
         {/* 各コンテンツパーツのコンポーネントを呼び出す */}
-        <Parameter parameter={parameter} />
+        <Parameter parameter={parameter} collection={entry.collection}/>
         <Version version={content.version} />
         {content.category === "state" && <DefaultParameter content={content} />}
         <QandA qanda={content.qanda} />

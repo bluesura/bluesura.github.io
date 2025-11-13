@@ -3,7 +3,7 @@ name: Build and Deploy to gh-pages
 on:
   push:
     branches:
-      - main   # ← メインブランチ名に合わせて変更
+      - master
 
 jobs:
   build-and-deploy:

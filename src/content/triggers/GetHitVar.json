@@ -1,0 +1,318 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "GetHitVar",
+        "target": "",
+        "category": [
+            "ヒット情報",
+            "被弾した攻撃のHitDef値取得"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.01.17",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "associated_state": [
+        "HitDef"
+    ],
+    "trigger": "GetHitVar",
+    "summary": "<p>攻撃を受けてmovetypeがHのステートにいるとき、相手のHitDefで設定された各値を参照できます。</p>",
+    "syntax": [
+        "GetHitVar(AnimType)",
+        "GetHitVar(GroundType)",
+        "GetHitVar(AirType)",
+        "GetHitVar(Damage)",
+        "GetHitVar(HitShakeTime)",
+        "GetHitVar(HitTime)",
+        "GetHitVar(HitShakeTime)",
+        "GetHitVar(SlideTime)",
+        "GetHitVar(CtrlTime)",
+        "GetHitVar(RecoverTime)",
+        "GetHitVar(HitCount)",
+        "GetHitVar(FallCount)",
+        "GetHitVar(XVel)",
+        "GetHitVar(YVel)",
+        "GetHitVar(YAccel)",
+        "GetHitVar(Fall)",
+        "GetHitVar(Fall.Damage)",
+        "GetHitVar(Fall.XVel)",
+        "GetHitVar(Fall.YVel)",
+        "GetHitVar(Fall.Recover)",
+        "GetHitVar(Fall.RecoverTime)",
+        "GetHitVar(ChainID)",
+        "GetHitVar(Guarded)",
+        "GetHitVar(IsBound)",
+        "GetHitVar(XVelAdd)",
+        "GetHitVar(YVelAdd)",
+        "GetHitVar(Type)",
+        "GetHitVar(XOff)",
+        "GetHitVar(YOff)",
+        "GetHitVar(ZOff)",
+        "GetHitVar(Fall.Kill)",
+        "GetHitVar(Fall.Envshake.Time)",
+        "GetHitVar(Fall.Envshake.Freq)",
+        "GetHitVar(Fall.Envshake.Ampl)",
+        "GetHitVar(Fall.Envshake.Phase)"
+    ],
+    "description": "攻撃を受けてmovetypeがHのステートにいるとき、相手のHitDefで設定された各値を参照できます。<br>movetypeがH以外の場合、たとえ共通やられステート(5000番台)にいても0しか返しません。",
+    "parameter": [
+        {
+            "parameter": "xveladd",
+            "type": [
+                "float"
+            ],
+            "description": "<p>KOされたときの横方向の加算速度を返します。</p>"
+        },
+        {
+            "parameter": "yveladd",
+            "type": [
+                "float"
+            ],
+            "description": "<p>KOされたときの垂直方向の加算速度を返します。</p>"
+        },
+        {
+            "parameter": "type",
+            "type": [
+                "int"
+            ],
+            "description": "<p>HitDefのtypeパラメータを数字で返します。<br>: 0 - non, 1 - high, 2 - low, 3 - trip (地上ヒット時のみ)</p>"
+        },
+        {
+            "parameter": "animtype",
+            "type": [
+                "int"
+            ],
+            "description": "<p>HitDefのanimtypeパラメータを数字で返します。<br>(0 - light, 1 - medium, 2 - hard, 3 - back, 4 - up, 5 - diag-up)</p>"
+        },
+        {
+            "parameter": "airtype",
+            "type": [
+                "int"
+            ],
+            "description": "<p>HitDefのairtypeパラメータを数字で返します。</p>"
+        },
+        {
+            "parameter": "groundtype",
+            "type": [
+                "int"
+            ],
+            "description": "<p>HitDefのgroundtypeパラメータを数字で返します。</p>"
+        },
+        {
+            "parameter": "damage",
+            "type": [
+                "int"
+            ],
+            "description": "<p>コンタクトの瞬間のみ、ダメージ値を返します。ガードのときは、削りダメージを返します。</p>"
+        },
+        {
+            "parameter": "hitcount",
+            "type": [
+                "int"
+            ],
+            "description": "<p>攻撃をうけている間のヒット数を返します。3ヒット目なら3を返します。画面に表示されているヒット数ではなく、自分が受けたコンボのヒット数です。</p>"
+        },
+        {
+            "parameter": "fallcount",
+            "type": [
+                "int"
+            ],
+            "description": "<p>攻撃をうけている間の、地面に落下した回数を返します。</p>"
+        },
+        {
+            "parameter": "hitshaketime",
+            "type": [
+                "int"
+            ],
+            "description": "<p>攻撃を受けてブルブルする時間の残り時間を返します。具体的には、ヒットの瞬間にHitDefのpausetimeを返し、0になるまで1フレームにつき1づつ減っていきます。</p>"
+        },
+        {
+            "parameter": "hittime",
+            "type": [
+                "int"
+            ],
+            "description": "<p>ヒット(ガード)が終了するまでの残り時間を返します。</p>"
+        },
+        {
+            "parameter": "slidetime",
+            "type": [
+                "int"
+            ],
+            "description": "<p>地上ヒット(ガード)時、スライドが終了するまでの残り時間を返します。</p>"
+        },
+        {
+            "parameter": "ctrltime",
+            "type": [
+                "int"
+            ],
+            "description": "<p>ガード時、コントロール可能になるまでの残り時間を返します。</p>"
+        },
+        {
+            "parameter": "recovertime",
+            "type": [
+                "int"
+            ],
+            "description": "<p>ダウン状態から起き上がるまでの残り時間を返します。ボタン連打で短縮されます。</p>"
+        },
+        {
+            "parameter": "xoff",
+            "type": [
+                "謎"
+            ],
+            "description": "<p>\"Snap\" の x オフセットを返します。</p>"
+        },
+        {
+            "parameter": "yoff",
+            "type": [
+                "謎"
+            ],
+            "description": "<p>\"Snap\" の y オフセットを返します。</p>"
+        },
+        {
+            "parameter": "zoff",
+            "type": [
+                "謎"
+            ],
+            "description": "<p>\"Snap\" の z オフセットを返します。</p>"
+        },
+        {
+            "parameter": "xvel",
+            "type": [
+                "float"
+            ],
+            "description": "<p>横方向の速度を返します。</p>"
+        },
+        {
+            "parameter": "yvel",
+            "type": [
+                "float"
+            ],
+            "description": "<p>垂直方向の速度を返します。</p>"
+        },
+        {
+            "parameter": "yaccel",
+            "type": [
+                "float"
+            ],
+            "description": "<p>垂直方向の加速度を返します。</p>"
+        },
+        {
+            "parameter": "chainid",
+            "type": [
+                "int"
+            ],
+            "description": "<p>HitDefのchainidを返します。</p>"
+        },
+        {
+            "parameter": "guarded",
+            "type": [
+                "int"
+            ],
+            "description": "<p>ガードのとき1を、それ以外で0を返します。</p>"
+        },
+        {
+            "parameter": "fall",
+            "type": [
+                "int"
+            ],
+            "description": "<p>fallのとき1を、それ以外で0を返します。</p>"
+        },
+        {
+            "parameter": "fall.damage",
+            "type": [
+                "int"
+            ],
+            "description": "<p>落下で受けるダメージを返します。</p>"
+        },
+        {
+            "parameter": "fall.xvel",
+            "type": [
+                "float"
+            ],
+            "description": "<p>落下バウンド時の横方向の速度を返します。</p>"
+        },
+        {
+            "parameter": "fall.yvel",
+            "type": [
+                "float"
+            ],
+            "description": "<p>落下バウンド時の垂直方向の速度を返します。</p>"
+        },
+        {
+            "parameter": "fall.recover",
+            "type": [
+                "int"
+            ],
+            "description": "<p>空中復帰(x+y)が可能なとき1を、それ以外のとき0を返します。</p>"
+        },
+        {
+            "parameter": "fall.recovertime",
+            "type": [
+                "int"
+            ],
+            "description": "<p>空中復帰(x+y)が可能になるまでの残り時間を返します。</p>"
+        },
+        {
+            "parameter": "fall.kill",
+            "type": [
+                "int"
+            ],
+            "description": "<p>HitDefのfall.kill パラメータを返します。</p>"
+        },
+        {
+            "parameter": "fall.envshake.time",
+            "type": [
+                "int"
+            ],
+            "description": "<p>HitDefのfall.envshake.time パラメータを返します。</p>"
+        },
+        {
+            "parameter": "fall.envshake.freq",
+            "type": [
+                "float"
+            ],
+            "description": "<p>HitDefのfall.envshake.freq パラメータを返します。</p>"
+        },
+        {
+            "parameter": "fall.envshake.ampl",
+            "type": [
+                "int"
+            ],
+            "description": "<p>HitDefのfall.envshake.ampl パラメータを返します。</p>"
+        },
+        {
+            "parameter": "fall.envshake.phase",
+            "type": [
+                "float"
+            ],
+            "description": "<p>HitDefのfall.envshake.phase パラメータを返します。</p>"
+        }
+    ],
+    "code_sample": [
+        {
+            "title": "攻撃を受けたときのY方向への吹き飛び速度が-5.5未満だったときのトリガー。",
+            "code": [
+                "Trigger1 = GetHitVar(yvel) < -5.5"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "GetHitVar - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#GetHitVar"
+        },
+        {
+            "title": "GetHitVar - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#gethitvar"
+        },
+        {
+            "title": "GetHitVar - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#gethitvar"
+        },
+        {
+            "title": "GetHitVar - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/GetHitVar"
+        }
+    ]
+}

@@ -1,0 +1,145 @@
+---
+// src/components/Head.astro
+
+// Astroコンポーネントが受け取るプロパティの型を定義
+export interface Props {
+  siteName: string;
+  alternateName?: string | string[]; // 代替サイト名 (構造化データ用)
+  pageTitle?: string;
+  pageSubtitle?: string;
+  pageCategory?: string;
+  description?: string;
+  url: URL | string; // Astro.url or a string
+  ogImage?: string;
+  ogImageAlt?: string; // OGP画像のaltテキスト
+  // 多言語対応サイト用の設定
+  locales?: { lang: string; href: string; }[];
+  defaultLocale?: string; // x-default用の言語コード
+}
+
+const {
+  siteName,
+  alternateName,
+  pageTitle,
+  pageSubtitle,
+  pageCategory,
+  description,
+  url,
+  ogImage,
+  ogImageAlt,
+  locales,
+  defaultLocale,
+} = Astro.props;
+
+// <title> タグの生成ロジック
+const titleParts = [];
+if (pageSubtitle) titleParts.push(pageSubtitle);
+if (pageCategory) titleParts.push(pageCategory);
+if (pageTitle) titleParts.push(pageTitle);
+
+const documentTitle = titleParts.length > 0
+  ? `${titleParts.join(' | ')} - ${siteName}`
+  : siteName;
+
+// OGP用のタイトル
+const ogTitle = titleParts.length > 0
+  ? titleParts.join(' | ')
+  : siteName;
+
+// descriptionの生成ロジック
+const finalDescription = description || "MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。";
+
+// OGP画像のURLを絶対パスに変換
+const absoluteOgImageUrl = ogImage ? new URL(ogImage, Astro.site).href : undefined;
+
+// 構造化データ用のオブジェクトを定義
+const ldJson = {
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://bluesura.github.io/", // ホームページのURL
+  "name": siteName,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.google.co.jp/search?q=site%3Ahttps%3A%2F%2Fbluesura.github.io%2F+{q}&num=10",
+    "query-input": "required name=q"
+  }
+};
+// alternateName があれば構造化データに追加
+if (alternateName) {
+  ldJson.alternateName = alternateName;
+}
+---
+<!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+
+<title>{documentTitle}</title>
+
+<meta name="description" content={finalDescription}>
+<link rel="canonical" href={url.toString()}>
+
+<!-- 多言語対応 (hreflang) -->
+{locales && locales.map(locale => (
+  <link rel="alternate" hreflang={locale.lang} href={locale.href} />
+))}
+{locales && defaultLocale && (
+  <link rel="alternate" hreflang="x-default" href={locales.find(l => l.lang === defaultLocale)?.href} />
+)}
+
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<!-- おれの名を言ってみろ！！ -->
+<meta name="author" content="SURA(すら)">
+<meta name="copyright" content={`Copyright© ${new Date().getFullYear()} SURA(すら). All rights reserved.`}>
+<link rel="me" href="https://x.com/bluesura">
+<link rel="me" href="https://github.com/bluesura/">
+<link rel="me" href="mailto:suteadddayov@gmail.com">
+<!-- なぜだぁぁーっ -->
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/images/icon-128x128.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#1E88E5">
+
+<!-- OGP -->
+<meta property="og:title" content={ogTitle}>
+<meta property="og:description" content={finalDescription}>
+<meta property="og:url" content={url.toString()}>
+<meta property="og:site_name" content={siteName}>
+<meta property="og:locale" content="ja_JP">
+<meta property="og:type" content="website">
+{absoluteOgImageUrl && (
+  <>
+    <meta property="og:image" content={absoluteOgImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt || ogTitle} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+  </>
+)}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bluesura">
+<meta name="twitter:creator" content="@bluesura">
+<meta name="twitter:title" content={ogTitle}>
+<meta name="twitter:description" content={finalDescription}>
+{absoluteOgImageUrl && (
+  <>
+    <meta name="twitter:image" content={absoluteOgImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt || ogTitle} />
+  </>
+)}
+
+<link rel="alternate" type="application/rss+xml" title=`${siteName}の更新履歴` href="https://github.com/bluesura/bluesura.github.io/commits/master.atom">
+
+<link rel="stylesheet" href="/styles/material.css?version=20171031">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link rel="stylesheet" href="/styles/yakuhanjp.min.css">
+
+<script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+<script async type="text/javascript" src="/scripts/code.js?version=20161230"></script>
+
+<!-- 構造化データ -->
+<script type="application/ld+json" is:inline>
+  {JSON.stringify(ldJson)}
+</script>

@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleLayout from '../../../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const allEntries = await getCollection('state-controllers');
+  return allEntries.map(entry => ({
+    params: { StateController: entry.id }, // .idから.slugに戻すのが一般的
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+const content = entry.data;
+const pageCategory = entry.data.page.category?.[1] || 'MUGEN State Controller';
+
+import ignoreHitPauseData from '../../../../data/common/IgnoreHitPause.json';
+import persistentData from '../../../../data/common/Persistent.json';
+const commonParameters = [ignoreHitPauseData, persistentData];
+const allParameters = [...(content.parameter || []), ...commonParameters];
+
+---
+<ArticleLayout entry={entry} pageCategory={pageCategory} parameter={allParameters} />

@@ -1,0 +1,58 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "Log",
+        "target": "数学",
+        "category": [
+            "数値計算",
+            "対数計算"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.12.11",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "Log",
+    "summary": "<p>指定値の対数を返します。</p>",
+    "syntax": [
+        "Log(底, 引数)"
+    ],
+    "description": "指定値の対数を返します。<br>底には、対数の底を0より大きいfloatで指定します。引数には、0より大きいfloatで指定します。<br>戻り値の型: float",
+    "version": [
+        {
+            "no": "WARNING",
+            "content": "TOOK LOG WITH A NON-POSITIVE BASE OR ARGUMENT.: 底・引数に0より大きい値を入れて下さい"
+        }
+    ],
+    "code_sample": [
+        {
+            "title": "2を底とした64の対数(=6)をvalueに代入",
+            "code": [
+                "value = Log(2, 64)"
+            ]
+        }
+    ],
+    "associated_trigger": [
+        "E",
+        "Ln"
+    ],
+    "quote": [
+        {
+            "title": "Log - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Log"
+        },
+        {
+            "title": "Log - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#log-math"
+        },
+        {
+            "title": "Log - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#log-math"
+        },
+        {
+            "title": "Log - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Log"
+        }
+    ]
+}

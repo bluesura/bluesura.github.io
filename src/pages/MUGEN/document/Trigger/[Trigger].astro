@@ -1,0 +1,22 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import ArticleLayout from '../../../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const allTriggerEntries = await getCollection('triggers');
+  return allTriggerEntries.map(entry => ({
+    params: { Trigger: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const content = entry.data;
+const pageCategory = entry.data.page.category?.[1] || 'MUGEN Trigger Reference';
+
+
+if (!entry) {
+  return Astro.redirect('/404');
+}
+---
+<ArticleLayout entry={entry} pageCategory={pageCategory} parameter={content.parameter} />

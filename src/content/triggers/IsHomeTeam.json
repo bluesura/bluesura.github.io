@@ -1,0 +1,48 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "IsHomeTeam",
+        "target": "",
+        "category": [
+            "試合情報",
+            "自チームがホーム側かの判定"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.01.17",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "IsHomeTeam",
+    "summary": "<p>プレイヤーのチームがホームかどうかを返します。</p>",
+    "syntax": [
+        "IsHomeTeam"
+    ],
+    "description": "プレイヤーのチームがホームかどうかを返します。<br>プレイヤーのチームが「ホームチーム」とみなされれば1を返します。<br>アーケードモードではCPUが、対戦時はP1側（左側）が「ホームチーム」とみなされるそうです。<br>戻り値の型: boolean int (1 or 0)",
+    "code_sample": [
+        {
+            "title": "",
+            "code": [
+                ""
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "IsHomeTeam - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IsHomeTeam"
+        },
+        {
+            "title": "IsHomeTeam - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ishometeam"
+        },
+        {
+            "title": "IsHomeTeam - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ishometeam"
+        },
+        {
+            "title": "IsHomeTeam - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IsHomeTeam"
+        }
+    ]
+}

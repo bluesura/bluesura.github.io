@@ -1,0 +1,51 @@
+---
+// src/pages/index.astro (修正後)
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// ページ固有のデータ
+const pageTitle = "Name = すら"; // ページ固有のタイトル
+const description = "MUGENのステートコントローラー・トリガー・ライフバーの記述について、ちょっとだけまとめてます。";
+---
+<BaseLayout
+  pageTitle={pageTitle}
+  description={description}
+  url={Astro.url}
+>
+  {/* この内側のコンテンツがすべてBaseLayoutの<slot />に挿入されます */}
+  <div id="main-inner">
+    <section id="document">
+      <article class="entry hentry">
+        <div class="entry-header"><h2 class="entry-title">ドキュメント</h2></div>
+        <ul>
+          <li><a href="/MUGEN/document/Lifebar/">LifeBar Reference</a></li>
+          <li><a href="/MUGEN/document/State/">State Controller Reference</a></li>
+          <li><a href="/MUGEN/document/Trigger/">Trigger Reference</a></li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="contact">
+      <article class="entry hentry">
+        <div class="entry-header"><h2 class="entry-title">連絡先</h2></div>
+        <ul>
+          <li><a href="https://x.com/bluesura">Twitter</a></li>
+          <li><a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a></li>
+        </ul>
+      </article>
+    </section>
+    
+    <section id="feedback-form">
+      <article class="entry hentry">
+        <div class="entry-header"><h2 class="entry-title">ご意見・ご要望</h2></div>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd88pIqXSasRprkPGCCcHWAblUdVBd0C-HPS-Gii7OU02Rgqw/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+      </article>
+    </section>
+
+    <section id="improvement-form">
+      <article class="entry hentry">
+        <div class="entry-header"><h2 class="entry-title">改善点</h2></div>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSduC8DJrOCDl9ml3st4cUTmjcoE1lRxnjkHDvhSziJ5ispTuQ/viewform?embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+      </article>
+    </section>
+  </div>
+</BaseLayout>

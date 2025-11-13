@@ -1,0 +1,127 @@
+---
+// src/layouts/JsonLifebarLayout.astro (ライフバー用の中間レイアウト)
+
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro'; // 親となるマスターレイアウトをインポート
+import LifebarContent from '../components/LifebarContent.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { SITE_TITLE } from '../consts.ts'; // ← .ts を追加
+
+// このレイアウトがページファイル([lifebar].astro)から受け取るプロパティを定義
+export interface Props {
+  entry: CollectionEntry<'lifebars'>;
+  pageCategory: string;
+}
+
+const { entry, pageCategory } = Astro.props;
+const content = entry.data;
+
+// --- このレイアウト特有のロジック ---
+
+// ヘッダー背景画像用のスタイルを動的に生成
+const headerStyle = content.images?.[0] 
+  ? `background-image: url(/MUGEN/document/Lifebar/img/${content.images[0].src}); height:${content.images[0].height}px;` 
+  : '';
+const headerInnerStyle = content.images?.[0] 
+  ? `height:${content.images[0].height}px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;` 
+  : '';
+
+// 日付フォーマットを "YYYY-MM-DD" に変換
+const updatedDate = content.page.update ? content.page.update.replace(/\./g, '-') : '';
+---
+
+<!-- 
+  親レイアウト(BaseLayout)を呼び出し、
+  Headコンポーネントなどが必要とするプロパティをすべて渡す。
+-->
+<BaseLayout
+  pageTitle={content.page.title}
+  pageSubtitle={content.group || content.page.subtitle}
+  pageCategory={pageCategory}
+  description={content.description?.replace(/<[^>]*>?/gm, '') || ''}
+  url={Astro.url} 
+>
+  <!-- BaseLayoutの <slot /> に挿入される、このレイアウトのコンテンツ部分 -->
+  <div id="main-inner">
+    <article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
+
+      <!-- ヘッダー部分 (tplから完全に移植・修正) -->
+      <header class="entry-header" style={headerStyle}>
+        <div style={headerInnerStyle}>
+          <div class="entry-title" itemprop="name">
+            <div>
+              <h1 id={content.state || content.trigger || content.title}>
+              {/* 1. state-controllers の場合 */}
+              {entry.collection === 'state-controllers'
+                ? (
+                  <>
+                    {/* state-controllers のタイトル */}
+                    Type = {content.state}
+                  </>
+                )
+              : 
+              /* 2. triggers の場合 */
+              entry.collection === 'triggers'
+                ? (
+                  <>
+                    {/* triggers のタイトル */}
+                    {content.trigger}
+                  </>
+                )
+              :
+              /* 3. lifebars の場合 (またはその他の未知のタイプ)  */
+                (
+                  <>
+                    {content.page.subtitle}
+                  </>
+                )
+              }
+              </h1>
+              {content.page.category && (
+                <div class="category">
+                  {content.page.category.join(' > ')}
+                  {(content.page.version || content.page.target) && ' | '}
+                  {content.page.version && `実装されたバージョン: ${content.page.version}`}
+                  {content.page.version && content.page.target && ' | '}
+                  {content.page.target && `対象: ${content.page.target}`}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- メインコンテンツ部分 -->
+      <div class="entry-content">
+        
+        <!-- ライフバーコンテンツ専用の描画コンポーネントを呼び出す -->
+        <LifebarContent content={content} />
+
+        <!-- 日付や貢献者などのメタ情報 -->
+        <div>
+          <span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span>
+          {content.page.update && (
+            <>
+              | <span>
+                最終更新日:<time class="updated" itemprop="dateModified" datetime={updatedDate}>{content.page.update}</time>
+              </span>
+            </>
+          )}
+          {content.page.contributor && Array.isArray(content.page.contributor) && content.page.contributor.length > 0 && (
+            <>
+              | <span>
+                貢献者: {content.page.contributor.map(c => `${c}氏`).join(', ')}
+              </span>
+            </>
+          )}
+        </div>
+
+        <Breadcrumb 
+          level={content.page.level} 
+          pageTitle={content.page.title} 
+        />
+
+      </div>
+    </article>
+  </div>
+</BaseLayout>

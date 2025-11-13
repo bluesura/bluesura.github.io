@@ -1,0 +1,55 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "Var",
+        "target": "",
+        "category": [
+            "変数",
+            "変数に入っている整数は何ですか？"
+        ],
+        "version": "2002.04.14",
+        "update": "2015.12.24",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "Var",
+    "summary": "<p>変数を参照します。</p>",
+    "syntax": [
+        "var(整数)",
+        "var(整数):=整数"
+    ],
+    "description": "変数を参照します。<br>整数の変数を参照します。小数を代入したい場合はFVarを使います。<br>引数には、0から59の整数変数番号を指定します。<br>戻り値の型: int",
+    "version": [
+        {
+            "no": "エラー",
+            "content": "引数がSFalseの場合、または、引数に指定可能な値以外を指定した場合、SFalseを返します。"
+        }
+    ],
+    "code_sample": [
+        {
+            "title": "var(0)に-34が代入",
+            "code": [
+                "Trigger1 = var(0) = -34"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "Var - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Var"
+        },
+        {
+            "title": "Var - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#var"
+        },
+        {
+            "title": "Var - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#var"
+        },
+        {
+            "title": "Var - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Var"
+        }
+    ]
+}

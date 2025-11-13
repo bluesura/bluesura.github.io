@@ -1,0 +1,47 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "Const480p",
+        "target": "",
+        "category": [
+            "定数",
+            "480p基準座標の現解像度への変換"
+        ],
+        "version": "2011.01.18",
+        "update": "2015.12.24",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "Const480p",
+    "summary": "<p>480p時の座標を、プレイヤーの座標空間に合わせた値に変換した数値を返します。</p>",
+    "syntax": [
+        "Const480p(座標)"
+    ],
+    "description": "480p時の座標を、プレイヤーの座標空間に合わせた値に変換した数値を返します。<br>Non-zero position and velocity offset values in common1.cns should use one of the Const triggers to maintain consistency with characters from a different coordinate space.",
+    "code_sample": [
+        {
+            "title": "",
+            "code": [
+                "value = Const480p(6)",
+                ";320x240の場合、3がvalueに代入されます。",
+                ";640x480の場合、6がvalueに代入されます。",
+                ";1280x720の場合、12がvalueに代入されます。"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "Const480p - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#const480p"
+        },
+        {
+            "title": "Const480p - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#const480p"
+        },
+        {
+            "title": "Const480p - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Const480p"
+        }
+    ]
+}

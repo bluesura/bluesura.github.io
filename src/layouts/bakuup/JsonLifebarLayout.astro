@@ -1,0 +1,87 @@
+---
+// src/layouts/JsonLifebarLayout.astro
+
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import LifebarContent from '../components/LifebarContent.astro';
+import Sidebar from '../components/Sidebar.astro'; // Sidebarをインポート
+
+export interface Props {
+  entry: CollectionEntry<'lifebars'>;
+}
+
+const { entry } = Astro.props;
+const content = entry.data;
+
+const headerStyle = content.images?.[0] 
+  ? `background-image: url(/MUGEN/document/Lifebar/img/${content.images[0].src}); height:${content.images[0].height}px;` 
+  : '';
+const headerInnerStyle = content.images?.[0] 
+  ? `height:${content.images[0].height}px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;` 
+  : '';
+---
+<BaseLayout
+  pageTitle={content.page.title}
+  pageSubtitle={content.group || content.page.subtitle}
+  description={content.description?.replace(/<[^>]*>?/gm, '') || ''}
+  url={Astro.url} 
+>
+  <div id="content" class="hfeed">
+    <div id="content-inner">
+      <div id="wrapper">
+        <div id="main">
+          <div id="main-inner">
+            <article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
+              <header class="entry-header" style={headerStyle}>
+                <div style={headerInnerStyle}>
+                  {content.images?.[0] && (
+                    <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display: none;">
+                      <meta itemprop="url" content={`https://bluesura.github.io/MUGEN/document/Lifebar/media/img/${content.images[0].src}`}>
+                      <meta itemprop="width" content={content.images[0].width}>
+                      <meta itemprop="height" content={content.images[0].height}>
+                    </span>
+                  )}
+                  <div class="entry-title" itemprop="name">
+                    <div>
+                      <h1 id={content.title}>{content.group}</h1>
+                      {content.page.category && (
+                        <div class="category">
+                          {content.page.category[0]} &gt; {content.page.category[1]} |
+                          {content.page.version && ` 実装されたバージョン: ${content.page.version} | `}
+                          {content.page.target && ` 対象: ${content.page.target}`}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </header>
+
+              <div class="entry-content">
+                <LifebarContent content={content} />
+
+                <div>
+                  <span>公開日:<time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></span>
+                  {content.page.update && (
+                    <>
+                      | <span>
+                        最終更新日:<time class="updated" itemprop="dateModified" datetime={content.page.update.replace(/\./g, '-')}>{content.page.update}</time>
+                      </span>
+                    </>
+                  )}
+                  {content.page.contributor && (
+                    <>
+                      | <span>
+                        貢献者: {content.page.contributor.join('氏, ')}氏
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <Sidebar /> <!-- Sidebarコンポーネントをここに追加 -->
+      </div>
+    </div>
+  </div>
+</BaseLayout>

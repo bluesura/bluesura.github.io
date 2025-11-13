@@ -1,0 +1,48 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "CanRecover",
+        "target": "",
+        "category": [
+            "ステータス",
+            "空中受身判定"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.01.17",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "CanRecover",
+    "summary": "<p>プレイヤーが空中受身を取れるかどうかを返します。</p>",
+    "syntax": [
+        "CanRecover"
+    ],
+    "description": "プレイヤーが空中受身を取れるかどうかを返します。<br>プレイヤーが空中受身を取れる状態のとき、1を返します。<br>戻り値の型: boolean int (1 or 0)",
+    "code_sample": [
+        {
+            "title": "",
+            "code": [
+                ""
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "CanRecover - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#CanRecover"
+        },
+        {
+            "title": "CanRecover - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#canrecover"
+        },
+        {
+            "title": "CanRecover - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#canrecover"
+        },
+        {
+            "title": "CanRecover - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/CanRecover"
+        }
+    ]
+}

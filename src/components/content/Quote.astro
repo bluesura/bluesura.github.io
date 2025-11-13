@@ -1,0 +1,21 @@
+---
+export interface Props {
+  quote?: { title: string; url: string }[];
+}
+const { quote } = Astro.props;
+---
+{quote && quote.length > 0 && (
+  <section id="Quote">
+    <div class="section">
+      <h2>引用記事</h2>
+      <ul>
+        {quote.map(item => (
+          <li>
+            <cite><a href={item.url} target="_blank" rel="external">{item.title}</a></cite>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <hr>
+)}

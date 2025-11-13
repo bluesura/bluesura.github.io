@@ -1,0 +1,103 @@
+---
+// src/components/content/CodeSample.astro (メディア表示機能を追加)
+
+export interface Props {
+  code_sample?: any[];
+}
+const { code_sample } = Astro.props;
+
+// どのセクションのページかによって画像のベースパスを決定するヘルパー
+// Astro.urlから現在のパスを取得して判定します。
+const currentPath = Astro.url.pathname;
+let imageBasePath = '/images/'; // デフォルト
+if (currentPath.includes('/State/')) {
+  imageBasePath = '/images/State/';
+} else if (currentPath.includes('/Lifebar/')) {
+  imageBasePath = '/images/lifebar/';
+}
+// 必要に応じて他のセクションも追加
+---
+{code_sample && code_sample.length > 0 && (
+  <section id="CodeSample">
+    <div class="section">
+      <h2>コードサンプル</h2>
+      {code_sample.map(sample => (
+        <div>
+          <h3>{sample.title}</h3>
+          {sample.description && <div class="description" set:html={sample.description}></div>}
+          <div class="code">
+            <code>
+              <ul>
+                {sample.code.map((line:string) => <li set:html={line}></li>)}
+              </ul>
+            </code>
+          </div>
+
+          {/* --- メディアセクション --- */}
+          {sample.media && (
+            <div class="media">
+              {/* YouTube動画 */}
+              {sample.media.youtube?.length > 0 && (
+                <div class="video-group">
+                  {sample.media.youtube.map((youtube: any) => (
+                    <div>
+                      <div>{youtube.title}</div>
+                      <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;">
+                        <iframe 
+                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                          src={`https://www.youtube.com/embed/${youtube.file}`} 
+                          frameborder="0" 
+                          allowfullscreen
+                        ></iframe>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* ローカルビデオ */}
+              {sample.media.video?.length > 0 && (
+                <div class="video-group">
+                  {sample.media.video.map((video: any) => (
+                    <div class="video image-frame">
+                      <div>{video.title}</div>
+                      <video controls>
+                        {/* パスはpublicディレクトリからの絶対パスに修正 */}
+                        <source src={`/videos/State/${video.file}.mp4`} type="video/mp4" />
+                      </video>
+                      <div>
+                        <a href={`/videos/State/${video.file}.mp4`}>動画が再生できない時はここをクリック。</a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* ローカル画像 */}
+              {sample.media.image?.length > 0 && (
+                <div class="image-group">
+                  {sample.media.image.map((image: any) => (
+                    <div class="image">
+                      <div>{image.title}</div>
+                      <div class="image-frame">
+                        {/* パスはpublicディレクトリからの絶対パスに修正 */}
+                        <img 
+                          src={`${imageBasePath}${image.file}`} 
+                          alt={image.title} 
+                          width={image.width} 
+                          height={image.height} 
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+          {/* --- メディアセクションここまで --- */}
+        </div>
+        <hr>
+      ))}
+    </div>
+  </section>
+)}

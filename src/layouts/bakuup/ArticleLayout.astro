@@ -1,0 +1,91 @@
+---
+import Head from '../components/Head.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+// このレイアウトが受け取るプロパティを定義
+export interface Props {
+  content: any; // ページ固有のデータを受け取る
+}
+const { content } = Astro.props;
+
+const site_name = "MUGEN State Controller"; // サイト名
+---
+<!DOCTYPE html>
+<html lang="ja" itemscope itemtype="http://schema.org/Article">
+<head>
+  <Head 
+    site_name={site_name}
+    page_title={content.page.title}
+    page_subtitle={content.page.subtitle}
+    description={content.description.replace(/<[^>]*>/g, '')}
+    url={Astro.url.href}
+  />
+
+  <!-- Google Tag Manager -->
+  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MMQSZM');</script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div id="container">
+    <div id="content-inner">
+      <div id="container-inner">
+        <Header site_name={site_name} page_title={content.page.title} />
+
+        <div id="content">
+          <div id="wrapper">
+            <div id="main">
+              <!-- 各ページ(.astro)のコンテンツがここに挿入されます -->
+              <slot />
+
+              <ul class="sosial_buttons">
+                <li class="sb_facebook">
+                    <a href="#" onclick="window.open('https://www.facebook.com/share.php?u='+encodeURIComponent(document.location.href), 'FBwindow', 'width=320, height=320, menubar=no, toolbar=no, scrollbars=yes'); return false;" target="_blank">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="sb_twitter">
+                    <a href="#" onclick="window.open('http://twitter.com/share?count=horizontal&amp;original_referer=&amp;text='+encodeURIComponent((function(){if((''+document.getSelection()).length){return document.getSelection()}else{return document.title.slice(0,30)}})()+' @bluesuraさんから')+'&amp;url='+document.location.href, 'tweetwindow', 'width=550, height=450,personalbar=0,toolbar=0,scrollbars=1,resizable=1'); return false;" title="このページをツイートする" target="_blank">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="sb_hatena">
+                    <a href="#" onclick="window.open('http://b.hatena.ne.jp/entry/'+encodeURIComponent(document.location.href))" class="hatena-bookmark-button" title="このページをはてなブックマークに追加する" target="_blank">
+                        <b>B!</b>
+                    </a>
+                </li>
+                <li class="sb_gplus">
+                    <a href="#" onclick="window.open('https://plus.google.com/share?url='+encodeURIComponent(document.location.href), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                </li>
+              </ul>
+            </div>
+
+            <Sidebar />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+
+  <script is:inline>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+               .register('/lib/js/service-worker.js')
+               .then(function() { /*console.log('Service Worker Registered');*/ });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "SysVar",
+        "target": "",
+        "category": [
+            "変数",
+            "システム整数変数(sysvar)の参照・代入"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.01.17",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "SysVar",
+    "summary": "<p>システムの整数変数を参照します。</p>",
+    "syntax": [
+        "sysvar(整数)",
+        "sysvar(整数):=整数"
+    ],
+    "description": "システムの整数変数を参照します。<br>システム変数はcommonファイル内で使われています。システム変数を使用しているステートを上書きするとき以外は、使わない方がよいでしょう。<br>引数には、0から4までの変数番号を指定します。<br>戻り値の型: int",
+    "code_sample": [
+        {
+            "title": "SysVar(0)に-34が代入",
+            "code": [
+                "Trigger1 = sysvar(0) = -34"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "SysVar - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#SysVar"
+        },
+        {
+            "title": "SysVar - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#sysvar"
+        },
+        {
+            "title": "SysVar - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#sysvar"
+        },
+        {
+            "title": "SysVar - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SysVar"
+        }
+    ]
+}

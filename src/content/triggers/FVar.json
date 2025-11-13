@@ -1,0 +1,55 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "FVar",
+        "target": "",
+        "category": [
+            "変数",
+            "整数変数(var)の値の参照・代入"
+        ],
+        "version": "2002.04.14",
+        "update": "2015.12.27",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "FVar",
+    "summary": "<p>小数変数FVarの値を返します。</p>",
+    "syntax": [
+        "fvar(整数)",
+        "fvar(整数):=整数"
+    ],
+    "description": "小数変数FVarの値を返します。<br>引数には、0から39までの変数番号を指定します。<br>戻り値の型: float",
+    "version": [
+        {
+            "no": "エラー",
+            "content": "引数がSFalse、または小数変数番号として無効な値の場合、SFalseを返します。"
+        }
+    ],
+    "code_sample": [
+        {
+            "title": "FVar(5)の値が-1.23のときのトリガー。",
+            "code": [
+                "Trigger1 = FVar(5) = -1.23"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "FVar - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#FVar"
+        },
+        {
+            "title": "FVar - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#fvar"
+        },
+        {
+            "title": "FVar - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#fvar"
+        },
+        {
+            "title": "FVar - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/FVar"
+        }
+    ]
+}

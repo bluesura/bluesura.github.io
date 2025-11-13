@@ -1,0 +1,48 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "PalNo",
+        "target": "",
+        "category": [
+            "キャラクター情報",
+            "使用中カラーパレット番号の取得"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.01.17",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "PalNo",
+    "summary": "<p>プレイヤーのパレット番号を返します。</p>",
+    "syntax": [
+        "PalNo"
+    ],
+    "description": "プレイヤーのパレット番号を返します。<br>パレット番号はキャラセレクト時の決定ボタンで変化します。決定カラーで戦闘スタイルが異なるキャラや、カラーによってCPUアルゴリズムを変える場合などに使用します。<br>戻り値の型: int<br>詳細: 選択ボタンとパレット番号は次のとおりです（スト2配置で言えば、弱キックが1番）:<br>X Y Z (4 5 6)<br>A B C (1 2 3)<br>スタートボタンを押しながら選択すると、上記番号に6を足したものがパレット番号になります。<br>大抵の格ゲーでは、左上のボタンが標準パレットなので、palnoは4となりますが、1を標準パレットにする人も多いです。",
+    "code_sample": [
+        {
+            "title": "パレット番号5番（Yボタンで選んだときの色）のときのトリガー。",
+            "code": [
+                "Trigger1 = PalNo = 5"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "PalNo - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PalNo"
+        },
+        {
+            "title": "PalNo - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#palno"
+        },
+        {
+            "title": "PalNo - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#palno"
+        },
+        {
+            "title": "PalNo - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PalNo"
+        }
+    ]
+}

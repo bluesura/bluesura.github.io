@@ -1,0 +1,57 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "Ceil",
+        "target": "数学",
+        "category": [
+            "数値計算",
+            "小数点以下の切り上げ"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.12.21",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "Ceil",
+    "summary": "<p>xの小数点を切り上げた結果を返します。</p>",
+    "syntax": [
+        "Ceil(x)"
+    ],
+    "description": "xの小数点を切り上げた結果を返します。<br>引数xの小数点以下を切り上げた整数を返します。<br>戻り値の型: int",
+    "associated_trigger": [
+        "Floor"
+    ],
+    "code_sample": [
+        {
+            "title": "valueに6を代入",
+            "code": [
+                "value = Ceil(5.5)"
+            ]
+        },
+        {
+            "title": "valueに-2を代入",
+            "code": [
+                "value = Ceil(-2)"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "Ceil - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Ceil"
+        },
+        {
+            "title": "Ceil - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ceil-math"
+        },
+        {
+            "title": "Ceil - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ceil-math"
+        },
+        {
+            "title": "Ceil - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Ceil"
+        }
+    ]
+}

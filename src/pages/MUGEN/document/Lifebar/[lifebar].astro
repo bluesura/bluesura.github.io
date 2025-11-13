@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import JsonLifebarLayout from '../../../../layouts/JsonLifebarLayout.astro';
+
+export async function getStaticPaths() {
+  const lifebarEntries = await getCollection('lifebars');
+  return lifebarEntries.map(entry => ({
+    params: { lifebar: entry.id },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+const pageCategory = entry.data.page.category?.[1] || 'MUGEN Lifebar Reference';
+---
+<JsonLifebarLayout entry={entry} pageCategory={pageCategory} />

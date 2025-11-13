@@ -1,0 +1,55 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "MoveGuarded",
+        "target": "",
+        "category": [
+            "ヒット情報",
+            "攻撃のガード判定"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.01.17",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "MoveGuarded",
+    "summary": "<p>プレイヤーの攻撃がガードされたかどうかを返します。</p>",
+    "syntax": [
+        "MoveGuarded"
+    ],
+    "description": "プレイヤーの攻撃がガードされたかどうかを返します。<br>攻撃判定のあるステートでのみ効果のあるトリガーで、プレイヤーの攻撃がガードされたとき、1を返します。<br>winmugenでは仕様が異なり、ガードされてからの時間を返します。<br>cmdファイル内で\"StateNo\"、\"Command\"と組み合わせ、キャンセル条件としてよく使われます。<br>戻り値の型: Dos版はboolean int (1 or 0), Win版はint<br>詳細: MoveContactを参照して下さい。",
+    "code_sample": [
+        {
+            "title": "攻撃が防御されたときのトリガー。",
+            "code": [
+                "Trigger1 = MoveGuarded"
+            ]
+        },
+        {
+            "title": "ガードされたときのトリガー。",
+            "description": "<p>DosとWinで差が出ます。Dosでは「ガードされてからステートが終了するまで」を意味しますが、Winでは「ガード後1フレーム目(ガードポーズが終わった瞬間)」を意味します。</p>",
+            "code": [
+                "Trigger1 = MoveGuarded = 1"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "MoveGuarded - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveGuarded"
+        },
+        {
+            "title": "MoveGuarded - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#moveguarded"
+        },
+        {
+            "title": "MoveGuarded - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#moveguarded"
+        },
+        {
+            "title": "MoveGuarded - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveGuarded"
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+---
+// src/components/Breadcrumb.astro
+
+export interface Props {
+  level: string | number;
+  pageTitle: string;
+}
+
+const { level, pageTitle } = Astro.props;
+// JSONからの値は文字列のことがあるため、数値に変換して比較します
+const numericLevel = Number(level); 
+---
+
+<nav class="breadcrumb">
+  <div>
+    <ul>
+      {/* levelが2以上の場合に「Home」を表示 */}
+      {numericLevel >= 2 && (
+        <li itemscope>
+          <a href="/" target="_top" itemprop="url">
+            <span itemprop="title">Home</span>
+          </a>
+        </li>
+      )}
+      {/* levelが3以上の場合にカテゴリトップへのリンクを表示 */}
+      {numericLevel >= 3 && (
+        <>
+          <li> &gt; </li>
+          <li itemscope>
+            {/* 
+              元の `./` は現在のページを指してしまうため、
+              一つ上の階層（カテゴリトップ）を指す `../` に変更するのが一般的です。
+            */}
+            <a href="./" target="_top" itemprop="url">
+              <span itemprop="title">{pageTitle}</span>
+            </a>
+          </li>
+        </>
+      )}
+    </ul>
+  </div>
+</nav>

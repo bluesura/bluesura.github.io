@@ -1,0 +1,64 @@
+---
+// src/layouts/BaseLayout.astro (新しいマスターレイアウト)
+import Head from '../components/Head.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { SITE_TITLE } from '../consts.ts'; // ← .ts を追加
+
+export interface Props {
+  pageTitle?: string;
+  pageSubtitle?: string;
+  pageCategory?: string;
+  description?: string;
+  url: URL | string;
+}
+const props = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="ja" itemscope itemtype="http://schema.org/Article">
+<head>
+  <Head siteName={SITE_TITLE} {...props} />
+
+  {/* Google Tag Manager - 変更なし */}
+  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MMQSZM');</script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div id="container">
+    <div id="content-inner">
+      <div id="container-inner">
+        <Header siteName={SITE_TITLE} pageTitle={props.pageTitle} />
+        <div id="content">
+          <div id="wrapper">
+            <div id="main">
+              <!-- 各ページの中間レイアウトの内容がここに挿入されます -->
+              <slot />
+              <!-- ソーシャルボタンは全記事共通なのでBaseLayoutに移動 -->
+              <ul class="sosial_buttons">
+                <li class="sb_facebook"><a href="#" onclick="window.open('https://www.facebook.com/share.php?u='+encodeURIComponent(document.location.href), 'FBwindow', 'width=320, height=320, menubar=no, toolbar=no, scrollbars=yes'); return false;" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li class="sb_twitter"><a href="#" onclick="window.open('http://twitter.com/share?count=horizontal&original_referer=&text='+encodeURIComponent((function(){if((''+document.getSelection()).length){return document.getSelection()}else{return document.title.slice(0,30)}})()+' @bluesuraさんから')+'&url='+document.location.href, 'tweetwindow', 'width=550, height=450,personalbar=0,toolbar=0,scrollbars=1,resizable=1'); return false;" title="このページをツイートする" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li class="sb_hatena"><a href="#" onclick="window.open('http://b.hatena.ne.jp/entry/'+encodeURIComponent(document.location.href))" class="hatena-bookmark-button" title="このページをはてなブックマークに追加する" target="_blank"><b>B!</b></a></li>
+                <li class="sb_gplus"><a href="#" onclick="window.open('https://plus.google.com/share?url='+encodeURIComponent(document.location.href), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+              </ul>
+            </div>
+            <Sidebar />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <Footer />
+  <script is:inline>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').then(function() { /* Registered */ });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "TeamMode",
+        "target": "",
+        "category": [
+            "キャラクターのパラメーター",
+            "試合のチーム形式は何ですか？"
+        ],
+        "version": "2002.04.14",
+        "update": "2015.12.28",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "TeamMode",
+    "summary": "<p>現在のチームモードを判定し、真偽を返します。</p>",
+    "syntax": [
+        "TeamMode = \"Single\"",
+        "TeamMode != \"Single\"",
+        "TeamMode = \"Simul\"",
+        "TeamMode != \"Simul\"",
+        "TeamMode = \"Turns\"",
+        "TeamMode != \"Turns\""
+    ],
+    "description": "現在のチームモードを判定し、真偽を返します。<br>試合のチーム形式を判定し、条件に合っていれば1・合っていなければ0を返します。<br>Singleはシングル戦・Simulはタッグ戦・Turnsはチーム戦を意味しています。",
+    "code_sample": [
+        {
+            "title": "シングルモード時のトリガー。",
+            "code": [
+                "Trigger1 = TeamMode = Single"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "TeamMode - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamMode"
+        },
+        {
+            "title": "TeamMode - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#teammode"
+        },
+        {
+            "title": "TeamMode - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#teammode"
+        },
+        {
+            "title": "TeamMode - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TeamMode"
+        }
+    ]
+}

@@ -1,0 +1,59 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "TimeMod",
+        "target": "",
+        "category": [
+            "時間",
+            "ステート経過時間の剰余計算と比較"
+        ],
+        "version": "2002.04.14",
+        "update": "2015.12.28",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "TimeMod",
+    "summary": "<p>Timeの剰余計算を比較した結果を返します。</p>",
+    "syntax": [
+        "TimeMod = 除数・正の整数, 剰余・整数",
+        "TimeMod != 除数・正の整数, 剰余・整数",
+        "TimeMod < 除数・正の整数, 剰余・整数",
+        "TimeMod > 除数・正の整数, 剰余・整数",
+        "TimeMod <= 除数・正の整数, 剰余・整数",
+        "TimeMod >= 除数・正の整数, 剰余・整数"
+    ],
+    "description": "Timeの剰余計算を比較した結果を返します。<br>ステート時間を第1指定値で割った余りが第2指定値と符号の条件を満たしている場合は1、満たしていない場合は0を返します。<br>%も割り算の余りを返す符号なので、代用可能で、このトリガーは使う必要がありません。",
+    "version": [
+        {
+            "no": "エラー",
+            "content": "除数を0にするとSFalseを返します。"
+        }
+    ],
+    "code_sample": [
+        {
+            "title": "ステートの経過時間が 3, 7, 11, 15, ...のときのトリガー",
+            "code": [
+                "Trigger1 = TimeMod = 4, 3"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "TimeMod - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TimeMod"
+        },
+        {
+            "title": "TimeMod - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#timemod"
+        },
+        {
+            "title": "TimeMod - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#timemod"
+        },
+        {
+            "title": "TimeMod - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TimeMod"
+        }
+    ]
+}

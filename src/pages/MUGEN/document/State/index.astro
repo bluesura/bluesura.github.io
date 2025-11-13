@@ -1,0 +1,72 @@
+---
+// src/pages/MUGEN/document/State/index.astro
+
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+// 1. StateControllerの全データを取得
+const allStates = await getCollection('state-controllers');
+
+// 2. state名でアルファベット順にソート
+allStates.sort((a, b) => a.data.state.localeCompare(b.data.state));
+
+// 3. ページ全体の情報を定義
+const pageTitle = "State Controller Reference";
+const description = "MUGENのState Controller（ステートコントローラー）の一覧です。";
+
+// パラメータ名の長さに応じてスペースを追加するヘルパー関数
+function formatParam(param: string, maxLength = 27): string {
+  const spaces = ' '.repeat(Math.max(0, maxLength - param.length));
+  return `${param}${spaces}`;
+}
+---
+<BaseLayout
+  pageTitle={pageTitle}
+  description={description}
+  url={Astro.url}
+>
+  <div id="main-inner">
+    <article class="entry hentry ...">
+      <header class="entry-header">
+        <div class="entry-title">
+          <h1>ステートコントローラー一覧</h1>
+        </div>
+      </header>
+
+      <div class="entry-content">
+        {allStates.map(entry => {
+          const content = entry.data;
+          return (
+            <div class="section">
+              <h2><a href={`/MUGEN/document/State/${entry.id}.html`}>{content.state}</a></h2>
+              <div set:html={content.description}></div>
+              <div class="code" contenteditable="true">
+                <ul>
+                  {content.category === "state" && (
+                    <>
+                      <li>[State]</li>
+                      <li>{formatParam('Type')} = {content.state}</li>
+                      <li>{formatParam('Trigger1')} = 1</li>
+                    </>
+                  )}
+                  {content.category === "statetype" && (
+                    <li>[StateDef 『正の整数』]</li>
+                  )}
+                  
+                  {content.parameter?.map(param => {
+                    if (!param.parameter) return null; // 空のパラメータはスキップ
+                    return (
+                        <li>
+                            {formatParam(param.parameter)}= {param.value.join(', ')}
+                        </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </article>
+  </div>
+</BaseLayout>

@@ -1,0 +1,58 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "NumHelper",
+        "target": "実行者自身",
+        "category": [
+            "ヘルパー",
+            "指定IDのヘルパー数の取得"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.12.21",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "NumHelper",
+    "summary": "<p>プレイヤーが出現させているhelperの数を返します。</p>",
+    "syntax": [
+        "NumHelper",
+        "NumHelper(HelperのID)"
+    ],
+    "description": "プレイヤーが出現させているhelperの数を返します。<br>引数にID番号を指定した場合、そのID番号のhelperの数を返します。<br>IDには、0以上の整数を指定します。0以下の数を指定した場合、省略時と同じ扱いになります。<br>戻り値の型: int",
+    "associated_state": [
+        "Helper"
+    ],
+    "code_sample": [
+        {
+            "title": "プレイヤーのヘルパー数が2つ未満の場合のトリガー",
+            "code": [
+                "Trigger1 = NumHelper < 2"
+            ]
+        },
+        {
+            "title": "プレイヤーのID1234のヘルパー数が2つ未満の場合のトリガー",
+            "code": [
+                "Trigger1 = NumHelper(1234) < 2"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "NumHelper - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumHelper"
+        },
+        {
+            "title": "NumHelper - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numhelper"
+        },
+        {
+            "title": "NumHelper - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numhelper"
+        },
+        {
+            "title": "NumHelper - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumHelper"
+        }
+    ]
+}

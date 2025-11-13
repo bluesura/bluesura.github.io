@@ -1,0 +1,69 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "WinPerfect",
+        "target": "",
+        "category": [
+            "試合情報",
+            "パーフェクト勝利判定"
+        ],
+        "version": "2002.04.14",
+        "update": "2015.12.09",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "WinPerfect",
+    "summary": "<p>ラウンドで体力全快・相手を死亡させて勝利したかどうかを返します。</p>",
+    "syntax": [
+        "WinPerfect"
+    ],
+    "description": "ラウンドで体力全快・相手を死亡させて勝利したかどうかを返します。<br>ラウンドで体力全快・相手を死亡させて勝利している場合は1、それ以外の場合は0を返します。<br>フラグはライフが0になった次のフレームに立ちます。<br>ラウンドのKO勝利判定は<code>WinKO</code>・ラウンドのパーフェクト勝利判定は<code>WinPerfect</code>・ラウンドの時間切れ勝利判定は<code>WinTime</code>・ラウンドの勝利判定は<code>Win</code>、ラウンドのKO敗北判定は<code>LoseKO</code>・ラウンドの時間切れ敗北判定は<code>LoseTime</code>・ラウンドの敗北判定は<code>Lose</code>、ラウンドの引き分け判定は<code>DrawGame</code>、マッチの決着判定は<code>MatchOver</code>を使用して下さい。",
+    "associated_trigger": [
+        "WinKO",
+        "WinTime",
+        "Win",
+        "LoseKO",
+        "LoseTime",
+        "Lose",
+        "DrawGame",
+        "MatchOver"
+    ],
+    "parameter": [
+        {
+            "parameter": "",
+            "type": [
+                ""
+            ],
+            "description": "<p></p>",
+            "min_value": [
+                ""
+            ],
+            "max_value": [
+                ""
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "Win - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Win"
+        },
+        {
+            "title": "Win - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#win"
+        },
+        {
+            "title": "Win - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#win"
+        },
+        {
+            "title": "Win - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Win"
+        },
+        {
+            "title": "WinPerfect - MUGEN CNS WIKI CHAOS@予定",
+            "url": "http://www49.atwiki.jp/mugencns/pages/112.html"
+        }
+    ]
+}

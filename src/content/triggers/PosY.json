@@ -1,0 +1,48 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "Pos Y",
+        "target": "",
+        "category": [
+            "距離",
+            "地面基準の現在Y座標取得"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.01.17",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "PosY",
+    "summary": "<p>プレイヤーの位置を返します。</p>",
+    "syntax": [
+        "Pos Y"
+    ],
+    "description": "プレイヤーの位置を返します。<br>Pos X = 0で画面中央を、Pos Y = 0で地面を意味します。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。<br>詳細: Pos X は、画面中央を0、左方向を正、右方向を負とした、相対距離を返します。Pos Y は、地面を0、下方向を正、上方向を負とした、相対距離を返します。",
+    "code_sample": [
+        {
+            "title": "プレイヤーが地面より下にいる場合のトリガー。",
+            "code": [
+                "Trigger1 = Pos Y >= 0"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "Pos - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Pos"
+        },
+        {
+            "title": "Pos - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#pos"
+        },
+        {
+            "title": "Pos - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#pos"
+        },
+        {
+            "title": "Pos - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Pos"
+        }
+    ]
+}

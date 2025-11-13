@@ -1,0 +1,58 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "MatchOver",
+        "target": "",
+        "category": [
+            "試合情報",
+            "試合の決着判定"
+        ],
+        "version": "2002.04.14",
+        "update": "2015.12.24",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "MatchOver",
+    "summary": "<p>マッチ(試合)で決着がついたかどうかを返します。</p>",
+    "syntax": [
+        "MatchOver"
+    ],
+    "description": "マッチ(試合)で決着がついたかどうかを返します。<br>試合で勝敗の判定がつけば1を返します。※ラウンドではマッチの終了時に返します。<br>フラグは<code>RoundState=3</code>になって勝敗の判定が出てから立ちます。<br>ラウンドのKO勝利判定は<code>WinKO</code>・ラウンドのパーフェクト勝利判定は<code>WinPerfect</code>・ラウンドの時間切れ勝利判定は<code>WinTime</code>・ラウンドの勝利判定は<code>Win</code>、ラウンドのKO敗北判定は<code>LoseKO</code>・ラウンドの時間切れ敗北判定は<code>LoseTime</code>・ラウンドの敗北判定は<code>Lose</code>、ラウンドの引き分け判定は<code>DrawGame</code>、マッチの決着判定は<code>MatchOver</code>を使用して下さい。",
+    "associated_trigger": [
+        "WinKO",
+        "WinPerfect",
+        "WinTime",
+        "Win",
+        "LoseKO",
+        "LoseTime",
+        "Lose",
+        "DrawGame"
+    ],
+    "code_sample": [
+        {
+            "title": "",
+            "code": [
+                ""
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "MatchOver - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MatchOver"
+        },
+        {
+            "title": "MatchOver - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#matchover"
+        },
+        {
+            "title": "MatchOver - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#matchover"
+        },
+        {
+            "title": "MatchOver - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MatchOver"
+        }
+    ]
+}

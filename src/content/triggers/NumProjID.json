@@ -1,0 +1,62 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "NumProjID",
+        "target": "飛び道具",
+        "category": [
+            "飛び道具",
+            "指定IDの飛び道具数の取得"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.12.21",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "NumProjID",
+    "summary": "<p>プレイヤーの特定IDのProjectile数を返します。</p>",
+    "syntax": [
+        "NumProjID(ProjectileのID)"
+    ],
+    "description": "プレイヤーの特定IDのProjectile数を返します。<br>コマンド条件で飛び道具の数を制限したい場合などに使用します。<br>引数には、数えたいProjectileのIDを、intで指定します。引数に負数を指定した場合、IDは0とみなされます。<br>戻り値の型: int",
+    "associated_state": [
+        "Projectile"
+    ],
+    "code_sample": [
+        {
+            "title": "プレイヤーが放出したID1234の飛び道具が1つだけ存在している場合のトリガー",
+            "code": [
+                "Trigger1 = NumProjID(1234) = 1"
+            ]
+        }
+    ],
+    "associated_trigger": [
+        "NumProj",
+        "NumProjID",
+        "ProjCancelTime",
+        "ProjContact",
+        "ProjContactTime",
+        "ProjGuarded",
+        "ProjGuardedTime",
+        "ProjHit",
+        "ProjHitTime"
+    ],
+    "quote": [
+        {
+            "title": "NumProjID - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumProjID"
+        },
+        {
+            "title": "NumProjID - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numprojid"
+        },
+        {
+            "title": "NumProjID - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numprojid"
+        },
+        {
+            "title": "NumProjID - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumProjID"
+        }
+    ]
+}

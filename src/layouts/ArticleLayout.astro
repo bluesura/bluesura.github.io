@@ -1,0 +1,147 @@
+---
+// src/layouts/ArticleLayout.astro (ヘッダー部分を完全に移植)
+
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+
+// ページを構成する各コンテンツパーツのコンポーネントをインポート
+import Description from '../components/content/Description.astro';
+import Parameter from '../components/content/Parameter.astro';
+import Version from '../components/content/Version.astro';
+import DefaultParameter from '../components/content/DefaultParameter.astro';
+import QandA from '../components/content/QandA.astro';
+import CodeSample from '../components/content/CodeSample.astro';
+import LoadParameter from '../components/content/LoadParameter.astro';
+import Quote from '../components/content/Quote.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+export interface Props {
+  entry: CollectionEntry<'state-controllers'> | CollectionEntry<'triggers'>;
+  pageCategory: string;
+  parameter: any[];
+}
+const { entry, pageCategory, parameter } = Astro.props;
+const content = entry.data;
+
+// --- ページ固有のロジック ---
+/*
+// 共通パラメータを追加する処理（StateControllerの場合のみ）
+let finalParameters = content.parameter ? [...content.parameter] : [];
+if (entry.collection === 'state-controllers' && entry.id.length > 1) {
+  // ここに共通パラメータを追加するロジックを実装
+}*/
+
+const updatedDate = content.page.update ? content.page.update.replace(/\./g, '-') : '';
+const firstImage = content.images?.[0];
+
+// コンテンツタイプに応じてベースパスを決定
+const contentBasePath = entry.collection === 'state-controllers' ? 'State' : 'Trigger';
+//\MUGEN\public\images\state
+// ヘッダー背景画像用のスタイルを動的に生成
+const headerStyle = firstImage 
+  ? `background-image: url(/images/${contentBasePath}/${firstImage.src}); background-size: cover; background-repeat: no-repeat;` 
+  : '';
+const headerInnerStyle = firstImage 
+  ? `height:${firstImage.height}px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;` 
+  : '';
+---
+
+<BaseLayout
+  pageTitle={content.page.title}
+  pageSubtitle={content.state || content.trigger}
+  pageCategory={pageCategory}
+  description={content.description?.replace(/<[^>]*>?/gm, '') || content.summary?.replace(/<[^>]*>?/gm, '')}
+  url={Astro.url}
+>
+  <div id="main-inner">
+    <article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
+      
+      <!-- ヘッダー部分 (tplから完全に移植・修正) -->
+      <header class="entry-header" style={headerStyle}>
+        <div style={headerInnerStyle}>
+          {firstImage && (
+            <>
+              <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display: none;">
+                <meta itemprop="url" content={`https://bluesura.github.io/images/${contentBasePath}/${firstImage.src}`}>
+                <meta itemprop="width" content={firstImage.width}>
+                <meta itemprop="height" content={firstImage.height}>
+              </span>
+              {/* tplにあった非表示のimgタグを移植 */}
+              <img src={`/images/${contentBasePath}/${firstImage.src}`} alt={firstImage.alt || content.state || content.trigger} style="display:none;">
+            </>
+          )}
+          <div class="entry-title" itemprop="name">
+            <div>
+              <h1 id={content.state || content.trigger}>
+                {entry.collection === 'state-controllers' 
+                  ? `Type = ${content.state}` 
+                  : content.trigger
+                }
+              </h1>
+              {content.page.category && (
+                <div class="category">
+                  {content.page.category.join(' > ')}
+                  {(content.page.version || content.page.target) && ' | '}
+                  {content.page.version && `実装されたバージョン: ${content.page.version}`}
+                  {content.page.version && content.page.target && ' | '}
+                  {content.page.target && `対象: ${content.page.target}`}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- メインコンテンツ部分 -->
+      <div class="entry-content">
+        
+        {/* コンテンツタイプに応じて表示を切り替え */}
+        {entry.collection === 'state-controllers' && <Description content={content} />}
+        {entry.collection === 'triggers' && <Description content={content} />}
+        {/*{entry.collection === 'triggers' && content.summary && (
+          <section id="summary"><div class="summary section">
+            <h2>概要</h2>
+            <Fragment set:html={content.summary} />
+          </div></section>
+          <hr>
+        )}*/}
+        {entry.collection === 'triggers' && content.syntax && (
+           <section id="syntax"><div class="syntax section">
+            <h2>構文</h2>
+            <div class="code"><code><ul>
+              {content.syntax.map(code => <li>{code}</li>)}
+            </ul></code></div>
+          </div></section>
+          <hr>
+        )}
+
+        {/* 各コンテンツパーツのコンポーネントを呼び出す */}
+        <Parameter parameter={parameter} />
+        <Version version={content.version} />
+        {content.category === "state" && <DefaultParameter content={content} />}
+        <QandA qanda={content.qanda} />
+        <CodeSample code_sample={content.code_sample} />
+        {content.category === "state" && <LoadParameter parameter={content.parameter} />}
+        <Quote quote={content.quote} />
+        
+        <!-- 日付・貢献者情報 -->
+        <div>
+          <div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div>
+          {content.page.update && <div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime={updatedDate}>{content.page.update}</time></div>}
+          {content.page.contributor && Array.isArray(content.page.contributor) && content.page.contributor.length > 0 && (
+            <div>
+              <strong>貢献者:</strong>
+              {content.page.contributor.map(c => `${c}氏`).join(', ')}
+            </div>
+          )}
+        </div>
+
+        <Breadcrumb 
+          level={content.page.level} 
+          pageTitle={content.page.title} 
+        />
+
+      </div>
+    </article>
+  </div>
+</BaseLayout>

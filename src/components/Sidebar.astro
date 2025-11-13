@@ -1,0 +1,180 @@
+---
+// src/components/Sidebar.astro
+
+import { getCollection } from 'astro:content';
+
+// 'state-controllers' コレクションから全てのデータを取得
+const stateControllers = await getCollection('state-controllers');
+stateControllers.sort((a, b) => a.data.state.localeCompare(b.data.state));
+
+const triggers = await getCollection('triggers');
+triggers.sort((a, b) => a.data.trigger.localeCompare(b.data.trigger));
+
+const lifebars = await getCollection('lifebars');
+// groupプロパティでソート（オプション）
+lifebars.sort((a, b) => (a.data.group || a.id).localeCompare(b.data.group || b.id));
+---
+<div id="sidebar">
+  <div id="box2" style="padding:0;width:324px;height:100%;">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" is:inline></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-format="fluid"
+         data-ad-layout-key="-89+1m-dq+ei+hz"
+         data-ad-client="ca-pub-9960110085246197"
+         data-ad-slot="1427349786"></ins>
+    <script is:inline>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <div id="box2">
+    <div class="article-survey-container">
+      <div class="toc" id="toc">
+        <div class="title">目次</div>
+        <ul><!-- ここに目次が動的に挿入されます --></ul>
+      </div>
+    </div>
+    <script>
+    // === 目次自動生成スクリプト（ランダムID版） ===
+    document.addEventListener("DOMContentLoaded", () => {
+      // --- 設定 ---
+      const config = {
+        tocContainer: "#toc ul",
+        contentSource: "#main-inner",
+        headings: ["h2", "h3", "dt"]
+      };
+
+      const tocList = document.querySelector(config.tocContainer);
+      const contentSource = document.querySelector(config.contentSource);
+
+      if (!tocList || !contentSource) {
+        console.warn("目次生成に必要な要素が見つかりませんでした。");
+        return;
+      }
+
+      // 一意なランダムIDを生成する関数
+      const generateRandomId = () => {
+        // プレフィックスを付けて、他のIDと衝突する可能性をさらに低減
+        return 'toc-id-' + Math.random().toString(36).slice(2, 11);
+      };
+
+      const fragment = document.createDocumentFragment();
+      let lastH2ListItem = null;
+
+      const headings = contentSource.querySelectorAll(config.headings.join(","));
+
+      headings.forEach(heading => {
+        const level = parseInt(heading.tagName.slice(1)) || 3;
+        const baseLevel = parseInt(config.headings[0].slice(1));
+
+        // 1. 見出しにIDを付与
+        // 既存のIDがあればそれを使い、なければランダムなIDを生成する
+        let id = heading.id || generateRandomId();
+        heading.id = id;
+
+        // 2. 目次のリスト項目(li)とリンク(a)を作成
+        const listItem = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `#${id}`;
+        link.textContent = heading.textContent.trim();
+        listItem.style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;";
+        listItem.appendChild(link);
+
+        // 3. 階層構造を考慮して目次に追加
+        if (level === baseLevel) { // h2の場合
+          fragment.appendChild(listItem);
+          lastH2ListItem = listItem;
+        } else if (level > baseLevel && lastH2ListItem) { // h3で、直前にh2がある場合
+          let sublist = lastH2ListItem.querySelector("ul");
+          if (!sublist) {
+            sublist = document.createElement("ul");
+            lastH2ListItem.appendChild(sublist);
+          }
+          sublist.appendChild(listItem);
+        }
+      });
+
+      tocList.replaceChildren(fragment);
+    });
+    </script>
+  </div>
+
+  <div id="box2">
+    <div class="article-survey-container">
+      <div class="menu">
+        <!-- ステートコントローラーのメニュー -->
+        <label for="menu_bar01">+ ステートコントローラー 一覧を見る</label>
+        <input type="checkbox" id="menu_bar01" class="accordion" />
+        <ul id="links01">
+          <li><a href="/MUGEN/document/State/">Top Page</a></li>
+          {stateControllers.map(item => (
+            <li>
+              <a href={`/MUGEN/document/State/${item.id}.html`}>{item.data.state}</a>
+            </li>
+          ))}
+        </ul>
+
+        <!-- トリガーのメニュー -->
+        <label for="menu_bar02">+ トリガー 一覧を見る</label>
+        <input type="checkbox" id="menu_bar02" class="accordion" />
+        <ul id="links02">
+          <li><a href="/MUGEN/document/Trigger/">Top Page</a></li>
+          {triggers.map(item => (
+            <li>
+              <a href={`/MUGEN/document/Trigger/${item.id}.html`}>{item.data.trigger}</a>
+            </li>
+          ))}
+        </ul>
+
+        <!-- ライフバーのメニュー -->
+        <label for="menu_bar03">+ ライフバーの設定 を見る</label>
+        <input type="checkbox" id="menu_bar03" class="accordion" />
+        <ul id="links03">
+          <li><a href="/MUGEN/document/Lifebar/">Top Page</a></li>
+          {lifebars.map(item => {
+            // item.idから拡張子(.json)を取り除いてURLを生成する
+            const slug = item.id.replace(/\.json$/, '');
+            const title = item.data.group || slug;
+            return <li><a href={`/MUGEN/document/Lifebar/${slug}.html`}>{title}</a></li>
+          })}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="box2">
+   <div class="mamewaza_blog"><div><div class="mamewaza_blog_exp"><span class="mamewaza_assembled">powered by <a href="http://mamewaza.com/tools/" target="_blank" rel="nofollow">まめわざ</a></span></div></div></div><script type="text/javascript" src="https://mamewaza.net/blog.js?200311"></script><script type="text/javascript">mamewaza_blog({selector:"#mamewaza_blog",feed:"https://github.com/bluesura/bluesura.github.io/commits/master.atom",rpp:"5",height:"auto",exp:true,url:false,date:"0",style:"div.mamewaza_blog > div{background-color:transparent;}div.mamewaza_blog ul.mamewaza_blog{background-color:transparent;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog li,div.mamewaza_blog div.mamewaza_blog_exp{padding:10px;}div.mamewaza_blog > div{padding:0px;border:1px solid #eeeeee;font-size:12px;}div.mamewaza_blog h5.mamewaza_blog,div.mamewaza_blog ul.mamewaza_blog,div.mamewaza_blog li{border-bottom:1px solid #eeeeee;}div.mamewaza_blog h5.mamewaza_blog a,div.mamewaza_blog a.mamewaza_blog_title{color:#000;font-size:14px;text-shadow:none;}div.mamewaza_blog a.mamewaza_blog_title{font-weight:normal;}div.mamewaza_blog,div.mamewaza_blog a{color:#999999;}div.mamewaza_blog a.mamewaza_blog_url{color:#999999;}"})</script>
+  </div>
+
+
+
+  <div id="box2">
+    <div id="survey" class="article-survey-container">
+      <div class="as">
+        <div class="title">この記事は役に立ちましたか？</div>
+        <button id="survey-yes" class="as-button" type="button" onclick="document.getElementById('survey').innerHTML = '<div class=\'as\'><div class=\'title\'>貴重なご意見をお寄せいただきありがとうございます。</div></div>';">はい</button>
+        <button id="survey-no" class="as-button" type="button" onclick="document.getElementById('survey').innerHTML='<iframe src=\'https://docs.google.com/forms/d/1UmHOKn96QQogYHWl_WrxdYyUaeYV8gBwvec52bxjDPk/viewform?embedded=true\' width=\'100%\' height=\'1000\' frameborder=\'0\' marginheight=\'0\' marginwidth=\'0\'>読み込んでいます...</iframe>';">いいえ</button>
+      </div>
+    </div>
+
+    <div id="feedback" class="article-survey-container">
+      <div class="as">
+        <div class="title">ご意見・ご要望はございますか？</div>
+        <button id="feedback-yes" class="as-button" type="button" onclick="document.getElementById('feedback').innerHTML = '<iframe id=\'feedback\' src=\'https://docs.google.com/forms/d/1dafgc1TPGiLt4h9Mx_nlikml4QxKWL8a4PkMBCOMqi8/viewform?embedded=true\' width=\'100%\' height=\'900\' frameborder=\'0\' marginheight=\'0\' marginwidth=\'0\'>読み込んでいます...</iframe>';">はい</button>
+        <button id="feedback-no" class="as-button" type="button" onclick="document.getElementById('feedback').innerHTML = '<div class=\'as\'><div class=\'title\'>(*´ω｀*)</div></div>';">いいえ</button>
+      </div>
+    </div>
+
+    <div id="recruit" class="article-survey-container">
+      <div class="title">プロフィール</div>
+      <p>管理者：SURA(すら)</p>
+      <p>M.U.G.E.Nのリファレンスほそぼそと更新。本サイトは「なるべくわかりやすい」と「ない情報を集める」を目標にしています。詳しい動作を調べたい場合は<a href="https://www49.atwiki.jp/mugencns/">MUGEN CNS WIKI CHAOS@予定</a>をオススメします。</p>
+      <p>Twitter：<a href="https://twitter.com/bluesura">@bluesura</a></p>
+
+      <div class="title">記事に不備があった場合</div>
+      <p>不備があれば<a href="https://github.com/bluesura/bluesura.github.io/issues">Github</a>・<a href="https://twitter.com/bluesura">Twitter</a>・<a href="mailto:suteadddayov@gmail.com">suteadddayov@gmail.com</a>にご報告下さい。</p>
+
+    </div>
+  </div>
+</div>

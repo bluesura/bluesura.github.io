@@ -1,0 +1,48 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "Exp",
+        "target": "数学",
+        "category": [
+            "数値計算",
+            "自然対数の底eのべき乗計算"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.12.11",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "Exp",
+    "summary": "<p>ネイピア数（オイラー数）のべき乗(E<sup>x</sup>)を返します。</p>",
+    "syntax": [
+        "Exp(引数)"
+    ],
+    "description": "ネイピア数（オイラー数）のべき乗(E<sup>x</sup>)を返します。<br>引数には、eの乗数をfloatで指定します。e**引数と書いても同じです。<br>戻り値の型: float",
+    "code_sample": [
+        {
+            "title": "valueにeの\"4-var(0)\"乗を代入します。",
+            "code": [
+                "value = exp(4-var(0))"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "Exp - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Exp"
+        },
+        {
+            "title": "Exp - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#exp-math"
+        },
+        {
+            "title": "Exp - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#exp-math"
+        },
+        {
+            "title": "Exp - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Exp"
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "DrawGame",
+        "target": "",
+        "category": [
+            "試合情報",
+            "ラウンドの引き分け判定"
+        ],
+        "version": "2002.04.14",
+        "update": "2015.12.24",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "DrawGame",
+    "summary": "<p>ラウンドで引き分けたかどうかを返します。</p>",
+    "syntax": [
+        "DrawGame"
+    ],
+    "description": "ラウンドで引き分けたかどうかを返します。<br>ラウンド終了時に自分と相手が同じ体力で引き分けだった場合は1、それ以外の場合は0を返します。<br>フラグはラウンド終了時(<code>RoundState=3</code>)に立ちます。<br>ラウンドのKO勝利判定は<code>WinKO</code>・ラウンドのパーフェクト勝利判定は<code>WinPerfect</code>・ラウンドの時間切れ勝利判定は<code>WinTime</code>・ラウンドの勝利判定は<code>Win</code>、ラウンドのKO敗北判定は<code>LoseKO</code>・ラウンドの時間切れ敗北判定は<code>LoseTime</code>・ラウンドの敗北判定は<code>Lose</code>、ラウンドの引き分け判定は<code>DrawGame</code>、マッチの決着判定は<code>MatchOver</code>を使用して下さい。",
+    "associated_trigger": [
+        "WinKO",
+        "WinPerfect",
+        "WinTime",
+        "Win",
+        "LoseKO",
+        "LoseTime",
+        "Lose",
+        "MatchOver"
+    ],
+    "code_sample": [
+        {
+            "title": "",
+            "code": [
+                ""
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "DrawGame - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#DrawGame"
+        },
+        {
+            "title": "DrawGame - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#drawgame"
+        },
+        {
+            "title": "DrawGame - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#drawgame"
+        },
+        {
+            "title": "DrawGame - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/DrawGame"
+        }
+    ]
+}

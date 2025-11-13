@@ -1,0 +1,35 @@
+---
+export interface Props {
+  content: {
+    description: string;
+    associated_state?: string[];
+    associated_trigger?: string[];
+  }
+}
+const { content } = Astro.props;
+---
+<div class="description" itemprop="articleBody">
+  <Fragment set:html={content.description} />
+
+  {content.associated_state && content.associated_state.length > 0 && (
+    <div class="associated-trigger">関連するステートコントローラー： 
+      {content.associated_state.map((state, index) => (
+        <>
+          <a href={`./../State/${state}.html`}><code>{state}</code></a>
+          {index < content.associated_state.length - 1 ? ', ' : ''}
+        </>
+      ))}
+    </div>
+  )}
+  {content.associated_trigger && content.associated_trigger.length > 0 && (
+    <div class="associated-trigger">関連するトリガー： 
+      {content.associated_trigger.map((trigger, index) => (
+        <>
+          <a href={`./../Trigger/${trigger}.html`}><code>{trigger}</code></a>
+          {index < content.associated_trigger.length - 1 ? ', ' : ''}
+        </>
+      ))}
+    </div>
+  )}
+</div>
+<hr>

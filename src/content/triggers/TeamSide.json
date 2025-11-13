@@ -1,0 +1,48 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "TeamSide",
+        "target": "",
+        "category": [
+            "試合情報",
+            "所属チームサイドの取得"
+        ],
+        "version": "2002.04.14",
+        "update": "2015.12.28",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "TeamSide",
+    "summary": "<p>プレイヤーが所属するチームを返します。</p>",
+    "syntax": [
+        "TeamSide"
+    ],
+    "description": "プレイヤーが所属するチームを返します。<br>1P側(左側)なら1、2P側(右側)なら2の整数で返します。",
+    "code_sample": [
+        {
+            "title": "プレイヤーが2P側のときのトリガー。",
+            "code": [
+                "Trigger1 = TeamSide = 2"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "TeamSide - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamSide"
+        },
+        {
+            "title": "TeamSide - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#teamside"
+        },
+        {
+            "title": "TeamSide - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#teamside"
+        },
+        {
+            "title": "TeamSide - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TeamSide"
+        }
+    ]
+}

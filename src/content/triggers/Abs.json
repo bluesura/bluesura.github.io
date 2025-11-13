@@ -8,7 +8,7 @@
             "絶対値の計算"
         ],
         "version": "2002.04.14",
-        "update": "2016.05.09",
+        "update": "2025.11.13",
         "type": "document",
         "level": "3"
     },
@@ -23,17 +23,20 @@
         "Floor",
         "Ceil"
     ],
+    "version": [
+        {"no": "2002年頃の古いMUGEN", "content": "exprnがSFalseを評価した場合、SFalseを返します。"},
+        {"no": "MUGEN 1.0/1.1", "content": "exprnがbottomを評価した場合、bottomを返します。"}
+    ],
     "parameter": [
         {
             "parameter": "x",
             "value": [
-                ""
+                "定数や変数、他のトリガー、関数、演算子"
             ],
             "type": [
-                "int",
-                "float"
+                "exprn"
             ],
-            "description": "<p>絶対値を計算したい値を指定します。</p>",
+            "description": "絶対値を計算したい値を指定します。<br>戻り値の型	引数として与えられた式の結果と同じ型（整数型または浮動小数点型）が返されます。",
             "min_value": [
                 ""
             ],
@@ -44,10 +47,17 @@
     ],
     "code_sample": [
         {
-            "title": "",
-            "description": "<p></p>",
+            "title": "プレイヤーと近くの敵プレイヤーとのX座標の距離を求める。",
+            "description": "<p>特定の座標や位置からの距離を求めたい場合に使用されます。方向（左か右か、上か下か）を無視して、その差の絶対値を取ることで距離が得られます。</p>",
             "code": [
-                ""
+                "abs(Pos X - Enemy,Pos X)"
+            ]
+        },
+        {
+            "title": "三角波の生成",
+            "description": "<p>15 -> 0 -> 15と変化する三角波のようなパターンとなり、滑らかで周期的なアニメーションやエフェクト（点滅、振動、色変化など）などに使えます。</p>",
+            "code": [
+                "abs(15 - (GameTime % 30))"
             ]
         }
     ],

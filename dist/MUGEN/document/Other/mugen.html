@@ -1,0 +1,524 @@
+﻿<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Language" content="ja">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- （*´ω｀*）＜ソースコードを見るなんてえっちぃ人ですね！ -->
+
+  <title itemprop="headline">Name = sura</title>
+  <link rel="fluid-icon" href="/media/img/icon-512x512.png" title="MUGEN">
+  <link rel="shortcut icon" href="/media/img/favicon.png" type="image/png">
+  <link rel="icon" sizes="128x128" href="/media/img/icon-128x128.png">
+  <link rel="apple-touch-icon" sizes="128x128" href="/media/img/icon-128x128.png">
+  <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/media/img/icon-128x128.png">
+  <link rel="icon" sizes="192x192" href="/media/img/icon-192x192.png">
+  <meta name="msapplication-TileImage" content="/media/img/icon-512x512.png">
+
+  <link rel="mask-icon" href="/media/img/infinite-M.svg" color="#1E88E5">
+  <link rel="icon" type="image/x-icon" href="/media/img/favicon.png">
+
+  <!-- 「チェス盤を引っくり返す！」 -->
+  <meta name="theme-color" content="#1E88E5">
+  <meta name="msapplication-TileColor" content="#1E88E5">
+  <meta name="robots" content="INDEX,FOLLOW" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="author" content="sura" />
+  <meta name="generator" content="Smarty" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="MUGEN, M.U.G.E.N, むげん, 無限, 夢幻" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- 「駄目ね、全然駄目だわ」 -->
+
+
+
+  <link rel="author" title="sura" href="https://twitter.com/bluesura" />
+  <link href="https://github.com/bluesura/bluesura.github.io/commits/master.atom" rel="alternate" title="ATOM" type="application/atom+xml" />
+
+  <link rel="stylesheet" href="/lib/css/material.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript" src="/lib/js/code.js"></script>
+  <script type="text/javascript" src="/lib/js/js-ctrl.js"></script>
+  <script type="text/javascript" src="/lib/js/jquery.touchSwipe.min.js"></script>
+  <script type="text/javascript" src="/lib/js/isMobile.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="code">
+<ul>
+<li>;-=====================================================-</li>
+<li>;       Configuration file for mugen.exe</li>
+<li>;-=====================================================-</li>
+<li></li>
+<li>;-------------------------------------------------------</li>
+<li>; Game options configurable in M.U.G.E.N's options screen go here.</li>
+<li>; Does not include key config.</li>
+<li>[Options]</li>
+<li>; Basic options</li>
+<li>Difficulty = 4</li>
+<li>Life = 100</li>
+<li>Time = 99</li>
+<li>GameSpeed = 0</li>
+<li></li>
+<li>; Team-only config</li>
+<li>Team.1VS2Life = 150</li>
+<li>Team.LoseOnKO = 0</li>
+<li></li>
+<li>; Set the motif to use.</li>
+<li>; Motifs are themes that define the look and feel of MUGEN.</li>
+<li>; This is not accessible in options screen.</li>
+<li>; Note: If you install a motif that overwrites system files (not recommended)</li>
+<li>; you may need to set the motif line to use data/system.def instead.</li>
+<li>; motif = data/system.def  ;Use this line if using a motif that overwrites system files.</li>
+<li>motif = data/system.def</li>
+<li></li>
+<li>;-------------------------------------------------------</li>
+<li>[Rules]</li>
+<li> ;Keep this set at VS. It's the only option supported for now.</li>
+<li>GameType = VS</li>
+<li></li>
+<li> ;This is the amount of power the attacker gets when an attack successfully</li>
+<li> ;hits the opponent. It's a multiplier of the damage done. For example,</li>
+<li> ;for a value of 3, a hit that does 10 damage will give 30 power.</li>
+<li>Default.Attack.LifeToPowerMul = .7</li>
+<li></li>
+<li> ;This is like the above, but it's for the person getting hit.</li>
+<li> ;These two multipliers can be overridden in the Hitdef controller in the</li>
+<li> ;CNS by using the "getpower" and "givepower" options.</li>
+<li>Default.GetHit.LifeToPowerMul = .6</li>
+<li></li>
+<li> ;This controls how much damage a super does when you combo into it.</li>
+<li> ;It's actually a multiplier for the defensive power of the opponent.</li>
+<li> ;A large number means the opponent takes less damage. Leave it at</li>
+<li> ;1 if you want supers to do the normal amount of damage when comboed</li>
+<li> ;into.</li>
+<li> ;Note 1: this increase in defence stays effective until the opponent</li>
+<li> ;        gets up from the ground.</li>
+<li> ;Note 2: the program knows you've done a super when the "superpause"</li>
+<li> ;        controller is executed. That's the instance when this change</li>
+<li> ;        becomes effective.</li>
+<li>Super.TargetDefenceMul = 1.5</li>
+<li></li>
+<li></li>
+<li>;-------------------------------------------------------</li>
+<li>[Config]</li>
+<li> ;Set the game speed here. The default is 60 frames per second. The</li>
+<li> ;larger the number, the faster it goes. Don't use a value less than 10.</li>
+<li>GameSpeed = 60</li>
+<li></li>
+<li> ;Game native width and height.</li>
+<li> ;Recommended settings are:</li>
+<li> ;  640x480   Standard definition 4:3</li>
+<li> ; 1280x720   High definition 16:9</li>
+<li> ; 1920x1080  Full HD 16:9</li>
+<li> ; 1600×900</li>
+<li></li>
+<li>;GameWidth = 1280</li>
+<li>;GameHeight = 720</li>
+<li></li>
+<li>;GameWidth = 900</li>
+<li>;GameHeight = 540</li>
+<li></li>
+<li>;GameWidth = 800</li>
+<li>;GameHeight = 450</li>
+<li></li>
+<li>;GameWidth = 640</li>
+<li>;GameHeight = 360</li>
+<li></li>
+<li>GameWidth = 640</li>
+<li>GameHeight = 480</li>
+<li></li>
+<li> ;Preferred language (ISO 639-1), e.g. en, es, ja, etc.</li>
+<li> ;See http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes</li>
+<li>Language = "en"</li>
+<li></li>
+<li> ;Set to 1 to draw shadows (default). Set to 0 if you have a slow</li>
+<li> ;machine, and want to improve speed by not drawing shadows.</li>
+<li>DrawShadows = 1</li>
+<li></li>
+<li> ;Number of simultaneous afterimage effects allowed.</li>
+<li> ;Set to a lower number to save memory (minimum 1).</li>
+<li>AfterImageMax = 16</li>
+<li></li>
+<li> ;Maximum number of layered sprites that can be drawn.</li>
+<li> ;Set to a lower number to save memory (minimum 32).</li>
+<li>LayeredSpriteMax = 256</li>
+<li></li>
+<li> ;Size of sprite decompression buffer in KB. Increasing this number may help</li>
+<li> ;if you experience slow performance when there are many sprites and/or large</li>
+<li> ;sprites shown over a short period of time.</li>
+<li> ;Minimum 256 for acceptable performance.</li>
+<li> ;If you set this too large you may also experience performance degredation.</li>
+<li>SpriteDecompressionBufferSize = 16384</li>
+<li></li>
+<li> ;Maximum number of explods allowed in total. Note that hitsparks</li>
+<li> ;also count as explods.</li>
+<li> ;Set to a lower number to save memory (minimum 8).</li>
+<li>ExplodMax = 256</li>
+<li></li>
+<li> ;Maximum number of system explods allowed.</li>
+<li> ;Set to a lower number to save memory (minimum 8).</li>
+<li>SysExplodMax = 128</li>
+<li></li>
+<li> ;Maximum number of helpers allowed in total.</li>
+<li> ;Set to a lower number to save memory (minimum 4, maximum 56).</li>
+<li>HelperMax = 56</li>
+<li></li>
+<li> ;Maximum number of projectiles allowed per player.</li>
+<li> ;Set to a lower number to save memory (minimum 5).</li>
+<li>PlayerProjectileMax = 32</li>
+<li></li>
+<li> ;This is 1 the first time you run MUGEN.</li>
+<li>FirstRun = 0</li>
+<li></li>
+<li></li>
+<li>;-------------------------------------------------------</li>
+<li>[Debug]</li>
+<li> ;Set to 0 to disable starting in debug mode by default.</li>
+<li>Debug = 1</li>
+<li></li>
+<li> ;Set to 0 to disallow switching to debug mode by pressing Ctrl-D.</li>
+<li> ;If Debug = 1, this will be ignored.</li>
+<li>AllowDebugMode = 1</li>
+<li></li>
+<li> ;Set to 1 to allow debug keys at all times. Otherwise debug keys</li>
+<li> ;allowed only in debug mode.</li>
+<li>AllowDebugKeys = 1</li>
+<li></li>
+<li> ;Set to 1 to run at maximum speed by default.</li>
+<li>Speedup = 0</li>
+<li></li>
+<li> ;Default starting stage for quick versus.</li>
+<li>StartStage = stages/stage0-720.def</li>
+<li></li>
+<li></li>
+<li>;-------------------------------------------------------</li>
+<li>[Video]</li>
+<li> ;The video resolution defaults to the same as the game resolution.</li>
+<li> ;You can force an alternate resolution by uncommenting the lines</li>
+<li> ;below.</li>
+<li>;Width  = 1280</li>
+<li>;Height = 720</li>
+<li></li>
+<li> ;This is the color depth at which to run MUGEN.</li>
+<li> ;Only 16 is supported at this time.</li>
+<li>Depth = 16</li>
+<li></li>
+<li> ;Set to 1 to enable vertical retrace synchronization. Do not enable</li>
+<li> ;if BlitMode = PageFlip.</li>
+<li> ;Not supported in 1.0.</li>
+<li>VRetrace = 0</li>
+<li></li>
+<li> ;Set to 1 to enable fullscreen mode, 0 for windowed.</li>
+<li>FullScreen = 0</li>
+<li></li>
+<li> ;Drawing mode</li>
+<li> ;Choose from Normal (fast) and PageFlip (less image "tearing")</li>
+<li>BlitMode = Normal</li>
+<li></li>
+<li> ;Screen rendering mode.</li>
+<li> ;System - default SDL rendering mode (e.g. windib in Windows)</li>
+<li> ;DirectX - DirectX 5 renderer</li>
+<li> ;OpenGLScreen - hack that allows window resizing but could be slow</li>
+<li>RenderMode = System</li>
+<li></li>
+<li>;-------------------------------------------------------</li>
+<li>; Sound configuration</li>
+<li>[Sound]</li>
+<li>  ;Set the following to 1 to enable sound effects and music.</li>
+<li>  ;Set to 0 to disable.</li>
+<li>Sound = 1</li>
+<li></li>
+<li>  ;Set the sample rate of the game audio. Higher rates produce better</li>
+<li>  ;quality but require more system resources. Lower the rate if you</li>
+<li>  ;are having problems with sound performance.</li>
+<li>  ;Recommended values are 22050, 44100, or 48000.</li>
+<li>SampleRate = 44100</li>
+<li></li>
+<li>  ;Sets the audio buffer size. Larger buffers take less CPU but cause</li>
+<li>  ;more latency when playing sounds. Smaller buffers give less latency</li>
+<li>  ;but take more CPU. Also, if the buffer size is smaller than your system</li>
+<li>  ;can handle, you may experience audio problems.</li>
+<li>  ;</li>
+<li>  ;The buffer size is set to 2^n samples, where n is the value you specify </li>
+<li>  ;here. Valid values for n are between 8 and 15.</li>
+<li>  ;</li>
+<li>  ;A good rule of thumb is to pick 10 for 22050 Hz audio, or 11 for 44100 Hz</li>
+<li>  ;and 48000 Hz. Slower machines may require a larger buffer size.</li>
+<li>BufferSize = 11</li>
+<li></li>
+<li>  ;Set the following to 1 to enable stereo effects in-game</li>
+<li>  ;Set to 0 to disable.</li>
+<li>StereoEffects = 1</li>
+<li></li>
+<li>  ;This is the width of the sound panning field. If you</li>
+<li>  ;Increase this number, the stereo effects will sound</li>
+<li>  ;closer to the middle. Set to a smaller number to get</li>
+<li>  ;more stereo separation on sound effects.</li>
+<li>  ;Only valid if StereoEffects is set to 1.</li>
+<li>PanningWidth = 240</li>
+<li></li>
+<li>  ;Set the following to 1 to reverse left and right channels</li>
+<li>  ;on your sound card.</li>
+<li>ReverseStereo = 0</li>
+<li></li>
+<li>  ;Voice Channels to use. Values are from 1 to 16.</li>
+<li>  ;If sound quality is poor, try setting a smaller number, such as 8 or 4.</li>
+<li>WavChannels = 12</li>
+<li></li>
+<li>  ;This is the master volume for all sounds, in percent (0-100).</li>
+<li>MasterVolume = 100</li>
+<li></li>
+<li>  ;This is the volume for sound effects and voices, in percent (0-100).</li>
+<li>WavVolume = 80</li>
+<li></li>
+<li>  ;This is the master volume for music, (0-100).</li>
+<li>BGMVolume = 75</li>
+<li></li>
+<li>  ;Method used for rate conversion of sound effects.</li>
+<li>  ;Choose from:</li>
+<li>  ; *) SDL (no interpolation, low quality, low resource usage) </li>
+<li>  ; *) libresample (bandlimited interpolation, medium/high quality, higher</li>
+<li>  ;                 resource usage).</li>
+<li>SFXResampleMethod = libresample</li>
+<li></li>
+<li>  ;Quality parameter for resampling, if libresample is used.</li>
+<li>  ;Valid values are 0 (medium quality) or 1 (high quality).</li>
+<li>SFXResampleQuality = 0</li>
+<li></li>
+<li>  ;Quality parameter for BGM resampling, using libresample.</li>
+<li>  ;Valid values are 0 (medium quality) or 1 (high quality).</li>
+<li>BGMResampleQuality = 0</li>
+<li></li>
+<li></li>
+<li>[Music]</li>
+<li>  ;Configure music plugins and any optional parameters here. Format looks</li>
+<li>  ;like the following:</li>
+<li>  ;  plugin = <pluginname> [, <pluginfile1>]</li>
+<li>  ;  <optional_param_1> = <value></li>
+<li>  ;  <optional_param_2> = <value></li>
+<li>  ;  plugin = <pluginname2> [, <pluginfile2>]</li>
+<li>  ;  ...</li>
+<li>  ;Valid parameters depend on the plugin. Each BGM file will be played</li>
+<li>  ;by the uppermost plugin in the list that recognizes that file.</li>
+<li>  ;For system plugins, the <pluginfile> argument is unused.</li>
+<li></li>
+<li>  ;System plugin (built-in): mpg123</li>
+<li>  ;Plays MP3 files only. Supports looppoints in terms of samples.</li>
+<li>  ;Optional parameters:</li>
+<li>  ;  decoder = <decodername></li>
+<li>  ;    Requests use of a particular mpg123 decoding engine (request may not be</li>
+<li>  ;    honored, depending on the file). This should be omitted unless you </li>
+<li>  ;    know what you are doing. Valid values are:</li>
+<li>  ;      SSE, 3DNowExt, 3DNow, MMX, i586, i586_dither, i386, generic, </li>
+<li>  ;      generic_dither.    </li>
+<li>  ;  rva = <mode></li>
+<li>  ;    Specifies ReplayGain volume adjustment. Valid values are:</li>
+<li>  ;      off   (default; disables ReplayGain)</li>
+<li>  ;      track </li>
+<li>  ;      album</li>
+<li>  ;  volume = <vol></li>
+<li>  ;    Overall volume adjustment, in percent. This is a linear scale factor </li>
+<li>  ;    that multiplies the output amplitude. Do not specify a value over </li>
+<li>  ;    100.0 unless you know what you are doing.</li>
+<li>  ;  extensions = <extensionlist></li>
+<li>  ;    Specifies file extensions to recognize as MP3. This is a comma-</li>
+<li>  ;    separated list with no whitespace. For instance,</li>
+<li>  ;      extensions = mp3,mpeg3,mpe</li>
+<li>  ;    would register the .mp3, .mpeg3, and .mpe file extensions with this</li>
+<li>  ;    plugin. Defaults to "mp3" if omitted.</li>
+<li>plugin = mpg123</li>
+<li>rva = track</li>
+<li>extensions =</li>
+<li>volume = 100.0</li>
+<li></li>
+<li>  ;Plugin (add-on): vorbisplug</li>
+<li>  ;Plays Ogg Vorbis files using the libvorbisfile library. Supports loop</li>
+<li>  ;  points and ReplayGain volume adjustment. Does not support files with</li>
+<li>  ;  more than 2 audio channels.</li>
+<li>  ;Optional parameters:</li>
+<li>  ;  rva = <mode></li>
+<li>  ;    Specifies ReplayGain volume adjustment. Valid values are:</li>
+<li>  ;      off   (default; disables ReplayGain)</li>
+<li>  ;      track </li>
+<li>  ;      album</li>
+<li>  ;  volume = <vol></li>
+<li>  ;    Overall volume adjustment, in percent. This is a linear scale factor </li>
+<li>  ;    that multiplies the output amplitude. Do not specify a value over </li>
+<li>  ;    100.0 unless you know what you are doing.</li>
+<li>  ;  extensions = <extensionlist></li>
+<li>  ;    Specifies file extensions to recognize as MP3. This is a comma-</li>
+<li>  ;    separated list with no whitespace. For instance,</li>
+<li>  ;      extensions = ogg,vorbis,vorb</li>
+<li>  ;    would register the .ogg, .vorbis, and .vorb file extensions with this</li>
+<li>  ;    plugin. Defaults to "ogg,vorbis" if omitted.</li>
+<li>plugin = vorbisplug, plugins/vorbisplug.dll</li>
+<li>rva = track</li>
+<li>extensions = </li>
+<li>volume = 100.0</li>
+<li></li>
+<li>  ;System plugin (built-in): sdlmix</li>
+<li>  ;Plays MIDI with native playback; MODs and other tracker files </li>
+<li>  ;  (with MikMod)</li>
+<li>  ;</li>
+<li>  ;Looppoints are not supported. Performs seamless end-to-beginning loops.</li>
+<li>  ;</li>
+<li>  ;Optional parameters:</li>
+<li>  ;  midivolume = <volume></li>
+<li>  ;    Specifies volume scaling for MIDI in percent. </li>
+<li>  ;    100 means no change (default).</li>
+<li>  ;  modvolume = <volume> </li>
+<li>  ;    Same as midivolume, but for MODs and other tracker files.</li>
+<li>plugin = sdlmix</li>
+<li>midivolume =</li>
+<li>modvolume = </li>
+<li></li>
+<li>;-------------------------------------------------------</li>
+<li>[Misc]</li>
+<li>  ;Number of extra players to cache in memory.</li>
+<li>  ;Set to a lower number to decrease memory usage, at cost of</li>
+<li>  ;more frequent loading.</li>
+<li>PlayerCache = 4</li>
+<li></li>
+<li>  ;Set to 1 to allow precaching. Precaching attempts to start loading</li>
+<li>  ;player data as early as possible, to reduce apparent loading times</li>
+<li>  ;between matches. To get the best performance, set PlayerCache to at</li>
+<li>  ;least 1. The optimal number for PlayerCache is 4 when precaching is</li>
+<li>  ;enabled. Precaching is not available in DOS.</li>
+<li>Precache = 1</li>
+<li></li>
+<li>  ;Set to 1 to enable large-buffer reads of sprite and sound data.</li>
+<li>  ;Set to 0 (off) to decrease memory usage, at cost of slower</li>
+<li>  ;loading.</li>
+<li>BufferedRead = 1</li>
+<li></li>
+<li>  ;Set to 1 to free system.def data from memory whenever possible.</li>
+<li>  ;This decreases memory usage, in exchange for loading time</li>
+<li>  ;before system screens.</li>
+<li>UnloadSystem = 0</li>
+<li></li>
+<li>  ;Configures the handling of sound effects and voices when the</li>
+<li>  ;window is in the background (i.e., defocused).</li>
+<li>  ;Set to "Mute" to mute sound effects, or "Play" to let sound effects</li>
+<li>  ;play.</li>
+<li>SFXBackgroundMode = Play</li>
+<li></li>
+<li>  ;Configures the handling of BGM when the window is in the background.</li>
+<li>  ;Set to "Pause" to pause the music, "Mute" to mute the music but leave</li>
+<li>  ;it running at normal speed, or "Play" to continue playing as usual.</li>
+<li>  ;If you are running in fullscreen mode, then this setting is always</li>
+<li>  ;set to "Pause".</li>
+<li>BGMBackgroundMode = Play</li>
+<li></li>
+<li>;-------------------------------------------------------</li>
+<li>[Arcade]</li>
+<li> ;Set to 0 for computer to choose color 1 if possible.</li>
+<li> ;Set to 1 for computer to randomly choose a color.</li>
+<li>AI.RandomColor = 1</li>
+<li></li>
+<li> ;This option allows the AI to input commands without</li>
+<li> ;having to actually press any keys (in effect, cheating).</li>
+<li> ;Set to 1 to enable, 0 to disable.</li>
+<li>AI.Cheat = 1</li>
+<li></li>
+<li> ;Arcade Mode AI ramping. For both parameters below, the first number</li>
+<li> ;corresponds to the number of matches won, and the second number to the</li>
+<li> ;AI difficulty offset. The actual difficulty is the sum of the AI</li>
+<li> ;difficulty level (set in the options menu) and the value of the offset</li>
+<li> ;at a particular match.</li>
+<li> ;  AIramp.start = start_match, start_diff</li>
+<li> ;  AIramp.end   = end_match, end_diff</li>
+<li> ;The difficulty offset function is a constant value of start_diff from</li>
+<li> ;the first match until start_match matches have been won. From then the</li>
+<li> ;offset value increases linearly from start_diff to end_diff. After</li>
+<li> ;end_diff matches have been won, the offset value is end_diff.</li>
+<li> ;  e_d            /----------</li>
+<li> ;               /</li>
+<li> ;  s_d _______/</li>
+<li> ;     ^      ^     ^        ^</li>
+<li> ;   1st_m   s_m   e_m     last_m</li>
+<li> ;For example, if you have:</li>
+<li> ;  AIramp.start = 2,0</li>
+<li> ;  AIramp.end   = 4,2</li>
+<li> ;For 6 matches at level 4, the difficulty will be (by match):</li>
+<li> ;  4,4,4,5,6,6</li>
+<li>arcade.AIramp.start = 2, 0</li>
+<li>arcade.AIramp.end   = 4, 2</li>
+<li></li>
+<li> ;Team Mode AI ramping</li>
+<li>team.AIramp.start = 1, 0</li>
+<li>team.AIramp.end   = 3, 2</li>
+<li></li>
+<li> ;Survival Mode AI ramping</li>
+<li>survival.AIramp.start = 0, -3</li>
+<li>survival.AIramp.end   = 16, 4</li>
+<li></li>
+<li></li>
+<li>;-------------------------------------------------------</li>
+<li>[Input]</li>
+<li>P1.UseKeyboard = 1</li>
+<li>P2.UseKeyboard = 1</li>
+<li>;Joystick type:</li>
+<li>;0 - Disabled</li>
+<li>;1 - Enabled</li>
+<li>P1.Joystick.type = 1</li>
+<li>P2.Joystick.type = 1</li>
+<li></li>
+<li>;-------------------------------------------------------</li>
+<li>; P1 Key config (configurable from M.U.G.E.N)</li>
+<li>[P1 Keys]</li>
+<li>Jump   = 273</li>
+<li>Crouch = 274</li>
+<li>Left   = 276</li>
+<li>Right  = 275</li>
+<li>A      = 97</li>
+<li>B      = 115</li>
+<li>C      = 100</li>
+<li>X      = 122</li>
+<li>Y      = 120</li>
+<li>Z      = 99</li>
+<li>Start  = 118</li>
+<li></li>
+<li>; P2 Key config (configurable from M.U.G.E.N)</li>
+<li>[P2 Keys]</li>
+<li>Jump   = 117</li>
+<li>Crouch = 110</li>
+<li>Left   = 104</li>
+<li>Right  = 106</li>
+<li>A      = 107</li>
+<li>B      = 108</li>
+<li>C      = 59</li>
+<li>X      = 109</li>
+<li>Y      = 44</li>
+<li>Z      = 46</li>
+<li>Start  = 105</li>
+<li></li>
+<li>[P1 Joystick]</li>
+<li>Jump   = 1</li>
+<li>Crouch = 2</li>
+<li>Left   = 3</li>
+<li>Right  = 4</li>
+<li>A      = 13</li>
+<li>B      = 14</li>
+<li>C      = 20</li>
+<li>X      = 15</li>
+<li>Y      = 16</li>
+<li>Z      = 18</li>
+<li>Start  = 24</li>
+<li></li>
+<li>[P2 Joystick]</li>
+<li>Jump   = 33</li>
+<li>Crouch = 34</li>
+<li>Left   = 35</li>
+<li>Right  = 36</li>
+<li>A      = 41</li>
+<li>B      = 42</li>
+<li>C      = 48</li>
+<li>X      = 43</li>
+<li>Y      = 44</li>
+<li>Z      = 46</li>
+<li>Start  = 50</li>
+</ul>
+</div>

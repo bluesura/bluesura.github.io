@@ -1,1 +1,0 @@
-﻿<a href="#" id="scrolltop" style="bottom: 30px; display: block;"><i class="icon-top"></i></a>

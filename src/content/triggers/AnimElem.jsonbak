@@ -1,0 +1,57 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "AnimElem",
+        "target": "実行者",
+        "category": [
+            "アニメーション",
+            "アニメーションのコマと経過時間の判定"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.12.30",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "AnimElem",
+    "summary": "<p>アニメの順番とその経過時間を判断します。</p>",
+    "syntax": [
+        ";アニメが「値1」枚目になった瞬間に真(1)を返すトリガー",
+        "AnimElem = 値1",
+        "",
+        ";アニメが「値1」枚目に切り替わってからの経過時間を値2と比較し、真偽を返すトリガー",
+        "AnimElem = 値1, =  値2",
+        "AnimElem = 値1, != 値2",
+        "AnimElem = 値1, <= 値2",
+        "AnimElem = 値1, >= 値2",
+        "AnimElem = 値1, >  値2",
+        "AnimElem = 値1, <  値2"
+    ],
+    "description": "アニメの順番とその経過時間を判断します。<br>アニメの順番と、その経過時間を判断するトリガーです。<br>値1には、何枚目のアニメをチェックするかをintで指定します。値2には、比較する時間をintで指定します。",
+    "associated_trigger": [
+        "Anim",
+        "AnimTime",
+        "AnimElemNo",
+        "AnimElemTime",
+        "AnimExist",
+        "SelfAnimExist"
+    ],
+    "quote": [
+        {
+            "title": "AnimElem - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElem"
+        },
+        {
+            "title": "AnimElem - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animelem"
+        },
+        {
+            "title": "AnimElem - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animelem"
+        },
+        {
+            "title": "AnimElem - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimElem"
+        }
+    ]
+}

@@ -8,41 +8,77 @@
             "アニメーションの存在判定"
         ],
         "version": "2002.04.14",
-        "update": "2016.01.17",
+        "update": "2024.05.21",
         "type": "document",
         "level": "3"
     },
     "category": "trigger",
     "trigger": "AnimExist",
-    "summary": "<p>xのアクションナンバーが存在するかどうかを返します。</p>",
+    "summary": "<p>指定したアニメーション番号が、現在参照しているアニメーションデータ内に存在するかどうかを判定します。戻り値は1（存在する）または0（存在しない）です。<br>ただし、相手のカスタムステートに入った際などに意図しない挙動を示すことがあるため、自分自身のアニメーションを確認する場合は、より安全な<code>SelfAnimExist</code>の使用が強く推奨されます。</p>",
     "syntax": [
-        "AnimExist(x)"
+        "AnimExist(exprn)"
     ],
-    "description": "xのアクションナンバーが存在するかどうかを返します。<br>特定のアクション番号が存在するとき、1を返します。<br>相手に参照させるステートの場合、自分のアニメが対象となります。相手に参照させるステートで、相手のアニメを調べる場合は、SelfAnimExistを使います。<br>引数には調べたいアクション番号をintで指定します。",
+    "description": "<p>引数で指定されたアクション番号が、キャラクターのアニメーションデータ（.airファイルで定義され、.sffファイルで参照されるもの）に存在するかどうかをチェックします。</p><ul><li><strong>戻り値:</strong> アニメーションが存在する場合は<code>1</code>、存在しない場合は<code>0</code>を返します。</li></ul>",
+    "parameter": [
+        {
+            "parameter": "exprn",
+            "type": [
+                "定数や変数、他のトリガー、関数、演算子"
+            ],
+            "description": "確認したいアニメーション（アクション）番号を指定します。",
+            "parameter_type": "required"
+        }
+    ],
+    "associated_trigger": [
+        "SelfAnimExist"
+    ],
+    "version": [
+        {
+            "no": "仕様",
+            "content": "<p>キャラクターが相手の攻撃を受け、その攻撃が「カスタムステート」に移行させる効果を持っている場合（例：投げ技、特殊なヒットステート）、M.U.G.E.Nのシステムは、攻撃を受けたキャラクターのアニメーションデータを<strong>一時的に攻撃側キャラクターのアニメーションデータ</strong>に切り替えることがあります。<br>この状態で<code>AnimExis</code>を使用すると、<code>AnimExist</code>は意図せず<strong>「攻撃側キャラクター」</strong>のアニメーションデータを参照してしまいます。</p><p>この問題を回避するために<code>SelfAnimExist</code>トリガーが提供されています。<code>SelfAnimExist</code>は、どのような状況下でも<strong>常に自分自身（本来の）のアニメーションデータ</strong>を参照して判定を行います。そのため、特に被弾中など外部要因が絡むステートで自身のアニメーションを確認する際は、<code>AnimExist</code>ではなく<code>SelfAnimExist</code>を使用するのが安全です。</p>"
+        }
+    ],
+    "qanda": [
+        {
+            "q": "AnimExistとSelfAnimExistはどのように使い分ければよいですか？",
+            "a": "基本的に、自分自身のアニメーションの存在を確認する場合は常にSelfAnimExistを使用することが推奨されます。攻撃でステートを奪取したキャラクターのアニメーションデータを確認したい場合に、AnimExistを使用します。",
+            "r": [
+                {
+                    "title": "MUGEN 1.1b1 Docs - Trigger Assertions",
+                    "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#trigger-assertions"
+                }
+            ]
+        }
+    ],
     "code_sample": [
         {
-            "title": "",
+            "title": "オプションアニメの有無による技の有効化",
+            "description": "<p>アクション番号（例:特殊やられ）が存在する場合にのみ、ステートを有効にします。</p>",
             "code": [
-                ""
+                "[State , 特殊やられ]",
+                "Type = ChangeState",
+                "Trigger1 = MoveType = H",
+                "Trigger1 = AnimExist(7697)",
+                "Value = "
             ]
         }
     ],
     "quote": [
         {
             "title": "AnimExist - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimExist"
+            "url": "https://bluesura.github.io/MUGEN/document/Official/2002.04.14/trigger.html#AnimExist"
         },
         {
             "title": "AnimExist - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animexist"
+            "url": "http://www.elecbyte.com/mugendocs/trigger.html#animexist"
         },
         {
             "title": "AnimExist - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animexist"
+            "url": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#animexist"
         },
         {
-            "title": "AnimExist - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimExist"
+            "title": "特殊対応に使われているAnim番号一覧",
+            "url": "https://shakesdream.web.fc2.com/AnimNo.html"
         }
     ]
 }

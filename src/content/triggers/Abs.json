@@ -16,9 +16,9 @@
     "trigger": "Abs",
     "summary": "<p>xの絶対値を返します。</p>",
     "syntax": [
-        "Abs(x)"
+        "Abs(exprn)"
     ],
-    "description": "xの絶対値を返します。",
+    "description": "引数の絶対値を返します。",
     "associated_trigger": [
         "Floor",
         "Ceil"
@@ -29,12 +29,9 @@
     ],
     "parameter": [
         {
-            "parameter": "x",
-            "value": [
-                "定数や変数、他のトリガー、関数、演算子"
-            ],
+            "parameter": "exprn",
             "type": [
-                "exprn"
+                "定数や変数、他のトリガー、関数、演算子"
             ],
             "description": "絶対値を計算したい値を指定します。<br>戻り値の型 引数として与えられた式の結果と同じ型（整数型または浮動小数点型）が返されます。",
             "min_value": [

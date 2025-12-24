@@ -14,6 +14,14 @@ const PUBLIC_PAGES = [
 export default defineConfig({
     site: 'https://bluesura.github.io',
     // trailingSlash: 'never', 
+    i18n: {
+      defaultLocale: "ja",
+      locales: ["ja", "en"],
+      routing: {
+        prefixDefaultLocale: false, // 重要：これで日本語は /ja/ がつかなくなる
+        strategy: "prefixOtherLocale" // 英語だけ /en/ がつく
+      }
+    },
     build: {
         format: 'preserve'
     },

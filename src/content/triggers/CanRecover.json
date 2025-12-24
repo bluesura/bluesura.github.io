@@ -1,48 +1,138 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "CanRecover",
-        "target": "",
-        "category": [
-            "ステータス",
-            "空中受身判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "CanRecover",
+    "category": [
+      "ステータス",
+      "空中受身判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2025.12.24",
+    "type": "document",
+    "level": "3"
+  },
+  "category": "trigger",
+  "trigger": "CanRecover",
+  "description": "<p>プレイヤーが落下中（ふっとびダウン中）に空中受身（リカバリー）可能なら1、不可能なら0を返します。<br>落下中でない場合、戻り値は未定義です。</p>",
+  "syntax": [
+    "CanRecover"
+  ],
+  "associated_trigger": [
+    "HitFall",
+    "GetHitVar",
+    "StateNo",
+    "VelY",
+    "PosY",
+    "Alive",
+    "Command"
+  ],
+  "associated_state": [
+    "HitDef"
+  ],
+  "version": [
+    {
+      "no": "仕様",
+      "content": "<p><code>CanRecover</code> は「落下中のみ」有効です。落下中でない状況では結果が未定義になるため、通常は <code>StateNo=5050</code>（デフォルトcommonの落下喰らい）や <code>HitFall</code> 等と併用して使います。</p>"
     },
-    "category": "trigger",
-    "trigger": "CanRecover",
-    "summary": "<p>プレイヤーが空中受身を取れるかどうかを返します。</p>",
-    "syntax": [
-        "CanRecover"
-    ],
-    "description": "プレイヤーが空中受身を取れるかどうかを返します。<br>プレイヤーが空中受身を取れる状態のとき、1を返します。<br>戻り値の型: boolean int (1 or 0)",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "CanRecover - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#CanRecover"
-        },
-        {
-            "title": "CanRecover - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#canrecover"
-        },
-        {
-            "title": "CanRecover - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#canrecover"
-        },
-        {
-            "title": "CanRecover - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/CanRecover"
-        }
-    ]
+    {
+      "no": "運用上の注意",
+      "content": "<p>デフォルトの <code>common1.cns</code> では、落下喰らいステート（<code>5050</code>）内で <code>CanRecover</code> を見ていますが、実際に受身へ移行できるかは <code>Vel Y</code> や <code>Pos Y</code>、および <code>Command=\"recovery\"</code> 入力条件も含めた総合判定です。</p>"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "CanRecover=1なのに受身できないことがある",
+      "a": "<p>よくある原因は「<code>CanRecover</code> 以外の条件が満たせていない」ケースです。<br>デフォルトの <code>common1.cns</code>（<code>StateNo=5050</code>）では、たとえば空中受身は <code>Vel Y</code> が一定値より大きい（＝上昇しきって落下に転じた/落下が緩い）こと等が条件になっています。AI側で受身を仕込む場合も、一般的に <code>StateNo=5050</code> / <code>Vel Y</code> / <code>Alive</code> / <code>Command</code> を併用します。</p>"
+    },
+    {
+      "q": "落下中以外でCanRecoverを使うとどうなる？",
+      "a": "<p>仕様上「未定義」です。トリガーが0/1どちらかに見えても信頼できないので、<code>HitFall</code> や <code>StateNo</code> などで「今が落下喰らいか」を先に絞り込むのが定石です。</p>"
+    },
+    {
+      "q": "Fall.Recover / Fall.RecoverTime と CanRecover の関係は？",
+      "a": "<p><code>CanRecover</code> は「そのヒットで受身が許可され、かつ受身可能になるタイミングに達しているか」をまとめて見るためのフラグとして扱われます。<br>攻撃側の <code>HitDef</code> で <code>fall.recover</code> / <code>fall.recovertime</code> を設定すると、被弾側は <code>GetHitVar(fall.recover)</code> や <code>GetHitVar(fall.recovertime)</code> でも参照できます。<br>なお公式ドキュメントでは <code>fall.recovertime</code> は「ヒットで揺れて停止している時間（P2の揺れ/停止）」を含まないとされています。</p>"
+    },
+    {
+      "q": "CanRecoverを“コンボ可否判定”に使いたい",
+      "a": "<p>注意点として、<code>CanRecover</code> は相手の状態・次の被弾等で即座に状況が変わります。<br>英語圏の実装例では「相手が受身可能になった瞬間を検出したら、その事実をヘルパー/変数で保持してコンボ中に参照する」方式が紹介されています（<code>CanRecover</code> 単体をそのまま使うと次のヒットで状況が変わり得るため）。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "common1.cns（State 5050）の受身判定",
+      "description": "<p>デフォルトの落下喰らいは <code>StateNo=5050</code>。<code>CanRecover</code> だけでなく、速度・高度・コマンド入力なども併用されています。</p>",
+      "code": [
+        "; 例: common1.cns / State 5050 抜粋イメージ",
+        "[State 5050, Recover near ground]",
+        "type = ChangeState",
+        "triggerall = Vel Y > 0",
+        "triggerall = Pos Y >= Const(movement.air.gethit.groundrecover.ground.threshold)",
+        "triggerall = Alive",
+        "triggerall = CanRecover",
+        "trigger1 = Command = \"recovery\"",
+        "value = 5200",
+        "",
+        "[State 5050, Recover in mid air]",
+        "type = ChangeState",
+        "triggerall = Vel Y > Const(movement.air.gethit.airrecover.threshold)",
+        "triggerall = Alive",
+        "triggerall = CanRecover",
+        "trigger1 = Command = \"recovery\"",
+        "value = 5210"
+      ]
+    },
+    {
+      "title": "AI側で“普通の空中受身”を試みる例（-1/-3等）",
+      "description": "<p>「落下喰らい（5050）中」「上昇が終わった頃（Vel Y）」「受身可能（CanRecover）」を絞って受身ステートへ。</p>",
+      "code": [
+        "[State -1, Air Recovery]",
+        "type = ChangeState",
+        "value = 5210",
+        "triggerall = RoundState = 2",
+        "triggerall = Alive",
+        "triggerall = StateNo = 5050",
+        "triggerall = Vel Y > -1",
+        "trigger1 = CanRecover",
+        "trigger1 = Command = \"recovery\""
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "CanRecover - Elecbyte Trigger Reference",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#canrecover"
+    },
+    {
+      "title": "CanRecover - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#CanRecover"
+    },
+    {
+      "title": "CanRecover - Trigger Reference(version 1.0) (WebArchive mirror)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#canrecover"
+    },
+    {
+      "title": "CanRecover - Trigger Reference(version 1.1) (WebArchive mirror)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#canrecover"
+    },
+    {
+      "title": "HitDef (fall.recover / fall.recovertime) - Elecbyte State Controller Reference",
+      "url": "https://www.elecbyte.com/mugendocs/sctrls.html"
+    },
+    {
+      "title": "common1.cns (State 5050の受身判定例) - fanyer/mugen (GitHub)",
+      "url": "https://github.com/fanyer/mugen/blob/master/data/common1.cns"
+    },
+    {
+      "title": "Ricepigeon's Coding Tutorial & Code Snippet Repository (CanRecoverの扱いに関する英語圏の実装談) - Mugen Free For All",
+      "url": "https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/"
+    },
+    {
+      "title": "追加記述（空中受身の例） - MUGEN初心者用簡易AI講座 Wiki*",
+      "url": "https://wikiwiki.jp/simple-ai/page7/no10"
+    },
+    {
+      "title": "canrecoverを利用したメモ例 - Optica Laboratory",
+      "url": "https://optica.livedoor.blog/archives/10501535.html"
+    }
+  ]
 }

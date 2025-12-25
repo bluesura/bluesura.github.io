@@ -1,55 +1,127 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "MoveHit",
-        "target": "",
-        "category": [
-            "ヒット情報",
-            "攻撃のヒット判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "MoveHit",
+    "target": "実行者自身",
+    "category": [
+      "ヒット情報",
+      "攻撃のヒット判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2025.12.25",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "MoveHit",
+  "category": "trigger",
+  "trigger": "MoveHit",
+  "description": "<p><b>MoveHit</b> は、P1（実行者）の攻撃がP2（相手）に<b>ヒット</b>したかを返します（<b>ガードは含みません</b>）。</p><p>このトリガーは攻撃ステート（一般に <code>MoveType = A</code>）でのみ有効です。</p><ul><li>ヒットした更新フレームは <code>1</code> を返します。</li><li>以後、P1がヒットポーズ等で<b>停止していない</b>更新フレームごとに <code>+1</code> されます（停止中は増加しません）。</li><li>ヒットしていない（空振り／ガード）場合は <code>0</code> を返します。</li></ul><p><code>MoveHit</code>（非0）/ <code>MoveHit &gt; 0</code> は「当たった」判定として安全です。<code>MoveHit = 1</code> は「ヒット直後」を拾う定番条件ですが、ヒットポーズ中は値が増えないため、その間も <code>= 1</code> のままになりやすい点に注意してください。</p><p><code>MoveContact</code> / <code>MoveGuarded</code> / <code>MoveHit</code> / <code>MoveReversed</code> の値は同時にセットされます。例えば、同一の攻撃中に最初のHitDefがヒットして <code>MoveHit</code> が非0になった後、次のHitDefがガードされると <code>MoveGuarded</code> が非0になり、他の3つは <code>0</code> になります。</p><p>また、上記4つの Move* トリガーはステート遷移で通常 <code>0</code> にリセットされます。直前ステートの情報を持ち越したい場合は、遷移先 <code>StateDef</code> に <code>MoveHitPersist = 1</code> を指定します。任意のタイミングで値を消したい場合はステートコントローラー <code>MoveHitReset</code> を使用します。</p><p><code>ReversalDef</code> によるリバーサル成功の検出にも <code>MoveHit</code> が利用できます。</p>",
+  "images": [
+    {
+        "src": "mugen-move-contact-triggers-flow.png",
+        "width": "640",
+        "height": "580",
+        "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解"
+    }
+  ],
+  "syntax": [
+    "MoveHit"
+  ],
+  "associated_trigger": [
+    "MoveContact",
+    "MoveGuarded",
+    "MoveReversed"
+  ],
+  "associated_state": [
+    "HitDef",
+    "ReversalDef",
+    "MoveHitReset"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 2002.04.14",
+      "content": "<p><code>MoveContact</code>/<code>MoveGuarded</code>/<code>MoveHit</code> の戻り値が、命中状態が変化してからの経過を表すカウンタ（int）として扱われるように変更されました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
     },
-    "category": "trigger",
-    "trigger": "MoveHit",
-    "summary": "<p>プレイヤーの攻撃が相手にヒットしたかどうかを返します。</p>",
-    "syntax": [
-        "MoveHit"
-    ],
-    "description": "プレイヤーの攻撃が相手にヒットしたかどうかを返します。<br>攻撃判定のあるステートでのみ効果のあるトリガーで、プレイヤーの攻撃が相手にヒットしたとき、1を返します。<br>winmugenでは仕様が異なり、ヒットしてからの時間を返します。<br>cmdファイル内で\"StateNo\"、\"Command\"と組み合わせ、キャンセル条件としてよく使われます。<br>戻り値の型: Dos版はboolean int (1 or 0), Win版はint<br>詳細: MoveContactを参照して下さい。",
-    "code_sample": [
-        {
-            "title": "攻撃が成功した場合のトリガー。",
-            "code": [
-                "Trigger1 = MoveHit"
-            ]
-        },
-        {
-            "title": "攻撃がヒットしてからのトリガー。",
-            "description": "<p>DosとWinで差が出ます。Dosでは「ヒットしてからステートが終了するまで」を意味しますが、Winでは「ヒット後1フレーム目(ヒットポーズが終わった瞬間)」を意味します。</p>",
-            "code": [
-                "Trigger1 = MoveHit = 1"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "MoveHit - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveHit"
-        },
-        {
-            "title": "MoveHit - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#movehit"
-        },
-        {
-            "title": "MoveHit - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#movehit"
-        },
-        {
-            "title": "MoveHit - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveHit"
-        }
-    ]
+    {
+      "no": "MUGEN 1.0 / 1.1",
+      "content": "<p>戻り値の型は <code>int</code>。詳細仕様（Move*同時セット／ステート遷移でリセット／<code>MoveHitPersist</code>）は <code>MoveContact</code> の Details と共通です。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/trigger.html#movehit"
+    },
+    {
+      "no": "Ikemen GO",
+      "content": "<p><code>MoveHit</code> 自体は概ねMUGEN互換（ヒットポーズ中は値が増えない）です。Ikemen GO では補助トリガー <code>MoveHitVar(frame)</code> が追加され、こちらはヒットポーズ中も更新されます。</p>",
+      "blockquote": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "攻撃がヒットしていれば成立（値が0以外）",
+      "code": [
+        "Trigger1 = MoveHit"
+      ]
+    },
+    {
+      "title": "ヒット直後（値が1の間）を拾う",
+      "description": "<p><code>MoveHit = 1</code> はヒットした瞬間から、P1のヒットポーズ（<code>PauseTime</code>）が終わるまで成立します。ヒットポーズ中は値が増えないため、その間も <code>= 1</code> のままになります。</p>",
+      "code": [
+        "Trigger1 = MoveHit = 1"
+      ]
+    },
+    {
+      "title": "非0判定の書き方（MoveHit / MoveHit > 0）",
+      "description": "<p><code>MoveHit</code> は <b>int</b> を返すため、<code>MoveHit</code>（非0）と <code>MoveHit &gt; 0</code> は同じ意図で使えます。</p>",
+      "code": [
+        "Trigger1 = MoveHit",
+        "; 明示的に書くなら",
+        "Trigger1 = MoveHit > 0"
+      ]
+    },
+    {
+      "title": "CMDでのキャンセル例（Command + StateNo + MoveHit）",
+      "description": "<p>必殺技の <code>ChangeState</code> を、特定の通常技ステートから「ヒット後」に限って出せるようにする例です（いわゆる2-in-1/チェーンの基本形）。同じ番号の <code>trigger2</code> 行はAND条件になります。</p>",
+      "code": [
+        "[State -1, Special Cancel]",
+        "type = ChangeState",
+        "value = 1200",
+        "triggerall = command = \"dp_x\"",
+        "trigger1 = statetype != A",
+        "trigger1 = ctrl",
+        "trigger2 = stateno = 200",
+        "trigger2 = MoveHit = 1",
+        "trigger3 = stateno = 210",
+        "trigger3 = MoveHit = 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "MoveHit - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveHit"
+    },
+    {
+      "title": "MoveHit - Trigger Reference (Elecbyte / MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#movehit"
+    },
+    {
+      "title": "MoveHit - Trigger Reference (Elecbyte / MUGEN 1.1b1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#movehit"
+    },
+    {
+      "title": "movehitpersist - The CNS format (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "title": "MoveHitReset / ReversalDef Notes - State Controller Reference (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html"
+    },
+    {
+      "title": "Ikemen GO Wiki - Triggers (new)（MoveHitVar(frame)の注記）",
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29"
+    },
+    {
+      "title": "Making 2 in 1s (Cancelling a normal move with a special move)（CMDでStateNo/Command/MoveHit=1の例）",
+      "url": "https://www.angelfire.com/ego/heavens/mugen_Making2in1.htm"
+    }
+  ]
 }

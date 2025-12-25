@@ -1,48 +1,105 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "MoveReversed",
-        "target": "",
-        "category": [
-            "ヒット情報",
-            "攻撃が当て身で返されたかの判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "MoveReversed",
+    "target": "実行者自身",
+    "category": [
+      "ヒット情報",
+      "攻撃が当て身で返されたかの判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2025.12.25",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "MoveReversed",
+  "category": "trigger",
+  "trigger": "MoveReversed",
+  "description": "<p><b>MoveReversed</b> は、P1（実行者）の攻撃が相手（P2）の <code>ReversalDef</code> によって<b>当て身で返された</b>かどうかを返します。</p><p>このトリガーは攻撃ステート（一般に <code>MoveType = A</code>）でのみ有効です。</p><ul><li>当て身で返されていない場合は <code>0</code> を返します。</li><li>当て身で返された更新フレーム（ゲーム更新単位）は <code>1</code> を返します。</li><li>以後、P1がヒットポーズ等で<b>停止していない</b>更新フレームごとに <code>+1</code> されます（停止（<code>PauseTime</code>）中は増加しません）。</li><li>このカウンタ挙動は <code>MoveContact</code> / <code>MoveGuarded</code> / <code>MoveHit</code> / <code>MoveReversed</code> で共通です。</li></ul><p>上記4種の Move* 系トリガーは「最後に成立した結果」で上書きされます。同一攻撃中に別の結果が成立すると、成立したものだけが非0となり、他は <code>0</code> に戻ります。</p><p>また、通常はステート遷移で <code>0</code> にリセットされます。直前ステートの Move* 系情報を次ステートへ持ち越したい場合は、遷移先 <code>StateDef</code> に <code>MoveHitPersist = 1</code> を指定します。</p><p>当て身成功側（<code>ReversalDef</code> 実行者）で「当て身が成立した」ことを検知したい場合は、<code>ReversalDef</code> 側の仕様に従い <code>MoveHit</code> を使うのが基本です。</p>",
+  "images": [
+    {
+        "src": "mugen-move-contact-triggers-flow.png",
+        "width": "640",
+        "height": "580",
+        "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解"
+    }
+  ],
+  "syntax": [
+    "MoveReversed"
+  ],
+  "associated_trigger": [
+    "MoveContact",
+    "MoveGuarded",
+    "MoveHit"
+  ],
+  "associated_state": [
+    "HitDef",
+    "ReversalDef"
+  ],
+  "version": [
+    {
+      "no": "WinMUGEN 2002.04.14以降",
+      "content": "<p><code>MoveReversed</code> が追加されました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
     },
-    "category": "trigger",
-    "trigger": "MoveReversed",
-    "summary": "<p>プレイヤーの攻撃が相手の反撃を受けたかどうかを返します。</p>",
-    "syntax": [
-        "MoveReversed"
-    ],
-    "description": "プレイヤーの攻撃が相手の反撃を受けたかどうかを返します。<br>攻撃判定のあるステートでのみ効果のあるトリガーで、プレイヤーの攻撃が相手の反撃を受けたとき(ReversalDefが定義された攻撃判定枠に接触したとき)、0以外の値を返します。<br>Win版から追加されたトリガーで、このトリガーを使用しているキャラは、Dos版で使うとエラーが出ます。<br>戻り値の型: int<br>詳細: MoveContactを参照して下さい。",
-    "code_sample": [
-        {
-            "title": "攻撃が反撃された場合のトリガー。",
-            "code": [
-                "Trigger1 = MoveReversed"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "MoveReversed - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveReversed"
-        },
-        {
-            "title": "MoveReversed - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#movereversed"
-        },
-        {
-            "title": "MoveReversed - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#movereversed"
-        },
-        {
-            "title": "MoveReversed - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveReversed"
-        }
-    ]
+    {
+      "no": "MUGEN 1.0 / 1.1",
+      "content": "<p>当て身成立時に <code>1</code>、以後はP1が停止していない更新フレームごとに増加するカウンタを返します（停止中は増加しません）。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/trigger.html#movereversed"
+    },
+    {
+      "no": "2002.04.14以前",
+      "content": "<p><code>MoveReversed</code> が存在しないです。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "攻撃が当て身で返されたことを検知する",
+      "code": [
+        "Trigger1 = MoveReversed"
+      ]
+    },
+    {
+      "title": "当て身成立直後（値が1の間）を拾う",
+      "description": "<p><code>MoveReversed = 1</code> は「当て身が成立した直後」を拾う用途で使われます。ヒットポーズ等の停止中は値が増えないため、停止がある場合はその間も <code>= 1</code> のままになりやすい点に注意してください。</p>",
+      "code": [
+        "Trigger1 = MoveReversed = 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "MoveReversed - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveReversed"
+    },
+    {
+      "title": "MoveReversed - Trigger Reference (Elecbyte / MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#movereversed"
+    },
+    {
+      "title": "MoveContact - Trigger Reference（Details: MoveReversedを含む共通仕様）(Elecbyte / MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#movecontact"
+    },
+    {
+      "title": "MoveReversed - Trigger Reference (Elecbyte / MUGEN 1.1b1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#movereversed"
+    },
+    {
+      "title": "M.U.G.E.N Update History（MoveReversed追加）(Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "title": "ReversalDef - State Controller Reference（当て身成立検知はMoveHit）(Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/sctrls.html#reversaldef"
+    },
+    {
+      "title": "movehitpersist - The CNS format (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "title": "State controllers (new) - Ikemen GO Wiki（movereversedタイマー操作に関する拡張）",
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/State-controllers-%28new%29"
+    }
+  ]
 }

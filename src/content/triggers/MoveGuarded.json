@@ -1,55 +1,92 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "MoveGuarded",
-        "target": "",
-        "category": [
-            "ヒット情報",
-            "攻撃のガード判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "MoveGuarded",
+    "target": "実行者自身",
+    "category": [
+      "ヒット情報",
+      "攻撃のガード判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2025.12.25",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "MoveGuarded",
+  "category": "trigger",
+  "trigger": "MoveGuarded",
+  "description": "<p><b>MoveGuarded</b> は、P1（実行者）の攻撃がP2（相手）に<b>ガードされた</b>（ガード中、またはガード済み）かを返します。</p><p>このトリガーは<b>攻撃ステート</b>（一般に <code>MoveType = A</code>）でのみ意味を持ちます。ガードされていない場合は <code>0</code> を返します。</p><ul><li>ガード接触した更新フレームは <code>1</code> を返します。</li><li>以後、P1がヒットポーズ等で<b>停止していない</b>更新フレームごとに <code>+1</code> されます（停止（<code>PauseTime</code>）中は増加しません）。</li><li>このカウンタ仕様は、<code>MoveContact</code> / <code>MoveHit</code> / <code>MoveReversed</code> と共通です。</li></ul><p><code>MoveGuarded = 1</code> は「ガード接触直後」を拾う定番条件です。P1が接触で停止している間（例：<code>HitDef</code> の <code>PauseTime</code> による停止）は値が増えないため、その間は <code>= 1</code> のままになり得ます。</p><p><code>MoveContact</code> / <code>MoveGuarded</code> / <code>MoveHit</code> / <code>MoveReversed</code> は同時にセットされます。例えば、あるHitDefがヒットして <code>MoveHit</code> が非0の最中に、同一の技中で後続のHitDefがガードされると <code>MoveGuarded</code> が非0になり、他の3つは <code>0</code> になります。</p><p>これらの Move* 値は通常、ステート遷移で <code>0</code> にリセットされ増加も止まります。直前ステートの結果を次ステートへ持ち越したい場合は、遷移先 <code>StateDef</code> に <code>MoveHitPersist = 1</code> を指定します。ステート中に明示的にリセットしたい場合は <code>MoveHitReset</code> を使用します。</p><p>互換性のため、判定は <code>MoveGuarded</code>（非0）/ <code>!MoveGuarded</code>（0）で書くのが安全です（<code>MoveGuarded = 1</code> の固定比較は、停止の影響で想定より長く成立することがあります）。</p>",
+  "images": [
+    {
+        "src": "mugen-move-contact-triggers-flow.png",
+        "width": "640",
+        "height": "580",
+        "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解"
+    }
+  ],
+  "syntax": [
+    "MoveGuarded"
+  ],
+  "associated_trigger": [
+    "MoveContact",
+    "MoveHit",
+    "MoveReversed"
+  ],
+  "associated_state": [
+    "HitDef",
+    "MoveHitReset"
+  ],
+  "version": [
+    {
+      "no": "2002.04.14（WinMUGEN系）以降",
+      "content": "<p>戻り値が「ガード接触からの経過」を表す <code>int</code> として扱われます。ガード接触した更新フレームが <code>1</code>、以後はP1が停止していない更新フレームごとに増加します（停止中は増加しません）。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/trigger.html#movecontact"
     },
-    "category": "trigger",
-    "trigger": "MoveGuarded",
-    "summary": "<p>プレイヤーの攻撃がガードされたかどうかを返します。</p>",
-    "syntax": [
-        "MoveGuarded"
-    ],
-    "description": "プレイヤーの攻撃がガードされたかどうかを返します。<br>攻撃判定のあるステートでのみ効果のあるトリガーで、プレイヤーの攻撃がガードされたとき、1を返します。<br>winmugenでは仕様が異なり、ガードされてからの時間を返します。<br>cmdファイル内で\"StateNo\"、\"Command\"と組み合わせ、キャンセル条件としてよく使われます。<br>戻り値の型: Dos版はboolean int (1 or 0), Win版はint<br>詳細: MoveContactを参照して下さい。",
-    "code_sample": [
-        {
-            "title": "攻撃が防御されたときのトリガー。",
-            "code": [
-                "Trigger1 = MoveGuarded"
-            ]
-        },
-        {
-            "title": "ガードされたときのトリガー。",
-            "description": "<p>DosとWinで差が出ます。Dosでは「ガードされてからステートが終了するまで」を意味しますが、Winでは「ガード後1フレーム目(ガードポーズが終わった瞬間)」を意味します。</p>",
-            "code": [
-                "Trigger1 = MoveGuarded = 1"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "MoveGuarded - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveGuarded"
-        },
-        {
-            "title": "MoveGuarded - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#moveguarded"
-        },
-        {
-            "title": "MoveGuarded - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#moveguarded"
-        },
-        {
-            "title": "MoveGuarded - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveGuarded"
-        }
-    ]
+    {
+      "no": "2002.04.14",
+      "content": "<p><code>MoveContact</code> / <code>MoveGuarded</code> / <code>MoveHit</code> の戻り値仕様が「ヒット状態変化からの経過」を返す形に変更されました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "攻撃がガードされた（ガード中/ガード済み）なら成立",
+      "code": [
+        "Trigger1 = MoveGuarded"
+      ]
+    },
+    {
+      "title": "ガード接触直後（値が1の間）を拾う",
+      "description": "<p><code>MoveGuarded = 1</code> は「ガード接触直後」を拾う用途でよく使われます。P1が停止している間は値が増えないため、その間は <code>= 1</code> のままになり得ます。</p>",
+      "code": [
+        "Trigger1 = MoveGuarded = 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "MoveGuarded - Trigger Reference (Elecbyte / MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#moveguarded"
+    },
+    {
+      "title": "MoveGuarded - Trigger Reference (Elecbyte / MUGEN 1.1b1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#moveguarded"
+    },
+    {
+      "title": "MoveContact Details (Move* 共通仕様) - Trigger Reference (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#movecontact"
+    },
+    {
+      "title": "M.U.G.E.N Update History (2002.04.14: MoveContact/MoveGuarded/MoveHit の変更)",
+      "url": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "title": "MoveHitReset - State Controller Reference (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/sctrls.html#movehitreset"
+    },
+    {
+      "title": "movehitpersist - The CNS format (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/cns.html"
+    }
+  ]
 }

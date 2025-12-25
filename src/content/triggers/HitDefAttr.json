@@ -1,58 +1,175 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "HitDefAttr",
-        "target": "",
-        "category": [
-            "ヒット情報",
-            "有効なHitDefの攻撃属性判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "HitDefAttr",
+    "target": "実行者自身",
+    "category": [
+      "ヒット情報",
+      "有効なHitDefの攻撃属性判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2025.12.25",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "HitDefAttr",
+  "category": "trigger",
+  "trigger": "HitDefAttr",
+  "description": "<p><code>HitDefAttr</code> は、プレイヤーの「現在アクティブな <code>HitDef</code>」の <code>attr</code>（攻撃属性）を判定するトリガーです。プレイヤーが攻撃中でない場合は、どの条件にも一致しません。</p><p>HitDef の <code>attr</code> が <code>arg1, arg2</code> の形で与えられるとき、このトリガーは <code>arg1</code> が <code>value1</code> の部分集合、かつ <code>arg2</code> が <code>value2</code> の部分集合である場合に真になります。</p><p>主に CMD での「弱技→強技」などの割り込み条件に使用できます。</p><p>戻り値: boolean int（<code>1</code> または <code>0</code>）。</p>",
+  "images": [
+    {
+        "src": "mugen_hitdefattr_flow.png",
+        "width": "640",
+        "height": "480",
+        "alt": "HitDefAttrトリガーの仕組みの図解。現在の攻撃属性（HitDefのattr）が、指定した姿勢（value1）と攻撃種別（value2）の両方の条件を満たしているかを判定するフローを示しています。左側には「現在の攻撃」、中央には「姿勢（S/C/A）」と「攻撃種別（NA/SA/HA）」の判定ボックスがあり、両方が一致（AND条件）すると「判定結果：真(1)」となり、右側の「弱技から強技へのキャンセル」が許可される様子をグラフィカルに説明しています。"
+    }
+  ],
+  "syntax": [
+    "HitDefAttr = value1, value2",
+    "HitDefAttr != value1, value2"
+  ],
+  "associated_state": [
+    "HitDef"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.0 RC4 (2009-10-25) 以降",
+      "content": "<p><code>HitDefAttr</code> の <code>!=</code> 演算子が誤って解釈される不具合が修正されました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs-11b1/history.html"
     },
-    "category": "trigger",
-    "associated_state": [
-        "HitDef"
-    ],
-    "trigger": "HitDefAttr",
-    "summary": "<p>プレーヤーのHitDefコントローラが実行されているとき、そのattrの値を判定し、真偽を返します。</p>",
-    "syntax": [
-        "HitDefAttr = 値1, 値2",
-        "HitDefAttr != 値1, 値2"
-    ],
-    "description": "プレーヤーのHitDefコントローラが実行されているとき、そのattrの値を判定し、真偽を返します。<br>主にcmdファイル内で使用されます。<br>値1には、「立ち」、「しゃがみ」、「空中」を表す\"S\"、\"C\"、\"A\"の文字のうちから、少なくとも1つを指定します。複数の指定も可能で、例えば、\"SA\"であれば、「立ち又は空中」を意味します。<br>値2には、「通常」、「必殺」、「超必殺」を表す\"N\"、\"S\"、\"H\"と、「攻撃」、「投げ」を表す\"A\"、\"T\"を組み合わせた2文字で指定します。例えば、通常攻撃は\"NA\"です。また、複数の組み合わせをコンマで区切って指定できます。例えば、\"SA, ST, HA, HT\"で必殺攻撃、必殺投げ、 超必殺攻撃、超必殺投げを意味します。<br>HitDefの攻撃属性指定の書式を、属性1, 属性2とすると、このトリガーは、属性1、属性2がそれぞれ値1、値2に含まれていた場合に1を返します。<br>戻り値の型: boolean int (1 or 0)",
-    "code_sample": [
-        {
-            "title": "プレイヤーが空中超必殺技を出しているときのトリガー。",
-            "code": [
-                "Trigger1 = HitDefAttr = A, HA"
-            ]
-        },
-        {
-            "title": "プレイヤーが立ち又はしゃがみ状態で通常攻撃又は必殺技を出しているときのトリガー。",
-            "code": [
-                "Trigger1 = HitDefAttr = SC, NA, SA"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "HitDefAttr - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitDefAttr"
-        },
-        {
-            "title": "HitDefAttr - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitdefattr"
-        },
-        {
-            "title": "HitDefAttr - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitdefattr"
-        },
-        {
-            "title": "HitDefAttr - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitDefAttr"
-        }
-    ]
+    {
+      "no": "MUGEN 1.0 RC5 (2009-10-28) 以降",
+      "content": "<p><code>HitDefAttr</code>（および <code>TeamMode</code>）の評価が誤る場合がある不具合が修正されました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "oper",
+      "type": [
+        "string"
+      ],
+      "description": "<p>比較演算子。<code>=</code> または <code>!=</code> を指定します。<code>HitDefAttr != value1, value2</code> は <code>!(HitDefAttr = value1, value2)</code> と論理的に同値です。</p>",
+      "parameter_type": "optional",
+      "possible_value": [
+        [
+          "値",
+          "意味"
+        ],
+        [
+          "<code>=</code>",
+          "一致判定"
+        ],
+        [
+          "<code>!=</code>",
+          "否定（<code>!(HitDefAttr = ...)</code> と同値）"
+        ]
+      ]
+    },
+    {
+      "parameter": "value1",
+      "type": [
+        "string"
+      ],
+      "description": "<p>攻撃の姿勢属性を表す文字列。<code>S</code>(立ち) / <code>C</code>(しゃがみ) / <code>A</code>(空中) のうち、1文字以上を含めます。複数指定も可能（例: <code>SA</code> は「立ち または 空中」）。</p>",
+      "parameter_type": "required",
+      "possible_value": [
+        [
+          "文字",
+          "意味"
+        ],
+        [
+          "<code>S</code>",
+          "立ち（Standing）"
+        ],
+        [
+          "<code>C</code>",
+          "しゃがみ（Crouching）"
+        ],
+        [
+          "<code>A</code>",
+          "空中（Aerial）"
+        ]
+      ]
+    },
+    {
+      "parameter": "value2",
+      "type": [
+        "string"
+      ],
+      "description": "<p>攻撃種別属性の集合。<code>NA</code> のような2文字コードをカンマ区切りで列挙します。</p><p>1文字目: <code>N</code>(通常) / <code>S</code>(必殺) / <code>H</code>(超必殺)。2文字目: <code>A</code>(打撃などの攻撃) / <code>T</code>(投げ)。</p>",
+      "parameter_type": "required",
+      "possible_value": [
+        [
+          "値",
+          "意味"
+        ],
+        [
+          "<code>NA</code>",
+          "通常攻撃（Normal Attack）"
+        ],
+        [
+          "<code>NT</code>",
+          "通常投げ（Normal Throw）"
+        ],
+        [
+          "<code>SA</code>",
+          "必殺攻撃（Special Attack）"
+        ],
+        [
+          "<code>ST</code>",
+          "必殺投げ（Special Throw）"
+        ],
+        [
+          "<code>HA</code>",
+          "超必殺攻撃（Hyper/Super Attack）"
+        ],
+        [
+          "<code>HT</code>",
+          "超必殺投げ（Hyper/Super Throw）"
+        ]
+      ]
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "空中の超必殺攻撃だけを検出する",
+      "description": "<p>現在アクティブな <code>HitDef</code> が「空中(<code>A</code>)」かつ「超必殺攻撃(<code>HA</code>)」のときに真になります。</p>",
+      "code": [
+        "trigger1 = HitDefAttr = A, HA"
+      ]
+    },
+    {
+      "title": "立ち/しゃがみ状態で通常攻撃または必殺攻撃を検出する",
+      "description": "<p><code>value1</code> に <code>SC</code> を指定し、<code>value2</code> に <code>NA</code>(通常攻撃) と <code>SA</code>(必殺攻撃) を列挙します。</p>",
+      "code": [
+        "trigger1 = HitDefAttr = SC, NA, SA"
+      ]
+    },
+    {
+      "title": "特定属性に一致しない場合（!=）",
+      "description": "<p>「空中の通常/必殺/超必殺攻撃（<code>A</code> かつ <code>NA/SA/HA</code>）」<b>以外</b>のときに真になります。</p>",
+      "code": [
+        "trigger1 = HitDefAttr != A, NA, SA, HA"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "HitDefAttr - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitDefAttr"
+    },
+    {
+      "title": "HitDefAttr - Trigger Reference (MUGEN 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitdefattr"
+    },
+    {
+      "title": "HitDefAttr - Trigger Reference (MUGEN 1.1 / 11b1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitdefattr"
+    },
+    {
+      "title": "M.U.G.E.N Update History (HitDefAttr 関連の修正履歴)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    }
+  ]
 }

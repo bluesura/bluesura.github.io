@@ -1,85 +1,174 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Cond",
-        "target": "",
-        "category": [
-            "論理演算",
-            "条件分岐（真偽それぞれの処理を実行）"
-        ],
-        "version": "2011.01.18",
-        "update": "2016.05.09",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Cond",
+    "target": "実行者自身",
+    "category": [
+      "論理演算",
+      "条件分岐（短絡評価）"
+    ],
+    "version": "2009.12.08",
+    "update": "2025.12.25",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "Cond",
+  "category": "trigger",
+  "trigger": "Cond",
+  "description": "<p><code>Cond</code> は3引数の条件演算（疑似三項演算子）です。<code>exp_cond</code> が0以外なら <code>exp_true</code>、0なら <code>exp_false</code> の値を返します。</p><p>返り値の型は、実際に選択された式（<code>exp_true</code> / <code>exp_false</code>）に従います。</p>",
+  "images": [
+    {
+        "src": "mugen-ifelse-vs-cond-side-effects.png",
+        "width": "640",
+        "height": "300",
+        "alt": "MUGENのIfElseとCondの動作比較。IfElseは全引数を評価するため副作用（代入）がすべて実行されvar(1)が3になるが、Condは短絡評価により必要な式のみ評価されるためvar(1)が2になることを示す図解。"
+    }
+  ],
+  "syntax": [
+    "Cond(exp_cond, exp_true, exp_false)"
+  ],
+  "associated_trigger": [
+    "IfElse"
+  ],
+  "version": [
+    {
+      "no": "仕様",
+      "content": "<p><code>Cond</code> は <b>短絡評価</b> を行い、<b>未使用の分岐は評価しません</b>。そのため、<code>:=</code> による代入などの副作用や、未使用分岐で発生する <code>bottom</code>（警告の原因になり得る評価不能値）を回避できます。</p><p><code>IfElse</code> は3引数すべてを事前評価するため、副作用が不要なら原則 <code>Cond</code> を推奨します。</p><ul><li><code>IfElse(var(1):=1, var(1):=var(1)+1, var(1):=var(1)+1)</code> → <code>var(1)</code> は最終的に 3</li><li><code>Cond(var(1):=1, var(1):=var(1)+1, var(1):=var(1)+1)</code> → <code>var(1)</code> は最終的に 2</li></ul>"
     },
-    "category": "trigger",
-    "trigger": "Cond",
-    "summary": "<p>条件式の真偽に合わせた結果返します。</p>",
-    "syntax": [
-        "Cond(条件式, 条件が真の時の処理, 条件が偽の時の処理)"
-    ],
-    "description": "条件式の真偽に合わせた結果を返します。<br>条件式で真(0以外)か偽(0)かを判定して、処理結果を返します。返せる値は整数と小数と真偽のみで、文字列は返せません。<br><code>IfElse</code>とほぼ同じで、条件式の真偽に合わせた結果を返します。違う点は処理の流れで、<code>IfElse</code>は条件式の真偽の結果にかかわらず条件が真の時の処理・条件が偽の時の処理が実行されます。Condは条件式の結果で条件が<strong>真の時の処理・条件が偽の時の処理のどちらかの処理が実行</strong>されます。<br><code>IfElse(var(1):=1,var(1):=var(1)+1,var(1):=var(1)+1); var(1)の値は3になります。</code><br><code>Cond(var(1):=1,var(1):=var(1)+1,var(1):=var(1)+1); var(1)の値は2になります。</code>",
-    "version": [
-        {
-            "no": "Version1.0から",
-            "content": "リダイレクト先の変数を直接書き換えることが可能。"
-        },
-        {
-            "no": "Version1.0から",
-            "content": "fvar(40)に代入するとsysvar(0)に浮動小数点のデータが入ってしまいます。"
-        },
-        {
-            "no": "Version1.0から",
-            "content": "var(60)はfvar(0)に入ってしまうようです。こちらは基本的に0が入るようです。"
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "var(3)が0以外なら1を、0なら2をvalueに代入",
-            "code": [
-                "value = Cond(var(3), 1, 2)",
-                ";下記でも同じ結果",
-                "value = (var(3)=0) + 1"
-            ]
-        },
-        {
-            "title": "複数の条件を設定(Condを入れ子にする)",
-            "code": [
-                "var(0) := Cond(var(0)=1, Cond(var(1)=0, 1, 2), 0)"
-            ]
-        }
-    ],
-    "associated_trigger": [
-        "IfElse"
-    ],
-    "quote": [
-        {
-            "title": "Cond - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#cond-math"
-        },
-        {
-            "title": "Cond - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#cond-math"
-        },
-        {
-            "title": "Cond - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Cond"
-        },
-        {
-            "title": "RC6のCondトリガー - chikuchikugonzalezの雑記帳",
-            "url": "http://chiku2gonzalez.hatenablog.com/entry/20091219/1261201891"
-        },
-        {
-            "title": "Cond IfElse 二重リダイレクト リダイレクトのリダイレクト - 絶対許早苗豆腐",
-            "url": "http://yurusanae.blog98.fc2.com/blog-category-42.html"
-        },
-        {
-            "title": "Condの意外な活用法 - 気まぐれ猫ブログ",
-            "url": "http://kneco.blog40.fc2.com/blog-entry-142.html"
-        },
-        {
-            "title": "これはひどい - Xの空間",
-            "url": "http://d.hatena.ne.jp/xboxaruhuraito/20120530/1338368722"
-        }
+    {
+      "no": "Version 1.0 RC6 (2009-12-08)",
+      "content": "<p><code>Cond</code> トリガーが追加されました（<code>IfElse</code> の短絡評価版）。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "no": "Version 1.0 RC7 (2010-03-20)",
+      "content": "<p>カンマ区切りのパラメータリスト内で <code>Cond</code> が正しく動作するよう修正されました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "exp_cond",
+      "type": [
+        "int",
+        "float"
+      ],
+      "description": "<p>条件判定用の式。0 が偽、0以外が真として扱われます。</p>"
+    },
+    {
+      "parameter": "exp_true",
+      "type": [
+        "int",
+        "float",
+        "string"
+      ],
+      "description": "<p><code>exp_cond</code> が真（0以外）のときに評価・返却される式（未選択時は評価されません）。</p>"
+    },
+    {
+      "parameter": "exp_false",
+      "type": [
+        "int",
+        "float",
+        "string"
+      ],
+      "description": "<p><code>exp_cond</code> が偽（0）のときに評価・返却される式（未選択時は評価されません）。</p>"
+    }
+  ],
+  "sample_code": {
+    "code": [
+      "trigger1 = Cond(exp_cond, exp_true, exp_false)"
     ]
+  },
+  "code_sample": [
+    {
+      "title": "var(3)が0以外なら1を、0なら2をvalueに代入",
+      "description": "<p>最も基本的な分岐例です。</p>",
+      "code": [
+        "value = Cond(var(3), 1, 2)",
+        ";下記でも同じ結果",
+        "value = (var(3)=0) + 1"
+      ]
+    },
+    {
+      "title": "複数の条件を設定(Condを入れ子にする)",
+      "description": "<p>入れ子で多段分岐を構成します。</p>",
+      "code": [
+        "var(0) := Cond(var(0)=1, Cond(var(1)=0, 1, 2), 0)"
+      ]
+    },
+    {
+      "title": "bottom回避：0除算・不正計算を未評価分岐に隔離する",
+      "description": "<p><code>Cond</code> は未選択分岐を評価しないため、危険な計算を安全に包めます。</p>",
+      "code": [
+        "; var(10)=0 のとき 100/0 を評価しない",
+        "value = Cond(var(10)!=0, 100/var(10), 0)"
+      ]
+    },
+    {
+      "title": "存在チェック＋リダイレクト：Helperが居る時だけ参照する",
+      "description": "<p>Helperが存在しない可能性がある参照を <code>Cond</code> でガードします。</p>",
+      "code": [
+        "; ID=1234 のHelperがいる時だけ StateNo を読む",
+        "value = Cond(NumHelper(1234)>0, (helper(1234), StateNo), -1)"
+      ]
+    },
+    {
+      "title": "代入の副作用を片側だけに限定する（:= の短絡利用）",
+      "description": "<p><code>:=</code> を分岐内に置くと、選ばれた側だけ代入が走ります。</p>",
+      "code": [
+        "; true側だけ代入される（false側の代入は実行されない）",
+        "value = Cond(1, var(0):=1, var(1):=1)"
+      ]
+    },
+    {
+      "title": "リダイレクト先のvarを書き換える",
+      "description": "<p>コミュニティ報告の「<code>root,Cond</code> がリダイレクト先文脈で評価される」挙動を利用した例です。互換性・大会運用・対戦相手への影響に注意してください。</p>",
+      "code": [
+        "; Helper側からRootのvar(20)を0にする（常に真にするため || 1 を併用）",
+        "trigger1 = IsHelper",
+        "trigger1 = root,Cond(1, var(20) := 0, 0) || 1"
+      ]
+    },
+    {
+      "title": "多重リダイレクト相当：Condを使って再帰リダイレクトを回避する例（高度）",
+      "description": "<p>通常サポートされない「再帰リダイレクト（例：root,helper(...),StateNo）」を、<code>root,Cond(...)</code> の形で実現できるとする報告例です（互換エンジン差あり）。</p>",
+      "code": [
+        "; root,helper(1234),StateNo 相当を狙う（報告例）",
+        "value = root,Cond(1, (helper(1234), StateNo), -1)"
+      ]
+    },
+    {
+      "title": "enemy側のvarを書き換える（危険：運用非推奨）",
+      "description": "<p>英語圏コミュニティで「enemyリダイレクトでも同様に書き換え可能」として紹介される例です。フルゲーム以外ではトラブルになりやすいため、基本的に避けるのが無難です。</p>",
+      "code": [
+        "trigger1 = enemy,Cond(1, var(10) := 20, 0) || 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Cond - Trigger Reference (Elecbyte / 1.0系)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#cond-math"
+    },
+    {
+      "title": "M.U.G.E.N Update History (Cond追加/修正履歴)",
+      "url": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "title": "新バージョンmugenについて（Condの多重リダイレクト/変数書き換え言及） - ニコニコMUGENwiki(atwiki)",
+      "url": "https://w.atwiki.jp/niconicomugen/pages/3627.html"
+    },
+    {
+      "title": "新MUGENで本体変数操作（root,Condでリダイレクト先var操作の話） - ネームレスゼロ",
+      "url": "https://0saft.blog.fc2.com/blog-entry-4793.html"
+    },
+    {
+      "title": "Cond Recursive Redirection Exploit - Mugen Free For All（英語：再帰リダイレクト回避/var代入例）",
+      "url": "https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/"
+    },
+    {
+      "title": "All Areas Parent Change/Devil's Eye Killer（英語：root,Cond(...:=...)||1 の実使用例） - MUGEN Room",
+      "url": "https://ziddia.blog.fc2.com/blog-entry-41.html"
+    }
+  ]
 }

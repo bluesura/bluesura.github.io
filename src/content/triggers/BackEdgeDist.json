@@ -1,48 +1,88 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "BackEdgeDist",
-        "target": "",
-        "category": [
-            "距離",
-            "自キャラ中心から後方画面端までの距離"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "BackEdgeDist",
+    "target": "実行者自身",
+    "category": [
+      "距離",
+      "自キャラ中心軸（X軸）から背面側画面端までの距離"
+    ],
+    "version": "2002.04.14",
+    "update": "2025.12.25",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "BackEdgeDist",
+  "category": "trigger",
+  "trigger": "BackEdgeDist",
+  "description": "<p><code>BackEdgeDist</code> は、実行者のX軸（axis）から、実行者の背面側にある画面端（screen edge）までの距離を返します。</p><p>「背面側」は向き（<code>Facing</code>）に依存し、右向き時は左端、左向き時は右端が背面側の画面端になります。</p><p>返り値は<code>float</code>のpx単位の距離です。</p><p><code>BackEdgeBodyDist</code> が「幅バー端」基準なのに対し、<code>BackEdgeDist</code> は「X軸（軸位置）」基準です。</p>",
+  "images": [
+    {
+      "src": "mugen-backedgebodydist-logic-comparison.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+    }
+  ],
+  "syntax": [
+    "BackEdgeDist"
+  ],
+  "associated_trigger": [
+    "BackEdgeBodyDist",
+    "FrontEdgeDist",
+    "FrontEdgeBodyDist",
+    "BackEdge",
+    "FrontEdge"
+  ],
+  "associated_state": [
+    "ScreenBound"
+  ],
+  "version": [
+    {
+      "no": "補足",
+      "content": "<p>ここで参照する「画面端」は、現在のカメラ表示範囲の端（<i>screen edge</i>）です。ステージの端（stage boundary）と同一視しないよう注意してください。</p><p>カメラ追従やズームなどで表示範囲が変化すると、<code>BackEdgeDist</code> の値も変化します（例：<code>ScreenBound</code> によるカメラ追従制御）。</p>"
     },
-    "category": "trigger",
-    "trigger": "BackEdgeDist",
-    "summary": "<p>プレイヤーの中心軸から後ろ側の画面端までの距離を返します。</p>",
-    "syntax": [
-        "BackEdgeDist"
-    ],
-    "description": "プレイヤーの中心軸から後ろ側の画面端までの距離を返します。<br>戻り値の型: float",
-    "code_sample": [
-        {
-            "title": "プレイヤーのX座標中心軸から後方の画面端までの距離が30ピクセル未満のときのトリガー。",
-            "code": [
-                "Trigger1 = BackEdgeBodyDist < 30"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "BackEdgeDist - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#BackEdgeDist"
-        },
-        {
-            "title": "BackEdgeDist - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#backedgedist"
-        },
-        {
-            "title": "BackEdgeDist - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#backedgedist"
-        },
-        {
-            "title": "BackEdgeDist - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/BackEdgeDist"
-        }
-    ]
+    {
+      "no": "MUGEN 1.1",
+      "content": "<p>MUGEN 1.1 では、背面側/前面側の画面端座標を直接返す <code>BackEdge</code> / <code>FrontEdge</code> も利用できます（座標ベースで扱いたい場合に有用）。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "背面側の画面端が近いときに分岐する",
+      "description": "<p>背面側の画面端までの距離が30px未満なら発動します（公式ドキュメント例）。</p>",
+      "code": [
+        "Trigger1 = BackEdgeDist < 30"
+      ]
+    },
+    {
+      "title": "向きに関係なく、いずれかの画面端が近いときに分岐する",
+      "description": "<p>前後どちらの画面端が近い場合でも拾いたいときは、<code>FrontEdgeDist</code> と併用します。</p>",
+      "code": [
+        "Trigger1 = (BackEdgeDist < 30) || (FrontEdgeDist < 30)"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "BackEdgeDist - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#BackEdgeDist"
+    },
+    {
+      "title": "BackEdgeDist / BackEdge / FrontEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#backedgedist"
+    },
+    {
+      "title": "BackEdgeDist - Trigger Reference (MUGEN 1.0 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#backedgedist"
+    },
+    {
+      "title": "ScreenBound - State Controller Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html#screenbound"
+    },
+    {
+      "title": "Ikemen GO (GitHub issue) - BackEdgeDist/FrontEdgeDist の使用例",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/1338"
+    }
+  ]
 }

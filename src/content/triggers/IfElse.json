@@ -1,59 +1,122 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "IfElse",
-        "target": "",
-        "category": [
-            "論理演算",
-            "条件分岐（両方の結果を評価）"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.05.09",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "IfElse",
+    "target": "実行者自身",
+    "category": [
+      "論理演算",
+      "条件分岐（両方の結果を評価）"
+    ],
+    "version": "2002.04.14",
+    "update": "2025.12.25",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "IfElse",
+  "category": "trigger",
+  "trigger": "IfElse",
+  "description": "<p><code>IfElse</code> は3引数の条件演算（疑似三項演算子）です。<code>exp_cond</code> が0以外なら <code>exp_true</code>、0なら <code>exp_false</code> の値を返します。</p><p>MUGEN 1.0/1.1 系では、返り値の型は選択された式（<code>exp_true</code> / <code>exp_false</code>）に従います。数値パラメータに使う場合は、両分岐とも数値式に揃えるのが安全です。</p>",
+  "images": [
+    {
+        "src": "mugen-ifelse-vs-cond-side-effects.png",
+        "width": "640",
+        "height": "300",
+        "alt": "MUGENのIfElseとCondの動作比較。IfElseは全引数を評価するため副作用（代入）がすべて実行されvar(1)が3になるが、Condは短絡評価により必要な式のみ評価されるためvar(1)が2になることを示す図解。"
+    }
+  ],
+  "syntax": [
+    "IfElse(exp_cond, exp_true, exp_false)"
+  ],
+  "associated_trigger": [
+    "Cond"
+  ],
+  "version": [
+    {
+      "no": "仕様",
+      "content": "<p><code>IfElse</code> は <b>3引数すべてを事前に評価</b> します。そのため、<code>:=</code> による代入や警告を出す計算などの副作用は、条件の真偽に関わらず発生します。副作用を避けたい場合は短絡評価の <code>Cond</code> を使用してください。</p><ul><li><code>IfElse(var(1):=1, var(1):=var(1)+1, var(1):=var(1)+1)</code> → <code>var(1)</code> は最終的に 3</li><li><code>Cond(var(1):=1, var(1):=var(1)+1, var(1):=var(1)+1)</code> → <code>var(1)</code> は最終的に 2</li></ul>"
     },
-    "category": "trigger",
-    "trigger": "IfElse",
-    "summary": "<p>条件式の真偽に合わせた結果返します。</p>",
-    "syntax": [
-        "IfElse(条件式, 条件が真の時の処理, 条件が偽の時の処理)"
-    ],
-    "description": "条件式の真偽に合わせた結果を返します。<br>条件式で真(0以外)か偽(0)かを判定して、処理結果を返します。返せる値は整数と小数と真偽のみで、文字列は返せません。<br><code>Cond</code>とほぼ同じで、条件式の真偽に合わせた結果を返します。違う点は処理の流れで、<code>IfElse</code>は条件式の真偽の結果にかかわらず条件が<strong>真の時の処理・条件が偽の時の処理が実行</strong>されます。Condは条件式の結果で条件が真の時の処理・条件が偽の時の処理のどちらかの処理が実行されます。<br><code>IfElse(var(1):=1,var(1):=var(1)+1,var(1):=var(1)+1); var(1)の値は3になります。</code><br><code>Cond(var(1):=1,var(1):=var(1)+1,var(1):=var(1)+1); var(1)の値は2になります。</code>",
-    "code_sample": [
-        {
-            "title": "var(3)が0以外なら1を、0なら2をvalueに代入",
-            "code": [
-                "value = IfElse(var(3), 1, 2)",
-                ";下記でも同じ結果",
-                "value = (var(3)=0) + 1"
-            ]
-        },
-        {
-            "title": "複数の条件を設定(IfElseを入れ子にする)",
-            "code": [
-                "var(0) := IfElse(var(0)=1, IfElse(var(1)=0, 1, 2), 0)"
-            ]
-        }
-    ],
-    "associated_trigger": [
-        "Cond"
-    ],
-    "quote": [
-        {
-            "title": "IfElse - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IfElse"
-        },
-        {
-            "title": "IfElse - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ifelse-math"
-        },
-        {
-            "title": "IfElse - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ifelse-math"
-        },
-        {
-            "title": "IfElse - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IfElse"
-        }
+    {
+      "no": "Version 1.0 RC6以降",
+      "content": "<p><code>Cond</code> が追加され、短絡評価（選択された分岐のみ評価）が可能になりました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "no": "旧ドキュメント（2002系）",
+      "content": "<p>旧式ドキュメントでは、式が評価不能な場合に <code>SFalse</code> を返す旨の記述があります（MUGEN 1.0+ の <code>bottom</code> に相当）。</p>",
+      "blockquote": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IfElse"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "exp_cond",
+      "type": [
+        "int",
+        "float"
+      ],
+      "description": "<p>条件判定用の式。0 が偽、0以外が真として扱われます。</p>"
+    },
+    {
+      "parameter": "exp_true",
+      "type": [
+        "int",
+        "float",
+        "string"
+      ],
+      "description": "<p><code>exp_cond</code> が真（0以外）のときに返す式。<code>IfElse</code> では未選択時でも評価されるため、副作用のある式は避けるのが安全です。</p>"
+    },
+    {
+      "parameter": "exp_false",
+      "type": [
+        "int",
+        "float",
+        "string"
+      ],
+      "description": "<p><code>exp_cond</code> が偽（0）のときに返す式。<code>exp_true</code> と型を揃えると、他の式やパラメータに組み込みやすくなります。</p>"
+    }
+  ],
+  "sample_code": {
+    "code": [
+      "trigger1 = IfElse(exp_cond, exp_true, exp_false)"
     ]
+  },
+  "code_sample": [
+    {
+      "title": "var(3)が0以外なら1を、0なら2をvalueに代入",
+      "description": "<p>最も基本的な分岐例です。</p>",
+      "code": [
+        "value = IfElse(var(3), 1, 2)",
+        ";下記でも同じ結果",
+        "value = (var(3)=0) + 1"
+      ]
+    },
+    {
+      "title": "複数の条件を設定(IfElseを入れ子にする)",
+      "description": "<p>入れ子で多段分岐を構成します（副作用のある式は避けること）。</p>",
+      "code": [
+        "var(0) := IfElse(var(0)=1, IfElse(var(1)=0, 1, 2), 0)"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "IfElse - Trigger Reference (version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IfElse"
+    },
+    {
+      "title": "IfElse - Trigger Reference (version 1.0 / Updated 2010-06-29)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ifelse-math"
+    },
+    {
+      "title": "IfElse - Trigger Reference (version 1.1 beta 1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ifelse-math"
+    },
+    {
+      "title": "IfElse - M.U.G.E.N Wiki (archived)",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IfElse"
+    },
+    {
+      "title": "M.U.G.E.N Update History (Cond added in 1.0 RC6)",
+      "url": "https://www.elecbyte.com/mugendocs/history.html"
+    }
+  ]
 }

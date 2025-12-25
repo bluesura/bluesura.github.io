@@ -1,48 +1,112 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "FrontEdgeBodyDist",
-        "target": "",
-        "category": [
-            "距離",
-            "自キャラ前方から画面端までの距離"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "FrontEdgeBodyDist",
+    "target": "実行者自身",
+    "category": [
+      "距離",
+      "自キャラ前面（幅バー端）から前面側画面端までの距離"
+    ],
+    "version": "2002.04.14",
+    "update": "2025.12.25",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "FrontEdgeBodyDist",
+  "category": "trigger",
+  "trigger": "FrontEdgeBodyDist",
+  "description": "<p><code>FrontEdgeBodyDist</code> は、実行者の前面側（前方）の「幅バー端」から、前面側の画面端（<i>screen edge</i>）までの距離を返します。</p><p>「前面側」は向き（<code>Facing</code>）に依存し、右向き時は右端、左向き時は左端が前面側の画面端になります。</p><p><code>FrontEdgeDist</code> が「X軸（軸位置）」基準なのに対し、<code>FrontEdgeBodyDist</code> は「幅バー端」基準です。</p><p>返り値は<code>float</code>のpx単位の距離です。</p><ul><li><b>幅バーの定義:</b> 幅バーはキャラクターの <code>[Size]</code>（例: <code>ground.front</code>/<code>air.front</code> 等）と、<code>Width</code> ステートコントローラによる一時変更の影響を受けます。</li><li><b>デバッグ確認:</b> 衝突判定表示（Ctrl+C）でplayer幅（黄色）のバーとして視認できます。</li></ul>",
+  "images": [
+    {
+      "src": "mugen-backedgebodydist-logic-comparison.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+    }
+  ],
+  "syntax": [
+    "FrontEdgeBodyDist"
+  ],
+  "associated_trigger": [
+    "FrontEdgeDist",
+    "BackEdgeBodyDist",
+    "BackEdgeDist",
+    "FrontEdge",
+    "BackEdge"
+  ],
+  "associated_state": [
+    "Width",
+    "ScreenBound"
+  ],
+  "version": [
+    {
+      "no": "仕様",
+      "content": "<p>ここで参照する「画面端」は、現在のカメラ表示範囲の端（<i>screen edge</i>）です。ステージ端（stage boundary）と同一視しないよう注意してください。</p>"
     },
-    "category": "trigger",
-    "trigger": "FrontEdgeBodyDist",
-    "summary": "<p>プレイヤー前面のぶつかり判定から、前方の画面端までの距離を返します。</p>",
-    "syntax": [
-        "FrontEdgeBodyDist"
-    ],
-    "description": "プレイヤー前面のぶつかり判定から、前方の画面端までの距離を返します。<br>戻り値の型: float",
-    "code_sample": [
-        {
-            "title": "プレイヤー前面のぶつかり判定から前方の画面端までの距離が30ピクセル未満のときのトリガー",
-            "code": [
-                "Trigger1 = FrontEdgeBodyDist < 30"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "FrontEdgeBodyDist - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#FrontEdgeBodyDist"
-        },
-        {
-            "title": "FrontEdgeBodyDist - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#frontedgebodydist"
-        },
-        {
-            "title": "FrontEdgeBodyDist - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#frontedgebodydist"
-        },
-        {
-            "title": "FrontEdgeBodyDist - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/FrontEdgeBodyDist"
-        }
-    ]
+    {
+      "no": "MUGEN 1.1",
+      "content": "<p>MUGEN 1.1 では、前面側/背面側の画面端座標を直接返す <code>FrontEdge</code> / <code>BackEdge</code> も利用できます（座標ベースで扱いたい場合に有用）。</p>"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "値が0未満になることはありますか？",
+      "c": "距離トリガーは「画面内にいる」前提で使われがちですが、演出や制御によって前提が崩れることがあります。",
+      "a": "<p>実行者の幅バー端が画面端より外側に出ている（例：<code>ScreenBound</code> の設定、強制移動、カメラ制御による押し出し等）場合、<code>FrontEdgeBodyDist</code> が0未満になる運用があります。</p><p>単純に「距離=常に0以上」と仮定せず、比較演算子で意図を明確にしてください（例：<code>&lt; 0</code> を画面外判定に使う、など）。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "前面側の画面端が近いときに分岐する",
+      "description": "<p>前面側の画面端までの距離が30px未満なら発動します（公式ドキュメント例）。</p>",
+      "code": [
+        "Trigger1 = FrontEdgeBodyDist < 30"
+      ]
+    },
+    {
+      "title": "向きに関係なく、いずれかの画面端が近いときに分岐する",
+      "description": "<p>前後どちらの画面端が近い場合でも拾いたいときは、<code>BackEdgeBodyDist</code> と併用します。</p>",
+      "code": [
+        "Trigger1 = (FrontEdgeBodyDist < 30) || (BackEdgeBodyDist < 30)"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "FrontEdgeBodyDist - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#FrontEdgeBodyDist"
+    },
+    {
+      "title": "FrontEdgeBodyDist - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#frontedgebodydist"
+    },
+    {
+      "title": "FrontEdgeBodyDist - Trigger Reference (MUGEN 1.0 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#frontedgebodydist"
+    },
+    {
+      "title": "FrontEdge / BackEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#frontedge"
+    },
+    {
+      "title": "Width - State Controller Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html#width"
+    },
+    {
+      "title": "ScreenBound - State Controller Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html#screenbound"
+    },
+    {
+      "title": "Tutorial 3 - [Size] の ground.front/air.front 等の説明 (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/tutorial3.html"
+    },
+    {
+      "title": "kfm.cns (Size例: ground.front/air.front) - GitHub mirror",
+      "url": "https://github.com/fanyer/mugen/blob/master/chars/kfm/kfm.cns"
+    },
+    {
+      "title": "Ikemen GO Wiki (Lua) - frontedgebodydist()",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki/Lua"
+    }
+  ]
 }

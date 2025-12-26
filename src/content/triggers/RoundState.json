@@ -1,66 +1,156 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "RoundState",
-        "target": "",
-        "category": [
-            "試合情報",
-            "ラウンド進行状態の取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.22",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "RoundState",
+    "target": "全プレイヤー共通",
+    "category": [
+      "試合情報",
+      "ラウンド進行状態の取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2025.12.26",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "RoundState",
+  "category": "trigger",
+  "trigger": "RoundState",
+  "description": "<p><code>RoundState</code>は、現在のラウンド進行状態を整数で返します（同一試合内では全プレイヤーで同じ値になります）。</p><ul><li><b>0</b>: Pre-intro（画面フェードイン）</li><li><b>1</b>: Intro（イントロ演出）</li><li><b>2</b>: Fight（試合本編）</li><li><b>3</b>: Pre-over（決着直後〜勝敗表示前）</li><li><b>4</b>: Over（勝敗表示・勝利ポーズなど）</li></ul><p><b>ステート遷移との関係</b></p><ul><li><code>RoundState</code>は「ラウンド全体の状態」であり、各キャラクターの<code>StateNo</code>とは独立です。つまり、キャラがどの<code>StateDef</code>に居ても、<code>RoundState</code>は試合進行に合わせて変化します。</li><li>MUGENは毎フレーム、特殊ステート<code>-3</code>→<code>-2</code>→<code>-1</code>→現在ステートの順で上から評価します。ラウンド進行に合わせて常時監視したい処理は、<code>-3/-2</code>に置くのが基本です。</li><li>標準の<code>common1.cns</code>では、ラウンド開始時に<code>Statedef 5900</code>（Initialize）が実行され、1Rのみ<code>190</code>（Pre-intro）→<code>191</code>（Intro）へ遷移する例が示されています（以降のラウンドはそのまま<code>0</code>（立ち動作）へ遷移）。</li><li>ヘルパーは通常<code>-3/-2</code>を持たないため、ラウンド進行の監視をヘルパー側に置く設計は避け、<code>root</code>（本体）側で行うのが安全です。</li></ul>",
+  "images": [
+    {
+      "src": "character-state-processing-loop.png",
+      "width": "640",
+      "height": "480",
+      "alt": "格闘ゲームのシステム図。上段に「RoundState（試合進行フェーズ）」の0から4までの遷移（Pre-intro, Intro, Fight, Pre-over, Over）が描かれ、下段に1フレームごとの「ステート処理順序（キャラクターロジックループ）」の詳細が示されています。ロジックループ内では、-3（準常時監視：例外チェック）、-2（真常時監視：特殊システム管理）、-1（準常時監視：コマンド決定）、および現在のステートアクションが順に処理され、他のキャラクターとの同期を経て次のフレームへ移行する流れを説明しています。"
+    }
+  ],
+  "syntax": [
+    "RoundState"
+  ],
+  "associated_trigger": [
+    "Ctrl",
+    "RoundNo",
+    "RoundsExisted",
+    "MatchOver",
+    "Win",
+    "Lose",
+    "DrawGame"
+  ],
+  "version": [
+    {
+      "no": "Ikemen GO Nightly (2025-08-09以降)",
+      "content": "<p>「Fight!」表示中（プレイヤーがまだ操作不能な区間）に<code>RoundState</code>が2を返してしまう挙動を避け、<code>RoundState</code>が1を返すよう調整されています（MUGEN互換実装上の差分）。</p>",
+      "blockquote": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "RoundState = 2 なのに操作できない（フライングできない）ことがある",
+      "c": "入力解禁のタイミングをRoundStateだけで判断している場合に起きやすいです。",
+      "a": "<p>MUGENでは「Fight!」表示中など、プレイヤーがまだ<code>Ctrl = 0</code>の区間でも<code>RoundState = 2</code>になり得ます。<code>RoundState = 2</code>に加えて<code>Ctrl</code>や自前の「入力解禁フラグ」を併用してください。</p>",
+      "r": [
+        {
+          "title": "RoundState - Trigger Reference (MUGEN 1.0)",
+          "url": "https://www.elecbyte.com/mugendocs/trigger.html#roundstate"
+        },
+        {
+          "title": "Ikemen GO: RoundStateの挙動差分（Triggers changed）",
+          "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
+        }
+      ]
     },
-    "category": "trigger",
-    "trigger": "RoundState",
-    "summary": "<p>現在のラウンドの状態を返します。</p>",
-    "syntax": [
-        "RoundState"
-    ],
-    "description": "現在のラウンドの状態を返します。<br>0: 試合前 - 真っ暗な画面からフェードインしている状態です。<br>1: イントロ - キャラクターが演出している状態です。<br>2: 試合中 - 文字通り試合中の状態です。<br>3: 試合終了 - 決着がついてから勝敗判定をするまでの間の状態です。<br>4: 勝敗判定 - どちらが勝利したかを判定して、発表している状態です。",
-    "code_sample": [
+    {
+      "q": "ラウンド開始（RoundStateが2に入った瞬間）を1フレームだけ検出したい",
+      "a": "<p>前フレームの<code>RoundState</code>を変数に保存し、<code>prev != 2 && now = 2</code>で遷移を検出します。監視は毎フレーム走る<code>Statedef -3/-2</code>に置くのが基本です。</p>",
+      "r": [
         {
-            "title": "フライング防止",
-            "code": [
-                "[State -3, 変数リセット]",
-                "Type = VarSet",
-                "Trigger1 = RoundState != 2",
-                "var(45) = 0",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 変数セット]",
-                "Type = VarSet",
-                "Triggerall = var(59)",
-                "Triggerall = var(45) = 0",
-                "Triggerall = RoundState = 2",
-                "Trigger2 = Ctrl",
-                "Trigger3 = MoveType = H",
-                "var(45) = 1",
-                "IgnoreHitPause = 1"
-            ]
+          "title": "The CNS format（特殊ステート -3/-2/-1 の処理順）",
+          "url": "https://www.elecbyte.com/mugendocs/cns.html"
         }
-    ],
-    "quote": [
-        {
-            "title": "RoundState - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundState"
-        },
-        {
-            "title": "RoundState - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#roundstate"
-        },
-        {
-            "title": "RoundState - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#roundstate"
-        },
-        {
-            "title": "RoundState - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/RoundState"
-        },
-        {
-            "title": "RoundState - MUGEN CNS WIKI CHAOS@予定",
-            "url": "http://www49.atwiki.jp/mugencns/pages/191.html"
-        }
+      ]
+    }
+  ],
+  "sample_code": {
+    "code": [
+      "; RoundStateの遷移を記録（毎tick監視用。-3推奨）",
+      "[State -3, RoundStatePrev]",
+      "type = VarSet",
+      "trigger1 = 1",
+      "var(58) = var(59)",
+      "IgnoreHitPause = 1",
+      "; ---",
+      "[State -3, RoundStateNow]",
+      "type = VarSet",
+      "trigger1 = 1",
+      "var(59) = RoundState",
+      "IgnoreHitPause = 1",
+      "; ---",
+      "; 例：ラウンド本編に入った瞬間（prev!=2 かつ now=2）",
+      "; trigger1 = (var(58) != 2) && (var(59) = 2)"
     ]
+  },
+  "code_sample": [
+    {
+      "title": "フライング防止（RoundState=2 かつ Ctrl で入力解禁）",
+      "description": "<p><code>RoundState</code>が2でも操作不能な区間を考慮し、<code>Ctrl</code>が立ったタイミングで自前フラグを立てて技発動条件に組み込みます。</p>",
+      "code": [
+        "; -3: ラウンド本編以外では常にロック",
+        "[State -3, StartFlagReset]",
+        "type = VarSet",
+        "trigger1 = RoundState != 2",
+        "var(45) = 0",
+        "IgnoreHitPause = 1",
+        "; ---",
+        "; -3: 本編中にCtrlが立ったら入力解禁",
+        "[State -3, StartFlagSet]",
+        "type = VarSet",
+        "triggerall = RoundState = 2",
+        "trigger1 = Ctrl",
+        "var(45) = 1",
+        "IgnoreHitPause = 1",
+        "; ---",
+        "; -1: 例）コマンド技の発動を解禁フラグで制御",
+        "[State -1, ExampleMove]",
+        "type = ChangeState",
+        "triggerall = var(45)",
+        "triggerall = Ctrl",
+        "trigger1 = command = \"x\"",
+        "value = 1000"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "RoundState - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundState"
+    },
+    {
+      "title": "RoundState - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#roundstate"
+    },
+    {
+        "title": "RoundState - Trigger Reference(version 1.1)",
+        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#roundstate"
+    },
+    {
+      "title": "The CNS format（特殊ステート -3/-2/-1 の処理順）",
+      "url": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "title": "RoundsExisted - Trigger Reference（Initialize state 5900 に言及）",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#roundsexisted"
+    },
+    {
+      "title": "common1.cns（Initialize: 5900 / Pre-intro: 190 / Intro: 191 の例）",
+      "url": "https://gist.github.com/Jesuszilla/0aff36b31ff0f732d24f9de3648b6247"
+    },
+    {
+      "title": "Ikemen GO: Triggers (changed) - RoundStateの挙動差分",
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
+    },
+    {
+      "title": "Ikemen GO: Triggers (new) - IntroState（イントロ詳細の補助トリガー）",
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29"
+    }
+  ]
 }

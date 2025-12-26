@@ -1,44 +1,108 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "BackEdge",
-        "target": "",
-        "category": [
-            "距離",
-            "ステージ開始位置から後方画面端までの距離"
-        ],
-        "version": "2012.08.31",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "BackEdge",
+    "target": "実行者自身",
+    "category": [
+      "座標",
+      "背面側画面端（screen edge）のX座標（ステージ座標系）"
+    ],
+    "version": "1.1",
+    "update": "2025.12.26",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "BackEdge",
+  "category": "trigger",
+  "trigger": "BackEdge",
+  "description": "<p><code>BackEdge</code> は、実行者の「背面側」にある画面端（<i>screen edge</i>）の <b>X座標</b> を、<b>絶対ステージ座標</b>をfloatとして返します。</p><p>「背面側」は向き（<code>Facing</code>）に依存します。右向き（<code>Facing = 1</code>）なら背面側は左端、左向き（<code>Facing = -1</code>）なら背面側は右端です。</p>",
+  "images": [
+    {
+      "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+      "width": "640",
+      "height": "430",
+      "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+    }
+  ],
+  "syntax": [
+    "BackEdge"
+  ],
+  "associated_trigger": [
+    "FrontEdge",
+    "LeftEdge",
+    "RightEdge",
+    "BackEdgeDist",
+    "BackEdgeBodyDist",
+    "Facing",
+    "CameraPos"
+  ],
+  "associated_state": [
+    "ScreenBound"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.1",
+      "content": "<p><code>BackEdge</code> は、<code>FrontEdge</code> / <code>LeftEdge</code> / <code>RightEdge</code> / <code>TopEdge</code> / <code>BottomEdge</code> と同時に、MUGEN 1.1 系で追加された「画面端座標トリガー」です。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "BackEdgeDist / BackEdgeBodyDist と何が違いますか？",
+      "c": "名前が似ていますが、返すものが「座標」か「距離」かで用途が分かれます。",
+      "a": "<p><code>BackEdge</code> は背面側画面端の <b>X座標</b>（絶対ステージ座標）を返します。</p><p><code>BackEdgeDist</code> は実行者のX軸（axis）から背面側画面端までの <b>距離</b>、<code>BackEdgeBodyDist</code> は幅バー端から背面側画面端までの <b>距離</b> を返します。</p><p>「画面外に出たか」「画面端が何pxにあるか」を扱うなら <code>BackEdge</code>、「あと何pxで画面端か」を扱うなら <code>BackEdgeDist</code>/<code>BackEdgeBodyDist</code> が向いています。</p>",
+      "r": [
+        {
+          "title": "BackEdge / BackEdgeDist / BackEdgeBodyDist - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+          "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#backedge"
+        }
+      ]
     },
-    "category": "trigger",
-    "trigger": "BackEdge",
-    "summary": "<p>StartXから自分の後方の画面端までの距離（実数）を返します。</p>",
-    "syntax": [
-        "BackEdge"
-    ],
-    "description": "StartXから自分の後方の画面端までの距離（実数）を返します。",
-    "code_sample": [
+    {
+      "q": "「画面端」はステージ端と同じですか？",
+      "c": "混同されやすいポイントです。",
+      "a": "<p>同一ではありません。<code>FrontEdge</code> が参照するのは現在のカメラ表示範囲の端（<i>screen edge</i>）です。カメラ追従やズーム、<code>ScreenBound</code> 等の制御により、画面端の座標は状況で変化します。</p>"
+    },
+    {
+      "q": "Ikemen GO でも同じように使えますか？",
+      "c": "互換エンジンは互換性を掲げていますが、実装差が出る場合があります。",
+      "a": "<p>Ikemen GO は「M.U.G.E.N 1.1 Beta 相当の互換性」を目標にしているため、基本的には同系の記述を前提にできます。</p><p>ただし互換エンジンはバージョン（Nightly/Release）や独自拡張によって差が出ることがあるため、最終的には対象ビルドでの実機確認を推奨します。</p>",
+      "r": [
         {
-            "title": "",
-            "code": [
-                ""
-            ]
+          "title": "Ikemen GO - Official Site（互換性の方針）",
+          "url": "https://ikemen-engine.github.io/"
         }
-    ],
-    "quote": [
-        {
-            "title": "BackEdge - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#backedge"
-        },
-        {
-            "title": "BackEdge - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/BackEdge"
-        },
-        {
-            "title": "M.U.G.E.N 1.1 - 君の瞳は紫外線",
-            "url": "http://chottokomaru.sitemix.jp/mugen1.1.html"
-        }
-    ]
+      ]
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "公式例：背面側画面端より外（背面側）に出たか判定する",
+      "description": "<p>絶対ステージ座標系で比較し、実行者が背面側画面端より外側に出た状況を拾う例です。</p>",
+      "code": [
+        "Trigger1 = Pos X + CameraPos X < BackEdge"
+      ]
+    },
+    {
+      "title": "向き（Facing）に依存せず、背面側へ画面外に出たかを1式で判定する",
+      "description": "<p>右向き/左向きで不等号の向きが変わる問題を、<code>Facing</code> の符号で吸収します。</p>",
+      "code": [
+        "Trigger1 = Facing * (Pos X + CameraPos X) < Facing * BackEdge"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "BackEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#backedge"
+    },
+    {
+      "title": "M.U.G.E.N Update History - New in 1.1 (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    },
+    {
+      "title": "LeftEdge / RightEdge / CameraPos / Facing - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#leftedge"
+    }
+  ]
 }

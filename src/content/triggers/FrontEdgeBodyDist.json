@@ -18,10 +18,10 @@
   "description": "<p><code>FrontEdgeBodyDist</code> は、実行者の前面側（前方）の「幅バー端」から、前面側の画面端（<i>screen edge</i>）までの距離を返します。</p><p>「前面側」は向き（<code>Facing</code>）に依存し、右向き時は右端、左向き時は左端が前面側の画面端になります。</p><p><code>FrontEdgeDist</code> が「X軸（軸位置）」基準なのに対し、<code>FrontEdgeBodyDist</code> は「幅バー端」基準です。</p><p>返り値は<code>float</code>のpx単位の距離です。</p><ul><li><b>幅バーの定義:</b> 幅バーはキャラクターの <code>[Size]</code>（例: <code>ground.front</code>/<code>air.front</code> 等）と、<code>Width</code> ステートコントローラによる一時変更の影響を受けます。</li><li><b>デバッグ確認:</b> 衝突判定表示（Ctrl+C）でplayer幅（黄色）のバーとして視認できます。</li></ul>",
   "images": [
     {
-      "src": "mugen-backedgebodydist-logic-comparison.png",
-      "width": "640",
-      "height": "480",
-      "alt": "MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+        "src": "mugen-backedgedist-frontedgedist-diagram.png",
+        "width": "640",
+        "height": "480",
+        "alt": "MUGENにおける画面端距離の仕様図解。キャラクターのX軸中心から画面端までの距離を示すBackEdgeDist/FrontEdgeDistと、幅バー(Width Bar)の端から画面端までの距離を示すBackEdgeBodyDist/FrontEdgeBodyDistの違い。被弾判定(Clsn2)、攻撃判定(Clsn1)、および画面端(Screen Edge)との位置関係を含む。"
     }
   ],
   "syntax": [

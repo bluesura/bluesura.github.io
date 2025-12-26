@@ -1,44 +1,128 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "LeftEdge",
-        "target": "",
-        "category": [
-            "距離",
-            "カメラ開始位置から画面左端までの距離"
-        ],
-        "version": "2012.08.31",
-        "update": "2015.12.29",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "LeftEdge",
+    "target": "実行者自身",
+    "category": [
+      "座標",
+      "画面左端（screen edge）のX座標（ステージ座標系）"
+    ],
+    "version": "1.1",
+    "update": "2025.12.26",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "LeftEdge",
+  "category": "trigger",
+  "trigger": "LeftEdge",
+  "description": "<p><code>LeftEdge</code> は、画面左端（<i>screen edge</i>）の <b>X座標</b> を、<b>絶対ステージ座標</b>をfloatとして返します。</p><p>向き（<code>Facing</code>）には依存しません。左端の画面端座標が必要な場合にそのまま利用できます。</p>",
+  "images": [
+    {
+      "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+      "width": "640",
+      "height": "430",
+      "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+    }
+  ],
+  "syntax": [
+    "LeftEdge"
+  ],
+  "associated_trigger": [
+    "RightEdge",
+    "TopEdge",
+    "BottomEdge",
+    "FrontEdge",
+    "BackEdge",
+    "CameraPosX",
+    "CameraZoom",
+    "GameWidth",
+    "ScreenWidth"
+  ],
+  "associated_state": [
+    "ScreenBound"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.1",
+      "content": "<p><code>LeftEdge</code> は、<code>RightEdge</code>/<code>TopEdge</code>/<code>BottomEdge</code> と同様に、MUGEN 1.1 系で追加された「画面端座標トリガー」です。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs-11b1/history.html"
     },
-    "category": "trigger",
-    "trigger": "LeftEdge",
-    "summary": "<p>ステージのdefファイルで設定したStartXから画面左端までの距離を浮動小数点数で返します。</p>",
-    "syntax": [
-        "LeftEdge"
-    ],
-    "description": "ステージのdefファイルで設定したStartXから画面左端までの距離を浮動小数点数で返します。",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "LeftEdge - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#leftedge"
-        },
-        {
-            "title": "LeftEdge - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/LeftEdge"
-        },
-        {
-            "title": "M.U.G.E.N 1.1 - 君の瞳は紫外線",
-            "url": "http://chottokomaru.sitemix.jp/mugen1.1.html"
-        }
-    ]
+    {
+      "no": "注意",
+      "content": "<p>ここでの「画面端」は現在のカメラ表示範囲の端（<i>screen edge</i>）です。ステージ境界（stage boundary）そのものとは限りません。</p>"
+    },
+    {
+      "no": "注意",
+      "content": "<p><code>CameraPos</code> / <code>GameWidth</code> と同様に、値は「実行者のローカル座標系（localcoord）」側の単位として扱われます。ズーム（<code>CameraZoom</code>）等で <code>GameWidth</code> が変化すると <code>LeftEdge</code> も連動して変化します。</p>"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "BackEdge との違いは？",
+      "c": "どちらも「画面端座標」ですが、Facing依存かどうかが決定的に違います。",
+      "a": "<p><code>LeftEdge</code> は常に「画面左端」のX座標を返します。</p><p><code>BackEdge</code> は実行者の向き（<code>Facing</code>）に応じて、背面側の画面端（右向きなら左端、左向きなら右端）のX座標を返します。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "等価式：LeftEdge の概念式",
+      "description": "<p><code>LeftEdge</code> は概念的には <code>CameraPos X - GameWidth / 2</code> と等価です。</p>",
+      "code": [
+        "; LeftEdge 等価式",
+        "CameraPos X - GameWidth / 2"
+      ]
+    },
+    {
+      "title": "距離の取り方：左端まで何pxか（向き非依存）",
+      "description": "<p>「左端まで何pxか」を向き非依存で扱うなら、座標差分を距離として使えます（距離トリガーではなく座標の差分）。</p>",
+      "code": [
+        "; 左端までの距離（向き非依存の差分例）",
+        "FVar(0) = Abs((Pos X + CameraPos X) - LeftEdge)"
+      ]
+    },
+    {
+      "title": "公式例：画面左端より左にいるか判定する",
+      "description": "<p>実行者のステージ座標（<code>Pos X + CameraPos X</code>）と、画面左端座標（<code>LeftEdge</code>）を直接比較します。</p>",
+      "code": [
+        "; 画面左端より左にいるか",
+        "Trigger1 = Pos X + CameraPos X < LeftEdge"
+      ]
+    },
+    {
+      "title": "RightEdge と LeftEdge から「見えている横幅」を求める",
+      "description": "<p>画面左右端の差分は、現在のゲーム空間幅（概ね <code>GameWidth</code> 相当）になります。ズーム等で値が変動する挙動の確認にも使えます。</p>",
+      "code": [
+        "FVar(0) = RightEdge - LeftEdge"
+      ]
+    },
+    {
+      "title": "画面左端から一定距離外に出たら削除する（Helper/Projectile運用例）",
+      "description": "<p>画面外へ出たオブジェクトを安全に後始末したい場合の例です（余裕を持たせて-60px）。</p>",
+      "code": [
+        "Trigger1 = Pos X + CameraPos X < LeftEdge - 60"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "LeftEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#leftedge"
+    },
+    {
+      "title": "RightEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#rightedge"
+    },
+    {
+      "title": "CameraPos / CameraZoom / GameWidth / ScreenWidth - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#camerapos"
+    },
+    {
+      "title": "M.U.G.E.N Update History - Added Edge triggers (Elecbyte 1.1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    },
+    {
+      "title": "M.U.G.E.N Documentation: Triggers (community mirror)",
+      "url": "https://mugen-net.work/wiki/index.php/M.U.G.E.N_Documentation:Triggers"
+    }
+  ]
 }

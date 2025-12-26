@@ -18,10 +18,10 @@
   "description": "<p><code>BackEdgeDist</code> は、実行者のX軸（axis）から、実行者の背面側にある画面端（screen edge）までの距離を返します。</p><p>「背面側」は向き（<code>Facing</code>）に依存し、右向き時は左端、左向き時は右端が背面側の画面端になります。</p><p>返り値は<code>float</code>のpx単位の距離です。</p><p><code>BackEdgeBodyDist</code> が「幅バー端」基準なのに対し、<code>BackEdgeDist</code> は「X軸（軸位置）」基準です。</p>",
   "images": [
     {
-      "src": "mugen-backedgebodydist-logic-comparison.png",
-      "width": "640",
-      "height": "480",
-      "alt": "MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+        "src": "mugen-backedgedist-frontedgedist-diagram.png",
+        "width": "640",
+        "height": "480",
+        "alt": "MUGENにおける画面端距離の仕様図解。キャラクターのX軸中心から画面端までの距離を示すBackEdgeDist/FrontEdgeDistと、幅バー(Width Bar)の端から画面端までの距離を示すBackEdgeBodyDist/FrontEdgeBodyDistの違い。被弾判定(Clsn2)、攻撃判定(Clsn1)、および画面端(Screen Edge)との位置関係を含む。"
     }
   ],
   "syntax": [

@@ -1,44 +1,141 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "BottomEdge",
-        "target": "",
-        "category": [
-            "距離",
-            "カメラ開始位置から画面下端までの距離"
-        ],
-        "version": "2012.08.31",
-        "update": "2015.12.29",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "BottomEdge",
+    "target": "実行者自身",
+    "category": [
+      "座標",
+      "画面下端（screen edge）のY座標（ステージ座標系）"
+    ],
+    "version": "1.1",
+    "update": "2025.12.26",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "BottomEdge",
+  "category": "trigger",
+  "trigger": "BottomEdge",
+  "description": "<p><code>BottomEdge</code> は、画面下端（<i>screen edge</i>）の <b>Y座標</b> を、<b>絶対ステージ座標</b>を float として返します。</p><p>向き（<code>Facing</code>）には依存しません。下端の画面端座標が必要な場合にそのまま利用できます。</p>",
+  "images": [
+    {
+      "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+      "width": "640",
+      "height": "430",
+      "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+    }
+  ],
+  "syntax": [
+    "BottomEdge"
+  ],
+  "associated_trigger": [
+    "TopEdge",
+    "LeftEdge",
+    "RightEdge",
+    "FrontEdge",
+    "BackEdge",
+    "ScreenPosY",
+    "CameraPosY",
+    "CameraZoom",
+    "GameHeight",
+    "ScreenHeight"
+  ],
+  "associated_state": [
+    "ScreenBound"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.1",
+      "content": "<p><code>BottomEdge</code> は MUGEN 1.1 系で追加された「画面端座標トリガー」です（カメラズーム導入に伴う screen edge 系）。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs-11b1/history.html"
     },
-    "category": "trigger",
-    "trigger": "BottomEdge",
-    "summary": "<p>ステージのdefファイルで設定したStartYから画面下端までの距離を浮動小数点数で返します。</p>",
-    "syntax": [
-        "BottomEdge"
-    ],
-    "description": "ステージのdefファイルで設定したStartYから画面下端までの距離を浮動小数点数で返します。",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "BottomEdge - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#bottomedge"
-        },
-        {
-            "title": "BottomEdge - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/BottomEdge"
-        },
-        {
-            "title": "M.U.G.E.N 1.1 - 君の瞳は紫外線",
-            "url": "http://chottokomaru.sitemix.jp/mugen1.1.html"
-        }
-    ]
+    {
+      "no": "注意",
+      "content": "<p>ここでの「画面端」は現在のカメラ表示範囲の端（<i>screen edge</i>）です。ステージ境界（stage boundary）そのものとは限りません。</p>"
+    },
+    {
+      "no": "注意",
+      "content": "<p><code>GameHeight</code> と同様に、値は「実行者のローカル座標系（localcoord）」側の単位として扱われます。ズーム（<code>CameraZoom</code>）等で <code>GameHeight</code> が変化すると <code>BottomEdge</code> も連動して変化します。</p>"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "TopEdge との関係は？",
+      "c": "どちらも「画面端座標」トリガーで、上下端のY座標を返します。",
+      "a": "<p><code>TopEdge</code> は画面上端のY座標、<code>BottomEdge</code> は画面下端のY座標を返します。</p><p>概念的には <code>BottomEdge = TopEdge + GameHeight</code> の関係になります（ズーム等で <code>GameHeight</code> が変化すると連動します）。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "等価式：BottomEdge の概念式",
+      "description": "<p><code>BottomEdge</code> は概念的には次の式と等価です。</p>",
+      "code": [
+        "; BottomEdge 等価式",
+        "Pos Y - ScreenPos Y + GameHeight"
+      ]
+    },
+    {
+      "title": "距離の取り方：下端まで何pxか（向き非依存）",
+      "description": "<p>「画面下端まで何pxか」を距離として扱うなら、座標差分を使えます（距離トリガーではなく座標の差分）。</p>",
+      "code": [
+        "; 画面下端までの距離（差分例）",
+        "FVar(0) = Abs(BottomEdge - Pos Y)"
+      ]
+    },
+    {
+      "title": "公式例：画面下端より上にいるか判定する",
+      "description": "<p>実行者のY座標（<code>Pos Y</code>）と、画面下端座標（<code>BottomEdge</code>）を比較します。</p>",
+      "code": [
+        "; 画面下端より上にいるか",
+        "Trigger1 = Pos Y < BottomEdge"
+      ]
+    },
+    {
+      "title": "画面下端より下に出たら判定する",
+      "description": "<p>落下演出などで画面外（下側）に出たかを判定します。</p>",
+      "code": [
+        "; 画面下端より下に出たか",
+        "Trigger1 = Pos Y > BottomEdge"
+      ]
+    },
+    {
+      "title": "BottomEdge と TopEdge から「見えている縦幅」を求める",
+      "description": "<p>画面上下端の差分は、現在のゲーム空間高さ（概ね <code>GameHeight</code> 相当）になります。ズーム等で値が変動する挙動の確認にも使えます。</p>",
+      "code": [
+        "FVar(0) = BottomEdge - TopEdge"
+      ]
+    },
+    {
+      "title": "画面下端から一定距離外に出たら削除する（Helper/Projectile運用例）",
+      "description": "<p>画面外へ出たオブジェクトを安全に後始末したい場合の例です（余裕を持たせて+60px）。</p>",
+      "code": [
+        "Trigger1 = Pos Y > BottomEdge + 60"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "BottomEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#bottomedge"
+    },
+    {
+      "title": "TopEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#topedge"
+    },
+    {
+      "title": "GameHeight / ScreenHeight / CameraZoom - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#gameheight"
+    },
+    {
+      "title": "ScreenPos - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#screenpos"
+    },
+    {
+      "title": "M.U.G.E.N Update History - New in 1.1 (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    },
+    {
+      "title": "BottomEdge - M.U.G.E.N wiki (web archive)",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/BottomEdge"
+    }
+  ]
 }

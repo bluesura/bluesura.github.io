@@ -19,6 +19,14 @@
         "GameWidth"
     ],
     "description": "画面幅を返します。",
+    "images": [
+        {
+        "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+        "width": "640",
+        "height": "430",
+        "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+        }
+    ],
     "code_sample": [
         {
             "title": "",

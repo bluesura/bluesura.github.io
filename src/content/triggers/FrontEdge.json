@@ -1,44 +1,126 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "FrontEdge",
-        "target": "",
-        "category": [
-            "距離",
-            "ステージ開始位置から前方画面端までの距離"
-        ],
-        "version": "2012.08.31",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "FrontEdge",
+    "target": "実行者自身",
+    "category": [
+      "座標",
+      "前面側画面端（screen edge）のX座標"
+    ],
+    "version": "1.1",
+    "update": "2025.12.26",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "FrontEdge",
+  "category": "trigger",
+  "trigger": "FrontEdge",
+  "description": "<p><code>FrontEdge</code> は、実行者の<b>前面側</b>にある画面端（<i>screen edge</i>）の <b>X座標</b> を、<b>ステージの絶対座標</b>をfloatとして返します。</p><p>「前面側」は向き（<code>Facing</code>）に依存し、右向き（<code>Facing = 1</code>）なら右端、左向き（<code>Facing = -1</code>）なら左端が前面側になります。</p>",
+  "images": [
+    {
+      "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+      "width": "640",
+      "height": "430",
+      "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+    }
+  ],
+  "syntax": [
+    "FrontEdge"
+  ],
+  "associated_trigger": [
+    "BackEdge",
+    "LeftEdge",
+    "RightEdge",
+    "FrontEdgeDist",
+    "FrontEdgeBodyDist",
+    "CameraPosX"
+  ],
+  "associated_state": [
+    "ScreenBound"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.1",
+      "content": "<p><code>FrontEdge</code> は、<code>BackEdge</code>/<code>LeftEdge</code>/<code>RightEdge</code>/<code>TopEdge</code>/<code>BottomEdge</code> と同様に、MUGEN 1.1 系で追加された「画面端座標」トリガー群の一つです。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "FrontEdgeDist との違いは？",
+      "c": "どちらも「前面側の画面端」を扱いますが、返すものが異なります。",
+      "a": "<p><code>FrontEdge</code> は前面側画面端の<b>X座標</b>（座標値）を返します。<code>FrontEdgeDist</code> は実行者のX軸（軸位置）から前面側画面端までの<b>距離</b>を返します。</p><p>座標ベースで比較・差分計算をしたい場合は <code>FrontEdge</code>、単に「何px以内」などの距離判定なら <code>FrontEdgeDist</code>/<code>FrontEdgeBodyDist</code> が簡潔です。</p>"
     },
-    "category": "trigger",
-    "trigger": "FrontEdge",
-    "summary": "<p>StartXから自分の前方の画面端までの距離（実数）を返します。</p>",
-    "syntax": [
-        "FrontEdge"
-    ],
-    "description": "StartXから自分の前方の画面端までの距離（実数）を返します。",
-    "code_sample": [
+    {
+      "q": "「画面端」はステージ端と同じですか？",
+      "c": "混同されやすいポイントです。",
+      "a": "<p>同一ではありません。<code>FrontEdge</code> が参照するのは現在のカメラ表示範囲の端（<i>screen edge</i>）です。カメラ追従やズーム、<code>ScreenBound</code> 等の制御により、画面端の座標は状況で変化します。</p>"
+    },
+    {
+      "q": "Ikemen GO でも同じように使えますか？",
+      "c": "互換エンジンは互換性を掲げていますが、実装差が出る場合があります。",
+      "a": "<p>Ikemen GO は「M.U.G.E.N 1.1 Beta 相当の互換性」を目標にしているため、基本的には同系の記述を前提にできます。</p><p>ただし互換エンジンはバージョン（Nightly/Release）や独自拡張によって差が出ることがあるため、最終的には対象ビルドでの実機確認を推奨します。</p>",
+      "r": [
         {
-            "title": "",
-            "code": [
-                ""
-            ]
+          "title": "Ikemen GO - Official Site（互換性の方針）",
+          "url": "https://ikemen-engine.github.io/"
         }
-    ],
-    "quote": [
-        {
-            "title": "FrontEdge - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#frontedge"
-        },
-        {
-            "title": "FrontEdge - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/FrontEdge"
-        },
-        {
-            "title": "M.U.G.E.N 1.1 - 君の瞳は紫外線",
-            "url": "http://chottokomaru.sitemix.jp/mugen1.1.html"
-        }
+      ]
+    }
+  ],
+  "sample_code": {
+    "code": [
+      "; FrontEdge は「前面側の画面端X座標」を返す",
+      "; （距離が欲しい場合は FrontEdgeDist / FrontEdgeBodyDist を推奨）",
+      "",
+      "; 公式例：前面側の画面端より後ろにいるか判定",
+      "trigger1 = facing * (Pos X + CameraPos X) < facing * (FrontEdge)"
     ]
+  },
+  "code_sample": [
+    {
+      "title": "Facing に応じて RightEdge / LeftEdge を返す",
+      "description": "<p><code>FrontEdge</code> は「前面側（向いている方向）の画面端X座標」です。右向き（<code>Facing = 1</code>）なら <code>RightEdge</code>、左向きなら <code>LeftEdge</code> を返します。</p>",
+      "code": [
+        "; FrontEdge と等価",
+        "IfElse(Facing = 1, RightEdge, LeftEdge)"
+      ]
+    },
+    {
+      "title": "前面側の画面端より後ろ（画面内側）にいるか判定する",
+      "description": "<p><code>FrontEdge</code> は「前面側（向いている方向）の画面端」のX座標です。この判定は、実行者のX座標（例：<code>Pos X + CameraPos X</code>）がその端に到達していない＝<b>画面内側にいる</b>ことを調べます。</p><p>右向き（<code>Facing = 1</code>）だと <code>X &lt; RightEdge</code>、左向き（<code>Facing = -1</code>）だと <code>X &gt; LeftEdge</code> と不等号が逆になるため、両辺に <code>Facing</code> を掛けて「前方向を正（+）」として扱えるように正規化し、<code>&lt;</code> の形を1つに統一しています。</p>",
+      "code": [
+        "Trigger1 = Facing * (Pos X + CameraPos X) < Facing * (FrontEdge)"
+      ]
+    },
+    {
+      "title": "FrontEdge から前面側までの距離を座標差で算出する",
+      "description": "<p><code>FrontEdge</code>（座標）と、実行者のステージ上の位置（例：<code>Pos X + CameraPos X</code>）の差分を取って距離相当として扱う例です。距離トリガーが使える場合は <code>FrontEdgeDist</code> の方が簡潔です。</p>",
+      "code": [
+        "FVar(0) = Abs(FrontEdge - (Pos X + CameraPos X))"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "FrontEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#frontedge"
+    },
+    {
+      "title": "M.U.G.E.N Update History (New in 1.1: Edge triggers added) - Elecbyte",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    },
+    {
+      "title": "CameraPos - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#camerapos"
+    },
+    {
+      "title": "FrontEdgeDist / FrontEdgeBodyDist - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#frontedgedist"
+    },
+    {
+      "title": "FrontEdge - M.U.G.E.N Wiki (Elecbyte / archived)",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/FrontEdge"
+    }
+  ]
 }

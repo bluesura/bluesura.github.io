@@ -58,9 +58,18 @@ const headerInnerStyle = firstImage
       
       <!-- ヘッダー部分 (tplから完全に移植・修正) -->
       <header class="entry-header" style={headerStyle}>
-        <div style={headerInnerStyle}>
-          {firstImage && (
-            <>
+              {/* ▼ ここを修正 ▼ */}
+              <div style={{
+                ...headerInnerStyle,                       // 元のスタイル（念のため残す）
+                height: 'auto',                            // 固定の高さを解除
+                width: '100%',                             // 横幅いっぱいにする
+                display: 'flex',                           // ★重要：中身の文字を配置制御するために必須
+                backgroundColor: 'rgba(255,255,255,0.4)',  // ★重要：半透明の白（0.4 = 40%の不透明度）
+                // 画像がある場合はアスペクト比を維持
+                aspectRatio: firstImage ? `${firstImage.width} / ${firstImage.height}` : 'auto'
+              }}>
+                {firstImage && (
+                  <>
               <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display: none;">
                 <meta itemprop="url" content={`https://bluesura.github.io/images/${contentBasePath}/${firstImage.src}`}>
                 <meta itemprop="width" content={firstImage.width}>

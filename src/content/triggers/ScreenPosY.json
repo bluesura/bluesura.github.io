@@ -19,6 +19,14 @@
         "ScreenPos Y"
     ],
     "description": "プレイヤーの画面上での絶対座標(画面に対する相対座標)を返します。<br>Posとは異なり、座標がステージに依存しないのが特徴です。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。<br>詳細: ScreenPos X は、画面左端が0、それより左側(つまり画面外)が負、右側が正です。<br>ScreenPos Y は、画面上端が0、それより上側(つまり画面外)が負、下側が正です。",
+    "images": [
+        {
+        "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+        "width": "640",
+        "height": "430",
+        "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+        }
+    ],
     "code_sample": [
         {
             "title": "プレイヤーの垂直座標が画面内にあるときのトリガー。",

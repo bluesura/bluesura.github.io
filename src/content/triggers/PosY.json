@@ -19,6 +19,14 @@
         "Pos Y"
     ],
     "description": "プレイヤーの位置を返します。<br>Pos X = 0で画面中央を、Pos Y = 0で地面を意味します。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。<br>詳細: Pos X は、画面中央を0、左方向を正、右方向を負とした、相対距離を返します。Pos Y は、地面を0、下方向を正、上方向を負とした、相対距離を返します。",
+    "images": [
+        {
+        "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+        "width": "640",
+        "height": "430",
+        "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+        }
+    ],
     "code_sample": [
         {
             "title": "プレイヤーが地面より下にいる場合のトリガー。",

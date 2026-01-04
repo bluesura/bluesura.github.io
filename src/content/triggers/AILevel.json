@@ -1,94 +1,167 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "AILevel",
-        "target": "実行者",
-        "category": [
-            "AI",
-            "AI難易度レベルの取得"
-        ],
-        "version": "2011.01.18",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "AILevel",
+    "target": "実行者",
+    "category": [
+      "AI",
+      "AI難易度レベルの取得"
+    ],
+    "version": "MUGEN 1.0 RC2",
+    "update": "2026.01.01",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "AILevel",
+  "category": "trigger",
+  "trigger": "AILevel",
+  "description": "<p><code>AILevel</code>は、実行者がAI操作されている場合のAI難易度レベルを整数で返すトリガーです。</p><ul><li><b>返り値:</b> <code>0</code>（AI操作でない / 人間操作）または <code>1</code>〜<code>8</code>（AI難易度）</li></ul>",
+  "images": [
+    {
+        "src": "mugen-ailevel-trigger-flow.png",
+        "width": "640",
+        "height": "480",
+        "alt": "MUGENにおけるAILevelトリガーの仕組み図。オプション設定、トレーニングメニュー、デバッグキー（Ctrl+#）から設定値が送られ、AILevelの値が0なら人間操作、1〜8ならAI操作（難易度レベル）として分岐する処理の流れを解説。"
+    }
+  ],
+  "syntax": [
+    "AILevel"
+  ],
+  "associated_trigger": [
+    "Command",
+    "IsHelper"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.0 RC2 (2009-09-29)",
+      "content": "<p><b>追加:</b> CNSの新トリガーとして<code>AILevel</code>が追加され、AI難易度設定を返せるようになりました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
     },
-    "category": "trigger",
-    "trigger": "AILevel",
-    "summary": "<p>AIレベルを返します。</p>",
-    "syntax": [
-        "AILevel"
-    ],
-    "description": "AIレベルを返します。<br>AILevelは1(Easy 1)～8(Hard 8)までの数値(int)を返します。ただしAIがOFF・プレイヤー操作になっている場合は、0の数値が返ってきます。<br>AILevelは起動画面→Option→Difficultyまたはトレーニングメニュー→AILevelで設定できます。<br>※AIのON・OFFは対戦画面で「Ctrl+1」(プレイヤー1のAI)または「Ctrl+2」(プレイヤー2のAI)で変更できます。",
-    "code_sample": [
+    {
+      "no": "MUGEN 1.0 RC4 (2009-10-25)",
+      "content": "<p><b>修正:</b> トレーニングモードの「cooperative dummy」周りで、<code>AILevel</code>が誤動作するケースが修正されています。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "no": "IKEMEN (legacy)",
+      "content": "<p><b>修正履歴:</b> Helperにおける<code>AILevel</code>の修正履歴があり、派生実装ではHelper/Rootで値が食い違う可能性があります。</p>",
+      "blockquote": "https://github.com/fernicar/ikemen"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "対戦中にAIのON/OFFを切り替える方法は？",
+      "c": "デバッグキー／mconsoleの両方が存在します。",
+      "a": "<p>デバッグキーとして<code>Ctrl+#</code>（1から4の数字キー）で「#番目のプレイヤーのAI」をトグルできます。</p>",
+      "r": [
         {
-            "title": "使用例",
-            "code": [
-                "[state -2, AIレベルの確認]",
-                "Type = DisplayToClipboard",
-                "Trigger1 = 1",
-                "Text= \"AILevel:%d AILevel:%d\"",
-                "Params = AILevel, EnemyNear,AILevel"
-            ]
+          "title": "Elecbyte readme.txt (debug keys)",
+          "url": "https://www.elecbyte.com/mugendocs/readme.txt"
         },
         {
-            "title": "旧バージョンとバージョン1.0以上の互換性を持たせる",
-            "code": [
-                "[State -3,AILvFlagSet]",
-                "Type=VarSet",
-                "TriggerAll=!Ishelper",
-                "TriggerAll=var(59)<1",
-                "Trigger1=Command=\"AI0\"||Command=\"AI1\"||Command=\"AI2\"||Command=\"AI3\"||Command=\"AI4\"",
-                "Trigger2=Command=\"AI5\"||Command=\"AI6\"||Command=\"AI7\"||Command=\"AI8\"||Command=\"AI9\"",
-                "Trigger3=Command=\"AI10\"||Command=\"AI11\"||Command=\"AI12\"||Command=\"AI13\"||Command=\"AI14\"",
-                "Trigger4=Command=\"AI15\"||Command=\"AI16\"||Command=\"AI17\"||Command=\"AI18\"||Command=\"AI19\"",
-                "Trigger5=Command=\"AI20\"||Command=\"AI21\"||Command=\"AI22\"||Command=\"AI23\"||Command=\"AI24\"",
-                "Trigger6=Command=\"AI25\"||Command=\"AI26\"||Command=\"AI27\"||Command=\"AI28\"||Command=\"AI29\"",
-                "Trigger7=Command=\"AI30\"||Command=\"AI31\"||Command=\"AI32\"||Command=\"AI33\"||Command=\"AI34\"",
-                "Trigger8=Command=\"AI35\"||Command=\"AI36\"||Command=\"AI37\"||Command=\"AI38\"||Command=\"AI39\"",
-                "Trigger9=Command=\"AI40\"||Command=\"AI41\"||Command=\"AI42\"||Command=\"AI43\"||Command=\"AI44\"",
-                "Trigger10=Command=\"AI45\"||Command=\"AI46\"||Command=\"AI47\"||Command=\"AI48\"||Command=\"AI49\"",
-                "Trigger11=Command=\"AI50\"",
-                "Trigger12=RoundState<2||RoundState=2&&Ctrl",
-                "Trigger12=var(59)=0",
-                "Trigger12=NumHelper(10000+ID)",
-                "Trigger12=Helper(10000+ID),var(59)>0",
-                "Trigger13=NumHelper(30000+ID)",
-                "Trigger13=Helper(30000+ID),var(0)=1||teamside=1&&Helper(30000+ID),var(0)=2||teamside=2&&Helper(30000+ID),var(0)=3||Helper(30000+ID),var(0)=5&&P2MoveType=H",
-                "Trigger14=TeamSide=2||MatchNo>1",
-                "Trigger14=IsHomeTeam",
-                "Trigger15=NumHelper(30000+ID)",
-                "Trigger15=Helper(30000+ID),var(0)=5",
-                "Trigger15=NumHelper(40000+ID)",
-                "Trigger15=Helper(40000+ID),var(1)>0",
-                "Trigger16=var(59)>0",
-                "var(59)=10",
-                ";AILv1～11 デフォルト 5",
-                "IgnoreHitPause=1",
-                "",
-                "; [State -3,AISet]",
-                "; Type=Null",
-                "; Trigger1=AILevel=0||AILevel>var(59)",
-                "; Trigger1=var(59):=(AILevel>var(59))*AILevel",
-                "; IgnoreHitPause=1"
-            ]
+          "title": "Elecbyte mconsole documentation",
+          "url": "https://www.elecbyte.com/mugendocs/mconsole.html"
         }
-    ],
-    "quote": [
+      ]
+    },
+    {
+      "q": "AILevelはどこで設定する？",
+      "a": "<p>通常は、起動画面の <b>Option → Difficulty</b>（COM難易度）で設定します。</p><p>Trainingでは、ダミー操作がAIのときに <b>Training menu → AI level</b> で調整できます。</p>",
+      "r": [
         {
-            "title": "AILevel - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ailevel"
-        },
-        {
-            "title": "AILevel - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ailevel"
-        },
-        {
-            "title": "AILevel - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AILevel"
-        },
-        {
-            "title": "デバッグキー一覧 - MUGENの便覧",
-            "url": "http://mugenbinran.web.fc2.com/debugkey.html"
+          "title": "MUGEN 1.1 Beta History（Training menu: AI level option）",
+          "url": "https://www.elecbyte.com/mugendocs-11b1/history.html"
         }
-    ]
+      ]
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "AI判定＋敵AIレベル表示",
+      "description": "<p><code>AILevel</code>は自分側と相手側で別々に評価できます。</p>",
+      "code": [
+        "[State -2, AIレベルの確認]",
+        "Type = DisplayToClipboard",
+        "Trigger1 = 1",
+        "Text = \"P1 AILevel:%d / P2 AILevel:%d\"",
+        "Params = AILevel, EnemyNear,AILevel"
+      ]
+    },
+    {
+      "title": "AI専用分岐の最小例",
+      "description": "<p><code>AILevel &gt; 0</code>を「AI操作中」の簡易判定として扱い、変数に保持しておく例です。</p>",
+      "code": [
+        "[State -2, AIFlag]",
+        "Type = VarSet",
+        "Trigger1 = 1",
+        "Var(59) = (AILevel > 0)",
+        "IgnoreHitPause = 1"
+      ]
+    },
+    {
+      "title": "旧バージョンとバージョン1.0以上の互換性を持たせる",
+      "description": "<p>MUGEN 1.0以前の環境を意識し、コマンド入力をフラグ化してAI挙動の分岐に利用する例です。</p>",
+      "code": [
+        "[State -3,AILvFlagSet]",
+        "Type=VarSet",
+        "TriggerAll=!Ishelper",
+        "TriggerAll=var(59)<1",
+        "Trigger1=Command=\"AI0\"||Command=\"AI1\"||Command=\"AI2\"||Command=\"AI3\"||Command=\"AI4\"",
+        "Trigger2=Command=\"AI5\"||Command=\"AI6\"||Command=\"AI7\"||Command=\"AI8\"||Command=\"AI9\"",
+        "Trigger3=Command=\"AI10\"||Command=\"AI11\"||Command=\"AI12\"||Command=\"AI13\"||Command=\"AI14\"",
+        "Trigger4=Command=\"AI15\"||Command=\"AI16\"||Command=\"AI17\"||Command=\"AI18\"||Command=\"AI19\"",
+        "Trigger5=Command=\"AI20\"||Command=\"AI21\"||Command=\"AI22\"||Command=\"AI23\"||Command=\"AI24\"",
+        "Trigger6=Command=\"AI25\"||Command=\"AI26\"||Command=\"AI27\"||Command=\"AI28\"||Command=\"AI29\"",
+        "Trigger7=Command=\"AI30\"||Command=\"AI31\"||Command=\"AI32\"||Command=\"AI33\"||Command=\"AI34\"",
+        "Trigger8=Command=\"AI35\"||Command=\"AI36\"||Command=\"AI37\"||Command=\"AI38\"||Command=\"AI39\"",
+        "Trigger9=Command=\"AI40\"||Command=\"AI41\"||Command=\"AI42\"||Command=\"AI43\"||Command=\"AI44\"",
+        "Trigger10=Command=\"AI45\"||Command=\"AI46\"||Command=\"AI47\"||Command=\"AI48\"||Command=\"AI49\"",
+        "Trigger11=Command=\"AI50\"",
+        "Trigger12=RoundState<2||RoundState=2&&Ctrl",
+        "Trigger12=var(59)=0",
+        "Trigger12=NumHelper(10000+ID)",
+        "Trigger12=Helper(10000+ID),var(59)>0",
+        "Trigger13=NumHelper(30000+ID)",
+        "Trigger13=Helper(30000+ID),var(0)=1||teamside=1&&Helper(30000+ID),var(0)=2||teamside=2&&Helper(30000+ID),var(0)=3||Helper(30000+ID),var(0)=5&&P2MoveType=H",
+        "Trigger14=TeamSide=2||MatchNo>1",
+        "Trigger14=IsHomeTeam",
+        "Trigger15=NumHelper(30000+ID)",
+        "Trigger15=Helper(30000+ID),var(0)=5",
+        "Trigger15=NumHelper(40000+ID)",
+        "Trigger15=Helper(40000+ID),var(1)>0",
+        "Trigger16=var(59)>0",
+        "var(59)=10",
+        ";AILv1～11 デフォルト 5",
+        "IgnoreHitPause=1",
+        "",
+        "; [State -3,AISet]",
+        "; Type=Null",
+        "; Trigger1=AILevel=0||AILevel>var(59)",
+        "; Trigger1=var(59):=(AILevel>var(59))*AILevel",
+        "; IgnoreHitPause=1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "AILevel - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#ailevel"
+    },
+    {
+      "title": "AILevel - Trigger Reference (MUGEN 1.1b1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#ailevel"
+    },
+    {
+      "title": "M.U.G.E.N Update History (AILevel導入/修正履歴)",
+      "url": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "title": "readme.txt (debug keys: Ctrl-#でAIトグル)",
+      "url": "https://www.elecbyte.com/mugendocs/readme.txt"
+    },
+    {
+      "title": "IKEMEN changelog (Fix helper AILevel)",
+      "url": "https://github.com/fernicar/ikemen"
+    }
+  ]
 }

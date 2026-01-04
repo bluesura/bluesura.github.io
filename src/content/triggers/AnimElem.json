@@ -1,70 +1,218 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "AnimElem",
-        "target": "実行者",
-        "category": [
-            "アニメーション",
-            "アニメーションのコマと経過時間の判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2025.11.14",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "AnimElem",
+    "target": "実行者自身",
+    "category": [
+      "アニメーション",
+      "アニメーションのコマと経過時間の判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.02",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "AnimElem",
+  "category": "trigger",
+  "trigger": "AnimElem",
+  "description": "<p><code>AnimElem</code> は、現在再生中のアニメーションで「指定した要素（エレメント）」に入った瞬間、または要素開始からの経過フレーム数を比較して真偽（0/1）を返すトリガーです。</p><ul><li><b>書式1</b>: 要素 <code>value1</code> に入った最初の1フレームのみ真（<code>AnimElem = value1, = 0</code> と同等）。</li><li><b>書式2</b>: 要素 <code>value1</code> の開始からの経過フレームを <code>[oper] value2</code> で比較（実質的に <code>AnimElemTime(value1) [oper] value2</code> と同等の用途）。</li></ul><p>要素番号は0ではなく<b>1から数えます</b>。</p>",
+  "images": [
+    {
+        "src": "mugen-trigger-animelem-specification.png",
+        "width": "640",
+        "height": "480",
+        "alt": "MUGENのAnimElemトリガー解説図。瞬間判定（書式1）と経過時間比較（書式2）の違い、引数に計算式が使用不可である注意点、ループアニメーション時の対策についてまとめています。"
+    }
+  ],
+  "syntax": [
+    "; 書式1: 要素 value1 に入った最初の1フレームだけ真（AnimElem = value1, = 0 と同等）",
+    "AnimElem = value1",
+    "",
+    "; 書式2: 要素 value1 の開始からの経過フレームを [oper] value2 と比較",
+    "AnimElem = value1, =  value2",
+    "AnimElem = value1, != value2",
+    "AnimElem = value1, <= value2",
+    "AnimElem = value1, >= value2",
+    "AnimElem = value1, >  value2",
+    "AnimElem = value1, <  value2",
+    "",
+    "; 例: 要素 value1 の間ずっと真（次の要素が存在する前提）",
+    "AnimElem = value1, >= 0"
+  ],
+  "associated_trigger": [
+    "Anim",
+    "AnimTime",
+    "AnimElemNo",
+    "AnimElemTime",
+    "AnimExist",
+    "SelfAnimExist"
+  ],
+  "version": [
+    {
+      "no": "注意",
+      "content": "<p>ループ区間のあるアニメで、<b>looptime が有限</b>の場合、2周目以降の「ループ先頭フレーム」では <code>AnimElem = 1</code> が反応しません。毎周反応させたいなら <code>AnimElem = 1 || AnimTime = 0</code> のように書きます。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/trigger.html#animelem"
     },
-    "category": "trigger",
-    "trigger": "AnimElem",
-    "summary": "<p>現在のアニメーションの指定された「要素（エレメント）」の表示タイミングと、その要素が表示開始されてからの経過時間を判定します。攻撃判定の発生やエフェクトの同期など、厳密なタイミング制御に不可欠なトリガーです。</p>",
-    "syntax": [
-        "; 「値1」の要素が表示された最初の1フレームのみ True を返します。これは AnimElem = 値1, = 0 と同等です。",
-        "AnimElem = 値1",
-        "",
-        "; アニメが「値1」枚目に切り替わってからの経過時間を「値2」と比較し、真偽を返すトリガー",
-        "AnimElem = 値1, =  値2",
-        "AnimElem = 値1, != 値2",
-        "AnimElem = 値1, <= 値2",
-        "AnimElem = 値1, >= 値2",
-        "AnimElem = 値1, >  値2",
-        "AnimElem = 値1, <  値2",
-        "; 「値1」の要素が表示開始されてから、その要素が表示されている間ずっと True を返します。",
-        "AnimElem = 値1, >= 0",
-        ""
-    ],
-    "description": "アニメの順番とその経過時間を判断します。<br>戻り値の型:boolean整数（1または0）",
-    "associated_trigger": [
-        "Anim",
-        "AnimTime",
-        "AnimElemNo",
-        "AnimElemTime",
-        "AnimExist",
-        "SelfAnimExist"
-    ],
-    "version": [
-        {
-            "no": "仕様",
-            "content": "アニメーションが有限回ループする設定の場合（.airファイルでloopが-1や9999ではないアニメ）、AnimElem = 1やAnimElemTime(1) = 0は、最初のループ時の1枚目でのみ True になります。<br>2回目以降のループの1枚目では発動しないため、ループ毎に発動させたい場合は、アニメーションの総時間が終了し、次のループの1フレーム目に戻るタイミングを捕捉する AnimElem = 1 || AnimTime = 0 のように記述する必要があります。"
-        },
-        {
-            "no": "エラー",
-            "content": "指定された要素番号がこのアクションに対して無効である場合 (たとえば、大きすぎる、または小さすぎる場合)、bottom を返します。"
-        },
-        {
-            "no": "エラー",
-            "content": "AnimElemは、単体で記述するとエラーになります。必ず比較演算子と組み合わせて使用する必要があります。"
-        }
-    ],
-    "quote": [
-        {
-            "title": "AnimElem - Trigger Reference(version 2002.04.14)",
-            "url": "https://bluesura.github.io/MUGEN/document/Official/2002.04.14/trigger.html#AnimElem"
-        },
-        {
-            "title": "AnimElem - Trigger Reference(version 1.0)",
-            "url": "https://www.elecbyte.com/mugendocs/trigger.html#animelem"
-        },
-        {
-            "title": "AnimElem - Trigger Reference(version 1.1)",
-            "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#animelem"
-        }
+    {
+      "no": "注意",
+      "content": "<p><code>AnimElem</code> は旧式（***）のため、<code>AnimElem = (1+1)</code> のように引数へ式を入れられません。また <code>AnimElem = 5 + 4</code> は「<code>AnimElem=5</code> というトリガー名の評価 + 4」と解釈され得ます。可変の要素番号が必要なら <code>AnimElemTime(5+4)</code> のように置き換えてください。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs-11b1/cns.html"
+    },
+    {
+      "no": "エラー",
+      "content": "<p>指定した要素番号が無効（大きすぎる／小さすぎる等）な場合、<code>bottom</code> を返します（多くの場合、条件式としては偽扱いになります）。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/trigger.html#animelem"
+    },
+    {
+      "no": "互換性",
+      "content": "<p>IKEMEN GO でも <code>AnimElem</code> は一般に利用されますが、バージョン差や状況（例: hitpause 周り）でタイミング差が報告されることがあります。移植時は実機での挙動確認を推奨します。</p>",
+      "blockquote": "https://github.com/ikemen-engine/Ikemen-GO/issues/407"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "value1",
+      "value": [
+        "要素番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>判定対象の要素（エレメント）番号。要素番号は <b>1</b> から数えます。</p>",
+      "min_value": [
+        "1"
+      ],
+      "parameter_type": "required"
+    },
+    {
+      "parameter": "[oper]",
+      "value": [
+        "比較演算子"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>書式2で使用する比較演算子です。省略時は書式1（=0相当）として扱うのが基本です。</p>",
+      "parameter_type": "optional",
+      "possible_value": [
+        [
+          "演算子",
+          "意味"
+        ],
+        [
+          "=",
+          "等しい"
+        ],
+        [
+          "!=",
+          "等しくない"
+        ],
+        [
+          "<",
+          "小さい"
+        ],
+        [
+          "<=",
+          "以下"
+        ],
+        [
+          ">",
+          "大きい"
+        ],
+        [
+          ">=",
+          "以上"
+        ]
+      ]
+    },
+    {
+      "parameter": "value2",
+      "value": [
+        "要素開始からの経過フレーム"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>書式2で比較に使う「要素開始からの経過フレーム数」です。例: <code>AnimElem = 2, = 4</code> は要素2開始から4フレーム後に真になります。</p>",
+      "parameter_type": "optional"
+    }
+  ],
+  "sample_code": {
+    "code": [
+      "; 要素3に入った最初の1フレームだけ真",
+      "Trigger1 = AnimElem = 3",
+      "",
+      "; 要素2開始から4フレーム後に真",
+      "Trigger1 = AnimElem = 2, = 4"
     ]
+  },
+  "code_sample": [
+    {
+      "title": "要素2でHitDefを発生させる（単発発火）",
+      "description": "<p>要素2に入った最初の1フレームだけ発火します。<code>HitDef</code> の多重発生を避けやすい基本形です。</p>",
+      "code": [
+        "[State 200, HitDef]",
+        "Type = HitDef",
+        "Trigger1 = AnimElem = 2",
+        "; ...（AttrやDamage等は省略）"
+      ]
+    },
+    {
+      "title": "要素2開始から4フレーム後にExplodを同期",
+      "description": "<p>要素の開始からの経過フレームで同期を取ります。発生の「溜め」やエフェクト遅延に使います。</p>",
+      "code": [
+        "[State 200, ExplodSync]",
+        "Type = Explod",
+        "Trigger1 = AnimElem = 2, = 4",
+        "Anim = 9000",
+        "Pos = 0, -60"
+      ]
+    },
+    {
+      "title": "要素2の間だけ真にする（次要素が存在する場合）",
+      "description": "<p>要素2の間ずっと真にしたい場合の定番パターンです。次要素が無い場合は <code>AnimTime &lt;= 0</code> に置き換えます。</p>",
+      "code": [
+        "; 要素2の間だけ真（要素3が存在する前提）",
+        "Trigger1 = AnimElem = 2, >= 0",
+        "Trigger1 = AnimElem = 3, < 0",
+        "",
+        "; 要素3が存在しない場合の代替",
+        "; Trigger1 = AnimElem = 2, >= 0",
+        "; Trigger1 = AnimTime <= 0"
+      ]
+    },
+    {
+      "title": "有限looptimeのループでも毎周反応させる",
+      "description": "<p>ループ先頭で <code>AnimElem = 1</code> が再発火しないケースへの対処です。</p>",
+      "code": [
+        "[State -2, LoopHead]",
+        "Type = VarSet",
+        "Trigger1 = AnimElem = 1 || AnimTime = 0",
+        "V = 10",
+        "Value = 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "AnimElem - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#animelem"
+    },
+    {
+      "title": "AnimElem - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#animelem"
+    },
+    {
+      "title": "Expressions / Irregular triggers (MUGEN 1.1 Beta 1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/cns.html"
+    },
+    {
+      "title": "IKEMEN GO Issue: PalFX on explods（AnimElem使用例と挙動差の報告）",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/407"
+    },
+    {
+      "title": "Trigger Reference (MUGEN 2002.04.14 Beta docs mirror)",
+      "url": "https://mugenarchive.com/docs/beta/trigger.html"
+    }
+  ]
 }

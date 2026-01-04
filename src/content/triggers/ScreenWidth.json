@@ -1,44 +1,96 @@
 {
     "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "ScreenWidth",
-        "target": "",
-        "category": [
-            "システム情報",
-            "ゲーム画面の幅取得"
-        ],
-        "version": "2012.08.31",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+    "title": "MUGEN Trigger",
+    "subtitle": "ScreenWidth",
+    "category": ["システム情報", "ゲーム画面の幅取得"],
+    "version": "1.1",
+    "update": "2026.01.04",
+    "type": "document",
+    "level": "3"
     },
+    "title": "ScreenWidth",
     "category": "trigger",
     "trigger": "ScreenWidth",
-    "summary": "<p>表示領域の横のピクセル（実数）を返します。</p>",
-    "syntax": [
-        "ScreenWidth"
-    ],
-    "description": "表示領域の横のピクセル（実数）を返します。",
-    "code_sample": [
+    "description": "<p>画面座標（screen space）の横サイズを、ピクセル単位の実数で返します。</p><p>カメラのズーム倍率の影響を受けません（ズームで変化するのは <code>GameWidth</code> 側）。</p><p>主に <code>Explod</code> の <code>space = screen</code> など、画面固定演出のレイアウト計算に使います。</p>",
+    "images": [
         {
-            "title": "",
-            "code": [
-                ""
-            ]
+        "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+        "width": "640",
+        "height": "430",
+        "alt": "ステージ座標系とカメラ表示範囲（GameWidth/GameHeight、および各Edge系トリガー）の関係図"
         }
     ],
-    "quote": [
+    "syntax": ["ScreenWidth"],
+    "associated_trigger": ["ScreenHeight", "GameWidth", "GameHeight"],
+    "version": [
+    {
+        "no": "MUGEN 1.1",
+        "content": "<p>ステージズーム導入に伴い、画面座標（screen space）向けとして <code>ScreenWidth</code>/<code>ScreenHeight</code> が追加された。</p>",
+        "blockquote": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    }
+    ],
+    "qanda": [
+    {
+        "q": "GameWidth / GameHeight と何が違う？",
+        "a": "<p><code>ScreenWidth</code>/<code>ScreenHeight</code> は「画面座標（screen space）」の寸法で、カメラ移動・ズームの影響を受けません。</p><p><code>GameWidth</code>/<code>GameHeight</code> はズーム倍率に応じて変化し、画面上で見えるステージ範囲（ステージ座標）を表します。</p><p>IKEMEN GO では互換設定（<code>mugenVersion</code>）により、<code>GameWidth</code>/<code>GameHeight</code> を 1.0 相当として扱い、結果的に <code>ScreenWidth</code>/<code>ScreenHeight</code> と同等にする挙動があります。</p>",
+        "r": [
         {
-            "title": "ScreenWidth - Trigger Reference(version 1.1)",
+            "title": "ScreenWidth - Trigger Reference (MUGEN 1.1 Beta 1)",
             "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#screenwidth"
         },
         {
-            "title": "ScreenWidth - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ScreenWidth"
-        },
-        {
-            "title": "M.U.G.E.N 1.1 - 君の瞳は紫外線",
-            "url": "http://chottokomaru.sitemix.jp/mugen1.1.html"
+            "title": "Triggers (changed) - IKEMEN GO Wiki",
+            "url": "https://wiki.ikemen-engine.com/guides/changed-triggers/"
         }
+        ]
+    }
+    ],
+    "code_sample": [
+    {
+        "title": "画面右上に固定した Explod を出す",
+        "description": "<p>右上固定の演出を置く例です（画面座標なのでステージ移動・ズームの影響を受けません）。</p>",
+        "code": [
+        "[State 0, ScreenTopRightExplod]",
+        "type = Explod",
+        "trigger1 = !Time",
+        "anim = 9001",
+        "id = 9001",
+        "space = screen",
+        "pos = ScreenWidth, 0",
+        "bindID = -2"
+        ]
+    },
+    {
+        "title": "画面幅を使って HUD 要素のX座標を計算する",
+        "description": "<p>画面端から一定距離（例: 16px）に配置したい場合の計算例です。</p>",
+        "code": [
+        "[State -2, HudExplod]",
+        "type = Explod",
+        "trigger1 = !Time",
+        "anim = 9010",
+        "id = 9010",
+        "space = screen",
+        "pos = ScreenWidth - 16, 16",
+        "bindID = -2"
+        ]
+    }
+    ],
+    "quote": [
+    {
+        "title": "ScreenWidth - Trigger Reference (MUGEN 1.1 Beta 1)",
+        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#screenwidth"
+    },
+    {
+        "title": "Explod(space=screen) - State Controller Reference (MUGEN 1.1 Beta 1)",
+        "url": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html#explod"
+    },
+    {
+        "title": "Update History (MUGEN 1.1 Beta 1)",
+        "url": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    },
+    {
+        "title": "Triggers (changed) - IKEMEN GO Wiki",
+        "url": "https://wiki.ikemen-engine.com/guides/changed-triggers/"
+    }
     ]
 }

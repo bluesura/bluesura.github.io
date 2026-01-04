@@ -1,52 +1,112 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "GameWidth",
-        "target": "",
-        "category": [
-            "システム情報",
-            "ゲームウィンドウの幅取得"
-        ],
-        "version": "2011.01.18",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "GameWidth",
+    "category": [
+      "システム情報",
+      "ゲーム表示領域（ゲーム空間）の幅取得"
+    ],
+    "version": "2009.10.25",
+    "update": "2026.01.04",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "GameWidth",
+  "category": "trigger",
+  "trigger": "GameWidth",
+  "description": "<p>現在の「ゲーム空間（カメラ表示範囲）」の横幅を、プレイヤーのローカル座標系で実数として返します。</p><p>ズーム倍率が変化する環境では値がズーム倍率に反比例して変動します（例：ズーム0.5なら<code>GameWidth</code>はズーム1.0時の2倍）。</p>",
+  "syntax": [
+    "GameWidth"
+  ],
+  "images": [
+    {
+      "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+      "width": "640",
+      "height": "430",
+      "alt": "ステージ座標系とカメラ表示範囲（GameWidth/GameHeight、および各Edge系トリガー）の関係図"
+    }
+  ],
+  "associated_trigger": [
+    "GameHeight",
+    "ScreenWidth",
+    "ScreenPosX",
+    "ScreenPosY",
+    "LeftEdge",
+    "RightEdge"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.0 RC4",
+      "content": "<p><code>GameWidth</code>/<code>GameHeight</code>トリガーが追加されました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
     },
-    "category": "trigger",
-    "trigger": "GameWidth",
-    "summary": "<p>画面幅を返します。</p>",
-    "syntax": [
-        "GameWidth"
-    ],
-    "description": "画面幅を返します。",
-    "images": [
+    {
+      "no": "MUGEN 1.1 Beta 1",
+      "content": "<p>カメラズームに反比例して値が変動する旨が明記され、ズーム非依存の<code>ScreenWidth</code>/<code>ScreenHeight</code>が併記されました。</p>",
+      "blockquote": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#gamewidth"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "ScreenWidthとの違いは？",
+      "a": "<p><code>GameWidth</code>は「ゲーム空間（カメラ表示範囲）」の幅で、ズームの影響を受けます。<code>ScreenWidth</code>は「スクリーン空間」の幅で、ズームの影響を受けません。</p>",
+      "r": [
         {
-        "src": "mugen-stage-coordinates-camera-edge-diagram.png",
-        "width": "640",
-        "height": "430",
-        "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
+          "title": "Trigger Reference (v1.1) - GameWidth / ScreenWidth",
+          "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#gamewidth"
         }
-    ],
-    "code_sample": [
+      ]
+    },
+    {
+      "q": "キャラによって戻り値が変わることがある？",
+      "a": "<p>あります。戻り値は「プレイヤーのローカル座標系」で返るため、キャラ側のローカル座標（スケーリング設定）が異なると、同じ見た目でも数値がスケールして返ります。比較・閾値判定では、同一基準のローカル座標で統一するのが安全です。</p>",
+      "r": [
         {
-            "title": "",
-            "code": [
-                ""
-            ]
+          "title": "Trigger Reference (v1.0) - GameWidth",
+          "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#gamewidth"
         }
-    ],
-    "quote": [
-        {
-            "title": "GameWidth - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#gamewidth"
-        },
-        {
-            "title": "GameWidth - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#gamewidth"
-        },
-        {
-            "title": "GameWidth - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/GameWidth"
-        }
-    ]
+      ]
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "画面中央より右側にいるか判定（ズーム対応）",
+      "description": "<p><code>ScreenPos</code>と組み合わせて、画面中心を境に左右判定します。</p>",
+      "code": [
+        "[State -2, IsRightOfCenter]",
+        "Type = VarSet",
+        "Trigger1 = 1",
+        "Var(0) = (ScreenPos X >= GameWidth / 2)"
+      ]
+    },
+    {
+      "title": "画面左端から一定距離以内にいるか判定（ズーム対応）",
+      "description": "<p>「ゲーム空間」基準で左端寄りかを判定します。</p>",
+      "code": [
+        "[State -2, IsNearLeftEdge]",
+        "Type = VarSet",
+        "Trigger1 = 1",
+        "; 左端から80未満（プレイヤーローカル座標系）",
+        "Var(1) = (ScreenPos X < 80)"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "GameWidth - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#gamewidth"
+    },
+    {
+      "title": "GameWidth - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#gamewidth"
+    },
+    {
+      "title": "GameWidth - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/GameWidth"
+    },
+    {
+      "title": "MUGEN History (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/history.html"
+    }
+  ]
 }

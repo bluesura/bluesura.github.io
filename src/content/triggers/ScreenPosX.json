@@ -1,39 +1,66 @@
 {
     "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "ScreenPos X",
-        "target": "",
-        "category": [
-            "距離",
-            "画面左端基準の現在X座標取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+    "title": "MUGEN Trigger",
+    "subtitle": "ScreenPos X",
+    "target": "実行者自身",
+    "category": [
+        "距離",
+        "画面左端を基準にした現在のX座標"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.04",
+    "type": "document",
+    "level": "3"
     },
+    "title": "ScreenPosX",
     "category": "trigger",
     "trigger": "ScreenPosX",
-    "summary": "<p>プレイヤーの画面上での絶対座標(画面に対する相対座標)を返します。</p>",
+    "description": "<p><code>ScreenPos X</code> は、実行者の「画面上のX座標」を返します。</p><p>画面左端を <b>0</b> とし、画面外の左側は負、右側は正の値になります。戻り値は <b>float</b>（浮動小数点数）です。</p><p><code>Pos</code> のようなステージ絶対座標ではなく、カメラ表示範囲（画面）に対する相対座標である点が特徴です。</p><p>整数が必要な箇所へ渡す場合は、<code>Floor()</code>/<code>Ceil()</code>/<code>Round()</code> 等で丸めてから使用してください。</p>",
     "syntax": [
-        "ScreenPos X"
+    "ScreenPos X"
     ],
-    "description": "プレイヤーの画面上での絶対座標(画面に対する相対座標)を返します。<br>Posとは異なり、座標がステージに依存しないのが特徴です。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。<br>詳細: ScreenPos X は、画面左端が0、それより左側(つまり画面外)が負、右側が正です。<br>ScreenPos Y は、画面上端が0、それより上側(つまり画面外)が負、下側が正です。",
     "images": [
-        {
+    {
         "src": "mugen-stage-coordinates-camera-edge-diagram.png",
         "width": "640",
         "height": "430",
-        "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
-        }
+        "alt": "ステージ座標（Pos）と画面座標（ScreenPos）、カメラ座標（CameraPos）の関係図"
+    }
+    ],
+    "associated_trigger": [
+    "ScreenPosY",
+    "PosX",
+    "CameraPosX",
+    "GameWidth",
+    "ScreenWidth"
+    ],
+    "version": [
+    {
+        "no": "MUGEN 1.0 RC2 (2009-09-29) 以降",
+        "content": "<p><code>ScreenPos X</code> の計算不具合が修正されました（1.0安定版にも反映）。</p>",
+        "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+        "no": "IKEMEN GO",
+        "content": "<p><code>ScreenPos</code> を座標入力へ直接使う場合、<code>Floor(ScreenPos X)</code> のように丸めて扱う運用例があります（実装・座標空間の差異によりズレが出るケースがあるため）。</p>",
+        "blockquote": "https://github.com/ikemen-engine/Ikemen-GO/issues/188"
+    }
     ],
     "code_sample": [
-        {
-            "title": "プレイヤーの垂直座標が画面内にあるときのトリガー。",
-            "code": [
-                "Trigger1 = ScreenPos Y = [0,239]"
-            ]
-        }
+    {
+        "title": "画面内（左右）にいるか判定（1.0以降）",
+        "description": "<p><code>GameWidth</code> を使い、解像度（設定）に依存しない形で判定します。</p>",
+        "code": [
+        "Trigger1 = ScreenPos X >= 0 && ScreenPos X < GameWidth"
+        ]
+    },
+    {
+        "title": "標準320幅を前提にした簡易判定（2002.04.14系）",
+        "description": "<p>古い環境で <code>GameWidth</code> が使えない場合の例です（標準の320幅想定）。</p>",
+        "code": [
+        "Trigger1 = ScreenPos X = [0,319]"
+        ]
+    }
     ],
     "quote": [
         {
@@ -41,16 +68,20 @@
             "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ScreenPos"
         },
         {
-            "title": "ScreenPos - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#screenpos"
+            "title": "ScreenPos - Trigger Reference (MUGEN 1.0)",
+            "url": "https://www.elecbyte.com/mugendocs/trigger.html#ScreenPos"
         },
         {
-            "title": "ScreenPos - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#screenpos"
+            "title": "ScreenPos - Trigger Reference (MUGEN 1.1 Beta 1)",
+            "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#ScreenPos"
         },
         {
-            "title": "ScreenPos - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ScreenPos"
+            "title": "M.U.G.E.N Update History (ScreenPosの修正履歴)",
+            "url": "https://www.elecbyte.com/mugendocs/history.html"
+        },
+        {
+            "title": "IKEMEN GO Issue: Explodの座標空間とScreenPosの運用例",
+            "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/188"
         }
     ]
 }

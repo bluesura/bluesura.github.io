@@ -1,3 +1,8 @@
+# このリポジトリについて
+MUGENのステートコントローラー、トリガー、ライフバーについての仕様をまとめて、「bluesura.github.io」として公開しています。jsonを更新すればGithubアクションで自動更新されるように組んでいます。こちらのMUGENに関するデータは制作者に連絡して半年以上返答がなければ自由に再利用可能です。
+
+何かある場合はGithub上でコンタクトを取ってください。
+
 # Starlight Starter Kit: Basics
 
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)

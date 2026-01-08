@@ -7,6 +7,7 @@ LLM（大規模言語モデル）への指示や、ドキュメントデータ�
 *   **HTMLタグ:** `description` や `summary` 等のテキストフィールドでは `<p>`, `<code>`, `<ul>`, `<b>` などのHTMLタグが使用可能です。
 *   **配列:** `[]` で囲まれた項目は複数設定可能です。
 *   **空データ:** 該当情報がない場合は空文字 `""` または空配列 `[]` とします。
+*   **単語:** tickはフレームという言葉に置き換えます。
 
 ---
 
@@ -58,12 +59,12 @@ LLM（大規模言語モデル）への指示や、ドキュメントデータ�
 
 | キー | 説明 | 入力例 |
 | :--- | :--- | :--- |
-| **`default_parameter`** | 必須・任意引数のサマリ情報。 | |
-| └ `required_parameter` | 必須パラメータ名のリスト。 | `["Attr", "HitFlag"]` |
-| └ `optional_parameter` | 省略可能なパラメータ名のリスト。 | `["GuardFlag", "Time"]` |
-| └ `instead_parameter` | 代替可能なパラメータ（どちらか必須など）。 | `["Time / Value"]` |
-| **`load_parameter`** | 読み込み順序に特段の意味がある場合に使用。 | |
-| └ `parameter` | 読み込まれるパラメータ順序のリスト。 | `["Attr", "Damage", "Time"]` |
+| `default_parameter` | **[非推奨]** 必須・任意引数のサマリ情報。 | |
+| └ `required_parameter` | **[非推奨]** 必須パラメータ名のリスト。 | `["Attr", "HitFlag"]` |
+| └ `optional_parameter` | **[非推奨]** 省略可能なパラメータ名のリスト。 | `["GuardFlag", "Time"]` |
+| └ `instead_parameter` | **[非推奨]** 代替可能なパラメータ（どちらか必須など）。 | `["Time / Value"]` |
+| **`load_parameter`** | **[非推奨]** 読み込み順序に特段の意味がある場合に使用。 | |
+| └ `parameter` | **[非推奨]** 読み込まれるパラメータ順序のリスト。 | `["Attr", "Damage", "Time"]` |
 
 ### 3.2 パラメータ詳細 (`parameter` 配列)
 

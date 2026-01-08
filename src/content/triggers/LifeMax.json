@@ -1,230 +1,240 @@
-{
+  {
     "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "LifeMax",
-        "target": "実行者",
-        "category": [
-            "ライフ",
-            "最大ライフの取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2017.12.26",
-        "type": "document",
-        "level": "3"
+      "title": "MUGEN Trigger",
+      "subtitle": "LifeMax",
+      "target": "ステート実行者",
+      "category": [
+        "ライフ",
+        "最大ライフの取得"
+      ],
+      "version": "2002.04.14",
+      "update": "2026.01.04",
+      "type": "document",
+      "level": "3"
     },
+    "title": "LifeMax",
     "category": "trigger",
     "trigger": "LifeMax",
-    "summary": "<p>プレイヤーの体力の最大値を返します。</p>",
+    "description": "<p>ステート実行者が持てる最大ライフ値を整数で返します。</p><p>通常はキャラクター定義の <code>[Data]</code> / <code>life</code>（<code>Const(Data.Life)</code>）に基づきますが、チームモードなど状況によっては補正されることがあります。</p><p>リダイレクト（例: <code>Enemy,LifeMax</code>）を付けた場合は、その評価対象の最大ライフを返します。</p>",
     "syntax": [
-        "LifeMax"
+      "LifeMax"
     ],
-    "description": "プレイヤーの体力の最大値を返します。<br>シングルモードでは、CNSファイルの[Data]グループにあるLifeパラメータを返します。Const(Data.Life)も同じ値です。<br>チームモード等では異なる値を返します。",
+    "images": [
+      {
+        "src": "mugen_life_trigger_system_diagram.png",
+        "width": "640",
+        "height": "480",
+        "alt": "Life/LifeMax と LifeAdd/LifeSet/TargetLifeAdd の関係、およびステート -3〜通常ステートの処理順序を示す図。"
+      }
+    ],
     "associated_trigger": [
-        "Life",
-        "Const"
+      "Life",
+      "Const"
     ],
     "associated_state": [
-        "LifeAdd",
-        "LifeSet",
-        "TargetLifeAdd"
+      "LifeAdd",
+      "LifeSet",
+      "TargetLifeAdd"
+    ],
+    "version": [
+      {
+        "no": "Ikemen GO (Nightly, 2025-12-12 報告)",
+        "content": "<p><code>LifeSet</code>/<code>LifeAdd</code> と <code>TargetLifeAdd</code> の実行優先度が、MUGEN 1.1 と異なる可能性が報告されています。<code>LifeMax</code> を用いたライフ固定・復帰（例: <code>LifeSet value = LifeMax</code>）を行う設計では、互換性確認を推奨します。</p>",
+        "blockquote": "https://github.com/ikemen-engine/Ikemen-GO/issues/2957"
+      }
     ],
     "code_sample": [
-        {
-            "title": "プレイヤーの現体力が最大値の1/4未満のときのトリガー",
-            "code": [
-                "Trigger1 = Life < LifeMax / 4"
-            ]
-        },
-        {
-            "title": "メディスン・メランコリーの毒の処理",
-            "description": "<p>Wonderful World デュナ＝ハイゼンの記述から。バグを使用しないかぎり毒の処理を再現できないため、下記のような特殊記述をすることがあります。キャラクター名でエラーを回避、メディスン・メランコリーのvar(55)に条件の数値があるため参照して、ゲーム時間の8の倍数でダメージをうけます。</p>",
-            "code": [
-                "[State -2]",
-                "Type       = LifeAdd",
-                "TriggerAll = Enemy,Name=\"Medicine Melancholy\"",
-                "Trigger1   = GameTime%8 =0",
-                "value      = -Ceil(LifeMax/1000)*(Enemy,var(55))-Ceil(LifeMax/1000)*(Enemy,var(57))",
-                "Kill       = 0",
-                "Absolute   = 1"
-            ]
-        },
-        {
-            "title": "コンボ連携数の条件として使う",
-            "description": "<p>Wonderful World デュナ＝ハイゼンの記述から。ライフが減るほどコンボがつながるようになっています。</p>",
-            "code": [
-                "[State 000];中弾ばらまき（奥",
-                "Type           = Explod",
-                "Trigger1       = fvar(0) = 0.7",
-                "Trigger1       = Time >= 80",
-                "Anim           = 13047",
-                "PosType        = P1",
-                "Pos            = -40+(Random%60),90-(Random%240)",
-                "Scale          = 0.6,0.6",
-                "Ownpal         = 1",
-                "Vel            = 0.1*(20+(Random%30))*Cos((-60+Random%120)*PI/180),0.1*(-40+(Random%80))*Sin((-60+Random%120)*PI/180)",
-                "SprPriority    = 0",
-                "IgnoreHitPause = 1",
-                "Persistent     = 45 - Floor((Root,LifeMax-Root,Life)/50)"
-            ]
-        },
-        {
-            "title": "青回復の処理",
-            "description": "<p>rei氏の作成したキャラの記述から。</p>",
-            "code": [
-                ";削りダメージ記憶",
-                "[State -2]",
-                "Type           = VarAdd",
-                "Trigger1       = var(1)>=0 && (StateNo=150||StateNo=152||StateNo=154)",
-                "Trigger1       = GetHitVar(Damage)>0",
-                "var(1)         = GetHitVar(Damage)+Floor( GetHitVar(Damage)*(fvar(17) - 1.0) )",
-                "IgnoreHitPause = 1",
-                "",
-                ";削りダメージ発生時回復不能時間出現",
-                "[State -2]",
-                "Type           = VarSet",
-                "Trigger1       = var(1)>=0 && (StateNo=150||StateNo=152||StateNo=154)",
-                "Trigger1       = GetHitVar(Damage)>0",
-                "var(2)         = 300",
-                "",
-                ";削りダメージ発生時回復不能時間減算",
-                "[State -2]",
-                "Type           = VarAdd",
-                "Trigger1       = var(2)>0 && (StateNo!=[150,155])",
-                "var(2)         = -1",
-                "",
-                ";時間切れ",
-                "[State -2]",
-                "Type           = LifeAdd",
-                "Trigger1       = RoundState=3 && (WinTime||EnemyNear,WinTime)",
-                "value          = var(1)",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -2];青回復",
-                "Type           = LifeAdd",
-                "Trigger1       = var(1)>0 && (StateNo!=[150,155])&&(StateNo!=[500,501])&&GameTime%20=0&&var(2)=0",
-                "Trigger1       = !(StateNo=3100&&(Time=[1,40]))",
-                "Trigger1       = !(StateNo=3101&&(Time=[1,50]))",
-                "Trigger1       = !(StateNo=3200&&(Time=[8,58]))",
-                "Trigger1       = !(StateNo=3201&&(Time=[8,49]))",
-                "Trigger1       = !(StateNo=3300&&(Time=[4,47]))",
-                "Trigger1       = !(StateNo=3301&&(Time=[4,47]))",
-                "Trigger1       = !(StateNo=3302&&(Time=[18,61]))",
-                "Trigger1       = !(StateNo=3303&&(Time=[25,68]))",
-                "Trigger1       = !(StateNo=3500&&(Time=[10,62]))",
-                "value          = IfElse(var(1)<5*((LifeMax)/1000.0),var(1),Ceil(5*((LifeMax)/1000.0)))",
-                "Absolute       = 1",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -2];青回復分減少",
-                "Type           = VarAdd",
-                "Trigger1       = var(1)>0 && (StateNo!=[150,155])&&(StateNo!=[500,501])&&GameTime%20=0&&var(2)=0",
-                "Trigger1       = !(StateNo=3100&&(Time=[1,40]))",
-                "Trigger1       = !(StateNo=3101&&(Time=[1,50]))",
-                "Trigger1       = !(StateNo=3200&&(Time=[8,58]))",
-                "Trigger1       = !(StateNo=3201&&(Time=[8,49]))",
-                "Trigger1       = !(StateNo=3300&&(Time=[4,47]))",
-                "Trigger1       = !(StateNo=3301&&(Time=[4,47]))",
-                "Trigger1       = !(StateNo=3302&&(Time=[18,61]))",
-                "Trigger1       = !(StateNo=3303&&(Time=[25,68]))",
-                "Trigger1       = !(StateNo=3500&&(Time=[10,62]))",
-                "var(1)         = -IfElse(var(1)<5*((LifeMax)/1000.0),var(1),Ceil(5*((LifeMax)/1000.0)))",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -2];回復値リセット",
-                "Type           = VarSet",
-                "Trigger1       = var(1)>0 && MoveType=H && (StateNo!=[150,155]) && (StateNo!=[0,190])",
-                "Trigger2       = RoundState=3 && (WinTime||EnemyNear,WinTime)",
-                "Trigger3       = var(1) < 0",
-                "var(1)         = 0",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -2];回復不能時間リセット",
-                "Type           = VarSet",
-                "Trigger1       = var(1)=0",
-                "var(2)         = 0",
-                "IgnoreHitPause = 1"
-            ]
-        },
-        {
-            "title": "ライフを固定で減少させる記述",
-            "description": "<p>ADI氏のMUGENストーリーの話より。</p>",
-            "code": [
-                "[StateDef -2]",
-                "[State ];ライフ自動減少",
-                "Type           = LifeAdd ;ライフ増減",
-                "value          = -Ceil(LifeMax/1000) ;最大の1000分の1。",
-                "Trigger1       = GameTime % 2 = 0 ;2F1回。（ライフ1000で約2000F。）",
-                "Trigger1       = RoundState = 2 ;試合中",
-                "IgnoreHitPause = 1;ヒットポーズ無視",
-                ";ライフ1000なら約33秒。ダメージを考慮するとそれ以下"
-            ]
-        },
-        {
-            "title": "ライフを半分にする記述",
-            "description": "<p>ADI氏のMUGENストーリーの話より。</p>",
-            "code": [
-                "[StateDef -2]",
-                "[State ];ライフセット",
-                "Type  = LifeSet ;ライフ指定",
-                "Value = Floor(LifeMax/2) ;体力半分",
-                "Trigger1 = RoundState = 0 ;試合前・暗転中"
-            ]
-        },
-        {
-            "title": "体力を8割にする記述",
-            "description": "<p>ADI氏のMUGENストーリーの話より。</p>",
-            "code": [
-                "[StateDef -2]",
-                "[State ];ライフセット",
-                "Type  = LifeSet ;ライフ指定",
-                "Value = Floor(LifeMax*0.8) ;体力八割",
-                "Trigger1 = RoundState = 0 ;試合前・暗転中",
-                ";*1=100%　*0.5=50%に出来ます。",
-                ";Valueを特定数値にしても可。",
-                ";※最大値より増やすことはできません。"
-            ]
-        },
-        {
-            "title": "根性の補正を条件分岐させる記述",
-            "description": "<p>匿名スマブラー氏作成のアルカナハート ゼニア・ヴァロフの記述より。</p>",
-            "code": [
-                "[State ];根性補正 敷居40最大補正35",
-                "Type           = VarSet",
-                "Trigger1       = !IsHelper",
-                "fvar(19)       =",
-                "IfElse((Life*1000/(LifeMax)<=400),IfElse(Helper(60000),var(19)=0,(1-0.35)+(0.35*Life/(LifeMax*0.40)),1),1)",
-                "IgnoreHitPause = 1",
-                "Persistent     = 1"
-            ]
-        },
-        {
-            "title": "",
-            "description": "<p></p>",
-            "code": [
-                ""
-            ]
-        }
+      {
+        "title": "現在ライフが最大値の1/4未満のときの判定",
+        "code": [
+          "Trigger1 = Life < LifeMax / 4"
+        ]
+      },
+      {
+        "title": "メディスン・メランコリー（相手側変数参照）を用いた周期ダメージ例",
+        "description": "<p>相手の変数を参照し、最大ライフ比率で周期的にダメージ量を組み立てる例です。最大ライフに連動させることで、ライフ設定が異なる環境でもスケールします。</p>",
+        "code": [
+          "[State -2]",
+          "Type       = LifeAdd",
+          "TriggerAll = Enemy,Name=\"Medicine Melancholy\"",
+          "Trigger1   = GameTime%8 =0",
+          "value      = -Ceil(LifeMax/1000)*(Enemy,var(55))-Ceil(LifeMax/1000)*(Enemy,var(57))",
+          "Kill       = 0",
+          "Absolute   = 1"
+        ]
+      },
+      {
+        "title": "コンボ連携数の条件として使う（処理頻度を変化）",
+        "description": "<p>最大ライフと現在ライフの差分を用い、処理頻度（<code>Persistent</code>）の値を変化させる例です。</p>",
+        "code": [
+          "[State 000];中弾ばらまき（奥",
+          "Type           = Explod",
+          "Trigger1       = fvar(0) = 0.7",
+          "Trigger1       = Time >= 80",
+          "Anim           = 13047",
+          "PosType        = P1",
+          "Pos            = -40+(Random%60),90-(Random%240)",
+          "Scale          = 0.6,0.6",
+          "Ownpal         = 1",
+          "Vel            = 0.1*(20+(Random%30))*Cos((-60+Random%120)*PI/180),0.1*(-40+(Random%80))*Sin((-60+Random%120)*PI/180)",
+          "SprPriority    = 0",
+          "IgnoreHitPause = 1",
+          "Persistent     = 45 - Floor((Root,LifeMax-Root,Life)/50)"
+        ]
+      },
+      {
+        "title": "青回復（回復量を最大ライフ比率で制限）",
+        "description": "<p>削りダメージを変数に記録し、一定間隔で最大ライフ比率の上限付き回復（青回復）を行う例です。</p>",
+        "code": [
+          ";削りダメージ記憶",
+          "[State -2]",
+          "Type           = VarAdd",
+          "Trigger1       = var(1)>=0 && (StateNo=150||StateNo=152||StateNo=154)",
+          "Trigger1       = GetHitVar(Damage)>0",
+          "var(1)         = GetHitVar(Damage)+Floor( GetHitVar(Damage)*(fvar(17) - 1.0) )",
+          "IgnoreHitPause = 1",
+          "",
+          ";削りダメージ発生時回復不能時間出現",
+          "[State -2]",
+          "Type           = VarSet",
+          "Trigger1       = var(1)>=0 && (StateNo=150||StateNo=152||StateNo=154)",
+          "Trigger1       = GetHitVar(Damage)>0",
+          "var(2)         = 300",
+          "",
+          ";削りダメージ発生時回復不能時間減算",
+          "[State -2]",
+          "Type           = VarAdd",
+          "Trigger1       = var(2)>0 && (StateNo!=[150,155])",
+          "var(2)         = -1",
+          "",
+          ";時間切れ",
+          "[State -2]",
+          "Type           = LifeAdd",
+          "Trigger1       = RoundState=3 && (WinTime||EnemyNear,WinTime)",
+          "value          = var(1)",
+          "IgnoreHitPause = 1",
+          "",
+          "[State -2];青回復",
+          "Type           = LifeAdd",
+          "Trigger1       = var(1)>0 && (StateNo!=[150,155])&&(StateNo!=[500,501])&&GameTime%20=0&&var(2)=0",
+          "Trigger1       = !(StateNo=3100&&(Time=[1,40]))",
+          "Trigger1       = !(StateNo=3101&&(Time=[1,50]))",
+          "Trigger1       = !(StateNo=3200&&(Time=[8,58]))",
+          "Trigger1       = !(StateNo=3201&&(Time=[8,49]))",
+          "Trigger1       = !(StateNo=3300&&(Time=[4,47]))",
+          "Trigger1       = !(StateNo=3301&&(Time=[4,47]))",
+          "Trigger1       = !(StateNo=3302&&(Time=[18,61]))",
+          "Trigger1       = !(StateNo=3303&&(Time=[25,68]))",
+          "Trigger1       = !(StateNo=3500&&(Time=[10,62]))",
+          "value          = IfElse(var(1)<5*((LifeMax)/1000.0),var(1),Ceil(5*((LifeMax)/1000.0)))",
+          "Absolute       = 1",
+          "IgnoreHitPause = 1",
+          "",
+          "[State -2];青回復分減少",
+          "Type           = VarAdd",
+          "Trigger1       = var(1)>0 && (StateNo!=[150,155])&&(StateNo!=[500,501])&&GameTime%20=0&&var(2)=0",
+          "Trigger1       = !(StateNo=3100&&(Time=[1,40]))",
+          "Trigger1       = !(StateNo=3101&&(Time=[1,50]))",
+          "Trigger1       = !(StateNo=3200&&(Time=[8,58]))",
+          "Trigger1       = !(StateNo=3201&&(Time=[8,49]))",
+          "Trigger1       = !(StateNo=3300&&(Time=[4,47]))",
+          "Trigger1       = !(StateNo=3301&&(Time=[4,47]))",
+          "Trigger1       = !(StateNo=3302&&(Time=[18,61]))",
+          "Trigger1       = !(StateNo=3303&&(Time=[25,68]))",
+          "Trigger1       = !(StateNo=3500&&(Time=[10,62]))",
+          "var(1)         = -IfElse(var(1)<5*((LifeMax)/1000.0),var(1),Ceil(5*((LifeMax)/1000.0)))",
+          "IgnoreHitPause = 1",
+          "",
+          "[State -2];回復値リセット",
+          "Type           = VarSet",
+          "Trigger1       = var(1)>0 && MoveType=H && (StateNo!=[150,155]) && (StateNo!=[0,190])",
+          "Trigger2       = RoundState=3 && (WinTime||EnemyNear,WinTime)",
+          "Trigger3       = var(1) < 0",
+          "var(1)         = 0",
+          "IgnoreHitPause = 1",
+          "",
+          "[State -2];回復不能時間リセット",
+          "Type           = VarSet",
+          "Trigger1       = var(1)=0",
+          "var(2)         = 0",
+          "IgnoreHitPause = 1"
+        ]
+      },
+      {
+        "title": "ライフを最大ライフ比率で固定減少させる",
+        "description": "<p>最大ライフの <code>1/1000</code> を、2フレームに1回減算する例です（最大ライフが大きいほど減少量も増えます）。</p>",
+        "code": [
+          "[StateDef -2]",
+          "[State ];ライフ自動減少",
+          "Type           = LifeAdd ;ライフ増減",
+          "value          = -Ceil(LifeMax/1000) ;最大の1000分の1",
+          "Trigger1       = GameTime % 2 = 0 ;2フレームに1回（最大ライフ1000で約2000フレーム）",
+          "Trigger1       = RoundState = 2 ;試合中",
+          "IgnoreHitPause = 1 ;ヒットポーズ無視"
+        ]
+      },
+      {
+        "title": "ライフを半分にする（ラウンド開始前）",
+        "description": "<p>ラウンド開始前（試合前・暗転中）に現在ライフを最大値の半分へ設定する例です。</p>",
+        "code": [
+          "[StateDef -2]",
+          "[State ];ライフセット",
+          "Type     = LifeSet ;ライフ指定",
+          "Value    = Floor(LifeMax/2) ;体力半分",
+          "Trigger1 = RoundState = 0 ;試合前・暗転中"
+        ]
+      },
+      {
+        "title": "体力を8割にする（ラウンド開始前）",
+        "description": "<p>ラウンド開始前に現在ライフを最大値の8割へ設定する例です。</p>",
+        "code": [
+          "[StateDef -2]",
+          "[State ];ライフセット",
+          "Type     = LifeSet ;ライフ指定",
+          "Value    = Floor(LifeMax*0.8) ;体力八割",
+          "Trigger1 = RoundState = 0 ;試合前・暗転中",
+          ";*1=100% *0.5=50% のように指定可能。Valueを特定数値にしても可。",
+          ";※最大値より増やすことはできません。"
+        ]
+      },
+      {
+        "title": "根性補正の条件分岐（最大ライフ比率で分岐）",
+        "description": "<p>現在ライフ/最大ライフ比率を用いて補正値を分岐する例です。</p>",
+        "code": [
+          "[State ];根性補正 敷居40最大補正35",
+          "Type           = VarSet",
+          "Trigger1       = !IsHelper",
+          "fvar(19)       =",
+          "IfElse((Life*1000/(LifeMax)<=400),IfElse(Helper(60000),var(19)=0,(1-0.35)+(0.35*Life/(LifeMax*0.40)),1),1)",
+          "IgnoreHitPause = 1",
+          "Persistent     = 1"
+        ]
+      }
     ],
     "quote": [
-        {
-            "title": "LifeMax - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#LifeMax"
-        },
-        {
-            "title": "LifeMax - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#lifemax"
-        },
-        {
-            "title": "LifeMax - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#lifemax"
-        },
-        {
-            "title": "LifeMax - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/LifeMax"
-        },
-        {
-            "title": "ADIのMUGENメモ",
-            "url": "http://mugen.niza.nobody.jp"
-        }
+      {
+        "title": "LifeMax - Trigger Reference (MUGEN Beta docs: 2002-03-02 更新)",
+        "url": "https://mugenarchive.com/docs/beta/trigger.html#lifemax"
+      },
+      {
+        "title": "LifeMax - Trigger Reference (MUGEN 1.0)",
+        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#lifemax"
+      },
+      {
+        "title": "LifeMax - Trigger Reference (MUGEN 1.1 Beta 1)",
+        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#lifemax"
+      },
+      {
+        "title": "LifeMax - Trigger Reference (Elecbyte mirror)",
+        "url": "https://www.elecbyte.com/mugendocs/trigger.html#lifemax"
+      },
+      {
+        "title": "LifeMax - M.U.G.E.N wiki (archive)",
+        "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/LifeMax"
+      },
+      {
+        "title": "ADIのMUGENメモ",
+        "url": "http://mugen.niza.nobody.jp"
+      }
     ]
-}
+  }

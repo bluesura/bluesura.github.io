@@ -1,49 +1,98 @@
-{
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "LifeSet",
-		"target": "実行者自身",
-		"category": ["ライフの変更","ライフの指定値への直接設定"],
-		"version": "2002.04.14",
-		"update": "2014.12.30",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "LifeSet",
-	"description": "<p>体力を指定値に変更します。全回復技、自分が瀕死になる技などに。</p>",
-	"category": "state",
-	"associated_trigger": ["Life", "LifeMax"],
-	"associated_state": ["LifeAdd", "TargetLifeAdd"],
-
-	"version": [
-		{"no": "仕様", "content": "<code>RoundState=3</code>ではライフが増減されません。<br>※ただし、パラメーターは読み込まれます。"},
-		{"no": "仕様", "content": "ライフ操作で相手をKOすると自殺扱いになります。"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["体力変更値"],
-			"type": ["int"],
-			"description": "<p>コントローラ実行後に変更される体力を指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		}
-	],
-
-	"quote": [
-		{"title": "LifeSet - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#LifeSet"},
-		{"title": "LifeSet - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#lifeset"},
-		{"title": "LifeSet - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#lifeset"},
-		{"title": "LifeSet - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/LifeSet"},
-		{"title": "LifeSet - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?LifeSet&protocol=http"},
-		{"title": "LifeSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#LifeSet"},
-		{"title": "LifeSet - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"},
-		{"title": "ライフに関するTwitetrのつぶやき", "url": "https://twitter.com/i/moments/895934923969765378"}
-
-	]
-}
+  {
+    "page": {
+      "title": "MUGEN State Controller",
+      "subtitle": "LifeSet",
+      "target": "実行者自身",
+      "category": [
+        "ライフの変更",
+        "ライフの指定値への直接設定"
+      ],
+      "version": "2002.04.14",
+      "update": "2025.12.27",
+      "type": "document",
+      "level": "3"
+    },
+    "title": "LifeSet",
+    "category": "state",
+    "state": "LifeSet",
+    "description": "<p>実行者のライフ値を指定値へ直接設定します。回復技、瀕死演出、自爆・即死などに使用します。</p>",
+    "images": [
+      {
+          "src": "mugen_life_state_system_diagram.png",
+          "width": "640",
+          "height": "480",
+          "alt": "MUGENにおけるライフ操作（LifeSet, LifeAdd, TargetLifeAdd）とフレーム処理順序（-3, -2, -1, 通常ステート）の関係を示した解説図。ステート-2での記述推奨や、RoundState=3でのライフ固定化、IKEMEN GOとの互換性による競合注意点などがまとめられている。"
+      }
+    ],
+    "syntax": [
+      "Type = LifeSet",
+      "Value = <int_expr>"
+    ],
+    "associated_trigger": [
+      "Life",
+      "LifeMax"
+    ],
+    "associated_state": [
+      "LifeAdd",
+      "TargetLifeAdd"
+    ],
+    "version": [
+      {
+        "no": "MUGEN (WIN 1.0/1.1/WinMUGEN系)",
+        "content": "<p><code>RoundState=3</code>（ラウンド終了処理）では、一定の猶予を過ぎるとライフ変更が固定され、<code>LifeSet</code>が反映されない場合があります。<br>Win/Lose 判定（フラグ適用）は固定化より後に行われるため、Win/Lose 後のゲージ操作には使えません。</p>",
+        "blockquote": "https://ziddia.blog.fc2.com/blog-entry-55.html"
+      },
+      {
+        "no": "IKEMEN GO",
+        "content": "<p>同一更新フレーム内に複数のライフ操作（<code>LifeSet</code>/<code>LifeAdd</code> と <code>TargetLifeAdd</code> 等）が競合する場合、適用順序がMUGEN 1.1と異なる可能性が報告されています（互換性課題）。</p>",
+        "blockquote": "https://github.com/ikemen-engine/Ikemen-GO/issues/2957"
+      }
+    ],
+    "parameter": [
+      {
+        "parameter": "Value",
+        "value": [
+          "体力変更値"
+        ],
+        "type": [
+          "int"
+        ],
+        "description": "<p>設定後のライフ値を指定します。0以下に設定すればK.O.になります。</p>",
+        "parameter_type": "required",
+        "load_priority": [
+          "1"
+        ]
+      }
+    ],
+    "qanda": [
+      {
+        "q": "Win/Lose フラグが出た後に LifeSet を実行しても反映されないのはなぜ？",
+        "c": "ラウンド終了処理では、勝敗確定のためにライフが固定される期間があります。",
+        "a": "<p><code>RoundState=3</code>に遷移すると、一定時間の猶予の後にライフが固定され、以降のライフ変更が無効化されます。Win/Lose フラグはこの固定化より後に適用されるため、フラグ適用後に<code>LifeSet</code>でゲージを動かすことはできません。<br>演出目的なら、<code>RoundState=2</code>のうちに処理するか、表示専用の疑似ゲージ（Varで管理してライフバーとは別表示）を検討してください。</p>",
+        "r": [
+          {
+            "title": "[WIN/1.0/1.1] Declaration of Death (RoundState=3の猶予とWin/Lose判定)",
+            "url": "https://ziddia.blog.fc2.com/blog-entry-55.html"
+          }
+        ]
+      }
+    ],
+    "quote": [
+      {
+        "title": "LifeSet - State Controller Reference (MUGEN 1.0/1.1 docs)",
+        "url": "https://www.elecbyte.com/mugendocs/sctrls.html#LifeSet"
+      },
+      {
+        "title": "LifeSet - State Controller Reference (web archive mirror)",
+        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#lifeset"
+      },
+      {
+        "title": "[WIN/1.0/1.1] Declaration of Death (RoundState=3のライフ変更猶予とWin/Lose判定)",
+        "url": "https://ziddia.blog.fc2.com/blog-entry-55.html"
+      },
+      {
+        "title": "IKEMEN GO issue: LifeSet/LifeAdd vs TargetLifeAdd priority discrepancy",
+        "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/2957"
+      }
+    ]
+  }

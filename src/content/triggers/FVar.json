@@ -1,55 +1,127 @@
 {
     "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "FVar",
-        "target": "",
-        "category": [
-            "変数",
-            "整数変数(var)の値の参照・代入"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.27",
-        "type": "document",
-        "level": "3"
+    "title": "MUGEN Trigger",
+    "subtitle": "FVar",
+    "target": "通常は実行者自身。トリガーリダイレクトで変更可能",
+    "category": [
+        "変数",
+        "浮動小数変数の参照・代入（FVar）"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.10",
+    "type": "document",
+    "level": "3"
     },
+    "title": "FVar",
     "category": "trigger",
     "trigger": "FVar",
-    "summary": "<p>小数変数FVarの値を返します。</p>",
+    "description": "<p>浮動小数変数（<code>FVar</code>）を参照します。<code>FVar(N)</code> は浮動小数点数を返します。</p><p><code>:=</code> を使うと、トリガー式の中で <code>FVar(N)</code> に値を代入できます。代入式全体の評価結果は「代入された値」です。</p><p>MUGEN 1.0/1.1 では、無効な変数番号などは <code>bottom</code> になり、条件式では 0（偽）として扱われます。</p>",
+    "images": [
+        {
+        "src": "mugen-trigger-variable-structure.png",
+        "width": "640",
+        "height": "480",
+        "alt": "MUGENのトリガー変換機構成図。Var(整数変数)とFVar(小数変数)の使い分け、SysVarの警告、ステートコントローラ(VarSet)と式中代入(:=)の違い、短絡評価(ショートサーキット)の罠、Bottom(エラー値)の波及と対策、およびラウンド跨ぎの初期化設定について解説したインフォグラフィック。"
+        }
+    ],
     "syntax": [
-        "fvar(整数)",
-        "fvar(整数):=整数"
+    "FVar(式)",
+    "FVar(式) := 式"
     ],
-    "description": "小数変数FVarの値を返します。<br>引数には、0から39までの変数番号を指定します。<br>戻り値の型: float",
+    "parameter": [
+    {
+        "parameter": "N",
+        "type": [
+        "int"
+        ],
+        "description": "<p>参照/代入する浮動小数変数番号。<code>0</code>〜<code>39</code>。</p><p>引数は式で指定できますが、結果は整数として扱われます。小数が混ざると警告の原因になりやすいので、必要なら <code>floor()</code>/<code>ceil()</code> などで明示的に整数化します。</p>",
+        "min_value": [
+        "0"
+        ],
+        "max_value": [
+        "39"
+        ],
+        "parameter_type": "required"
+    }
+    ],
+    "associated_trigger": [
+        "Cond",
+        "IfElse",
+        "Var",
+        "SysVar",
+        "SysFVar"
+    ],
+    "associated_state": [
+        "VarSet",
+        "VarAdd",
+        "VarRandom",
+        "VarRangeSet"
+    ],
     "version": [
-        {
-            "no": "エラー",
-            "content": "引数がSFalse、または小数変数番号として無効な値の場合、SFalseを返します。"
-        }
+    {
+        "no": "WinMUGEN 2002.04.14",
+        "content": "<p>無効な引数では <code>SFalse</code> を返します。</p>"
+    },
+    {
+        "no": "MUGEN 1.0 / 1.1",
+        "content": "<p>無効な引数や評価不能は <code>bottom</code>。条件式では <code>bottom</code> は 0（偽）として扱われます。</p>",
+        "blockquote": "https://www.elecbyte.com/mugendocs-11b1/cns.html"
+    }
     ],
-    "code_sample": [
+    "qanda": [
+    {
+        "q": "FVar に整数を代入するとどうなる？",
+        "a": "<p><code>FVar(N)</code> は浮動小数点数として保持します。右辺が整数でも、必要に応じて浮動小数点数に変換されます。</p>",
+        "r": [
         {
-            "title": "FVar(5)の値が-1.23のときのトリガー。",
-            "code": [
-                "Trigger1 = FVar(5) = -1.23"
-            ]
+            "title": "MUGEN 1.1 CNS format - assignment operator",
+            "url": "https://www.elecbyte.com/mugendocs-11b1/cns.html"
         }
+        ]
+    }
+    ],
+    "sample_code": {
+    "code": [
+        "; 参照",
+        "Trigger1 = FVar(5) = -1.23",
+        "",
+        "; 代入",
+        "Trigger1 = (FVar(0) := 1.0 / 60.0) > 0"
+    ]
+    },
+    "code_sample": [
+    {
+        "title": "浮動小数変数の参照",
+        "description": "<p><code>FVar(5)</code> が -1.23 のときに成立。</p>",
+        "code": [
+        "Trigger1 = FVar(5) = -1.23"
+        ]
+    },
+    {
+        "title": "毎フレーム減衰（:=）",
+        "description": "<p>加速度や補間値など、少しずつ変化する値の管理に使う例です。</p>",
+        "code": [
+        "Trigger1 = 1",
+        "Trigger1 = (FVar(0) := FVar(0) * 0.95) >= 0"
+        ]
+    }
     ],
     "quote": [
-        {
-            "title": "FVar - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#FVar"
-        },
-        {
-            "title": "FVar - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#fvar"
-        },
-        {
-            "title": "FVar - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#fvar"
-        },
-        {
-            "title": "FVar - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/FVar"
-        }
+    {
+        "title": "FVar - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#FVar"
+    },
+    {
+        "title": "FVar - Trigger Reference (MUGEN 1.0)",
+        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#fvar"
+    },
+    {
+        "title": "FVar - Trigger Reference (MUGEN 1.1)",
+        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#fvar"
+    },
+    {
+        "title": "CNS format (MUGEN 1.1) - Expressions / bottom / assignment",
+        "url": "https://www.elecbyte.com/mugendocs-11b1/cns.html"
+    }
     ]
 }

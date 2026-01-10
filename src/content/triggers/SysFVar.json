@@ -1,55 +1,110 @@
 {
     "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "SysFVar",
-        "target": "",
-        "category": [
-            "変数",
-            "システム小数変数(sysfvar)の参照・代入"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+    "title": "MUGEN Trigger",
+    "subtitle": "SysFVar",
+    "target": "通常は実行者自身。トリガーリダイレクトで変更可能",
+    "category": [
+        "変数",
+        "システム浮動小数変数の参照・代入（SysFVar）"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.10",
+    "type": "document",
+    "level": "3"
     },
+    "title": "SysFVar",
     "category": "trigger",
     "trigger": "SysFVar",
-    "summary": "<p>システムの小数変数を参照します。</p>",
+    "description": "<p>システム用の浮動小数変数（<code>SysFVar</code>）を参照します。<code>SysFVar(N)</code> は浮動小数点数を返します。</p><p>システム変数は <code>common1.cns</code>（共通ステート）側でも利用される領域のため、独自用途での使用は基本的に避け、共通ステートを上書き/拡張する必要がある場合に限定するのが安全です。</p><p><code>:=</code> を使うと、トリガー式の中で <code>SysFVar(N)</code> に値を代入できます（代入式は代入した値を返します）。</p>",
+    "images": [
+        {
+        "src": "mugen-trigger-variable-structure.png",
+        "width": "640",
+        "height": "480",
+        "alt": "MUGENのトリガー変換機構成図。Var(整数変数)とFVar(小数変数)の使い分け、SysVarの警告、ステートコントローラ(VarSet)と式中代入(:=)の違い、短絡評価(ショートサーキット)の罠、Bottom(エラー値)の波及と対策、およびラウンド跨ぎの初期化設定について解説したインフォグラフィック。"
+        }
+    ],
     "syntax": [
-        "sysfvar(整数)",
-        "sysfvar(整数) := 小数"
+    "SysFVar(式)",
+    "SysFVar(式) := 式"
     ],
-    "description": "システムの小数変数を参照します。<br>システム変数はcommon1ファイル内で使われています。システム変数を使用しているステートを上書きするとき以外は、使わない方がよいでしょう。<br>引数には、0から4までの変数番号を指定します。<br>戻り値の型: float",
+    "parameter": [
+    {
+        "parameter": "N",
+        "type": [
+        "int"
+        ],
+        "description": "<p>参照/代入するシステム浮動小数変数番号。<code>0</code>〜<code>4</code>。</p>",
+        "min_value": [
+        "0"
+        ],
+        "max_value": [
+        "4"
+        ],
+        "parameter_type": "required"
+    }
+    ],
+    "associated_trigger": [
+        "Cond",
+        "IfElse",
+        "Var",
+        "FVar",
+        "SysVar"
+    ],
+    "associated_state": [
+    "SysFVarSet",
+    "SysFVarAdd"
+    ],
     "version": [
+    {
+        "no": "WinMUGEN 2002.04.14",
+        "content": "<p>無効な引数では <code>SFalse</code> を返します。</p>"
+    },
+    {
+        "no": "MUGEN 1.0 / 1.1",
+        "content": "<p>無効な引数や評価不能は <code>bottom</code>。条件式では <code>bottom</code> は 0（偽）として扱われます。</p>",
+        "blockquote": "https://www.elecbyte.com/mugendocs-11b1/cns.html"
+    },
         {
-            "no": "エラー",
-            "content": "引数に有効範囲外の値を指定しても、SFalseを返します。"
+            "no": "MUGEN 1.1 Beta 1",
+            "content": "<p><code>ParentVarAdd</code>/<code>ParentVarSet</code> で <code>SysVar</code>/<code>SysFVar</code> を扱った際の解析クラッシュが修正されました。</p>"
         }
     ],
+    "sample_code": {
+    "code": [
+        "Trigger1 = SysFVar(0) = -1.23"
+    ]
+    },
     "code_sample": [
-        {
-            "title": "SysFVar(0)に-1.23が代入されているときのトリガー。",
-            "code": [
-                "Trigger1 = SysFVar(0) = -1.23"
-            ]
-        }
+    {
+        "title": "SysFVar の参照",
+        "description": "<p><code>SysFVar(0)</code> が -1.23 のときに成立。</p>",
+        "code": [
+        "Trigger1 = SysFVar(0) = -1.23"
+        ]
+    }
     ],
     "quote": [
         {
             "title": "SysFVar - Trigger Reference(version 2002.04.14)",
             "url": "/MUGEN/document/Official/2002.04.14/trigger.html#SysFVar"
         },
+    {
+        "title": "SysFVar - Trigger Reference (MUGEN 1.0)",
+        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#sysfvar"
+    },
+    {
+        "title": "SysFVar - Trigger Reference (MUGEN 1.1)",
+        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#sysfvar"
+    },
+
         {
-            "title": "SysFVar - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#sysfvar"
+            "title": "M.U.G.E.N Update History (MUGEN 1.1 Beta 1)",
+            "url": "https://www.elecbyte.com/mugendocs-11b1/history.html"
         },
         {
-            "title": "SysFVar - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#sysfvar"
-        },
-        {
-            "title": "SysFVar - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SysFVar"
+            "title": "Assignment operator (:=) - CNS Format (MUGEN 1.0)",
+            "url": "https://www.elecbyte.com/mugendocs/cns.html"
         }
     ]
 }

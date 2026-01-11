@@ -1,70 +1,92 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Sin",
-        "target": "",
-        "category": [
-            "数値計算",
-            "Xラジアンの正弦は何ですか？"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Sin",
+    "target": "数式",
+    "category": [
+      "数値計算",
+      "サイン(正弦)の計算"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "Sin",
+  "category": "trigger",
+  "trigger": "Sin",
+  "description": "<p><code>Sin</code> は、角度（ラジアン）の正弦(浮動小数点数)を返します。</p><p>入力が度の場合は、<code>度 * PI / 180</code> でラジアンに変換してから渡します。</p><p>周期運動（揺れ・点滅・軌道）など、フレーム経過に応じて値を波形変化させたい用途でよく使われます。</p>",
+    "images": [
+        {
+        "src": "mugen-trigonometry-functions-guide.png",
+        "width": "640",
+        "height": "480",
+        "alt": "MUGENにおける三角関数の仕様まとめ。Sin, Cos, Tanの入力値と出力の関係、度数からラジアンへの変換式、Atanによる角度計算の図解。"
+        }
+    ],
+  "syntax": [
+    "Sin(Radian)"
+  ],
+  "parameter": [
+    {
+      "parameter": "Radian",
+      "type": [
+        "float"
+      ],
+      "description": "<p>ラジアン単位の角度を指定します。</p>",
+      "parameter_type": "required"
+    }
+  ],
+  "associated_trigger": [
+    "Cos",
+    "Tan",
+    "PI",
+    "Asin",
+    "Acos",
+    "Atan"
+  ],
+  "version": [
+    {
+      "no": "エラー条件",
+      "content": "<p><code>Radian</code> が評価不能値（bottom）に評価された場合、戻り値も bottom になります。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "Sin(PI/2) は 1",
+      "description": "<p><code>PI/2</code> ラジアン（90度）の正弦は <code>1</code> です。</p>",
+      "code": [
+        "Value = Sin(PI/2)"
+      ]
     },
-    "category": "trigger",
-    "trigger": "Sin",
-    "summary": "<p>ラジアンの正弦を返します。</p>",
-    "syntax": [
-        "Sin(ラジアン)"
-    ],
-    "description": "ラジアンの正弦を返します。<br>引数には、サインを計算したい値をfloatで指定します。<br>time等を引数にしてパレットのフラッシュや振動する軌道に使用します。<br>戻り値の型: float",
-    "associated_trigger": [
-        "Acos",
-        "Asin",
-        "Atan",
-        "Cos",
-        "Tan",
-        "PI"
-    ],
-    "code_sample": [
-        {
-            "title": "Sin(π/2)をvalueに代入",
-            "code": [
-                "value = Sin(PI/2)"
-            ]
-        },
-        {
-            "title": "",
-            "code": [
-                "[State ]",
-                "Type           = ModifyExplod",
-                "Trigger1       = NumExplod(8865)",
-                "Trigger1       = Root,StateNo = 3703",
-                "Scale          = fvar(32) ** .5 * .7 , fvar(32) * (1.0 + .3 * Sin(PI * 2.0 / 32.0 * (Time % 32 + Random % 8)))",
-                "Trans          = AddAlpha",
-                "Alpha          = 100, 255",
-                "ID             = 8865",
-                "IgnoreHitPause = 1"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Sin - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Sin"
-        },
-        {
-            "title": "Sin - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#sin-math"
-        },
-        {
-            "title": "Sin - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#sin-math"
-        },
-        {
-            "title": "Sin - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Sin"
-        }
-    ]
+    {
+      "title": "Sin/Cosで円運動（擬似）を作る",
+      "description": "<p><code>Sin</code> と <code>Cos</code> を組み合わせ、角度 <code>θ</code> をフレームで進めて円運動のベクトルを作ります（半径は <code>Radius</code>）。</p>",
+      "code": [
+        "[State -2, OrbitVel]",
+        "Type = VelSet",
+        "Trigger1 = 1",
+        "X = Cos(PI * 2.0 / 60.0 * Time) * ラディウス",
+        "Y = -Sin(PI * 2.0 / 60.0 * Time) * ラディウス"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "Sin - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Sin"
+    },
+    {
+      "title": "Sin (math) - Trigger Reference (MUGEN 1.0 / archive)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#sin-math"
+    },
+    {
+      "title": "Sin (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#sin-math"
+    },
+    {
+      "title": "Sin - M.U.G.E.N Wiki (archive)",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Sin"
+    }
+  ]
 }

@@ -1,63 +1,89 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Asin",
-        "target": "",
-        "category": [
-            "数値計算",
-            "サイン(正弦)の計算"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Asin",
+    "target": "数式",
+    "category": [
+      "数値計算",
+      "アークサイン(逆正弦)の計算"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "Asin",
+  "category": "trigger",
+  "trigger": "Asin",
+  "description": "<p><code>Asin</code> は、入力値のアークサイン（逆正弦）を<strong>ラジアン</strong>(浮動小数点数)で返します。</p><p>意味としては <code>Sin(θ) = Exprn</code> を満たす角度 <code>θ</code> を返す関数です（<code>Exprn</code> は「角度」ではなく「正弦値」）。</p><p>度に変換したい場合は <code>ExprnResult * 180 / PI</code> を使います。</p>",
+    "images": [
+        {
+        "src": "mugen-trigonometry-functions-guide.png",
+        "width": "640",
+        "height": "480",
+        "alt": "MUGENにおける三角関数の仕様まとめ。Sin, Cos, Tanの入力値と出力の関係、度数からラジアンへの変換式、Atanによる角度計算の図解。"
+        }
+    ],
+  "syntax": [
+    "Asin(Exprn)"
+  ],
+  "parameter": [
+    {
+      "parameter": "Exprn",
+      "type": [
+        "float"
+      ],
+      "description": "<p>アークサインを計算したい値（正弦値）を指定します。通常は <code>-1.0</code>〜<code>1.0</code> の範囲を想定します。</p>",
+      "parameter_type": "required"
+    }
+  ],
+  "associated_trigger": [
+    "Acos",
+    "Atan",
+    "Cos",
+    "Sin",
+    "Tan",
+    "PI"
+  ],
+  "version": [
+    {
+      "no": "エラー条件",
+      "content": "<p><code>Exprn</code> が評価不能値（bottom）に評価された場合、戻り値も bottom になります。</p><p><code>Exprn</code> が定義域外（<code>-1.0</code>〜<code>1.0</code> の外）の場合も bottom になります。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "Asin(1) は π/2 ラジアン",
+      "description": "<p>正弦値が <code>1</code> になる角度は <code>PI/2</code>（ラジアン）です。</p>",
+      "code": [
+        "; 結果はおよそ PI/2",
+        "Value = Asin(1)"
+      ]
     },
-    "category": "trigger",
-    "trigger": "Asin",
-    "summary": "<p>ラジアンの逆正弦を返します。</p>",
-    "syntax": [
-        "Asin(ラジアン)"
-    ],
-    "description": "ラジアンの逆正弦を返します。<br>引数のアークサイン（逆正弦）値を返します。つまり、sinθ=引数となるθを、ラジアンで返します。<br>戻り値の型: float",
-    "associated_trigger": [
-        "Acos",
-        "Atan",
-        "Cos",
-        "Sin",
-        "Tan",
-        "PI"
-    ],
-    "version": [
-        {
-            "no": "エラー",
-            "content": "引数がアークサインの範囲外([-1.0,1.0])の場合もSFalseとなります。"
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "アークサイン1",
-            "code": [
-                ";およそ π/2",
-                "value = Asin(1)"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Asin - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Asin"
-        },
-        {
-            "title": "Asin - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#asin-math"
-        },
-        {
-            "title": "Asin - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#asin-math"
-        },
-        {
-            "title": "Asin - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Asin"
-        }
-    ]
+    {
+      "title": "戻り値（ラジアン）を度に変換する",
+      "description": "<p><code>Asin</code> の戻り値（ラジアン）を度に変換します。</p>",
+      "code": [
+        "Value = Asin(正弦値) * 180.0 / PI"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "Asin - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Asin"
+    },
+    {
+      "title": "Asin (math) - Trigger Reference (MUGEN 1.0 / archive)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#asin-math"
+    },
+    {
+      "title": "Asin (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#asin-math"
+    },
+    {
+      "title": "Asin - M.U.G.E.N Wiki (archive)",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Asin"
+    }
+  ]
 }

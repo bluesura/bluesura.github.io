@@ -1,54 +1,68 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "RootDist X",
-        "target": "",
-        "category": [
-            "距離",
-            "ルートとの水平距離取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "RootDist X",
+    "category": ["距離", "ルートとの水平距離(中心軸基準)の取得"],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "RootDistX",
+  "category": "trigger",
+  "trigger": "RootDistX",
+  "description": "<p><code>RootDist X</code> は、実行者と「Root（ルート）」との水平距離（中心軸基準）を返します。</p><p>主に Helper（ヘルパー）からの参照を想定しており、正の値は「Root が実行者の前方にいる」ことを意味します（実行者の向きに依存）。</p><p>戻り値は <strong>float</strong> です。</p>",
+  "images": [
+      {
+      "src": "mugen-helper-root-parent-dist.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのHelperから見たRootおよびParentへの相対距離（Dist）の座標系図解。前方が正、後方が負、上が負、下が正の値となるfloat型の仕様解説。"
+      }
+  ],
+  "syntax": ["RootDist X"],
+  "associated_trigger": ["RootDistY", "ParentDistX", "ParentDistY"],
+  "version": [
+    {
+        "no": "エラー",
+        "content": "ルートがいない場合、SFalseを返します。"
     },
-    "category": "trigger",
-    "trigger": "RootDistX",
-    "summary": "<p>ルートまでの距離を返します。</p>",
-    "syntax": [
-        "RootDist X"
-    ],
-    "description": "ルートまでの距離を返します。<br>ヘルパーのステート内で使用します。P2Distと同じような働きをします。<br>ルートは、最初のヘルパーを呼び出したキャラのことで、メインプレイヤーを指します。例えば、プレイヤー\"キンカン\"が、ヘルパー\"キウイ\"を出し、\"キウイ\"が、ヘルパー\"ペンギン\"を出した場合、\"ペンギン\"のルートは、\"キンカン\"になります。<br>なお、親ヘルパーが存在しない場合、ルートを参照できなくなるようです。上の例で、\"キウイ\"がDestroySelfした場合、\"ペンギン\"は、\"キンカン\"を参照できなくなります。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。<br>詳細: RootDist Y は、自分のY軸のheightとの座標差を返します。負の値は、ルートが頭上にいることを意味します。<br>RootDist X は、ヘルパーの中心軸からルートの中心軸までの座標差を返します。正の値は、ルートがヘルパーの前にいることを意味します。",
-    "version": [
-        {
-            "no": "エラー",
-            "content": "ルートがいない場合、SFalseを返します。"
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "ヘルパーのX座標がルートと同じでない場合のトリガー",
-            "code": [
-                "Trigger1 = RootDist X != 0"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "RootDist - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RootDist"
-        },
-        {
-            "title": "RootDist - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#rootdist"
-        },
-        {
-            "title": "RootDist - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#rootdist"
-        },
-        {
-            "title": "RootDist - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/RootDist"
-        }
-    ]
+    {
+      "no": "Ikemen GO (Nightly)",
+      "content": "<p><code>RootDist Z</code>（Z成分）が追加されています。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "RootDist X",
+      "code": [
+        "; RootとX方向にズレているか？",
+        "[State 0, Example_RootDistX]",
+        "Type = Null",
+        "Trigger1 = RootDist X != 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "RootDist - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RootDist"
+    },
+    {
+      "title": "RootDist - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#rootdist"
+    },
+    {
+      "title": "RootDist - Trigger Reference (MUGEN 1.1 Beta)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#rootdist"
+    },
+    {
+      "title": "CNS Format / Expressions - float→intの暗黙変換とfloor/ceil",
+      "url": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "title": "Ikemen GO Wiki - Triggers (changed)",
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
+    }
+  ]
 }

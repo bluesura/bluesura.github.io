@@ -8,7 +8,7 @@
       "円周率(PI)"
     ],
     "version": "2002.04.14",
-    "update": "2026.01.08",
+    "update": "2026.01.11",
     "type": "document",
     "level": "2"
   },
@@ -16,6 +16,14 @@
   "category": "trigger",
   "trigger": "PI",
   "description": "<p><code>PI</code> は円周率π（3.141593...）の近似値を返すトリガーです。</p><p>戻り値は<strong>浮動小数点数</strong>で、数式内でそのまま利用できます。</p>",
+  "images": [
+      {
+      "src": "mugen-trigonometry-functions-guide.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENにおける三角関数の仕様まとめ。Sin, Cos, Tanの入力値と出力の関係、度数からラジアンへの変換式、Atanによる角度計算の図解。"
+      }
+  ],
   "syntax": [
     "PI"
   ],
@@ -23,6 +31,8 @@
     "Sin",
     "Cos",
     "Tan",
+    "Acos",
+    "Asin",
     "Atan"
   ],
   "code_sample": [
@@ -96,7 +106,7 @@
       "a": "<p>度にしたい場合は <code>ラジアン * 180 / PI</code>、ラジアンに戻したい場合は <code>度 * PI / 180</code> を使います。</p>",
       "r": [
         {
-          "title": "Trigger Reference (1.1) - Pi (math)",
+          "title": "Pi (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
           "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#pi-math"
         }
       ]

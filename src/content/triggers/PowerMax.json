@@ -1,48 +1,69 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "PowerMax",
-        "target": "",
-        "category": [
-            "パワーゲージ",
-            "最大パワーゲージ量の取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "PowerMax",
+    "target": "実行者自身",
+    "category": [
+      "パワーゲージ",
+      "最大パワーゲージ量の取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "PowerMax",
+  "category": "trigger",
+  "trigger": "PowerMax",
+  "description": "<p>実行者の標準パワーゲージ（Power）の最大量を整数で返します。</p><p>通常はキャラクター定義の <code>[Data]</code> にある <code>power</code> 定数（例: 3000）で設定されます。</p><p>戻り値: <code>int</code></p>",
+    "images": [
+        {
+        "src": "mugen-power-gauge-mechanism.png",
+        "width": "640",
+        "height": "480",
+        "alt": "MUGENにおけるパワーゲージの処理構造図。キャラクターがTriggerで現在のパワー量と最大値を取得し、State（PowerAdd/PowerSet）によってゲージの値を加算・減算・設定する仕組みの解説。"
+        }
+    ],
+  "syntax": [
+    "PowerMax"
+  ],
+  "associated_trigger": [
+    "Power",
+    "Const"
+  ],
+  "associated_state": [
+    "PowerAdd",
+    "PowerSet"
+  ],
+  "code_sample": [
+    {
+      "title": "ゲージ量が最大値の半分未満のときの条件",
+      "description": "<p>最大値側を <code>PowerMax</code> で参照し、上限変更にも追従できる形にします。</p>",
+      "code": [
+        "Trigger1 = Power < PowerMax / 2"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "PowerMax - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PowerMax"
     },
-    "category": "trigger",
-    "trigger": "PowerMax",
-    "summary": "<p>プレイヤーの標準ゲージの最大量を返します。</p>",
-    "syntax": [
-        "PowerMax"
-    ],
-    "description": "プレイヤーの標準ゲージの最大量を返します。<br>戻り値の型: int",
-    "code_sample": [
-        {
-            "title": "ゲージ量が最大値の半分未満のときのトリガー。",
-            "code": [
-                "Trigger1 = Power < PowerMax / 2"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "PowerMax - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PowerMax"
-        },
-        {
-            "title": "PowerMax - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#powermax"
-        },
-        {
-            "title": "PowerMax - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#powermax"
-        },
-        {
-            "title": "PowerMax - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PowerMax"
-        }
-    ]
+    {
+      "title": "PowerMax - M.U.G.E.N 1.0 Trigger Reference (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#powermax"
+    },
+    {
+      "title": "PowerMax - M.U.G.E.N 1.1b1 Trigger Reference (Elecbyte / Web Archive)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#powermax"
+    },
+    {
+      "title": "PowerMax - Elecbyte Wiki (Web Archive)",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PowerMax"
+    },
+    {
+      "title": "Ikemen GO Wiki (legacy features are documented via Elecbyte 1.1 docs)",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki"
+    }
+  ]
 }

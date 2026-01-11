@@ -1,54 +1,68 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "ParentDist X",
-        "target": "",
-        "category": [
-            "距離",
-            "親オブジェクトとの水平距離取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.14",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "ParentDist X",
+    "category": ["距離", "親との水平距離(中心軸基準)の取得"],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "ParentDistX",
+  "category": "trigger",
+  "trigger": "ParentDistX",
+  "description": "<p><code>ParentDist X</code> は、実行者と「Parent（親）」との水平距離（中心軸基準）を返します。</p><p>主に Helper からの参照を想定しており、正の値は「Parent が実行者の前方にいる」ことを意味します（実行者の向きに依存）。</p><p>戻り値は <strong>float</strong> です。</p>",
+  "images": [
+      {
+      "src": "mugen-helper-root-parent-dist.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのHelperから見たRootおよびParentへの相対距離（Dist）の座標系図解。前方が正、後方が負、上が負、下が正の値となるfloat型の仕様解説。"
+      }
+  ],
+  "syntax": ["ParentDist X"],
+  "associated_trigger": ["ParentDistY", "RootDistX", "RootDistY"],
+  "version": [
+    {
+      "no": "MUGEN 2002.04.14 / 1.0 / 1.1",
+      "content": "<p>親が存在しない場合は <code>bottom</code> を返します（条件式では 0 扱いとなり、通常は成立しません）。</p>"
     },
-    "category": "trigger",
-    "trigger": "ParentDistX",
-    "summary": "<p>親までの距離を返します。</p>",
-    "syntax": [
-        "ParentDist X"
-    ],
-    "description": "親までの距離を返します。<br>ヘルパーのステート内で使用します。P2Distと同じような働きをします。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。<br>詳細: ParentDist Y は、自分のY軸のheightとの座標差を返します。負の値は、親が頭上にいることを意味します。<br>ParentDist X は、ヘルパーの中心軸から親の中心軸までの座標差を返します。正の値は、親がヘルパーの前にいることを意味します。",
-    "version": [
-        {
-            "no": "エラー",
-            "content": "親がdestroyselfしている場合、SFalseを返します。"
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "ヘルパーのX座標が親と同じでない場合のトリガー。",
-            "code": [
-                "Trigger1 = ParentDist X != 0"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "ParentDist - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ParentDist"
-        },
-        {
-            "title": "ParentDist - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#parentdist"
-        },
-        {
-            "title": "ParentDist - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#parentdist"
-        },
-        {
-            "title": "ParentDist - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ParentDist"
-        }
-    ]
+    {
+      "no": "Ikemen GO (Nightly)",
+      "content": "<p><code>ParentDist Z</code>（Z成分）が追加されています。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "ParentDist X",
+      "code": [
+        "; 親とX方向にズレているか？",
+        "[State 0, Example_ParentDistX]",
+        "Type = Null",
+        "Trigger1 = ParentDist X != 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "ParentDist - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ParentDist"
+    },
+    {
+      "title": "ParentDist - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#parentdist"
+    },
+    {
+      "title": "ParentDist - Trigger Reference (MUGEN 1.1 Beta)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#parentdist"
+    },
+    {
+      "title": "CNS Format / Expressions - float→intの暗黙変換とfloor/ceil",
+      "url": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "title": "Ikemen GO Wiki - Triggers (changed)",
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
+    }
+  ]
 }

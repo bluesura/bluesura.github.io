@@ -1,48 +1,64 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "P2BodyDist Y",
-        "target": "",
-        "category": [
-            "距離",
-            "相手との垂直距離(押し合い判定基準)の取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "P2BodyDist Y",
+    "category": ["距離", "相手との垂直距離(高さ基準)の取得"],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "P2BodyDistY",
+  "category": "trigger",
+  "trigger": "P2BodyDistY",
+  "description": "<p><code>P2BodyDist Y</code> は、実行者(P1)と相手(P2)の高さの差を返します。</p><p>MUGEN では実質的に <code>P2Dist Y</code> と同等の用途になりやすい点に注意してください。</p><p>戻り値は <strong>float</strong> です。</p>",
+  "images": [
+      {
+      "src": "mugen-coordinate-system-p1-p2-dist.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENにおけるP1とP2の距離座標（P2Dist X/Y, P2BodyDist X/Y）の定義図"
+      }
+  ],
+  "syntax": ["P2BodyDist Y"],
+  "associated_trigger": ["P2BodyDistX", "P2DistX", "P2DistY"],
+  "version": [
+    {
+      "no": "Ikemen GO (Nightly)",
+      "content": "<p>MUGENでは実質 <code>P2Dist Y</code> 相当ですが、<code>ikemenversion</code> を持つキャラでは「両者の size box 間の距離」を返す挙動に変更されています。</p><p>また <code>P2BodyDist Z</code>（Z成分）が追加されています。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "P2BodyDist Y",
+      "code": [
+        "; 相手が自分より上にいるか？",
+        "[State 0, Example_P2BodyDistY]",
+        "Type = Null",
+        "Trigger1 = P2BodyDist Y < 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "P2BodyDist - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2BodyDist"
     },
-    "category": "trigger",
-    "trigger": "P2BodyDistY",
-    "summary": "<p>プレイヤーからP2までのぶつかり判定同士の距離を返します。</p>",
-    "syntax": [
-        "P2BodyDist Y"
-    ],
-    "description": "プレイヤーからP2までのぶつかり判定同士の距離を返します。<br>cmdファイルで、技の距離条件等に使用します。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。<br>詳細: P2BodyDist Y は、自分のY軸のheightとの座標差を返します。負の値は、P2がP1の頭上にいることを意味します。<br>P2BodyDist X は、P1の前面からP2の前面までの座標差を返します。互いに正面を向いて密着している場合、0を返すことになります。CNSファイルの[Size]部分で設定した \"front.width\"がプレイヤーの前面となりますので、忘れずに設定しましょう。P2Distも参照のこと。",
-    "code_sample": [
-        {
-            "title": "P2のぶつかり判定までの距離が30ピクセル未満の場合のトリガー",
-            "code": [
-                "Trigger1 = P2BodyDist X < 30"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "P2BodyDist - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2BodyDist"
-        },
-        {
-            "title": "P2BodyDist - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#p2bodydist"
-        },
-        {
-            "title": "P2BodyDist - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#p2bodydist"
-        },
-        {
-            "title": "P2BodyDist - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/P2BodyDist"
-        }
-    ]
+    {
+      "title": "P2BodyDist - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#p2bodydist"
+    },
+    {
+      "title": "P2BodyDist - Trigger Reference (MUGEN 1.1 Beta)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#p2bodydist"
+    },
+    {
+      "title": "CNS Format / Expressions - float→intの暗黙変換とfloor/ceil",
+      "url": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "title": "Ikemen GO Wiki - Triggers (changed)",
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
+    }
+  ]
 }

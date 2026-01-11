@@ -2,52 +2,119 @@
     "page": {
         "title": "MUGEN Trigger",
         "subtitle": "StageVar",
-        "target": "",
         "category": [
             "ステージ情報",
             "ステージ情報の取得・判定"
         ],
-        "version": "2011.01.18",
-        "update": "2016.01.17",
+        "version": "1.0 RC8",
+        "update": "2026.01.10",
         "type": "document",
         "level": "3"
     },
+    "title": "StageVar",
     "category": "trigger",
     "trigger": "StageVar",
-    "summary": "<p>ステージの情報を返します。</p>",
+    "description": "<p>ステージ定義（<code>.def</code>）の <code>[Info]</code> グループにある文字列を比較し、真偽値（<code>1</code>/<code>0</code>）を返します。</p><p>このトリガーは「条件型」で、単体では値を返す関数ではありません。<code>StageVar(…)</code> の直後に <code>=</code> または <code>!=</code> を書き、ダブルクォートで囲んだ文字列と比較します。</p>",
     "syntax": [
-        "StageVar(Info.Author) = \"作者名\"",
-        "StageVar(Info.DisplayName) = \"表示されるステージ名\"",
         "StageVar(Info.Name) = \"ステージ名\"",
-        "StageVar(Info.Author) != \"作者名\"",
-        "StageVar(Info.DisplayName) != \"表示されるステージ名\"",
-        "StageVar(Info.Name) != \"ステージ名\""
+        "StageVar(Info.DisplayName) = \"表示名\"",
+        "StageVar(Info.Author) = \"作者名\"",
+        "StageVar(Info.Name) != \"ステージ名\"",
+        "StageVar(Info.DisplayName) != \"表示名\"",
+        "StageVar(Info.Author) != \"作者名\""
     ],
-    "description": "ステージの情報を返します。",
+    "parameter": [
+        {
+            "parameter": "param_name",
+            "type": [
+                "string"
+            ],
+            "description": "<p>比較対象にするステージ <code>[Info]</code> パラメータ名。</p>",
+            "parameter_type": "required",
+            "possible_value": [
+                [
+                    "値",
+                    "説明"
+                ],
+                [
+                    "Info.Name",
+                    "<code>[Info]</code> の <code>name</code> を比較します。"
+                ],
+                [
+                    "Info.DisplayName",
+                    "<code>[Info]</code> の <code>displayname</code> を比較します。"
+                ],
+                [
+                    "Info.Author",
+                    "<code>[Info]</code> の <code>author</code> を比較します。"
+                ]
+            ]
+        },
+        {
+            "parameter": "[oper]",
+            "type": [
+                "string"
+            ],
+            "description": "<p>使用できる演算子は <code>=</code> と <code>!=</code> のみです。</p>",
+            "parameter_type": "required",
+            "possible_value": [
+                [
+                    "値",
+                    "説明"
+                ],
+                [
+                    "=",
+                    "等しい（文字列比較）"
+                ],
+                [
+                    "!=",
+                    "等しくない（文字列比較）"
+                ]
+            ]
+        },
+        {
+            "parameter": "\"string\"",
+            "type": [
+                "string"
+            ],
+            "description": "<p>比較する文字列。必ずダブルクォートで囲みます。</p>",
+            "parameter_type": "required"
+        }
+    ],
+    "version": [
+        {
+            "no": "MUGEN 1.0 RC8",
+            "content": "<p><code>StageVar</code> トリガーが追加されました（ステージ名・作者などの基本チェック）。</p>"
+        }
+    ],
     "code_sample": [
         {
-            "title": "",
+            "title": "特定ステージでのみ処理する",
+            "description": "<p>ステージ名（<code>[Info] name</code>）で分岐します。</p>",
             "code": [
-                ""
+                "Trigger1 = StageVar(Info.Name) = \"kfm\""
+            ]
+        },
+        {
+            "title": "作者名で分岐する",
+            "description": "<p>作者名（<code>[Info] author</code>）で分岐します。</p>",
+            "code": [
+                "Trigger1 = StageVar(Info.Author) = \"Suika\""
             ]
         }
     ],
     "quote": [
         {
-            "title": "StageVar - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#StageVar"
+            "title": "StageVar - Trigger Reference (MUGEN 1.0)",
+            "url": "https://www.elecbyte.com/mugendocs/trigger.html#stagevar"
         },
         {
-            "title": "StageVar - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#stagevar"
+            "title": "StageVar - Trigger Reference (MUGEN 1.1 Beta 1)",
+            "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#stagevar"
         },
         {
-            "title": "StageVar - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#stagevar"
-        },
-        {
-            "title": "StageVar - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StageVar"
+            "title": "M.U.G.E.N Update History (Version 1.0 RC8)",
+            "url": "https://www.elecbyte.com/mugendocs/history.html"
         }
     ]
 }

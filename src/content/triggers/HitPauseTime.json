@@ -1,51 +1,128 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "HitPauseTime",
-        "target": "",
-        "category": [
-            "時間",
-            "ヒットストップの残り時間取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "HitPauseTime",
+    "target": "実行者自身",
+    "category": [
+      "時間",
+      "ヒットストップの残り時間取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.05",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "HitPauseTime",
+  "category": "trigger",
+  "trigger": "HitPauseTime",
+  "description": "<p><code>HitPauseTime</code> は、実行者（P1）の攻撃が相手に接触した際に発生する「ヒットストップ（HitPause）」の残りフレーム数を返します。ヒットストップ中でなければ <code>0</code> です。</p><p>ヒットストップ開始時の値は、直前に有効だった <code>HitDef</code> の <b>PauseTime</b>と同じで、以後は毎フレーム <code>1</code> ずつ減少します。</p><p>ヒットストップ中にこの値を参照したい場合、トリガーを評価するステートコントローラー側で <code>IgnoreHitPause = 1</code> を指定してください。指定しない場合、ヒットストップ中はコントローラー自体が実行されず、結果として常に <code>0</code> になります。</p><p>リダイレクトを使えば、<code>Enemy,HitPauseTime</code> のように相手側の値も参照できます。</p>",
+  "syntax": [
+    "HitPauseTime",
+    "Enemy, HitPauseTime"
+  ],
+  "associated_state": [
+    "HitDef"
+  ],
+  "associated_trigger": [
+    "HitPauseTime"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.0",
+      "content": "<p>2002.04.14 系から 1.0 へ更新する際、<code>HitDef</code> の <code>PauseTime</code> は挙動修正のため「P1 側（1つ目）」に <code>+1</code> が必要です。古いキャラを移植すると、<code>HitPauseTime</code> の初期値が <code>1</code> フレームずれる原因になります。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
     },
-    "category": "trigger",
-    "associated_state": [
-        "HitDef"
-    ],
-    "trigger": "HitPauseTime",
-    "summary": "<p>プレイヤーの攻撃がヒットしたときの停止時間が終了するまでの時間を返します。</p>",
-    "syntax": [
-        "HitPauseTime"
-    ],
-    "description": "プレイヤーの攻撃がヒットしたときの停止時間が終了するまでの時間を返します。<br>HitPauseTimeの初期値は、プレイヤーのHitDefのpausetimeパラメータの値1(自分の停止時間)と同値になり、1フレーム経過するごとに1減ることになります。<br>但し、ignorehitpause=1を指定しないと、0しか返しません。",
-    "code_sample": [
+    {
+      "no": "Ikemen GO",
+      "content": "<p>互換仕様の基本は MUGEN 1.1 の公式ドキュメント参照が前提。<code>HitPauseTime</code> は変更トリガー一覧に含まれないため、基本挙動は MUGEN 1.1 相当として扱えます。</p>",
+      "blockquote": "https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(Changed)"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "HitPauseTime が常に 0 になる",
+      "c": "多くは <code>IgnoreHitPause</code> の指定漏れです。",
+      "a": "<p><code>HitPauseTime</code> は「ヒットストップ中の残りフレーム」を返しますが、ヒットストップ中は通常ステートコントローラーが実行されません。</p><p>そのため、ヒットストップ中に参照したいステートコントローラーへ <code>IgnoreHitPause = 1</code> を付けてください。</p>",
+      "r": [
         {
-            "title": "ヒットによる時間停止中でないときのトリガー",
-            "code": [
-                "Trigger1 = HitPauseTime = 0"
-            ]
+          "title": "HitPauseTime - Trigger Reference (MUGEN 1.0, Elecbyte)",
+          "url": "https://www.elecbyte.com/mugendocs/trigger.html#hitpausetime"
+        },
+        {
+          "title": "State Controller Reference - IgnoreHitPause (MUGEN 1.0, Elecbyte)",
+          "url": "https://www.elecbyte.com/mugendocs/sctrls.html"
         }
-    ],
-    "quote": [
-        {
-            "title": "HitPauseTime - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitPauseTime"
-        },
-        {
-            "title": "HitPauseTime - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitpausetime"
-        },
-        {
-            "title": "HitPauseTime - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitpausetime"
-        },
-        {
-            "title": "HitPauseTime - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitPauseTime"
-        }
+      ]
+    }
+  ],
+  "sample_code": {
+    "code": [
+      "Trigger1 = HitPauseTime > 0"
     ]
+  },
+  "code_sample": [
+    {
+      "title": "ヒットストップ中でない判定",
+      "description": "<p><code>0</code> ならヒットストップ中ではありません。</p>",
+      "code": [
+        "Trigger1 = HitPauseTime = 0"
+      ]
+    },
+    {
+      "title": "ヒットストップ中にだけフラグを立てる（IgnoreHitPause）",
+      "description": "<p>ヒットストップ中に評価したい側のコントローラーへ <code>IgnoreHitPause = 1</code> を付けます。</p>",
+      "code": [
+        "[State -2, HitStopFlagOn]",
+        "Type = VarSet",
+        "Trigger1 = HitPauseTime > 0",
+        "IgnoreHitPause = 1",
+        "V = 20",
+        "Value = 1",
+        "",
+        "[State -2, HitStopFlagOff]",
+        "Type = VarSet",
+        "Trigger1 = HitPauseTime = 0",
+        "V = 20",
+        "Value = 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "HitPauseTime - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitPauseTime"
+    },
+    {
+      "title": "HitPauseTime - Trigger Reference (MUGEN 1.0, Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#hitpausetime"
+    },
+    {
+      "title": "HitPauseTime - Trigger Reference (MUGEN 1.1 Beta 1 Patch 1, Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#hitpausetime"
+    },
+    {
+      "title": "State Controller Reference - ignorehitpause (MUGEN 1.0, Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/sctrls.html"
+    },
+    {
+      "title": "Tutorial 4 - HitDef PauseTime の説明 (MUGEN 1.1, Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/tutorial4.html"
+    },
+    {
+      "title": "M.U.G.E.N Update History - 2002.04.14→1.0 の PauseTime 補正 (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "title": "M.U.G.E.N Upgrade Notes - PauseTime +1 (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/upgrading.html"
+    },
+    {
+      "title": "Ikemen GO Wiki - Home",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki"
+    },
+    {
+      "title": "Ikemen GO Wiki - Triggers (Changed)",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(Changed)"
+    }
+  ]
 }

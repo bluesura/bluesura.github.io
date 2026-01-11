@@ -1,107 +1,119 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "PI",
-        "target": "数学",
-        "category": [
-            "数値計算",
-            "円周率πの取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "PI",
+    "target": "数式",
+    "category": [
+      "数値計算",
+      "円周率(PI)"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.08",
+    "type": "document",
+    "level": "2"
+  },
+  "title": "PI",
+  "category": "trigger",
+  "trigger": "PI",
+  "description": "<p><code>PI</code> は円周率π（3.141593...）の近似値を返すトリガーです。</p><p>戻り値は<strong>浮動小数点数</strong>で、数式内でそのまま利用できます。</p>",
+  "syntax": [
+    "PI"
+  ],
+  "associated_trigger": [
+    "Sin",
+    "Cos",
+    "Tan",
+    "Atan"
+  ],
+  "code_sample": [
+    {
+      "title": "速度ベクトルから角度（度）を求める",
+      "description": "<p><code>Atan()</code> の戻り（ラジアン）を <code>180 / PI</code> で度に変換します。分母が 0 になりうる場合は <code>IfElse</code> などで回避してください。</p>",
+      "code": [
+        "[State 0, AngleFromVel]",
+        "Type = AngleSet",
+        "Trigger1 = 1",
+        "Value = IfElse(Vel X != 0, -180.0 / PI * Atan(Vel Y / Vel X), IfElse(Vel Y < 0, 90.0, -90.0))"
+      ]
     },
-    "category": "trigger",
-    "trigger": "PI",
-    "summary": "<p>円周率πを返します。</p>",
-    "syntax": [
-        "PI"
-    ],
-    "description": "円周率πを返します。<br>定数を返します。ラジアンに180/piをかけると度になります。<br>戻り値の型: float",
-    "code_sample": [
+    {
+      "title": "Sin波でExplodのスケールを揺らす",
+      "description": "<p><code>2 * PI</code> を使って周期（ここでは32フレーム）を作り、<code>Sin()</code> でスケールを揺らします。</p>",
+      "code": [
+        "[State -2, ExplodScaleWave]",
+        "Type = ModifyExplod",
+        "TriggerAll = NumExplod(8865)",
+        "Trigger1 = Root, StateNo = 3703",
+        "Scale = FVar(32) ** 0.5 * 0.7 , FVar(32) * (1.0 + 0.3 * Sin(PI * 2.0 / 32.0 * (Time % 32 + Random % 8)))",
+        "Trans = AddAlpha",
+        "Alpha = 100, 255",
+        "ID = 8865",
+        "IgnoreHitPause = 1"
+      ]
+    },
+    {
+      "title": "角度（ラジアン）を -PI〜PI に正規化する",
+      "description": "<p>角度を <code>-PI</code>〜<code>PI</code> の範囲に保つ例です（1周 = <code>2 * PI</code>）。</p>",
+      "code": [
+        "[State 0, WrapAngleRad]",
+        "Type = VarAdd",
+        "Trigger1 = FVar(4) >= PI || FVar(4) <= -PI",
+        "FVar = 4",
+        "Value = IfElse(FVar(4) >= PI, -2.0 * PI, 2.0 * PI)"
+      ]
+    },
+    {
+      "title": "狙い角度にランダムなブレを加える",
+      "description": "<p>相対位置から角度を作り、<code>Random</code> で微小なブレ（度）を加えます。</p>",
+      "code": [
+        "[State -3, AimAngleDeg]",
+        "Type = VarSet",
+        "Trigger1 = Var(0) = [0,1]",
+        "Var = 3",
+        "Value = IfElse((P2BodyDist X + 50) != 0, Atan((-1.0 * (P2BodyDist Y - 50)) / (P2BodyDist X + 50)) * 180.0 / PI, 0.0) + (IfElse(Random % 2 = 0, -1, 1) * (Random % 10))"
+      ]
+    },
+    {
+      "title": "角度の許容範囲（±25度）で条件分岐する",
+      "description": "<p>相手との相対位置から角度（度）を求め、範囲内かどうかで処理を分ける例です。</p>",
+      "code": [
+        "[State -1, AngleGate]",
+        "Type = VarSet",
+        "TriggerAll = Var(20) = 1",
+        "TriggerAll = StateNo = 640",
+        "Trigger1 = (P2Dist X - 39) > 0",
+        "Trigger1 = Atan((P2Dist Y + 53 + EnemyNear, Const(Size.Mid.Pos.Y)) / (P2Dist X - 39)) * 180.0 / PI <= 25",
+        "Trigger2 = (P2Dist X - 39) < 0",
+        "Trigger2 = Atan((P2Dist Y + 53 + EnemyNear, Const(Size.Mid.Pos.Y)) / (P2Dist X - 39)) * 180.0 / PI >= -25",
+        "FVar = 0",
+        "Value = 25"
+      ]
+    }
+  ],
+  "qanda": [
+    {
+      "q": "ラジアンと度の変換はどう書く？",
+      "a": "<p>度にしたい場合は <code>ラジアン * 180 / PI</code>、ラジアンに戻したい場合は <code>度 * PI / 180</code> を使います。</p>",
+      "r": [
         {
-            "title": "",
-            "code": [
-                "[State ]",
-                "Type     = Angleset",
-                "Trigger1 = Time = 0",
-                "value    = -180/PI * Atan((Vel Y) / (Vel X))"
-            ]
-        },
-        {
-            "title": "",
-            "code": [
-                "[State ]",
-                "Type           = ModifyExplod",
-                "Trigger1       = NumExplod(8865)",
-                "Trigger1       = Root,StateNo = 3703",
-                "Scale          = fvar(32) ** .5 * .7 , fvar(32) * (1.0 + .3 * Sin(PI * 2.0 / 32.0 * (Time % 32 + Random % 8)))",
-                "Trans          = AddAlpha",
-                "Alpha          = 100, 255",
-                "ID             = 8865",
-                "IgnoreHitPause = 1"
-            ]
-        },
-        {
-            "title": "",
-            "code": [
-                "[State ]",
-                "Type     = AngleSet",
-                "Trigger1 = Vel X != 0 || Vel Y != 0",
-                "Value    = Atan ( Vel Y / Vel X ) * ( -180.0 / PI )"
-            ]
-        },
-        {
-            "title": "",
-            "code": [
-                "[State ]",
-                "Type     = VarSet",
-                "Trigger1 = var(0) = [0,1]",
-                "var(3)   = Atan((-1*(P2BodyDist Y-50)/(P2BodyDist X+50)))*180/PI +(IfElse(Random%2=0,-1,1)*Random%10)"
-            ]
-        },
-        {
-            "title": "",
-            "code": [
-                "[State ]",
-                "Type     = VarAdd",
-                "Trigger1 = fvar(4) >= 1*PI || fvar(4) <= -1*PI",
-                "fv       = 4",
-                "value    = IfElse(fvar(4)>=1*PI,-2*PI,2*PI)"
-            ]
-        },
-        {
-            "title": "",
-            "code": [
-                "[State ]",
-                "Type       = VarSet",
-                "TriggerAll = Var(20) = 1 && StateNo = 640",
-                "Trigger1   = P2Dist X - (39) > 0",
-                "Trigger1   = Atan((P2Dist Y-(-53)+EnemyNear,Const(Size.Mid.Pos.Y))/(P2Dist X - (39)))*180/PI <= 25",
-                "Trigger2   = P2Dist X - (39) < 0",
-                "Trigger2   = Atan((P2Dist Y-(-53)+EnemyNear,Const(Size.Mid.Pos.Y))/(P2Dist X - (39)))*180/PI >= -25",
-                "fv         = 0",
-                "value      = 25"
-            ]
+          "title": "Trigger Reference (1.1) - Pi (math)",
+          "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#pi-math"
         }
-    ],
-    "quote": [
-        {
-            "title": "PI - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PI"
-        },
-        {
-            "title": "PI - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#pi-math"
-        },
-        {
-            "title": "PI - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#pi-math"
-        },
-        {
-            "title": "PI - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Pi"
-        }
-    ]
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "PI - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PI"
+    },
+    {
+      "title": "Pi (math) - Trigger Reference (MUGEN 1.0 / archive)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#pi-math"
+    },
+    {
+      "title": "Pi (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#pi-math"
+    }
+  ]
 }

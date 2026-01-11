@@ -1,49 +1,69 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "P3Name",
-        "target": "",
-        "category": [
-            "キャラクター情報",
-            "3Pキャラクター名の判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "P3Name",
+    "target": "評価対象（既定: 実行者自身）",
+    "category": [
+      "キャラクター情報",
+      "3P（パートナー）Nameの判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.12",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "P3Name",
+  "category": "trigger",
+  "trigger": "P3Name",
+  "description": "<p><code>P3Name</code> は、P3（チーム戦におけるパートナー）が存在する場合に、その <code>.def</code> 内部名 <code>name</code> を指定文字列と比較し、一致すれば <code>1</code>、一致しなければ <code>0</code> を返します。</p><p>本トリガーは「比較式として使うトリガー」であり、単体で値を返す形式ではなく、<code>=</code> / <code>!=</code> の比較としてのみ記述できます。</p><p>P3 が存在しない場合は <code>bottom</code> を返します。この場合、比較式は <code>bottom</code> となり成立しません。必要に応じて <code>NumPartner</code> などで事前に存在チェックを行ってください。</p>",
+  "images": [
+      {
+      "src": "mugen_name_authorname_logic_flow.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのAuthorNameおよびName/PxNameの判定仕様図。P1〜P4の各対象に対し、.defファイル内の記述とスクリプト記述を比較演算子(=, !=)で照合し、真(1)か偽(0)を返すフローを解説しています。"
+      }
+  ],
+  "syntax": [
+    "P3Name = \"名前\"",
+    "P3Name != \"名前\""
+  ],
+  "associated_trigger": [
+    "NumPartner",
+    "Name",
+    "P1Name",
+    "P2Name",
+    "P4Name"
+  ],
+  "code_sample": [
+    {
+      "title": "パートナーが特定の内部名なら専用ステートへ",
+      "description": "<p>P3 が存在する場合のみ比較し、条件一致でステート 9000 に移行します。</p>",
+      "code": [
+        "[State -2, PartnerSpecific]",
+        "Type = ChangeState",
+        "TriggerAll = NumPartner > 0",
+        "Trigger1 = P3Name = \"Sakura\"",
+        "Value = 9000"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "P3Name - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P3Name"
     },
-    "category": "trigger",
-    "trigger": "P3Name",
-    "summary": "<p>チームモードでチームメイトがいる場合、Nameと同じように、チームメイトのnameを判定し、真偽を返します。</p>",
-    "syntax": [
-        "P3Name = \"名前\"",
-        "P3Name != \"名前\""
-    ],
-    "description": "チームモードでチームメイトがいる場合、Nameと同じように、チームメイトのnameを判定し、真偽を返します。<br>チームメイトがいない場合、 p3name = \"p3の名前\" は、名前が指定されていても0を返します。同様に、 p3name != \"p3の名前\" は1を返します。",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "P3Name - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P3Name"
-        },
-        {
-            "title": "P3Name - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#p3name"
-        },
-        {
-            "title": "P3Name - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#p3name"
-        },
-        {
-            "title": "P3Name - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/P3Name"
-        }
-    ]
+    {
+      "title": "P3Name - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#p3name"
+    },
+    {
+      "title": "P3Name - Trigger Reference (MUGEN 1.1 Beta)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#p3name"
+    },
+    {
+      "title": "Trigger Reference - About Triggers（old-style / bottom）",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#about-triggers"
+    }
+  ]
 }

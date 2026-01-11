@@ -1,49 +1,69 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "AuthorName",
-        "target": "",
-        "category": [
-            "キャラクター情報",
-            "製作者名の判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "AuthorName",
+    "target": "評価対象（既定: 実行者自身）",
+    "category": [
+      "キャラクター情報",
+      "作者名（Def:Author）の判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.12",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "AuthorName",
+  "category": "trigger",
+  "trigger": "AuthorName",
+  "description": "<p><code>AuthorName</code> は、評価対象キャラクターの <code>.def</code>（<code>[Info]</code> セクション）に記載された <code>author</code> と、指定した文字列を比較し、一致すれば <code>1</code>、一致しなければ <code>0</code> を返します。</p><p>本トリガーは「比較式として使うトリガー」であり、単体で値を返す形式ではなく、<code>=</code> / <code>!=</code> の比較としてのみ記述できます。</p><p>リダイレクト（例: <code>Enemy, AuthorName = \"Suika\"</code>）と併用して他プレイヤーの作者名を判定できます。リダイレクト先が存在しない場合は <code>bottom</code> になり、式は成立しません。</p>",
+  "images": [
+      {
+      "src": "mugen_name_authorname_logic_flow.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのAuthorNameおよびName/PxNameの判定仕様図。P1〜P4の各対象に対し、.defファイル内の記述とスクリプト記述を比較演算子(=, !=)で照合し、真(1)か偽(0)を返すフローを解説しています。"
+      }
+  ],
+  "syntax": [
+    "AuthorName = \"作者名\"",
+    "AuthorName != \"作者名\""
+  ],
+  "associated_trigger": [
+    "Name",
+    "P1Name",
+    "P2Name",
+    "P3Name",
+    "P4Name"
+  ],
+  "code_sample": [
+    {
+      "title": "相手キャラクターの作者名で分岐フラグを立てる",
+      "description": "<p>相手（<code>Enemy</code>）の作者名が一致した場合に <code>var(0)</code> を立てます。</p>",
+      "code": [
+        "[State -2, DetectEnemyAuthor]",
+        "Type = VarSet",
+        "Trigger1 = Enemy, AuthorName = \"Suika\"",
+        "Var = 0",
+        "Value = 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "AuthorName - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AuthorName"
     },
-    "category": "trigger",
-    "trigger": "AuthorName",
-    "summary": "<p>キャラクターの作者名があっているかどうかを返します。</p>",
-    "syntax": [
-        "AuthorName = \"作者名\"",
-        "AuthorName != \"作者名\""
-    ],
-    "description": "キャラクターの作者名があっているかどうかを返します。<br>リダイレクトキーワード\"enemy,\"、\"partner,\"等と組み合わせて使用されることが多いです。<br>戻り値の型: boolean int (1 or 0)",
-    "code_sample": [
-        {
-            "title": "製作者名がSuikaさんの場合のトリガー",
-            "code": [
-                "Trigger1 = Authorname = \"Suika\""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "AuthorName - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AuthorName"
-        },
-        {
-            "title": "AuthorName - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#authorname"
-        },
-        {
-            "title": "AuthorName - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#authorname"
-        },
-        {
-            "title": "AuthorName - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AuthorName"
-        }
-    ]
+    {
+      "title": "AuthorName - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#authorname"
+    },
+    {
+      "title": "AuthorName - Trigger Reference (MUGEN 1.1 Beta)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#authorname"
+    },
+    {
+      "title": "Trigger Reference - About Triggers（old-style / bottom）",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#about-triggers"
+    }
+  ]
 }

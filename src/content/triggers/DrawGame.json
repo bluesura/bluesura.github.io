@@ -1,58 +1,83 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "DrawGame",
-        "target": "",
-        "category": [
-            "試合情報",
-            "ラウンドの引き分け判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "DrawGame",
+    "target": "プレイヤー自身",
+    "category": [
+      "試合情報",
+      "ラウンドの引き分け判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "DrawGame",
+  "category": "trigger",
+  "trigger": "DrawGame",
+  "description": "<p><code>DrawGame</code> は、ラウンドが引き分けで終了した場合に 1 を返します（チーム戦ではチーム単位）。</p><p>時間切れ時に体力差が同じ場合など、勝者/敗者が決まらないラウンドで使用します。引き分けのラウンドでは <code>Win</code>/<code>Lose</code> は通常 0 になります。</p><p>引き分け直後の処理は通常 <code>RoundState = 3</code> 以降で評価します。</p>",
+  "images": [
+    {
+      "src": "mugen-win-lose-conditions.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのラウンド結果判定フロー図。勝利（WinKO, WinTime, WinPerfect）、引き分け（DrawGame）、敗北（LoseKO, LoseTime）の各条件からMatchOver（試合終了）に至るプロセスと、RoundState=3以降の判定タイミングの解説。"
+    }
+  ],
+  "syntax": [
+    "DrawGame"
+  ],
+  "associated_trigger": [
+    "Win",
+    "WinKO",
+    "WinPerfect",
+    "WinTime",
+    "Lose",
+    "LoseKO",
+    "LoseTime",
+    "MatchOver"
+  ],
+  "code_sample": [
+    {
+      "title": "引き分けを1回だけ捕捉してフラグ化",
+      "description": "<p>ラウンド終了処理（<code>RoundState = 3</code>）で <code>DrawGame</code> を1回だけ捕捉します。</p>",
+      "code": [
+        "[State -2, DrawFlagSet]",
+        "Type = VarSet",
+        "Trigger1 = RoundState = 3 && DrawGame",
+        "Persistent = 0",
+        "V = 20",
+        "Value = 1"
+      ]
     },
-    "category": "trigger",
-    "trigger": "DrawGame",
-    "summary": "<p>ラウンドで引き分けたかどうかを返します。</p>",
-    "syntax": [
-        "DrawGame"
-    ],
-    "description": "ラウンドで引き分けたかどうかを返します。<br>ラウンド終了時に自分と相手が同じ体力で引き分けだった場合は1、それ以外の場合は0を返します。<br>フラグはラウンド終了時(<code>RoundState=3</code>)に立ちます。<br>ラウンドのKO勝利判定は<code>WinKO</code>・ラウンドのパーフェクト勝利判定は<code>WinPerfect</code>・ラウンドの時間切れ勝利判定は<code>WinTime</code>・ラウンドの勝利判定は<code>Win</code>、ラウンドのKO敗北判定は<code>LoseKO</code>・ラウンドの時間切れ敗北判定は<code>LoseTime</code>・ラウンドの敗北判定は<code>Lose</code>、ラウンドの引き分け判定は<code>DrawGame</code>、マッチの決着判定は<code>MatchOver</code>を使用して下さい。",
-    "associated_trigger": [
-        "WinKO",
-        "WinPerfect",
-        "WinTime",
-        "Win",
-        "LoseKO",
-        "LoseTime",
-        "Lose",
-        "MatchOver"
-    ],
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "DrawGame - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#DrawGame"
-        },
-        {
-            "title": "DrawGame - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#drawgame"
-        },
-        {
-            "title": "DrawGame - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#drawgame"
-        },
-        {
-            "title": "DrawGame - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/DrawGame"
-        }
-    ]
+    {
+      "title": "フラグのリセット",
+      "description": "<p>次ラウンド開始でフラグを落とします。</p>",
+      "code": [
+        "[State -2, DrawFlagClear]",
+        "Type = VarSet",
+        "Trigger1 = RoundState = 0",
+        "V = 20",
+        "Value = 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "DrawGame - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#DrawGame"
+    },
+    {
+      "title": "DrawGame - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#drawgame"
+    },
+    {
+      "title": "DrawGame - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#DrawGame"
+    },
+    {
+      "title": "RoundState - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#RoundState"
+    }
+  ]
 }

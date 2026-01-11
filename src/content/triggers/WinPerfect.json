@@ -1,69 +1,96 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "WinPerfect",
-        "target": "",
-        "category": [
-            "試合情報",
-            "パーフェクト勝利判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.09",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "WinPerfect",
+    "target": "プレイヤー自身",
+    "category": [
+      "試合情報",
+      "パーフェクト勝利判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "WinPerfect",
+  "category": "trigger",
+  "trigger": "WinPerfect",
+  "description": "<p><code>WinPerfect</code> は、ラウンドを「無傷（no life lost）」で勝利した場合に 1 を返します（チーム戦ではチーム単位）。</p><p>勝敗確定のフレーム帯は通常 <code>RoundState = 3</code> 以降です。パーフェクト専用の演出分岐は <code>RoundState</code> と組み合わせて行うのが安全です。</p>",
+  "images": [
+    {
+      "src": "mugen-win-lose-conditions.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのラウンド結果判定フロー図。勝利（WinKO, WinTime, WinPerfect）、引き分け（DrawGame）、敗北（LoseKO, LoseTime）の各条件からMatchOver（試合終了）に至るプロセスと、RoundState=3以降の判定タイミングの解説。"
+    }
+  ],
+  "syntax": [
+    "WinPerfect"
+  ],
+  "associated_trigger": [
+    "Win",
+    "WinKO",
+    "WinTime",
+    "Lose",
+    "LoseKO",
+    "LoseTime",
+    "DrawGame",
+    "MatchOver"
+  ],
+  "qanda": [
+    {
+      "q": "Lifeが最大値ならWinPerfectと同じですか？",
+      "c": "誤解されやすいポイントです。",
+      "a": "<p>公式定義は「無傷（no life lost）」です。<code>Life</code> が途中で減ったかどうかの履歴を含むため、<code>Life = LifeMax</code> だけでは同一判定になりません。見た目上の“最大まで回復”をパーフェクト扱いにしたい場合は、独自フラグで別判定を用意してください。</p>",
+      "r": [
+        {
+          "title": "WinPerfect - Trigger Reference (MUGEN 1.1 Beta 1)",
+          "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#win"
+        }
+      ]
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "パーフェクト勝利で専用フラグを立てる",
+      "description": "<p>ラウンド終了処理（<code>RoundState = 3</code>）で <code>WinPerfect</code> を捕捉します。</p>",
+      "code": [
+        "[State -2, PerfectWinFlagSet]",
+        "Type = VarSet",
+        "Trigger1 = RoundState = 3 && WinPerfect",
+        "Persistent = 0",
+        "V = 1",
+        "Value = 1"
+      ]
     },
-    "category": "trigger",
-    "trigger": "WinPerfect",
-    "summary": "<p>ラウンドで体力全快・相手を死亡させて勝利したかどうかを返します。</p>",
-    "syntax": [
-        "WinPerfect"
-    ],
-    "description": "ラウンドで体力全快・相手を死亡させて勝利したかどうかを返します。<br>ラウンドで体力全快・相手を死亡させて勝利している場合は1、それ以外の場合は0を返します。<br>フラグはライフが0になった次のフレームに立ちます。<br>ラウンドのKO勝利判定は<code>WinKO</code>・ラウンドのパーフェクト勝利判定は<code>WinPerfect</code>・ラウンドの時間切れ勝利判定は<code>WinTime</code>・ラウンドの勝利判定は<code>Win</code>、ラウンドのKO敗北判定は<code>LoseKO</code>・ラウンドの時間切れ敗北判定は<code>LoseTime</code>・ラウンドの敗北判定は<code>Lose</code>、ラウンドの引き分け判定は<code>DrawGame</code>、マッチの決着判定は<code>MatchOver</code>を使用して下さい。",
-    "associated_trigger": [
-        "WinKO",
-        "WinTime",
-        "Win",
-        "LoseKO",
-        "LoseTime",
-        "Lose",
-        "DrawGame",
-        "MatchOver"
-    ],
-    "parameter": [
-        {
-            "parameter": "",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>",
-            "min_value": [
-                ""
-            ],
-            "max_value": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Win - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Win"
-        },
-        {
-            "title": "Win - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#win"
-        },
-        {
-            "title": "Win - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#win"
-        },
-        {
-            "title": "Win - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Win"
-        },
-        {
-            "title": "WinPerfect - MUGEN CNS WIKI CHAOS@予定",
-            "url": "http://www49.atwiki.jp/mugencns/pages/112.html"
-        }
-    ]
+    {
+      "title": "フラグのリセット",
+      "description": "<p>次ラウンド開始でフラグを落とします。</p>",
+      "code": [
+        "[State -2, PerfectWinFlagClear]",
+        "Type = VarSet",
+        "Trigger1 = RoundState = 0",
+        "V = 1",
+        "Value = 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "Win - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Win"
+    },
+    {
+      "title": "Win / WinPerfect - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#win"
+    },
+    {
+      "title": "Win / WinPerfect - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#win"
+    },
+    {
+      "title": "RoundState - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#RoundState"
+    }
+  ]
 }

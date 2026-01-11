@@ -1,58 +1,109 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "MatchOver",
-        "target": "",
-        "category": [
-            "試合情報",
-            "試合の決着判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "MatchOver",
+    "target": "ステート実行者自身",
+    "category": [
+      "試合情報",
+      "試合の決着判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "MatchOver",
+  "category": "trigger",
+  "trigger": "MatchOver",
+  "description": "<p>マッチ(試合)が終了しているかを返します。終了していれば <code>1</code>、継続中なら <code>0</code> です。</p><p>決着をより早いタイミング（KO表示/TimeOver直後など）で拾いたい場合は、<code>RoundState</code> の <code>3</code>(PreOver) と、<code>Win</code>/<code>Lose</code>/<code>DrawGame</code> などのラウンド結果トリガーを併用してください。</p>",
+  "images": [
+    {
+      "src": "mugen-win-lose-conditions.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのラウンド結果判定フロー図。勝利（WinKO, WinTime, WinPerfect）、引き分け（DrawGame）、敗北（LoseKO, LoseTime）の各条件からMatchOver（試合終了）に至るプロセスと、RoundState=3以降の判定タイミングの解説。"
+    }
+  ],
+  "syntax": [
+    "MatchOver"
+  ],
+  "associated_trigger": [
+    "RoundState",
+    "WinKO",
+    "WinPerfect",
+    "WinTime",
+    "Win",
+    "LoseKO",
+    "LoseTime",
+    "Lose",
+    "DrawGame"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.0/1.1",
+      "content": "<p>最終ラウンドで勝敗が確定しても即座に <code>1</code> にならず、両者が勝利ポーズへ入った後（通常は <code>State 180</code> 開始以降）に成立します。</p>"
     },
-    "category": "trigger",
-    "trigger": "MatchOver",
-    "summary": "<p>マッチ(試合)で決着がついたかどうかを返します。</p>",
-    "syntax": [
-        "MatchOver"
-    ],
-    "description": "マッチ(試合)で決着がついたかどうかを返します。<br>試合で勝敗の判定がつけば1を返します。※ラウンドではマッチの終了時に返します。<br>フラグは<code>RoundState=3</code>になって勝敗の判定が出てから立ちます。<br>ラウンドのKO勝利判定は<code>WinKO</code>・ラウンドのパーフェクト勝利判定は<code>WinPerfect</code>・ラウンドの時間切れ勝利判定は<code>WinTime</code>・ラウンドの勝利判定は<code>Win</code>、ラウンドのKO敗北判定は<code>LoseKO</code>・ラウンドの時間切れ敗北判定は<code>LoseTime</code>・ラウンドの敗北判定は<code>Lose</code>、ラウンドの引き分け判定は<code>DrawGame</code>、マッチの決着判定は<code>MatchOver</code>を使用して下さい。",
-    "associated_trigger": [
-        "WinKO",
-        "WinPerfect",
-        "WinTime",
-        "Win",
-        "LoseKO",
-        "LoseTime",
-        "Lose",
-        "DrawGame"
-    ],
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "MatchOver - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MatchOver"
-        },
-        {
-            "title": "MatchOver - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#matchover"
-        },
-        {
-            "title": "MatchOver - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#matchover"
-        },
-        {
-            "title": "MatchOver - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MatchOver"
-        }
+    {
+      "no": "IKEMEN GO",
+      "content": "<p>ラウンド/マッチ終了まわりの互換挙動は継続的に調整されています。勝利ポーズや勝利画面の表示が、フェイルセーフ遅延（例: 15秒程度）により遅れるケースが報告されているため、早期の演出分岐が必要な場合は <code>RoundState</code>(PreOver/Over) 側の条件とも併用するのが安全です。</p>"
+    }
+  ],
+  "sample_code": {
+    "code": [
+      "[State -2, MatchOverFlag]",
+      "Type = VarSet",
+      "Trigger1 = MatchOver",
+      "Var(59) = 1"
     ]
+  },
+  "code_sample": [
+    {
+      "title": "マッチ終了時にフェードアウトをかける",
+      "description": "<p><code>MatchOver</code> は勝利ポーズ開始以降に成立するため、フェードもそのタイミング以降になります。</p>",
+      "code": [
+        "[State -2, MatchEndFadeOut]",
+        "Type = PalFX",
+        "Trigger1 = MatchOver",
+        "Time = 30",
+        "Add = -255, -255, -255"
+      ]
+    },
+    {
+      "title": "ラウンド決着を早めに拾う（PreOverで処理する）",
+      "description": "<p>KO表示やTimeOver直後など、<code>MatchOver</code> より前の段階で分岐したい場合の例です。</p>",
+      "code": [
+        "[State -2, RoundResultFlag]",
+        "Type = VarSet",
+        "TriggerAll = RoundState = 3",
+        "Trigger1 = Win || Lose || DrawGame",
+        "Var(58) = 1"
+      ]
+    }
+  ],
+  "quote": [
+     {
+      "title": "MatchOver - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MatchOver"
+    },
+    {
+      "title": "MatchOver - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#matchover"
+    },
+    {
+      "title": "RoundState - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#roundstate"
+    },
+    {
+      "title": "MatchOver - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#matchover"
+    },
+    {
+      "title": "IKEMEN GO: 勝利/TimeOverポーズのフェイルセーフ遅延に関する議論",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/discussions/2890"
+    },
+    {
+      "title": "IKEMEN GO Releases: RoundNotOver/RoundStateなどラウンド終了挙動の修正履歴",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/releases"
+    }
+  ]
 }

@@ -1,53 +1,129 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "TeamMode",
-        "target": "",
-        "category": [
-            "キャラクターのパラメーター",
-            "試合のチーム形式は何ですか？"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.28",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "TeamMode",
+    "target": "ステート実行者自身",
+    "category": [
+      "キャラクターのパラメーター",
+      "試合のチーム形式は何ですか？"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "TeamMode",
+  "category": "trigger",
+  "trigger": "TeamMode",
+  "description": "<p><code>TeamMode</code> は、現在のチーム形式を判定する比較式として使うトリガーです。比較式が成立すれば 1、成立しなければ 0 を返します。</p><p>モードは <code>Single</code> / <code>Simul</code> / <code>Turns</code> のいずれかとして扱われます（シングル戦 / 同時出場のタッグ戦 / 交代制のチーム戦）。</p><p>使用できる比較演算子は <code>=</code> と <code>!=</code> のみです。</p>",
+  "syntax": [
+    "TeamMode = Single",
+    "TeamMode != Single",
+    "TeamMode = Simul",
+    "TeamMode != Simul",
+    "TeamMode = Turns",
+    "TeamMode != Turns"
+  ],
+  "associated_trigger": [
+    "TeamSide",
+    "NumPartner",
+    "NumEnemy",
+    "IsHomeTeam"
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.0 RC4 (2009-10-25)",
+      "content": "<p><code>TeamMode</code> などに対する <code>!=</code> 演算子の解析が不正になる不具合が修正されました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
     },
-    "category": "trigger",
-    "trigger": "TeamMode",
-    "summary": "<p>現在のチームモードを判定し、真偽を返します。</p>",
-    "syntax": [
-        "TeamMode = \"Single\"",
-        "TeamMode != \"Single\"",
-        "TeamMode = \"Simul\"",
-        "TeamMode != \"Simul\"",
-        "TeamMode = \"Turns\"",
-        "TeamMode != \"Turns\""
-    ],
-    "description": "現在のチームモードを判定し、真偽を返します。<br>試合のチーム形式を判定し、条件に合っていれば1・合っていなければ0を返します。<br>Singleはシングル戦・Simulはタッグ戦・Turnsはチーム戦を意味しています。",
-    "code_sample": [
+    {
+      "no": "MUGEN 1.0 RC5 (2009-10-28)",
+      "content": "<p><code>TeamMode</code>（および <code>HitDefAttr</code>）の評価が誤る不具合が修正されました。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "no": "IKEMEN GO",
+      "content": "<p>追加チームモード <code>Tag</code> が存在し、<code>TeamMode</code> はこのモードを <code>Tag</code> として返します。あわせて、<code>Ratio</code> モードは <code>Turns</code> として扱われます。</p>",
+      "blockquote": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-info"
+    }
+  ],
+  "qanda": [
+    {
+      "q": "サバイバル時の注意点はありますか？",
+      "c": "敵側のチーム形式が通常の感覚と異なる場合があります。",
+      "a": "<p>公式仕様では、サバイバル時に「敵側」は <code>Turns</code> として扱われます。<code>TeamMode</code> を敵側へリダイレクトして判定する場合は、この挙動を前提に条件分岐してください。</p>",
+      "r": [
         {
-            "title": "シングルモード時のトリガー。",
-            "code": [
-                "Trigger1 = TeamMode = Single"
-            ]
+          "title": "Trigger Reference (MUGEN 1.0) - TeamMode",
+          "url": "https://www.elecbyte.com/mugendocs/trigger.html#teammode"
         }
-    ],
-    "quote": [
+      ]
+    },
+    {
+      "q": "IKEMEN GO の追加モードはどう扱われますか？",
+      "c": "MUGEN にはない拡張があるため、移植時に差分が出ます。",
+      "a": "<p>IKEMEN GO には <code>Tag</code> モードがあり、<code>TeamMode</code> はこのモードを <code>Tag</code> として返します。<code>Ratio</code> は <code>Turns</code> として扱われます。</p>",
+      "r": [
         {
-            "title": "TeamMode - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamMode"
-        },
-        {
-            "title": "TeamMode - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#teammode"
-        },
-        {
-            "title": "TeamMode - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#teammode"
-        },
-        {
-            "title": "TeamMode - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TeamMode"
+          "title": "Ikemen-GO Wiki - Tag Team mode / TeamMode",
+          "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-info"
         }
-    ]
+      ]
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "シングル戦の時だけ成立させる",
+      "description": "<p>シングル戦（1 vs 1）でのみ処理を有効化したい場合の基本形です。</p>",
+      "code": [
+        "[State -2, SingleOnly]",
+        "Type = Null",
+        "Trigger1 = TeamMode = Single"
+      ]
+    },
+    {
+      "title": "Simul（同時出場のタッグ戦）でのみ成立させる",
+      "description": "<p>タッグ戦（同時出場）向けの分岐例です。</p>",
+      "code": [
+        "[State -2, SimulOnly]",
+        "Type = Null",
+        "Trigger1 = TeamMode = Simul"
+      ]
+    },
+    {
+      "title": "Turns（交代制チーム戦）でのみ成立させる",
+      "description": "<p>交代制のチーム戦（Turns）向けの分岐例です。</p>",
+      "code": [
+        "[State -2, TurnsOnly]",
+        "Type = Null",
+        "Trigger1 = TeamMode = Turns"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "TeamMode - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamMode"
+    },
+    {
+      "title": "TeamMode - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#teammode"
+    },
+    {
+      "title": "TeamMode - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#teammode"
+    },
+    {
+      "title": "TeamMode - Elecbyte Wiki (archived)",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TeamMode"
+    },
+    {
+      "title": "M.U.G.E.N Update History (TeamMode関連の修正履歴)",
+      "url": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "title": "Ikemen-GO Wiki - Miscellaneous info (Tag/RatioとTeamMode)",
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-info"
+    }
+  ]
 }

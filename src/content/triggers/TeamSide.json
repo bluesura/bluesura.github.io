@@ -1,48 +1,86 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "TeamSide",
-        "target": "",
-        "category": [
-            "試合情報",
-            "所属チームサイドの取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.28",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "TeamSide",
+    "target": "実行者自身",
+    "category": [
+      "試合情報",
+      "チームサイド判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "TeamSide",
+  "category": "trigger",
+  "trigger": "TeamSide",
+  "description": "<p><code>TeamSide</code> は、トリガーを評価しているプレイヤー（実行者自身）が所属するチームサイドを返します。</p><p>戻り値は Team 1（P1 team）なら <code>1</code>、Team 2（P2 team）なら <code>2</code> の整数です。</p><p><b>注意:</b> これは「所属チーム」の判定であり、画面上の左右位置（X座標）とは一致しません。左右位置を判定したい場合は <code>Pos</code>（X座標）やエッジ距離系トリガー（<code>FrontEdgeDist</code>/<code>BackEdgeDist</code> など）を利用してください。</p>",
+  "syntax": [
+    "TeamSide"
+  ],
+  "associated_trigger": [
+    "TeamMode",
+    "IsHomeTeam"
+  ],
+  "version": [
+    {
+      "no": "IKEMEN GO",
+      "content": "<p>ステージの <code>AttachedChar</code>（試合に属さない追加キャラクター）はチームに属さないため、<code>TeamSide</code> が <code>0</code> を返す。</p>",
+      "blockquote": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Stage-features/"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "2Pチーム側のときだけ処理する",
+      "description": "<p><code>TeamSide</code> が <code>2</code>（P2 team）の場合だけ成立させる例です。</p>",
+      "code": [
+        "[State -2, OnlyP2Team]",
+        "Type = VarSet",
+        "Trigger1 = TeamSide = 2",
+        "Var(0) = 1"
+      ]
     },
-    "category": "trigger",
-    "trigger": "TeamSide",
-    "summary": "<p>プレイヤーが所属するチームを返します。</p>",
-    "syntax": [
-        "TeamSide"
-    ],
-    "description": "プレイヤーが所属するチームを返します。<br>1P側(左側)なら1、2P側(右側)なら2の整数で返します。",
-    "code_sample": [
+    {
+      "title": "チーム別に値を分岐する",
+      "description": "<p>Team 1 と Team 2 で設定値を切り替える例です。</p>",
+      "code": [
+        "[State -2, TeamBranch]",
+        "Type = VarSet",
+        "Trigger1 = 1",
+        "Var(1) = IfElse(TeamSide = 1, 100, 200)"
+      ]
+    }
+  ],
+  "qanda": [
+    {
+      "q": "キャラクターが画面内で左右を入れ替えたら TeamSide は変わりますか？",
+      "c": "TeamSide は「所属チーム」の情報であり、座標や向きとは別です。",
+      "a": "<p>変わりません。<code>TeamSide</code> は Team 1 / Team 2 の所属を返します。</p><p>画面内の左右位置を判定したい場合は <code>Pos</code>（X座標）や <code>FrontEdgeDist</code>/<code>BackEdgeDist</code> などを参照してください。</p>",
+      "r": [
         {
-            "title": "プレイヤーが2P側のときのトリガー。",
-            "code": [
-                "Trigger1 = TeamSide = 2"
-            ]
+          "title": "Elecbyte Trigger Reference - TeamSide",
+          "url": "https://www.elecbyte.com/mugendocs/trigger.html#teamside"
         }
-    ],
-    "quote": [
-        {
-            "title": "TeamSide - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamSide"
-        },
-        {
-            "title": "TeamSide - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#teamside"
-        },
-        {
-            "title": "TeamSide - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#teamside"
-        },
-        {
-            "title": "TeamSide - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TeamSide"
-        }
-    ]
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "TeamSide - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamSide"
+    },
+    {
+      "title": "TeamSide - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#teamside"
+    },
+    {
+      "title": "TeamSide - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#teamside"
+    },
+    {
+      "title": "Stage features - AttachedChar (IKEMEN GO / TeamSide=0 の言及)",
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Stage-features/"
+    }
+  ]
 }

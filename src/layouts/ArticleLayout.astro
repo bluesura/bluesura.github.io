@@ -36,14 +36,6 @@ const firstImage = content.images?.[0];
 
 // コンテンツタイプに応じてベースパスを決定
 const contentBasePath = entry.collection === 'state-controllers' ? 'State' : 'Trigger';
-//\MUGEN\public\images\state
-// ヘッダー背景画像用のスタイルを動的に生成
-const headerStyle = firstImage 
-  ? `background-image: url(/images/${contentBasePath}/${firstImage.src}); background-size: cover; background-repeat: no-repeat;` 
-  : '';
-const headerInnerStyle = firstImage 
-  ? `height:${firstImage.height}px; background-color:rgba(255,255,255,0.4);display: -webkit-flex;` 
-  : '';
 ---
 
 <BaseLayout
@@ -56,50 +48,59 @@ const headerInnerStyle = firstImage
   <div id="main-inner">
     <article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
       
-      <!-- ヘッダー部分 (tplから完全に移植・修正) -->
-      <header class="entry-header" style={headerStyle}>
-              {/* ▼ ここを修正 ▼ */}
-              <div style={{
-                ...headerInnerStyle,                       // 元のスタイル（念のため残す）
-                height: 'auto',                            // 固定の高さを解除
-                width: '100%',                             // 横幅いっぱいにする
-                display: 'flex',                           // ★重要：中身の文字を配置制御するために必須
-                backgroundColor: 'rgba(255,255,255,0.4)',  // ★重要：半透明の白（0.4 = 40%の不透明度）
-                // 画像がある場合はアスペクト比を維持
-                aspectRatio: firstImage ? `${firstImage.width} / ${firstImage.height}` : 'auto'
-              }}>
-                {firstImage && (
-                  <>
-              <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display: none;">
-                <meta itemprop="url" content={`https://bluesura.github.io/images/${contentBasePath}/${firstImage.src}`}>
-                <meta itemprop="width" content={firstImage.width}>
-                <meta itemprop="height" content={firstImage.height}>
-              </span>
-              {/* tplにあった非表示のimgタグを移植 */}
-              <img src={`/images/${contentBasePath}/${firstImage.src}`} alt={firstImage.alt || content.state || content.trigger} style="display:none;">
-            </>
-          )}
-          <div class="entry-title" itemprop="name">
-            <div>
-              <h1 id={content.state || content.trigger}>
-                {entry.collection === 'state-controllers' 
-                  ? `Type = ${content.state}` 
-                  : content.trigger
-                }
-              </h1>
-              {content.page.category && (
-                <div class="category">
-                  {content.page.category.join(' > ')}
-                  {(content.page.version || content.page.target) && ' | '}
-                  {content.page.version && `実装されたバージョン: ${content.page.version}`}
-                  {content.page.version && content.page.target && ' | '}
-                  {content.page.target && `対象: ${content.page.target}`}
-                </div>
-              )}
-            </div>
+<header class="entry-header" >
+  <div style={{
+    height: 'auto',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'transparent',
+  }}>
+    {firstImage && (
+      <>
+        {/* schema.org用のメタデータ（非表示のまま維持） */}
+        <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style={{ display: 'none' }}>
+          <meta itemprop="url" content={`https://bluesura.github.io/images/${contentBasePath}/${firstImage.src}`} />
+          <meta itemprop="width" content={firstImage.width} />
+          <meta itemprop="height" content={firstImage.height} />
+        </span>
+        
+        {/* ▼ imgタグを表示化 ▼ */}
+        <img 
+          src={`/images/${contentBasePath}/${firstImage.src}`} 
+          alt={firstImage.alt || content.state || content.trigger} 
+          style={{
+            display: 'block',
+            width: '100%',
+            height: 'auto',
+            objectFit: 'contain'
+          }}
+        />
+      </>
+    )}
+    
+    {/* タイトル部分はそのまま、画像の下に配置されます */}
+    <div class="entry-title" itemprop="name">
+      <div>
+        <h1 id={content.state || content.trigger}>
+          {entry.collection === 'state-controllers' 
+            ? `Type = ${content.state}` 
+            : content.trigger
+          }
+        </h1>
+        {content.page.category && (
+          <div class="category">
+            {content.page.category.join(' > ')}
+            {(content.page.version || content.page.target) && ' | '}
+            {content.page.version && `実装されたバージョン: ${content.page.version}`}
+            {content.page.version && content.page.target && ' | '}
+            {content.page.target && `対象: ${content.page.target}`}
           </div>
-        </div>
-      </header>
+        )}
+      </div>
+    </div>
+  </div>
+</header>
 
       <!-- メインコンテンツ部分 -->
       <div class="entry-content">

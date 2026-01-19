@@ -1,48 +1,118 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Exp",
-        "target": "数学",
-        "category": [
-            "数値計算",
-            "自然対数の底eのべき乗計算"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.12.11",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Exp",
+    "target": "",
+    "category": [
+      "数値計算",
+      "自然対数の底eのべき乗計算"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.19",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "Exp",
+  "category": "trigger",
+  "trigger": "Exp",
+  "description": "<p><code>e</code> を底とする指数関数（<code>e^x</code>）を返します。</p>",
+  "syntax": [
+    "Exp(exprn)"
+  ],
+  "associated_trigger": [
+    "E",
+    "Ln",
+    "Log",
+    "Random",
+    "Floor"
+  ],
+  "parameter": [
+    {
+      "parameter": "exprn",
+      "type": [
+        "float"
+      ],
+      "description": "<p>指数の値（<code>x</code>）を指定します。整数式も指定できますが、計算自体は浮動小数点として扱う前提で組むのが安全です。</p><p>戻り値の型: float</p>",
+      "parameter_type": "required"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "E ** exprn と Exp(exprn) の違い",
+      "description": "<p>同等の式として <code>E ** exprn</code> でも書けますが、<code>Exp(exprn)</code> の方が指数関数専用の実装を直接使えるため、繰り返し評価される数式では精度面で有利だと説明されます。</p>",
+      "code": [
+            "; E ** 2 は 7.389056",
+            "; Exp(2.0)-(E ** 2.0) は 0.000000",
+            "; Exp(2.0)=(E ** 2.0) は False",
+            "; Exp(10.0)-(E ** 10.0) は0.005859",
+            "[State ]",
+            "Type = DisplayToClipboard",
+            "Trigger1 = 1",
+            "text = \"E ** 2=%f, Exp(10.0)-(E ** 10.0)=%f, Exp(2.0)-(E ** 2.0)=%f, Exp(2.0)=(E ** 2.0)=%d\"",
+            "params = E ** 2, Exp(10.0)-(E ** 10.0), Exp(2.0)-(E ** 2.0), Exp(2.0)=(E ** 2.0)"
+        ]
     },
-    "category": "trigger",
-    "trigger": "Exp",
-    "summary": "<p>ネイピア数（オイラー数）のべき乗(E<sup>x</sup>)を返します。</p>",
-    "syntax": [
-        "Exp(引数)"
-    ],
-    "description": "ネイピア数（オイラー数）のべき乗(E<sup>x</sup>)を返します。<br>引数には、eの乗数をfloatで指定します。e**引数と書いても同じです。<br>戻り値の型: float",
-    "code_sample": [
-        {
-            "title": "valueにeの\"4-var(0)\"乗を代入します。",
-            "code": [
-                "value = exp(4-var(0))"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Exp - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Exp"
-        },
-        {
-            "title": "Exp - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#exp-math"
-        },
-        {
-            "title": "Exp - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#exp-math"
-        },
-        {
-            "title": "Exp - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Exp"
-        }
-    ]
+    {
+      "title": "指数カーブの挙動デモ（減衰と追従のイメージ）",
+      "description": "<p>下のミニデモは、指数減衰 <code>e^{-kt}</code>（値が毎フレーム一定割合で減る）と、目標値へ指数的に近づく動き（追従スムージング）を視覚化したものです。<code>k</code> を上げるほど「早く落ち着く」カーブになります。</p><iframe sandbox='allow-scripts' referrerpolicy='no-referrer' style='width:100%;max-width:640px;height:240px;border:1px solid #444;border-radius:10px;overflow:hidden;' srcdoc=\"<!doctype html><meta charset='utf-8'><style>html,body{margin:0;background:#111;color:#ddd;font:12px/1.4 system-ui,Segoe UI,Meiryo,sans-serif}#w{padding:10px}#r{display:flex;gap:10px;align-items:center;flex-wrap:wrap}label{display:flex;gap:6px;align-items:center}input[type=range]{width:160px}canvas{width:100%;height:150px;display:block;background:#0b0b0b;border:1px solid #333;border-radius:8px}#m{opacity:.9}code{background:#1a1a1a;border:1px solid #333;border-radius:6px;padding:1px 4px}</style><div id='w'><div id='r'><label>k<input id='k' type='range' min='0.05' max='30' step='0.05' value='0.30'></label><label>mode<select id='mode'><option value='decay'>decay e^{-kt}</option><option value='follow'>follow to target</option></select></label><span id='m'></span></div><canvas id='c' width='620' height='150'></canvas><div style='margin-top:8px;opacity:.9'>MUGEN的な読み替え: 毎フレーム、<code>value = value * Exp(-k)</code>（減衰） / <code>value = target + (value-target)*Exp(-k)</code>（追従）</div></div><script>(function(){var kEl=document.getElementById('k');var modeEl=document.getElementById('mode');var msg=document.getElementById('m');var cv=document.getElementById('c');var g=cv.getContext('2d');var t0=performance.now();function E(x){return Math.exp(x)}function draw(){var k=parseFloat(kEl.value);var mode=modeEl.value;var t=(performance.now()-t0)/1000;g.clearRect(0,0,cv.width,cv.height);g.fillStyle='#0b0b0b';g.fillRect(0,0,cv.width,cv.height);g.strokeStyle='#2b2b2b';g.lineWidth=1;for(var i=0;i<=10;i++){var x=i*cv.width/10;g.beginPath();g.moveTo(x,0);g.lineTo(x,cv.height);g.stroke()}for(var j=0;j<=5;j++){var y=j*cv.height/5;g.beginPath();g.moveTo(0,y);g.lineTo(cv.width,y);g.stroke()}g.lineWidth=2;g.strokeStyle='#6cf';g.beginPath();var yNow=0;var xNow=0;for(var px=0;px<=cv.width;px++){var tt=px/cv.width*3.0;var y;if(mode==='decay'){y=E(-k*tt)}else{var start=0.1,target=1.0;y=target+(start-target)*E(-k*tt)}var py=(1-y)*(cv.height-20)+10;if(px===0)g.moveTo(px,py);else g.lineTo(px,py);if(tt>t%3.0 && xNow===0){xNow=px;yNow=py}}g.stroke();g.fillStyle='#fff';g.beginPath();g.arc(xNow,yNow,4,0,Math.PI*2);g.fill();var val;if(mode==='decay'){val=E(-k*(t%3.0))}else{val=1.0+(0.1-1.0)*E(-k*(t%3.0))}msg.textContent='k='+k.toFixed(2)+'  value='+val.toFixed(3);requestAnimationFrame(draw)}kEl.addEventListener('input',function(){t0=performance.now()});modeEl.addEventListener('change',function(){t0=performance.now()});draw()})();</script>\"></iframe>",
+      "code": [
+        "; 例: 毎フレームの指数減衰（概念）",
+        "; FVar(10) = FVar(10) * Exp(-0.10)"
+      ]
+    },
+    {
+      "title": "減衰（摩擦・慣性・揺れの収束）を毎フレーム一定割合で行う",
+      "description": "<p>値が「毎フレーム、一定割合で減る」挙動になります。線形減算より自然にゼロへ近づきます（例: 速度、揺れ強度、補正量など）。</p>",
+      "code": [
+        "[State -2, ExponentialDecay]",
+        "Type = VarSet",
+        "Trigger1 = 1",
+        "FVar(10) = FVar(10) * Exp(-0.10)"
+      ]
+    },
+    {
+      "title": "目標値へスムージング追従（追尾・表示ゲージの追従など）",
+      "description": "<p>現在値が目標に近づくほど変化が小さくなり、指数的に「スッ」と追従します。<code>k</code> を大きくすると追従が速くなります。</p>",
+      "code": [
+        "; FVar(20)=現在値, FVar(21)=目標値",
+        "[State -2, FollowToTarget]",
+        "Type = VarSet",
+        "Trigger1 = 1",
+        "FVar(20) = FVar(21) + (FVar(20) - FVar(21)) * Exp(-0.20)"
+      ]
+    },
+    {
+      "title": "イージング（フェード等を自然な曲線で収束させる）",
+      "description": "<p>線形フェードより「最初速く、後でゆっくり」にしやすい代表例です。表示用の整数値に落とすため <code>Floor</code> を併用します。</p>",
+      "code": [
+        "; Var(30)=表示アルファ(0..255) を 255へ指数的に近づける",
+        "[State -2, EaseAlpha]",
+        "Type = VarSet",
+        "Trigger1 = 1",
+        "Var(30) = Floor(255 + (Var(30) - 255) * Exp(-0.25))"
+      ]
+    },
+    {
+      "title": "確率の重み付け（時間経過で起きにくくする例）",
+      "description": "<p>序盤だけ起きやすく、その後すぐ起きにくくする等の「性格付け」をカーブで作れます。<code>Random</code> は 0〜999 のため、比較側も 0〜999 へ収めると扱いやすいです。</p>",
+      "code": [
+        "; Time が増えるほど閾値が小さくなり、発生率が下がる",
+        "Trigger1 = Random < Floor(1000 * Exp(-0.05 * Time))"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Exp - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Exp"
+    },
+    {
+      "title": "Exp - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#exp-math"
+    },
+    {
+      "title": "Exp - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#exp-math"
+    }
+  ]
 }

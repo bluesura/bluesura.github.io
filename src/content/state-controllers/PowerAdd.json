@@ -56,6 +56,9 @@
       ]
     }
   ],
+	"version": [
+		{"no": "仕様", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}
+	],
   "sample_code": {
     "code": [
       "[State 0, PowerAdd]",

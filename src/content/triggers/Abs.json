@@ -1,83 +1,75 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Abs",
-        "target": "",
-        "category": [
-            "数値計算",
-            "絶対値の計算"
-        ],
-        "version": "2002.04.14",
-        "update": "2025.11.13",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Abs",
+    "category": [
+      "数値計算",
+      "絶対値の計算"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.14",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "Abs",
+  "category": "trigger",
+  "trigger": "Abs",
+  "description": "<p><code>exprn</code> の絶対値を返します。</p><p>戻り値の型は引数の評価結果に従います（整数なら整数、浮動小数点なら浮動小数点）。</p>",
+  "syntax": [
+    "Abs(exprn)"
+  ],
+  "associated_trigger": [
+    "Floor",
+    "Ceil"
+  ],
+  "version": [
+    {
+      "no": "2002.04.14",
+      "content": "<p><code>exprn</code> が <code>SFalse</code> の場合は <code>SFalse</code> を返します。</p>"
     },
-    "category": "trigger",
-    "trigger": "Abs",
-    "summary": "<p>xの絶対値を返します。</p>",
-    "syntax": [
-        "Abs(exprn)"
-    ],
-    "description": "引数の絶対値を返します。",
-    "associated_trigger": [
-        "Floor",
-        "Ceil"
-    ],
-    "version": [
-        {"no": "2002年頃の古いMUGEN", "content": "exprnがSFalseを評価した場合、SFalseを返します。"},
-        {"no": "MUGEN 1.0/1.1", "content": "exprnがbottomを評価した場合、bottomを返します。"}
-    ],
-    "parameter": [
-        {
-            "parameter": "exprn",
-            "type": [
-                "定数や変数、他のトリガー、関数、演算子"
-            ],
-            "description": "絶対値を計算したい値を指定します。<br>戻り値の型 引数として与えられた式の結果と同じ型（整数型または浮動小数点型）が返されます。",
-            "min_value": [
-                ""
-            ],
-            "max_value": [
-                ""
-            ]
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "プレイヤーと近くの敵プレイヤーとのX座標の距離を求める。",
-            "description": "<p>特定の座標や位置からの距離を求めたい場合に使用されます。方向（左か右か、上か下か）を無視して、その差の絶対値を取ることで距離が得られます。</p>",
-            "code": [
-                "abs(Pos X - Enemy,Pos X)"
-            ]
-        },
-        {
-            "title": "三角波の生成",
-            "description": "<p>15 -> 0 -> 15と変化する三角波のようなパターンとなり、滑らかで周期的なアニメーションやエフェクト（点滅、振動、色変化など）などに使えます。</p>",
-            "code": [
-                "abs(15 - (GameTime % 30))"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Abs - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Abs"
-        },
-        {
-            "title": "Abs - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#abs-math"
-        },
-        {
-            "title": "Abs - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#abs-math"
-        },
-        {
-            "title": "Abs - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Abs"
-        },
-        {
-            "title": "Abs - MUGEN CNS WIKI CHAOS@予定",
-            "url": "http://www49.atwiki.jp/mugencns/pages/52.html"
-        }
-    ]
+    {
+      "no": "MUGEN 1.0/1.1",
+      "content": "<p>式が評価不能の場合は <code>bottom</code> を返します。</p>"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "exprn",
+      "type": [
+        "定数や変数、他のトリガー、関数、演算子"
+      ],
+      "description": "<p>絶対値を計算したい式を指定します（整数も指定可能）。</p><p>戻り値は <code>exprn</code> の評価結果と同じ型になります。</p>",
+      "parameter_type": "required"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "左右方向を無視して距離判定（符号を消す）",
+      "description": "<p><code>P2Dist X</code> の符号（左右）を無視して距離として扱いたい場合に使います。</p>",
+      "code": [
+        "Trigger1 = Abs(P2Dist X) < 40"
+      ]
+    },
+    {
+      "title": "三角波っぽい値を作る（点滅・振動などの素材）",
+      "description": "<p>0〜15〜0…のような往復パターンを作り、周期的な演出に使います（<code>GameTime</code> はゲーム開始からの経過フレーム）。</p>",
+      "code": [
+        "Var(0) = Abs(15 - (GameTime % 30))"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Abs - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Abs"
+    },
+    {
+      "title": "Abs - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#abs-math"
+    },
+    {
+      "title": "Abs - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#abs-math"
+    }
+  ]
 }

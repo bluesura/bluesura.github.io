@@ -1,58 +1,90 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Ln",
-        "target": "数学",
-        "category": [
-            "数値計算",
-            "自然対数の計算"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.12.11",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Ln",
+    "target": "",
+    "category": [
+      "数値計算",
+      "自然対数の計算"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.20",
+    "type": "document",
+    "level": "3"
+  },
+  "category": "trigger",
+  "trigger": "Ln",
+  "description": "<p><code>Ln(exprn)</code> は、引数の自然対数（底 <code>e</code>）を返します。</p><p><code>Log(E, exprn)</code> と同等の計算ですが、<code>Ln</code> の方がわずかに精度面で有利とされています。</p><p>格ゲーの毎フレーム評価される数式では、「値の増え方を鈍らせて圧縮する（ログスケール）」「指数（<code>Exp</code>）を扱う式の逆変換（係数の逆算・倍率補間）」などに使うと実用的です。</p><p>戻り値の型: float</p>",
+  "syntax": [
+    "Ln(exprn)"
+  ],
+  "associated_trigger": [
+    "Exp",
+    "Log",
+    "E",
+    "Abs",
+    "Floor",
+    "Ceil"
+  ],
+  "version": [
+    {
+      "no": "2002.04.14",
+      "content": "<p>0以下など定義域外の場合、評価不能値（<code>SFalse</code>）として扱われます。</p>"
     },
-    "category": "trigger",
-    "trigger": "Ln",
-    "summary": "<p>引数の自然対数を返します。</p>",
-    "syntax": [
-        "Ln(引数)"
-    ],
-    "description": "引数の自然対数を返します。<br>自然対数は底(てい)をネピア数Eとする対数です。<br>引数には、0より大きいfloatで指定します。<br>戻り値の型: float",
-    "version": [
-        {
-            "no": "WARNING",
-            "content": "TOOK LN OF A NON-POSITIVE NUMBER: 引数に0より大きい値を入れて下さい"
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "ステートの経過時間の自然対数をvalueに代入",
-            "code": [
-                "value = Ln(Time)"
-            ]
-        }
-    ],
-    "associated_trigger": [
-        "E",
-        "Log"
-    ],
-    "quote": [
-        {
-            "title": "Ln - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Ln"
-        },
-        {
-            "title": "Ln - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ln-math"
-        },
-        {
-            "title": "Ln - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ln-math"
-        },
-        {
-            "title": "Ln - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Ln"
-        }
-    ]
+    {
+      "no": "MUGEN 1.0/1.1",
+      "content": "<p>0以下など定義域外の場合、<code>bottom</code> を返します。</p>"
+    },
+    {
+        "no": "警告メッセージ",
+        "content": "TOOK LN OF A NON-POSITIVE NUMBER: 引数に0より大きい値を入れて下さい"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "exprn",
+      "type": [
+        "定数や変数、他のトリガー、関数、演算子"
+      ],
+      "description": "<p>自然対数を計算したい値を指定します（floatとして評価されます）。</p><p><b>制約:</b> 0より大きい値が必要です。毎フレームの式では、<code>Time + 1</code> や <code>Abs(P2Dist X) + 1</code> のように <code>+ 1</code> して安全域を作るのが定番です。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "時間の伸びが鈍るカウント（ログスケール）",
+      "description": "<p><code>Time</code> のように増え続ける値を、そのまま使うと増加が速すぎる場面があります。<code>Ln(Time + 1)</code> を使うと、序盤はよく変化し、後半ほど伸びが鈍るカーブになります（演出の収束、UI表示値の圧縮、AIの重み付けなど）。</p><iframe sandbox='allow-scripts' referrerpolicy='no-referrer' style='width:100%;max-width:760px;height:250px;border:1px solid #ddd;border-radius:10px;overflow:hidden;' title='Ln(Time+1) の挙動イメージ' srcdoc=\"<!doctype html><html><head><meta charset='utf-8'><style>html,body{margin:0;height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;}#w{padding:10px}canvas{width:100%;height:170px;display:block;background:#fff}#ui{display:flex;gap:10px;align-items:center;margin-top:8px}input[type=range]{flex:1}#t{font-size:12px;opacity:.85}</style></head><body><div id='w'><canvas id='c' width='740' height='170'></canvas><div id='ui'><span id='t'>Time</span><input id='r' type='range' min='0' max='240' value='0'><span id='v' style='min-width:170px;text-align:right;font-size:12px'></span></div><script>(()=>{const cv=document.getElementById('c'),ctx=cv.getContext('2d');const r=document.getElementById('r'),v=document.getElementById('v');let a=0;const W=cv.width,H=cv.height;const pad=38;const xMax=240;function mapX(x){return pad+(W-pad-10)*(x/xMax)}function mapY(y,yMax){return (H-24)-(H-pad-24)*(y/yMax)}function draw(x){ctx.clearRect(0,0,W,H);ctx.lineWidth=1;ctx.strokeStyle='#999';ctx.beginPath();ctx.moveTo(pad,12);ctx.lineTo(pad,H-24);ctx.lineTo(W-10,H-24);ctx.stroke();const yMaxLn=Math.log(xMax+1);const yMaxLin=xMax/60;const yMax=Math.max(yMaxLn,yMaxLin);ctx.strokeStyle='#333';ctx.beginPath();for(let i=0;i<=xMax;i++){const y=Math.log(i+1);const X=mapX(i),Y=mapY(y,yMax);if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);}ctx.stroke();ctx.strokeStyle='#777';ctx.beginPath();for(let i=0;i<=xMax;i++){const y=i/60;const X=mapX(i),Y=mapY(y,yMax);if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);}ctx.stroke();const ln=Math.log(x+1);const lin=x/60;const X=mapX(x);ctx.fillStyle='#111';ctx.beginPath();ctx.arc(X,mapY(ln,yMax),4,0,Math.PI*2);ctx.fill();ctx.fillStyle='#666';ctx.beginPath();ctx.arc(X,mapY(lin,yMax),4,0,Math.PI*2);ctx.fill();ctx.fillStyle='#000';ctx.font='12px system-ui, sans-serif';ctx.fillText('Ln(Time+1)',pad+6,18);ctx.fillStyle='#666';ctx.fillText('Linear (Time/60)',pad+96,18);v.textContent=`Time=${x} / Ln(Time+1)=${ln.toFixed(3)} / Linear=${lin.toFixed(3)}`;}function step(){a=(a+1)%(xMax+1);r.value=a;draw(a);requestAnimationFrame(step);}r.addEventListener('input',()=>{a=+r.value;draw(a)});draw(0);requestAnimationFrame(step);})();</script></div></body></html>\"></iframe><p>グラフは <b>黒</b> が <code>Ln(Time+1)</code>、<b>灰</b> が線形（<code>Time/60</code>）です。黒は後半ほど伸びが鈍り、値の圧縮に向くことが視覚的に分かります。</p>",
+      "code": [
+        "FVar(0) = Ln(Time + 1.0)",
+        "Var(0) = Floor(20.0 * Ln(Time + 1.0))"
+      ]
+    },
+    {
+      "title": "「30フレームで10%まで落とす」減衰係数をLnで逆算する",
+      "description": "<p>指数減衰（毎フレーム一定割合で減る）を作るとき、<code>r</code>（最終比率）と <code>t</code>（到達フレーム数）から、1フレームあたりの係数を <code>Exp(Ln(r)/t)</code> で作れます。</p><p>この例は「30フレーム後に値が10%になる」減衰です（<code>Ln(0.10)</code> は負になります）。</p>",
+      "code": [
+        "FVar(10) = FVar(10) * Exp(Ln(0.10) / 30.0)"
+      ]
+    },
+    {
+      "title": "距離をログで圧縮して、遠距離ほど効きにくくする重み",
+      "description": "<p>距離に応じて威力・吸い込み・AI評価などを落とす際、距離をそのまま使うと変化が急になりがちです。<code>Ln(距離+1)</code> で距離を圧縮し、遠距離側の変化を鈍らせると調整がしやすくなります。</p>",
+      "code": [
+        "FVar(20) = 1.0 / (1.0 + Ln(Abs(P2Dist X) + 1.0))"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Ln - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Ln"
+    },
+    {
+      "title": "Ln - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ln-math"
+    },
+    {
+      "title": "Ln - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ln-math"
+    }
+  ]
 }

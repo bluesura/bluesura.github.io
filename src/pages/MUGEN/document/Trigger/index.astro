@@ -33,7 +33,7 @@ const description = "MUGENのTrigger（トリガー）の一覧です。";
           return (
             <div class="section">
               <h2><a href={`/MUGEN/document/Trigger/${entry.id}.html`}>{content.trigger}</a></h2>
-              <div set:html={content.summary}></div>
+              <div set:html={content.description}></div>
               {content.syntax && (
                 <div class="code" contenteditable="true">
                   <ul>

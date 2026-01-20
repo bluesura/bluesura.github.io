@@ -1,58 +1,103 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Log",
-        "target": "数学",
-        "category": [
-            "数値計算",
-            "対数計算"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.12.11",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Log",
+    "target": "数学",
+    "category": [
+      "数値計算",
+      "対数計算"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.20",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "Log",
+  "category": "trigger",
+  "trigger": "Log",
+  "description": "<p><code>Log(base, exprn)</code> は、指定した底 <code>base</code> による対数（<code>log_base(exprn)</code>）を返します。</p><p>自然対数（<code>Ln</code>）との関係は <code>Log(base, x) = Ln(x) / Ln(base)</code> です。特に <code>Log(E, x)</code> は <code>Ln(x)</code> と同等です。</p><p>格ゲーの毎フレーム評価される数式では、底を選べることを活かして「段階化（底2＝2倍ごとの段階）」「桁感覚の圧縮（底10＝大きい数値の表示・演出を圧縮）」「指数挙動の設計（Ln/Expと組み合わせて係数を決める）」に使うと調整が直感的になります。</p><p>戻り値の型: float</p>",
+  "syntax": [
+    "Log(base, exprn)"
+  ],
+  "associated_trigger": [
+    "Ln",
+    "Exp",
+    "E",
+    "Floor",
+    "Ceil",
+    "Abs"
+  ],
+  "version": [
+    {
+        "no": "警告メッセージ",
+        "content": "TOOK LOG WITH A NON-POSITIVE BASE OR ARGUMENT.: 底・引数に0より大きい値を入れて下さい"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "base",
+      "type": [
+        "float"
+      ],
+      "description": "<p>対数の底を指定します。</p><ul><li>0より大きい値が必要です。</li><li><code>1</code> は使用できません（対数が定義できません）。</li></ul><p>用途の定番は <code>2</code>（2倍ごとの段階）や <code>10</code>（桁感覚の圧縮）、<code>E</code>（自然対数相当）です。</p>",
+      "parameter_type": "required"
     },
-    "category": "trigger",
-    "trigger": "Log",
-    "summary": "<p>指定値の対数を返します。</p>",
-    "syntax": [
-        "Log(底, 引数)"
-    ],
-    "description": "指定値の対数を返します。<br>底には、対数の底を0より大きいfloatで指定します。引数には、0より大きいfloatで指定します。<br>戻り値の型: float",
-    "version": [
-        {
-            "no": "WARNING",
-            "content": "TOOK LOG WITH A NON-POSITIVE BASE OR ARGUMENT.: 底・引数に0より大きい値を入れて下さい"
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "2を底とした64の対数(=6)をvalueに代入",
-            "code": [
-                "value = Log(2, 64)"
-            ]
-        }
-    ],
-    "associated_trigger": [
-        "E",
-        "Ln"
-    ],
-    "quote": [
-        {
-            "title": "Log - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Log"
-        },
-        {
-            "title": "Log - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#log-math"
-        },
-        {
-            "title": "Log - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#log-math"
-        },
-        {
-            "title": "Log - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Log"
-        }
-    ]
+    {
+      "parameter": "exprn",
+      "type": [
+        "float"
+      ],
+      "description": "<p>対数を取りたい値を指定します。</p><p>0より大きい値が必要です。距離や時間など「0になり得る値」は <code>+1</code> を足してから使うのが安全です。</p>",
+      "parameter_type": "required"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "対数（底2/底10）の挙動デモ（段階化と圧縮のイメージ）",
+      "description": "<p>下のミニデモは <code>Log(2, x)</code>（2倍ごとに+1の感覚）と <code>Log(10, x)</code>（桁感覚の圧縮）を同じグラフに描画し、<code>x</code> の増加に対する伸び方の違いを視覚化します。</p><p>このデモは <code>&lt;iframe sandbox='allow-scripts'&gt;</code> に閉じ込めてあり、外部資源を読まず、親ページへ干渉もしません。</p><iframe sandbox='allow-scripts' referrerpolicy='no-referrer' style='width:100%;max-width:780px;height:260px;border:1px solid #444;border-radius:10px;overflow:hidden;' title='Log(base,x) demo' srcdoc=\"<!doctype html><meta charset='utf-8'><style>html,body{margin:0;background:#111;color:#ddd;font:12px/1.4 system-ui,Segoe UI,Meiryo,sans-serif}#w{padding:10px}#row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}label{display:flex;gap:6px;align-items:center}input[type=range]{width:220px}select{background:#1a1a1a;color:#ddd;border:1px solid #333;border-radius:6px;padding:2px 6px}canvas{width:100%;height:170px;display:block;background:#0b0b0b;border:1px solid #333;border-radius:8px}#v{margin-left:auto;opacity:.9}code{background:#1a1a1a;border:1px solid #333;border-radius:6px;padding:1px 4px}</style><div id='w'><div id='row'><label>x<input id='x' type='range' min='1' max='512' value='1'></label><label>auto<input id='a' type='checkbox' checked></label><label>speed<select id='s'><option value='1'>1x</option><option value='2'>2x</option><option value='4'>4x</option></select></label><span id='v'></span></div><canvas id='c' width='760' height='170'></canvas><div style='margin-top:8px;opacity:.9'>式: <code>Log(base,x)=Ln(x)/Ln(base)</code> / 例: <code>Floor(Log(2, Abs(P2Dist X)+1))</code>（距離段階）</div></div><script>(function(){var cv=document.getElementById('c'),g=cv.getContext('2d');var xEl=document.getElementById('x'),aEl=document.getElementById('a'),sEl=document.getElementById('s'),vEl=document.getElementById('v');var W=cv.width,H=cv.height,padL=44,padB=26,padT=10,padR=10;var xMax=512;function logb(b,x){return Math.log(x)/Math.log(b)}function mapX(x){return padL+(W-padL-padR)*(x-1)/(xMax-1)}function mapY(y,yMax){return (H-padB)-(H-padT-padB)*(y/yMax)}function draw(x){g.clearRect(0,0,W,H);g.fillStyle='#0b0b0b';g.fillRect(0,0,W,H);g.strokeStyle='#2b2b2b';g.lineWidth=1;for(var i=0;i<=10;i++){var xx=padL+(W-padL-padR)*i/10;g.beginPath();g.moveTo(xx,padT);g.lineTo(xx,H-padB);g.stroke()}for(var j=0;j<=5;j++){var yy=padT+(H-padT-padB)*j/5;g.beginPath();g.moveTo(padL,yy);g.lineTo(W-padR,yy);g.stroke()}g.strokeStyle='#888';g.beginPath();g.moveTo(padL,padT);g.lineTo(padL,H-padB);g.lineTo(W-padR,H-padB);g.stroke();var yMax=logb(2,xMax);g.lineWidth=2;g.strokeStyle='#6cf';g.beginPath();for(var xi=1;xi<=xMax;xi++){var y=logb(2,xi);var X=mapX(xi),Y=mapY(y,yMax);if(xi===1)g.moveTo(X,Y);else g.lineTo(X,Y)}g.stroke();g.strokeStyle='#fc6';g.beginPath();for(var xj=1;xj<=xMax;xj++){var y2=logb(10,xj);var X2=mapX(xj),Y2=mapY(y2,yMax);if(xj===1)g.moveTo(X2,Y2);else g.lineTo(X2,Y2)}g.stroke();var Xp=mapX(x);g.fillStyle='#fff';g.beginPath();g.arc(Xp,mapY(logb(2,x),yMax),4,0,Math.PI*2);g.fill();g.fillStyle='#fff';g.beginPath();g.arc(Xp,mapY(logb(10,x),yMax),4,0,Math.PI*2);g.fill();g.fillStyle='#ddd';g.font='12px system-ui, sans-serif';g.fillText('Log(2,x)',padL+6,padT+14);g.fillStyle='#ddd';g.fillText('Log(10,x)',padL+78,padT+14);vEl.textContent='x='+x+'  Log2='+logb(2,x).toFixed(3)+'  Log10='+logb(10,x).toFixed(3)+'  (Floor(Log2)='+Math.floor(logb(2,x))+')'}var t=0;function step(){if(aEl.checked){t=(t+parseInt(sEl.value,10))%(xMax-1);var x=1+t;xEl.value=x;draw(x)}requestAnimationFrame(step)}xEl.addEventListener('input',function(){aEl.checked=false;draw(parseInt(xEl.value,10))});draw(1);requestAnimationFrame(step)})();</script>\"></iframe><p>実装の読み替えとしては、<code>Log(2, 値)</code> は「値が2倍になるたびに+1」なので段階化に向き、<code>Log(10, 値)</code> は大きい数値の圧縮（桁感覚）に向きます。</p>",
+      "code": [
+        "; 例: 段階化の基本（2倍ごとに段階が上がる）",
+        "Var(0) = Floor(Log(2.0, Time + 1.0))"
+      ]
+    },
+    {
+      "title": "距離レンジの段階化（底2）",
+      "description": "<p><code>Log(2, d)</code> は <code>d</code> が2倍になるたびに1増えるため、距離・速度・スケールなど“倍々”の世界を段階化しやすいです。距離が0になり得るので <code>+1</code> して安全化します。</p>",
+      "code": [
+        "; 0:近距離 / 1:中距離 / 2:遠距離... のような分類に使う",
+        "Var(10) = Floor(Log(2.0, Abs(P2Dist X) + 1.0))"
+      ]
+    },
+    {
+      "title": "大きい数値の圧縮（底10）",
+      "description": "<p>ダメージ量やスコア、演出強度などの“大きい数値”をそのまま使うと破綻しやすい場合、<code>Log(10, x)</code> で桁感覚に圧縮すると調整しやすくなります。</p>",
+      "code": [
+        "; 例: 大ダメージほど伸びが鈍る演出強度（xは正にする）",
+        "FVar(20) = Log(10.0, Var(30) + 1.0)"
+      ]
+    },
+    {
+      "title": "同一行動の連発抑制（クールダウン的な重み）",
+      "description": "<p>連発回数が増えるほど抑制は強くなるが、無限に急減はさせたくない場合に、ログ圧縮が効きます。序盤の効きが強く、後半ほど鈍ります。</p>",
+      "code": [
+        "; Var(50)=連発カウンタ（0以上）",
+        "; weight は 1→0へゆっくり落ちる（必要ならClampする）",
+        "FVar(30) = 1.0 / (1.0 + Log(2.0, Var(50) + 1.0))"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Log - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Log"
+    },
+    {
+      "title": "Log - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#log-math"
+    },
+    {
+      "title": "Log - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#log-math"
+    }
+  ]
 }

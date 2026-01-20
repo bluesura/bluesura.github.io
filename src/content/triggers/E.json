@@ -1,92 +1,132 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "E",
-        "target": "数学",
-        "category": [
-            "定数",
-            "自然対数の底は？"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.12.11",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "E",
+    "target": "",
+    "category": [
+      "定数",
+      "自然対数の底"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.20",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "E",
+  "category": "trigger",
+  "trigger": "E",
+  "description": "<p><code>E</code> は自然対数の底 <code>e</code>（ネイピア数）を返す定数です。</p><p>戻り値の型: <code>float</code></p><p><code>E</code> 単体は定数ですが、<code>E ** x</code> で「<code>e</code> を底にしたべき乗」を作れます。指数関数を直接求めたい場合は <code>Exp(x)</code> を使います。</p>",
+  "syntax": [
+    "E"
+  ],
+  "associated_trigger": [
+    "Exp",
+    "Ln",
+    "Log"
+  ],
+  "code_sample": [
+    {
+        "title": "Eは計算によって値がぶれる",
+        "code": [
+            "[State ]",
+            "Type = Null",
+            "",
+            ";2.718282",
+            "Trigger1 = E",
+            "",
+            ";27.182817",
+            "Trigger1 = E*10",
+            "",
+            ";271.828186",
+            "Trigger1 = E*100",
+            "",
+            ";2718.281738",
+            "Trigger1 = E*1000",
+            "",
+            ";27182.818359",
+            "Trigger1 = E*10000",
+            "",
+            ";271828.187500",
+            "Trigger1 = E*100000",
+            "",
+            ";2718281.750000",
+            "Trigger1 = E*1000000",
+            "",
+            ";27182818.000000",
+            "Trigger1 = E*10000000",
+            "",
+            ";271828160.000000",
+            "Trigger1 = E*100000000",
+            "",
+            ";2718281728.000000",
+            "Trigger1 = E*1000000000",
+            "",
+            ";5837465600.000000",
+            "Trigger1 = E*10000000000",
+            "",
+            ";7.389056",
+            "Trigger1 = E*E"
+        ]
     },
-    "category": "trigger",
-    "trigger": "E",
-    "summary": "<p>ネピア数(自然対数の底)を返します。</p>",
-    "syntax": [
-        "E"
-    ],
-    "description": "ネピア数(自然対数の底)を返します。<br>定数を返します。<br>戻り値の型: float",
-    "code_sample": [
-        {
-            "title": "Eは計算によって、なぜか違う値を返してきます",
-            "code": [
-                "[State ]",
-                "Type = Null",
-                "",
-                ";2.718282",
-                "Trigger1 = E",
-                "",
-                ";27.182817",
-                "Trigger1 = E*10",
-                "",
-                ";271.828186",
-                "Trigger1 = E*100",
-                "",
-                ";2718.281738",
-                "Trigger1 = E*1000",
-                "",
-                ";27182.818359",
-                "Trigger1 = E*10000",
-                "",
-                ";271828.187500",
-                "Trigger1 = E*100000",
-                "",
-                ";2718281.750000",
-                "Trigger1 = E*1000000",
-                "",
-                ";27182818.000000",
-                "Trigger1 = E*10000000",
-                "",
-                ";271828160.000000",
-                "Trigger1 = E*100000000",
-                "",
-                ";2718281728.000000",
-                "Trigger1 = E*1000000000",
-                "",
-                ";5837465600.000000",
-                "Trigger1 = E*10000000000",
-                "",
-                ";7.389056",
-                "Trigger1 = E*E"
-            ]
-        }
-    ],
-    "associated_trigger": [
-        "Exp"
-    ],
-    "quote": [
-        {
-            "title": "E - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#E"
-        },
-        {
-            "title": "E - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#e-math"
-        },
-        {
-            "title": "E - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#e-math"
-        },
-        {
-            "title": "E - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/E"
-        },
-        {
-            "title": "E - MUGEN CNS WIKI CHAOS@予定",
-            "url": "https://www49.atwiki.jp/mugencns/pages/117.html"
-        }
-    ]
+    {
+      "title": "Eを底にした指数減衰（毎フレーム一定割合で減る）",
+      "description": "<p>毎フレーム <code>係数 = E ** (-k)</code> を掛けると、値は指数的に0へ近づきます（減衰）。</p><p>下のアニメーションは「指数減衰（<code>e^{-kt}</code>）」と「線形減少」の違いを同じ初期値で比較します。</p><iframe sandbox='allow-scripts' style='width:100%;max-width:560px;height:260px;border:1px solid #bbb;border-radius:10px;display:block' srcdoc='<!doctype html><html><head><meta charset=utf-8><style>html,body{margin:0;padding:0;background:#fff;font-family:system-ui,sans-serif}*{box-sizing:border-box}.wrap{padding:12px}.top{display:flex;gap:8px;align-items:center;justify-content:space-between}.title{font-size:14px;font-weight:700}.btn{font-size:12px;padding:6px 10px;border:1px solid #999;border-radius:8px;background:#f7f7f7;cursor:pointer}.grid{margin-top:10px;display:grid;gap:10px}.row{display:grid;grid-template-columns:64px 1fr 64px;gap:8px;align-items:center}.lab{font-size:12px;color:#333}.bar{height:14px;border:1px solid #aaa;border-radius:999px;overflow:hidden;background:#fafafa}.fill{height:100%;width:0%}.val{font-variant-numeric:tabular-nums;font-size:12px;text-align:right}.ctrl{margin-top:10px;font-size:12px;color:#333;display:flex;gap:10px;align-items:center;flex-wrap:wrap}input[type=range]{width:220px}</style></head><body><div class=wrap><div class=top><div class=title>指数減衰 v(t)=v0·e^{-kt}（毎フレーム係数を掛ける）</div><button class=btn id=reset>Reset</button></div><div class=grid><div class=row><div class=lab>指数</div><div class=bar><div class=fill id=exp></div></div><div class=val id=expv>0.00</div></div><div class=row><div class=lab>線形</div><div class=bar><div class=fill id=lin></div></div><div class=val id=linv>0.00</div></div></div><div class=ctrl><div>k: <span id=kv></span></div><input id=k type=range min=0.02 max=0.6 step=0.01 value=0.15><div>係数 e^{-k}: <span id=coef></span></div></div></div><script>(function(){const expEl=document.getElementById(`exp`);const linEl=document.getElementById(`lin`);const expV=document.getElementById(`expv`);const linV=document.getElementById(`linv`);const kEl=document.getElementById(`k`);const kV=document.getElementById(`kv`);const coef=document.getElementById(`coef`);const reset=document.getElementById(`reset`);let v0=100;let t=0;let running=true;function fmt(n){return (Math.round(n*100)/100).toFixed(2)}function step(){if(!running)return;const k=Number(kEl.value);kV.textContent=fmt(k);const c=Math.E**(-k);coef.textContent=fmt(c);const vExp=v0*(Math.E**(-k*t));const vLin=Math.max(0,v0-(v0*0.02*t));expEl.style.width=(vExp/v0*100)+`%`;linEl.style.width=(vLin/v0*100)+`%`;expV.textContent=fmt(vExp);linV.textContent=fmt(vLin);t+=1;requestAnimationFrame(step)}reset.addEventListener(`click`,()=>{t=0});kEl.addEventListener(`input`,()=>{t=0});requestAnimationFrame(step)})();</script></body></html>'></iframe>",
+      "code": [
+        "[State -2, 減衰率を事前計算]",
+        "Type = VarSet",
+        "Trigger1 = !Time",
+        "FV = 10",
+        "Value = E ** (-0.10) ; 1フレームあたり約0.9048倍",
+        "",
+        "[State -2, 速度を指数減衰させる]",
+        "Type = VelMul",
+        "Trigger1 = 1",
+        "X = FVar(10)",
+        "Y = FVar(10)"
+      ]
+    },
+    {
+      "title": "自然対数との関係（Ln と Log(E, x)）",
+      "description": "<p>自然対数（底が <code>E</code> の対数）は、<code>Ln(x)</code> と <code>Log(E, x)</code> のどちらでも表せます。</p>",
+      "code": [
+        "[State -2, xを用意]",
+        "Type = VarSet",
+        "Trigger1 = !Time",
+        "FV = 0",
+        "Value = 10.0",
+        "",
+        "[State -2, Ln(x)]",
+        "Type = VarSet",
+        "Trigger1 = !Time",
+        "FV = 1",
+        "Value = Ln(FVar(0))",
+        "",
+        "[State -2, Log(E, x)]",
+        "Type = VarSet",
+        "Trigger1 = !Time",
+        "FV = 2",
+        "Value = Log(E, FVar(0))",
+        "",
+        "[State -2, 表示]",
+        "Type = DisplayToClipboard",
+        "Trigger1 = 1",
+        "Text = \"x=%f | Ln(x)=%f | Log(E,x)=%f\"",
+        "Params = FVar(0), FVar(1), FVar(2)"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "E - Trigger Reference (version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#E"
+    },
+    {
+      "title": "E (math) - Trigger Reference (MUGEN 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#e-math"
+    },
+    {
+      "title": "E (math) - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#e-math"
+    }
+  ]
 }

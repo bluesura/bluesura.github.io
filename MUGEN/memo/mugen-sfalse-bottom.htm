@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MUGENのSFalseとbottomとは？評価不能（エラー）時の挙動・警告・WinMUGEN/1.0/Ikemen GO差分まとめ</title>
+  <style>
+    body { margin: 0; background: #fff; color: #000; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; line-height: 1.7; }
+    main { max-width: 980px; margin: 0 auto; padding: 24px 16px 56px; }
+    h1 { font-size: 1.6rem; margin: 0 0 12px; }
+    h2 { font-size: 1.25rem; margin: 28px 0 8px; }
+    h3 { font-size: 1.05rem; margin: 18px 0 6px; }
+    p, li { font-size: 0.98rem; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Noto Sans Mono CJK JP", monospace; }
+    pre { background: #f6f6f6; padding: 12px; overflow: auto; border: 1px solid #e6e6e6; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+    th { background: #f3f3f3; text-align: left; }
+    .note { background: #fafafa; border: 1px solid #e6e6e6; padding: 12px; }
+    .small { font-size: 0.92rem; color: #111; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>MUGENのSFalseとbottomとは？評価不能（エラー）時の挙動・警告・WinMUGEN/1.0/Ikemen GO差分まとめ</h1>
+
+    <p>
+      MUGENのCNS/CMD式は「整数/実数の計算」だけでなく、トリガの参照（helper/target等のリダイレクト）や数学関数も含みます。
+      その結果、実行時に <strong>評価不能（回復不能エラー）</strong> が起きることがあります。
+      このとき登場するのが、旧系の <strong>SFalse</strong> と、MUGEN 1.0+ 系の <strong>bottom</strong> です。
+    </p>
+
+    <div class="note">
+      <p><strong>結論（運用上の要点）</strong></p>
+      <ul>
+        <li><strong>SFalse（旧）</strong>：評価不能を「SC false」という特殊な偽値として扱い、式評価を継続するための仕組み。</li>
+        <li><strong>bottom（1.0+）</strong>：評価不能を表す“値”として導入された仕組み。式のどこかで発生すると原則として式全体に伝播（ただしIfElse/Condは例外）。</li>
+        <li><strong>安全策</strong>：無効リダイレクト（helper/target不在）や定義域違反が起きうる式は、<strong>存在確認→参照</strong>の順に書く。必要なら<strong>Cond</strong>で危険式を未評価化する。</li>
+        <li><strong>Ikemen GO</strong>：少なくとも一部バージョンで、無効リダイレクトが「bottom相当」ではなく「0扱い」で比較に入る挙動が報告されており、MUGENコードの前提が崩れる可能性がある（後述）。</li>
+      </ul>
+    </div>
+
+    <h2>1. 用語整理：SFalseとbottomは「何を解決するための仕組み」か</h2>
+
+    <h3>SFalse（SC values / Short-Circuit values：旧系）</h3>
+    <p>
+      旧系の式仕様（WinMUGEN世代のexp.doc系）では、評価不能（例：0除算、負数平方根、存在しない対象へのリダイレクト）に遭遇したとき、
+      その場でクラッシュさせず式評価を“完了させる”ために <strong>SC値（STrue / SFalse）</strong> を用いる、と説明されています。
+      SFalseは「エラー起因の偽」として扱われ、以後の演算の結果にも影響します。
+    </p>
+
+    <h3>bottom（MUGEN 1.0+ の「回復不能エラー値」）</h3>
+    <p>
+      MUGEN 1.0+ では、評価不能を表す値として <strong>bottom</strong> が明示されます。
+      代表的な原因は、0除算、負数平方根、無効なトリガリダイレクトです。
+      bottomが式中に出現した場合、原則として式全体がbottomになります（例外：IfElse/Cond）。
+      また、<strong>Condition-type trigger（trigger行の条件式）はbottomを0として扱う</strong>ため、エラー式でtriggerが暴発しない設計になっています。
+    </p>
+
+    <h2>2. 生成原因（網羅カテゴリ）と「どのエンジンで何になるか」</h2>
+    <p class="small">
+      ここでは「特定トリガ個別」ではなく、<strong>評価不能を生む根本カテゴリ</strong>で網羅します（実運用ではこの粒度が最も再現性が高い）。
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>評価不能の根本カテゴリ</th>
+          <th>典型例（式）</th>
+          <th>WinMUGEN/旧仕様の見え方</th>
+          <th>MUGEN 1.0+ の見え方</th>
+          <th>備考（伝播・注意点）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0除算</td>
+          <td><code>1.0 / time</code>（time=0）</td>
+          <td>SFalse（SC false）になり得る</td>
+          <td>bottom</td>
+          <td>多くの場合、警告が出る。IfElseは未使用分岐でも評価して警告が出得る。Condで回避可能。</td>
+        </tr>
+        <tr>
+          <td>数学関数の定義域違反（負数平方根など）</td>
+          <td><code>fvar(0) ** 0.5</code>（fvar(0)=-1）</td>
+          <td>SFalse（SC false）になり得る</td>
+          <td>bottom</td>
+          <td>1.0+ではbottomが式全体へ伝播しやすい（IfElse/Condを除く）。</td>
+        </tr>
+        <tr>
+          <td>数学関数の定義域違反（逆三角・対数など）</td>
+          <td><code>acos(2)</code> / <code>ln(0)</code> など</td>
+          <td>SFalse（または0相当）になり得る</td>
+          <td>bottom（多くの数学トリガは明示的にbottomを返す）</td>
+          <td>「関数のError conditions」に該当。</td>
+        </tr>
+        <tr>
+          <td>無効リダイレクト（helper/target/parent等の不在参照）</td>
+          <td><code>helper(1234), life</code>（helper不在）</td>
+          <td>エラー（旧仕様ではSFalseに落ちる/偽扱いになる前提で書かれがち）</td>
+          <td>bottom（無効リダイレクトはbottomを返す）</td>
+          <td><strong>Condition-type triggerではbottomは0扱い＝発火しない</strong>。ただし「比較式の形」次第でエンジン差が出やすい（Ikemen注意）。</td>
+        </tr>
+        <tr>
+          <td>不正な参照（例：存在しないアニメ要素番号など）</td>
+          <td><code>AnimElem = 999</code>（要素が存在しない）</td>
+          <td>旧仕様では“エラー時の偽/0”前提で書かれがち</td>
+          <td>bottom（該当トリガはError conditionsでbottomを明示することが多い）</td>
+          <td>個別トリガのError conditions依存。</td>
+        </tr>
+        <tr>
+          <td>“bottom/SFalseを返すトリガ”をさらに演算する</td>
+          <td><code>abs(bottom)</code> / <code>tan(bottom)</code> など</td>
+          <td>SFalseが演算に混ざって結果を支配し得る</td>
+          <td>bottomが伝播しやすい</td>
+          <td>1.0+の多くのトリガは「引数がbottomならbottom」を明示する。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. 伝播ルール（MUGEN 1.0+ の核心）</h2>
+    <h3>3.1 原則：式中にbottomが出たら式全体がbottom</h3>
+    <p>
+      MUGEN 1.0+ では、bottomは「回復不能エラー値」として設計されており、
+      <strong>式のどこかでbottomが発生すると（原則）式全体がbottom</strong>になります。
+    </p>
+
+    <h3>3.2 Condition-type triggerではbottomを0扱い</h3>
+    <p>
+      trigger行の条件判定（Condition-type trigger）はbottomを0として扱うため、
+      「エラー式が真になって発火する」事故を避ける設計です。
+      その一方で、bottomの存在は「論理が曖昧/危険」なシグナルなので、デバッグ出力に警告が出るのが通常です。
+    </p>
+
+    <h3>3.3 例外：IfElse / Cond は“未採用分岐”のbottomを外へ出さない</h3>
+    <p>
+      IfElseとCondは、選ばれなかった分岐でbottomが出ても、返す分岐が正常ならbottomを外へ伝播させません。
+      ただし <strong>IfElseは3引数すべてを評価</strong>するため、未使用分岐でも0除算等の警告が出得ます。
+      <strong>Condは必要分岐だけ評価</strong>するため、危険式を評価そのものから回避できます。
+    </p>
+
+    <h2>4. 実機検証を仕様として読み解く</h2>
+    <div class="note">
+      <p><strong>検証結果</strong></p>
+      <ul>
+        <li>共通：WinMUGEN（旧）もMUGEN 1.0も、評価不能が起きると<strong>必ず警告テキストが表示</strong>された。</li>
+        <li>共通：数値的な計算をしたら<strong>どちらも0</strong>になった。</li>
+        <li>相違：DisplayToClipboardで<code>%d</code>表示すると、<strong>SFalseは0</strong>、<strong>bottomは(BOTTOM)</strong>と表示された。</li>
+      </ul>
+    </div>
+
+    <h3>4.1 「計算すると0」になるのは何を意味するか</h3>
+    <p>
+      SFalse（SC false）もbottomも、実運用では「安全側（発火しない側）に倒す」ため、
+      多くの文脈で <strong>0（偽）相当</strong>として扱われます。
+      ただしMUGEN 1.0+では、bottomは単なる0ではなく “値としてのbottom” が残るため、
+      表示・デバッグ・伝播で差が出ます。
+    </p>
+
+    <h3>4.2 DisplayToClipboardの表示差が示すこと</h3>
+    <p>
+      <code>%d</code>でSFalseが0として表示されるのは「SFalseが0/1相当のSC値」であることと整合します。
+      一方、bottomが<code>(BOTTOM)</code>と表示されるのは、MUGEN 1.0+ がbottomを
+      「0に潰して隠す」のではなく、「評価不能の印（センチネル）として可視化」していることを示唆します。
+    </p>
+
+    <h3>4.3 検証用の最小テンプレ（例）</h3>
+    <pre><code>; -2 などで常時表示して比較する例（概念）
+[State -2, Debug]
+type = DisplayToClipboard
+trigger1 = 1
+text = "expr=%d"
+params = &lt;ここに検証したい式&gt;
+</code></pre>
+
+    <h2>5. Ikemen GOではどうなるか（MUGEN互換の“落とし穴”）</h2>
+    <p>
+      Ikemen GOはMUGEN互換を掲げつつ拡張している一方で、互換差分（特に「エラー時の値扱い」）が残る場合があります。
+      代表的な報告として、<strong>無効リダイレクトがbottom相当にならず、0として比較に入ってしまう</strong>ケースが挙げられています。
+    </p>
+
+    <pre><code>; 問題が出た例（報告例）
+trigger1 = helper(2519), rootdist x = [-75, 75]
+
+; MUGEN側：helperが不在なら “bottom相当” で false 側に倒れる前提
+; Ikemen側：無効リダイレクトが 0 扱いになり、0 が [-75,75] に入って true になり得る、という報告がある
+</code></pre>
+
+    <p class="small">
+      この種の差分は、レンジ判定（interval演算）や「0が条件を満たしやすい比較式」で顕在化しやすく、
+      MUGENで“暗黙に安全”だったコードがIkemenで“逆に真になる”リスクを生みます。
+    </p>
+
+    <h2>6. 安全なコーディング指針（SFalse/bottomに依存しない）</h2>
+
+    <h3>6.1 必須：存在確認 → 参照（無効リダイレクトを踏まない）</h3>
+    <pre><code>; 推奨：存在確認を先に置く（MUGENでもIkemenでも事故率が下がる）
+triggerall = NumHelper(2519) &gt; 0
+trigger1   = helper(2519), rootdist x = [-75, 75]
+</code></pre>
+
+    <h3>6.2 危険式はCondで“未評価化”する（MUGEN 1.0+ 的に最も筋が良い）</h3>
+    <pre><code>; helperがいる時だけ helper の life を参照し、いない時は自分の life にする
+value = Cond(NumHelper(1234) &gt; 0, (helper(1234), life), life)
+</code></pre>
+
+    <h3>6.3 「bottom/SFalseが偽になるから大丈夫」を設計原理にしない</h3>
+    <ul>
+      <li>比較式の形（特に interval 判定）によっては、エンジン差で“0扱い”が真になり得る。</li>
+      <li>警告が出ている時点で、将来の移植（Ikemen、別ビルド）や改修時に破綻しやすい。</li>
+      <li>安全策（存在確認・Cond）で「危険式を踏まない」構造にするのが最も堅牢。</li>
+    </ul>
+
+    <h2>7. まとめ</h2>
+    <ul>
+      <li><strong>SFalse</strong>：旧系の「SC false」。評価不能を“偽”として扱い、式評価を続けるための仕組み。</li>
+      <li><strong>bottom</strong>：1.0+の「評価不能値」。式に出ると原則伝播。条件判定では0扱いで暴発防止。IfElse/Condが例外。</li>
+      <li><strong>あなたの検証結果</strong>は、警告発生・数値文脈での0化・表示上のセンチネル差（SFalse=0、bottom=(BOTTOM)）を明確に示している。</li>
+      <li><strong>Ikemen GO</strong>では無効リダイレクトが0扱いで比較に入る報告があり、MUGEN前提コードが逆に真になるリスクがある。</li>
+      <li>最終的な安全策は、<strong>存在確認→参照</strong>と、必要なら<strong>Condで未評価化</strong>（SFalse/bottomへの依存を断つ）。</li>
+    </ul>
+
+    <hr />
+    <p class="small">
+      メモ：本記事は「SFalse/bottomを“現象”として整理し、移植・保守に耐える書き方へ落とす」ことを主目的にした簡易まとめです。
+      必要なら、あなたの手元の実コード（警告が出るtrigger行）を貼ってもらえれば、「事故る条件式の形」を特定して安全形へ機械的に置換するテンプレを作れます。
+    </p>
+  </main>
+</body>
+</html>

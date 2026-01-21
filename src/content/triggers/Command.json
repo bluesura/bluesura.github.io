@@ -1,49 +1,119 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Command",
-        "target": "",
-        "category": [
-            "入力",
-            "入力コマンドの一致判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
-    },
-    "category": "trigger",
-    "trigger": "Command",
-    "summary": "<p>コマンド名があっているかどうかを返します。</p>",
-    "syntax": [
-        "Command = \"コマンド名\"",
-        "Command != \"コマンド名\""
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Command",
+    "target": "ステート実行者自身",
+    "category": [
+      "入力",
+      "入力コマンドの一致判定"
     ],
-    "description": "コマンド名があっているかどうかを返します。<br>cmdファイルで設定したコマンド名を判断し、真偽を返します。<br>[符号]には、次のいずれかを指定します(他は無効です)。=, !=<br>\"コマンド名\"には、cmdファイルで設定したコマンド名を文字列で指定します。ダブルクォーテーションで括る必要があります。<br>同じ名前の複数のコマンドがある場合、どのコマンドも有効となります。<br>戻り値の型: boolean int (1 or 0)",
-    "code_sample": [
-        {
-            "title": "(波動拳?)が入力されたときのトリガー",
-            "code": [
-                "Trigger1 = Command = \"fireball motion\""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Command - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Command"
-        },
-        {
-            "title": "Command - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#command"
-        },
-        {
-            "title": "Command - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#command"
-        },
-        {
-            "title": "Command - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Command"
-        }
+    "version": "2002.04.14",
+    "update": "2026.01.21",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "Command",
+  "category": "trigger",
+  "trigger": "Command",
+  "description": "<p><code>.cmd</code>ファイルで定義したコマンド名が、入力履歴（コマンドバッファ）に存在するかを判定して <code>1</code>（真）または <code>0</code>（偽）を返します。</p><p>判定対象のコマンド名は文字列で指定し、ダブルクォーテーションで括ります。比較式として使うトリガーなので、演算子は <code>=</code> / <code>!=</code> のみ有効です。</p><p>同名のコマンド定義が複数ある場合は、そのいずれかが成立していれば真になります。</p><p>コマンドが「どれだけの毎フレームの間有効として残るか」「コマンド列の各入力間隔をどれだけ許容するか」は、<code>.cmd</code>側の <code>Time</code> / <code>Buffer.Time</code>（および <code>[Defaults]</code> の既定値）に依存します。</p>",
+  "syntax": [
+    "Command = \"<command_name>\"",
+    "Command != \"<command_name>\""
+  ],
+  "associated_trigger": [
+    "Key",
+    "KeyDown",
+    "KeyUp"
+  ],
+  "version": [
+    {
+      "no": "IKEMEN GO",
+      "content": "<p>MUGENと比較して入力解釈やコマンド認識に差が出るケースが報告されています（特定のコマンド列・同時押し・短い許容値など）。差異が疑われる場合は、<code>.cmd</code>の許容値調整や、必要に応じて <code>Key</code> 系トリガー併用を検討します。</p>"
+    }
+  ],
+  "sample_code": {
+    "code": [
+      "; 代表的な使用例（State -1 での必殺技遷移）",
+      "[State -1, Fireball]",
+      "Type = ChangeState",
+      "TriggerAll = Command = \"fireball\"",
+      "Trigger1 = Statetype != A",
+      "Value = 1000"
     ]
+  },
+  "code_sample": [
+    {
+      "title": "コマンド成立でステート遷移させる（CNS側）",
+      "description": "<p><code>Command</code> は入力履歴に残っている間、条件成立として扱えるため、<code>ChangeState</code> 等の発火条件に使います。</p>",
+      "code": [
+        "[State -1, Fireball]",
+        "Type = ChangeState",
+        "TriggerAll = Command = \"fireball\"",
+        "Trigger1 = Ctrl",
+        "Value = 1000"
+      ]
+    },
+    {
+      "title": "cmd側の定義例（Defaults と Command 定義）",
+      "description": "<p><code>.cmd</code> 側でコマンド名と入力列を定義します。<code>Time</code> は成立後に有効として残す毎フレーム数の目安、<code>Buffer.Time</code> は入力列の各要素間に許容する間隔の目安です（値が小さいほど厳密）。</p>",
+      "code": [
+        "[Defaults]",
+        "Command.Time = 15",
+        "Command.Buffer.Time = 1",
+        "",
+        "[Command]",
+        "Name = \"fireball\"",
+        "Command = ~D, DF, F, x",
+        "Time = 15",
+        "Buffer.Time = 1"
+      ]
+    },
+    {
+      "title": "同名コマンドを複数定義する（入力方法の別名集合）",
+      "description": "<p>同じ <code>name</code> を複数定義すると、どれか1つでも成立すれば <code>Command = \"name\"</code> が真になります。</p>",
+      "code": [
+        "[Command]",
+        "Name = \"fireball\"",
+        "Command = ~D, DF, F, x",
+        "Time = 15",
+        "Buffer.Time = 1",
+        "",
+        "[Command]",
+        "Name = \"fireball\"",
+        "Command = ~DF, F, x",
+        "Time = 15",
+        "Buffer.Time = 2"
+      ]
+    }
+  ],
+  "qanda": [
+    {
+      "q": "Command が反応しない／取りこぼすことがある",
+      "c": "まず .cmd 定義と許容値を疑うのが近道です。",
+      "a": "<p>よくある原因は、(1) コマンド名の不一致（大小文字・スペル）、(2) <code>Time</code>/<code>Buffer.Time</code> が厳しすぎる、(3) 入力列の定義が実際の操作と噛み合っていない、のいずれかです。まず <code>.cmd</code> 側のコマンド定義を最小構成で検証し、必要なら許容値を緩めます。</p>"
+    },
+    {
+      "q": "Pause や演出中に入力した必殺技が終わった瞬間に出ない",
+      "c": "演出中の入力を「終了後に残す」設計が必要な場合があります。",
+      "a": "<p>MUGENでは、状況によっては演出（Pause等）を跨いだ入力が期待通りに残らないことがあります。演出終了後の入力反映を狙う場合、Pause系の設定（コマンドバッファ延長）を使う設計も検討します。</p>"
+    }
+  ],
+  "quote": [
+    {
+      "title": "Command - Trigger Reference (Elecbyte / 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Command"
+    },
+    {
+      "title": "Command - Trigger Reference (Elecbyte / 1.0, archived)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#command"
+    },
+    {
+      "title": "Command - Trigger Reference (Elecbyte / 1.1, archived)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#command"
+    },
+    {
+      "title": "IKEMEN GO Issue: control consistency / commands (State -1)",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/365"
+    }
+  ]
 }

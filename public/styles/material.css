@@ -187,6 +187,19 @@ td {
   text-align: left;
 }
 
+/* すべてのテーブルに効かせるなら */
+table th, table td {
+  overflow-wrap: anywhere;   /* 空白がなくても折り返す（最重要） */
+  word-break: normal;
+}
+
+/* さらに確実にしたい場合（英数字が多い列だけに適用推奨） */
+.entry-content table td:first-child,
+.entry-content table th:first-child {
+  overflow-wrap: anywhere;
+}
+
+
 /* Headings within content */
 .entry-content h1,
 .entry-content h2,

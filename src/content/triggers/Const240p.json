@@ -1,47 +1,58 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Const240p",
-        "target": "",
-        "category": [
-            "定数",
-            "240p基準座標の現解像度への変換"
-        ],
-        "version": "2011.01.18",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Const240p",
+    "target": "実行者自身",
+    "category": [
+      "定数",
+      "240p基準座標の現解像度への変換"
+    ],
+    "version": "2011.01.18",
+    "update": "2026.01.12",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "Const240p",
+  "category": "trigger",
+  "trigger": "Const240p",
+  "description": "<p><code>320x240</code>基準で作られた値（座標・速度・オフセット等）を、実行者の座標空間（主に<code>localcoord</code>相当）に合わせてスケーリングした数値を返します。</p><p>変換倍率は概ね「実行者側の横解像度 ÷ 320」です。たとえば実行者の座標空間が<code>640x480</code>なら約2倍、<code>1280x720</code>なら約4倍になります。</p><p>共通ステート（<code>common1.cns</code>等）で固定オフセットを持つ処理は、座標系の異なるキャラクター間で一貫性を保つために、<code>Const240p</code>/<code>Const480p</code>/<code>Const720p</code>の利用が推奨される場合があります。</p>",
+  "syntax": [
+    "Const240p(値)"
+  ],
+  "parameter": [
+    {
+      "parameter": "値",
+      "type": [
+        "float"
+      ],
+      "description": "<p><code>320x240</code>基準で記述した数値（定数・式）を指定します。戻り値は座標空間に合わせてスケーリングされた数値です。</p>"
+    }
+  ],
+  "associated_trigger": [
+    "Const",
+    "Const480p",
+    "Const720p"
+  ],
+  "code_sample": [
+    {
+      "title": "320x240基準の値を座標空間に合わせる",
+      "description": "<p>基準値<code>3</code>を、実行者の座標空間に合わせて変換します。</p>",
+      "code": [
+        "value = Const240p(3)",
+        ";320x240の場合、3がvalueに代入されます。",
+        ";640x480の場合、6がvalueに代入されます。",
+        ";1280x720の場合、12がvalueに代入されます。"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Const240p - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#const240p"
     },
-    "category": "trigger",
-    "trigger": "Const240p",
-    "summary": "<p>240p時の座標を、プレイヤーの座標空間に合わせた値に変換した数値を返します。</p>",
-    "syntax": [
-        "Const240p(座標)"
-    ],
-    "description": "240p時の座標を、プレイヤーの座標空間に合わせた値に変換した数値を返します。<br>Non-zero position and velocity offset values in common1.cns should use one of the Const triggers to maintain consistency with characters from a different coordinate space.",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                "value = Const240p(3)",
-                ";320x240の場合、3がvalueに代入されます。",
-                ";640x480の場合、6がvalueに代入されます。",
-                ";1280x720の場合、12がvalueに代入されます。"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Const240p - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#const240p"
-        },
-        {
-            "title": "Const240p - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#const240p"
-        },
-        {
-            "title": "Const240p - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Const240p"
-        }
-    ]
+    {
+      "title": "Const240p - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#const240p"
+    }
+  ]
 }

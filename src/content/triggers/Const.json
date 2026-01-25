@@ -1,550 +1,398 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Const",
-        "target": "",
-        "category": [
-            "定数",
-            "CNS定義定数値の取得"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Const",
+    "target": "実行者自身",
+    "category": [
+      "定数",
+      "CNS定義定数値の取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.25",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "Const",
+  "category": "trigger",
+  "trigger": "Const",
+  "description": "<p><code>.cns</code>冒頭部（主に<code>[Data]</code>/<code>[Size]</code>/<code>[Velocity]</code>/<code>[Movement]</code>）で定義された定数値を返します。</p><p>自分自身の定数を読むだけなら直接参照と同等になりがちですが、<code>EnemyNear</code>等のリダイレクト（例: <code>EnemyNear, Const(Data.Life)</code>）で相手側の定数を参照したい場合や、共通ステート/ヘルパーを汎用化したい場合に有用です。</p><p>戻り値の型は定数によって異なります（整数/浮動小数点数）。</p>",
+  "syntax": [
+    "Const(定数名)",
+    "Const(Data.Life)",
+    "Const(Data.Attack)",
+    "Const(Data.Defence)",
+    "Const(Data.Fall.Defence_Mul)",
+    "Const(Data.Liedown.Time)",
+    "Const(Data.AirJuggle)",
+    "Const(Data.SparkNo)",
+    "Const(Data.Guard.SparkNo)",
+    "Const(Data.KO.Echo)",
+    "Const(Data.IntPersistIndex)",
+    "Const(Data.FloatPersistIndex)",
+    "Const(Size.XScale)",
+    "Const(Size.YScale)",
+    "Const(Size.Ground.Back)",
+    "Const(Size.Ground.Front)",
+    "Const(Size.Air.Back)",
+    "Const(Size.Air.Front)",
+    "Const(Size.Height)",
+    "Const(Size.Attack.Dist)",
+    "Const(Size.Proj.Attack.Dist)",
+    "Const(Size.Proj.DoScale)",
+    "Const(Size.Head.Pos.X)",
+    "Const(Size.Head.Pos.Y)",
+    "Const(Size.Mid.Pos.X)",
+    "Const(Size.Mid.Pos.Y)",
+    "Const(Size.ShadowOffset)",
+    "Const(Size.Draw.Offset.Y)",
+    "Const(Size.Draw.Offset.X)",
+    "Const(Velocity.Walk.Fwd.X)",
+    "Const(Velocity.Walk.Back.X)",
+    "Const(Velocity.Run.Fwd.X)",
+    "Const(Velocity.Run.Fwd.Y)",
+    "Const(Velocity.Run.Back.X)",
+    "Const(Velocity.Run.Back.Y)",
+    "Const(Velocity.Jump.Y)",
+    "Const(Velocity.Jump.Neu.X)",
+    "Const(Velocity.Jump.Back.X)",
+    "Const(Velocity.Jump.Fwd.X)",
+    "Const(Velocity.RunJump.Back.X)",
+    "Const(Velocity.RunJump.Fwd.X)",
+    "Const(Velocity.AirJump.Y)",
+    "Const(Velocity.AirJump.Neu.X)",
+    "Const(Velocity.AirJump.Back.X)",
+    "Const(Velocity.AirJump.Fwd.X)",
+    "Const(Movement.AirJump.Num)",
+    "Const(Movement.AirJump.Height)",
+    "Const(Movement.YAccel)",
+    "Const(Movement.Stand.Friction)",
+    "Const(Movement.Crouch.Friction)"
+  ],
+  "parameter": [
+    {
+      "parameter": "定数名",
+      "type": [
+        "string"
+      ],
+      "description": "<p><code>Const(...)</code>に渡す定数名です。下表のいずれかを指定します。</p>",
+      "possible_value": [
+        [
+          "定数名",
+          "説明"
         ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+        [
+          "Data.Life",
+          "int: <code>[Data]</code>の<code>Life</code>（ラウンド開始時のライフ最大値。基本的にラウンド開始時にこの値でライフが初期化される）"
+        ],
+        [
+          "Data.Attack",
+          "int: <code>[Data]</code>の<code>Attack</code>（ダメージ計算で攻撃側の基礎係数として参照される）"
+        ],
+        [
+          "Data.Defence",
+          "int: <code>[Data]</code>の<code>Defence</code>（ダメージ計算で防御側の基礎係数として参照される）"
+        ],
+        [
+          "Data.Fall.Defence_Mul",
+          "float: <code>[Data]</code>の<code>Fall.Defence_Up</code>を<code>f</code>として<code>100/(f+100)</code>（Fall中に受けるダメージの補正倍率として扱われる想定）"
+        ],
+        [
+          "Data.Liedown.Time",
+          "int: <code>[Data]</code>の<code>Liedown.Time</code>（ダウンしてから起き上がりへ移行するまでの標準待機時間。共通ダウン処理の基準に使われる）"
+        ],
+        [
+          "Data.AirJuggle",
+          "int: <code>[Data]</code>の<code>AirJuggle</code>（空中ジャグル上限の基準値。<code>HitDef</code>の<code>Juggle</code>消費で使われる）"
+        ],
+        [
+          "Data.SparkNo",
+          "int: <code>[Data]</code>の<code>SparkNo</code>（<code>HitDef</code>で<code>SparkNo</code>未指定時に使われる既定スパーク番号）"
+        ],
+        [
+          "Data.Guard.SparkNo",
+          "int: <code>[Data]</code>の<code>Guard.SparkNo</code>（<code>HitDef</code>でガード時の<code>Guard.SparkNo</code>未指定時に使われる既定スパーク番号）"
+        ],
+        [
+          "Data.KO.Echo",
+          "int: <code>[Data]</code>の<code>KO.Echo</code>（KO関連のサウンド等でエコーをかけるかの既定設定。0/1想定）"
+        ],
+        [
+          "Data.IntPersistIndex",
+          "int: <code>[Data]</code>の<code>IntPersistIndex</code>（内部/共通処理が使う「Persistent領域（整数）」の開始インデックスとして扱われる想定）"
+        ],
+        [
+          "Data.FloatPersistIndex",
+          "int: <code>[Data]</code>の<code>FloatPersistIndex</code>（内部/共通処理が使う「Persistent領域（浮動小数点）」の開始インデックスとして扱われる想定）"
+        ],
+        [
+          "Data.Power",
+          "int: <code>[Data]</code>の<code>Power</code>（ラウンド開始時の初期Power。開幕ゲージ量の基準）"
+        ],
+        [
+          "Size.XScale",
+          "float: <code>[Size]</code>の<code>XScale</code>（横方向の表示スケール倍率。等倍は1.0）"
+        ],
+        [
+          "Size.YScale",
+          "float: <code>[Size]</code>の<code>YScale</code>（縦方向の表示スケール倍率。等倍は1.0）"
+        ],
+        [
+          "Size.Ground.Back",
+          "int: <code>[Size]</code>の<code>Ground.Back</code>（地上時の押し合い判定の後方半幅。負方向の距離）"
+        ],
+        [
+          "Size.Ground.Front",
+          "int: <code>[Size]</code>の<code>Ground.Front</code>（地上時の押し合い判定の前方半幅。正方向の距離）"
+        ],
+        [
+          "Size.Air.Back",
+          "int: <code>[Size]</code>の<code>Air.Back</code>（空中時の押し合い判定の後方半幅。負方向の距離）"
+        ],
+        [
+          "Size.Air.Front",
+          "int: <code>[Size]</code>の<code>Air.Front</code>（空中時の押し合い判定の前方半幅。正方向の距離）"
+        ],
+        [
+          "Size.Height",
+          "int: <code>[Size]</code>の<code>Height</code>（キャラクターの身長の目安。画面/当たり判定関連の基準値として使われる）"
+        ],
+        [
+          "Size.Attack.Dist",
+          "int: <code>[Size]</code>の<code>Attack.Dist</code>（「攻撃が届く距離」の目安。AIや共通処理で距離判定の基準に使われることがある）"
+        ],
+        [
+          "Size.Proj.Attack.Dist",
+          "int: <code>[Size]</code>の<code>Proj.Attack.Dist</code>（投射物の「攻撃が届く距離」の目安。距離判定の基準に使われることがある）"
+        ],
+        [
+          "Size.Proj.DoScale",
+          "int: <code>[Size]</code>の<code>Proj.DoScale</code>（投射物をスケールさせるかのフラグ。0/1想定）"
+        ],
+        [
+          "Size.Head.Pos.X",
+          "int: <code>[Size]</code>の<code>Head.Pos.X</code>（頭部基準位置のX。ヒット/エフェクト位置の目安に使われる）"
+        ],
+        [
+          "Size.Head.Pos.Y",
+          "int: <code>[Size]</code>の<code>Head.Pos.Y</code>（頭部基準位置のY。ヒット/エフェクト位置の目安に使われる）"
+        ],
+        [
+          "Size.Mid.Pos.X",
+          "int: <code>[Size]</code>の<code>Mid.Pos.X</code>（胴体基準位置のX。ヒット/エフェクト位置の目安に使われる）"
+        ],
+        [
+          "Size.Mid.Pos.Y",
+          "int: <code>[Size]</code>の<code>Mid.Pos.Y</code>（胴体基準位置のY。ヒット/エフェクト位置の目安に使われる）"
+        ],
+        [
+          "Size.ShadowOffset",
+          "int: <code>[Size]</code>の<code>Shadowoffset</code>（床影のオフセット量。影の位置合わせ用）"
+        ],
+        [
+          "Size.Draw.Offset.X",
+          "int: <code>[Size]</code>の<code>Draw.Offset</code>（X要素。スプライト描画原点の追加オフセット）"
+        ],
+        [
+          "Size.Draw.Offset.Y",
+          "int: <code>[Size]</code>の<code>Draw.Offset</code>（Y要素。スプライト描画原点の追加オフセット）"
+        ],
+        [
+          "Velocity.Walk.Fwd.X",
+          "float: <code>[Velocity]</code>の<code>Walk.Fwd</code>（X要素。前歩きの標準移動速度）"
+        ],
+        [
+          "Velocity.Walk.Back.X",
+          "float: <code>[Velocity]</code>の<code>Walk.Back</code>（X要素。後ろ歩きの標準移動速度）"
+        ],
+        [
+          "Velocity.Run.Fwd.X",
+          "float: <code>[Velocity]</code>の<code>Run.Fwd</code>（X要素。前ダッシュの標準移動速度）"
+        ],
+        [
+          "Velocity.Run.Fwd.Y",
+          "float: <code>[Velocity]</code>の<code>Run.Fwd</code>（Y要素。前ダッシュ時のY速度成分（通常は0））"
+        ],
+        [
+          "Velocity.Run.Back.X",
+          "float: <code>[Velocity]</code>の<code>Run.Back</code>（X要素。後退ダッシュの標準移動速度）"
+        ],
+        [
+          "Velocity.Run.Back.Y",
+          "float: <code>[Velocity]</code>の<code>Run.Back</code>（Y要素。後退ダッシュ時のY速度成分（通常は0））"
+        ],
+        [
+          "Velocity.Jump.Y",
+          "float: <code>[Velocity]</code>の<code>Jump.Neu</code>（Y要素。垂直ジャンプの初速Y）"
+        ],
+        [
+          "Velocity.Jump.Neu.X",
+          "float: <code>[Velocity]</code>の<code>Jump.Neu</code>（X要素。垂直ジャンプの水平速度（通常は0））"
+        ],
+        [
+          "Velocity.Jump.Back.X",
+          "float: <code>[Velocity]</code>の<code>Jump.Back</code>（X要素。後ろジャンプの水平初速）"
+        ],
+        [
+          "Velocity.Jump.Fwd.X",
+          "float: <code>[Velocity]</code>の<code>Jump.Fwd</code>（X要素。前ジャンプの水平初速）"
+        ],
+        [
+          "Velocity.RunJump.Back.X",
+          "float: <code>[Velocity]</code>の<code>RunJump.Back</code>（X要素。走り（後退）ジャンプの水平初速）"
+        ],
+        [
+          "Velocity.RunJump.Fwd.X",
+          "float: <code>[Velocity]</code>の<code>RunJump.Fwd</code>（X要素。走り（前進）ジャンプの水平初速）"
+        ],
+        [
+          "Velocity.AirJump.Y",
+          "float: <code>[Velocity]</code>の<code>AirJump.Neu</code>（Y要素。空中ジャンプの初速Y）"
+        ],
+        [
+          "Velocity.AirJump.Neu.X",
+          "float: <code>[Velocity]</code>の<code>AirJump.Neu</code>（X要素。空中ジャンプの水平速度（通常は0））"
+        ],
+        [
+          "Velocity.AirJump.Back.X",
+          "float: <code>[Velocity]</code>の<code>AirJump.Back</code>（X要素。空中後ろジャンプの水平初速）"
+        ],
+        [
+          "Velocity.AirJump.Fwd.X",
+          "float: <code>[Velocity]</code>の<code>AirJump.Fwd</code>（X要素。空中前ジャンプの水平初速）"
+        ],
+        [
+          "Velocity.Air.GetHit.GroundRecover.X",
+          "float: <code>[Velocity]</code>の<code>Air.GetHit.GroundRecover</code>（X要素。空中喰らいから地上受け身へ移行する際の水平速度）"
+        ],
+        [
+          "Velocity.Air.GetHit.GroundRecover.Y",
+          "float: <code>[Velocity]</code>の<code>Air.GetHit.GroundRecover</code>（Y要素。空中喰らいから地上受け身へ移行する際の垂直速度）"
+        ],
+        [
+          "Velocity.Air.GetHit.AirRecover.Mul.X",
+          "float: <code>[Velocity]</code>の<code>Air.GetHit.AirRecover.Mul</code>（X倍率。空中受け身の水平速度倍率）"
+        ],
+        [
+          "Velocity.Air.GetHit.AirRecover.Mul.Y",
+          "float: <code>[Velocity]</code>の<code>Air.GetHit.AirRecover.Mul</code>（Y倍率。空中受け身の垂直速度倍率）"
+        ],
+        [
+          "Movement.AirJump.Num",
+          "int: <code>[Movement]</code>の<code>AirJump.Num</code>（空中ジャンプ回数の上限）"
+        ],
+        [
+          "Movement.AirJump.Height",
+          "int: <code>[Movement]</code>の<code>AirJump.Height</code>（空中ジャンプの高さの基準値）"
+        ],
+        [
+          "Movement.YAccel",
+          "float: <code>[Movement]</code>の<code>YAccel</code>（重力加速度。空中で毎フレーム加算されるY加速度）"
+        ],
+        [
+          "Movement.Stand.Friction",
+          "float: <code>[Movement]</code>の<code>Stand.Friction</code>（立ち状態の摩擦係数。地上で速度を減衰させる）"
+        ],
+        [
+          "Movement.Crouch.Friction",
+          "float: <code>[Movement]</code>の<code>Crouch.Friction</code>（しゃがみ状態の摩擦係数。地上で速度を減衰させる）"
+        ],
+        [
+          "Movement.Stand.Friction.Threshold",
+          "float: <code>[Movement]</code>の<code>Stand.Friction.Threshold</code>（立ち摩擦の停止閾値。速度がこの値未満なら0にスナップする想定）"
+        ],
+        [
+          "Movement.Crouch.Friction.Threshold",
+          "float: <code>[Movement]</code>の<code>Crouch.Friction.Threshold</code>（しゃがみ摩擦の停止閾値。速度がこの値未満なら0にスナップする想定）"
+        ],
+        [
+          "Movement.Jump.ChangeAnim.Threshold",
+          "float: <code>[Movement]</code>の<code>Jump.ChangeAnim.Threshold</code>（ジャンプ中に<code>ChangeAnim</code>を切り替えるための速度/高度判定の閾値）"
+        ],
+        [
+          "Movement.Air.GetHit.GroundLevel",
+          "float: <code>[Movement]</code>の<code>Air.GetHit.GroundLevel</code>（空中喰らい落下時に「地上に到達した」と見なす地上レベル）"
+        ],
+        [
+          "Movement.Air.GetHit.GroundRecover.Ground.Threshold",
+          "float: <code>[Movement]</code>の<code>Air.GetHit.GroundRecover.Ground.Threshold</code>（地上受け身の成立閾値。条件判定の基準に使われる）"
+        ],
+        [
+          "Movement.Air.GetHit.GroundRecover.GroundLevel",
+          "float: <code>[Movement]</code>の<code>Air.GetHit.GroundRecover.GroundLevel</code>（地上受け身時に用いる地上レベル）"
+        ],
+        [
+          "Movement.Air.GetHit.AirRecover.Threshold",
+          "float: <code>[Movement]</code>の<code>Air.GetHit.AirRecover.Threshold</code>（空中受け身の成立閾値。条件判定の基準に使われる）"
+        ],
+        [
+          "Movement.Air.GetHit.AirRecover.YAccel",
+          "float: <code>[Movement]</code>の<code>Air.GetHit.AirRecover.YAccel</code>（空中受け身中の重力加速度。毎フレーム加算されるY加速度）"
+        ],
+        [
+          "Movement.Air.GetHit.Trip.GroundLevel",
+          "float: <code>[Movement]</code>の<code>Air.GetHit.Trip.GroundLevel</code>（Trip時に「地上に到達した」と見なす地上レベル）"
+        ],
+        [
+          "Movement.Down.Bounce.Offset.X",
+          "float: <code>[Movement]</code>の<code>Down.Bounce.Offset</code>（X要素。ダウンバウンド開始位置のオフセット）"
+        ],
+        [
+          "Movement.Down.Bounce.Offset.Y",
+          "float: <code>[Movement]</code>の<code>Down.Bounce.Offset</code>（Y要素。ダウンバウンド開始位置のオフセット）"
+        ],
+        [
+          "Movement.Down.Bounce.YAccel",
+          "float: <code>[Movement]</code>の<code>Down.Bounce.YAccel</code>（ダウンバウンド中の重力加速度。毎フレーム加算されるY加速度）"
+        ],
+        [
+          "Movement.Down.Bounce.GroundLevel",
+          "float: <code>[Movement]</code>の<code>Down.Bounce.GroundLevel</code>（ダウンバウンド時に用いる地上レベル）"
+        ],
+        [
+          "Movement.Down.Friction.Threshold",
+          "float: <code>[Movement]</code>の<code>Down.Friction.Threshold</code>（ダウン摩擦の停止閾値。速度がこの値未満なら0にスナップする想定）"
+        ]
+      ]
+    }
+  ],
+  "associated_trigger": [
+    "Const240p",
+    "Const480p",
+    "Const720p"
+  ],
+  "qanda": [
+    {
+      "q": "相手の定数を取りたい場合は？",
+      "c": "自分の<code>Const</code>は「自分のcns冒頭の値」しか返しません。",
+      "a": "<p><code>EnemyNear</code>などのリダイレクトと組み合わせます。例: <code>EnemyNear, Const(Data.Life)</code>。</p>"
     },
-    "category": "trigger",
-    "trigger": "Const",
-    "summary": "<p>cnsの冒頭部で設定した各種パラメータを返します。</p>",
-    "syntax": [
-        "Const(Data.Life)",
-        "Const(Data.Attack)",
-        "Const(Data.Defence)",
-        "Const(Data.Fall.Defence_Mul)",
-        "Const(Data.Liedown.Time)",
-        "Const(Data.AirJuggle)",
-        "Const(Data.SparkNo)",
-        "Const(Data.Guard.SparkNo)",
-        "Const(Data.KO.Echo)",
-        "Const(Data.IntPersistIndex)",
-        "Const(Data.FloatPersistIndex)",
-        "Const(Size.XScale)",
-        "Const(Size.YScale)",
-        "Const(Size.Ground.Back)",
-        "Const(Size.Ground.Front)",
-        "Const(Size.Air.Back)",
-        "Const(Size.Air.Front)",
-        "Const(Size.Height)",
-        "Const(Size.Attack.Dist)",
-        "Const(Size.Proj.Attack.Dist)",
-        "Const(Size.Proj.Doscale)",
-        "Const(Size.Head.Pos.X)",
-        "Const(Size.Head.Pos.Y)",
-        "Const(Size.Mid.Pos.X)",
-        "Const(Size.Mid.Pos.Y)",
-        "Const(Size.Shadowoffset)",
-        "Const(Size.Draw.offset.Y)",
-        "Const(Size.Draw.offset.X)",
-        "Const(Velocity.Walk.Fwd.X)",
-        "Const(Velocity.Walk.Back.X)",
-        "Const(Velocity.Run.Fwd.X)",
-        "Const(Velocity.Run.Fwd.Y)",
-        "Const(Velocity.Run.Back.X)",
-        "Const(Velocity.Run.Back.Y)",
-        "Const(Velocity.Jump.Y)",
-        "Const(Velocity.Jump.Neu.X)",
-        "Const(Velocity.Jump.Back.X)",
-        "Const(Velocity.Jump.Fwd.X)",
-        "Const(Velocity.Runjumo.Back.X)",
-        "Const(Velocity.Runjumo.Fwd.X)",
-        "Const(Velocity.AirJump.Y)",
-        "Const(Velocity.AirJump.Neu.X)",
-        "Const(Velocity.AirJump.Back.X)",
-        "Const(Velocity.AirJump.Fwd.X)",
-        "Const(Movement.Airjump.Num)",
-        "Const(Movement.AirJump.Height)",
-        "Const(Movement.YAccel)",
-        "Const(Movement.Stand.Friction)",
-        "Const(Movement.Crouch.Friction)"
-    ],
-    "description": "cnsの冒頭部で設定した各種パラメータを返します。<br>自分にとっては定数なので、自分のCnsを参照しても、あまり意味はありません。主に、相手のパラメータを参照したり、相手に参照させるステートで使用したりします。<br>パラメータ名には、参照したいパラメータ名を指定します。指定できる値については詳細を参照のこと。<br>戻り値の型: パラメータによって異なります。<br>詳細: 以下はcnsファイル中の[Data]部分で設定されているパラメータを参照します。",
-    "parameter": [
-        {
-            "parameter": "Data.Life",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"life\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Data.Attack",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"attack\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Data.defence",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"defence\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Data.fall.defence_mul",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"fall.defence_up\" パラメータを f として、 100/(f+100)を返します。</p>"
-        },
-        {
-            "parameter": "Data.liedown.time",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"liedown.time\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Data.airjuggle",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"airjuggle\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Data.sparkno",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"sparkno\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Data.guard.sparkno",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"guard.sparkno\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Data.KO.echo",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"ko.echo\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Data.IntPersistIndex",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"IntPersistIndex\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Data.FloatPersistIndex",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"FloatPersistIndex\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.xscale",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"xscale\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.yscale",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"yscale\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.ground.back",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"ground.back\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.ground.front",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"ground.front\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.air.back",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"air.back\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.air.front",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"air.front\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.height",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"height\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.attack.dist",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"attack.dist\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.proj.attack.dist",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"proj.attack.dist\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.proj.doscale",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"proj.doscale\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.head.pos.x",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"head.pos\" パラメータのx要素を返します。</p>"
-        },
-        {
-            "parameter": "size.head.pos.y",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"head.pos\" パラメータのy要素を返します。</p>"
-        },
-        {
-            "parameter": "size.mid.pos.x",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"mid.pos\" パラメータのx要素を返します。</p>"
-        },
-        {
-            "parameter": "size.mid.pos.y",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"mid.pos\" パラメータのy要素を返します。</p>"
-        },
-        {
-            "parameter": "size.shadowoffset",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"shadowoffset\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "size.draw.offset.x",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"draw.offset\" パラメータのx要素を返します。</p>"
-        },
-        {
-            "parameter": "size.draw.offset.y",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"draw.offset\" パラメータのy要素を返します。</p>"
-        },
-        {
-            "parameter": "size.attack.z.width.front",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "size.attack.z.width.back",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "size.z.width",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.walk.fwd.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"walk.fwd\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Velocity.walk.back.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"walk.back\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Velocity.run.fwd.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"run.fwd\" パラメータのx要素を返します。</p>"
-        },
-        {
-            "parameter": "Velocity.run.fwd.y",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"run.fwd\" パラメータのy要素を返します。</p>"
-        },
-        {
-            "parameter": "Velocity.run.back.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"run.back\" パラメータのx要素を返します。</p>"
-        },
-        {
-            "parameter": "Velocity.run.back.y",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"run.back\" パラメータのy要素を返します。</p>"
-        },
-        {
-            "parameter": "Velocity.jump.y",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"jump.neu\" パラメータのy要素を返します。\"Velocity.jump.neu.y\"ではなく、\"neu\" パラメータなので注意！</p>"
-        },
-        {
-            "parameter": "Velocity.jump.neu.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"jump.neu\" パラメータのx要素を返します。</p>"
-        },
-        {
-            "parameter": "Velocity.jump.back.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"jump.back\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Velocity.jump.fwd.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"jump.fwd\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Velocity.runjump.back.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"runjump.back\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Velocity.runjump.fwd.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"runjump.fwd\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Velocity.airjump.y",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"airjump.neu\" パラメータのy要素を返します。\"Velocity.airjump.neu.y\"じゃありませんので、注意！</p>"
-        },
-        {
-            "parameter": "Velocity.airjump.neu.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"airjump.neu\" パラメータのx要素を返します。</p>"
-        },
-        {
-            "parameter": "Velocity.airjump.back.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"airjump.back\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Velocity.airjump.fwd.x",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"airjump.fwd\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "Velocity.airjump.down.x",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.airjump.up.x",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.jump.down.x",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.jump.up.x",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.run.down.x",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.run.down.y",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.run.up.x",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.run.up.y",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.runjump.down.x",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.runjump.up.x",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.runjump.y",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.walk.down.x",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "Velocity.walk.up.x",
-            "type": [
-                ""
-            ],
-            "description": "<p></p>"
-        },
-        {
-            "parameter": "movement.airjump.num",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"airjump.num\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "movement.airjump.height",
-            "type": [
-                "int"
-            ],
-            "description": "<p>\"airjump.height\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "movement.yaccel",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"yaccel\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "movement.stand.friction",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"stand.friction\" パラメータを返します。</p>"
-        },
-        {
-            "parameter": "movement.crouch.friction",
-            "type": [
-                "float"
-            ],
-            "description": "<p>\"crouch.friction\" パラメータを返します。</p>"
-        }
-    ],
-    "code_sample": [],
-    "quote": [
-        {
-            "title": "Const - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Const"
-        },
-        {
-            "title": "Const - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#const"
-        },
-        {
-            "title": "Const - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#const"
-        },
-        {
-            "title": "Const - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Const"
-        },
-        {
-            "title": "５１２オーバーフローバグ表 - lunaの倉庫",
-            "url": "http://blog-imgs-48-origin.fc2.com/l/u/n/lunatic284/20140218214013fe3.txt"
-        }
-    ]
+    {
+      "q": "Const240p / Const480p / Const720p の違いは？",
+      "c": "いずれも「定数取得」ではなく、座標系変換の補助トリガーです。",
+      "a": "<p><code>Const240p</code>/<code>Const480p</code>/<code>Const720p</code>は、引数に与えた数値を「指定解像度を基準にした座標値」と見なし、実行中のプレイヤー座標系（LocalCoord）へスケール変換して返します。<code>Const</code>が“定数取得”なのに対し、これらは“座標系の値変換”であり、用途が異なります。</p>"
+    },
+    {
+      "q": "Data.IntPersistIndex / Data.FloatPersistIndex は何に使う？",
+      "c": "内容自体は<code>cns</code>側で定義する定数です。",
+      "a": "<p>一部の処理が内部で使う「Persistent領域」の開始インデックスとして扱われる想定の値です。自作側で<code>Var()</code>/<code>FVar()</code>の運用ルールを決める際、衝突を避けるために参照されることがあります。</p>"
+    }
+  ],
+  "quote": [
+    {
+      "title": "Const - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Const"
+    },
+    {
+      "title": "Const - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#const"
+    },
+    {
+      "title": "Const - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#const"
+    },
+    {
+      "title": "５１２オーバーフローバグ表 - lunaの倉庫",
+      "url": "https://web.archive.org/web/20160930164807/http://blog-imgs-48-origin.fc2.com/l/u/n/lunatic284/20140218214013fe3.txt"
+    }
+  ]
 }

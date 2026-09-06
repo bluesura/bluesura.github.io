@@ -1,0 +1,165 @@
+{
+  "$comment": "MUGEN documentation version registry draft. Dates are build dates unless explicitly public_date. Keep unknown dates null rather than guessing.",
+  "engines": [
+    {
+      "id": "mugen",
+      "label": "M.U.G.E.N",
+      "vendor": "Elecbyte",
+      "status": "inactive"
+    },
+    {
+      "id": "ikemen-go",
+      "label": "IKEMEN GO",
+      "vendor": "ikemen-engine community",
+      "status": "active",
+      "documentation_scope": "future"
+    }
+  ],
+  "families": [
+    {"id": "mugen-dos", "engine": "mugen", "label": "DOS MUGEN"},
+    {"id": "mugen-linux", "engine": "mugen", "label": "Linux MUGEN"},
+    {"id": "winmugen", "engine": "mugen", "label": "WinMUGEN"},
+    {"id": "mugen-1.0", "engine": "mugen", "label": "MUGEN 1.0 series"},
+    {"id": "mugen-1.1", "engine": "mugen", "label": "MUGEN 1.1 series"},
+    {"id": "ikemen-go-release", "engine": "ikemen-go", "label": "IKEMEN GO release tags"},
+    {"id": "ikemen-go-development", "engine": "ikemen-go", "label": "IKEMEN GO development builds"}
+  ],
+  "builds": [
+    {
+      "id": "mugen-dos-2001.04.14",
+      "engine": "mugen",
+      "family": "mugen-dos",
+      "label": "DOS MUGEN 2001.04.14 Beta",
+      "build_date": "2001-04-14",
+      "public_date": null,
+      "release_kind": "beta",
+      "date_status": "needs_source_review"
+    },
+    {
+      "id": "mugen-linux-2002.04.14",
+      "engine": "mugen",
+      "family": "mugen-linux",
+      "label": "Linux MUGEN 2002.04.14 Beta",
+      "build_date": "2002-04-14",
+      "public_date": null,
+      "release_kind": "beta",
+      "date_status": "partially_verified"
+    },
+    {
+      "id": "winmugen-2002.04.14",
+      "engine": "mugen",
+      "family": "winmugen",
+      "label": "WinMUGEN (2002.04.14 lineage)",
+      "build_date": null,
+      "public_date": null,
+      "release_kind": "community_circulated_build",
+      "date_status": "needs_source_review",
+      "notes": "Do not mark this as a normal public Elecbyte release without source verification. Keep Windows lineage distinct from Linux 2002.04.14."
+    },
+    {
+      "id": "mugen-1.0-rc2",
+      "engine": "mugen",
+      "family": "mugen-1.0",
+      "label": "MUGEN 1.0 RC2",
+      "build_date": "2009-09-29",
+      "public_date": null,
+      "release_kind": "release_candidate",
+      "date_status": "official_history"
+    },
+    {
+      "id": "mugen-1.0-rc4",
+      "engine": "mugen",
+      "family": "mugen-1.0",
+      "label": "MUGEN 1.0 RC4",
+      "build_date": "2009-10-25",
+      "public_date": null,
+      "release_kind": "release_candidate",
+      "date_status": "official_history"
+    },
+    {
+      "id": "mugen-1.0-rc6",
+      "engine": "mugen",
+      "family": "mugen-1.0",
+      "label": "MUGEN 1.0 RC6",
+      "build_date": "2009-12-08",
+      "public_date": null,
+      "release_kind": "release_candidate",
+      "date_status": "official_history"
+    },
+    {
+      "id": "mugen-1.0-final",
+      "engine": "mugen",
+      "family": "mugen-1.0",
+      "label": "MUGEN 1.0",
+      "build_date": "2011-01-18",
+      "public_date": null,
+      "release_kind": "stable",
+      "date_status": "official_history"
+    },
+    {
+      "id": "mugen-1.1-a1",
+      "engine": "mugen",
+      "family": "mugen-1.1",
+      "label": "MUGEN 1.1 Alpha 1",
+      "build_date": "2010-07-20",
+      "public_date": null,
+      "release_kind": "alpha_test",
+      "date_status": "official_history"
+    },
+    {
+      "id": "mugen-1.1-a4",
+      "engine": "mugen",
+      "family": "mugen-1.1",
+      "label": "MUGEN 1.1 Alpha 4",
+      "build_date": "2012-08-31",
+      "public_date": null,
+      "release_kind": "alpha_test",
+      "date_status": "official_history",
+      "notes": "Build date and later public leak/circulation date must be tracked separately."
+    },
+    {
+      "id": "mugen-1.1-b1",
+      "engine": "mugen",
+      "family": "mugen-1.1",
+      "label": "MUGEN 1.1 Beta 1",
+      "build_date": "2013-07-28",
+      "public_date": null,
+      "release_kind": "beta",
+      "date_status": "official_history",
+      "notes": "Do not substitute the website/public download date for the build date."
+    },
+    {
+      "id": "mugen-1.1-b1-p1",
+      "engine": "mugen",
+      "family": "mugen-1.1",
+      "label": "MUGEN 1.1 Beta 1 Patch 1",
+      "build_date": null,
+      "public_date": null,
+      "release_kind": "patch",
+      "date_status": "needs_source_review"
+    }
+  ],
+  "compatibility_profiles": [
+    {
+      "id": "mugen-compat-2002",
+      "engine": "mugen",
+      "label": "MUGEN 2002 compatibility",
+      "notes": "Canonical internal ID. Do not assume this is the literal DEF value string."
+    },
+    {
+      "id": "mugen-compat-1.0",
+      "engine": "mugen",
+      "label": "MUGEN 1.0 compatibility"
+    },
+    {
+      "id": "mugen-compat-1.1",
+      "engine": "mugen",
+      "label": "MUGEN 1.1 compatibility"
+    }
+  ],
+  "ikemen_go_id_rules": {
+    "stable_or_rc": "ikemen-go-v<semver-tag>",
+    "nightly_or_develop_test": "ikemen-go-git-<commit-sha>",
+    "policy": "Do not store a mutable 'nightly' identifier as the sole tested version."
+  }
+}

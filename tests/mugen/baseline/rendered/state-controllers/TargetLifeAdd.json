@@ -1,0 +1,97 @@
+{
+  "text": "Type = TargetLifeAdd ターゲットの操作 > ターゲットのライフ増減 | 実装されたバージョン: 2002.04.14 | 対象: ターゲット ターゲット（HitDef等で捕捉した相手）のライフ値を増減します。投げのダメージや、ターゲットへ直接回復・自傷を与える用途に使用します。 関連するステートコントローラー： LifeAdd , LifeSet , BindToTarget , TargetBind , TargetDrop , TargetFacing , TargetPowerAdd , TargetState , TargetVelAdd , TargetVelSet 関連するトリガー： Life , LifeMax パラメーター ID = ヒットID (整数) 対象とするターゲットのtargetID（HitDefのid）を指定します。省略時は-1（すべてのターゲット）。 省略時のデフォルト値： -1 Absolute = 絶対量フラグ (0か1) 1にすると、攻撃倍率・防御倍率によるスケーリングを無視して指定値どおりに増減します。省略時は0（倍率を考慮）。 省略時のデフォルト値： 0 Kill = KOフラグ (0か1) 0にすると、このコントローラでライフが0以下になっても死亡しません（1に丸められます）。省略時は1（KO可能）。 省略時のデフォルト値： 1 Value = 体力増減値 (整数) 増減する値を指定します。負数で減少、正数で回復。absolute=0の場合は攻撃倍率・防御倍率でスケーリングされます。 省略不可 IgnoreHitPause = ヒット停止中も処理するか (0か1) HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 最小値: 0 , 最大値: 1 省略時のデフォルト値： 0 Persistent = 実行頻度（トリガー成立回数の間引き） (整数) Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 最小値: 0 , 最大値: 128 省略時のデフォルト値： 1 仕様・バグ・エラー・変更点MUGEN (WIN 1.0/1.1/WinMUGEN系)RoundState=3（ラウンド終了処理）では、一定の猶予を過ぎるとライフ変更が固定され、TargetLifeAddが反映されない場合があります。特にタイムアップ時は、固定化と Win/Lose 判定の間の短い猶予を悪用したテクニック（Declaration of Death）が知られています。IKEMEN GO同一更新フレーム内に複数のライフ操作が競合する場合、TargetLifeAddの適用順序がMUGEN 1.1と異なる可能性が報告されています（互換性課題）。 省略した時のデフォルト値 [State ,TargetLifeAdd] Type = TargetLifeAdd Trigger1 = 1 ID = -1 Absolute = 0 Kill = 1 Value = (必須項目) コードサンプル死の宣告（Declaration of Death）: タイムアップ後（RoundState=3）にTargetLifeAddでP2を0へ固定するタイムアップでRoundState=3へ遷移した直後は、Win/Lose確定が遅延している間に短い「ライフ変更可能な猶予」が存在します。この猶予中にSuperPauseで相手の-2等を止め（Pause免疫がない相手ほど効く）、同時にTargetLifeAddで相手のライフを0へ落とし続けることで、タイムアップの勝敗判定を強制的にひっくり返す目的で使われます。前提：事前にMarking等でP2を「ターゲット化」しておく（例：HitDefのid=999で捕捉済み）。注意：RoundState=3中にライフを変更できる時間は短く、環境・相手実装で結果が変わります。;--------------------------------; Declaration of Death (timeout); 前提: P2をHitDef id=999などでTarget化済み;--------------------------------[State -2, DoD Helper]type = Helpertrigger1 = !IsHelpertrigger1 = RoundState = 3trigger1 = Time = 0helpertype = Normalname = \"DoD\"id = 30000stateno = 30000pos = 0,0postype = p1pausemovetime = 99999999supermovetime = 99999999ignorehitpause = 1[Statedef 30000]type = Smovetype = Iphysics = Nanim = -1; 相手の処理を止める（Pause免疫がない相手ほど-2等が止まる）[State 30000, HoldSuperPause]type = SuperPausetrigger1 = Time = 0time = 60movetime = 60darken = 0anim = -1sound = -1unhittable = 0ignorehitpause = 1; 自分を全回復（タイムアップ判定の比較に利用）[State 30000, FullHeal]type = LifeSettrigger1 = RoundState = 3trigger1 = Time < 60value = LifeMaxignorehitpause = 1; P2を0へ落とし続ける（ターゲット捕捉が必須）[State 30000, KillP2]type = TargetLifeAddtrigger1 = RoundState = 3trigger1 = Time < 60ID = 999value = -999999absolute = 1kill = 1ignorehitpause = 1; 解除（猶予は短いので固定フレームで切る）[State 30000, End]type = DestroySelftrigger1 = Time >= 60ignorehitpause = 1 強制死の宣告（Forced Declaration）: 自殺でRoundState=3へ移行して同様の処理を狙う（概略）通常の「死の宣告」をタイムアップ待ちせずに行う発展形です。自分のライフを0にして強制的にRoundState=3へ移行（自殺）。SuperPause＋TargetLifeAddで相手のライフを0へ固定し、必要なら自分を全回復。完全版では「負けフラグの扱い」を崩すための追加手順（復活のための特殊処理など）まで含みますが、ここではTargetLifeAddを使うコア部分が分かるように最小構成の概略コードのみ示します。前提：自殺直前に専用Helperを出しておき、KO中でもHelper側が処理を継続できる設計にする。;--------------------------------; Forced Declaration (outline); 前提: P2をTarget化済み（例: id=999）;--------------------------------; 最後の手段を起動するトリガ（例：コマンドやラウンド条件）[State -2, Spawn ForcedDoD Helper]type = Helpertrigger1 = !IsHelpertrigger1 = Command = \"forced_dod\"helpertype = Normalname = \"ForcedDoD\"id = 31000stateno = 31000pos = 0,0postype = p1pausemovetime = 99999999supermovetime = 99999999ignorehitpause = 1; 自殺してRoundState=3へ移行させる[State -2, Commit Suicide]type = LifeSettrigger1 = !IsHelpertrigger1 = Command = \"forced_dod\"value = 0ignorehitpause = 1[Statedef 31000]type = Smovetype = Iphysics = Nanim = -1; RoundState=3に入ったら、通常DoDと同様の処理を短時間だけ実行[State 31000, HoldSuperPause]type = SuperPausetrigger1 = RoundState = 3trigger1 = Time = 0time = 60movetime = 60darken = 0anim = -1sound = -1unhittable = 0ignorehitpause = 1[State 31000, FullHeal]type = LifeSettrigger1 = RoundState = 3trigger1 = Time < 60value = LifeMaxignorehitpause = 1[State 31000, KillP2]type = TargetLifeAddtrigger1 = RoundState = 3trigger1 = Time < 60ID = 999value = -999999absolute = 1kill = 1ignorehitpause = 1[State 31000, End]type = DestroySelftrigger1 = Time >= 60ignorehitpause = 1 パラメーターの読み込み順 ID(1) => Absolute(2) => Kill(3) => Value(4) *バージョンや実行環境,パラーメータの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。 引用記事TargetLifeAdd - State Controller Reference (MUGEN 1.0/1.1 docs)TargetLifeAdd - State Controller Reference (web archive mirror)[WIN/1.0/1.1] Declaration of Death / Forced Declaration (TargetLifeAddによる強制KOとRoundState=3挙動)IKEMEN GO issue: LifeSet/LifeAdd vs TargetLifeAdd priority discrepancy 公開日:2008.06.05 最終更新日:2025.12.27 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "CodeSample",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "LifeAdd",
+      "href": "./../State/LifeAdd.html"
+    },
+    {
+      "text": "LifeSet",
+      "href": "./../State/LifeSet.html"
+    },
+    {
+      "text": "BindToTarget",
+      "href": "./../State/BindToTarget.html"
+    },
+    {
+      "text": "TargetBind",
+      "href": "./../State/TargetBind.html"
+    },
+    {
+      "text": "TargetDrop",
+      "href": "./../State/TargetDrop.html"
+    },
+    {
+      "text": "TargetFacing",
+      "href": "./../State/TargetFacing.html"
+    },
+    {
+      "text": "TargetPowerAdd",
+      "href": "./../State/TargetPowerAdd.html"
+    },
+    {
+      "text": "TargetState",
+      "href": "./../State/TargetState.html"
+    },
+    {
+      "text": "TargetVelAdd",
+      "href": "./../State/TargetVelAdd.html"
+    },
+    {
+      "text": "TargetVelSet",
+      "href": "./../State/TargetVelSet.html"
+    },
+    {
+      "text": "Life",
+      "href": "./../Trigger/Life.html"
+    },
+    {
+      "text": "LifeMax",
+      "href": "./../Trigger/LifeMax.html"
+    },
+    {
+      "text": "TargetLifeAdd - State Controller Reference (MUGEN 1.0/1.1 docs)",
+      "href": "https://www.elecbyte.com/mugendocs/sctrls.html#TargetLifeAdd"
+    },
+    {
+      "text": "TargetLifeAdd - State Controller Reference (web archive mirror)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#targetlifeadd"
+    },
+    {
+      "text": "[WIN/1.0/1.1] Declaration of Death / Forced Declaration (TargetLifeAddによる強制KOとRoundState=3挙動)",
+      "href": "https://ziddia.blog.fc2.com/blog-entry-55.html"
+    },
+    {
+      "text": "IKEMEN GO issue: LifeSet/LifeAdd vs TargetLifeAdd priority discrepancy",
+      "href": "https://github.com/ikemen-engine/Ikemen-GO/issues/2957"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/State/mugen_life_state_system_diagram.png"
+  ],
+  "code": [
+    "[State ,TargetLifeAdd]",
+    "Type                       = TargetLifeAdd",
+    "Trigger1                   = 1",
+    "ID                         =  -1",
+    "Absolute                   =  0",
+    "Kill                       =  1",
+    "Value                      =  (必須項目)"
+  ]
+}

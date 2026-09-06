@@ -1,0 +1,52 @@
+{
+  "text": "Cond 論理演算 > 条件分岐（短絡評価） | 実装されたバージョン: 2009.12.08 | 対象: 実行者自身 Cond は3引数の条件演算（疑似三項演算子）です。exp_cond が0以外なら exp_true、0なら exp_false の値を返します。返り値の型は、実際に選択された式（exp_true / exp_false）に従います。 関連するトリガー： IfElse 構文 Cond(exp_cond, exp_true, exp_false) 引数 exp_cond (整数, 浮動小数点数) 条件判定用の式。0 が偽、0以外が真として扱われます。 exp_true (整数, 浮動小数点数, 文字列) exp_cond が真（0以外）のときに評価・返却される式（未選択時は評価されません）。 exp_false (整数, 浮動小数点数, 文字列) exp_cond が偽（0）のときに評価・返却される式（未選択時は評価されません）。 仕様・バグ・エラー・変更点仕様Cond は 短絡評価 を行い、未使用の分岐は評価しません。そのため、:= による代入などの副作用や、未使用分岐で発生する bottom（警告の原因になり得る評価不能値）を回避できます。IfElse は3引数すべてを事前評価するため、副作用が不要なら原則 Cond を推奨します。IfElse(var(1):=1, var(1):=var(1)+1, var(1):=var(1)+1) → var(1) は最終的に 3Cond(var(1):=1, var(1):=var(1)+1, var(1):=var(1)+1) → var(1) は最終的に 2Version 1.0 RC6 (2009-12-08)Cond トリガーが追加されました（IfElse の短絡評価版）。Version 1.0 RC7 (2010-03-20)カンマ区切りのパラメータリスト内で Cond が正しく動作するよう修正されました。 コードサンプルvar(3)が0以外なら1を、0なら2をvalueに代入最も基本的な分岐例です。value = Cond(var(3), 1, 2);下記でも同じ結果value = (var(3)=0) + 1 複数の条件を設定(Condを入れ子にする)入れ子で多段分岐を構成します。var(0) := Cond(var(0)=1, Cond(var(1)=0, 1, 2), 0) bottom回避：0除算・不正計算を未評価分岐に隔離するCond は未選択分岐を評価しないため、危険な計算を安全に包めます。; var(10)=0 のとき 100/0 を評価しないvalue = Cond(var(10)!=0, 100/var(10), 0) 存在チェック＋リダイレクト：Helperが居る時だけ参照するHelperが存在しない可能性がある参照を Cond でガードします。; ID=1234 のHelperがいる時だけ StateNo を読むvalue = Cond(NumHelper(1234)>0, (helper(1234), StateNo), -1) 代入の副作用を片側だけに限定する（:= の短絡利用）:= を分岐内に置くと、選ばれた側だけ代入が走ります。; true側だけ代入される（false側の代入は実行されない）value = Cond(1, var(0):=1, var(1):=1) リダイレクト先のvarを書き換えるコミュニティ報告の「root,Cond がリダイレクト先文脈で評価される」挙動を利用した例です。互換性・大会運用・対戦相手への影響に注意してください。; Helper側からRootのvar(20)を0にする（常に真にするため || 1 を併用）trigger1 = IsHelpertrigger1 = root,Cond(1, var(20) := 0, 0) || 1 多重リダイレクト相当：Condを使って再帰リダイレクトを回避する例（高度）通常サポートされない「再帰リダイレクト（例：root,helper(...),StateNo）」を、root,Cond(...) の形で実現できるとする報告例です（互換エンジン差あり）。; root,helper(1234),StateNo 相当を狙う（報告例）value = root,Cond(1, (helper(1234), StateNo), -1) enemy側のvarを書き換える（危険：運用非推奨）英語圏コミュニティで「enemyリダイレクトでも同様に書き換え可能」として紹介される例です。フルゲーム以外ではトラブルになりやすいため、基本的に避けるのが無難です。trigger1 = enemy,Cond(1, var(10) := 20, 0) || 1 引用記事Cond - Trigger Reference (Elecbyte / 1.0系)M.U.G.E.N Update History (Cond追加/修正履歴)新バージョンmugenについて（Condの多重リダイレクト/変数書き換え言及） - ニコニコMUGENwiki(atwiki)新MUGENで本体変数操作（root,Condでリダイレクト先var操作の話） - ネームレスゼロCond Recursive Redirection Exploit - Mugen Free For All（英語：再帰リダイレクト回避/var代入例）All Areas Parent Change/Devil's Eye Killer（英語：root,Cond(...:=...)||1 の実使用例） - MUGEN Room 公開日:2008.06.05 最終更新日:2025.12.25 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "IfElse",
+      "href": "./../Trigger/IfElse.html"
+    },
+    {
+      "text": "Cond - Trigger Reference (Elecbyte / 1.0系)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#cond-math"
+    },
+    {
+      "text": "M.U.G.E.N Update History (Cond追加/修正履歴)",
+      "href": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "text": "新バージョンmugenについて（Condの多重リダイレクト/変数書き換え言及） - ニコニコMUGENwiki(atwiki)",
+      "href": "https://w.atwiki.jp/niconicomugen/pages/3627.html"
+    },
+    {
+      "text": "新MUGENで本体変数操作（root,Condでリダイレクト先var操作の話） - ネームレスゼロ",
+      "href": "https://0saft.blog.fc2.com/blog-entry-4793.html"
+    },
+    {
+      "text": "Cond Recursive Redirection Exploit - Mugen Free For All（英語：再帰リダイレクト回避/var代入例）",
+      "href": "https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/"
+    },
+    {
+      "text": "All Areas Parent Change/Devil's Eye Killer（英語：root,Cond(...:=...)||1 の実使用例） - MUGEN Room",
+      "href": "https://ziddia.blog.fc2.com/blog-entry-41.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-ifelse-vs-cond-side-effects.png"
+  ],
+  "code": []
+}

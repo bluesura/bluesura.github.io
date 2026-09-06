@@ -1,0 +1,60 @@
+{
+  "text": "MoveContact ヒット情報 > 攻撃の接触判定 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 MoveContact は、P1（実行者）の攻撃が相手（P2）に「接触」したかを返します。接触には ヒット と ガード の両方が含まれます。このトリガーは攻撃ステート（一般に MoveType = A）でのみ有効です。接触したフレームは 1 を返します。以後、P1がヒットポーズ等で停止していない更新フレームごとに +1 されます（停止（PauseTime）中は増加しません）。接触していない場合は 0 を返します。この仕様は、MoveGuarded、MoveHit、MoveReversedで共通です。MoveContact = 1 は「接触直後」を拾う定番条件です。ただしヒットポーズ中は値が増えないため、ヒットポーズがある場合はその間も = 1 のままになります。ステート遷移すると Move* 系の接触情報は通常リセットされます。直前ステートの接触情報を次ステートへ持ち越したい場合は、遷移先 StateDef に MoveHitPersist = 1 を指定します。互換性のため、接触の有無判定は MoveContact（非0）/ !MoveContact（0）で書くのが安全です（MoveContact = 1 固定の比較は意図通りに動かない場合があります）。 関連するステートコントローラー： HitDef 関連するトリガー： MoveHit , MoveGuarded , MoveReversed 構文 MoveContact 引数 なし 仕様・バグ・エラー・変更点Dos版戻り値の型がboolean int (1 or 0)。Win版戻り値の型がint。MUGEN 1.0 / 1.1接触時に 1、以後はP1が停止していないフレームごとに増加するカウンタを返します（停止中は増加しません）。この「停止中は増えない」性質により、MoveContact = 1 はヒットポーズ中も成立しやすい点に注意してください。 コードサンプル攻撃が空振りしていなければ発動（ヒット/ガード問わず）Trigger1 = MoveContact 接触直後（値が1の間）を拾うMoveContact = 1 は「接触した瞬間」を拾う用途でよく使われます。ヒットポーズ中は値が増えないため、ヒットポーズがある場合はその間も = 1 のままになります。Trigger1 = MoveContact = 1 引用記事MoveContact - Trigger Reference(version 2002.04.14)MoveContact - Trigger Reference (Elecbyte / MUGEN 1.0)MoveContact - Trigger Reference (Elecbyte / MUGEN 1.1b1)movehitpersist - The CNS format (Elecbyte)Ikemen GO Wiki - Triggers (new)（MoveContact参照箇所あり） 公開日:2008.06.05 最終更新日:2025.12.25 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "HitDef",
+      "href": "./../State/HitDef.html"
+    },
+    {
+      "text": "MoveHit",
+      "href": "./../Trigger/MoveHit.html"
+    },
+    {
+      "text": "MoveGuarded",
+      "href": "./../Trigger/MoveGuarded.html"
+    },
+    {
+      "text": "MoveReversed",
+      "href": "./../Trigger/MoveReversed.html"
+    },
+    {
+      "text": "MoveContact - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveContact"
+    },
+    {
+      "text": "MoveContact - Trigger Reference (Elecbyte / MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#movecontact"
+    },
+    {
+      "text": "MoveContact - Trigger Reference (Elecbyte / MUGEN 1.1b1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#MoveContact"
+    },
+    {
+      "text": "movehitpersist - The CNS format (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "text": "Ikemen GO Wiki - Triggers (new)（MoveContact参照箇所あり）",
+      "href": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-move-contact-triggers-flow.png"
+  ],
+  "code": []
+}

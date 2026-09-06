@@ -1,0 +1,1561 @@
+{
+  "source_commit": "2e12ca3831ac94d60d00af8095f0090d7842e6c8",
+  "captured_on": "2026-09-06T09:09:38.041Z",
+  "node": "v24.12.0",
+  "astro": "5.15.3",
+  "documents": [
+    {
+      "path": "src/content/state-controllers/A.json",
+      "url": "/MUGEN/document/State/A.html",
+      "sha256": "997206a737ee202d6270747e9f4f139aa6b2d6d5cee1677f4acbdb82d95a57aa"
+    },
+    {
+      "path": "src/content/state-controllers/AfterImage.json",
+      "url": "/MUGEN/document/State/AfterImage.html",
+      "sha256": "f897c92236e5e68ebce9dd58f9a58eace0aa863767044c0a11715caedb21d6a5"
+    },
+    {
+      "path": "src/content/state-controllers/AfterImageTime.json",
+      "url": "/MUGEN/document/State/AfterImageTime.html",
+      "sha256": "bf01bde8c643ba6a9682f1a802f8f5535306970cfe50b6960df5630272ac8978"
+    },
+    {
+      "path": "src/content/state-controllers/AllPalFX.json",
+      "url": "/MUGEN/document/State/AllPalFX.html",
+      "sha256": "3d1280bc4c2af5f5e0291b66ace808c695de7fe94122c768206ff1737cb843a3"
+    },
+    {
+      "path": "src/content/state-controllers/AngleAdd.json",
+      "url": "/MUGEN/document/State/AngleAdd.html",
+      "sha256": "187b57303a8027f74c18f9ab95e7dee6d502288039cb8315f62cea8f4f62155b"
+    },
+    {
+      "path": "src/content/state-controllers/AngleDraw.json",
+      "url": "/MUGEN/document/State/AngleDraw.html",
+      "sha256": "63e3ba1a3d546aca6a38f802a6ac2e8b3c0f30346bc0f8cbffd056a25e2cda1a"
+    },
+    {
+      "path": "src/content/state-controllers/AngleMul.json",
+      "url": "/MUGEN/document/State/AngleMul.html",
+      "sha256": "3c7dcda50d9752419ea499fe945a879ba25a854a4870e0be7cd95ce830503b23"
+    },
+    {
+      "path": "src/content/state-controllers/AngleSet.json",
+      "url": "/MUGEN/document/State/AngleSet.html",
+      "sha256": "8dacb84980147e0779c965f6342170b873f8bf7ebccf339311bb45ca9f87081f"
+    },
+    {
+      "path": "src/content/state-controllers/AppendToClipboard.json",
+      "url": "/MUGEN/document/State/AppendToClipboard.html",
+      "sha256": "2eeaad372a73aa44a9880213a1a6a97a94dd77fe4e056020dc2a1cf53332ce32"
+    },
+    {
+      "path": "src/content/state-controllers/AssertSpecial.json",
+      "url": "/MUGEN/document/State/AssertSpecial.html",
+      "sha256": "b2bbf052908a773b503ad8519b81a9d69be8aafd05d769d56260eca04b8850ae"
+    },
+    {
+      "path": "src/content/state-controllers/AttackDist.json",
+      "url": "/MUGEN/document/State/AttackDist.html",
+      "sha256": "cc7d4ed9019ec9fdb53af24ea57ed67838e4f9e2d2803ba12c6903394b71baff"
+    },
+    {
+      "path": "src/content/state-controllers/AttackMulSet.json",
+      "url": "/MUGEN/document/State/AttackMulSet.html",
+      "sha256": "5b5ff7a7584457c2c9060f1c84558b514e4378864262bc5b0f7cba577846775c"
+    },
+    {
+      "path": "src/content/state-controllers/BGPalFX.json",
+      "url": "/MUGEN/document/State/BGPalFX.html",
+      "sha256": "0c55dab34c5d739fafb45a738077743cf4cdaa7538ba6541c5f4a28617d84fd2"
+    },
+    {
+      "path": "src/content/state-controllers/BindToParent.json",
+      "url": "/MUGEN/document/State/BindToParent.html",
+      "sha256": "ddf57da253c3394e1960292d0169e2ca3848368e1c9db43abc4423eed89ffa1d"
+    },
+    {
+      "path": "src/content/state-controllers/BindToRoot.json",
+      "url": "/MUGEN/document/State/BindToRoot.html",
+      "sha256": "e011508a1e61722156b38e04bad08cac5498c3d5d21d49cbb28d6bb7c99237af"
+    },
+    {
+      "path": "src/content/state-controllers/BindToTarget.json",
+      "url": "/MUGEN/document/State/BindToTarget.html",
+      "sha256": "5895dc0e05d7a7f88e3e4f07206dc4e6312f61e3910e69ac4ea4923ce10eb4e3"
+    },
+    {
+      "path": "src/content/state-controllers/C.json",
+      "url": "/MUGEN/document/State/C.html",
+      "sha256": "02b2343038f1684b18df150ae05f247603839a9fa7ff311e9c1de3d170a72bd5"
+    },
+    {
+      "path": "src/content/state-controllers/ChangeAnim.json",
+      "url": "/MUGEN/document/State/ChangeAnim.html",
+      "sha256": "e306a097367828ed547e06337596ffc7c58ef8181ef0d30b39e9c61b1662e053"
+    },
+    {
+      "path": "src/content/state-controllers/ChangeAnim2.json",
+      "url": "/MUGEN/document/State/ChangeAnim2.html",
+      "sha256": "21947e9aca2b4bacf404d5b36bbe38ea8ee5ff28cfab29f62bc7a52db0a22ee9"
+    },
+    {
+      "path": "src/content/state-controllers/ChangeState.json",
+      "url": "/MUGEN/document/State/ChangeState.html",
+      "sha256": "8e26fbb7b6a85eece36cfc933600ce3dc6cc86a83ec741ac140d2dea7d98e308"
+    },
+    {
+      "path": "src/content/state-controllers/ClearClipboard.json",
+      "url": "/MUGEN/document/State/ClearClipboard.html",
+      "sha256": "320e902f1f4f336e9e0d033acbb512191911f440da620dbd281677144e6694a7"
+    },
+    {
+      "path": "src/content/state-controllers/CtrlSet.json",
+      "url": "/MUGEN/document/State/CtrlSet.html",
+      "sha256": "f49132d70089a031b09429140ba5c3eb5fa48765a67264016e72deaa720b0120"
+    },
+    {
+      "path": "src/content/state-controllers/DefenceMulSet.json",
+      "url": "/MUGEN/document/State/DefenceMulSet.html",
+      "sha256": "28c16856c1ef5dd16ed156a951d2509f61d9df7c4bc185ff16da2399f0cfd321"
+    },
+    {
+      "path": "src/content/state-controllers/DestroySelf.json",
+      "url": "/MUGEN/document/State/DestroySelf.html",
+      "sha256": "ee403b78f6c28391109aa2ae45f5e9b2967df7762b1c3e06568eb8988b1c17ec"
+    },
+    {
+      "path": "src/content/state-controllers/DisplayToClipboard.json",
+      "url": "/MUGEN/document/State/DisplayToClipboard.html",
+      "sha256": "ede53ea7c56a5caf50de4b24fde12e02e608632cbcdd24085d1eae36206d8b9c"
+    },
+    {
+      "path": "src/content/state-controllers/EnvColor.json",
+      "url": "/MUGEN/document/State/EnvColor.html",
+      "sha256": "feb514d2235dc5914ca9ee2b48bd47432f074cf21dffcea534cfff6aa73ad6c4"
+    },
+    {
+      "path": "src/content/state-controllers/EnvShake.json",
+      "url": "/MUGEN/document/State/EnvShake.html",
+      "sha256": "009948554895d5adf79289fcf0c0e74172c98763b6e0cd013ca71e3a8f0b68e4"
+    },
+    {
+      "path": "src/content/state-controllers/Explod.json",
+      "url": "/MUGEN/document/State/Explod.html",
+      "sha256": "72da88ead2844b963a6c8cc6b11c6356ebd2d4324102a5441f84cf98ae96fc11"
+    },
+    {
+      "path": "src/content/state-controllers/ExplodBindTime.json",
+      "url": "/MUGEN/document/State/ExplodBindTime.html",
+      "sha256": "a47395e04d01f8acf7c79b0d28a409a4d8c9c7edde7b0a62129353814cd0330d"
+    },
+    {
+      "path": "src/content/state-controllers/FallEnvShake.json",
+      "url": "/MUGEN/document/State/FallEnvShake.html",
+      "sha256": "a31b91442959ba1a67f62be716023c04fce68a3f33b53fb0c0b07e52a80f9164"
+    },
+    {
+      "path": "src/content/state-controllers/ForceFeedback.json",
+      "url": "/MUGEN/document/State/ForceFeedback.html",
+      "sha256": "740f991b87d62889f8c5fc74dc8fbd0b4bf3ef31da3625ca703ef2349d427660"
+    },
+    {
+      "path": "src/content/state-controllers/GameMakeAnim.json",
+      "url": "/MUGEN/document/State/GameMakeAnim.html",
+      "sha256": "5340ad0355d571302d4843ec69ed417d2fefe0e955f1e400b540570e8350ffb9"
+    },
+    {
+      "path": "src/content/state-controllers/Gravity.json",
+      "url": "/MUGEN/document/State/Gravity.html",
+      "sha256": "01a6d2665e74484752e763826eb5f420dbd878a5e7a6dfce2c36eb55fe54c3ed"
+    },
+    {
+      "path": "src/content/state-controllers/Helper.json",
+      "url": "/MUGEN/document/State/Helper.html",
+      "sha256": "5be9faa218b7df9ff75b7e27dc5e366dd431da5ae23e2cefe0fd97f0bb1b3ed4"
+    },
+    {
+      "path": "src/content/state-controllers/HitAdd.json",
+      "url": "/MUGEN/document/State/HitAdd.html",
+      "sha256": "97b9f6cf4c9352273b5ff64a4eee21eb853ec7efeb3952591d5cebb321ac44ec"
+    },
+    {
+      "path": "src/content/state-controllers/HitBy.json",
+      "url": "/MUGEN/document/State/HitBy.html",
+      "sha256": "4e2b3ed13de85662d4c8fa40d710e07fb96247d3e80bf45b41aa9f3b2cd33bbe"
+    },
+    {
+      "path": "src/content/state-controllers/HitDef.json",
+      "url": "/MUGEN/document/State/HitDef.html",
+      "sha256": "a43b610504c2a64e811862d2eb319046cda80b6299b7a7c87f848c9c1ea1c446"
+    },
+    {
+      "path": "src/content/state-controllers/HitFallDamage.json",
+      "url": "/MUGEN/document/State/HitFallDamage.html",
+      "sha256": "29e16437451544e1b210f4219aa384a2c22e356e1888dd0364e0dc5aa8e3b0b9"
+    },
+    {
+      "path": "src/content/state-controllers/HitFallSet.json",
+      "url": "/MUGEN/document/State/HitFallSet.html",
+      "sha256": "9cda785ed9d244a479800ba65c4070ca014c8fb0b962ba5cf94941045dc2caa0"
+    },
+    {
+      "path": "src/content/state-controllers/HitFallVel.json",
+      "url": "/MUGEN/document/State/HitFallVel.html",
+      "sha256": "202319a8ff014d3d62f2e7471f563388c411d690ed98a45fdad511c30f8c0a37"
+    },
+    {
+      "path": "src/content/state-controllers/HitOverRide.json",
+      "url": "/MUGEN/document/State/HitOverRide.html",
+      "sha256": "0a167608eb546b69612f8d50a765ed58ccd71682d28c3a29a008e4fd36bd0018"
+    },
+    {
+      "path": "src/content/state-controllers/HitVelSet.json",
+      "url": "/MUGEN/document/State/HitVelSet.html",
+      "sha256": "7b8f76647d98b4b23943c57881bfb08af319a06432d96b985cdebf0e1c8f4d77"
+    },
+    {
+      "path": "src/content/state-controllers/L.json",
+      "url": "/MUGEN/document/State/L.html",
+      "sha256": "a2acbe79fc50481cb3d13b0500a1e0e2354a7ebf38a19d459bc9f74f6e15cbe3"
+    },
+    {
+      "path": "src/content/state-controllers/LifeAdd.json",
+      "url": "/MUGEN/document/State/LifeAdd.html",
+      "sha256": "b2b1de206efd3d0d4d614d9a3202ed087b683465f92b646ac231b5af7ee424e4"
+    },
+    {
+      "path": "src/content/state-controllers/LifeSet.json",
+      "url": "/MUGEN/document/State/LifeSet.html",
+      "sha256": "922845afd4b11163ec4d1cdcbc0bcaede4f44bb3611ef63020926cff8fa95ee8"
+    },
+    {
+      "path": "src/content/state-controllers/MakeDust.json",
+      "url": "/MUGEN/document/State/MakeDust.html",
+      "sha256": "2398eff8df8cf6359b2c7cf16a1a25194ecc77985ad2e02ed80c0b2ba0593af3"
+    },
+    {
+      "path": "src/content/state-controllers/ModifyExplod.json",
+      "url": "/MUGEN/document/State/ModifyExplod.html",
+      "sha256": "aadd6e5f88475adb570c4b8225a76150dd431829dcf2a027e521cbbbb30665ec"
+    },
+    {
+      "path": "src/content/state-controllers/MoveHitReset.json",
+      "url": "/MUGEN/document/State/MoveHitReset.html",
+      "sha256": "3546b30a85e6dfdbd3b08e5c8b4e1f1596819cbcde95ebd5d35316d66ce08690"
+    },
+    {
+      "path": "src/content/state-controllers/NotHitBy.json",
+      "url": "/MUGEN/document/State/NotHitBy.html",
+      "sha256": "7947a85fc0b7fb0c116460bbc691f3024ec62623bc1b884b4f7dbddfc72970ca"
+    },
+    {
+      "path": "src/content/state-controllers/Null.json",
+      "url": "/MUGEN/document/State/Null.html",
+      "sha256": "f504e694b58dc8835528ea95a1bba220ae1752251f38cf510de662b886819999"
+    },
+    {
+      "path": "src/content/state-controllers/Offset.json",
+      "url": "/MUGEN/document/State/Offset.html",
+      "sha256": "638d39e9bbd93687a73277e6a15bac98664bbce982ae7e36b47ad347e6b4d1b8"
+    },
+    {
+      "path": "src/content/state-controllers/PalFX.json",
+      "url": "/MUGEN/document/State/PalFX.html",
+      "sha256": "d32f56b350f624d5a78a4c6d7c350394b6ab9e8abbf5c8c38291620626a0a728"
+    },
+    {
+      "path": "src/content/state-controllers/ParentVarAdd.json",
+      "url": "/MUGEN/document/State/ParentVarAdd.html",
+      "sha256": "ac04b2aeab35f69f48e53db9d0bbb078b3c5624ced02ee4b458cca1b25cdf121"
+    },
+    {
+      "path": "src/content/state-controllers/ParentVarSet.json",
+      "url": "/MUGEN/document/State/ParentVarSet.html",
+      "sha256": "77b3a5a8a8fb0bcbad368d45ad1498ac258dd4667eb174a2e871be2b488f6d21"
+    },
+    {
+      "path": "src/content/state-controllers/Pause.json",
+      "url": "/MUGEN/document/State/Pause.html",
+      "sha256": "0769e11e07db55047a11d0b431c14be654d27c48d3ae8e129464615886c9782c"
+    },
+    {
+      "path": "src/content/state-controllers/PlaySnd.json",
+      "url": "/MUGEN/document/State/PlaySnd.html",
+      "sha256": "62290124350150d3d1ac02de59720dbf66212d3b1806b02c8520fc10d1551e57"
+    },
+    {
+      "path": "src/content/state-controllers/PlayerPush.json",
+      "url": "/MUGEN/document/State/PlayerPush.html",
+      "sha256": "fc6e80b18f864f29b361de02b6119587b9bd4b19bf7892cf142c76d5e4de82f5"
+    },
+    {
+      "path": "src/content/state-controllers/PosAdd.json",
+      "url": "/MUGEN/document/State/PosAdd.html",
+      "sha256": "3f42cb6109058dcd1e66bd770b8f02a98616274db3004d0f35f52255296d2ed4"
+    },
+    {
+      "path": "src/content/state-controllers/PosFreeze.json",
+      "url": "/MUGEN/document/State/PosFreeze.html",
+      "sha256": "61effaee487ffaa12048ab88ebaf5a98ea4d698c35bfaeb60bf03acb27701de1"
+    },
+    {
+      "path": "src/content/state-controllers/PosSet.json",
+      "url": "/MUGEN/document/State/PosSet.html",
+      "sha256": "0b1de731af99ff1320d8eccc815bf4e8893ef7ace0c8f7487d021d34f608d1c6"
+    },
+    {
+      "path": "src/content/state-controllers/PowerAdd.json",
+      "url": "/MUGEN/document/State/PowerAdd.html",
+      "sha256": "fc0382b83bbfc3f18df725c2fe72224b52e53a03832991d79b06ebd2e4442d39"
+    },
+    {
+      "path": "src/content/state-controllers/PowerSet.json",
+      "url": "/MUGEN/document/State/PowerSet.html",
+      "sha256": "386717e1654646f4ce0d54c43d3fdad4ad68a72620d8ef66893fa38c58c5375f"
+    },
+    {
+      "path": "src/content/state-controllers/Projectile.json",
+      "url": "/MUGEN/document/State/Projectile.html",
+      "sha256": "93a06c09b60db0ce3b1d132e86d4ac9adc7a328235a40df624ba35cc333ba7d1"
+    },
+    {
+      "path": "src/content/state-controllers/RemapPal.json",
+      "url": "/MUGEN/document/State/RemapPal.html",
+      "sha256": "b34a7f589da1e9bdab151443d44e093c846528794de84613b08cfa08e2f91158"
+    },
+    {
+      "path": "src/content/state-controllers/RemoveExplod.json",
+      "url": "/MUGEN/document/State/RemoveExplod.html",
+      "sha256": "af413b8199e8ce1599f88f0f718e6139c9ae594ddab589211dc0c86402c70834"
+    },
+    {
+      "path": "src/content/state-controllers/ReversalDef.json",
+      "url": "/MUGEN/document/State/ReversalDef.html",
+      "sha256": "7a06546a27404de47a89244fb9f4a384538fe0c0da40483d2479680c98ebac6e"
+    },
+    {
+      "path": "src/content/state-controllers/S.json",
+      "url": "/MUGEN/document/State/S.html",
+      "sha256": "d5e516c07e6daef50fe3a37b522cc56916c8e5d071fe1588532799b929d6465a"
+    },
+    {
+      "path": "src/content/state-controllers/ScreenBound.json",
+      "url": "/MUGEN/document/State/ScreenBound.html",
+      "sha256": "c206a5187b20b8d0e836e8b1a558c12b19aed938f59f3d217fc9f049fe03eb51"
+    },
+    {
+      "path": "src/content/state-controllers/SelfState.json",
+      "url": "/MUGEN/document/State/SelfState.html",
+      "sha256": "84b7c0f5f30534b2efe5790f4f70c46a8e8d6daa3c03c4967a423b87dbcca324"
+    },
+    {
+      "path": "src/content/state-controllers/SndPan.json",
+      "url": "/MUGEN/document/State/SndPan.html",
+      "sha256": "db5773b2c3e8bee325bdf9b1a6517d249741c33201df41ea750b811cb8704a56"
+    },
+    {
+      "path": "src/content/state-controllers/SprPriority.json",
+      "url": "/MUGEN/document/State/SprPriority.html",
+      "sha256": "93c2241828801cb364266a93fd7298e6cdfeeb5514b1b465e294c7e859914cef"
+    },
+    {
+      "path": "src/content/state-controllers/StateTypeSet.json",
+      "url": "/MUGEN/document/State/StateTypeSet.html",
+      "sha256": "9131f54a401d7412871a95928fd36fd4b717031bd427057436800e3256467381"
+    },
+    {
+      "path": "src/content/state-controllers/StopSnd.json",
+      "url": "/MUGEN/document/State/StopSnd.html",
+      "sha256": "8b551930db10fc085b8c1f4f65e7cde553a010d4849bc569a41e25b9fcb2ce7f"
+    },
+    {
+      "path": "src/content/state-controllers/SuperPause.json",
+      "url": "/MUGEN/document/State/SuperPause.html",
+      "sha256": "111b7107f4444f0f40cb26c4334f843a3ee81fb762a233488e48d61e9fad745f"
+    },
+    {
+      "path": "src/content/state-controllers/TagIn.json",
+      "url": "/MUGEN/document/State/TagIn.html",
+      "sha256": "3e882042c9a962550d6ee7881fcab7194dec200770c39c0edf465e01807e848c"
+    },
+    {
+      "path": "src/content/state-controllers/TagOut.json",
+      "url": "/MUGEN/document/State/TagOut.html",
+      "sha256": "8a4c048ab4eed32399576efd2dd10980481f09b93b37012e40c875de6c4df4ef"
+    },
+    {
+      "path": "src/content/state-controllers/TargetBind.json",
+      "url": "/MUGEN/document/State/TargetBind.html",
+      "sha256": "f60c80c881888cf6624422fa99fd8368e77325a1f4f5e2eec9606cf9cfe54ad9"
+    },
+    {
+      "path": "src/content/state-controllers/TargetDrop.json",
+      "url": "/MUGEN/document/State/TargetDrop.html",
+      "sha256": "6925e931b25023498bd98b64935607ba2a790a426142bb17546db12b459038d7"
+    },
+    {
+      "path": "src/content/state-controllers/TargetFacing.json",
+      "url": "/MUGEN/document/State/TargetFacing.html",
+      "sha256": "c03cebb466e6911f3970eee0c26ff7501d3a79e8848b99ba35f238e61c2b6124"
+    },
+    {
+      "path": "src/content/state-controllers/TargetLifeAdd.json",
+      "url": "/MUGEN/document/State/TargetLifeAdd.html",
+      "sha256": "57000f2d2c90c45c022ebda9f6ea503f85aa25fb4a6b73294fe2fd56d623b81a"
+    },
+    {
+      "path": "src/content/state-controllers/TargetPowerAdd.json",
+      "url": "/MUGEN/document/State/TargetPowerAdd.html",
+      "sha256": "cfa3118c7bd9c8c4ca07854ee13a7c28f4899266d28b6c5dfa9ed1849ce3fe21"
+    },
+    {
+      "path": "src/content/state-controllers/TargetState.json",
+      "url": "/MUGEN/document/State/TargetState.html",
+      "sha256": "2bf1c3b2653d01f058204e62abf8f739a34a4e3e01a06023f0c3191731dd5d71"
+    },
+    {
+      "path": "src/content/state-controllers/TargetVelAdd.json",
+      "url": "/MUGEN/document/State/TargetVelAdd.html",
+      "sha256": "c841492500dd5bb40ce90b25ff2f3bbd1889b5debdec1961e0936baf48afbe45"
+    },
+    {
+      "path": "src/content/state-controllers/TargetVelSet.json",
+      "url": "/MUGEN/document/State/TargetVelSet.html",
+      "sha256": "11e707b6f00cbe17d3460eb4447f8348ded0410c15acb3357da6e2aedcc29d03"
+    },
+    {
+      "path": "src/content/state-controllers/Trans.json",
+      "url": "/MUGEN/document/State/Trans.html",
+      "sha256": "6b23f7bdf5dd63bac56839bb2aac93a794ba30f00c06a75dfc712974199770a4"
+    },
+    {
+      "path": "src/content/state-controllers/Turn.json",
+      "url": "/MUGEN/document/State/Turn.html",
+      "sha256": "0e51e84778c954edc76d692cf79a7ad9a60c5e02f3461a440a0bc0f3d461e6d8"
+    },
+    {
+      "path": "src/content/state-controllers/U.json",
+      "url": "/MUGEN/document/State/U.html",
+      "sha256": "626c9d6fa2ec68e398eed00395eddaacd0504533583840e3c507fd4923e632ef"
+    },
+    {
+      "path": "src/content/state-controllers/VarAdd.json",
+      "url": "/MUGEN/document/State/VarAdd.html",
+      "sha256": "0bb7fc04fa9670404e1e9a0a3d9d9e5a2c1bb65c5f47cbde245bdafb8e07273c"
+    },
+    {
+      "path": "src/content/state-controllers/VarRandom.json",
+      "url": "/MUGEN/document/State/VarRandom.html",
+      "sha256": "2edf2ec75c4a788497255fe808ebb1112440094b990b3aa3a7880713e43e38e7"
+    },
+    {
+      "path": "src/content/state-controllers/VarRangeSet.json",
+      "url": "/MUGEN/document/State/VarRangeSet.html",
+      "sha256": "c8fc589979470adc0ee3d7a235333be965bd03ea955a1f7b316e6ac4a3b4d66a"
+    },
+    {
+      "path": "src/content/state-controllers/VarSet.json",
+      "url": "/MUGEN/document/State/VarSet.html",
+      "sha256": "cfb0e577eae1e4e447704fae7edd6f0d3f7f5caf59744832278e398b28f52f7b"
+    },
+    {
+      "path": "src/content/state-controllers/VelAdd.json",
+      "url": "/MUGEN/document/State/VelAdd.html",
+      "sha256": "ef6f787276f3a6152a50b934f21ecef11b72b7000101faa8afc425e8dbab5298"
+    },
+    {
+      "path": "src/content/state-controllers/VelMul.json",
+      "url": "/MUGEN/document/State/VelMul.html",
+      "sha256": "6b1ea6613463d4a321b1984c3dbf0b18eeb351382cc616671f1ec7b0bd1d31b2"
+    },
+    {
+      "path": "src/content/state-controllers/VelSet.json",
+      "url": "/MUGEN/document/State/VelSet.html",
+      "sha256": "2e0da314e6579df84a6a1d8ac15ac6c94430a72d99ad4f11bdaad88da6e92f44"
+    },
+    {
+      "path": "src/content/state-controllers/VictoryQuote.json",
+      "url": "/MUGEN/document/State/VictoryQuote.html",
+      "sha256": "f9810daa93e0741725164ed79b7c28b43a0b9d792e8b65afd9320c5cddb2acfd"
+    },
+    {
+      "path": "src/content/state-controllers/Width.json",
+      "url": "/MUGEN/document/State/Width.html",
+      "sha256": "4889e1ba7fbc64b7cdcb4a6bac89bc55e960c0ce7832395e2940d08354b64c35"
+    },
+    {
+      "path": "src/content/state-controllers/Zoom.json",
+      "url": "/MUGEN/document/State/Zoom.html",
+      "sha256": "ee411fd8cfcb39694e10f55901226730b3bedfcc3775d6303f1caa6333929b58"
+    },
+    {
+      "path": "src/content/triggers/AILevel.json",
+      "url": "/MUGEN/document/Trigger/AILevel.html",
+      "sha256": "5af6406b9b6f05bdf372d70744b674ad1414fee9626c34ff4042d58f459bdc15"
+    },
+    {
+      "path": "src/content/triggers/Abs.json",
+      "url": "/MUGEN/document/Trigger/Abs.html",
+      "sha256": "f146bee44d981fd1cdee9f8e38feee6af7c6b2b129c3319dc3568b6ea033dae5"
+    },
+    {
+      "path": "src/content/triggers/Acos.json",
+      "url": "/MUGEN/document/Trigger/Acos.html",
+      "sha256": "6d1e0ebf5e3336a8bc22b5a58283fc58461b3678a3b137c3365708d3f688fa47"
+    },
+    {
+      "path": "src/content/triggers/Alive.json",
+      "url": "/MUGEN/document/Trigger/Alive.html",
+      "sha256": "ec1f121df4bd27a95b61054fd613cc1340729fb4873cdc5a73fc3c75710d0820"
+    },
+    {
+      "path": "src/content/triggers/Anim.json",
+      "url": "/MUGEN/document/Trigger/Anim.html",
+      "sha256": "3b3421db1d468153989d8e65097085d715e70e773070a395d0b43e8e8c1100b7"
+    },
+    {
+      "path": "src/content/triggers/AnimElem.json",
+      "url": "/MUGEN/document/Trigger/AnimElem.html",
+      "sha256": "fe708b11f3a0830d772f39c3537a202ec740a939d2f12ef8afe43e656a872b27"
+    },
+    {
+      "path": "src/content/triggers/AnimElemNo.json",
+      "url": "/MUGEN/document/Trigger/AnimElemNo.html",
+      "sha256": "0bf0375f181d340811b00bbc2356aa7b8389459df27661eeaf3115eee4b22d1b"
+    },
+    {
+      "path": "src/content/triggers/AnimElemTime.json",
+      "url": "/MUGEN/document/Trigger/AnimElemTime.html",
+      "sha256": "3a352b3c589a6700dcc75e2ab1c286a10e2ec1a009209022d12b326e23ac3105"
+    },
+    {
+      "path": "src/content/triggers/AnimExist.json",
+      "url": "/MUGEN/document/Trigger/AnimExist.html",
+      "sha256": "48ad23156c707ae6b3ee45306bd1a2a355ab872b42423d3fa4deb68028d79580"
+    },
+    {
+      "path": "src/content/triggers/AnimTime.json",
+      "url": "/MUGEN/document/Trigger/AnimTime.html",
+      "sha256": "a54828dc09f83dac8b6b0646076fddb8db2f08ebad852e63d7d312579212dbf6"
+    },
+    {
+      "path": "src/content/triggers/Asin.json",
+      "url": "/MUGEN/document/Trigger/Asin.html",
+      "sha256": "c1f7fbd0f3d4b4adf07cabeb5b0f61a56cee031994600d79a526c1c5f13cc7d0"
+    },
+    {
+      "path": "src/content/triggers/Atan.json",
+      "url": "/MUGEN/document/Trigger/Atan.html",
+      "sha256": "1dfcc5e55e207cac6417088c0fa8c70264a56634ee3456d1b87dd8485904a1dc"
+    },
+    {
+      "path": "src/content/triggers/AuthorName.json",
+      "url": "/MUGEN/document/Trigger/AuthorName.html",
+      "sha256": "1ad54dccb1ebd90b41463513e089de2f3c90da9fd10d25cc4c4d998dd6993560"
+    },
+    {
+      "path": "src/content/triggers/BackEdge.json",
+      "url": "/MUGEN/document/Trigger/BackEdge.html",
+      "sha256": "15744eb5d4e8dac2db5397ddd7a3668245c73992c88cd7f24b4955f33258d5c3"
+    },
+    {
+      "path": "src/content/triggers/BackEdgeBodyDist.json",
+      "url": "/MUGEN/document/Trigger/BackEdgeBodyDist.html",
+      "sha256": "6dd140baffd15e50067833f549ad8d9957ed02f81d160dc1fc01c495001f9310"
+    },
+    {
+      "path": "src/content/triggers/BackEdgeDist.json",
+      "url": "/MUGEN/document/Trigger/BackEdgeDist.html",
+      "sha256": "9e603828cc3046265f09fa0a2fa4764b05ffccb9dfaeb549a74c063659f7c07a"
+    },
+    {
+      "path": "src/content/triggers/BottomEdge.json",
+      "url": "/MUGEN/document/Trigger/BottomEdge.html",
+      "sha256": "17c0e3c42092f513d42157c5644a703b9fab0c12ae43763fbdbfadd584991091"
+    },
+    {
+      "path": "src/content/triggers/CameraPosX.json",
+      "url": "/MUGEN/document/Trigger/CameraPosX.html",
+      "sha256": "d91d9d377a7a42bea54d1179ab2c692c8bbb14a6d5f5bdb4f8a373493dd75f7b"
+    },
+    {
+      "path": "src/content/triggers/CameraPosY.json",
+      "url": "/MUGEN/document/Trigger/CameraPosY.html",
+      "sha256": "3fbdd371f933d5015eb492b4bc1bc9927064e9f42120c79ea6289e37f12df295"
+    },
+    {
+      "path": "src/content/triggers/CameraZoom.json",
+      "url": "/MUGEN/document/Trigger/CameraZoom.html",
+      "sha256": "d75b2521d3516d214bb76f1f34ccb27807962a172582c482fc087c9c9a7eef04"
+    },
+    {
+      "path": "src/content/triggers/CanRecover.json",
+      "url": "/MUGEN/document/Trigger/CanRecover.html",
+      "sha256": "cd06fe24ecc2de19a827425c6df0c63f3b6934bef5e814241bf47065d3b19235"
+    },
+    {
+      "path": "src/content/triggers/Ceil.json",
+      "url": "/MUGEN/document/Trigger/Ceil.html",
+      "sha256": "4893cb22b0c064765431779fca710aafe3cbc2d5aef5495dffd89939f7385999"
+    },
+    {
+      "path": "src/content/triggers/Command.json",
+      "url": "/MUGEN/document/Trigger/Command.html",
+      "sha256": "fa7094aa005a5a4c4775338167b77c60aa02e1caf1e468e5a06fb9f592f1d5d7"
+    },
+    {
+      "path": "src/content/triggers/Cond.json",
+      "url": "/MUGEN/document/Trigger/Cond.html",
+      "sha256": "5ea4f2e1b73d6a0be6f4bc98c45c5787393d0daa499b7ca7c04a0f20808fc75d"
+    },
+    {
+      "path": "src/content/triggers/Const.json",
+      "url": "/MUGEN/document/Trigger/Const.html",
+      "sha256": "53786684fd7f5b235eeacfd49676fc9a45e3593ab7ccc0cd2017417baee73db0"
+    },
+    {
+      "path": "src/content/triggers/Const240p.json",
+      "url": "/MUGEN/document/Trigger/Const240p.html",
+      "sha256": "3e3f348f281747a71590926f6b6cd4194c78b028bc6c18224d2036f19a078d72"
+    },
+    {
+      "path": "src/content/triggers/Const480p.json",
+      "url": "/MUGEN/document/Trigger/Const480p.html",
+      "sha256": "aa55f29e1a59114c1c76e21c79cf5dbab69a755f934375244b921b8a2c19c2fe"
+    },
+    {
+      "path": "src/content/triggers/Const720p.json",
+      "url": "/MUGEN/document/Trigger/Const720p.html",
+      "sha256": "c7ba4886442fd5625499d7df4cb7d41a813be7da6b731adf1f10bf1edbb89658"
+    },
+    {
+      "path": "src/content/triggers/Cos.json",
+      "url": "/MUGEN/document/Trigger/Cos.html",
+      "sha256": "178c7549582d0cd61a3cb6eb44bfe96a2048c568d2bcd4a0cb05e356d6cd1be2"
+    },
+    {
+      "path": "src/content/triggers/Ctrl.json",
+      "url": "/MUGEN/document/Trigger/Ctrl.html",
+      "sha256": "05fee3bd039156b63eafb79cc6f096114a5ac9c3445484834c8ac55cd1a6ecb1"
+    },
+    {
+      "path": "src/content/triggers/DrawGame.json",
+      "url": "/MUGEN/document/Trigger/DrawGame.html",
+      "sha256": "304c744a91622d1be738b16971c932ba269749c9d5f23cbe28eabab9d6e9c498"
+    },
+    {
+      "path": "src/content/triggers/E.json",
+      "url": "/MUGEN/document/Trigger/E.html",
+      "sha256": "909c12497dd42626759a6d03f105b273aed31c0ff166640facdb6c7e57311de3"
+    },
+    {
+      "path": "src/content/triggers/Exp.json",
+      "url": "/MUGEN/document/Trigger/Exp.html",
+      "sha256": "3f09ea8093318d4f632f0d28f700e0cbdad60659396cdaf5890166b570cb4707"
+    },
+    {
+      "path": "src/content/triggers/FVar.json",
+      "url": "/MUGEN/document/Trigger/FVar.html",
+      "sha256": "a2c52f5f6a4843eb0a5c1424d4337d6769e6b6fdc53996364927832a6b25d51c"
+    },
+    {
+      "path": "src/content/triggers/Facing.json",
+      "url": "/MUGEN/document/Trigger/Facing.html",
+      "sha256": "ae1086b9a522029fd414fa81399e86d072886d58244c964f7e2effe6ff7c45e1"
+    },
+    {
+      "path": "src/content/triggers/Floor.json",
+      "url": "/MUGEN/document/Trigger/Floor.html",
+      "sha256": "c096e79d07830a3265abf7eb9143b56b80917cec26bf8c550d3a88445f17d7fe"
+    },
+    {
+      "path": "src/content/triggers/FrontEdge.json",
+      "url": "/MUGEN/document/Trigger/FrontEdge.html",
+      "sha256": "45dd9085d288e97807628035f7b24a2326894324d06d1c81a9e41ecdc4b84893"
+    },
+    {
+      "path": "src/content/triggers/FrontEdgeBodyDist.json",
+      "url": "/MUGEN/document/Trigger/FrontEdgeBodyDist.html",
+      "sha256": "2c99d04bfcef97a0b1ea61e90e5c6abfd6205f0f916fbdc8e0c0ce74bd6b26ec"
+    },
+    {
+      "path": "src/content/triggers/FrontEdgeDist.json",
+      "url": "/MUGEN/document/Trigger/FrontEdgeDist.html",
+      "sha256": "141bc140fc9b4429dd55d7496c33b80b11e517df48a793882a8e4a85ed704d84"
+    },
+    {
+      "path": "src/content/triggers/GameHeight.json",
+      "url": "/MUGEN/document/Trigger/GameHeight.html",
+      "sha256": "1e3158950459929b5aea809970f398f29d47d7a0d16cc243f595667214caf153"
+    },
+    {
+      "path": "src/content/triggers/GameTime.json",
+      "url": "/MUGEN/document/Trigger/GameTime.html",
+      "sha256": "f0b07939686655f37d2d1d490394b3e9e1a69124b4827012a44b8c9caf1e1f20"
+    },
+    {
+      "path": "src/content/triggers/GameWidth.json",
+      "url": "/MUGEN/document/Trigger/GameWidth.html",
+      "sha256": "cca30c0d54035108978536b0e909d5bfa6901b2c15a9ffb202e650ea582ca598"
+    },
+    {
+      "path": "src/content/triggers/GetHitVar.json",
+      "url": "/MUGEN/document/Trigger/GetHitVar.html",
+      "sha256": "1f095b17d7b78f6e302c04cfe18d1442defd3737fca0fd03c6f03172a09a95fc"
+    },
+    {
+      "path": "src/content/triggers/HitCount.json",
+      "url": "/MUGEN/document/Trigger/HitCount.html",
+      "sha256": "83bb32387a2391fe859deca44e3110f1535a1b91282a3ea11cae2376f2b8ce66"
+    },
+    {
+      "path": "src/content/triggers/HitDefAttr.json",
+      "url": "/MUGEN/document/Trigger/HitDefAttr.html",
+      "sha256": "67a29152a2546e6cdfadc96630e47092d0e3588857b3ee81c16710865006a12a"
+    },
+    {
+      "path": "src/content/triggers/HitFall.json",
+      "url": "/MUGEN/document/Trigger/HitFall.html",
+      "sha256": "ddef042dfd9233aeb93eec93333b9241845f4ddf43aaece7ec69979168910b18"
+    },
+    {
+      "path": "src/content/triggers/HitOver.json",
+      "url": "/MUGEN/document/Trigger/HitOver.html",
+      "sha256": "9b97d7d38dd81a091975ea93c02df0660522488d692deace1df51d791ab81aa9"
+    },
+    {
+      "path": "src/content/triggers/HitPauseTime.json",
+      "url": "/MUGEN/document/Trigger/HitPauseTime.html",
+      "sha256": "296f6d364a868a5fd5cac76f994449b478e04a59ce1e021614478044e8b90ec8"
+    },
+    {
+      "path": "src/content/triggers/HitShakeOver.json",
+      "url": "/MUGEN/document/Trigger/HitShakeOver.html",
+      "sha256": "c70a835e177e33ff366f64fbc746779beb1d93f01f752e3b4c1cb2e302b68e51"
+    },
+    {
+      "path": "src/content/triggers/HitVelX.json",
+      "url": "/MUGEN/document/Trigger/HitVelX.html",
+      "sha256": "c80126474645266e0921d0226d9a3dcdc921eb158672e7de78e7ed56cf632c7a"
+    },
+    {
+      "path": "src/content/triggers/HitVelY.json",
+      "url": "/MUGEN/document/Trigger/HitVelY.html",
+      "sha256": "3bf512706825e0c87836a53e212bc1e5d777edb7abe8fbe94cfedf1e4f36389f"
+    },
+    {
+      "path": "src/content/triggers/ID.json",
+      "url": "/MUGEN/document/Trigger/ID.html",
+      "sha256": "da315e1b2e7a5d909600a06ec4533fe6f17e86f48ad7af536a5ae8045ad5ccea"
+    },
+    {
+      "path": "src/content/triggers/IfElse.json",
+      "url": "/MUGEN/document/Trigger/IfElse.html",
+      "sha256": "4dac27bc4e4588f3cf43034d9c7bdce4c769dc98238f24db2024442de76eaa9d"
+    },
+    {
+      "path": "src/content/triggers/InGuardDist.json",
+      "url": "/MUGEN/document/Trigger/InGuardDist.html",
+      "sha256": "1f41f74255dd27edb60ff5b529eb0151c782c150bdf3d1d3ef723cb891dba2ad"
+    },
+    {
+      "path": "src/content/triggers/IsHelper.json",
+      "url": "/MUGEN/document/Trigger/IsHelper.html",
+      "sha256": "8813726496697c5caba4fce328ab3fe440e50e18eac5ba7460caaa731e016255"
+    },
+    {
+      "path": "src/content/triggers/IsHomeTeam.json",
+      "url": "/MUGEN/document/Trigger/IsHomeTeam.html",
+      "sha256": "948250f526369fa35cdfb3f1f682bcd5a838f19de7f1d1c1e3fdb078b8b7a700"
+    },
+    {
+      "path": "src/content/triggers/LeftEdge.json",
+      "url": "/MUGEN/document/Trigger/LeftEdge.html",
+      "sha256": "b709f0dd079f0e91c7e0f771aa844b6a1b1a46302bc5d2f2375367f4df4be381"
+    },
+    {
+      "path": "src/content/triggers/Life.json",
+      "url": "/MUGEN/document/Trigger/Life.html",
+      "sha256": "e4d16a665e26fbefbdca9fbfeb9fd03f91918119c5e15ff6f02f0e061debf122"
+    },
+    {
+      "path": "src/content/triggers/LifeMax.json",
+      "url": "/MUGEN/document/Trigger/LifeMax.html",
+      "sha256": "09663f5fd47af495d8e77744a055697ffc4e9a90139b0d546d12e516af3bb3a3"
+    },
+    {
+      "path": "src/content/triggers/Ln.json",
+      "url": "/MUGEN/document/Trigger/Ln.html",
+      "sha256": "4ba5c11701f80cfe29467c75d4cb7a8a3cbecbd06f5f4c6f54ed89c1c8f17837"
+    },
+    {
+      "path": "src/content/triggers/Log.json",
+      "url": "/MUGEN/document/Trigger/Log.html",
+      "sha256": "83f61fbc88771865f97ab9af2bfb9eacd9e4b6a41b7a84caa9427dbd3dca4019"
+    },
+    {
+      "path": "src/content/triggers/Lose.json",
+      "url": "/MUGEN/document/Trigger/Lose.html",
+      "sha256": "a3819c468eac73c76067dd0f1d6c32be81aed7f200e7c32896612ce12bff23b2"
+    },
+    {
+      "path": "src/content/triggers/LoseKO.json",
+      "url": "/MUGEN/document/Trigger/LoseKO.html",
+      "sha256": "50033e83e3b5a5965ba4916ee686128cd31f036d49bf925cbe1de97e4940e02f"
+    },
+    {
+      "path": "src/content/triggers/LoseTime.json",
+      "url": "/MUGEN/document/Trigger/LoseTime.html",
+      "sha256": "54c19e3583744d4b59aca380e4efb4781f749d3197b32bfc9a0805e0a61c477a"
+    },
+    {
+      "path": "src/content/triggers/MatchNo.json",
+      "url": "/MUGEN/document/Trigger/MatchNo.html",
+      "sha256": "07aa2ec3258f9d4b99b013a0f8cbde8aa6c8a729f24bd802ba049d2f5e6ca800"
+    },
+    {
+      "path": "src/content/triggers/MatchOver.json",
+      "url": "/MUGEN/document/Trigger/MatchOver.html",
+      "sha256": "32125286b591bdd253f0744cc8b5f6fa6c037b5a5dacb7d6b5d5b9ceb380bcef"
+    },
+    {
+      "path": "src/content/triggers/MoveContact.json",
+      "url": "/MUGEN/document/Trigger/MoveContact.html",
+      "sha256": "6e996d4333c4515e0b929019ccf0f05972c9557aff7886f96c13f31ccd427efc"
+    },
+    {
+      "path": "src/content/triggers/MoveGuarded.json",
+      "url": "/MUGEN/document/Trigger/MoveGuarded.html",
+      "sha256": "d96b017efa6799078eb56f5f49739e3441a6623b5e2a3a1c937b3142b9a21088"
+    },
+    {
+      "path": "src/content/triggers/MoveHit.json",
+      "url": "/MUGEN/document/Trigger/MoveHit.html",
+      "sha256": "717a1b8bc991e74208faaa8f764d1816524d8c16e78c5be317aa90bf0e0f81b4"
+    },
+    {
+      "path": "src/content/triggers/MoveReversed.json",
+      "url": "/MUGEN/document/Trigger/MoveReversed.html",
+      "sha256": "b4b9cee11c772c31046778f4b3da779153e8df8c20871d06b24763e1e3db334f"
+    },
+    {
+      "path": "src/content/triggers/MoveType.json",
+      "url": "/MUGEN/document/Trigger/MoveType.html",
+      "sha256": "ab7e52d587a2c312879ecab7700767f1543d19b1b8c25237f3a482c8674b4c24"
+    },
+    {
+      "path": "src/content/triggers/Name.json",
+      "url": "/MUGEN/document/Trigger/Name.html",
+      "sha256": "cde4cc3aaf805fbdfbbcb1e3ebacf65a971d19a55211105088d891f2ce3fe298"
+    },
+    {
+      "path": "src/content/triggers/NumEnemy.json",
+      "url": "/MUGEN/document/Trigger/NumEnemy.html",
+      "sha256": "b391359a181590ced314a51d9781beeac9a24704e2fa5d8aad4e67699aaa8e62"
+    },
+    {
+      "path": "src/content/triggers/NumExplod.json",
+      "url": "/MUGEN/document/Trigger/NumExplod.html",
+      "sha256": "804ca86a22b21f42ad142abe23d9f00946f176fe739de4abf528534ac26c3311"
+    },
+    {
+      "path": "src/content/triggers/NumHelper.json",
+      "url": "/MUGEN/document/Trigger/NumHelper.html",
+      "sha256": "b6545938f93625671fc068a7b12b93f9d3c0cac021d4549f82134f349edc01cb"
+    },
+    {
+      "path": "src/content/triggers/NumPartner.json",
+      "url": "/MUGEN/document/Trigger/NumPartner.html",
+      "sha256": "fda260855b2a5b64b86b47681a10187758e3c078789b4608a8f7b4e574f3394b"
+    },
+    {
+      "path": "src/content/triggers/NumProj.json",
+      "url": "/MUGEN/document/Trigger/NumProj.html",
+      "sha256": "114748fea8aa0dadae2caeeb44020f1b21de5bc914db7d9b32daf08ece850617"
+    },
+    {
+      "path": "src/content/triggers/NumProjID.json",
+      "url": "/MUGEN/document/Trigger/NumProjID.html",
+      "sha256": "7356fb9b670898018d86cac153565f6a055c615026b79c8132f2b3309763cb28"
+    },
+    {
+      "path": "src/content/triggers/NumTarget.json",
+      "url": "/MUGEN/document/Trigger/NumTarget.html",
+      "sha256": "87f822bad6305b28975c59a701cc44d83b126447949ba37cd31ac9a528c9954d"
+    },
+    {
+      "path": "src/content/triggers/P1Name.json",
+      "url": "/MUGEN/document/Trigger/P1Name.html",
+      "sha256": "792e1dd73f59381284ba9705ae279a612232e23247b31796e82e8731eccfa408"
+    },
+    {
+      "path": "src/content/triggers/P2BodyDistX.json",
+      "url": "/MUGEN/document/Trigger/P2BodyDistX.html",
+      "sha256": "b01a7b0d94d6d51cc7a6d36107b5743cd3d67516d3b04771e876c10ecf2b3db9"
+    },
+    {
+      "path": "src/content/triggers/P2BodyDistY.json",
+      "url": "/MUGEN/document/Trigger/P2BodyDistY.html",
+      "sha256": "4e5a1570b75b414568737a1f7dbe21c4516a0f6686ca42d9b4ea126c84d06084"
+    },
+    {
+      "path": "src/content/triggers/P2DistX.json",
+      "url": "/MUGEN/document/Trigger/P2DistX.html",
+      "sha256": "53f0c208abe411df0ebd48502c1cb442bf8f87a658d8f7e426940f23e72f5a17"
+    },
+    {
+      "path": "src/content/triggers/P2DistY.json",
+      "url": "/MUGEN/document/Trigger/P2DistY.html",
+      "sha256": "62b56fb949a4d621f14d9441043843f9a161d20a470e4128c24468632d1838bc"
+    },
+    {
+      "path": "src/content/triggers/P2Life.json",
+      "url": "/MUGEN/document/Trigger/P2Life.html",
+      "sha256": "276735f70ef76f12166298b267068d0c912804ab1bda727568e7d0c42dd49b02"
+    },
+    {
+      "path": "src/content/triggers/P2MoveType.json",
+      "url": "/MUGEN/document/Trigger/P2MoveType.html",
+      "sha256": "b81c4b2e28f9ef86dc2dd0a8b0104018da0fb3cfac8e33480673a6a494e0d6c7"
+    },
+    {
+      "path": "src/content/triggers/P2Name.json",
+      "url": "/MUGEN/document/Trigger/P2Name.html",
+      "sha256": "35aff4546ce40dc830ba6ab045687418c09ebcc02b3e736574b696aa37e3a9af"
+    },
+    {
+      "path": "src/content/triggers/P2StateNo.json",
+      "url": "/MUGEN/document/Trigger/P2StateNo.html",
+      "sha256": "7d509a38eb7f609b3a173af735017a4544d6f91c3b7d8f1f2e56d4d869b32004"
+    },
+    {
+      "path": "src/content/triggers/P2StateType.json",
+      "url": "/MUGEN/document/Trigger/P2StateType.html",
+      "sha256": "9ce0cabce9ab725ddd52ece2a0659a2e3463c084e3ace0f0a475089ed406e3c0"
+    },
+    {
+      "path": "src/content/triggers/P3Name.json",
+      "url": "/MUGEN/document/Trigger/P3Name.html",
+      "sha256": "7cfbc59515501da1a18c8985a8266b03c9389acab6c74eb14c2ec8a9c9e7910e"
+    },
+    {
+      "path": "src/content/triggers/P4Name.json",
+      "url": "/MUGEN/document/Trigger/P4Name.html",
+      "sha256": "1f8354724c15cb1bad0c9b18bcde5f548b89e07467dcf97bd0c8c8dc04e4fac7"
+    },
+    {
+      "path": "src/content/triggers/PI.json",
+      "url": "/MUGEN/document/Trigger/PI.html",
+      "sha256": "a97240a91bba8949e1b3f7c31d06831885bcbe28f2388998c4e38be761cb081e"
+    },
+    {
+      "path": "src/content/triggers/PalNo.json",
+      "url": "/MUGEN/document/Trigger/PalNo.html",
+      "sha256": "44a2b6e0fd9a288faeac30ce2bd8b94d184f332373a9ad7c0332552a574e41a5"
+    },
+    {
+      "path": "src/content/triggers/ParentDistX.json",
+      "url": "/MUGEN/document/Trigger/ParentDistX.html",
+      "sha256": "b6f70c1ee586200e0c29ac129e11865cba9c85bfdb74138ae1e4ff3e7f0735df"
+    },
+    {
+      "path": "src/content/triggers/ParentDistY.json",
+      "url": "/MUGEN/document/Trigger/ParentDistY.html",
+      "sha256": "72cc9906c67e5d87b579ff2ca69ffcb4616bc55a5f3ed8c7dc582405492f1fd1"
+    },
+    {
+      "path": "src/content/triggers/PlayerIDExist.json",
+      "url": "/MUGEN/document/Trigger/PlayerIDExist.html",
+      "sha256": "ace744aa4d50ccc45222b65cab159e11be1386478a56952da5aa28b413d2df79"
+    },
+    {
+      "path": "src/content/triggers/PosX.json",
+      "url": "/MUGEN/document/Trigger/PosX.html",
+      "sha256": "fa8dacd9b97a1a8e3171fc281a8b5b8adef7d7c88acb50a4edf07d6d0fd34d68"
+    },
+    {
+      "path": "src/content/triggers/PosY.json",
+      "url": "/MUGEN/document/Trigger/PosY.html",
+      "sha256": "280273fa631afdbaf1f7ffd41c5c53ab67eab84f442a9f3f0c56cf7bac5bbc9f"
+    },
+    {
+      "path": "src/content/triggers/Power.json",
+      "url": "/MUGEN/document/Trigger/Power.html",
+      "sha256": "e0d0a32057bae48323efca7c15c7d5e620bed192b0c4bb18e5c19f1142ee2122"
+    },
+    {
+      "path": "src/content/triggers/PowerMax.json",
+      "url": "/MUGEN/document/Trigger/PowerMax.html",
+      "sha256": "2072520737051c5793c2c1e77a725dfda316599170701f18b4879f3585346e2b"
+    },
+    {
+      "path": "src/content/triggers/PrevStateNo.json",
+      "url": "/MUGEN/document/Trigger/PrevStateNo.html",
+      "sha256": "39f1e404cf2535696e527be457d28fc9ebebb2d68eac6175e5896f1ba4249aa6"
+    },
+    {
+      "path": "src/content/triggers/ProjCancelTime.json",
+      "url": "/MUGEN/document/Trigger/ProjCancelTime.html",
+      "sha256": "f6e23b67d98b6caf1acbcae8d0394e5e618b3aaf767097bf56030c276741010c"
+    },
+    {
+      "path": "src/content/triggers/ProjContact.json",
+      "url": "/MUGEN/document/Trigger/ProjContact.html",
+      "sha256": "715cae8708022e142e041c8c1a7e5139d894abe7055849df649a45904a8a434b"
+    },
+    {
+      "path": "src/content/triggers/ProjContactTime.json",
+      "url": "/MUGEN/document/Trigger/ProjContactTime.html",
+      "sha256": "788f5ecca3af4db2bbfea587595cb4106ef55c3ec91a8158540c1d0d5ae9b893"
+    },
+    {
+      "path": "src/content/triggers/ProjGuarded.json",
+      "url": "/MUGEN/document/Trigger/ProjGuarded.html",
+      "sha256": "8755450ed50150dff03d5ffc00e28163f242af83d898ee5da1114cb2d1ffd8c4"
+    },
+    {
+      "path": "src/content/triggers/ProjGuardedTime.json",
+      "url": "/MUGEN/document/Trigger/ProjGuardedTime.html",
+      "sha256": "bd95a51bbda2cefae1cb1d610661fc3bc724c9abb38a30430178bd9e7d0cbb60"
+    },
+    {
+      "path": "src/content/triggers/ProjHit.json",
+      "url": "/MUGEN/document/Trigger/ProjHit.html",
+      "sha256": "c97b74a518e1205d1ec0376a0af08713430fb9c8f34d06333a8551f50315d49b"
+    },
+    {
+      "path": "src/content/triggers/ProjHitTime.json",
+      "url": "/MUGEN/document/Trigger/ProjHitTime.html",
+      "sha256": "ba43b6f7f13026a87d7da220235ed4fee325c9871edfddeafd643c49739e8648"
+    },
+    {
+      "path": "src/content/triggers/Random.json",
+      "url": "/MUGEN/document/Trigger/Random.html",
+      "sha256": "54acfe0283bb70a76065210d0b99058915fa79c028e56e3632cf4db5d1d40423"
+    },
+    {
+      "path": "src/content/triggers/RightEdge.json",
+      "url": "/MUGEN/document/Trigger/RightEdge.html",
+      "sha256": "e032ec5c97f0fa1024f1fea4f83743835aaa47e2884170e678e9c89f39483f42"
+    },
+    {
+      "path": "src/content/triggers/RootDistX.json",
+      "url": "/MUGEN/document/Trigger/RootDistX.html",
+      "sha256": "14160e14107031dd24ed2d83bf3ad4806077fcf9c6cadab3652898d8f128698f"
+    },
+    {
+      "path": "src/content/triggers/RootDistY.json",
+      "url": "/MUGEN/document/Trigger/RootDistY.html",
+      "sha256": "23b68135057783e91ff62b33b46b5555dbfa3bf0024e4d85964f37f4059642d9"
+    },
+    {
+      "path": "src/content/triggers/RoundNo.json",
+      "url": "/MUGEN/document/Trigger/RoundNo.html",
+      "sha256": "185671dad574359317c94dc5be8b937622036a398990182c49d02a3b501afac8"
+    },
+    {
+      "path": "src/content/triggers/RoundState.json",
+      "url": "/MUGEN/document/Trigger/RoundState.html",
+      "sha256": "6dc0ab62165f27e9d2123a422665a0a27eef7cabf74d0525eda32cf67d7bb077"
+    },
+    {
+      "path": "src/content/triggers/RoundsExisted.json",
+      "url": "/MUGEN/document/Trigger/RoundsExisted.html",
+      "sha256": "5d547e0f7b29116eafc2e3228e766e72028f7b535db0eb707f966116b1a814dc"
+    },
+    {
+      "path": "src/content/triggers/ScreenHeight.json",
+      "url": "/MUGEN/document/Trigger/ScreenHeight.html",
+      "sha256": "342489cae3f17888da39a4d9e1cb309637db8b3b3b02eca9c597f5ad9bdd9b94"
+    },
+    {
+      "path": "src/content/triggers/ScreenPosX.json",
+      "url": "/MUGEN/document/Trigger/ScreenPosX.html",
+      "sha256": "e01e7822d4786630d01c9c41ceba0480a50c25b438872a255d48257990d8d986"
+    },
+    {
+      "path": "src/content/triggers/ScreenPosY.json",
+      "url": "/MUGEN/document/Trigger/ScreenPosY.html",
+      "sha256": "a53e7b41f0ef0ed341a9c3f9b036c197a7dc4b17d7bedfeda97a501927178857"
+    },
+    {
+      "path": "src/content/triggers/ScreenWidth.json",
+      "url": "/MUGEN/document/Trigger/ScreenWidth.html",
+      "sha256": "d4889655aa10a071f0638b1c84dde9800f63eed3390ea512c367c3762cabdbe0"
+    },
+    {
+      "path": "src/content/triggers/SelfAnimExist.json",
+      "url": "/MUGEN/document/Trigger/SelfAnimExist.html",
+      "sha256": "323eb263ad43d1fecdb57ecf5183995be4766a40a5ed65f91b50c53fa197c622"
+    },
+    {
+      "path": "src/content/triggers/Sin.json",
+      "url": "/MUGEN/document/Trigger/Sin.html",
+      "sha256": "63a2763eba45703e798827b7c010b3e2165ce6d5892ccee6801fcb8ec7988683"
+    },
+    {
+      "path": "src/content/triggers/StageVar.json",
+      "url": "/MUGEN/document/Trigger/StageVar.html",
+      "sha256": "ede4212e921927b6068087d0517672679129c10dbee113464511ffbd5d08451a"
+    },
+    {
+      "path": "src/content/triggers/StandBy.json",
+      "url": "/MUGEN/document/Trigger/StandBy.html",
+      "sha256": "bf23c8b64839222610fd9e334464e99214b061dbcb1795bedd9eee10124f6ec3"
+    },
+    {
+      "path": "src/content/triggers/StateNo.json",
+      "url": "/MUGEN/document/Trigger/StateNo.html",
+      "sha256": "e96832b76a9163fd62e737d0c464f264e2a6c73f4fb14ee750ead5175f991198"
+    },
+    {
+      "path": "src/content/triggers/StateType.json",
+      "url": "/MUGEN/document/Trigger/StateType.html",
+      "sha256": "86c8b77145cfdf47043876491dddbe52864fa5e5bdfac5e6669622fc84d0be80"
+    },
+    {
+      "path": "src/content/triggers/SysFVar.json",
+      "url": "/MUGEN/document/Trigger/SysFVar.html",
+      "sha256": "bba441315a42461ac47de3d67cd9e9692da0eb9e25f27faaa9b533d89a3088a0"
+    },
+    {
+      "path": "src/content/triggers/SysVar.json",
+      "url": "/MUGEN/document/Trigger/SysVar.html",
+      "sha256": "fc2c21665d4659e9a465f9a72f6f6295aa8bcca5b16a10489c103fa024a253a0"
+    },
+    {
+      "path": "src/content/triggers/Tan.json",
+      "url": "/MUGEN/document/Trigger/Tan.html",
+      "sha256": "d7cfaf4e79ef5c921707718940442d0636674f519ba93e7291d4da960bfb6e10"
+    },
+    {
+      "path": "src/content/triggers/TeamMode.json",
+      "url": "/MUGEN/document/Trigger/TeamMode.html",
+      "sha256": "8450bf475e0ca8c424a82842793df44bc01c65b35073a4bdf1af098094a324e8"
+    },
+    {
+      "path": "src/content/triggers/TeamSide.json",
+      "url": "/MUGEN/document/Trigger/TeamSide.html",
+      "sha256": "39cb9ec45bffa2998c10b3fd4d342b7e2afc3e2b354972e1161a93a24cd5ca3a"
+    },
+    {
+      "path": "src/content/triggers/TicksPerSecond.json",
+      "url": "/MUGEN/document/Trigger/TicksPerSecond.html",
+      "sha256": "282e3a7e6de68226c9d8b0db9d857aae949c9cf52ccc3f341f66009fbdc28551"
+    },
+    {
+      "path": "src/content/triggers/Time.json",
+      "url": "/MUGEN/document/Trigger/Time.html",
+      "sha256": "13eaeb55bf1674949f5454d2271276f0b4eeeea59d7765d6af84a3d541b463dd"
+    },
+    {
+      "path": "src/content/triggers/TimeMod.json",
+      "url": "/MUGEN/document/Trigger/TimeMod.html",
+      "sha256": "8db61d75ea02c9ca1e87832f27256b8d929da157dcfe3f5cbc295a8670258f27"
+    },
+    {
+      "path": "src/content/triggers/TopEdge.json",
+      "url": "/MUGEN/document/Trigger/TopEdge.html",
+      "sha256": "328b760ff6f0af3dddcad95f508e5d04913ae5a79cd3b6bd5c4dec6f458c15f1"
+    },
+    {
+      "path": "src/content/triggers/UniqHitCount.json",
+      "url": "/MUGEN/document/Trigger/UniqHitCount.html",
+      "sha256": "1dce006462b2592cd4da694ce0ac33650ed2e2f1daba48dff963f5e3faa09b6b"
+    },
+    {
+      "path": "src/content/triggers/Var.json",
+      "url": "/MUGEN/document/Trigger/Var.html",
+      "sha256": "cc46dc1099fa277ef290c4ddb01e9f8e02a0c270236d7491dc333251caaf04e6"
+    },
+    {
+      "path": "src/content/triggers/VelX.json",
+      "url": "/MUGEN/document/Trigger/VelX.html",
+      "sha256": "dce453db7872d30597d234bccdb0d59414310cd4b40f72f1ac678f7211d1c3b0"
+    },
+    {
+      "path": "src/content/triggers/VelY.json",
+      "url": "/MUGEN/document/Trigger/VelY.html",
+      "sha256": "c2c141f467fedfafcfeb20eca2fec836f4eff2ecfb339900ff6440b424483482"
+    },
+    {
+      "path": "src/content/triggers/Win.json",
+      "url": "/MUGEN/document/Trigger/Win.html",
+      "sha256": "90fe9fbb49145fc69bc9f4119b0997f24c4a85790724521cafddf96518bf902d"
+    },
+    {
+      "path": "src/content/triggers/WinKO.json",
+      "url": "/MUGEN/document/Trigger/WinKO.html",
+      "sha256": "4538e12ac864fe1cb01a5a0f97563fa1fe63d9a892cb4538b1f22091aaa746b2"
+    },
+    {
+      "path": "src/content/triggers/WinPerfect.json",
+      "url": "/MUGEN/document/Trigger/WinPerfect.html",
+      "sha256": "be253cad4bcbf9b9456b3ef56a64c0aeae04ff43f674053dd9807bd46e58c583"
+    },
+    {
+      "path": "src/content/triggers/WinTime.json",
+      "url": "/MUGEN/document/Trigger/WinTime.html",
+      "sha256": "fb9e760a49aa7e608f112ef1f66ece7fb8b13962c1de26a8b6b2d05ac876f893"
+    },
+    {
+      "path": "src/content/lifebars/BeginAction.json",
+      "url": "/MUGEN/document/Lifebar/BeginAction.html",
+      "sha256": "583f377b4a9a698d51e4de196582dbe0c47204b83f9039f06f93cbccf83fe2ff"
+    },
+    {
+      "path": "src/content/lifebars/Combo.json",
+      "url": "/MUGEN/document/Lifebar/Combo.html",
+      "sha256": "8a3c69cc60b9c3d34afa6569876b9c3478993a27412c0594084a112be497efdb"
+    },
+    {
+      "path": "src/content/lifebars/Face.json",
+      "url": "/MUGEN/document/Lifebar/Face.html",
+      "sha256": "91f5cd696774a925c5a05c098ed9cd1080239be4cba1eee23d1114ed6308dd29"
+    },
+    {
+      "path": "src/content/lifebars/FightFx.json",
+      "url": "/MUGEN/document/Lifebar/FightFx.html",
+      "sha256": "7e19221788fe383e996c72a4acf5ddb6b55084b684d09eccc8964e16b20c788b"
+    },
+    {
+      "path": "src/content/lifebars/Files.json",
+      "url": "/MUGEN/document/Lifebar/Files.html",
+      "sha256": "a2d484bd7e57cf876b8543ee2a76b1cc5c3398bca2a157e3a785053df02d812d"
+    },
+    {
+      "path": "src/content/lifebars/Format.json",
+      "url": "/MUGEN/document/Lifebar/Format.html",
+      "sha256": "861745a359fd4227e4178fc246065baf8e98d983f051eb7323e768205f112e97"
+    },
+    {
+      "path": "src/content/lifebars/LifeBar.json",
+      "url": "/MUGEN/document/Lifebar/LifeBar.html",
+      "sha256": "dcf91318ebebdb246457a961a3af1e09b481d6e9bc6eba93f876ad56a5e061af"
+    },
+    {
+      "path": "src/content/lifebars/MakeFont.json",
+      "url": "/MUGEN/document/Lifebar/MakeFont.html",
+      "sha256": "e9856547612ecfafd443cc8d5646beb6610ff1ba41e009bf0a3ca2b589f7e6bf"
+    },
+    {
+      "path": "src/content/lifebars/Name.json",
+      "url": "/MUGEN/document/Lifebar/Name.html",
+      "sha256": "e47acf8de61caca4151f3eb4234dde1bd109387a21c3aa5eafaee61596ed201e"
+    },
+    {
+      "path": "src/content/lifebars/PowerBar.json",
+      "url": "/MUGEN/document/Lifebar/PowerBar.html",
+      "sha256": "33eed823e0a0ad79e3562feee35b15301b3e7f1bb1555b126ec692cec53aeb43"
+    },
+    {
+      "path": "src/content/lifebars/Round.json",
+      "url": "/MUGEN/document/Lifebar/Round.html",
+      "sha256": "53b9617e1c8f5ede35de7bc4a5b2402d38e42cb48dfca483c0b3184c92e164ea"
+    },
+    {
+      "path": "src/content/lifebars/SimulFace.json",
+      "url": "/MUGEN/document/Lifebar/SimulFace.html",
+      "sha256": "6b39a141ef4e109e28f70232ad9caec67829d66c2c7caec638e123f90d54c10d"
+    },
+    {
+      "path": "src/content/lifebars/SimulLifeBar.json",
+      "url": "/MUGEN/document/Lifebar/SimulLifeBar.html",
+      "sha256": "49ad59dcd839b3e618990815e3d9fa5a4bc675eabd7155c1f039896d751a443f"
+    },
+    {
+      "path": "src/content/lifebars/SimulName.json",
+      "url": "/MUGEN/document/Lifebar/SimulName.html",
+      "sha256": "9805b3ed3c96574f5efa46fdc7ddb410de55ad23cf5aea6d18140ce496851d57"
+    },
+    {
+      "path": "src/content/lifebars/Time.json",
+      "url": "/MUGEN/document/Lifebar/Time.html",
+      "sha256": "71ae2872bc754e0f6c673ba1798299a2fbfbc6d967cc666f444e6d0112ce72db"
+    },
+    {
+      "path": "src/content/lifebars/TurnsFace.json",
+      "url": "/MUGEN/document/Lifebar/TurnsFace.html",
+      "sha256": "f2e1390984b80c19d3048616ad12336cf07e0c23d84b9d01942efbb9f16dc383"
+    },
+    {
+      "path": "src/content/lifebars/TurnsLifeBar.json",
+      "url": "/MUGEN/document/Lifebar/TurnsLifeBar.html",
+      "sha256": "69ab0560e54fa141ec55b7cff16d0eefab1d043e3f950681e11a380de887d28c"
+    },
+    {
+      "path": "src/content/lifebars/TurnsName.json",
+      "url": "/MUGEN/document/Lifebar/TurnsName.html",
+      "sha256": "76b7eeded1d1de61fb7bd638fa773a8646088021361591dbf2c338edbdd95e8d"
+    },
+    {
+      "path": "src/content/lifebars/WinIcon.json",
+      "url": "/MUGEN/document/Lifebar/WinIcon.html",
+      "sha256": "1d81d333e3b55a0f9939cddd4e32f40378f91fc30e15034f01f93067d2fca3c7"
+    }
+  ],
+  "routes": [
+    "/MUGEN/document/State/A.html",
+    "/MUGEN/document/State/AfterImage.html",
+    "/MUGEN/document/State/AfterImageTime.html",
+    "/MUGEN/document/State/AllPalFX.html",
+    "/MUGEN/document/State/AngleAdd.html",
+    "/MUGEN/document/State/AngleDraw.html",
+    "/MUGEN/document/State/AngleMul.html",
+    "/MUGEN/document/State/AngleSet.html",
+    "/MUGEN/document/State/AppendToClipboard.html",
+    "/MUGEN/document/State/AssertSpecial.html",
+    "/MUGEN/document/State/AttackDist.html",
+    "/MUGEN/document/State/AttackMulSet.html",
+    "/MUGEN/document/State/BGPalFX.html",
+    "/MUGEN/document/State/BindToParent.html",
+    "/MUGEN/document/State/BindToRoot.html",
+    "/MUGEN/document/State/BindToTarget.html",
+    "/MUGEN/document/State/C.html",
+    "/MUGEN/document/State/ChangeAnim.html",
+    "/MUGEN/document/State/ChangeAnim2.html",
+    "/MUGEN/document/State/ChangeState.html",
+    "/MUGEN/document/State/ClearClipboard.html",
+    "/MUGEN/document/State/CtrlSet.html",
+    "/MUGEN/document/State/DefenceMulSet.html",
+    "/MUGEN/document/State/DestroySelf.html",
+    "/MUGEN/document/State/DisplayToClipboard.html",
+    "/MUGEN/document/State/EnvColor.html",
+    "/MUGEN/document/State/EnvShake.html",
+    "/MUGEN/document/State/Explod.html",
+    "/MUGEN/document/State/ExplodBindTime.html",
+    "/MUGEN/document/State/FallEnvShake.html",
+    "/MUGEN/document/State/ForceFeedback.html",
+    "/MUGEN/document/State/GameMakeAnim.html",
+    "/MUGEN/document/State/Gravity.html",
+    "/MUGEN/document/State/Helper.html",
+    "/MUGEN/document/State/HitAdd.html",
+    "/MUGEN/document/State/HitBy.html",
+    "/MUGEN/document/State/HitDef.html",
+    "/MUGEN/document/State/HitFallDamage.html",
+    "/MUGEN/document/State/HitFallSet.html",
+    "/MUGEN/document/State/HitFallVel.html",
+    "/MUGEN/document/State/HitOverRide.html",
+    "/MUGEN/document/State/HitVelSet.html",
+    "/MUGEN/document/State/L.html",
+    "/MUGEN/document/State/LifeAdd.html",
+    "/MUGEN/document/State/LifeSet.html",
+    "/MUGEN/document/State/MakeDust.html",
+    "/MUGEN/document/State/ModifyExplod.html",
+    "/MUGEN/document/State/MoveHitReset.html",
+    "/MUGEN/document/State/NotHitBy.html",
+    "/MUGEN/document/State/Null.html",
+    "/MUGEN/document/State/Offset.html",
+    "/MUGEN/document/State/PalFX.html",
+    "/MUGEN/document/State/ParentVarAdd.html",
+    "/MUGEN/document/State/ParentVarSet.html",
+    "/MUGEN/document/State/Pause.html",
+    "/MUGEN/document/State/PlaySnd.html",
+    "/MUGEN/document/State/PlayerPush.html",
+    "/MUGEN/document/State/PosAdd.html",
+    "/MUGEN/document/State/PosFreeze.html",
+    "/MUGEN/document/State/PosSet.html",
+    "/MUGEN/document/State/PowerAdd.html",
+    "/MUGEN/document/State/PowerSet.html",
+    "/MUGEN/document/State/Projectile.html",
+    "/MUGEN/document/State/RemapPal.html",
+    "/MUGEN/document/State/RemoveExplod.html",
+    "/MUGEN/document/State/ReversalDef.html",
+    "/MUGEN/document/State/S.html",
+    "/MUGEN/document/State/ScreenBound.html",
+    "/MUGEN/document/State/SelfState.html",
+    "/MUGEN/document/State/SndPan.html",
+    "/MUGEN/document/State/SprPriority.html",
+    "/MUGEN/document/State/StateTypeSet.html",
+    "/MUGEN/document/State/StopSnd.html",
+    "/MUGEN/document/State/SuperPause.html",
+    "/MUGEN/document/State/TagIn.html",
+    "/MUGEN/document/State/TagOut.html",
+    "/MUGEN/document/State/TargetBind.html",
+    "/MUGEN/document/State/TargetDrop.html",
+    "/MUGEN/document/State/TargetFacing.html",
+    "/MUGEN/document/State/TargetLifeAdd.html",
+    "/MUGEN/document/State/TargetPowerAdd.html",
+    "/MUGEN/document/State/TargetState.html",
+    "/MUGEN/document/State/TargetVelAdd.html",
+    "/MUGEN/document/State/TargetVelSet.html",
+    "/MUGEN/document/State/Trans.html",
+    "/MUGEN/document/State/Turn.html",
+    "/MUGEN/document/State/U.html",
+    "/MUGEN/document/State/VarAdd.html",
+    "/MUGEN/document/State/VarRandom.html",
+    "/MUGEN/document/State/VarRangeSet.html",
+    "/MUGEN/document/State/VarSet.html",
+    "/MUGEN/document/State/VelAdd.html",
+    "/MUGEN/document/State/VelMul.html",
+    "/MUGEN/document/State/VelSet.html",
+    "/MUGEN/document/State/VictoryQuote.html",
+    "/MUGEN/document/State/Width.html",
+    "/MUGEN/document/State/Zoom.html",
+    "/MUGEN/document/State/index.html",
+    "/MUGEN/document/Trigger/AILevel.html",
+    "/MUGEN/document/Trigger/Abs.html",
+    "/MUGEN/document/Trigger/Acos.html",
+    "/MUGEN/document/Trigger/Alive.html",
+    "/MUGEN/document/Trigger/Anim.html",
+    "/MUGEN/document/Trigger/AnimElem.html",
+    "/MUGEN/document/Trigger/AnimElemNo.html",
+    "/MUGEN/document/Trigger/AnimElemTime.html",
+    "/MUGEN/document/Trigger/AnimExist.html",
+    "/MUGEN/document/Trigger/AnimTime.html",
+    "/MUGEN/document/Trigger/Asin.html",
+    "/MUGEN/document/Trigger/Atan.html",
+    "/MUGEN/document/Trigger/AuthorName.html",
+    "/MUGEN/document/Trigger/BackEdge.html",
+    "/MUGEN/document/Trigger/BackEdgeBodyDist.html",
+    "/MUGEN/document/Trigger/BackEdgeDist.html",
+    "/MUGEN/document/Trigger/BottomEdge.html",
+    "/MUGEN/document/Trigger/CameraPosX.html",
+    "/MUGEN/document/Trigger/CameraPosY.html",
+    "/MUGEN/document/Trigger/CameraZoom.html",
+    "/MUGEN/document/Trigger/CanRecover.html",
+    "/MUGEN/document/Trigger/Ceil.html",
+    "/MUGEN/document/Trigger/Command.html",
+    "/MUGEN/document/Trigger/Cond.html",
+    "/MUGEN/document/Trigger/Const.html",
+    "/MUGEN/document/Trigger/Const240p.html",
+    "/MUGEN/document/Trigger/Const480p.html",
+    "/MUGEN/document/Trigger/Const720p.html",
+    "/MUGEN/document/Trigger/Cos.html",
+    "/MUGEN/document/Trigger/Ctrl.html",
+    "/MUGEN/document/Trigger/DrawGame.html",
+    "/MUGEN/document/Trigger/E.html",
+    "/MUGEN/document/Trigger/Exp.html",
+    "/MUGEN/document/Trigger/FVar.html",
+    "/MUGEN/document/Trigger/Facing.html",
+    "/MUGEN/document/Trigger/Floor.html",
+    "/MUGEN/document/Trigger/FrontEdge.html",
+    "/MUGEN/document/Trigger/FrontEdgeBodyDist.html",
+    "/MUGEN/document/Trigger/FrontEdgeDist.html",
+    "/MUGEN/document/Trigger/GameHeight.html",
+    "/MUGEN/document/Trigger/GameTime.html",
+    "/MUGEN/document/Trigger/GameWidth.html",
+    "/MUGEN/document/Trigger/GetHitVar.html",
+    "/MUGEN/document/Trigger/HitCount.html",
+    "/MUGEN/document/Trigger/HitDefAttr.html",
+    "/MUGEN/document/Trigger/HitFall.html",
+    "/MUGEN/document/Trigger/HitOver.html",
+    "/MUGEN/document/Trigger/HitPauseTime.html",
+    "/MUGEN/document/Trigger/HitShakeOver.html",
+    "/MUGEN/document/Trigger/HitVelX.html",
+    "/MUGEN/document/Trigger/HitVelY.html",
+    "/MUGEN/document/Trigger/ID.html",
+    "/MUGEN/document/Trigger/IfElse.html",
+    "/MUGEN/document/Trigger/InGuardDist.html",
+    "/MUGEN/document/Trigger/IsHelper.html",
+    "/MUGEN/document/Trigger/IsHomeTeam.html",
+    "/MUGEN/document/Trigger/LeftEdge.html",
+    "/MUGEN/document/Trigger/Life.html",
+    "/MUGEN/document/Trigger/LifeMax.html",
+    "/MUGEN/document/Trigger/Ln.html",
+    "/MUGEN/document/Trigger/Log.html",
+    "/MUGEN/document/Trigger/Lose.html",
+    "/MUGEN/document/Trigger/LoseKO.html",
+    "/MUGEN/document/Trigger/LoseTime.html",
+    "/MUGEN/document/Trigger/MatchNo.html",
+    "/MUGEN/document/Trigger/MatchOver.html",
+    "/MUGEN/document/Trigger/MoveContact.html",
+    "/MUGEN/document/Trigger/MoveGuarded.html",
+    "/MUGEN/document/Trigger/MoveHit.html",
+    "/MUGEN/document/Trigger/MoveReversed.html",
+    "/MUGEN/document/Trigger/MoveType.html",
+    "/MUGEN/document/Trigger/Name.html",
+    "/MUGEN/document/Trigger/NumEnemy.html",
+    "/MUGEN/document/Trigger/NumExplod.html",
+    "/MUGEN/document/Trigger/NumHelper.html",
+    "/MUGEN/document/Trigger/NumPartner.html",
+    "/MUGEN/document/Trigger/NumProj.html",
+    "/MUGEN/document/Trigger/NumProjID.html",
+    "/MUGEN/document/Trigger/NumTarget.html",
+    "/MUGEN/document/Trigger/P1Name.html",
+    "/MUGEN/document/Trigger/P2BodyDistX.html",
+    "/MUGEN/document/Trigger/P2BodyDistY.html",
+    "/MUGEN/document/Trigger/P2DistX.html",
+    "/MUGEN/document/Trigger/P2DistY.html",
+    "/MUGEN/document/Trigger/P2Life.html",
+    "/MUGEN/document/Trigger/P2MoveType.html",
+    "/MUGEN/document/Trigger/P2Name.html",
+    "/MUGEN/document/Trigger/P2StateNo.html",
+    "/MUGEN/document/Trigger/P2StateType.html",
+    "/MUGEN/document/Trigger/P3Name.html",
+    "/MUGEN/document/Trigger/P4Name.html",
+    "/MUGEN/document/Trigger/PI.html",
+    "/MUGEN/document/Trigger/PalNo.html",
+    "/MUGEN/document/Trigger/ParentDistX.html",
+    "/MUGEN/document/Trigger/ParentDistY.html",
+    "/MUGEN/document/Trigger/PlayerIDExist.html",
+    "/MUGEN/document/Trigger/PosX.html",
+    "/MUGEN/document/Trigger/PosY.html",
+    "/MUGEN/document/Trigger/Power.html",
+    "/MUGEN/document/Trigger/PowerMax.html",
+    "/MUGEN/document/Trigger/PrevStateNo.html",
+    "/MUGEN/document/Trigger/ProjCancelTime.html",
+    "/MUGEN/document/Trigger/ProjContact.html",
+    "/MUGEN/document/Trigger/ProjContactTime.html",
+    "/MUGEN/document/Trigger/ProjGuarded.html",
+    "/MUGEN/document/Trigger/ProjGuardedTime.html",
+    "/MUGEN/document/Trigger/ProjHit.html",
+    "/MUGEN/document/Trigger/ProjHitTime.html",
+    "/MUGEN/document/Trigger/Random.html",
+    "/MUGEN/document/Trigger/RightEdge.html",
+    "/MUGEN/document/Trigger/RootDistX.html",
+    "/MUGEN/document/Trigger/RootDistY.html",
+    "/MUGEN/document/Trigger/RoundNo.html",
+    "/MUGEN/document/Trigger/RoundState.html",
+    "/MUGEN/document/Trigger/RoundsExisted.html",
+    "/MUGEN/document/Trigger/ScreenHeight.html",
+    "/MUGEN/document/Trigger/ScreenPosX.html",
+    "/MUGEN/document/Trigger/ScreenPosY.html",
+    "/MUGEN/document/Trigger/ScreenWidth.html",
+    "/MUGEN/document/Trigger/SelfAnimExist.html",
+    "/MUGEN/document/Trigger/Sin.html",
+    "/MUGEN/document/Trigger/StageVar.html",
+    "/MUGEN/document/Trigger/StandBy.html",
+    "/MUGEN/document/Trigger/StateNo.html",
+    "/MUGEN/document/Trigger/StateType.html",
+    "/MUGEN/document/Trigger/SysFVar.html",
+    "/MUGEN/document/Trigger/SysVar.html",
+    "/MUGEN/document/Trigger/Tan.html",
+    "/MUGEN/document/Trigger/TeamMode.html",
+    "/MUGEN/document/Trigger/TeamSide.html",
+    "/MUGEN/document/Trigger/TicksPerSecond.html",
+    "/MUGEN/document/Trigger/Time.html",
+    "/MUGEN/document/Trigger/TimeMod.html",
+    "/MUGEN/document/Trigger/TopEdge.html",
+    "/MUGEN/document/Trigger/UniqHitCount.html",
+    "/MUGEN/document/Trigger/Var.html",
+    "/MUGEN/document/Trigger/VelX.html",
+    "/MUGEN/document/Trigger/VelY.html",
+    "/MUGEN/document/Trigger/Win.html",
+    "/MUGEN/document/Trigger/WinKO.html",
+    "/MUGEN/document/Trigger/WinPerfect.html",
+    "/MUGEN/document/Trigger/WinTime.html",
+    "/MUGEN/document/Trigger/index.html",
+    "/MUGEN/document/Lifebar/BeginAction.html",
+    "/MUGEN/document/Lifebar/Combo.html",
+    "/MUGEN/document/Lifebar/Face.html",
+    "/MUGEN/document/Lifebar/FightFx.html",
+    "/MUGEN/document/Lifebar/Files.html",
+    "/MUGEN/document/Lifebar/Format.html",
+    "/MUGEN/document/Lifebar/LifeBar.html",
+    "/MUGEN/document/Lifebar/MakeFont.html",
+    "/MUGEN/document/Lifebar/Name.html",
+    "/MUGEN/document/Lifebar/PowerBar.html",
+    "/MUGEN/document/Lifebar/Round.html",
+    "/MUGEN/document/Lifebar/SimulFace.html",
+    "/MUGEN/document/Lifebar/SimulLifeBar.html",
+    "/MUGEN/document/Lifebar/SimulName.html",
+    "/MUGEN/document/Lifebar/Time.html",
+    "/MUGEN/document/Lifebar/TurnsFace.html",
+    "/MUGEN/document/Lifebar/TurnsLifeBar.html",
+    "/MUGEN/document/Lifebar/TurnsName.html",
+    "/MUGEN/document/Lifebar/WinIcon.html",
+    "/MUGEN/document/Lifebar/index.html"
+  ]
+}

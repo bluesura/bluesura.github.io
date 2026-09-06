@@ -1,0 +1,48 @@
+{
+  "text": "IfElse 論理演算 > 条件分岐（両方の結果を評価） | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 IfElse は3引数の条件演算（疑似三項演算子）です。exp_cond が0以外なら exp_true、0なら exp_false の値を返します。MUGEN 1.0/1.1 系では、返り値の型は選択された式（exp_true / exp_false）に従います。数値パラメータに使う場合は、両分岐とも数値式に揃えるのが安全です。 関連するトリガー： Cond 構文 IfElse(exp_cond, exp_true, exp_false) 引数 exp_cond (整数, 浮動小数点数) 条件判定用の式。0 が偽、0以外が真として扱われます。 exp_true (整数, 浮動小数点数, 文字列) exp_cond が真（0以外）のときに返す式。IfElse では未選択時でも評価されるため、副作用のある式は避けるのが安全です。 exp_false (整数, 浮動小数点数, 文字列) exp_cond が偽（0）のときに返す式。exp_true と型を揃えると、他の式やパラメータに組み込みやすくなります。 仕様・バグ・エラー・変更点仕様IfElse は 3引数すべてを事前に評価 します。そのため、:= による代入や警告を出す計算などの副作用は、条件の真偽に関わらず発生します。副作用を避けたい場合は短絡評価の Cond を使用してください。IfElse(var(1):=1, var(1):=var(1)+1, var(1):=var(1)+1) → var(1) は最終的に 3Cond(var(1):=1, var(1):=var(1)+1, var(1):=var(1)+1) → var(1) は最終的に 2Version 1.0 RC6以降Cond が追加され、短絡評価（選択された分岐のみ評価）が可能になりました。旧ドキュメント（2002系）旧式ドキュメントでは、式が評価不能な場合に SFalse を返す旨の記述があります（MUGEN 1.0+ の bottom に相当）。 コードサンプルvar(3)が0以外なら1を、0なら2をvalueに代入最も基本的な分岐例です。value = IfElse(var(3), 1, 2);下記でも同じ結果value = (var(3)=0) + 1 複数の条件を設定(IfElseを入れ子にする)入れ子で多段分岐を構成します（副作用のある式は避けること）。var(0) := IfElse(var(0)=1, IfElse(var(1)=0, 1, 2), 0) 引用記事IfElse - Trigger Reference (version 2002.04.14)IfElse - Trigger Reference (version 1.0 / Updated 2010-06-29)IfElse - Trigger Reference (version 1.1 beta 1)IfElse - M.U.G.E.N Wiki (archived)M.U.G.E.N Update History (Cond added in 1.0 RC6) 公開日:2008.06.05 最終更新日:2025.12.25 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "Cond",
+      "href": "./../Trigger/Cond.html"
+    },
+    {
+      "text": "IfElse - Trigger Reference (version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#IfElse"
+    },
+    {
+      "text": "IfElse - Trigger Reference (version 1.0 / Updated 2010-06-29)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ifelse-math"
+    },
+    {
+      "text": "IfElse - Trigger Reference (version 1.1 beta 1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ifelse-math"
+    },
+    {
+      "text": "IfElse - M.U.G.E.N Wiki (archived)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IfElse"
+    },
+    {
+      "text": "M.U.G.E.N Update History (Cond added in 1.0 RC6)",
+      "href": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-ifelse-vs-cond-side-effects.png"
+  ],
+  "code": []
+}

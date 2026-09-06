@@ -1,0 +1,54 @@
+{
+  "text": "[Begin Action 整数] ライフバー > ライフバー用アニメーションの動作定義 | 実装されたバージョン: 2002.04.14 [Begin Action 整数][Begin Action]はグループの中に書き込みさえしなければ、ファイル内のどこにでも定義することができます。基本的な設定はココを読めば大丈夫です。あと、SAEやFighterFactoryとかで、作成したairファイルをテキストエディタで開いてコピペしたほうが幾分か楽です。[Begin Action 整数]スプライトのグループ番号, スプライトのイメージ番号, x座標, y座標, 表示される時間, スプライトの反転, 透過設定表示される時間スプライトの再生を停止させたい場合は、-1と記述。透過設定A 加算透過 黒いほど透過され、白いものほど透過されないA1 加算透過 Aより、50％ほど透過が下がっている。S 減算透過 黒いほど透過され、白いものは黒くなるAS***D*** ASの値が明るさの度合い（0～256）、Dの値が半透明率（0～256）だそうです。透過設定実行結果の一覧アニメーションをループさせる。Loopstartと書きこむ。使用例:[Begin Action 10]15,1, 0,0, 5, H ;水平方向に反転15,2, 0,0, 5, V ;垂直方向に反転15,3, 0,0, 5, VH ;180度回転15,4, 0,0, 5, ,A ;加算透過15,4, 0,0, 5, H, S ;水平方向に反転、減算透過Loopstart15,4, 0,0, 5, ,A1 ;加算透過15,4, 0,0, 5, ,AS128D128 ;明るさ 50% 透過率 50%誤った書き方正しい書き方[Files]Sff = fight.sffSnd = fight.snd[Begin Action 1];設定は省略;書き込めるが[LifeBar];までの間違った設定は無視され;エラーとなります。;[Files]以外の所ではエラーはでませんが;設定が無視されます。Font1 = font/jg.fntFont2 = font/num1.fntFont3 = font/name1.fntFightFx.Sff = fightfx.sffFightFx.Air = fightfx.air[LifeBar]P1.PosP1.BG0.OffsetP1.BG0.Spr...[Files]Sff = fight.sffSnd = fight.sndFont1 = font/jg.fntFont2 = font/num1.fntFont3 = font/name1.fntFightFx.Sff = fightfx.sffFightFx.Air = fightfx.air[Begin Action 1];設定は省略;このように間に書かなければならない[LifeBar]P1.PosP1.BG0.OffsetP1.BG0.Spr...引用記事 公開日:2008.06.05 | 最終更新日:2013.09.14 Home > MUGEN Lifebar",
+  "sections": [
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "ココ",
+      "href": "http://www.elecbyte.com/wiki/index.php/AIR/ja"
+    },
+    {
+      "text": "透過設定実行結果の一覧",
+      "href": "http://www.geocities.jp/byte10242048/030/air-4.html"
+    },
+    {
+      "text": "Pos",
+      "href": "./LifeBar.html#Pos"
+    },
+    {
+      "text": "Offset",
+      "href": "./LifeBar.html#Offset"
+    },
+    {
+      "text": "Spr",
+      "href": "./LifeBar.html#Spr"
+    },
+    {
+      "text": "Pos",
+      "href": "./LifeBar.html#Pos"
+    },
+    {
+      "text": "Offset",
+      "href": "./LifeBar.html#Offset"
+    },
+    {
+      "text": "Spr",
+      "href": "./LifeBar.html#Spr"
+    },
+    {
+      "text": "",
+      "href": ""
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Lifebar",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

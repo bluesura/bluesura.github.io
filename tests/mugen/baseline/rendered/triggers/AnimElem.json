@@ -1,0 +1,68 @@
+{
+  "text": "AnimElem アニメーション > アニメーションのコマと経過時間の判定 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 AnimElem は、現在再生中のアニメーションで「指定した要素（エレメント）」に入った瞬間、または要素開始からの経過フレーム数を比較して真偽（0/1）を返すトリガーです。書式1: 要素 value1 に入った最初の1フレームのみ真（AnimElem = value1, = 0 と同等）。書式2: 要素 value1 の開始からの経過フレームを [oper] value2 で比較（実質的に AnimElemTime(value1) [oper] value2 と同等の用途）。要素番号は0ではなく1から数えます。 関連するトリガー： Anim , AnimTime , AnimElemNo , AnimElemTime , AnimExist , SelfAnimExist 構文 ; 書式1: 要素 value1 に入った最初の1フレームだけ真（AnimElem = value1, = 0 と同等）AnimElem = value1; 書式2: 要素 value1 の開始からの経過フレームを [oper] value2 と比較AnimElem = value1, = value2AnimElem = value1, != value2AnimElem = value1, <= value2AnimElem = value1, >= value2AnimElem = value1, > value2AnimElem = value1, < value2; 例: 要素 value1 の間ずっと真（次の要素が存在する前提）AnimElem = value1, >= 0 引数 value1 = 要素番号 (整数) 判定対象の要素（エレメント）番号。要素番号は 1 から数えます。 最小値: 1 省略不可 [oper] = 比較演算子 (文字列) 書式2で使用する比較演算子です。省略時は書式1（=0相当）として扱うのが基本です。 演算子 意味 = 等しい != 等しくない < 小さい <= 以下 > 大きい >= 以上 value2 = 要素開始からの経過フレーム (整数) 書式2で比較に使う「要素開始からの経過フレーム数」です。例: AnimElem = 2, = 4 は要素2開始から4フレーム後に真になります。 仕様・バグ・エラー・変更点注意ループ区間のあるアニメで、looptime が有限の場合、2周目以降の「ループ先頭フレーム」では AnimElem = 1 が反応しません。毎周反応させたいなら AnimElem = 1 || AnimTime = 0 のように書きます。注意AnimElem は旧式（***）のため、AnimElem = (1+1) のように引数へ式を入れられません。また AnimElem = 5 + 4 は「AnimElem=5 というトリガー名の評価 + 4」と解釈され得ます。可変の要素番号が必要なら AnimElemTime(5+4) のように置き換えてください。エラー指定した要素番号が無効（大きすぎる／小さすぎる等）な場合、bottom を返します（多くの場合、条件式としては偽扱いになります）。互換性IKEMEN GO でも AnimElem は一般に利用されますが、バージョン差や状況（例: hitpause 周り）でタイミング差が報告されることがあります。移植時は実機での挙動確認を推奨します。 コードサンプル要素2でHitDefを発生させる（単発発火）要素2に入った最初の1フレームだけ発火します。HitDef の多重発生を避けやすい基本形です。[State 200, HitDef]Type = HitDefTrigger1 = AnimElem = 2; ...（AttrやDamage等は省略） 要素2開始から4フレーム後にExplodを同期要素の開始からの経過フレームで同期を取ります。発生の「溜め」やエフェクト遅延に使います。[State 200, ExplodSync]Type = ExplodTrigger1 = AnimElem = 2, = 4Anim = 9000Pos = 0, -60 要素2の間だけ真にする（次要素が存在する場合）要素2の間ずっと真にしたい場合の定番パターンです。次要素が無い場合は AnimTime <= 0 に置き換えます。; 要素2の間だけ真（要素3が存在する前提）Trigger1 = AnimElem = 2, >= 0Trigger1 = AnimElem = 3, < 0; 要素3が存在しない場合の代替; Trigger1 = AnimElem = 2, >= 0; Trigger1 = AnimTime <= 0 有限looptimeのループでも毎周反応させるループ先頭で AnimElem = 1 が再発火しないケースへの対処です。[State -2, LoopHead]Type = VarSetTrigger1 = AnimElem = 1 || AnimTime = 0V = 10Value = 1 引用記事AnimElem - Trigger Reference (MUGEN 1.0)AnimElem - Trigger Reference (MUGEN 1.1 Beta 1)Expressions / Irregular triggers (MUGEN 1.1 Beta 1)IKEMEN GO Issue: PalFX on explods（AnimElem使用例と挙動差の報告）Trigger Reference (MUGEN 2002.04.14 Beta docs mirror) 公開日:2008.06.05 最終更新日:2026.01.02 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "Anim",
+      "href": "./../Trigger/Anim.html"
+    },
+    {
+      "text": "AnimTime",
+      "href": "./../Trigger/AnimTime.html"
+    },
+    {
+      "text": "AnimElemNo",
+      "href": "./../Trigger/AnimElemNo.html"
+    },
+    {
+      "text": "AnimElemTime",
+      "href": "./../Trigger/AnimElemTime.html"
+    },
+    {
+      "text": "AnimExist",
+      "href": "./../Trigger/AnimExist.html"
+    },
+    {
+      "text": "SelfAnimExist",
+      "href": "./../Trigger/SelfAnimExist.html"
+    },
+    {
+      "text": "AnimElem - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#animelem"
+    },
+    {
+      "text": "AnimElem - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#animelem"
+    },
+    {
+      "text": "Expressions / Irregular triggers (MUGEN 1.1 Beta 1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/cns.html"
+    },
+    {
+      "text": "IKEMEN GO Issue: PalFX on explods（AnimElem使用例と挙動差の報告）",
+      "href": "https://github.com/ikemen-engine/Ikemen-GO/issues/407"
+    },
+    {
+      "text": "Trigger Reference (MUGEN 2002.04.14 Beta docs mirror)",
+      "href": "https://mugenarchive.com/docs/beta/trigger.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-trigger-animelem-specification.png"
+  ],
+  "code": []
+}

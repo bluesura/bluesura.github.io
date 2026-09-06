@@ -1,0 +1,54 @@
+{
+  "text": "Type = TagOut タッグ操作 > タッグ交代時の待機状態への移行 | 実装されたバージョン: 2002.04.14 | 対象: 自分自身？ 実行時の[StateDef]を読み込み直すが、ChangeStateなどと異なりTimeはリセットされません。また、StandByトリガーを1にします。StandByを0に戻す方法は不明、ステートが変わってもStandByは維持されます。さらに、TagOut実行中(トリガーの条件成立時)はTagOutより下のステートは読み込まれません。TagIn,ChangeStateのStateNoの指定したステートで、TagOutのトリガーに『Time=0』や『1』などのステートを読み込んですぐに実行できる状態でTagOutを実行すると”stopped after 2500 loops”(通称：2500ループ)が発生します。また、Persistentを指定しても2500ループは発生します。 関連するステートコントローラー： TagIn , ChangeState 関連するトリガー： StandBy , Time パラメーター IgnoreHitPause = ヒット停止中も処理するか (0か1) HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 最小値: 0 , 最大値: 1 省略時のデフォルト値： 0 Persistent = 実行頻度（トリガー成立回数の間引き） (整数) Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 最小値: 0 , 最大値: 128 省略時のデフォルト値： 1 省略した時のデフォルト値 [State ,TagOut] Type = TagOut Trigger1 = 1 コードサンプル条件付きのループ構造にする。TagOutを利用することで、お手軽ループ処理が実現できる？[Statedef 1000]StateType = SMoveType = IPhysics = SAnim = 0Ctrl = 1;ここから[State ,ループ処理用のステート]Type = NullTrigger1 = var(0) < 2499 ;2500ループ処理の防止策Trigger1 = var(0) := var(0) + 1 ;250(ry;ここのトリガーでループさせて計算したい処理を書く。IgnoreHitPause = 1;ここまでが ループさせる処理[State ,TagOut]Type = TagOutTrigger1 = var(0) < 2499 ;250(ryIgnoreHitPause = 1;ここに通常の処理を書く[State 1000, END]Type = ChangeStateTrigger1 = Time = 1800value = 0IgnoreHitPause = 1 パラメーターの読み込み順 *バージョンや実行環境,パラーメータの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。 引用記事TagIn - 凶悪MUGEN_IRC_ログ倉庫パラメータ優先順位、StandBy、tagin、tagout - 凶悪MUGEN_IRC_ログ倉庫tagout - 制作日記 公開日:2008.06.05 最終更新日:2013.11.27 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "DefaultParameter",
+    "CodeSample",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "TagIn",
+      "href": "./../State/TagIn.html"
+    },
+    {
+      "text": "ChangeState",
+      "href": "./../State/ChangeState.html"
+    },
+    {
+      "text": "StandBy",
+      "href": "./../Trigger/StandBy.html"
+    },
+    {
+      "text": "Time",
+      "href": "./../Trigger/Time.html"
+    },
+    {
+      "text": "TagIn - 凶悪MUGEN_IRC_ログ倉庫",
+      "href": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-602.html"
+    },
+    {
+      "text": "パラメータ優先順位、StandBy、tagin、tagout - 凶悪MUGEN_IRC_ログ倉庫",
+      "href": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-2413.html"
+    },
+    {
+      "text": "tagout - 制作日記",
+      "href": "http://drabs.blog40.fc2.com/blog-entry-980.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": [
+    "[State ,TagOut]",
+    "Type                       = TagOut",
+    "Trigger1                   = 1"
+  ]
+}

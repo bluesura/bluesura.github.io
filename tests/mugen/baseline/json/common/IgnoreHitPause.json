@@ -1,0 +1,11 @@
+{
+"parameter": "IgnoreHitPause",
+"value": ["ヒット停止中も処理するか"],
+"type": ["boolean"],
+"description": "<p><code>HitPauseTime</code>（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。</p><ul><li><code>0</code>（既定）: ヒット停止中は評価されません。</li><li><code>1</code>: ヒット停止中も評価・実行されます。</li></ul><p>値は<code>0</code>/<code>1</code>の<strong>整数定数のみ</strong>です（<code>var</code>等の式は使用不可）。</p><p><b>注意</b>: ヒット停止中は<code>IgnoreHitPause=1</code>のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。</p><p><b>補足</b>: <code>[StateDef -3]</code>は投げ等で他者のステートデータを使用している間はチェックされないため、<code>IgnoreHitPause</code>を<code>1</code>にしても走らない局面があります。</p><p><b>IKEMEN GO</b>: ZSSの後方互換性対応や挙動整合のため、<code>IgnoreHitPause</code>周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。</p>",
+"min_value": ["0"],
+"max_value": ["1"],
+"parameter_type": "optional",
+"default_value": ["0"],
+"load_priority": ["?"]
+}

@@ -1,0 +1,53 @@
+{
+  "text": "AILevel AI > AI難易度レベルの取得 | 実装されたバージョン: MUGEN 1.0 RC2 | 対象: 実行者 AILevelは、実行者がAI操作されている場合のAI難易度レベルを整数で返すトリガーです。返り値: 0（AI操作でない / 人間操作）または 1〜8（AI難易度） 関連するトリガー： Command , IsHelper 構文 AILevel 引数 なし 仕様・バグ・エラー・変更点MUGEN 1.0 RC2 (2009-09-29)追加: CNSの新トリガーとしてAILevelが追加され、AI難易度設定を返せるようになりました。MUGEN 1.0 RC4 (2009-10-25)修正: トレーニングモードの「cooperative dummy」周りで、AILevelが誤動作するケースが修正されています。IKEMEN (legacy)修正履歴: HelperにおけるAILevelの修正履歴があり、派生実装ではHelper/Rootで値が食い違う可能性があります。 Q＆A(よくある質問)対戦中にAIのON/OFFを切り替える方法は？デバッグキーとしてCtrl+#（1から4の数字キー）で「#番目のプレイヤーのAI」をトグルできます。AILevelはどこで設定する？通常は、起動画面の Option → Difficulty（COM難易度）で設定します。Trainingでは、ダミー操作がAIのときに Training menu → AI level で調整できます。 コードサンプルAI判定＋敵AIレベル表示AILevelは自分側と相手側で別々に評価できます。[State -2, AIレベルの確認]Type = DisplayToClipboardTrigger1 = 1Text = \"P1 AILevel:%d / P2 AILevel:%d\"Params = AILevel, EnemyNear,AILevel AI専用分岐の最小例AILevel > 0を「AI操作中」の簡易判定として扱い、変数に保持しておく例です。[State -2, AIFlag]Type = VarSetTrigger1 = 1Var(59) = (AILevel > 0)IgnoreHitPause = 1 旧バージョンとバージョン1.0以上の互換性を持たせるMUGEN 1.0以前の環境を意識し、コマンド入力をフラグ化してAI挙動の分岐に利用する例です。[State -3,AILvFlagSet]Type=VarSetTriggerAll=!IshelperTriggerAll=var(59)<1Trigger1=Command=\"AI0\"||Command=\"AI1\"||Command=\"AI2\"||Command=\"AI3\"||Command=\"AI4\"Trigger2=Command=\"AI5\"||Command=\"AI6\"||Command=\"AI7\"||Command=\"AI8\"||Command=\"AI9\"Trigger3=Command=\"AI10\"||Command=\"AI11\"||Command=\"AI12\"||Command=\"AI13\"||Command=\"AI14\"Trigger4=Command=\"AI15\"||Command=\"AI16\"||Command=\"AI17\"||Command=\"AI18\"||Command=\"AI19\"Trigger5=Command=\"AI20\"||Command=\"AI21\"||Command=\"AI22\"||Command=\"AI23\"||Command=\"AI24\"Trigger6=Command=\"AI25\"||Command=\"AI26\"||Command=\"AI27\"||Command=\"AI28\"||Command=\"AI29\"Trigger7=Command=\"AI30\"||Command=\"AI31\"||Command=\"AI32\"||Command=\"AI33\"||Command=\"AI34\"Trigger8=Command=\"AI35\"||Command=\"AI36\"||Command=\"AI37\"||Command=\"AI38\"||Command=\"AI39\"Trigger9=Command=\"AI40\"||Command=\"AI41\"||Command=\"AI42\"||Command=\"AI43\"||Command=\"AI44\"Trigger10=Command=\"AI45\"||Command=\"AI46\"||Command=\"AI47\"||Command=\"AI48\"||Command=\"AI49\"Trigger11=Command=\"AI50\"Trigger12=RoundState<2||RoundState=2&&CtrlTrigger12=var(59)=0Trigger12=NumHelper(10000+ID)Trigger12=Helper(10000+ID),var(59)>0Trigger13=NumHelper(30000+ID)Trigger13=Helper(30000+ID),var(0)=1||teamside=1&&Helper(30000+ID),var(0)=2||teamside=2&&Helper(30000+ID),var(0)=3||Helper(30000+ID),var(0)=5&&P2MoveType=HTrigger14=TeamSide=2||MatchNo>1Trigger14=IsHomeTeamTrigger15=NumHelper(30000+ID)Trigger15=Helper(30000+ID),var(0)=5Trigger15=NumHelper(40000+ID)Trigger15=Helper(40000+ID),var(1)>0Trigger16=var(59)>0var(59)=10;AILv1～11 デフォルト 5IgnoreHitPause=1; [State -3,AISet]; Type=Null; Trigger1=AILevel=0||AILevel>var(59); Trigger1=var(59):=(AILevel>var(59))*AILevel; IgnoreHitPause=1 引用記事AILevel - Trigger Reference (MUGEN 1.0)AILevel - Trigger Reference (MUGEN 1.1b1)M.U.G.E.N Update History (AILevel導入/修正履歴)readme.txt (debug keys: Ctrl-#でAIトグル)IKEMEN changelog (Fix helper AILevel) 公開日:2008.06.05 最終更新日:2026.01.01 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "Command",
+      "href": "./../Trigger/Command.html"
+    },
+    {
+      "text": "IsHelper",
+      "href": "./../Trigger/IsHelper.html"
+    },
+    {
+      "text": "AILevel - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#ailevel"
+    },
+    {
+      "text": "AILevel - Trigger Reference (MUGEN 1.1b1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#ailevel"
+    },
+    {
+      "text": "M.U.G.E.N Update History (AILevel導入/修正履歴)",
+      "href": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "text": "readme.txt (debug keys: Ctrl-#でAIトグル)",
+      "href": "https://www.elecbyte.com/mugendocs/readme.txt"
+    },
+    {
+      "text": "IKEMEN changelog (Fix helper AILevel)",
+      "href": "https://github.com/fernicar/ikemen"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-ailevel-trigger-flow.png"
+  ],
+  "code": []
+}

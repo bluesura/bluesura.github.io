@@ -1,0 +1,72 @@
+<div id="main-inner"> <article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd"> <header class="entry-header"> <div style="height:auto;width:100%;display:flex;flex-direction:column;background-color:transparent"> <span itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject" style="display:none"> <meta itemprop="url" content="https://bluesura.github.io/images/State/L.gif"> <meta itemprop="width" content="640"> <meta itemprop="height" content="480"> </span> <img src="/images/State/L.gif" alt="MUGEN L" style="display:block;width:100%;height:auto;object-fit:contain">   <div class="entry-title" itemprop="name"> <div> <h1 id="L"> Type = L </h1> <div class="category"> ステートタイプの定義 &gt; ステートタイプを「ダウン」に定義  |  実装されたバージョン: 2002.04.14  |  対象: ステート実行者自身 </div> </div> </div> </div> </header> <!-- メインコンテンツ部分 --> <div class="entry-content">  <div class="description" itemprop="articleBody"> 転倒 Lying down <div class="associated-trigger">関連するステートコントローラー：
+ <a href="./../State/S.html"><code>S</code></a> ,  <a href="./../State/C.html"><code>C</code></a> ,  <a href="./../State/A.html"><code>A</code></a> ,  <a href="./../State/U.html"><code>U</code></a> ,  <a href="./../State/StateTypeSet.html"><code>StateTypeSet</code></a>  </div> <div class="associated-trigger">関連するトリガー：
+ <a href="./../Trigger/StateType.html"><code>StateType</code></a> ,  <a href="./../Trigger/P2StateType.html"><code>P2StateType</code></a>  </div> </div> <hr>     <section id="Parameter"> <div class="section"> <h2> パラメーター </h2>  <dl class="parameter"> <dt class="main"> Type    = 状態 
+(文字列)
+</dt> <dd> <div class="description"><p>ステートの状態を指定。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>状況</th> <th>内容</th> </tr> <tr> <td>S</td> <td><div>立ち(Stand)</div><div class="image-frame"><img src="./media/img/StateDef_Stand_s.png" alt="カンフーマン立ち(Stand)状態" width="140" height="140"></div></td> </tr><tr> <td>C</td> <td><div>屈み(Crouch)</div><div class="image-frame"><img src="./media/img/StateDef_Crouch_s.png" alt="カンフーマン屈み(Crouch)状態" width="140" height="140"></div></td> </tr><tr> <td>A</td> <td><div>空中(Air)</div><div class="image-frame"><img src="./media/img/StateDef_Air_s.png" alt="カンフーマン空中(Air)状態" width="140" height="140"></div></td> </tr><tr> <td>L</td> <td><div>倒れ(Lying down)</div><div class="image-frame"><img src="./media/img/StateDef_Lying_s.png" alt="倒れ(Lying down)状態" width="140" height="140"></div></td> </tr><tr> <td>U</td> <td>直前のステートから引き継ぐ(Unchanged)</td> </tr> </tbody></table> </div>    <div class="default-value">省略時のデフォルト値： S;もしかしたら、前のステートで使用された動きを引き継ぐ。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Physics    = 重力 
+(文字列)
+</dt> <dd> <div class="description"><p>ステートの物理的な姿勢。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>重力</th> <th>効果</th> </tr> <tr> <td>S</td> <td>立ち(Stand)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Stand.friction)</code>)がかかります。</td> </tr><tr> <td>C</td> <td>屈み(Crouch)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Crouch.friction)</code>)がかかります。</td> </tr><tr> <td>A</td> <td>空中(Air)。CNSで設定されている重力(<code>Vel Y+Const(Movement.yaccel)</code>)がかかり、着地時は自動的に着地ステートに移行します。</td> </tr><tr> <td>N</td> <td>重力や摩擦を無視(None)。</td> </tr><tr> <td>U</td> <td>直前のステートから引き継ぐ(Unchanged)。</td> </tr> </tbody></table> </div>    <div class="default-value">省略時のデフォルト値： N ;もしかしたら、前のステートで使用された重力を引き継ぐ。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> MoveType    = 行動状態 
+(文字列)
+</dt> <dd> <div class="description"><p>ステートの行動内容を指定。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>行動</th> <th>内容</th> </tr> <tr> <td>I</td> <td>待機(Idle)。</td> </tr><tr> <td>A</td> <td>攻撃している(Attack)。HitDefが有効になり、敵もガードモーションをとれるようになります。</td> </tr><tr> <td>H</td> <td>食らい状態(Hit)。相手のHitDefが有効になります。</td> </tr><tr> <td>U</td> <td>直前のステートから引き継ぐ(Unchanged)。</td> </tr> </tbody></table> </div>    <div class="default-value">省略時のデフォルト値： I ;もしかしたら、前のステートで使用された状態を引き継ぐ。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> HitCountPersist    = 引継ぎフラグ 
+(0か1)
+</dt> <dd> <div class="description"><p>直前のステートからの「HitCount」「UniqHitCount」の効果を引き継ぐか否か。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>フラグ</th> <th>結果</th> </tr> <tr> <td>0</td> <td>引き継がない</td> </tr><tr> <td>1</td> <td>引き継ぐ</td> </tr> </tbody></table> </div> <div class="range-value">  <span class="min-value">
+最小値: 0 </span>  ,  <span class="max-value">
+最大値: 1 </span> </div>   <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> MoveHitPersist    = 引継ぎフラグ 
+(0か1)
+</dt> <dd> <div class="description"><p>直前のステートのヒット、ガード、空振り状態を引き継ぐか否か。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>フラグ</th> <th>結果</th> </tr> <tr> <td>0</td> <td>引き継がない</td> </tr><tr> <td>1</td> <td>引き継ぐ</td> </tr> </tbody></table> </div> <div class="range-value">  <span class="min-value">
+最小値: 0 </span>  ,  <span class="max-value">
+最大値: 1 </span> </div>   <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> HitDefPersist    = 引継ぎフラグ 
+(0か1)
+</dt> <dd> <div class="description"><p>直前のステートの「HitDef」の効果を引き継ぐか否か。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>フラグ</th> <th>結果</th> </tr> <tr> <td>0</td> <td>引き継がない</td> </tr><tr> <td>1</td> <td>引き継ぐ</td> </tr> </tbody></table> </div> <div class="range-value">  <span class="min-value">
+最小値: 0 </span>  ,  <span class="max-value">
+最大値: 1 </span> </div>   <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> SprPriority    = 画像の表示優先度 
+(整数)
+</dt> <dd> <div class="description"><p>画像表示優先度。5 ～ -5の間で指定します。数値が大きければ手前に、小さければ奥に優先されます。</p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: -5 </span>  ,  <span class="max-value">
+最大値: 5 </span> </div>   <div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> FaceP2    = 相手へ振り向くフラグ 
+(0か1)
+</dt> <dd> <div class="description"><p>ステートの開始時に相手の方向へ振り向くか否か。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>フラグ</th> <th>結果</th> </tr> <tr> <td>0</td> <td>振り向かない</td> </tr><tr> <td>1</td> <td>振り向く</td> </tr> </tbody></table> </div> <div class="range-value">  <span class="min-value">
+最小値: -2,147,483,648 </span>  ,  <span class="max-value">
+最大値: 2,147,483,647 </span> </div>   <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Juggle    = ジャグル値に加算する値 
+(整数)
+</dt> <dd> <div class="description"><p>攻撃を当てた時に溜まるジャグルポイントの設定。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;前の攻撃ステートで成功した時のジャグル値を引き継ぐ。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> VelSet    = X軸の移動速度, Y軸の移動速度 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>移動速度の設定。</p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: -2,147,483,648 </span>  ,  <span class="max-value">
+最大値: 2,147,483,647 </span> </div>   <div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Anim    = アニメ番号 
+(整数)
+</dt> <dd> <div class="description"><p>AIRに登録したアニメを呼び出す。<code>Anim = 1000 ;[Begin Action 1000]を表示します。</code></p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: 0 </span>  ,  <span class="max-value">
+最大値: 2,147,483,647 </span> </div>   <div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Ctrl    = キー入力受付可能フラグ 
+(0か1)
+</dt> <dd> <div class="description"><p>ステート中にキー入力を受け付けるか否か。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>フラグ</th> <th>結果</th> </tr> <tr> <td>0</td> <td>操作不可</td> </tr><tr> <td>1</td> <td>操作可能</td> </tr> </tbody></table> </div> <div class="range-value">  <span class="min-value">
+最小値: 0 </span>  ,  <span class="max-value">
+最大値: 1 </span> </div>   <div class="default-value">省略時のデフォルト値： ;前の値を引き継ぐ。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> PowerAdd    = パワーゲージの増減量 
+(整数)
+</dt> <dd> <div class="description"><p>パワーゲージの増減量。</p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: -2,147,483,648 </span>  ,  <span class="max-value">
+最大値: 2,147,483,647 </span> </div>   <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> IgnoreHitPause    = ヒット停止中も処理するか 
+(0か1)
+</dt> <dd> <div class="description"><p><code>HitPauseTime</code>（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。</p><ul><li><code>0</code>（既定）: ヒット停止中は評価されません。</li><li><code>1</code>: ヒット停止中も評価・実行されます。</li></ul><p>値は<code>0</code>/<code>1</code>の<strong>整数定数のみ</strong>です（<code>var</code>等の式は使用不可）。</p><p><b>注意</b>: ヒット停止中は<code>IgnoreHitPause=1</code>のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。</p><p><b>補足</b>: <code>[StateDef -3]</code>は投げ等で他者のステートデータを使用している間はチェックされないため、<code>IgnoreHitPause</code>を<code>1</code>にしても走らない局面があります。</p><p><b>IKEMEN GO</b>: ZSSの後方互換性対応や挙動整合のため、<code>IgnoreHitPause</code>周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。</p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: 0 </span>  ,  <span class="max-value">
+最大値: 1 </span> </div>   <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Persistent    = 実行頻度（トリガー成立回数の間引き） 
+(整数)
+</dt> <dd> <div class="description"><p><code>Persistent</code> は、このステートコントローラーが<strong>「実行可能（発火）」になった回数</strong>を基準に、実行頻度を間引くための共通パラメーターです。</p><p>まず「トリガー成立（= 実行可能）」の定義は次のとおりです。</p><ul><li><code>triggerall</code> は共通の前提条件（AND）です。<code>triggerall</code> が偽のフレームでは、<code>trigger1</code> 以降が成立していても発火しません。</li><li><code>trigger1</code> / <code>trigger2</code> / <code>trigger3</code> ... は番号ごとにグループで評価されます。<ul><li>同じ番号（例：<code>trigger1</code> が複数行）は AND（全部真ならその番号グループが真）。</li><li>番号が違うグループ同士（<code>trigger1</code> と <code>trigger2</code> など）は OR（どれか1つのグループが真なら発火）。</li></ul></li></ul><p>この「発火（トリガー成立）」が起きた回数に対して、<code>Persistent</code> は次のように動作します。</p><ul><li><code>1</code>（既定）: 発火するたびに毎回実行します。</li><li><code>0</code>: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。</li><li><code>N</code>（2以上）: 発火した<strong>N回に1回だけ</strong>実行します。<br>例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上は<strong>Nフレームに1回</strong>の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。</li></ul><p>値に指定できるのは<strong>整数定数</strong>のみです（<code>var</code>/<code>fvar</code>/<code>sysvar</code> を含む式は不可）。</p><p><b>注意</b>: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。</p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: 0 </span>  ,  <span class="max-value">
+最大値: 128 </span> </div>   <div class="default-value">省略時のデフォルト値： 1</div> </div> </dd> </dl>
+        <hr> </div> </section> <section id="Version"><div class="section"><h2>仕様・バグ・エラー・変更点</h2><table><tbody><tr><td>-</td><td><code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。</td></tr></tbody></table></div></section>
+  <hr>     <section id="Quote"><div class="section"><h2>引用記事</h2><ul><li><cite><a href="https://web.archive.org/web/http://www.elecbyte.com/mugendocs/cns.html" target="_blank" rel="external">The CNS format - elecbyte</a></cite></li><li><cite><a href="http://mugenrick.seesaa.net/article/167227846.html" target="_blank" rel="external">Statedef冒頭でのパラメータ省略 - 虹格な海底宝物庫</a></cite></li><li><cite><a href="http://www.geocities.jp/byte10242048/new/010/014/014-1.html" target="_blank" rel="external">Statedef - M.U.G.E.M.解説</a></cite></li></ul></div></section>
+  <hr> <!-- 日付・貢献者情報 --> <div> <div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div> <div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2014-12-30">2014.12.30</time></div>  </div> <nav class="breadcrumb"> <div> <ul>  <li itemscope=""> <a href="/" target="_top" itemprop="url"> <span itemprop="title">Home</span> </a> </li>   <li> &gt; </li> <li itemscope="">  <a href="./" target="_top" itemprop="url"> <span itemprop="title">MUGEN State Controller</span> </a> </li>  </ul> </div> </nav> </div> </article> </div>

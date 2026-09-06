@@ -1,0 +1,123 @@
+{
+  "text": "Type = Helper Helper > 飛び道具・分身・特殊ゲージ等のサポート | 実装されたバージョン: 2002.04.14 | 対象: 召喚 プレイヤー以外のキャラクターを出現させます。Helperが参照するステートを別に記述する必要がありますが、様々な動きが可能。複雑な動作の飛び道具・プレイヤーについて動き回るサポートキャラ・特殊ゲージなどの特殊システムや自分自身の分身などに利用します。攻撃判定や当たり判定を持たせることが可能ですが、攻撃を喰らったり、当身をされた場合予期せぬステートに飛ぶことがあり、対策をしていないとプレイヤーの全く動かない分身が生まれてしまいます。Helperは、プレイヤーとはシステムが独立しているため、変数・ヒットフラグ・ジャグルやターゲットなどは、ヘルパー固有のものとなります。Helperが消滅すると、ターゲットも存在しなくなるため、敵がのけぞり中でもコンボカウンターが途切れます。ただし、消滅前に別キャラが攻撃を当てた場合や、別キャラのターゲットに対してヘルパーが攻撃した場合は、そのキャラのターゲットとして継続しますので、コンボカウンターは途切れません。なお、全プレイヤーのHelper合計数には上限があり、初期設定は32個で最大56個まで増やせます。上限はmugen.cfgにて設定可能。設定数を超えるとHelperを射出できなくなります。 関連するトリガー： NumHelper パラメーター HelperType = ヘルパーの種類 (文字列) ヘルパーのタイプをNormalかPlayerで選択します。 タイプ 詳細 Normal カメラはヘルパーを追いません。飛び道具等はこれを使います。 Player プレイヤーと同様自動で基本ステートを参照、カメラが追うなど、通常のプレイヤーと同じ扱いとなります。特殊な処理のため、基本的に使用は推奨できません。 Proj<英数字なら何でもOK> Normalと変わらない。使う意味なし？ 省略時のデフォルト値： Normal Name = \"ヘルパー名\" (文字列) ヘルパーの名前を付けます。Name(トリガー)による探知や判定枠表示(Ctrl+C)でのヘルパー判別に利用します。 選択可能な文字列: 英数字なら何でもOK 省略時のデフォルト値： \"&lt;ヘルパーを呼び出したキャラ名&gt;\"'s helper OwnPal = 独自パレットフラグ (0か1) 子が親と共通のパレットを持つか持たないか、フラグを指定します。0で共通にした場合、親が燃えやられや金カラー(PalFX)で色に変化があると子も同様の変化を受けます。また、子でPalFXを使用しても有効になりません。特殊ゲージや飛び道具等、やられ演出の影響を受けたくない場合、1を指定しましょう。 パレット 効果 0 子は親と共通のパレットを持ちます。(子のPalFX無効) 1 子は独自のパレットを持ちます。(子のPalFX有効) 最小値: 0 , 最大値: 1 省略時のデフォルト値： 0 Size.XScale = 横縮尺 (浮動小数点数) 水平方向の縮尺 省略時のデフォルト値： ;親から継承 Size.YScale = 縮尺 (浮動小数点数) 垂直方向の縮尺 省略時のデフォルト値： ;親から継承 Size.Ground.Back = 前ぶつかり判定 (整数) キャラクターの幅（後方、地上）を指定。Nomalヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、PlayerPushを使用します。ちなみに、Ground.Back～Heightまで、すべて0にした場合、PlayerPushでぶつかりを発生させても、相手をすり抜けるようになります。 省略時のデフォルト値： ;親から継承 Size.Ground.Front = 後ぶつかり判定 (整数) キャラクターの幅（後方、地上）を指定。Nomalヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、PlayerPushを使用します。ちなみに、Ground.Back～Heightまで、すべて0にした場合、PlayerPushでぶつかりを発生させても、相手をすり抜けるようになります。 省略時のデフォルト値： ;親から継承 Size.Air.Back = 空中での前ぶつかり判定 (整数) キャラクターの幅（後方、空中）を指定。Nomalヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、PlayerPushを使用します。ちなみに、Ground.Back～Heightまで、すべて0にした場合、PlayerPushでぶつかりを発生させても、相手をすり抜けるようになります。 省略時のデフォルト値： ;親から継承 Size.Air.Front = 空中での後ぶつかり判定 (整数) キャラクターの幅（前方、空中）を指定。Nomalヘルパーは、ぶつかり判定がありませんので、気にする必要は、あまりありません。判定を持たせたい場合は、PlayerPushを使用します。ちなみに、Ground.Back～Heightまで、すべて0にした場合、PlayerPushでぶつかりを発生させても、相手をすり抜けるようになります。 省略時のデフォルト値： ;親から継承 Size.Height = 縦ぶつかり判定 (整数) キャラクターの高さを指定。 省略時のデフォルト値： ;親から継承 Size.Proj.DoScale = 飛び道具縮尺適用フラグ (Boolean) XScale, YScaleの設定が発射物にも適用するかどうか（1で有効） 省略時のデフォルト値： ;親から継承 Size.Head.Pos = 頭の位置 (整数, 整数) 頭の大体の座標（BindToTarget使用時に必要）を指定。 省略時のデフォルト値： ;親から継承 Size.Mid.Pos = 体の中間の位置 (整数, 整数) 体中心の大体の座標（BindToTarget使用時に必要）を指定。 省略時のデフォルト値： ;親から継承 Size.ShadowOffset = 影の表示位置 (整数) 影の垂直方向オフセットを指定。 省略時のデフォルト値： ;親から継承 StateNo = ステート番号 (整数) ヘルパーが参照するステート番号を指定。0にすると立ちステートに飛ばされます。 省略時のデフォルト値： 0 KeyCtrl = コントロールフラグ (0か1) Helperがコマンド操作を受け取るかどうかを指定します。 フラグ 状態 0 Helper自身の[Command],Commandトリガー,[StateDef -1]が無効になる。 1 Helper自身の[Command],Commandトリガー,[StateDef -1]が有効になる。 省略時のデフォルト値： 0 ID = ヘルパーID (整数) ヘルパーのIDを指定。HelperリダイレクトやIsHelper・NumHelperトリガーで、ヘルパーの状態を取得したりする際に必要。プレイヤーID・ヒットIDとは別物なので注意。 省略時のデフォルト値： 0 Pos = x座標, y座標 (整数, 整数) ヘルパーの初期出現位置を指定します。 最小値: -2147483647, -2147483647 , 最大値: 2147483647, 2147483647 省略時のデフォルト値： 0, 0 PosType = 基準点の位置 (文字列) ヘルパーを出現させるための基準点(0,0)をどこにするか、以下の文字列から指定します。 タイプ 基準 P1 実行者が基準点(0,0)になります。X軸の正数は実行者の正面・Y軸の負数は実行者の頭上。 P2 実行者に最も近い敵が基準点(0,0)になります。X軸の正数は最も近い敵の正面・Y軸の負数は最も近い敵の頭上。 F FはFrontの略。実行者の正面の画面端が基準点(0,0)になります。X軸の負数は基準点から実行者の方向・Y軸の負数は地面から上。 B BはBackの略。実行者の背面の画面端が基準点(0,0)になります。X軸の正数は基準点から実行者の方向・Y軸の負数は地面から上。 L LはLeftの略。画面左上が基準点(0,0)になります。X軸の正数は画面右方向・Y軸の正数は画面下方向。 R RはRightの略。画面右上が基準点(0,0)になります。X軸の負数は画面左方向・Y軸の正数は画面下方向。 N NはNoneの略。ステージ中央が基準点(0,0)になります。他のPosTypeと違い基準点は絶対に動きません。X軸は右方向が正数・左方向が負数。Y軸は上方向が負数・下方向が正数。Version1.1から追加された値です。 省略時のデフォルト値： P1 Facing = ヘルパーの向き (整数) ヘルパーの出現時の向きを指定。 タイプ 基準 1 PosTypeがP1,F,Bの場合、実行者と同じ向き。P2の場合、実行者に1番近い敵と同じ向き。L,Rの場合、右。 -1 PosTypeがP1,F,Bの場合、実行者と逆向き。P2の場合、実行者に1番近い敵と逆向き。L,Rの場合、左。 最小値: -1 , 最大値: 1 省略時のデフォルト値： 1 PauseMoveTime = Pause無視時間 (整数) Pauseコントローラーの影響を無視する時間をフレーム単位で指定。※60フレーム=1秒 最小値: 0 , 最大値: 2147483647 省略時のデフォルト値： 0 SuperMoveTime = SuperPause無視時間 (整数) SuperPauseコントローラーの影響を無視する時間をフレーム単位で指定。※60フレーム=1秒 最小値: 0 , 最大値: 2147483647 省略時のデフォルト値： 0 ReMapPal = dst_pal_grp, dst_pal_item (整数, 整数) Forces a palette remap of the helper's indexed-color sprites to the specified palette. This parameter is used only if ownpal_flag is non-zero. If dst_pal_grp is -1, this parameter will be ignored. 省略時のデフォルト値： -1, 0 IgnoreHitPause = ヒット停止中も処理するか (0か1) HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 最小値: 0 , 最大値: 1 省略時のデフォルト値： 0 Persistent = 実行頻度（トリガー成立回数の間引き） (整数) Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 最小値: 0 , 最大値: 128 省略時のデフォルト値： 1 仕様・バグ・エラー・変更点-Helperが射出したProjectileは、プレイヤーの管理。Version1.0からPauseMoveTimeに-1を指定しても効果時間は永続にはなりません。Version1.1からReMapPalが追加されました。警告文NEGATIVE HELPER ID:IDに-1以下警告文ILLEGAL HELPER STATENO:StateNoに-1以下警告文ILLEGAL SUPERMOVETIME:SuperMoveTimeに-1以下(mugen1.0では警告文が出ないが機能していない)警告文ILLEGAL PAUSEMOVETIME:PauseMoveTimeに-1以下(mugen1.0では警告文が出ないが機能していない) 省略した時のデフォルト値 [State ,Helper] Type = Helper Trigger1 = 1 HelperType = Normal Name = \"&lt;ヘルパーを呼び出したキャラ名&gt;\"'s helper OwnPal = 0 Size.XScale = ;親から継承 Size.YScale = ;親から継承 Size.Ground.Back = ;親から継承 Size.Ground.Front = ;親から継承 Size.Air.Back = ;親から継承 Size.Air.Front = ;親から継承 Size.Height = ;親から継承 Size.Proj.DoScale = ;親から継承 Size.Head.Pos = ;親から継承 Size.Mid.Pos = ;親から継承 Size.ShadowOffset = ;親から継承 StateNo = 0 KeyCtrl = 0 ID = 0 Pos = 0, 0 PosType = P1 Facing = 1 PauseMoveTime = 0 SuperMoveTime = 0 ReMapPal = -1, 0 コードサンプルHelper分身バグ対策コモンステートの[StateDef 0, 立ちステート]と[StateDef 5150, 死亡ステート]の最後に記述することで、分身したヘルパー自身が自分を消去します。; [StateDef 0]記述省略[State 0]Type = DestroySelfTrigger1 = IsHelper; [StateDef 5150]記述省略[State 5150]Type = DestroySelfTrigger1 = IsHelper パラメーターの読み込み順 HelperType(?) => Name(?) => OwnPal(1) => Size.XScale(2) => Size.YScale(3) => Size.Ground.Back(4) => Size.Ground.Front(5) => Size.Air.Back(6) => Size.Air.Front(7) => Size.Height(8) => Size.Proj.DoScale(9) => Size.Head.Pos(10, 11) => Size.Mid.Pos(12, 13) => Size.ShadowOffset(14) => StateNo(15) => KeyCtrl((16->17)) => ID(18) => Pos(19, 20) => PosType(?) => Facing(21) => PauseMoveTime(22) => SuperMoveTime(23) => ReMapPal(?, ?) *バージョンや実行環境,パラーメータの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。 引用記事Helper - State Controller Reference(version 2002.04.14)Helper - State Controller Reference(version 1.0)Helper - State Controller Reference(version 1.1)Helper - State Controller ReferenceM.U.G.E.N Update HistoryHelper - M.U.G.E.N wikiHelper - MUGEN CNS WIKI CHAOS@予定Helper技術 - MUGEN CNS WIKI CHAOS@予定不具合・対策まとめ - MUGENの便覧Helper - State ControllerAI用ヘルパーに関してのメモ （ｂｙＡＤＩ）Helper - 東方夢幻館Helper - 地球の応接間 公開日:2008.06.05 最終更新日:2017.08.06 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "CodeSample",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "NumHelper",
+      "href": "./../Trigger/NumHelper.html"
+    },
+    {
+      "text": "Helper - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#Helper"
+    },
+    {
+      "text": "Helper - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#helper"
+    },
+    {
+      "text": "Helper - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#helper"
+    },
+    {
+      "text": "Helper - State Controller Reference",
+      "href": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#helper"
+    },
+    {
+      "text": "M.U.G.E.N Update History",
+      "href": "http://network.mugenguild.com/justnopoint/1.1docs/history.html"
+    },
+    {
+      "text": "Helper - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Helper"
+    },
+    {
+      "text": "Helper - MUGEN CNS WIKI CHAOS@予定",
+      "href": "http://www49.atwiki.jp/mugencns/pages/231.html"
+    },
+    {
+      "text": "Helper技術 - MUGEN CNS WIKI CHAOS@予定",
+      "href": "http://www49.atwiki.jp/mugencns/pages/233.html"
+    },
+    {
+      "text": "不具合・対策まとめ - MUGENの便覧",
+      "href": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "text": "Helper - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Helper&protocol=http"
+    },
+    {
+      "text": "AI用ヘルパーに関してのメモ （ｂｙＡＤＩ）",
+      "href": "http://homepage3.nifty.com/andil/mugen/Helper.txt"
+    },
+    {
+      "text": "Helper - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Helper"
+    },
+    {
+      "text": "Helper - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/helper.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/State/Helper.gif",
+    "/images/State/Helper_Name.png",
+    "/images/State/Size.XScale.png",
+    "/images/State/Size.YScale.png",
+    "/images/State/Size.Ground.Back.png",
+    "/images/State/Size.Ground.Front.png",
+    "/images/State/Size.Air.Back.png",
+    "/images/State/Size.Air.Front.png",
+    "/images/State/Size.ShadowOffset.png",
+    "./media/img/PosType_P1.png",
+    "./media/img/PosType_P2.png",
+    "./media/img/PosType_Front_1.png",
+    "./media/img/PosType_Back_1.png",
+    "./media/img/PosType_Left_Helper.png",
+    "./media/img/PosType_Right_Helper.png",
+    "./media/img/PosType_None.png"
+  ],
+  "code": [
+    "[State ,Helper]",
+    "Type                       = Helper",
+    "Trigger1                   = 1",
+    "HelperType                 =  Normal",
+    "Name                       =  \"&lt;ヘルパーを呼び出したキャラ名&gt;\"'s helper",
+    "OwnPal                     =  0",
+    "Size.XScale                =  ;親から継承",
+    "Size.YScale                =  ;親から継承",
+    "Size.Ground.Back           =  ;親から継承",
+    "Size.Ground.Front          =  ;親から継承",
+    "Size.Air.Back              =  ;親から継承",
+    "Size.Air.Front             =  ;親から継承",
+    "Size.Height                =  ;親から継承",
+    "Size.Proj.DoScale          =  ;親から継承",
+    "Size.Head.Pos              =  ;親から継承",
+    "Size.Mid.Pos               =  ;親から継承",
+    "Size.ShadowOffset          =  ;親から継承",
+    "StateNo                    =  0",
+    "KeyCtrl                    =  0",
+    "ID                         =  0",
+    "Pos                        =  0, 0",
+    "PosType                    =  P1",
+    "Facing                     =  1",
+    "PauseMoveTime              =  0",
+    "SuperMoveTime              =  0",
+    "ReMapPal                   =  -1, 0"
+  ]
+}

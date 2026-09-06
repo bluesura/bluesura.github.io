@@ -1,0 +1,104 @@
+{
+  "text": "[Round] ライフバー > ラウンド開始・終了演出の時間設定 | 実装されたバージョン: 2002.04.14 Roundの開始・終了のラウンドコール・表示・RoundState時間設定ができます。time関係の値は、デフォルト値を表記していますのでよくわからない人はそれをコピペしてね。設定可能なパラメータ一覧[Round]Start.WaitTime = 30Match.Wins = Match.MaxDrawGames = Pos = ,; ラウンドコールRound.Time = 0Round.Default.DisplayTime = Round.Default.Offset = , Round.Default.Font = , , Round.Default.Anim = Round.Default.Text = ;ラウンド9まで設定できるRound.SndTime = 0Round1.Snd = ,Round2.Snd = ,Round3.Snd = ,Round4.Snd = ,Round5.Snd = ,Round6.Snd = ,Round7.Snd = ,Round8.Snd = ,Round9.Snd = ,Round1.Anim = Round1.Spr = Round1.Font = , ,Round1.Text = Round1.Offset = ,Round1.DisplayTime = Round1.Facing = Round1.VFacing = Round1.LayerNo = Round1.Scale = ,Round2.Anim = Round2.Spr = Round2.Font = , ,Round2.Text = Round2.Offset = ,Round2.DisplayTime = Round2.Facing = Round2.VFacing = Round2.LayerNo = Round2.Scale = ,Round3.Anim = Round3.Spr = Round3.Font = , ,Round3.Text = Round3.Offset = ,Round3.DisplayTime = Round3.Facing = Round3.VFacing = Round3.LayerNo = Round3.Scale = ,Round4.Anim = Round4.Spr = Round4.Font = , ,Round4.Text = Round4.Offset = ,Round4.DisplayTime = Round4.Facing = Round4.VFacing = Round4.LayerNo = Round4.Scale = ,Round5.Anim = Round5.Spr = Round5.Font = , ,Round5.Text = Round5.Offset = ,Round5.DisplayTime = Round5.Facing = Round5.VFacing = Round5.LayerNo = Round5.Scale = ,Round6.Anim = Round6.Spr = Round6.Font = , ,Round6.Text = Round6.Offset = ,Round6.DisplayTime = Round6.Facing = Round6.VFacing = Round6.LayerNo = Round6.Scale = ,Round7.Anim = Round7.Spr = Round7.Font = , ,Round7.Text = Round7.Offset = ,Round7.DisplayTime = Round7.Facing = Round7.VFacing = Round7.LayerNo = Round7.Scale = ,Round8.Anim = Round8.Spr = Round8.Font = , ,Round8.Text = Round8.Offset = ,Round8.DisplayTime = Round8.Facing = Round8.VFacing = Round8.LayerNo = Round8.Scale = ,Round9.Anim = Round9.Spr = Round9.Font = , ,Round9.Text = Round9.Offset = ,Round9.DisplayTime = Round9.Facing = Round9.VFacing = Round9.LayerNo = Round9.Scale = ,;ファイト表示の設定Fight.Time = Fight.Anim = Fight.Offset = ,Fight.Scale = ,Fight.Snd = ,Fight.SndTime = Ctrl.Time = ;KO,DKO,TO sprなどの表示開始時間KO.Time = 0;KO,DKO,TO Sndの再生開始時間KO.SndTime = 0;KO表示の設定KO.Offset = ,KO.Anim = KO.Scale = ,KO.Snd = ,KO.DisplayTime = ;Double KO表示の設定DKO.Offset = ,DKO.Anim = DKO.Scale = ,DKO.Snd = ,DKO.DisplayTime = ;Time Over表示の設定TO.Offset = ,TO.Anim = TO.DisplayTime = TO.Scale = ,TO.Snd = ,Slow.Time = 60Over.WaitTime = 45Over.HitTime = 10Over.WinTime = 45Over.Time = 210;win,win2,drawのsprなどの表示開始時間Win.Time = 0;シングルの勝利時Win.Anim = Win.Spr = Win.Font = , ,Win.Text = Win.Offset = ,Win.DisplayTime = Win.Facing = Win.VFacing = Win.LayerNo = Win.Scale = ,;タッグの勝利時win2.Anim = win2.Spr = win2.Font = , ,win2.Text = win2.Offset = ,win2.DisplayTime = win2.Facing = win2.VFacing = win2.LayerNo = win2.Scale = ,;ドロー用draw.Anim = draw.Spr = draw.Font = , ,draw.Text = draw.Offset = ,draw.DisplayTime = draw.Facing = draw.VFacing = draw.LayerNo = draw.Scale = ,パラメーターSlow.Time = 時間(フレーム単位) (整数) KO時などで、スローで表示される時間Match.Wins = ポイント数 (整数) 何ポイント先取で勝つかの指定します。使用例: Match.Wins = 2 2ポイント先取したプレイヤー勝利です。Match.MaxDrawGames = ドロー数 (整数) 何回目のドローから両者に配点するか設定します。-1に設定した場合、ドローが続く限り試合が終了しません。使用例: match.maxdrawgames = 1 2回目のドロー以降両者にポイントが加えられる。Round.Default.Text = 文字列 (String) ラウンドコール時に文字を表示することができます。ここでは現在のラウンド数が引数に1つだけ、存在します。なので、フォーマット指定子が一つだけ使用できます。二つ以上は絶対に使わないでください。使用例: Round.Default.Text = Round %i 「Round 現在のラウンド数（10進数）」が表示されます。Start.WaitTime = 時間(フレーム単位) (整数) ファイト画面になるまでの時間が設定できます。Roundstate = 0 の長さ。ここを0に設定した場合、Roundstate = 0 がないことになってしまうので、必ず値を設定してください。普通は30になります。流れを知りたい方は、ココを見てね。Round.Time = 時間(フレーム単位) (整数) Roundのsprなどが表示開始時間を指定します。こだわりがない限りは、０に設定することをお勧めします。また指定できる時間は68が限界(WinMugenで確認)です。流れを知りたい方は、ココを見てね。Round.SndTime = 時間(フレーム単位) (整数) RoundのSnd再生開始時間を指定します。こだわりがない限りは、０に設定することをお勧めします。また指定できる時間は69が限界(WinMugenで確認)です。流れを知りたい方は、ココを見てね。Fight.Time = 時間(フレーム単位) (整数) Roundstate=2に入ってから、Fightのanimなどの表示開始時間。フライングの原因になりやすいので注意１。ctrl.Timeで演出中にフライングできないように調整しましょう。流れを知りたい方は、ココを見てね。Fight.SndTime = 時間(フレーム単位) (整数) ファイト！のような音声の再生開始タイミングを調整します。だいたい０でいいはず・・・。KO.SndTime = 時間(フレーム単位) (整数) KO！のような音声の再生開始タイミングを調整します。だいたい０でいいはず・・・。Ctrl.Time = 時間(フレーム単位) (整数) Roundstate=2に入ってから、ctrl可能になるまでの時間。フライングの原因になりやすいので注意２。Fight.Timeの演出中に、動けるようにしないでください。だいたいココに設定する値は、Fight.Time+それで表示した演出のフレーム時間になります。流れを知りたい方は、ココを見てね。Over.WaitTime = 時間(フレーム単位) (整数) KO後Roundstate=4移行するまでの時間。試合後この時間が過ぎるとcommandが一切働かなくなります。また、短すぎるとKOやTOのSndがループして再生される可能性があります。45に設定することを推奨します。流れを知りたい方は、ココを見てね。Over.HitTime = 時間(フレーム単位) (整数) 試合後、この時間が過ぎるとライフが一切変動しないようになります。また、KO・DKO判定するための時間になります。10に設定することを推奨します。あと、死の宣告有効時間境界で、強制死の宣告の場合のKO表示はおそらく仕掛けた側のKOコールだそうです。流れを知りたい方は、ココを見てね。KO.Time = 時間(フレーム単位) (整数) KO,DKO,TOが表示開始時間が指定できます。Win.Time = 時間(フレーム単位) (整数) win,win2,drawのような、どちらが勝利、または引き分けたかを表示する時間です。Over.WinTime = 時間(フレーム単位) (整数) Roundstate=4入ってから配点されるまでの時間。Roundstate=4になってからこの時間がたった瞬間に勝敗がきまります。この時、勝利ステート（勝利ポーズのやつ）などに飛ばされます。45に設定することを推奨します。ここの時間で演出時の八百長をつぶせるとか。流れを知りたい方は、ココを見てね。Over.Time = 時間(フレーム単位) (整数) Roundstate=4入ってから次のラウンド移行するまでの時間。これをOver.WinTimeより小さくすると八百長が発生してしまうので注意してください。210に設定することを推奨します。流れを知りたい方は、ココを見てね。Win.Text = 文字列 (文字列) 勝者を表示するための場所です。ここでは、引数に勝者名のアドレスが存在します。なので、%sを使用するとそれが表示されます。そして、ここでは、2つ以上または%s以外のフォーマット指定子を使うとエラーや表示がおかしくなる可能性があるので注意してください。使用例: Win.Text = %s Wins 「（勝者の名前） Wins」と表示されます。Win2.Text = 文字列 (文字列) タッグ専用でWin.Textとだいたい同じ。ですが、勝者名が引数に2つ存在します。なので、ここでは%sが2つまで使用できます。使用例: win2.Text = %s and %s Win 「（勝者の名前１） and （勝者の名前２） Win」と表示されます。Pos = x座標, y座標 (整数, 整数) 表示開始位置を設定します。Pos=30,30した場合、基準点が上の画像のように右下へ30ピクセルずつ移動した場所に設定されます。Face.Anim = ActionNo (整数) キャラクターのair内部[Begin Action (Number)]を指定できます。使用例: P1.Face.anim = 0 キャラクターのair内部[Begin Action 0]が使用されます。エラー:WinMugendisplaytimeを-1に設定したり,省略したり,animのフレームを超える数値を設定した場合、バトル中にESCを押した時、Assert failure in array.c line 349が表示されMUGENが落ちます。また、トップメニュー画面でAボタンを押すとError message: ~ なエラーメッセ時が表示されMUGENが落ちます。displaytimeをanimのフレーム数に収めた場合には、ESCのエラーはなくなりますが、Aボタンのバグは消えません。とにかく、faceでanimとdisplaytimeは記述しないほうが無難です。Face.Spr = SprGrp, SprNo (整数, 整数) キャラクターのsffのspr番号を指定できます。ポトレは基本的に9000グループが使用されます。使用例: P1.Face.spr = 9000, 0 キャラクターのsffの9000グループの0番目が使用されます。Anim = ActionNo (整数) AntionNoは同一ファイル内の[Begin Action ActionNo(整数)]で書き込まれたActionNoを指定します。AnimはAnimationの略で動く画像のことです。;使用例;[Begin Action 100]がP1のBG0に読み込まれます。;Animは、メイン要素です。メイン要素は１つしか設定できないので注意してください。P1.BG0.Anim = 100[Begin Action 100]15,1, 0,0, 5, HSpr = SprGrp, SprNo (整数, 整数) [Files]のSffで読み込んだスプライトファイルからどれを表示するか指定します。SprはSpriteの略で静止画のことです。;使用例;P1のBG0にはスプライトファイルの0,0に置かれているものが読み込まれます。;Sprは、メイン要素です。メイン要素は１つしか設定できないので注意してください。P1.BG0.Spr = 0, 0Font = FontNo, FontBank, AlignMt(-1,0,1)【省略可】 (整数, 整数, 整数) ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。Fontは、メイン要素です。メイン要素は１つしか設定できないので注意してください。また、場所によって、フォーマット指定子が使用できます。FontNoは[Files]で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。textの文字列はMUGEN RC以外では、日本語は文字化けします。fontとtext文章使用例:WinMugenMugenRC P1.BG0.Font = 1, 0, 0 P1.BG0.Text = waruiNe! font1の0 Colorで中央揃えにwaruiNe!を表示します。 P1.BG0.Font = 1, 0, 0 P1.BG0.Text = \"悪いね☆\" font1の0 Colorで中央揃えに 悪いね☆を表示します。Text = 文字列 (String) ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。また、場所によって、フォーマット指定子が使用できます。FontNoは[Files]で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。textの文字列はMUGEN RC以外では、日本語は文字化けします。fontとtext文章使用例:WinMugenMugenRC P1.BG0.Font = 1, 0, 0 P1.BG0.Text = waruiNe! font1の0 Colorで中央揃えにwaruiNe!を表示します。 P1.BG0.Font = 1, 0, 0 P1.BG0.Text = \"悪いね☆\" font1の0 Colorで中央揃えに 悪いね☆を表示します。Snd = SndGrp, SndNo (整数, 整数) ゲージがたっま時になる音をSnd=で読み込んだSndファイルから設定できます。Levelは1～9まで設定できます。so don't beat your computer when your level 5000 Snds don't work (if your sound goes that high, you should just go shoot yourself).Sndは、メイン要素です。メイン要素は１つしか設定できないので注意してください。使用例:level1.Snd = 21, 021グループの0番目の音をLevel1まで、たまったときに鳴らします。Offset = x座標, y座標 (整数, 整数) posで設定した値を基準点として、Anim,Spr,Fontの表示位置を決めます。省略時、値はデフォルトで0,0となっています。使用例:P1.BG0.Offset = 160, 120bg0の表示位置がP1.Posで決まった基準点から右に160ピクセル・下に120ピクセルになります。DisplayTime = 表示時間 (整数) spr,anim,fontの要素を何フレーム表示するか指定します。省略された場合は、表示する要素によってデフォルト値が変わります。spr,fontの場合は1、animの場合はループするようになっています。おそらく、-1でループ・0で何も表示されなくなります。 *60フレーム=1秒使用例:P1.BG0.Anim = 10P1.BG0.DisplayTime = 10P1.BG0.Spr = 10P1.BG0.DisplayTime = 10 10フレーム経過後にループします。要するに、Begin Actionで10フレーム以上設定されていた場合、10フレーム以降のものは表示されません。 10フレーム後に表示が消えます。ですが、ライフバーみたいなものは常に表示される仕組みになっているので、設定しても大して意味はないと思います。（たぶん）Facing = Dir(1または-1) (整数) spr,animの要素を水平反転（左右反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。使用例:P1.BG0.Facing = -1p1のbg0のspr,animは反転して表示されます。VFacing = Dir(1または-1) (整数) spr,animの要素を垂直反転（上下反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。使用例:P1.BG0.VFacing = -1p1のbg0のspr,animは反転して表示されます。LayerNo = No (整数) spr,anim,fontの要素をどのレイヤーに表示するか指定します。LayerNo = 0背景より前～プレイヤーより奥に表示。なので、背景を上書きするキャラで見えなくなるので注意。LayerNo = 1プレイヤーより前～前景(StageでLayerNo=1に設定されたプレイヤーより手前に表示される背景)より奥に表示されます。LayerNo = 2もはや邪魔するものはなし。なので、基本的には2を使用することをお勧めします。使用例:P1.BG0.LayerNo = 2p1のbg0のspr,animまたはfontはレイヤー2に表示されます。・LifeBarとcharacterの表示順序赤がLayerNo=0でSprPriority=-5のものより、後に表示される。緑がLayerNo=1でOnTop=1のものより、奥に表示される。青がLayerNo=2で完全に手前に表示・LifeBarとStageLayerNoの表示順序手前 LifeBar2 > Stage1 > LifeBar1 > LifeBar0 > Stage0背景Scale = XScale, YScale (浮動小数点数, 浮動小数点数) sprやanimの表示される倍率を指定します。ひとつ注意点があってfont関連でのscaleはWinMugenではサポートされていません、MUGENRCから使用可能です。マイナスの値は、反転したような状態になります。倍率は、画像・環境の考慮なしで、だいたい-1070000～1070000ぐらいまでいけました。どうでもいいことですが、変わるのは画像の大きさなので、座標とか注意してね！使用例:P1.BG0.Scale = 0.5やP1.BG0.Scale = .5（0．の0は省略できます。）p1のbg0のsprまたはanimは0.5倍で表示されます。引用記事Cabbit007's LifeBar Tutorial - RANDOM SELECTごろごろむADIのMUGENメモ・ＡＩ制作・作製の手引き その３新Mugenについて - 気まぐれ猫2010/11/24 (Wed) fight.def基礎知識その１ - lunaの倉庫2010/11/25 (Thu) fight.def基礎知識その２ - lunaの倉庫 公開日:2008.06.05 | 最終更新日:2015.10.09 Home > MUGEN Lifebar",
+  "sections": [
+    "SampleCode",
+    "Parameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "ココ",
+      "href": "./Round.html#RoundState"
+    },
+    {
+      "text": "ココ",
+      "href": "./Round.html#RoundState"
+    },
+    {
+      "text": "ココ",
+      "href": "./Round.html#RoundState"
+    },
+    {
+      "text": "ココ",
+      "href": "./Round.html#RoundState"
+    },
+    {
+      "text": "ココ",
+      "href": "./Round.html#RoundState"
+    },
+    {
+      "text": "ココ",
+      "href": "./Round.html#RoundState"
+    },
+    {
+      "text": "ココ",
+      "href": "./Round.html#RoundState"
+    },
+    {
+      "text": "ココ",
+      "href": "./Round.html#RoundState"
+    },
+    {
+      "text": "ココ",
+      "href": "./Round.html#RoundState"
+    },
+    {
+      "text": "フォーマット指定子",
+      "href": "./Format.html"
+    },
+    {
+      "text": "[Files]",
+      "href": "./Files.html"
+    },
+    {
+      "text": "フォーマット指定子",
+      "href": "./Format.html"
+    },
+    {
+      "text": "[Files]",
+      "href": "./Files.html"
+    },
+    {
+      "text": "Cabbit007's LifeBar Tutorial - RANDOM SELECT",
+      "href": "https://docs.google.com/viewer?a=v&q=cache:wk0WfSKcE1UJ:moogen.piiym.net/files/LifeBar_tutorial.doc+&hl=ja&gl=jp&pid=bl&srcid=ADGEESjMMLACx97cJMbe_PLaOB4LIuGXjLUNCCX1oBR6A31VtVR1MH9gRGgTR-gQP9aDqukKTvHoFMgSgdkWv_6LmQZxnMwFH3e8ylyHvzVehxlEv5NQ1sDesHoDQPK2ABxZxR4F0Spl&sig=AHIEtbR4dlMgJl-_ZzZAvDxFlEzHe3WnDA"
+    },
+    {
+      "text": "ごろごろむ",
+      "href": "http://gorogorom.blog44.fc2.com/"
+    },
+    {
+      "text": "ADIのMUGENメモ・ＡＩ制作・作製の手引き その３",
+      "href": "http://homepage3.nifty.com/andil/mugen/AI03.html"
+    },
+    {
+      "text": "新Mugenについて - 気まぐれ猫",
+      "href": "http://page.freett.com/mugen_m3/NewMugen-3.html#2-5"
+    },
+    {
+      "text": "2010/11/24 (Wed) fight.def基礎知識その１ - lunaの倉庫",
+      "href": "http://lunatic284.blog90.fc2.com/blog-entry-5836.html"
+    },
+    {
+      "text": "2010/11/25 (Thu) fight.def基礎知識その２ - lunaの倉庫",
+      "href": "http://lunatic284.blog90.fc2.com/blog-entry-5851.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Lifebar",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/public/images/lifebar/pos.png",
+    "/public/images/lifebar/Animation.gif",
+    "/public/images/lifebar/Sprite.gif",
+    "/public/images/lifebar/offset.jpg",
+    "/public/images/lifebar/facing.gif",
+    "/public/images/lifebar/vfacing.gif",
+    "/public/images/lifebar/layerno.gif"
+  ],
+  "code": []
+}

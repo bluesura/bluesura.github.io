@@ -1,0 +1,135 @@
+{
+  "text": "Type = Explod 演出 > 独立したアニメーション(Explod)の表示 | 実装されたバージョン: 2002.04.14 | 対象: 画像 指定した番号のアニメーションをAIRファイルから呼び出して表示します。同時に存在できる総数には上限があり、標準では64個(Mugen1.0から256個)となっています。仮にプレイヤー1(P1)が64個出してしまった場合、プレイヤー2(2P)は1つも出せなくなります。総数の上限はmugen.cfgのExplodMaxで変更できます。大きい値にするほど、PCへの負荷が大きくなります。動作が重かったりする場合は、この値を下げることにより改善する場合があります。 関連するステートコントローラー： RemoveExplod , ModifyExplod , ExplodBindTime 関連するトリガー： NumExplod , PlayerIDExist パラメーター ID = ExplodのID (整数) Explodに割り当てるIDを指定します。 省略時のデフォルト値： 0 Facing = 向き (整数) スプライトの向きを指定。1で正、-1で負の方向を向きます。 省略時のデフォルト値： 1 VFacing = 上下の向き (整数) -1にすると、垂直方向に反転表示されます。 省略時のデフォルト値： 1 Pos = x座標, y座標 (整数, 整数) スプライトの初期出現位置を指定します。 最小値: -2147483647, -2147483647 , 最大値: 2147483647, 2147483647 省略時のデフォルト値： 0, 0 PosType = 基準点の位置 (文字列) アニメーションを出現させるための基準点(0,0)をどこにするか、以下の文字列から指定します。 タイプ 基準 P1 実行者が基準点(0,0)になります。X軸の正数は実行者の正面・Y軸の負数は実行者の頭上。 P2 実行者に最も近い敵が基準点(0,0)になります。X軸の正数は最も近い敵の正面・Y軸の負数は最も近い敵の頭上。 F FはFrontの略。実行者の正面の画面端が基準点(0,0)になります。X軸の負数は基準点から実行者の方向・Y軸の負数は地面から上。 B BはBackの略。実行者の背面の画面端が基準点(0,0)になります。X軸の正数は基準点から実行者の方向・Y軸の負数は地面から上。 L LはLeftの略。画面左上が基準点(0,0)になります。X軸の正数は画面右方向・Y軸の正数は画面下方向。 R RはRightの略。画面右上が基準点(0,0)になります。X軸の負数は画面左方向・Y軸の正数は画面下方向。 N NはNoneの略。ステージ中央が基準点(0,0)になります。他のPosTypeと違い基準点は絶対に動きません。X軸は右方向が正数・左方向が負数。Y軸は上方向が負数・下方向が正数。Version1.1から追加された値です。 省略時のデフォルト値： P1 ;Version1.1からはNoneに変更されています。 Space = 座標の方法 (文字列) アニメーションを表示する座標をどのようにするかを指定します。Version1.1から利用可能なパラメーター。PosTypeの代替パラメーターで、優先してSpaceが読み込まれます。 タイプ 基準 Screen 座標は画面に依存。画面左上が(0,0)、右下が(ScreenWidth,ScreenHeight)になります。カメラの動きやズームの影響を受けません。 Stage 座標はステージに依存。座標(0,0)は(ステージの中央,ステージで設定した地面)になります。カメラの動きとズームの影響を受けます。 省略時のデフォルト値： Stage Random = x範囲, y範囲 (整数, 整数) 出現位置をランダムにする場合の、出現範囲を指定。pos = 0,0で、random = 40,80の場合、0,0の位置から左右-20～20ピクセル、上下-40～40ピクセルの範囲内でランダムに出現します。 省略時のデフォルト値： 0, 0 Vel = x速度, y速度 (浮動小数点数, 浮動小数点数) スプライトの初速度を指定。 省略時のデフォルト値： 0, 0 Accel = x加速度, y加速度 (浮動小数点数, 浮動小数点数) スプライトの加速度を指定。 省略時のデフォルト値： 0, 0 Scale = 横縮尺 [,縦縮尺] (浮動小数点数) 縮尺を指定。 省略時のデフォルト値： 1, 1 Angle = 角度 (浮動小数点数) アニメーションを回転させる角度を度単位で指定。 省略時のデフォルト値： 0 XAngle = 角度 (浮動小数点数) X軸を中心にアニメーションを回転させる角度を指定。 省略時のデフォルト値： 0 YAccelAngle = 角度 (浮動小数点数) Y軸を中心にアニメーションを回転させる角度を指定。 省略時のデフォルト値： 0 BindID = bind_id (整数) 拘束元のプレイヤーＩＤを指定, デフォルトは-2, -1なら任意・-2なら拘束しない, ヘルパーからExplodを出した場合、HelperTypeがPlayerでないと無効ID number of a player or helper to bind to. The position of a bound explod is relative to the object that it is bound to. Special values are -1 (bind to any single player) and -2 (do not bind). Defaults to -2. The bindtime parameter is required if bindID is not -2. Screen space explods cannot be bound. BindTime = 固定時間 (整数) ここで指定した時間内は、基準位置からの相対位置で表示されます。つまり、基準位置が移動すると、それに合わせてスプライトも移動します。-1以下で固定時間が永続化。ただし-2以下は警告文を出すので永続にする場合は、-1のみしか指定してはいけません。 省略時のデフォルト値： 1 SprPriority = スプライト表示優先順位 (整数) スプライトの表示優先順位を指定。-3にすると、大抵のスプライトより奥に表示されます。 省略時のデフォルト値： 0 OnTop = 手前表示フラグ (0か1) 1にすると、sprpriorityは無視され、全てのスプライト、背景レイヤーより手前に表示されます。ただし、ヒット/ガードスパークより手前に表示させることはできません。 省略時のデフォルト値： 0 RemoveTime = 消滅時間 (整数) 発生してから消滅するまでの時間を指定。-1で永久に表示。特定の条件下で消すような場合は、Expoldを消すコントローラーを使うとよいでしょう。 省略時のデフォルト値： -2 ;スプライトのアニメが終了すると消える。 SuperMove = superpause無視フラグ (0か1) 1にすると、SuperPauseコントローラーの影響を受けなくなります。Version1.1では廃止されているため使わないほうがいいです。SuperMoveTimeで代用してください。 省略時のデフォルト値： 0 SuperMoveTime = SuperPause無視時間 (整数) SuperPauseコントローラーの影響を無視する時間を指定。-1または-2で無視時間永続化。※60フレーム=1秒 最小値: -1 , 最大値: 2147483647 省略時のデフォルト値： 0 PauseMoveTime = Pause無視時間 (整数) Pauseコントローラーの影響を無視する時間フレーム単位を指定。-1以下で無視時間が永続化。※60フレーム=1秒 最小値: -2147483647 , 最大値: 2147483647 省略時のデフォルト値： 0 Shadow = 赤影, 緑影, 青影 (整数, 整数, 整数) 影の色をR,G,Bで指定。-1でステージ依存。 省略時のデフォルト値： 0, 0, 0 ;影なし RemoveOnGethit = やられ消滅フラグ (0か1) 1にすると、プレイヤーが攻撃を受けた場合、消滅します。 省略時のデフォルト値： 0 Trans = 透過型 (文字列) 透過型には、以下のいずれかの文字列を指定します。 透過処理 効果 Default 何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。 None 透過処理無し。Airで透過処理している時無効にできる。 Add 画像を半透明にする。アルファ値256,256の加算透過。 Add1 Addより暗い感じの半透明にする。アルファ値256,128の加算透過。 Sub 画像を影のように半透明にする。減算透過。 AddAlpha 下記のAlphaとセットで使うのが普通。 最小値: -256, -256, -256 ;黒 , 最大値: 256, 256, 256 ;白 省略時のデフォルト値： Add Alpha = ソースアルファ, デスティネーションアルファ (整数, 整数) 透過型が\"AddAlpha\"の場合に指定します。有効範囲は0(低)から256(高)です。ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。 省略時のデフォルト値： 256, 0<!--no check--> Anim = [F]アクション番号 (整数) 表示させるスプライトのアクション番号を指定。FightFx.airのものを使う場合は、先頭にFを記述。 FightFx.airのアクション番号 F0 弱ヒットの火花 F1 中ヒットの火花 F2 強ヒットの火花 F3 強強ヒットの火花 F10 弱めの出血 F11 出血 F12 強めの出血 F40 ガード時の閃光 F60 小さい衝撃波 F61 衝撃波 F62 強い衝撃波 F70 壁衝突の軽い衝撃波 F71 壁衝突の衝撃波 F72 壁衝突の強い衝撃波 F100 レベル1の超必殺エフェクト F101 レベル2の超必殺エフェクト F102 レベル3の超必殺エフェクト F120 小さい砂埃 F130 力をためるエフェクト 最大値: 2147483647 省略不可 省略時のデフォルト値： ? OwnPal = 独自パレットフラグ (0か1) 例えば、プレイヤーが青く点滅すると、Explodも青く点滅します。1にすると、独自のパレットを持つようになります。 省略時のデフォルト値： 0 ;プレイヤーと共通のパレットを持ちます。 ReMapPal = dst_pal_grp, dst_pal_item (整数, 整数) SFFv2で登録したカラーパレットの読み込みForces a palette remap of the explod's indexed-color sprites to the specified palette. This parameter is used only if ownpal_flag is non-zero and a fight.def anim is not used. If dst_pal_grp is -1, this parameter will be ignored. 省略時のデフォルト値： -1, 0 IgnoreHitPause = ヒット停止中も処理するか (0か1) HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 最小値: 0 , 最大値: 1 省略時のデフォルト値： 0 Persistent = 実行頻度（トリガー成立回数の間引き） (整数) Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 最小値: 0 , 最大値: 128 省略時のデフォルト値： 1 仕様・バグ・エラー・変更点-BindTime=0でPosTypeを指定していてもPosType=Leftとして扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。-未検証：ScreenBoundで画面を固定していると、Explodが本体に追従できずに数Fの間ずれることがある。-未検証：AfterImage系統と異なり、ModifyExplodを用いてもRemoveTimeで消えるまでの残り時間は変わらない。-未検証：IgnoreHitPause=1ではHitPauseTime中にも出る、またAnimが動作する。IgnoreHitPauseを省略するとHitPauseTime中には出ない、またAnimeが動く。IgnoreHitPause=0ではHitPauseTime中には出ない、またAnimが動かない。Version1.0より前Explodを消去する前に、Explodを管理しているHelperをDestroySelfで消去してしまうとExplodが残り続けます。Version1.1からExplodのPosTypeがP1とP2以外の時に、EnvShake（画面振動）の影響を受けなくなったVersion1.1から-2に記述されたExplodはステートが奪われた場合、奪った相手のLocalCoordの影響を受け縮尺がおかしくなります。Version1.1からSpace,Angle,XAngle,YAngle,ReMapPal,BindID,PosTypeにNoneが追加されました。Version1.1からSuperMoveが廃止されました。警告文ILLEGAL EXPLOD ANIMNO:Animに-1以下警告文NEGATIVE EXPLOD ID:IDに-1以下警告文ILLEGAL POSBINDTIME FOR EXPLOD:BindTimeに-2以下警告文NEGATIVE EXPLOD RANDOM PARAM:Randomに-1以下警告文ILLEGAL REMOVETIME FOR EXPLOD:RemoveTimeに-3以下警告文ILLEGAL SHADOW COLOR:Colorに-2以下 省略した時のデフォルト値 [State ,Explod] Type = Explod Trigger1 = 1 ID = 0 Facing = 1 VFacing = 1 Pos = 0, 0 PosType = P1 ;Version1.1からはNoneに変更されています。 Space = Stage Random = 0, 0 Vel = 0, 0 Accel = 0, 0 Scale = 1, 1 Angle = 0 XAngle = 0 YAccelAngle = 0 BindID = BindTime = 1 SprPriority = 0 OnTop = 0 RemoveTime = -2 ;スプライトのアニメが終了すると消える。 SuperMove = 0 SuperMoveTime = 0 PauseMoveTime = 0 Shadow = 0, 0, 0 ;影なし RemoveOnGethit = 0 Trans = Add Alpha = 256, 0<!--no check--> Anim = ? OwnPal = 0 ;プレイヤーと共通のパレットを持ちます。 ReMapPal = -1, 0 コードサンプルSpaceでPosTypeを再現する方法;PosType = P1Space = StagePos = Pos X + CameraPos X, Pos YFacing = Facing;PosType = P2Space = StagePos = (EnemyNear, Pos X) + CameraPos X, (EnemyNear, Pos Y)Facing = EnemyNear, Facing;PosType = FrontSpace = ScreenPos = IfElse(Facing = -1, 0, ScreenWidth), 0Facing = 1;PosType = BackSpace = ScreenPos = IfElse(Facing = 1, 0, ScreenWidth), 0Facing = Facing;PosType = LeftSpace = ScreenPos = 0, 0Facing = 1;PosType = RightSpace = ScreenPos = ScreenWidth, 0Facing = 1 マガがしいオーラ（厄い）[State -2]Type = ExplodTrigger1 = NumExplod(1) < 10 && Time %8ID = 1Facing = Root,FacingPosType = P1Pos = 0, 0Random = 80, 80Scale = 1.1, 1.1SprPriority = -5OnTop = 0RemoveTime = 8RemoveOnGetHit = 1Trans = SubAnim = 0OwnPal = 0IgnoreHitPause = 1 パラメーターの読み込み順 ID(1) => Facing(2) => VFacing(3) => Pos(4, 5) => PosType(?) => Space(?) => Random(6, 7) => Vel(8, 9) => Accel(10, 11) => Scale(12, 13) => Angle(?) => XAngle(?) => YAccelAngle(?) => BindID(?) => BindTime(14) => SprPriority(15) => OnTop(16) => RemoveTime(17) => SuperMove(18) => SuperMoveTime(19) => PauseMoveTime(20) => Shadow(21, 22, 23) => RemoveOnGethit(24) => Trans(?) => Alpha(25, 26) => Anim(27) => OwnPal(28) => ReMapPal(?) *バージョンや実行環境,パラーメータの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。 引用記事Explod - State Controller Reference(version 2002.04.14)Explod - State Controller Reference(version 1.0)Explod - State Controller Reference(version 1.1)Explod - State Controller Reference Documentation for version 1.1Explod - M.U.G.E.N wikiM.U.G.E.N 1.1 - 君の瞳は紫外線Explod - MUGEN CNS WIKI CHAOS@予定Explod - State ControllerExplod - 東方夢幻館Explod - 地球の応接間不具合・対策まとめ - MUGENの便覧Explodって結構ヘンなコントローラーじゃないかね - Diary::586sffとairの限界 - lunaの倉庫 公開日:2008.06.05 最終更新日:2017.08.06 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "CodeSample",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "RemoveExplod",
+      "href": "./../State/RemoveExplod.html"
+    },
+    {
+      "text": "ModifyExplod",
+      "href": "./../State/ModifyExplod.html"
+    },
+    {
+      "text": "ExplodBindTime",
+      "href": "./../State/ExplodBindTime.html"
+    },
+    {
+      "text": "NumExplod",
+      "href": "./../Trigger/NumExplod.html"
+    },
+    {
+      "text": "PlayerIDExist",
+      "href": "./../Trigger/PlayerIDExist.html"
+    },
+    {
+      "text": "Explod - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#Explod"
+    },
+    {
+      "text": "Explod - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#explod"
+    },
+    {
+      "text": "Explod - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#explod"
+    },
+    {
+      "text": "Explod - State Controller Reference Documentation for version 1.1",
+      "href": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#explod"
+    },
+    {
+      "text": "Explod - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Explod"
+    },
+    {
+      "text": "M.U.G.E.N 1.1 - 君の瞳は紫外線",
+      "href": "http://chottokomaru.sitemix.jp/mugen1.1.html"
+    },
+    {
+      "text": "Explod - MUGEN CNS WIKI CHAOS@予定",
+      "href": "http://www49.atwiki.jp/mugencns/pages/216.html"
+    },
+    {
+      "text": "Explod - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Explod&protocol=http"
+    },
+    {
+      "text": "Explod - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Explod"
+    },
+    {
+      "text": "Explod - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"
+    },
+    {
+      "text": "不具合・対策まとめ - MUGENの便覧",
+      "href": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "text": "Explodって結構ヘンなコントローラーじゃないかね - Diary::586",
+      "href": "http://d.hatena.ne.jp/e586/20080129/1201591289"
+    },
+    {
+      "text": "sffとairの限界 - lunaの倉庫",
+      "href": "http://lunatic284.blog90.fc2.com/blog-entry-2008.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "./media/img/PosType_P1.png",
+    "./media/img/PosType_P2.png",
+    "./media/img/PosType_Front_1.png",
+    "./media/img/PosType_Back_1.png",
+    "./media/img/PosType_Left_Explod.png",
+    "./media/img/PosType_Right_Explod.png",
+    "./media/img/PosType_None.png"
+  ],
+  "code": [
+    "[State ,Explod]",
+    "Type                       = Explod",
+    "Trigger1                   = 1",
+    "ID                         =  0",
+    "Facing                     =  1",
+    "VFacing                    =  1",
+    "Pos                        =  0, 0",
+    "PosType                    =  P1 ;Version1.1からはNoneに変更されています。",
+    "Space                      =  Stage",
+    "Random                     =  0, 0",
+    "Vel                        =  0, 0",
+    "Accel                      =  0, 0",
+    "Scale                      =  1, 1",
+    "Angle                      =  0",
+    "XAngle                     =  0",
+    "YAccelAngle                =  0",
+    "BindID                     =",
+    "BindTime                   =  1",
+    "SprPriority                =  0",
+    "OnTop                      =  0",
+    "RemoveTime                 =  -2 ;スプライトのアニメが終了すると消える。",
+    "SuperMove                  =  0",
+    "SuperMoveTime              =  0",
+    "PauseMoveTime              =  0",
+    "Shadow                     =  0, 0, 0 ;影なし",
+    "RemoveOnGethit             =  0",
+    "Trans                      =  Add",
+    "Alpha                      =  256, 0<!--no check-->",
+    "Anim                       =  ?",
+    "OwnPal                     =  0 ;プレイヤーと共通のパレットを持ちます。",
+    "ReMapPal                   =  -1, 0"
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "text": "Type = HitDef 攻撃 > 攻撃判定接触時の処理定義 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 AIRファイルで設定されている、実行者のClsn1(攻撃判定：赤い四角)が相手のClsn2(やられ判定：青い四角)に重なった時の処理を設定。設定された各種パラメーターの条件が相手の状態を満たしていた場合にヒットし、くらいアニメ・ダメージ・ふっとび速度などの処理が実行されます。HitDefの処理は、ステートを移動するReversalDefが実行されるまで続きます。そのステート中効果が持続しますが、1回ヒットしたキャラに対しては、効果を及ぼさなくなります。このため、複数ヒットする技の場合は、ヒットさせたい数だけHitDefを定義するか、複数回効果があるようにトリガーを設定する必要があります。Clsn1がない、または実行者のMoveTypeがIだった場合、HitDefは機能しません。HitDefの定義をもった攻撃判定へヒットするのがReversalDef。仕様上ReversalDefとは併用できません。 関連するステートコントローラー： ReversalDef 関連するトリガー： GetHitVar , HitDefAttr , HitPauseTime , InGuardDist , MoveContact パラメーター Attr = ステートタイプ, 攻撃属性(技の強さと属性), 以降攻撃属性をカンマで複数記述可... (文字列, 文字列, ...) 攻撃がどんな攻撃なのかを指定します。ステートタイプでは攻撃がどのような状態でだされているか指定します。攻撃属性ではどのくらいの強さでどんな攻撃なのかを指定します。例えば、立った状態で何の変哲もないパンチをだしているのならAttr=S,NA、空中でスペシャルな飛び道具をだしているのならAttr=A,HPと記述します。また、複数の攻撃属性が指定可能でAttr=SA,NA,HPだとSNA(立ちの通常打撃)・SHP(立ちの超必殺飛び道具)・ANA(空中の通常打撃)・AHP(空中の超必殺飛び道具)の4つ状態を持っていることになります。 ステートタイプ S 立ち C 屈み A 空中 技のランク N 通常 S 必殺 H 超必殺 A すべて 属性 A 打撃 T 投げ P 飛び道具 省略不可 省略時のデフォルト値： ?, ? HitFlag = ヒットフラグ (文字列) どういう状態(ステートタイプ)の敵に攻撃が命中するかを指定します。ヒットフラグは複数指定可能。 フラグ H 立ち(High)。 L 屈み(Low)。 M 立ち、屈み(Medium)。=HL A 空中(Air)。 F 落下(Fall)。 D ダウン(Down)。Fと組み合わせなければ機能しません。 P 飛び道具(Projectile)。 + 食らい状態の敵のみにヒット。 - 食らい状態の敵にはヒットしない。 省略時のデフォルト値： MAF ;ダウン状態にのみヒットしない GuardFlag = ガードフラグ (文字列) 敵がどういう状態ならガードできるかフラグを指定します。フラグは複数指定可能。 フラグ H 立ち(High)。 L 屈み(Low)。 M 立ち、屈み(Medium)。=HL A 空中(Air)。 省略時のデフォルト値： ;空文字列=ガード不可 AffectTeam = 影響チーム (文字列) チームモード時、どのチームに攻撃が影響するかフラグを指定します。 フラグ B 敵味方(Both Teams)かまわず。 E 敵(Enemy Team)のみ。 F 味方(Friendly Team)のみ。 省略時のデフォルト値： E AnimType = アニメタイプ (文字列) 相手のリアクションアニメの種類を指定します。ただし、UとDは相手が絵を用意してない場合、Bと同じ結果になります。 文字列 状態 L 弱 (Lightの略) M 中 (Mediumの略) H 強 (Hardの略) B ふっとび (Backの略) U 真上ふっとび (UPの略) D 斜めふっとび (DiagUpの略) 省略時のデフォルト値： L Air.AnimType = 空中でのアニメタイプ (文字列) 空中でのアニメタイプを指定。 省略時のデフォルト値： ;AnimTypeと同じ Fall.AnimType = Fall状態時のアニメタイプ (文字列) 空中でのアニメタイプFall状態のときのアニメタイプです。※Fall状態・・・Fall=1。HitTimeを過ぎても、受身を取らない限り空中復帰できず、着地すると落下ダウンする状態。これに対し、Fall=0の場合、空中で立ち直り、HitTimeを過ぎると操作可能となる。また、HitTime中でも、着地すると通常のジャンプ着地となる。なお、一度Fall=1になると、Fall=0の攻撃を受けてもFall=1のままとなる。 省略時のデフォルト値： ;Air.AnimTypeがUpならUp、それ以外はBack Ground.Type = 地上でののけぞり方 (文字列) 相手の地上でののけぞり方を文字列で指定します。 文字列 状態 H 上のけぞり (Highの略) L 下のけぞり (Lowの略) T 転倒 (Tripの略) N なし、使用は非推奨 (Nonの略) 省略時のデフォルト値： H Air.Type = 空中でののけぞり方 (文字列) 相手の空中でののけぞり方を文字列で指定します。設定方法はGround.Typeと同じ。 省略時のデフォルト値： ;Ground.Typeと同じ ID = ヒットid番号 (整数) 識別用のIDをつけることができます。後述と組み合わせることにより、特定の技からは繋がらなかったりするようにできます。また、Target系のステコン、トリガーが参照するID(HitID)は、このIDの攻撃によりターゲットとなった敵を示します。 省略時のデフォルト値： 0 ChainID = 連続ヒットid番号 (整数) ここで指定したIDからのみ、攻撃が繋がるようになります。 省略時のデフォルト値： -1 ;すべての攻撃が繋がります。 NoChainID = 不連続ヒットid番号1, 不連続ヒットid番号2 (整数, 整数) ここで指定したIDからは攻撃が繋がらなくなります。2つまで指定可。ガード時も繋がらなくなります。(攻撃がすり抜ける) 省略時のデフォルト値： -1 ;すべての攻撃が繋がります。 Kill = KOフラグ (整数) 0にすると、その攻撃で相手をKOできなくなります。最後の一撃でのみKOしたい多段攻撃などに。 省略時のデフォルト値： 1 Guard.Kill = ガードKOフラグ (整数) 0にすると、ガード時のダメージで相手をKOできなくなります。 省略時のデフォルト値： 1 Fall.Kill = - (整数) 0にすると、落下ダウン時のダメージで相手をKOできなくなります。 省略時のデフォルト値： 1 HitOnce = 1回ヒットフラグ (0か1) 1にした場合、複数の敵がいても、1方にしかヒットしなくなります。AttrがT(投げ)の場合、1になります。 省略時のデフォルト値： 0 ;ただし、<code>Attr</code>で<code>T</code>を指定していると1に変更されます。 Air.Juggle = ジャグルポイント (整数) Fall状態の敵に対する連続技に必要なポイント数を上乗せ。StateDefのJuggleパラメータとは違う値です。Projectile専用パラメータ。 省略時のデフォルト値： 0 Damage = ヒットダメージ, ガードダメージ (整数, 整数) ヒット、ガード時のダメージを整数で指定します。 省略時のデフォルト値： 0, 0 GetPower = p1ヒットゲージ増加量, p1ガードゲージ増加量 (整数, 整数) 攻撃がヒットした、ガードされたときに増えるゲージ量です。 省略時のデフォルト値： ;(mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage, ;mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage÷2 GivePower = p2ヒットゲージ増加量, p2ガードゲージ増加量 (整数, 整数) 攻撃がヒットした、ガードされたときに増える相手のゲージ量です。 省略時のデフォルト値： ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage, ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage÷2 PauseTime = p1停止時間, p2ブルブル時間 (整数, 整数) ヒット時の自分と相手の停止時間を整数で指定します。停止時間中、相手はブルブル揺れます(HitShake状態)。 省略時のデフォルト値： 0, 0 NumHits = ヒットカウント数 (整数) コンボカウンターに加算されるヒット数です。 省略時のデフォルト値： 1 HitSound = グループ番号, アイテム番号 (整数, 整数) ヒット音をcommon.sndから指定します。5,0(弱ヒット音)～5,4(大打撃音)から選ぶことになります。自分のsndファイルから指定したい場合は、\"hitsound = S1,0\"のように、先頭にSを記述します。 省略時のデフォルト値： ?, ? ;多分、MUGENのデフォルト音声に設定される。 GuardSound = グループ番号, アイテム番号 (整数, 整数) ガード音をcommon.sndから指定します。といっても、用意されているのは6,0のみ。自分のsndファイルから指定したい場合は、先頭にSを記述します。 省略時のデフォルト値： ?, ? ;多分、MUGENのデフォルト音声に設定される。 Priority = ヒット優先度, 相打ちの挙動 (整数, 文字列) 攻撃の優先度で1から7、相打ち時の挙動をヒット・両者空振り・ミスから指定します。実行者の攻撃と相手の攻撃が同時に発生した場合、数値の高い方のみヒットします。ヒット優先度が同じ場合、H・M・Dにより以下のようになります。 文字列 状態 H 攻撃がヒットする (Hitの略) M 自分の攻撃は当たらない (Missの略) D 相手がHでも両者空振り (Dodgeの略) 省略時のデフォルト値： 4, H P1StateNo = ヒット時移行するステート番号 (整数) 攻撃がヒットした場合に移行するステートの番号を指定します。主に投げ技で使用。 省略時のデフォルト値： -1 P2StateNo = ヒット時相手に参照させるステート番号 (整数) 攻撃がヒットした場合に、相手に参照させるステートの番号を指定します。これを指定した場合、HitOverrideを仕込んだ相手(Helper等)に攻撃が当たらなくなります。P2StateNo=-1とすると、P2GetP1State=1の効果のみになる。（P2GetP1State=0が指定されている場合はP2GetP1Stateが優先されるためP2GetP1State=0となる。）なお、この際に5000番台に移動するのはGround.Type、Air.TypeがNormal(頭文字がN）以外の場合である。投げに使ってもProjectile等と相打ちした時に致命的な不具合が生じることがあるので、できれば全く使わない方が良いです。といいたいところですが、代わりに使うことになるTargetStateも扱いが難しいので、不具合を承知で使うのも止むを得ないかもしれません。 省略時のデフォルト値： -1 ;無効 P2GetP1State = ステート奪取フラグ (整数) 0の時はP2StateNoを指定していても対象者のステートを奪わず、対象者自身のステートを読みこませる。1の時は相手のステートを奪います。 省略時のデフォルト値： ;相手に実行者の食らいステートを読み込ませる。 P1SprPriority (整数) 攻撃が接触した場合のスプライトの表示優先度を指定します。1だと相手の手前、-1だと奥に表示されます。 省略時のデフォルト値： 1 P2SprPriority (整数) This is the drawing priority of P2's sprite if the move hits or is guarded by P2. 省略時のデフォルト値： 0 ; SprPriority = スプライト表示優先度 (整数) pr specifies the drawing priority for the explod. Animations with higher priority get drawn over animations with lesser priority. For instances, setting sprpriority = -3 will cause the explod to be drawn under most characters and other explods, which usually have sprpriority >= -2. 省略時のデフォルト値： 0 ForceStand = 強制立たせフラグ (整数) 1にすると、しゃがんだ相手にヒットしても立ち食らいポーズをとらせます。 省略時のデフォルト値： ;Ground.VelocityのY速度が0なら0、0以外1。 ForceNoFall (整数) fall状態強制解除。Set to 1 to force P2 out of a \"fall\" state, if he is in one. This parameter has no effect on P2 if he is not in a \"fall\" state. This parameter is ignored if the \"fall\" parameter is set to 1. 省略時のデフォルト値： 0 Fall = 落下フラグ (整数) 通常、相手を浮かせるような攻撃でも、HitTimeが終了すれば、相手は立ち直り、着地しますが、Fall = 1にした場合、相手は自動では立ち直らず、受身操作（x+y）をしなければダウンします。Set to 1 if you want P2 to go into a \"fall\" state (where P2 hits the ground without regaining control in the air). Use if you want a move to \"knock down\" P2. 省略時のデフォルト値： 0 Fall.Damage = damage_amt (整数) 落下状態のままダウンした場合に与えるダメージを指定します。 省略時のデフォルト値： 0 Fall.XVelocity = 落下バウンド水平速度 (浮動小数点数) 落下状態のままダウンした場合の、バウンド水平速度を変更する場合、指定します。 省略時のデフォルト値： ;速度変更なし Fall.YVelocity = 落下バウンド垂直速度 (浮動小数点数) 落下状態のままダウンした場合の、バウンド垂直速度を指定します。 省略時のデフォルト値： -4.5 Fall.Recover = 受身可能フラグ (整数) 0にすると相手が落下状態でも受身（x+y）をとれなくなります。 省略時のデフォルト値： 1 ;受身可能 Fall.RecoverTime = 受身可能受付開始時間 (整数) 落下状態になってから受身が取れるようになるまでの時間を指定します。pausetimeは含まれません。Fall.Recover = 0にした場合は無効。追撃できることを想定している技の場合、大きな値を設定するか、Fall.Recover=0にするとよいでしょう。 省略時のデフォルト値： 4 SparkNo = ヒットスパークのアクション番号 (整数) ヒットスパークのアクション番号をfightfx.airから指定します。自分のairファイルから指定したい場合は、\"sparkno = S2000,0\"のように、先頭にSを記述します。 省略時のデフォルト値： ;cnsで設定した値が使用されます。 Guard.SparkNo = ガードスパークのアクション番号 (整数) ガードスパークのアクション番号をfightfx.airから指定します。自分のairファイルから指定したい場合は、\"Guard.sparkno = S2010,0\"のように、先頭にSを記述します。 省略時のデフォルト値： ;cnsで設定した値が使用されます。 SparkXY = スパークx座標, スパークy座標 (整数, 整数) ヒット、ガードスパークの表示位置を指定します。 省略時のデフォルト値： 0, 0 P1Facing = p1の向き (整数) -1にすると、攻撃がヒットした場合に後ろを向きます。主に投げ技で使用。 省略時のデフォルト値： ;向きを変更しない P1GetP2Facing = p1の向き (整数) 1にすると、攻撃がヒットした場合に相手と同じ方向を、-1で逆を向きます。p1facingより優先されます。 省略時のデフォルト値： 0 ;向きを変えない Snap = x固定座標, y固定座標 (整数, 整数) ヒットした相手を固定する位置を、P1を基準として指定します。このパラメータも、通常、使用しません。投げ等で相手を指定位置に固定する場合は、TargetBindを使用します。This moves P2 to the specified position relative to P1 if hit. This parameter is not normally used. If you want to snap P2 to a particular position for a throw, it is recommended you use a \"TargetBind\" controller in P1's throwing state instead. 省略時のデフォルト値： ;no change in P2's position ; MinDist = x最小座標, y最小座標 (整数, 整数) 攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できます。 省略時のデフォルト値： ;no change in P2's position ; MaxDist = x最大座標, y最大座標 (整数, 整数) 攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できます。These let you control the minimum and maximum distance of P2 relative to P1, after P2 has been hit. These parameters are not commonly used. 省略時のデフォルト値： ;no change in P2's position P2Facing = p2の向き (整数) 1にすると、攻撃がヒットした場合、相手に正面を向かせます。-1にすると後ろを向かせます。 省略時のデフォルト値： ;向きを変更しない Ground.HitTime = ヒット時間 (整数) 相手が攻撃を受けて行動不能になる時間です。長くするほど連続攻撃が繋がりやすくなります。永久コンボが発生しないように、気をつけて設定しましょう。相手が地上にいる間のみ有効です。 省略時のデフォルト値： 0 Ground.SlideTime = ヒットバック時間 (整数) 相手が攻撃を受けて後ずさる時間です。この時間が経過すると、ブレーキがかかります。ただし、Physics(やられステート)がSやCになっているため、ヒットバックは摩擦によっても停止します。よって、よろけやられのような、ゆっくりとしたヒットバックは、HitDefでは再現できません。ナニソレ。0にすると、強烈なブレーキがかかります。 省略時のデフォルト値： 0 Ground.Velocity = ヒット速度X, ヒット速度Y (浮動小数点数, 浮動小数点数) 相手が地上で攻撃を受けて移動する速度です。yに負数を指定すると、宙に浮きます。地上にいる場合、摩擦の影響を受けます。 省略時のデフォルト値： 0, 0 Ground.CornerPush.VelOff = 地上コーナープッシュ速度 (浮動小数点数) 画面端で地上の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。相手の移動距離とは無関係で、相手のshaketimeではなく、自分のpausetimeが0になった瞬間に速度がかかります。 省略時のデフォルト値： ;AttrがAの場合は0、それ以外の場合は(1.3 × Guard.Velocity)となります。 Air.HitTime = 空中でのヒット時間 (整数) 相手が空中で攻撃を受けて行動不能になる時間です。この時間を過ぎると、相手はコントロールを取り戻します。この時、空中くらい/ふっとびアニメ(5035番)はAirに依存するため、5035番のアニメが終わり見た目が立ち直っていても、行動不能な時間内なら行動不能。行動不能な時間が経過していれば、5035番のアニメ中で見た目がのけぞっていても行動可能です。Fallパラメータが1の場合、このパラメータは無効になります。 省略時のデフォルト値： 20 Air.Fall = value (整数) 空中ヒットしたときのみ落下状態にしたい場合は1にします。Fall = 1だと地上やられでも落下状態になります。 省略時のデフォルト値： ;Fallと同値 Air.Velocity = 空中ヒット速度X, 空中ヒット速度Y (浮動小数点数, 浮動小数点数) 相手が空中で攻撃を受けたとき移動する速度です。 省略時のデフォルト値： 0, 0 Air.CornerPush.VelOff = 空中コーナープッシュ速度 (浮動小数点数) 画面端で空中の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。 省略時のデフォルト値： ;Ground.CornerPush.VelOffと同値 Down.Bounce = ダウン追い討ちヒットバウンドフラグ (整数) 1にすると、ダウン追い討ちヒット時、Fall.XVelocityとFall.YVelocityでバウンドします。Down.Velocityの垂直速度が0の時のみ有効。 省略時のデフォルト値： 0 ;バウンドしない。 Down.HitTime = ダウン追い討ちヒット時間 (整数) ダウン状態の敵に攻撃が当たったとき、スライドする時間です。Down.Velocityの垂直速度が0の時のみ有効。 Down.Velocity = ダウン追い討ち水平速度, ダウン追い討ち垂直速度 (浮動小数点数, 浮動小数点数) ダウン追い討ちヒット時ののけぞり速度を指定します。垂直方向の速度が0以外の場合、相手は宙に浮きます。0の場合はスライドします。 省略時のデフォルト値： ;Air.Velocityと同値 Down.CornerPush.VelOff = ダウンコーナープッシュ速度 (浮動小数点数) 画面端でダウン状態の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。 省略時のデフォルト値： ;Ground.CornerPush.VelOffと同値 Guard.Velocity = ガード速度X (浮動小数点数) 相手が地上で攻撃をガードしたとき移動する速度です。垂直方向は指定不可。 省略時のデフォルト値： ;Ground.Velocityと同値。 Guard.HitTime = ガード時間 (整数) 相手が攻撃をガードしてから自動的に(キーを後ろに入力しなくても)ガードモーションをとり続ける時間。行動不能時間ではないので注意。DOS版では、なぜか、実際にゲームに反映されるのは、指定値の半分になります。ガードされると凄く不利というのがDOSの仕様です。WIN版では、指定値がそのまま適応されます。 省略時のデフォルト値： Ground.HitTimeと同値になりますが、前述の仕様により、実際のガード時間はGround.HitTimeの半分となり、硬直は、Guard.CtrlTime(省略時Guard.SlideTime)かGround.HitTimeの半分のどちらか低い方、ということにになります。 Guard.SlideTime = ガードバック時間 (整数) Ground.SlideTimeのガード版。 省略時のデフォルト値： ;Guard.HitTimeと同じ値になります。 Guard.CtrlTime = ガードからの復帰時間 (整数) 相手が攻撃をガードしてからコントロールを取り戻すまでの時間。ただし、どんなに大きな値にしてもGuard.HitTimeが過ぎれば相手はコントロールを取り戻します。 省略時のデフォルト値： ;Guard.SlideTimeと同じ値になります。 Guard.Dist = ガード認識距離 (整数) 相手がガード操作を行うことでガードポーズを取るようになる距離をピクセルで指定します。基本的に、使用されることのないパラメータです。 省略時のデフォルト値： ;CNSの[Size]のAttack.Distで設定した値になります。 Guard.PauseTime = p1停止時間, p2ブルブル時間 (整数, 整数) ガード時の自分と相手の停止時間を整数で指定します。停止時間中、相手はブルブル揺れます(HitShake状態)。省略した場合、pausetimeと同じになります。 Guard.CornerPush.VelOff = 地上ガードコーナープッシュ速度 (浮動小数点数) 画面端で地上の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。 省略時のデフォルト値： ;Ground.CornerPush.VelOffと同じ値になります AirGuard.Velocity = 空中ガード速度X, 空中ガード速度Y (浮動小数点数) 相手が空中で攻撃をガードしたとき移動する速度です。 省略時のデフォルト値： ;Air.Velocityの空中ヒット速度X * 1.5, 空中ヒット速度Y / 2 AirGuard.CtrlTime = 空中ガード復帰時間 (整数) 相手が空中で攻撃をガードしてからコントロールを取り戻すまでの時間。 省略時のデフォルト値： Guard.CtrlTimeと同じ値になります。 AirGuard.CornerPush.VelOff = 地上ガードコーナープッシュ速度空中 (浮動小数点数) 画面端で空中の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。 省略時のデフォルト値： ;Ground.CornerPush.VelOffと同じ値になります。 YAccel = 重力 (浮動小数点数) 攻撃がヒットした相手の重力を指定します。 省略時のデフォルト値： 0.35 ;解像度で値が変化、240p:.35, 480p:.7, 720p:1.4. PalFX.Time = 持続時間 (整数) 効果の持続時間をフレーム単位で指定します。ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、Time=1にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXでTime=1をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。※60フレーム=1秒 最小値: -1 , 最大値: 2147483647 省略時のデフォルト値： 0 PalFX.Color = 彩度 (整数) パレットの彩度を下げます。例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。 0← →256 最小値: 0 ;グレースケール , 最大値: 256 ;変化なし 省略時のデフォルト値： 256 PalFX.Add = 加算する赤色, 加算する緑色, 加算する青色 (整数, 整数, 整数) 指定した色をパレットに加算します。暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。例: Add=256,0,0の場合、 黒(0,0,0)は 赤(256,0,0)になりますが、 白(256,256,256)は 白(256,256,256)のままです。 最小値: -256, -256, -256 ;黒 , 最大値: 256, 256, 256 ;白 省略時のデフォルト値： 0, 0, 0 PalFX.Mul = 合成する赤色, 合成する緑色, 合成する青色 (整数, 整数, 整数) 基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。例: Add=64,256,64,Mul=1,256,1の場合、 白(256,256,256)は 緑(1,256,1)になりますが、 黒(0,0,0)は 黒(0,0,0)のままです。 最小値: 1, 1, 1 , 最大値: 256, 256, 256 ;変化なし 省略時のデフォルト値： 256, 256, 256 PalFX.SinAdd = 周期する赤色, 周期する緑色, 周期する青色, 周期 (整数, 整数, 整数, 整数) 指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。周期が大きいほどゆるやかに色が変化します。例: SinAdd=0,0,256,20, Add=0,0,0,Mul=256,256,256の場合、 (128,128,128)は、5F後 (128,128,256)になり、10F後 (128,128,128)に戻り、15F後 (128,128,0)、20F後 (128,128,128)に戻る、という周期を繰り返します。 省略時のデフォルト値： 0, 0, 0, 0 PalFX.InvertAll = 色反転フラグ (0か1) 色を反転するか・しないかのフラグです。例: (0,0,0)→ (256,256,256), (0,252,0)→ (256,4,256), (256,0,0)→ (0,256,256) 最小値: 0 ;色が反転しない , 最大値: 1 ;色が反転する 省略時のデフォルト値： 0 EnvShake.Time = ヒット時画面振動時間 (整数) 揺れの持続時間を指定。 EnvShake.Ampl = 揺れ幅 (整数) 揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。 省略時のデフォルト値： -4 EnvShake.Phase = 位相 (浮動小数点数) 位相を指定。 省略時のデフォルト値： 0 ;振動数の乗数が90以上のときは90。 EnvShake.Freq = 揺れの速度 (浮動小数点数) 揺れるスピードを、0(低速)～180(高速)の間で指定。 省略時のデフォルト値： 60 Fall.EnvShake.Time = 落下時画面振動時間 (整数) 相手の落下ダウン時に画面を揺らしたい時間を指定。 Fall.EnvShake.Ampl = 振幅 (浮動小数点数) 揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。 省略時のデフォルト値： -4 Fall.EnvShake.Phase = 位相 (整数) 位相を指定。 省略時のデフォルト値： 0 ;振動数の乗数が90以上のときは90。 Fall.EnvShake.Freq = 振動数 (浮動小数点数) 揺れるスピードを、0(低速)～180(高速)の間で指定。 省略時のデフォルト値： 60 Attack.Width = z1, z2 (整数, 整数) 現在、使われておりません。 IgnoreHitPause = ヒット停止中も処理するか (0か1) HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 最小値: 0 , 最大値: 1 省略時のデフォルト値： 0 Persistent = 実行頻度（トリガー成立回数の間引き） (整数) Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 最小値: 0 , 最大値: 128 省略時のデフォルト値： 1 仕様・バグ・エラー・変更点-RoundState=3,RoundState=4ではパワーゲージが増減されません。※ただし、パラメーターは読み込まれます。Version1.0からヒット硬直(Pausetime)が1.0以降は自分側のみWinより1F増加しています。Version1.0からMinDist,MaxDist,ForceNoFallが追加されました。警告文ASSIGNED NEGATIVE HITID:IDに-1以下警告文SPECIFIED NEGATIVE HIT PRIORITY:Priorityに-1以下警告文SPECIFIED NEGATIVE PAUSETIME:PauseTime第1引数に-1以下警告文SPECIFIED NEGATIVE P2SHAKETIME:PauseTime第2引数に-1以下警告文NEGATIVE GUARD.P1PAUSETIME:Guard.PauseTIME第1引数に-1以下警告文NEGATIVE GUARD.P2SHAKETIME:Guard.PauseTIME第2引数に-1以下警告文ILLEGAL SPARK NO:SparkNoに-3以下警告文ILLEGAL GSPARK NO:Guard.SparkNoに-3以下警告文SPECIFIED ILLEGAL SOUND GROUP:HitSound第1引数に-2以下警告文SPECIFIED ILLEGAL SOUND NO:HitSound第2引数に-2以下警告文SPECIFIED ILLEGAL GSOUND GROUP:GuardSound第1引数に-2以下警告文SPECIFIED ILLEGAL GSOUND NO:GuardSound第2引数に-2以下警告文NEGATIVE GROUND.P2SLIDTIME:Ground.SlideTimeに-1以下警告文NEGATIVE GUARD.P2SLIDTIME:Guard.SlideTimeに-1以下警告文NEGATIVE GROUND.P2HITTIME:Ground.HitTimeに-1以下警告文NEGATIVE GUARD.P2HITTIME:Guard.HitTimeに-1以下警告文NEGATIVE AIR．P2HITTIME:Air.HitTimeに-1以下警告文NEGATIVE GUARD.P2CTRLTIME:Guard.CtrlTimeに-1以下警告文SPECIFIED ILLEGAL P2BINDTIME:snapの第4引数に-2以下警告文NEGATIVE AIR．P2CTRLTIME:Air.CtrlTimeに-1以下警告文SPECIFIED NEGATIVE P1STATENO:P1SteteNoに-2以下警告文SPECIFIED NEGATIVE P2STATENO:P2SteteNoに-2以下警告文SPECIFIED NEGATIVE RECOVERTIME:RecoverTimeに-1以下警告文NEGATIVE DOWN.P2HITTIME:DownHitTimeに-1以下警告文SPECIFIED NEGATIVE CHAINID:ChainIDに-2以下警告文SPECIFIED NEGATIVE NOCHAINID:NoChainID第1引数に-2以下警告文SPECIFIED NEGATIVE NOCHAINID2:NoChainID第2引数に-2以下警告文INVALID PALFX TIME:Palfx.Timeに-2以下警告文INVALID PALFX MUL VALUE:PalFX.Mulに-1以下警告文NEGATIVE FREQ FOR ENVSHAKE:EnvShake.Freqに-1以下警告文NEGATIVE FREQ FOR ENVSHAKE:Fall.EnvShake.Freqに-1以下 省略した時のデフォルト値 [State ,HitDef] Type = HitDef Trigger1 = 1 Attr = ?, ? HitFlag = MAF ;ダウン状態にのみヒットしない GuardFlag = ;空文字列=ガード不可 AffectTeam = E AnimType = L Air.AnimType = ;AnimTypeと同じ Fall.AnimType = ;Air.AnimTypeがUpならUp、それ以外はBack Ground.Type = H Air.Type = ;Ground.Typeと同じ ID = 0 ChainID = -1 ;すべての攻撃が繋がります。 NoChainID = -1 ;すべての攻撃が繋がります。 Kill = 1 Guard.Kill = 1 Fall.Kill = 1 HitOnce = 0 ;ただし、<code>Attr</code>で<code>T</code>を指定していると1に変更されます。 Air.Juggle = 0 Damage = 0, 0 GetPower = ;(mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage, ;mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage÷2 GivePower = ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage, ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage÷2 PauseTime = 0, 0 NumHits = 1 HitSound = ?, ? ;多分、MUGENのデフォルト音声に設定される。 GuardSound = ?, ? ;多分、MUGENのデフォルト音声に設定される。 Priority = 4, H P1StateNo = -1 P2StateNo = -1 ;無効 P2GetP1State = ;相手に実行者の食らいステートを読み込ませる。 P1SprPriority = 1 P2SprPriority = 0 ; SprPriority = 0 ForceStand = ;Ground.VelocityのY速度が0なら0、0以外1。 ForceNoFall = 0 Fall = 0 Fall.Damage = 0 Fall.XVelocity = ;速度変更なし Fall.YVelocity = -4.5 Fall.Recover = 1 ;受身可能 Fall.RecoverTime = 4 SparkNo = ;cnsで設定した値が使用されます。 Guard.SparkNo = ;cnsで設定した値が使用されます。 SparkXY = 0, 0 P1Facing = ;向きを変更しない P1GetP2Facing = 0 ;向きを変えない Snap = ;no change in P2's position ; MinDist = ;no change in P2's position ; MaxDist = ;no change in P2's position P2Facing = ;向きを変更しない Ground.HitTime = 0 Ground.SlideTime = 0 Ground.Velocity = 0, 0 Ground.CornerPush.VelOff = ;AttrがAの場合は0、それ以外の場合は(1.3 × Guard.Velocity)となります。 Air.HitTime = 20 Air.Fall = ;Fallと同値 Air.Velocity = 0, 0 Air.CornerPush.VelOff = ;Ground.CornerPush.VelOffと同値 Down.Bounce = 0 ;バウンドしない。 Down.HitTime = Down.Velocity = ;Air.Velocityと同値 Down.CornerPush.VelOff = ;Ground.CornerPush.VelOffと同値 Guard.Velocity = ;Ground.Velocityと同値。 Guard.HitTime = Ground.HitTimeと同値になりますが、前述の仕様により、実際のガード時間はGround.HitTimeの半分となり、硬直は、Guard.CtrlTime(省略時Guard.SlideTime)かGround.HitTimeの半分のどちらか低い方、ということにになります。 Guard.SlideTime = ;Guard.HitTimeと同じ値になります。 Guard.CtrlTime = ;Guard.SlideTimeと同じ値になります。 Guard.Dist = ;CNSの[Size]のAttack.Distで設定した値になります。 Guard.PauseTime = Guard.CornerPush.VelOff = ;Ground.CornerPush.VelOffと同じ値になります AirGuard.Velocity = ;Air.Velocityの空中ヒット速度X * 1.5, 空中ヒット速度Y / 2 AirGuard.CtrlTime = Guard.CtrlTimeと同じ値になります。 AirGuard.CornerPush.VelOff = ;Ground.CornerPush.VelOffと同じ値になります。 YAccel = 0.35 ;解像度で値が変化、240p:.35, 480p:.7, 720p:1.4. PalFX.Time = 0 PalFX.Color = 256 PalFX.Add = 0, 0, 0 PalFX.Mul = 256, 256, 256 PalFX.SinAdd = 0, 0, 0, 0 PalFX.InvertAll = 0 EnvShake.Time = EnvShake.Ampl = -4 EnvShake.Phase = 0 ;振動数の乗数が90以上のときは90。 EnvShake.Freq = 60 Fall.EnvShake.Time = Fall.EnvShake.Ampl = -4 Fall.EnvShake.Phase = 0 ;振動数の乗数が90以上のときは90。 Fall.EnvShake.Freq = 60 Attack.Width = コードサンプル味方殺し(攻撃)の記述 敵を一掃する記述 皆殺しの記述 ライフを回復させる記述 ガード不能の記述 多段ヒットの記述 パラメーターの読み込み順 Attr(?) => HitFlag(?) => GuardFlag(?) => AffectTeam(?) => AnimType(?) => Air.AnimType(?) => Fall.AnimType(?) => Ground.Type(?) => Air.Type(?) => ID(1) => ChainID(2) => NoChainID(3, 4) => Kill(5) => Guard.Kill(6) => Fall.Kill(7) => HitOnce(8) => Air.Juggle(9) => Damage(10, 11) => GetPower(12, 13) => GivePower(14, 15) => PauseTime(17, 16) => NumHits(18) => HitSound(19, 20) => GuardSound(21, 22) => Priority(23, ?) => P1StateNo(24) => P2StateNo(25) => P2GetP1State(26) => P1SprPriority(27) => P2SprPriority(28) => ; SprPriority(27 -> 28) => ForceStand(29) => ForceNoFall(30) => Fall(31) => Fall.Damage(32) => Fall.XVelocity(33) => Fall.YVelocity(34) => Fall.Recover(35) => Fall.RecoverTime(36) => SparkNo(37) => Guard.SparkNo(38) => SparkXY(39, 40) => P1Facing(41) => P1GetP2Facing(42) => Snap(43 -> 45, 44 -> 46) => ; MinDist(43, 44) => ; MaxDist(45, 46) => P2Facing(47) => Ground.HitTime(48) => Ground.SlideTime(49) => Ground.Velocity(50, 51) => Ground.CornerPush.VelOff(52) => Air.HitTime(53) => Air.Fall(54) => Air.Velocity(55, 56) => Air.CornerPush.VelOff(57) => Down.Bounce(58) => Down.HitTime(59) => Down.Velocity(60, 61) => Down.CornerPush.VelOff(62) => Guard.Velocity(63) => Guard.HitTime(64) => Guard.SlideTime(65) => Guard.CtrlTime(66) => Guard.Dist(67) => Guard.PauseTime(69, 68) => Guard.CornerPush.VelOff(70) => AirGuard.Velocity(71, 72) => AirGuard.CtrlTime(73) => AirGuard.CornerPush.VelOff(74) => YAccel(75) => PalFX.Time(76) => PalFX.Color(77) => PalFX.Add(78, 79, 80) => PalFX.Mul(81, 82, 83) => PalFX.SinAdd(84, 85, 86, (調査中・・・)) => PalFX.InvertAll(87) => EnvShake.Time(88) => EnvShake.Ampl(89) => EnvShake.Phase(90) => EnvShake.Freq(91) => Fall.EnvShake.Time(92) => Fall.EnvShake.Ampl(93) => Fall.EnvShake.Phase(94) => Fall.EnvShake.Freq(95) => Attack.Width(;不必要なんで未検証) *バージョンや実行環境,パラーメータの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。 引用記事HitDef - State Controller Reference(version 2002.04.14)HitDef - State Controller Reference(version 1.0)HitDef - State Controller Reference(version 1.1)HitDef - State Controller Reference Documentation for version 1.1HitDef - M.U.G.E.N wikiHitDef - State ControllerHitDef - MUGEN CNS WIKI CHAOS@予定HitDef - 東方夢幻館HitDef - 地球の応接間 公開日:2008.06.05 最終更新日:2017.09.04 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "CodeSample",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "ReversalDef",
+      "href": "./../State/ReversalDef.html"
+    },
+    {
+      "text": "GetHitVar",
+      "href": "./../Trigger/GetHitVar.html"
+    },
+    {
+      "text": "HitDefAttr",
+      "href": "./../Trigger/HitDefAttr.html"
+    },
+    {
+      "text": "HitPauseTime",
+      "href": "./../Trigger/HitPauseTime.html"
+    },
+    {
+      "text": "InGuardDist",
+      "href": "./../Trigger/InGuardDist.html"
+    },
+    {
+      "text": "MoveContact",
+      "href": "./../Trigger/MoveContact.html"
+    },
+    {
+      "text": "HitDef - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitDef"
+    },
+    {
+      "text": "HitDef - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitdef"
+    },
+    {
+      "text": "HitDef - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitdef"
+    },
+    {
+      "text": "HitDef - State Controller Reference Documentation for version 1.1",
+      "href": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#hitdef"
+    },
+    {
+      "text": "HitDef - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitDef"
+    },
+    {
+      "text": "HitDef - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitDef&protocol=http"
+    },
+    {
+      "text": "HitDef - MUGEN CNS WIKI CHAOS@予定",
+      "href": "http://www49.atwiki.jp/mugencns/pages/237.html"
+    },
+    {
+      "text": "HitDef - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitDef"
+    },
+    {
+      "text": "HitDef - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/hitdef.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/State/HitDef.png",
+    "/images/State/SinAdd.png",
+    "/images/State/InvertAll.png"
+  ],
+  "code": [
+    "[State ,HitDef]",
+    "Type                       = HitDef",
+    "Trigger1                   = 1",
+    "Attr                       =  ?, ?",
+    "HitFlag                    =  MAF ;ダウン状態にのみヒットしない",
+    "GuardFlag                  =  ;空文字列=ガード不可",
+    "AffectTeam                 =  E",
+    "AnimType                   =  L",
+    "Air.AnimType               =  ;AnimTypeと同じ",
+    "Fall.AnimType              =  ;Air.AnimTypeがUpならUp、それ以外はBack",
+    "Ground.Type                =  H",
+    "Air.Type                   =  ;Ground.Typeと同じ",
+    "ID                         =  0",
+    "ChainID                    =  -1 ;すべての攻撃が繋がります。",
+    "NoChainID                  =  -1 ;すべての攻撃が繋がります。",
+    "Kill                       =  1",
+    "Guard.Kill                 =  1",
+    "Fall.Kill                  =  1",
+    "HitOnce                    =  0 ;ただし、<code>Attr</code>で<code>T</code>を指定していると1に変更されます。",
+    "Air.Juggle                 =  0",
+    "Damage                     =  0, 0",
+    "GetPower                   =  ;(mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage, ;mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage÷2",
+    "GivePower                  =  ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage, ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage÷2",
+    "PauseTime                  =  0, 0",
+    "NumHits                    =  1",
+    "HitSound                   =  ?, ? ;多分、MUGENのデフォルト音声に設定される。",
+    "GuardSound                 =  ?, ? ;多分、MUGENのデフォルト音声に設定される。",
+    "Priority                   =  4, H",
+    "P1StateNo                  =  -1",
+    "P2StateNo                  =  -1 ;無効",
+    "P2GetP1State               =  ;相手に実行者の食らいステートを読み込ませる。",
+    "P1SprPriority              =  1",
+    "P2SprPriority              =  0",
+    "; SprPriority              =  0",
+    "ForceStand                 =  ;Ground.VelocityのY速度が0なら0、0以外1。",
+    "ForceNoFall                =  0",
+    "Fall                       =  0",
+    "Fall.Damage                =  0",
+    "Fall.XVelocity             =  ;速度変更なし",
+    "Fall.YVelocity             =  -4.5",
+    "Fall.Recover               =  1 ;受身可能",
+    "Fall.RecoverTime           =  4",
+    "SparkNo                    =  ;cnsで設定した値が使用されます。",
+    "Guard.SparkNo              =  ;cnsで設定した値が使用されます。",
+    "SparkXY                    =  0, 0",
+    "P1Facing                   =  ;向きを変更しない",
+    "P1GetP2Facing              =  0 ;向きを変えない",
+    "Snap                       =  ;no change in P2's position",
+    "; MinDist                  =  ;no change in P2's position",
+    "; MaxDist                  =  ;no change in P2's position",
+    "P2Facing                   =  ;向きを変更しない",
+    "Ground.HitTime             =  0",
+    "Ground.SlideTime           =  0",
+    "Ground.Velocity            =  0, 0",
+    "Ground.CornerPush.VelOff   =  ;AttrがAの場合は0、それ以外の場合は(1.3 × Guard.Velocity)となります。",
+    "Air.HitTime                =  20",
+    "Air.Fall                   =  ;Fallと同値",
+    "Air.Velocity               =  0, 0",
+    "Air.CornerPush.VelOff      =  ;Ground.CornerPush.VelOffと同値",
+    "Down.Bounce                =  0 ;バウンドしない。",
+    "Down.HitTime               =",
+    "Down.Velocity              =  ;Air.Velocityと同値",
+    "Down.CornerPush.VelOff     =  ;Ground.CornerPush.VelOffと同値",
+    "Guard.Velocity             =  ;Ground.Velocityと同値。",
+    "Guard.HitTime              =  Ground.HitTimeと同値になりますが、前述の仕様により、実際のガード時間はGround.HitTimeの半分となり、硬直は、Guard.CtrlTime(省略時Guard.SlideTime)かGround.HitTimeの半分のどちらか低い方、ということにになります。",
+    "Guard.SlideTime            =  ;Guard.HitTimeと同じ値になります。",
+    "Guard.CtrlTime             =  ;Guard.SlideTimeと同じ値になります。",
+    "Guard.Dist                 =  ;CNSの[Size]のAttack.Distで設定した値になります。",
+    "Guard.PauseTime            =",
+    "Guard.CornerPush.VelOff    =  ;Ground.CornerPush.VelOffと同じ値になります",
+    "AirGuard.Velocity          =  ;Air.Velocityの空中ヒット速度X * 1.5, 空中ヒット速度Y / 2",
+    "AirGuard.CtrlTime          =  Guard.CtrlTimeと同じ値になります。",
+    "AirGuard.CornerPush.VelOff =  ;Ground.CornerPush.VelOffと同じ値になります。",
+    "YAccel                     =  0.35 ;解像度で値が変化、240p:.35, 480p:.7, 720p:1.4.",
+    "PalFX.Time                 =  0",
+    "PalFX.Color                =  256",
+    "PalFX.Add                  =  0, 0, 0",
+    "PalFX.Mul                  =  256, 256, 256",
+    "PalFX.SinAdd               =  0, 0, 0, 0",
+    "PalFX.InvertAll            =  0",
+    "EnvShake.Time              =",
+    "EnvShake.Ampl              =  -4",
+    "EnvShake.Phase             =  0 ;振動数の乗数が90以上のときは90。",
+    "EnvShake.Freq              =  60",
+    "Fall.EnvShake.Time         =",
+    "Fall.EnvShake.Ampl         =  -4",
+    "Fall.EnvShake.Phase        =  0 ;振動数の乗数が90以上のときは90。",
+    "Fall.EnvShake.Freq         =  60",
+    "Attack.Width               ="
+  ]
+}

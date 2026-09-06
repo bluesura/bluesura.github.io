@@ -1,0 +1,376 @@
+<div id="main-inner"> <article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd"> <header class="entry-header"> <div style="height:auto;width:100%;display:flex;flex-direction:column;background-color:transparent"> <span itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject" style="display:none"> <meta itemprop="url" content="https://bluesura.github.io/images/State/HitDef.png"> <meta itemprop="width" content="640"> <meta itemprop="height" content="480"> </span> <img src="/images/State/HitDef.png" alt="MUGEN HitDef" style="display:block;width:100%;height:auto;object-fit:contain">   <div class="entry-title" itemprop="name"> <div> <h1 id="HitDef"> Type = HitDef </h1> <div class="category"> 攻撃 &gt; 攻撃判定接触時の処理定義  |  実装されたバージョン: 2002.04.14  |  対象: 実行者自身 </div> </div> </div> </div> </header> <!-- メインコンテンツ部分 --> <div class="entry-content">  <div class="description" itemprop="articleBody"> <p><code>AIR</code>ファイルで設定されている、実行者の<code>Clsn1</code>(攻撃判定：赤い四角)が相手の<code>Clsn2</code>(やられ判定：青い四角)に重なった時の処理を設定。設定された各種パラメーターの条件が相手の状態を満たしていた場合にヒットし、くらいアニメ・ダメージ・ふっとび速度などの処理が実行されます。</p><p><code>HitDef</code>の処理は、ステートを移動する<code>ReversalDef</code>が実行されるまで続きます。</p><p>そのステート中効果が持続しますが、<code>1</code>回ヒットしたキャラに対しては、効果を及ぼさなくなります。このため、複数ヒットする技の場合は、ヒットさせたい数だけ<code>HitDef</code>を定義するか、複数回効果があるようにトリガーを設定する必要があります。</p><p><code>Clsn1</code>がない、または実行者の<code>MoveType</code>が<code>I</code>だった場合、<code>HitDef</code>は機能しません。</p><p><code>HitDef</code>の定義をもった攻撃判定へヒットするのが<code>ReversalDef</code>。仕様上<code>ReversalDef</code>とは併用できません。</p> <div class="associated-trigger">関連するステートコントローラー：
+ <a href="./../State/ReversalDef.html"><code>ReversalDef</code></a>  </div> <div class="associated-trigger">関連するトリガー：
+ <a href="./../Trigger/GetHitVar.html"><code>GetHitVar</code></a> ,  <a href="./../Trigger/HitDefAttr.html"><code>HitDefAttr</code></a> ,  <a href="./../Trigger/HitPauseTime.html"><code>HitPauseTime</code></a> ,  <a href="./../Trigger/InGuardDist.html"><code>InGuardDist</code></a> ,  <a href="./../Trigger/MoveContact.html"><code>MoveContact</code></a>  </div> </div> <hr>     <section id="Parameter"> <div class="section"> <h2> パラメーター </h2>  <dl class="parameter"> <dt class="main"> Attr    = ステートタイプ, 攻撃属性(技の強さと属性), 以降攻撃属性をカンマで複数記述可... 
+(文字列, 文字列, ...)
+</dt> <dd> <div class="description"><p>攻撃がどんな攻撃なのかを指定します。</p><p>ステートタイプでは攻撃がどのような状態でだされているか指定します。攻撃属性ではどのくらいの強さでどんな攻撃なのかを指定します。</p><p>例えば、立った状態で何の変哲もないパンチをだしているのなら<code>Attr=S,NA</code>、空中でスペシャルな飛び道具をだしているのなら<code>Attr=A,HP</code>と記述します。また、複数の攻撃属性が指定可能で<code>Attr=SA,NA,HP</code>だとSNA(立ちの通常打撃)・SHP(立ちの超必殺飛び道具)・ANA(空中の通常打撃)・AHP(空中の超必殺飛び道具)の4つ状態を持っていることになります。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>ステートタイプ</th> <th>　　　　　　　　　　　　　　　　　　　　　　　</th> </tr> <tr> <td>S</td> <td>立ち</td> </tr><tr> <td>C</td> <td>屈み</td> </tr><tr> <td>A</td> <td>空中</td> </tr><tr> <td></td> <td></td> </tr><tr> <td>技のランク</td> <td></td> </tr><tr> <td>N</td> <td>通常</td> </tr><tr> <td>S</td> <td>必殺</td> </tr><tr> <td>H</td> <td>超必殺</td> </tr><tr> <td>A</td> <td>すべて</td> </tr><tr> <td></td> <td></td> </tr><tr> <td>属性</td> <td></td> </tr><tr> <td>A</td> <td>打撃</td> </tr><tr> <td>T</td> <td>投げ</td> </tr><tr> <td>P</td> <td>飛び道具</td> </tr> </tbody></table> </div>  <div class="required-parameter">省略不可</div>  <div class="default-value">省略時のデフォルト値： ?, ?</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> HitFlag    = ヒットフラグ 
+(文字列)
+</dt> <dd> <div class="description"><p>どういう状態(ステートタイプ)の敵に攻撃が命中するかを指定します。ヒットフラグは複数指定可能。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>フラグ</th> <th></th> </tr> <tr> <td>H</td> <td>立ち(High)。</td> </tr><tr> <td>L</td> <td>屈み(Low)。</td> </tr><tr> <td>M</td> <td>立ち、屈み(Medium)。=HL</td> </tr><tr> <td>A</td> <td>空中(Air)。</td> </tr><tr> <td>F</td> <td>落下(Fall)。</td> </tr><tr> <td>D</td> <td>ダウン(Down)。Fと組み合わせなければ機能しません。</td> </tr><tr> <td>P</td> <td>飛び道具(Projectile)。</td> </tr><tr> <td>+</td> <td>食らい状態の敵のみにヒット。</td> </tr><tr> <td>-</td> <td>食らい状態の敵にはヒットしない。</td> </tr> </tbody></table> </div>    <div class="default-value">省略時のデフォルト値： MAF ;ダウン状態にのみヒットしない</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> GuardFlag    = ガードフラグ 
+(文字列)
+</dt> <dd> <div class="description"><p>敵がどういう状態ならガードできるかフラグを指定します。フラグは複数指定可能。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>フラグ</th> <th></th> </tr> <tr> <td>H</td> <td>立ち(High)。</td> </tr><tr> <td>L</td> <td>屈み(Low)。</td> </tr><tr> <td>M</td> <td>立ち、屈み(Medium)。=HL</td> </tr><tr> <td>A</td> <td>空中(Air)。</td> </tr> </tbody></table> </div>    <div class="default-value">省略時のデフォルト値： ;空文字列=ガード不可</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> AffectTeam    = 影響チーム 
+(文字列)
+</dt> <dd> <div class="description"><p>チームモード時、どのチームに攻撃が影響するかフラグを指定します。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>フラグ</th> <th></th> </tr> <tr> <td>B</td> <td>敵味方(Both Teams)かまわず。</td> </tr><tr> <td>E</td> <td>敵(Enemy Team)のみ。</td> </tr><tr> <td>F</td> <td>味方(Friendly Team)のみ。</td> </tr> </tbody></table> </div>    <div class="default-value">省略時のデフォルト値： E</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> AnimType    = アニメタイプ 
+(文字列)
+</dt> <dd> <div class="description"><p>相手のリアクションアニメの種類を指定します。ただし、UとDは相手が絵を用意してない場合、Bと同じ結果になります。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>文字列</th> <th>状態</th> </tr> <tr> <td>L</td> <td>弱 (Lightの略)</td> </tr><tr> <td>M</td> <td>中 (Mediumの略)</td> </tr><tr> <td>H</td> <td>強 (Hard<!--Heavy-->の略)</td> </tr><tr> <td>B</td> <td>ふっとび (Backの略)</td> </tr><tr> <td>U</td> <td>真上ふっとび (UPの略)</td> </tr><tr> <td>D</td> <td>斜めふっとび (DiagUpの略)</td> </tr> </tbody></table> </div>    <div class="default-value">省略時のデフォルト値： L</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Air.AnimType    = 空中でのアニメタイプ 
+(文字列)
+</dt> <dd> <div class="description"><p>空中でのアニメタイプを指定。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;AnimTypeと同じ</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.AnimType    = Fall状態時のアニメタイプ 
+(文字列)
+</dt> <dd> <div class="description"><p>空中でのアニメタイプFall状態のときのアニメタイプです。</p><p>※Fall状態・・・Fall=1。HitTimeを過ぎても、受身を取らない限り空中復帰できず、着地すると落下ダウンする状態。これに対し、Fall=0の場合、空中で立ち直り、HitTimeを過ぎると操作可能となる。また、HitTime中でも、着地すると通常のジャンプ着地となる。なお、一度Fall=1になると、Fall=0の攻撃を受けてもFall=1のままとなる。</p><p></p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Air.AnimTypeがUpならUp、それ以外はBack</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Ground.Type    = 地上でののけぞり方 
+(文字列)
+</dt> <dd> <div class="description"><p>相手の地上でののけぞり方を文字列で指定します。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>文字列</th> <th>状態</th> </tr> <tr> <td>H</td> <td>上のけぞり (Highの略)</td> </tr><tr> <td>L</td> <td>下のけぞり (Lowの略)</td> </tr><tr> <td>T</td> <td>転倒 (Tripの略)</td> </tr><tr> <td>N</td> <td>なし、使用は非推奨 (Non<!--Null-->の略)</td> </tr> </tbody></table> </div>    <div class="default-value">省略時のデフォルト値： H</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Air.Type    = 空中でののけぞり方 
+(文字列)
+</dt> <dd> <div class="description"><p>相手の空中でののけぞり方を文字列で指定します。設定方法はGround.Typeと同じ。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Ground.Typeと同じ</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> ID    = ヒットid番号 
+(整数)
+</dt> <dd> <div class="description"><p>識別用のIDをつけることができます。後述と組み合わせることにより、特定の技からは繋がらなかったりするようにできます。</p><p>また、Target系のステコン、トリガーが参照するID(HitID)は、このIDの攻撃によりターゲットとなった敵を示します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> ChainID    = 連続ヒットid番号 
+(整数)
+</dt> <dd> <div class="description"><p>ここで指定したIDからのみ、攻撃が繋がるようになります。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： -1 ;すべての攻撃が繋がります。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> NoChainID    = 不連続ヒットid番号1, 不連続ヒットid番号2 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>ここで指定したIDからは攻撃が繋がらなくなります。2つまで指定可。ガード時も繋がらなくなります。(攻撃がすり抜ける)</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： -1 ;すべての攻撃が繋がります。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Kill    = KOフラグ 
+(整数)
+</dt> <dd> <div class="description"><p>0にすると、その攻撃で相手をKOできなくなります。</p><p>最後の一撃でのみKOしたい多段攻撃などに。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 1</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Guard.Kill    = ガードKOフラグ 
+(整数)
+</dt> <dd> <div class="description"><p>0にすると、ガード時のダメージで相手をKOできなくなります。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 1</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.Kill    = - 
+(整数)
+</dt> <dd> <div class="description"><p>0にすると、落下ダウン時のダメージで相手をKOできなくなります。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 1</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> HitOnce    = 1回ヒットフラグ 
+(0か1)
+</dt> <dd> <div class="description"><p>1にした場合、複数の敵がいても、1方にしかヒットしなくなります。AttrがT(投げ)の場合、1になります。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0 ;ただし、&lt;code&gt;Attr&lt;/code&gt;で&lt;code&gt;T&lt;/code&gt;を指定していると1に変更されます。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Air.Juggle    = ジャグルポイント 
+(整数)
+</dt> <dd> <div class="description"><p>Fall状態の敵に対する連続技に必要なポイント数を上乗せ。StateDefのJuggleパラメータとは違う値です。</p><p>Projectile専用パラメータ。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Damage    = ヒットダメージ, ガードダメージ 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>ヒット、ガード時のダメージを整数で指定します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0, 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> GetPower    = p1ヒットゲージ増加量, p1ガードゲージ増加量 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>攻撃がヒットした、ガードされたときに増えるゲージ量です。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;(mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage, ;mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage÷2</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> GivePower    = p2ヒットゲージ増加量, p2ガードゲージ増加量 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>攻撃がヒットした、ガードされたときに増える相手のゲージ量です。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage, ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage÷2</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> PauseTime    = p1停止時間, p2ブルブル時間 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>ヒット時の自分と相手の停止時間を整数で指定します。停止時間中、相手はブルブル揺れます(HitShake状態)。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0, 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> NumHits    = ヒットカウント数 
+(整数)
+</dt> <dd> <div class="description"><p>コンボカウンターに加算されるヒット数です。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 1</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> HitSound    = グループ番号, アイテム番号 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>ヒット音をcommon.sndから指定します。5,0(弱ヒット音)～5,4(大打撃音)から選ぶことになります。自分のsndファイルから指定したい場合は、"hitsound = S1,0"のように、先頭にSを記述します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ?, ? ;多分、MUGENのデフォルト音声に設定される。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> GuardSound    = グループ番号, アイテム番号 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>ガード音をcommon.sndから指定します。といっても、用意されているのは6,0のみ。自分のsndファイルから指定したい場合は、先頭にSを記述します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ?, ? ;多分、MUGENのデフォルト音声に設定される。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Priority    = ヒット優先度, 相打ちの挙動 
+(整数, 文字列)
+</dt> <dd> <div class="description"><p>攻撃の優先度で1から7、相打ち時の挙動をヒット・両者空振り・ミスから指定します。</p><p>実行者の攻撃と相手の攻撃が同時に発生した場合、数値の高い方のみヒットします。ヒット優先度が同じ場合、H・M・Dにより以下のようになります。</p></div> <div class="option-value">    <div class="possible-value"> <table> <tbody><tr> <th>文字列</th> <th>状態</th> </tr> <tr> <td>H</td> <td>攻撃がヒットする (Hitの略)</td> </tr><tr> <td>M</td> <td>自分の攻撃は当たらない (Missの略)</td> </tr><tr> <td>D</td> <td>相手がHでも両者空振り (Dodgeの略)</td> </tr> </tbody></table> </div>    <div class="default-value">省略時のデフォルト値： 4, H</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> P1StateNo    = ヒット時移行するステート番号 
+(整数)
+</dt> <dd> <div class="description"><p>攻撃がヒットした場合に移行するステートの番号を指定します。主に投げ技で使用。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： -1</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> P2StateNo    = ヒット時相手に参照させるステート番号 
+(整数)
+</dt> <dd> <div class="description"><p>攻撃がヒットした場合に、相手に参照させるステートの番号を指定します。これを指定した場合、HitOverrideを仕込んだ相手(Helper等)に攻撃が当たらなくなります。</p><p>P2StateNo=-1とすると、P2GetP1State=1の効果のみになる。（P2GetP1State=0が指定されている場合はP2GetP1Stateが優先されるためP2GetP1State=0となる。）なお、この際に5000番台に移動するのはGround.Type、Air.TypeがNormal(頭文字がN）以外の場合である。</p><p>投げに使ってもProjectile等と相打ちした時に致命的な不具合が生じることがあるので、できれば全く使わない方が良いです。</p><p>といいたいところですが、代わりに使うことになるTargetStateも扱いが難しいので、不具合を承知で使うのも止むを得ないかもしれません。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： -1 ;無効</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> P2GetP1State    = ステート奪取フラグ 
+(整数)
+</dt> <dd> <div class="description"><p>0の時はP2StateNoを指定していても対象者のステートを奪わず、対象者自身のステートを読みこませる。1の時は相手のステートを奪います。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;相手に実行者の食らいステートを読み込ませる。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> P1SprPriority    
+(整数)
+</dt> <dd> <div class="description"><p>攻撃が接触した場合のスプライトの表示優先度を指定します。1だと相手の手前、-1だと奥に表示されます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 1</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> P2SprPriority    
+(整数)
+</dt> <dd> <div class="description"><p>This is the drawing priority of P2's sprite if the move hits or is guarded by P2.</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> ; SprPriority    = スプライト表示優先度 
+(整数)
+</dt> <dd> <div class="description"><p>pr specifies the drawing priority for the explod. Animations with higher priority get drawn over animations with lesser priority. For instances, setting sprpriority = -3 will cause the explod to be drawn under most characters and other explods, which usually have sprpriority &gt;= -2.</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> ForceStand    = 強制立たせフラグ 
+(整数)
+</dt> <dd> <div class="description"><p>1にすると、しゃがんだ相手にヒットしても立ち食らいポーズをとらせます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Ground.VelocityのY速度が0なら0、0以外1。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> ForceNoFall    
+(整数)
+</dt> <dd> <div class="description"><p>fall状態強制解除。Set to 1 to force P2 out of a "fall" state, if he is in one. This parameter has no effect on P2 if he is not in a "fall" state. This parameter is ignored if the "fall" parameter is set to 1.</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall    = 落下フラグ 
+(整数)
+</dt> <dd> <div class="description"><p>通常、相手を浮かせるような攻撃でも、HitTimeが終了すれば、相手は立ち直り、着地しますが、Fall = 1にした場合、相手は自動では立ち直らず、受身操作（x+y）をしなければダウンします。Set to 1 if you want P2 to go into a "fall" state (where P2 hits the ground without regaining control in the air). Use if you want a move to "knock down" P2. </p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.Damage    = damage_amt 
+(整数)
+</dt> <dd> <div class="description"><p>落下状態のままダウンした場合に与えるダメージを指定します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.XVelocity    = 落下バウンド水平速度 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>落下状態のままダウンした場合の、バウンド水平速度を変更する場合、指定します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;速度変更なし</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.YVelocity    = 落下バウンド垂直速度 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>落下状態のままダウンした場合の、バウンド垂直速度を指定します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： -4.5</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.Recover    = 受身可能フラグ 
+(整数)
+</dt> <dd> <div class="description"><p>0にすると相手が落下状態でも受身（x+y）をとれなくなります。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 1 ;受身可能</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.RecoverTime    = 受身可能受付開始時間 
+(整数)
+</dt> <dd> <div class="description"><p>落下状態になってから受身が取れるようになるまでの時間を指定します。pausetimeは含まれません。Fall.Recover = 0にした場合は無効。</p><p>追撃できることを想定している技の場合、大きな値を設定するか、Fall.Recover=0にするとよいでしょう。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 4</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> SparkNo    = ヒットスパークのアクション番号 
+(整数)
+</dt> <dd> <div class="description"><p>ヒットスパークのアクション番号をfightfx.airから指定します。自分のairファイルから指定したい場合は、"sparkno = S2000,0"のように、先頭にSを記述します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;cnsで設定した値が使用されます。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Guard.SparkNo    = ガードスパークのアクション番号 
+(整数)
+</dt> <dd> <div class="description"><p>ガードスパークのアクション番号をfightfx.airから指定します。自分のairファイルから指定したい場合は、"Guard.sparkno = S2010,0"のように、先頭にSを記述します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;cnsで設定した値が使用されます。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> SparkXY    = スパークx座標, スパークy座標 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>ヒット、ガードスパークの表示位置を指定します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0, 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> P1Facing    = p1の向き 
+(整数)
+</dt> <dd> <div class="description"><p>-1にすると、攻撃がヒットした場合に後ろを向きます。主に投げ技で使用。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;向きを変更しない</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> P1GetP2Facing    = p1の向き 
+(整数)
+</dt> <dd> <div class="description"><p>1にすると、攻撃がヒットした場合に相手と同じ方向を、-1で逆を向きます。p1facingより優先されます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0 ;向きを変えない</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Snap    = x固定座標, y固定座標 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>ヒットした相手を固定する位置を、P1を基準として指定します。</p><p>このパラメータも、通常、使用しません。投げ等で相手を指定位置に固定する場合は、TargetBindを使用します。This moves P2 to the specified position relative to P1 if hit. This parameter is not normally used. If you want to snap P2 to a particular position for a throw, it is recommended you use a "TargetBind" controller in P1's throwing state instead.</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;no change in P2's position</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> ; MinDist    = x最小座標, y最小座標 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;no change in P2's position</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> ; MaxDist    = x最大座標, y最大座標 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できます。These let you control the minimum and maximum distance of P2 relative to P1, after P2 has been hit. These parameters are not commonly used.</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;no change in P2's position</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> P2Facing    = p2の向き 
+(整数)
+</dt> <dd> <div class="description"><p>1にすると、攻撃がヒットした場合、相手に正面を向かせます。-1にすると後ろを向かせます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;向きを変更しない</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Ground.HitTime    = ヒット時間 
+(整数)
+</dt> <dd> <div class="description"><p>相手が攻撃を受けて行動不能になる時間です。長くするほど連続攻撃が繋がりやすくなります。永久コンボが発生しないように、気をつけて設定しましょう。</p><p>相手が地上にいる間のみ有効です。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Ground.SlideTime    = ヒットバック時間 
+(整数)
+</dt> <dd> <div class="description"><p>相手が攻撃を受けて後ずさる時間です。この時間が経過すると、ブレーキがかかります。ただし、Physics(やられステート)がSやCになっているため、ヒットバックは摩擦によっても停止します。よって、よろけやられのような、ゆっくりとしたヒットバックは、HitDefでは再現できません。ナニソレ。</p><p>0にすると、強烈なブレーキがかかります。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Ground.Velocity    = ヒット速度X, ヒット速度Y 
+(浮動小数点数, 浮動小数点数)
+</dt> <dd> <div class="description"><p>相手が地上で攻撃を受けて移動する速度です。yに負数を指定すると、宙に浮きます。</p><p>地上にいる場合、摩擦の影響を受けます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0, 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Ground.CornerPush.VelOff    = 地上コーナープッシュ速度 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>画面端で地上の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p><p>相手の移動距離とは無関係で、相手のshaketimeではなく、自分のpausetimeが0になった瞬間に速度がかかります。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;AttrがAの場合は0、それ以外の場合は(1.3 × Guard.Velocity)となります。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Air.HitTime    = 空中でのヒット時間 
+(整数)
+</dt> <dd> <div class="description"><p>相手が空中で攻撃を受けて行動不能になる時間です。</p><p>この時間を過ぎると、相手はコントロールを取り戻します。この時、空中くらい/ふっとびアニメ(5035番)はAirに依存するため、5035番のアニメが終わり見た目が立ち直っていても、行動不能な時間内なら行動不能。行動不能な時間が経過していれば、5035番のアニメ中で見た目がのけぞっていても行動可能です。</p><p>Fallパラメータが1の場合、このパラメータは無効になります。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 20</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Air.Fall    = value 
+(整数)
+</dt> <dd> <div class="description"><p>空中ヒットしたときのみ落下状態にしたい場合は1にします。Fall = 1だと地上やられでも落下状態になります。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Fallと同値</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Air.Velocity    = 空中ヒット速度X, 空中ヒット速度Y 
+(浮動小数点数, 浮動小数点数)
+</dt> <dd> <div class="description"><p>相手が空中で攻撃を受けたとき移動する速度です。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0, 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Air.CornerPush.VelOff    = 空中コーナープッシュ速度 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>画面端で空中の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Ground.CornerPush.VelOffと同値</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Down.Bounce    = ダウン追い討ちヒットバウンドフラグ 
+(整数)
+</dt> <dd> <div class="description"><p>1にすると、ダウン追い討ちヒット時、Fall.XVelocityとFall.YVelocityでバウンドします。Down.Velocityの垂直速度が0の時のみ有効。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0 ;バウンドしない。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Down.HitTime    = ダウン追い討ちヒット時間 
+(整数)
+</dt> <dd> <div class="description"><p>ダウン状態の敵に攻撃が当たったとき、スライドする時間です。Down.Velocityの垂直速度が0の時のみ有効。</p></div> <div class="option-value">         </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Down.Velocity    = ダウン追い討ち水平速度, ダウン追い討ち垂直速度 
+(浮動小数点数, 浮動小数点数)
+</dt> <dd> <div class="description"><p>ダウン追い討ちヒット時ののけぞり速度を指定します。垂直方向の速度が0以外の場合、相手は宙に浮きます。0の場合はスライドします。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Air.Velocityと同値</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Down.CornerPush.VelOff    = ダウンコーナープッシュ速度 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>画面端でダウン状態の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Ground.CornerPush.VelOffと同値</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Guard.Velocity    = ガード速度X 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>相手が地上で攻撃をガードしたとき移動する速度です。垂直方向は指定不可。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Ground.Velocityと同値。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Guard.HitTime    = ガード時間 
+(整数)
+</dt> <dd> <div class="description"><p>相手が攻撃をガードしてから自動的に(キーを後ろに入力しなくても)ガードモーションをとり続ける時間。行動不能時間ではないので注意。</p><p>DOS版では、なぜか、実際にゲームに反映されるのは、指定値の半分になります。</p><p>ガードされると凄く不利というのがDOSの仕様です。WIN版では、指定値がそのまま適応されます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： Ground.HitTimeと同値になりますが、前述の仕様により、実際のガード時間はGround.HitTimeの半分となり、硬直は、Guard.CtrlTime(省略時Guard.SlideTime)かGround.HitTimeの半分のどちらか低い方、ということにになります。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Guard.SlideTime    = ガードバック時間 
+(整数)
+</dt> <dd> <div class="description"><p>Ground.SlideTimeのガード版。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Guard.HitTimeと同じ値になります。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Guard.CtrlTime    = ガードからの復帰時間 
+(整数)
+</dt> <dd> <div class="description"><p>相手が攻撃をガードしてからコントロールを取り戻すまでの時間。ただし、どんなに大きな値にしてもGuard.HitTimeが過ぎれば相手はコントロールを取り戻します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Guard.SlideTimeと同じ値になります。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Guard.Dist    = ガード認識距離 
+(整数)
+</dt> <dd> <div class="description"><p>相手がガード操作を行うことでガードポーズを取るようになる距離をピクセルで指定します。</p><p>基本的に、使用されることのないパラメータです。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;CNSの[Size]のAttack.Distで設定した値になります。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Guard.PauseTime    = p1停止時間, p2ブルブル時間 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>ガード時の自分と相手の停止時間を整数で指定します。停止時間中、相手はブルブル揺れます(HitShake状態)。省略した場合、pausetimeと同じになります。</p></div> <div class="option-value">         </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Guard.CornerPush.VelOff    = 地上ガードコーナープッシュ速度 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>画面端で地上の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Ground.CornerPush.VelOffと同じ値になります</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> AirGuard.Velocity    = 空中ガード速度X, 空中ガード速度Y 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>相手が空中で攻撃をガードしたとき移動する速度です。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Air.Velocityの空中ヒット速度X * 1.5, 空中ヒット速度Y / 2</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> AirGuard.CtrlTime    = 空中ガード復帰時間 
+(整数)
+</dt> <dd> <div class="description"><p>相手が空中で攻撃をガードしてからコントロールを取り戻すまでの時間。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： Guard.CtrlTimeと同じ値になります。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> AirGuard.CornerPush.VelOff    = 地上ガードコーナープッシュ速度空中 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>画面端で空中の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： ;Ground.CornerPush.VelOffと同じ値になります。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> YAccel    = 重力 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>攻撃がヒットした相手の重力を指定します。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0.35 ;解像度で値が変化、240p:.35, 480p:.7, 720p:1.4.</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> PalFX.Time    = 持続時間 
+(整数)
+</dt> <dd> <div class="description"><p>効果の持続時間をフレーム単位で指定します。</p><p>ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、<code>Time=1</code>にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXで<code>Time=1</code>をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>※60フレーム=1秒</p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: -1 </span>  ,  <span class="max-value">
+最大値: 2147483647 </span> </div>   <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> PalFX.Color    = 彩度 
+(整数)
+</dt> <dd> <div class="description"><p>パレットの彩度を下げます。</p><p></p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style="background-color: hsl(0, 0%, 100%);border: 1px solid #000;">　</span><br><span style="background-color: hsl(0, 0%, 80%);">　</span><span style="background-color: hsl(0, 10%, 80%);">　</span><span style="background-color: hsl(0, 20%, 80%);">　</span><span style="background-color: hsl(0, 30%, 80%);">　</span><br><span style="background-color: hsl(0, 0%, 60%);">　</span><span style="background-color: hsl(0, 10%, 60%);">　</span><span style="background-color: hsl(0, 20%, 60%);">　</span><span style="background-color: hsl(0, 30%, 60%);">　</span><span style="background-color: hsl(0, 40%, 60%);">　</span><span style="background-color: hsl(0, 50%, 60%);">　</span><span style="background-color: hsl(0, 60%, 60%);">　</span><span style="background-color: hsl(0, 70%, 60%);">　</span><br><span style="background-color: hsl(0, 0%, 50%);">　</span><span style="background-color: hsl(0, 10%, 50%);">　</span><span style="background-color: hsl(0, 20%, 50%);">　</span><span style="background-color: hsl(0, 30%, 50%);">　</span><span style="background-color: hsl(0, 40%, 50%);">　</span><span style="background-color: hsl(0, 50%, 50%);">　</span><span style="background-color: hsl(0, 60%, 50%);">　</span><span style="background-color: hsl(0, 70%, 50%);">　</span><span style="background-color: hsl(0, 80%, 50%);">　</span><span style="background-color: hsl(0, 90%, 50%);">　</span><span style="background-color: hsl(0, 100%, 50%);">　</span><br><span style="background-color: hsl(0, 0%, 40%);">　</span><span style="background-color: hsl(0, 10%, 40%);">　</span><span style="background-color: hsl(0, 20%, 40%);">　</span><span style="background-color: hsl(0, 30%, 40%);">　</span><span style="background-color: hsl(0, 40%, 40%);">　</span><span style="background-color: hsl(0, 50%, 40%);">　</span><span style="background-color: hsl(0, 60%, 40%);">　</span><span style="background-color: hsl(0, 70%, 40%);">　</span><br><span style="background-color: hsl(0, 0%, 20%);">　</span><span style="background-color: hsl(0, 10%, 20%);">　</span><span style="background-color: hsl(0, 20%, 20%);">　</span><span style="background-color: hsl(0, 30%, 20%);">　</span><br><span style="background-color: hsl(0, 0%, 0%);">　</span><br><span>0</span>←　　　　　　　　→<span>256</span><p></p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: 0 ;グレースケール </span>  ,  <span class="max-value">
+最大値: 256 ;変化なし </span> </div>   <div class="default-value">省略時のデフォルト値： 256</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> PalFX.Add    = 加算する赤色, 加算する緑色, 加算する青色 
+(整数, 整数, 整数)
+</dt> <dd> <div class="description"><p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style="border: 1px solid #000;background: rgb(256,0,0);">　</span><code>Add=256,0,0</code>の場合、<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)は<span style="border: 1px solid #000;background: rgb(256,0,0);">　</span>赤(256,0,0)になりますが、<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)は<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)のままです。</p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: -256, -256, -256 ;黒 </span>  ,  <span class="max-value">
+最大値: 256, 256, 256 ;白 </span> </div>   <div class="default-value">省略時のデフォルト値： 0, 0, 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> PalFX.Mul    = 合成する赤色, 合成する緑色, 合成する青色 
+(整数, 整数, 整数)
+</dt> <dd> <div class="description"><p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style="border: 1px solid #000;background: rgb(64,256,64);">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>白(256,256,256)は<span style="border: 1px solid #000;background: rgb(1,256,1);">　</span>緑(1,256,1)になりますが、<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)は<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>黒(0,0,0)のままです。</p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: 1, 1, 1 </span>  ,  <span class="max-value">
+最大値: 256, 256, 256 ;変化なし </span> </div>   <div class="default-value">省略時のデフォルト値： 256, 256, 256</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> PalFX.SinAdd    = 周期する赤色, 周期する緑色, 周期する青色, 周期 
+(整数, 整数, 整数, 整数)
+</dt> <dd> <div class="description"><p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style="border: 1px solid #000;background: rgb(0,0,256);">　</span><code>SinAdd=0,0,256,20</code>,<span style="border: 1px solid #000;background: rgb(0,0,0);">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)は、5F後<span style="border: 1px solid #000;background: rgb(128,128,256);">　</span>(128,128,256)になり、10F後<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)に戻り、15F後<span style="border: 1px solid #000;background: rgb(128,128,0);">　</span>(128,128,0)、20F後<span style="border: 1px solid #000;background: rgb(128,128,128);">　</span>(128,128,128)に戻る、という周期を繰り返します。</p></div> <div class="option-value">  <div class="media">      <div class="image-group"> <div class="image"> <div></div> <div class="image-frame">  <img src="/images/State/SinAdd.png" alt="" width="600" height="242"> </div> </div> </div> </div>      <div class="default-value">省略時のデフォルト値： 0, 0, 0, 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> PalFX.InvertAll    = 色反転フラグ 
+(0か1)
+</dt> <dd> <div class="description"><p>色を反転するか・しないかのフラグです。</p><p>例: <span style="border: 1px solid #000;background: rgb(0,0,0);">　</span>(0,0,0)→<span style="border: 1px solid #000;background: rgb(256,256,256);">　</span>(256,256,256),<span style="border: 1px solid #000;background: rgb(0,252,0);">　</span>(0,252,0)→<span style="border: 1px solid #000;background: rgb(256,4,256);">　</span>(256,4,256),<span style="border: 1px solid #000;background: rgb(256,0,0);">　</span>(256,0,0)→<span style="border: 1px solid #000;background: rgb(0,256,256);">　</span>(0,256,256)</p></div> <div class="option-value">  <div class="media">      <div class="image-group"> <div class="image"> <div></div> <div class="image-frame">  <img src="/images/State/InvertAll.png" alt="" width="167" height="167"> </div> </div> </div> </div>   <div class="range-value">  <span class="min-value">
+最小値: 0 ;色が反転しない </span>  ,  <span class="max-value">
+最大値: 1 ;色が反転する </span> </div>   <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> EnvShake.Time    = ヒット時画面振動時間 
+(整数)
+</dt> <dd> <div class="description"><p>揺れの持続時間を指定。</p></div> <div class="option-value">         </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> EnvShake.Ampl    = 揺れ幅 
+(整数)
+</dt> <dd> <div class="description"><p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： -4</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> EnvShake.Phase    = 位相 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>位相を指定。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0 ;振動数の乗数が90以上のときは90。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> EnvShake.Freq    = 揺れの速度 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>揺れるスピードを、0(低速)～180(高速)の間で指定。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 60</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.EnvShake.Time    = 落下時画面振動時間 
+(整数)
+</dt> <dd> <div class="description"><p>相手の落下ダウン時に画面を揺らしたい時間を指定。</p></div> <div class="option-value">         </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.EnvShake.Ampl    = 振幅 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： -4</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.EnvShake.Phase    = 位相 
+(整数)
+</dt> <dd> <div class="description"><p>位相を指定。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 0 ;振動数の乗数が90以上のときは90。</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Fall.EnvShake.Freq    = 振動数 
+(浮動小数点数)
+</dt> <dd> <div class="description"><p>揺れるスピードを、0(低速)～180(高速)の間で指定。</p></div> <div class="option-value">        <div class="default-value">省略時のデフォルト値： 60</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Attack.Width    = z1, z2 
+(整数, 整数)
+</dt> <dd> <div class="description"><p>現在、使われておりません。</p></div> <div class="option-value">         </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> IgnoreHitPause    = ヒット停止中も処理するか 
+(0か1)
+</dt> <dd> <div class="description"><p><code>HitPauseTime</code>（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。</p><ul><li><code>0</code>（既定）: ヒット停止中は評価されません。</li><li><code>1</code>: ヒット停止中も評価・実行されます。</li></ul><p>値は<code>0</code>/<code>1</code>の<strong>整数定数のみ</strong>です（<code>var</code>等の式は使用不可）。</p><p><b>注意</b>: ヒット停止中は<code>IgnoreHitPause=1</code>のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。</p><p><b>補足</b>: <code>[StateDef -3]</code>は投げ等で他者のステートデータを使用している間はチェックされないため、<code>IgnoreHitPause</code>を<code>1</code>にしても走らない局面があります。</p><p><b>IKEMEN GO</b>: ZSSの後方互換性対応や挙動整合のため、<code>IgnoreHitPause</code>周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。</p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: 0 </span>  ,  <span class="max-value">
+最大値: 1 </span> </div>   <div class="default-value">省略時のデフォルト値： 0</div> </div> </dd> </dl>
+        <hr><dl class="parameter"> <dt class="main"> Persistent    = 実行頻度（トリガー成立回数の間引き） 
+(整数)
+</dt> <dd> <div class="description"><p><code>Persistent</code> は、このステートコントローラーが<strong>「実行可能（発火）」になった回数</strong>を基準に、実行頻度を間引くための共通パラメーターです。</p><p>まず「トリガー成立（= 実行可能）」の定義は次のとおりです。</p><ul><li><code>triggerall</code> は共通の前提条件（AND）です。<code>triggerall</code> が偽のフレームでは、<code>trigger1</code> 以降が成立していても発火しません。</li><li><code>trigger1</code> / <code>trigger2</code> / <code>trigger3</code> ... は番号ごとにグループで評価されます。<ul><li>同じ番号（例：<code>trigger1</code> が複数行）は AND（全部真ならその番号グループが真）。</li><li>番号が違うグループ同士（<code>trigger1</code> と <code>trigger2</code> など）は OR（どれか1つのグループが真なら発火）。</li></ul></li></ul><p>この「発火（トリガー成立）」が起きた回数に対して、<code>Persistent</code> は次のように動作します。</p><ul><li><code>1</code>（既定）: 発火するたびに毎回実行します。</li><li><code>0</code>: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。</li><li><code>N</code>（2以上）: 発火した<strong>N回に1回だけ</strong>実行します。<br>例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上は<strong>Nフレームに1回</strong>の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。</li></ul><p>値に指定できるのは<strong>整数定数</strong>のみです（<code>var</code>/<code>fvar</code>/<code>sysvar</code> を含む式は不可）。</p><p><b>注意</b>: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。</p></div> <div class="option-value">     <div class="range-value">  <span class="min-value">
+最小値: 0 </span>  ,  <span class="max-value">
+最大値: 128 </span> </div>   <div class="default-value">省略時のデフォルト値： 1</div> </div> </dd> </dl>
+        <hr> </div> </section> <section id="Version"><div class="section"><h2>仕様・バグ・エラー・変更点</h2><table><tbody><tr><td>-</td><td><code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。</td></tr><tr><td>Version1.0から</td><td>ヒット硬直(Pausetime)が1.0以降は自分側のみWinより1F増加しています。</td></tr><tr><td>Version1.0から</td><td><code>MinDist</code>,<code>MaxDist</code>,<code>ForceNoFall</code>が追加されました。</td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">ASSIGNED NEGATIVE HITID:IDに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED NEGATIVE HIT PRIORITY:Priorityに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED NEGATIVE PAUSETIME:PauseTime第1引数に-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED NEGATIVE P2SHAKETIME:PauseTime第2引数に-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE GUARD.P1PAUSETIME:Guard.PauseTIME第1引数に-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE GUARD.P2SHAKETIME:Guard.PauseTIME第2引数に-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">ILLEGAL SPARK NO:SparkNoに-3以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">ILLEGAL GSPARK NO:Guard.SparkNoに-3以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED ILLEGAL SOUND GROUP:HitSound第1引数に-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED ILLEGAL SOUND NO:HitSound第2引数に-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED ILLEGAL GSOUND GROUP:GuardSound第1引数に-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED ILLEGAL GSOUND NO:GuardSound第2引数に-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE GROUND.P2SLIDTIME:Ground.SlideTimeに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE GUARD.P2SLIDTIME:Guard.SlideTimeに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE GROUND.P2HITTIME:Ground.HitTimeに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE GUARD.P2HITTIME:Guard.HitTimeに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE AIR．P2HITTIME:Air.HitTimeに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE GUARD.P2CTRLTIME:Guard.CtrlTimeに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED ILLEGAL P2BINDTIME:snapの第4引数に-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE AIR．P2CTRLTIME:Air.CtrlTimeに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED NEGATIVE P1STATENO:P1SteteNoに-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED NEGATIVE P2STATENO:P2SteteNoに-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED NEGATIVE RECOVERTIME:RecoverTimeに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE DOWN.P2HITTIME:DownHitTimeに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED NEGATIVE CHAINID:ChainIDに-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED NEGATIVE NOCHAINID:NoChainID第1引数に-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">SPECIFIED NEGATIVE NOCHAINID2:NoChainID第2引数に-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">INVALID PALFX TIME:Palfx.Timeに-2以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">INVALID PALFX MUL VALUE:PalFX.Mulに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE FREQ FOR ENVSHAKE:EnvShake.Freqに-1以下</blockquote></td></tr><tr><td>警告文</td><td><blockquote cite="http://mugenbinran.web.fc2.com/error.html#12">NEGATIVE FREQ FOR ENVSHAKE:Fall.EnvShake.Freqに-1以下</blockquote></td></tr></tbody></table></div></section>
+  <hr> <section id="DefaultParameter"> <div class="section"> <h2>省略した時のデフォルト値</h2> <div class="code" contenteditable="true"> <ul>  <li>[State ,HitDef]</li> <li>Type                       = HitDef</li> <li>Trigger1                   = 1</li>    <li class="required-parameter"> Attr                       =  ?, ?  </li><li class="optional-parameter"> HitFlag                    =  MAF ;ダウン状態にのみヒットしない  </li><li class="optional-parameter"> GuardFlag                  =  ;空文字列=ガード不可  </li><li class="optional-parameter"> AffectTeam                 =  E  </li><li class="optional-parameter"> AnimType                   =  L  </li><li class="optional-parameter"> Air.AnimType               =  ;AnimTypeと同じ  </li><li class="optional-parameter"> Fall.AnimType              =  ;Air.AnimTypeがUpならUp、それ以外はBack  </li><li class="optional-parameter"> Ground.Type                =  H  </li><li class="optional-parameter"> Air.Type                   =  ;Ground.Typeと同じ  </li><li class="optional-parameter"> ID                         =  0  </li><li class="optional-parameter"> ChainID                    =  -1 ;すべての攻撃が繋がります。  </li><li class="optional-parameter"> NoChainID                  =  -1 ;すべての攻撃が繋がります。  </li><li class="optional-parameter"> Kill                       =  1  </li><li class="optional-parameter"> Guard.Kill                 =  1  </li><li class="optional-parameter"> Fall.Kill                  =  1  </li><li class="optional-parameter"> HitOnce                    =  0 ;ただし、&lt;code&gt;Attr&lt;/code&gt;で&lt;code&gt;T&lt;/code&gt;を指定していると1に変更されます。  </li><li class="optional-parameter"> Air.Juggle                 =  0  </li><li class="optional-parameter"> Damage                     =  0, 0  </li><li class="optional-parameter"> GetPower                   =  ;(mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage, ;mugen.cfgのDefault.Attack.LifeToPowerMul)×Damage÷2  </li><li class="optional-parameter"> GivePower                  =  ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage, ;(mugen.cfgのDefault.GetHit.LifeToPowerMul)×Damage÷2  </li><li class="optional-parameter"> PauseTime                  =  0, 0  </li><li class="optional-parameter"> NumHits                    =  1  </li><li class="optional-parameter"> HitSound                   =  ?, ? ;多分、MUGENのデフォルト音声に設定される。  </li><li class="optional-parameter"> GuardSound                 =  ?, ? ;多分、MUGENのデフォルト音声に設定される。  </li><li class="optional-parameter"> Priority                   =  4, H  </li><li class="optional-parameter"> P1StateNo                  =  -1  </li><li class="optional-parameter"> P2StateNo                  =  -1 ;無効  </li><li class="optional-parameter"> P2GetP1State               =  ;相手に実行者の食らいステートを読み込ませる。  </li><li class="optional-parameter"> P1SprPriority              =  1  </li><li class="optional-parameter"> P2SprPriority              =  0  </li><li class="optional-parameter"> ; SprPriority              =  0  </li><li class="optional-parameter"> ForceStand                 =  ;Ground.VelocityのY速度が0なら0、0以外1。  </li><li class="optional-parameter"> ForceNoFall                =  0  </li><li class="optional-parameter"> Fall                       =  0  </li><li class="optional-parameter"> Fall.Damage                =  0  </li><li class="optional-parameter"> Fall.XVelocity             =  ;速度変更なし  </li><li class="optional-parameter"> Fall.YVelocity             =  -4.5  </li><li class="optional-parameter"> Fall.Recover               =  1 ;受身可能  </li><li class="optional-parameter"> Fall.RecoverTime           =  4  </li><li class="optional-parameter"> SparkNo                    =  ;cnsで設定した値が使用されます。  </li><li class="optional-parameter"> Guard.SparkNo              =  ;cnsで設定した値が使用されます。  </li><li class="optional-parameter"> SparkXY                    =  0, 0  </li><li class="optional-parameter"> P1Facing                   =  ;向きを変更しない  </li><li class="optional-parameter"> P1GetP2Facing              =  0 ;向きを変えない  </li><li class="optional-parameter"> Snap                       =  ;no change in P2's position  </li><li class="optional-parameter"> ; MinDist                  =  ;no change in P2's position  </li><li class="optional-parameter"> ; MaxDist                  =  ;no change in P2's position  </li><li class="optional-parameter"> P2Facing                   =  ;向きを変更しない  </li><li class="optional-parameter"> Ground.HitTime             =  0  </li><li class="optional-parameter"> Ground.SlideTime           =  0  </li><li class="optional-parameter"> Ground.Velocity            =  0, 0  </li><li class="optional-parameter"> Ground.CornerPush.VelOff   =  ;AttrがAの場合は0、それ以外の場合は(1.3 × Guard.Velocity)となります。  </li><li class="optional-parameter"> Air.HitTime                =  20  </li><li class="optional-parameter"> Air.Fall                   =  ;Fallと同値  </li><li class="optional-parameter"> Air.Velocity               =  0, 0  </li><li class="optional-parameter"> Air.CornerPush.VelOff      =  ;Ground.CornerPush.VelOffと同値  </li><li class="optional-parameter"> Down.Bounce                =  0 ;バウンドしない。  </li><li class="optional-parameter"> Down.HitTime               =    </li><li class="optional-parameter"> Down.Velocity              =  ;Air.Velocityと同値  </li><li class="optional-parameter"> Down.CornerPush.VelOff     =  ;Ground.CornerPush.VelOffと同値  </li><li class="optional-parameter"> Guard.Velocity             =  ;Ground.Velocityと同値。  </li><li class="optional-parameter"> Guard.HitTime              =  Ground.HitTimeと同値になりますが、前述の仕様により、実際のガード時間はGround.HitTimeの半分となり、硬直は、Guard.CtrlTime(省略時Guard.SlideTime)かGround.HitTimeの半分のどちらか低い方、ということにになります。  </li><li class="optional-parameter"> Guard.SlideTime            =  ;Guard.HitTimeと同じ値になります。  </li><li class="optional-parameter"> Guard.CtrlTime             =  ;Guard.SlideTimeと同じ値になります。  </li><li class="optional-parameter"> Guard.Dist                 =  ;CNSの[Size]のAttack.Distで設定した値になります。  </li><li class="optional-parameter"> Guard.PauseTime            =    </li><li class="optional-parameter"> Guard.CornerPush.VelOff    =  ;Ground.CornerPush.VelOffと同じ値になります  </li><li class="optional-parameter"> AirGuard.Velocity          =  ;Air.Velocityの空中ヒット速度X * 1.5, 空中ヒット速度Y / 2  </li><li class="optional-parameter"> AirGuard.CtrlTime          =  Guard.CtrlTimeと同じ値になります。  </li><li class="optional-parameter"> AirGuard.CornerPush.VelOff =  ;Ground.CornerPush.VelOffと同じ値になります。  </li><li class="optional-parameter"> YAccel                     =  0.35 ;解像度で値が変化、240p:.35, 480p:.7, 720p:1.4.  </li><li class="optional-parameter"> PalFX.Time                 =  0  </li><li class="optional-parameter"> PalFX.Color                =  256  </li><li class="optional-parameter"> PalFX.Add                  =  0, 0, 0  </li><li class="optional-parameter"> PalFX.Mul                  =  256, 256, 256  </li><li class="optional-parameter"> PalFX.SinAdd               =  0, 0, 0, 0  </li><li class="optional-parameter"> PalFX.InvertAll            =  0  </li><li class="optional-parameter"> EnvShake.Time              =    </li><li class="optional-parameter"> EnvShake.Ampl              =  -4  </li><li class="optional-parameter"> EnvShake.Phase             =  0 ;振動数の乗数が90以上のときは90。  </li><li class="optional-parameter"> EnvShake.Freq              =  60  </li><li class="optional-parameter"> Fall.EnvShake.Time         =    </li><li class="optional-parameter"> Fall.EnvShake.Ampl         =  -4  </li><li class="optional-parameter"> Fall.EnvShake.Phase        =  0 ;振動数の乗数が90以上のときは90。  </li><li class="optional-parameter"> Fall.EnvShake.Freq         =  60  </li><li class="optional-parameter"> Attack.Width               =    </li>   </ul> </div> </div> </section> <hr>  <section id="CodeSample"><div class="section"><h2>コードサンプル</h2><div><h3>味方殺し(攻撃)の記述</h3><div class="code"><code><ul><li></li></ul></code></div></div>
+        <hr><div><h3>敵を一掃する記述</h3><div class="code"><code><ul><li></li></ul></code></div></div>
+        <hr><div><h3>皆殺しの記述</h3><div class="code"><code><ul><li></li></ul></code></div></div>
+        <hr><div><h3>ライフを回復させる記述</h3><div class="code"><code><ul><li></li></ul></code></div></div>
+        <hr><div><h3>ガード不能の記述</h3><div class="code"><code><ul><li></li></ul></code></div></div>
+        <hr><div><h3>多段ヒットの記述</h3><div class="code"><code><ul><li></li></ul></code></div></div>
+        <hr></div></section> <section id="LoadParameter"> <div class="section"> <h2>パラメーターの読み込み順</h2> <div> <p> Attr(?)
+ =&gt; HitFlag(?)
+ =&gt; GuardFlag(?)
+ =&gt; AffectTeam(?)
+ =&gt; AnimType(?)
+ =&gt; Air.AnimType(?)
+ =&gt; Fall.AnimType(?)
+ =&gt; Ground.Type(?)
+ =&gt; Air.Type(?)
+ =&gt; ID(1)
+ =&gt; ChainID(2)
+ =&gt; NoChainID(3, 4)
+ =&gt; Kill(5)
+ =&gt; Guard.Kill(6)
+ =&gt; Fall.Kill(7)
+ =&gt; HitOnce(8)
+ =&gt; Air.Juggle(9)
+ =&gt; Damage(10, 11)
+ =&gt; GetPower(12, 13)
+ =&gt; GivePower(14, 15)
+ =&gt; PauseTime(17, 16)
+ =&gt; NumHits(18)
+ =&gt; HitSound(19, 20)
+ =&gt; GuardSound(21, 22)
+ =&gt; Priority(23, ?)
+ =&gt; P1StateNo(24)
+ =&gt; P2StateNo(25)
+ =&gt; P2GetP1State(26)
+ =&gt; P1SprPriority(27)
+ =&gt; P2SprPriority(28)
+ =&gt; ; SprPriority(27 -&gt; 28)
+ =&gt; ForceStand(29)
+ =&gt; ForceNoFall(30)
+ =&gt; Fall(31)
+ =&gt; Fall.Damage(32)
+ =&gt; Fall.XVelocity(33)
+ =&gt; Fall.YVelocity(34)
+ =&gt; Fall.Recover(35)
+ =&gt; Fall.RecoverTime(36)
+ =&gt; SparkNo(37)
+ =&gt; Guard.SparkNo(38)
+ =&gt; SparkXY(39, 40)
+ =&gt; P1Facing(41)
+ =&gt; P1GetP2Facing(42)
+ =&gt; Snap(43 -&gt; 45, 44 -&gt; 46)
+ =&gt; ; MinDist(43, 44)
+ =&gt; ; MaxDist(45, 46)
+ =&gt; P2Facing(47)
+ =&gt; Ground.HitTime(48)
+ =&gt; Ground.SlideTime(49)
+ =&gt; Ground.Velocity(50, 51)
+ =&gt; Ground.CornerPush.VelOff(52)
+ =&gt; Air.HitTime(53)
+ =&gt; Air.Fall(54)
+ =&gt; Air.Velocity(55, 56)
+ =&gt; Air.CornerPush.VelOff(57)
+ =&gt; Down.Bounce(58)
+ =&gt; Down.HitTime(59)
+ =&gt; Down.Velocity(60, 61)
+ =&gt; Down.CornerPush.VelOff(62)
+ =&gt; Guard.Velocity(63)
+ =&gt; Guard.HitTime(64)
+ =&gt; Guard.SlideTime(65)
+ =&gt; Guard.CtrlTime(66)
+ =&gt; Guard.Dist(67)
+ =&gt; Guard.PauseTime(69, 68)
+ =&gt; Guard.CornerPush.VelOff(70)
+ =&gt; AirGuard.Velocity(71, 72)
+ =&gt; AirGuard.CtrlTime(73)
+ =&gt; AirGuard.CornerPush.VelOff(74)
+ =&gt; YAccel(75)
+ =&gt; PalFX.Time(76)
+ =&gt; PalFX.Color(77)
+ =&gt; PalFX.Add(78, 79, 80)
+ =&gt; PalFX.Mul(81, 82, 83)
+ =&gt; PalFX.SinAdd(84, 85, 86, (調査中・・・))
+ =&gt; PalFX.InvertAll(87)
+ =&gt; EnvShake.Time(88)
+ =&gt; EnvShake.Ampl(89)
+ =&gt; EnvShake.Phase(90)
+ =&gt; EnvShake.Freq(91)
+ =&gt; Fall.EnvShake.Time(92)
+ =&gt; Fall.EnvShake.Ampl(93)
+ =&gt; Fall.EnvShake.Phase(94)
+ =&gt; Fall.EnvShake.Freq(95)
+ =&gt; Attack.Width(;不必要なんで未検証)
+ </p> </div> <div class="supplement"> <br>*バージョンや実行環境,パラーメータの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。
+</div> </div> </section> <hr> <section id="Quote"><div class="section"><h2>引用記事</h2><ul><li><cite><a href="/MUGEN/document/Official/2002.04.14/sctrls.html#HitDef" target="_blank" rel="external">HitDef - State Controller Reference(version 2002.04.14)</a></cite></li><li><cite><a href="https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitdef" target="_blank" rel="external">HitDef - State Controller Reference(version 1.0)</a></cite></li><li><cite><a href="https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitdef" target="_blank" rel="external">HitDef - State Controller Reference(version 1.1)</a></cite></li><li><cite><a href="http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#hitdef" target="_blank" rel="external">HitDef - State Controller Reference Documentation for version 1.1</a></cite></li><li><cite><a href="https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitDef" target="_blank" rel="external">HitDef - M.U.G.E.N wiki</a></cite></li><li><cite><a href="/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitDef&amp;protocol=http" target="_blank" rel="external">HitDef - State Controller</a></cite></li><li><cite><a href="http://www49.atwiki.jp/mugencns/pages/237.html" target="_blank" rel="external">HitDef - MUGEN CNS WIKI CHAOS@予定</a></cite></li><li><cite><a href="http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitDef" target="_blank" rel="external">HitDef - 東方夢幻館</a></cite></li><li><cite><a href="http://www.purple.dti.ne.jp/earth/mugen/statebook/hitdef.htm" target="_blank" rel="external">HitDef - 地球の応接間</a></cite></li></ul></div></section>
+  <hr> <!-- 日付・貢献者情報 --> <div> <div><strong>公開日:</strong><time class="published" itemprop="datePublished" datetime="2008-06-05">2008.06.05</time></div> <div><strong>最終更新日:</strong><time class="updated" itemprop="dateModified" datetime="2017-09-04">2017.09.04</time></div>  </div> <nav class="breadcrumb"> <div> <ul>  <li itemscope=""> <a href="/" target="_top" itemprop="url"> <span itemprop="title">Home</span> </a> </li>   <li> &gt; </li> <li itemscope="">  <a href="./" target="_top" itemprop="url"> <span itemprop="title">MUGEN State Controller</span> </a> </li>  </ul> </div> </nav> </div> </article> </div>

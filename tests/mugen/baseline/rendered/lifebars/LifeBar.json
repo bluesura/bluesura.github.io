@@ -1,0 +1,60 @@
+{
+  "text": "[LifeBar] ライフバー > プレイヤーのライフバー設定 | 実装されたバージョン: 2002.04.14 ここではp1,p2ライフバーの設定をします。以下の項目があります。全部書き込まなくても、動きますのでそこらへんは自分で調整してみてください。設定可能なパラメータ一覧[LifeBar]P1.Pos = ,P1.BG0.Spr = ,P1.BG0.Anim = P1.BG0.Font = P1.BG0.Text = P1.BG0.Offset = ,P1.BG0.DisplayTime = P1.BG0.Facing = P1.BG0.VFacing = P1.BG0.LayerNo = P1.BG0.Scale = ,P1.BG1.Spr = ,P1.BG1.Anim = P1.BG1.Font = P1.BG1.Text = P1.BG1.Offset = ,P1.BG1.DisplayTime = P1.BG1.Facing = P1.BG1.VFacing = P1.BG1.LayerNo = P1.BG1.Scale = ,P1.BG2.Spr = ,P1.BG2.Anim = P1.BG2.Font = P1.BG2.Text = P1.BG2.Offset = ,P1.BG2.DisplayTime = P1.BG2.Facing = P1.BG2.VFacing = P1.BG2.LayerNo = P1.BG2.Scale = ,;ライフ本体の画像P1.Front.Spr = ,P1.Front.Anim = P1.Front.Font = P1.Front.Text = P1.Front.Offset = ,P1.Front.DisplayTime = P1.Front.Facing = P1.Front.VFacing = P1.Front.LayerNo = P1.Front.Scale = ,;ライフが減少時の画像（赤いやつ）P1.Mid.Spr = ,P1.Mid.Anim = P1.Mid.Font = P1.Mid.Text = P1.Mid.Offset = ,P1.Mid.DisplayTime = P1.Mid.Facing = P1.Mid.VFacing = P1.Mid.LayerNo = P1.Mid.Scale = ,P1.Range.X = , P2.Pos = ,P2.BG0.Spr = ,P2.BG0.Anim = P2.BG0.Font = P2.BG0.Text = P2.BG0.Offset = ,P2.BG0.DisplayTime = P2.BG0.Facing = P2.BG0.VFacing = P2.BG0.LayerNo = P2.BG0.Scale = ,P2.BG1.Spr = ,P2.BG1.Anim = P2.BG1.Font = P2.BG1.Text = P2.BG1.Offset = ,P2.BG1.DisplayTime = P2.BG1.Facing = P2.BG1.VFacing = P2.BG1.LayerNo = P2.BG1.Scale = ,P2.BG2.Spr = ,P2.BG2.Anim = P2.BG2.Font = P2.BG2.Text = P2.BG2.Offset = ,P2.BG2.DisplayTime = P2.BG2.Facing = P2.BG2.VFacing = P2.BG2.LayerNo = P2.BG2.Scale = ,P2.Front.Spr = ,P2.Front.Anim = P2.Front.Font = P2.Front.Text = P2.Front.Offset = ,P2.Front.DisplayTime = P2.Front.Facing = P2.Front.VFacing = P2.Front.LayerNo = P2.Front.Scale = ,P2.Mid.Spr = ,P2.Mid.Anim = P2.Mid.Font = P2.Mid.Text = P2.Mid.Offset = ,P2.Mid.DisplayTime = P2.Mid.Facing = P2.Mid.VFacing = P2.Mid.LayerNo = P2.Mid.Scale = ,P2.Range.X = , パラメーターRange.X = ライフバー画像がLife0になる位置, ライフバー画像がLifeMaxになる位置 (整数, 整数) ライフ画像の減少表示のための終点と始点を指定します。注意点として、sffでライフ画像のx座標を終点0・始点マイナスにした場合、MAXをマイナス,始点をプラスにした場合、MAXをプラスにしなければいけません。またvfacing=-1に設定したものは先ほどとは逆に設定しなければなりません。さらにscaleで拡大または縮小した場合、MAXの位置もそれに合わせて変更しなければなりません。使用例:(sffで画像が127ピクセルのものを終点を0,始点を127した場合)vfancing = 1vfancing = -1P1.range.x = 0, 127P1.range.x = 0, -127Pos = x座標, y座標 (整数, 整数) 表示開始位置を設定します。Pos=30,30した場合、基準点が上の画像のように右下へ30ピクセルずつ移動した場所に設定されます。Anim = ActionNo (整数) AntionNoは同一ファイル内の[Begin Action ActionNo(整数)]で書き込まれたActionNoを指定します。AnimはAnimationの略で動く画像のことです。;使用例;[Begin Action 100]がP1のBG0に読み込まれます。;Animは、メイン要素です。メイン要素は１つしか設定できないので注意してください。P1.BG0.Anim = 100[Begin Action 100]15,1, 0,0, 5, HSpr = SprGrp, SprNo (整数, 整数) [Files]のSffで読み込んだスプライトファイルからどれを表示するか指定します。SprはSpriteの略で静止画のことです。;使用例;P1のBG0にはスプライトファイルの0,0に置かれているものが読み込まれます。;Sprは、メイン要素です。メイン要素は１つしか設定できないので注意してください。P1.BG0.Spr = 0, 0Font = FontNo, FontBank, AlignMt(-1,0,1)【省略可】 (整数, 整数, 整数) ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。Fontは、メイン要素です。メイン要素は１つしか設定できないので注意してください。また、場所によって、フォーマット指定子が使用できます。FontNoは[Files]で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。textの文字列はMUGEN RC以外では、日本語は文字化けします。fontとtext文章使用例:WinMugenMugenRC P1.BG0.Font = 1, 0, 0 P1.BG0.Text = waruiNe! font1の0 Colorで中央揃えにwaruiNe!を表示します。 P1.BG0.Font = 1, 0, 0 P1.BG0.Text = \"悪いね☆\" font1の0 Colorで中央揃えに 悪いね☆を表示します。Text = 文字列 (String) ここではフォントを指定して、文字を表示することができます。ただし、counterではtextは使用できません。また、場所によって、フォーマット指定子が使用できます。FontNoは[Files]で宣言したfont3=などの数字の部分です。FontBankはフォントで使われているColorBankのことです。簡単にいえば、フォントで別のカラーが設定されていれば別の色に変更できます。なので、基本0で大丈夫だと思います。AlignMtはテキストの配置を数字で表したものです。1は左詰・0は中央揃え・-1は右詰になります。textの文字列はMUGEN RC以外では、日本語は文字化けします。fontとtext文章使用例:WinMugenMugenRC P1.BG0.Font = 1, 0, 0 P1.BG0.Text = waruiNe! font1の0 Colorで中央揃えにwaruiNe!を表示します。 P1.BG0.Font = 1, 0, 0 P1.BG0.Text = \"悪いね☆\" font1の0 Colorで中央揃えに 悪いね☆を表示します。Snd = SndGrp, SndNo (整数, 整数) ゲージがたっま時になる音をsnd=で読み込んだsndファイルから設定できます。Levelは1～9まで設定できます。so don't beat your computer when your level 5000 snds don't work (if your sound goes that high, you should just go shoot yourself).Sndは、メイン要素です。メイン要素は１つしか設定できないので注意してください。使用例:level1.snd = 21, 021グループの0番目の音をLevel1まで、たまったときに鳴らします。Offset = x座標, y座標 (整数, 整数) posで設定した値を基準点として、Anim,Spr,Fontの表示位置を決めます。省略時、値はデフォルトで0,0となっています。使用例:P1.BG0.Offset = 160, 120bg0の表示位置がP1.Posで決まった基準点から右に160ピクセル・下に120ピクセルになります。DisplayTime = 表示時間 (整数) spr,anim,fontの要素を何フレーム表示するか指定します。省略された場合は、表示する要素によってデフォルト値が変わります。spr,fontの場合は1、animの場合はループするようになっています。おそらく、-1でループ・0で何も表示されなくなります。 *60フレーム=1秒使用例:P1.BG0.Anim = 10P1.BG0.DisplayTime = 10P1.BG0.Spr = 10P1.BG0.DisplayTime = 10 10フレーム経過後にループします。要するに、Begin Actionで10フレーム以上設定されていた場合、10フレーム以降のものは表示されません。 10フレーム後に表示が消えます。ですが、ライフバーみたいなものは常に表示される仕組みになっているので、設定しても大して意味はないと思います。（たぶん）Facing = Dir(1または-1) (整数) spr,animの要素を水平反転（左右反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。使用例:P1.BG0.Facing = -1p1のbg0のspr,animは反転して表示されます。VFacing = Dir(1または-1) (整数) spr,animの要素を垂直反転（上下反転）します。1の場合、反転はされません。-1の場合、反転されます。省略された場合、1になります。fontでは使用できません。使用例:P1.BG0.VFacing = -1p1のbg0のspr,animは反転して表示されます。LayerNo = No (整数) spr,anim,fontの要素をどのレイヤーに表示するか指定します。LayerNo = 0背景より前～プレイヤーより奥に表示。なので、背景を上書きするキャラで見えなくなるので注意。LayerNo = 1プレイヤーより前～前景(StageでLayerNo=1に設定されたプレイヤーより手前に表示される背景)より奥に表示されます。LayerNo = 2もはや邪魔するものはなし。なので、基本的には2を使用することをお勧めします。使用例:P1.BG0.LayerNo = 2p1のbg0のspr,animまたはfontはレイヤー2に表示されます。・LifeBarとcharacterの表示順序赤がLayerNo=0でSprPriority=-5のものより、後に表示される。緑がLayerNo=1でOnTop=1のものより、奥に表示される。青がLayerNo=2で完全に手前に表示・LifeBarとStageLayerNoの表示順序手前 LifeBar2 > Stage1 > LifeBar1 > LifeBar0 > Stage0背景Scale = XScale, YScale (浮動小数点数, 浮動小数点数) sprやanimの表示される倍率を指定します。ひとつ注意点があってfont関連でのscaleはWinMugenではサポートされていません、MUGENRCから使用可能です。マイナスの値は、反転したような状態になります。倍率は、画像・環境の考慮なしで、だいたい-1070000～1070000ぐらいまでいけました。どうでもいいことですが、変わるのは画像の大きさなので、座標とか注意してね！使用例:P1.BG0.Scale = 0.5やP1.BG0.Scale = .5（0．の0は省略できます。）p1のbg0のsprまたはanimは0.5倍で表示されます。引用記事Cabbit007's LifeBar Tutorial - RANDOM SELECTごろごろむ新Mugenについて - 気まぐれ猫2010/11/24 (Wed) fight.def基礎知識その１ - lunaの倉庫 公開日:2008.06.05 | 最終更新日:2013.09.14 Home > MUGEN Lifebar",
+  "sections": [
+    "SampleCode",
+    "Parameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "フォーマット指定子",
+      "href": "./Format.html"
+    },
+    {
+      "text": "[Files]",
+      "href": "./Files.html"
+    },
+    {
+      "text": "フォーマット指定子",
+      "href": "./Format.html"
+    },
+    {
+      "text": "[Files]",
+      "href": "./Files.html"
+    },
+    {
+      "text": "Cabbit007's LifeBar Tutorial - RANDOM SELECT",
+      "href": "https://docs.google.com/viewer?a=v&q=cache:wk0WfSKcE1UJ:moogen.piiym.net/files/LifeBar_tutorial.doc+&hl=ja&gl=jp&pid=bl&srcid=ADGEESjMMLACx97cJMbe_PLaOB4LIuGXjLUNCCX1oBR6A31VtVR1MH9gRGgTR-gQP9aDqukKTvHoFMgSgdkWv_6LmQZxnMwFH3e8ylyHvzVehxlEv5NQ1sDesHoDQPK2ABxZxR4F0Spl&sig=AHIEtbR4dlMgJl-_ZzZAvDxFlEzHe3WnDA"
+    },
+    {
+      "text": "ごろごろむ",
+      "href": "http://gorogorom.blog44.fc2.com/"
+    },
+    {
+      "text": "新Mugenについて - 気まぐれ猫",
+      "href": "http://page.freett.com/mugen_m3/NewMugen-3.html#2-5"
+    },
+    {
+      "text": "2010/11/24 (Wed) fight.def基礎知識その１ - lunaの倉庫",
+      "href": "http://lunatic284.blog90.fc2.com/blog-entry-5836.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Lifebar",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/public/images/lifebar/pos.png",
+    "/public/images/lifebar/Animation.gif",
+    "/public/images/lifebar/Sprite.gif",
+    "/public/images/lifebar/offset.jpg",
+    "/public/images/lifebar/facing.gif",
+    "/public/images/lifebar/vfacing.gif",
+    "/public/images/lifebar/layerno.gif"
+  ],
+  "code": []
+}

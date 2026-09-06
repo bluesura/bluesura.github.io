@@ -1,0 +1,60 @@
+{
+  "text": "Type = VarSet 変数 > 指定変数に値を代入 | 実装されたバージョン: 2002.04.14 | 対象: ステート実行者自身 変数を指定値に変更します。整数・小数どちらの変数も扱えますが、同時に指定することはできません。 パラメーター v = 整数変数番号 (整数) 変更する整数変数の番号を0～59から指定します。 value = 整数増加量 (整数) 代入値を整数で指定します。 ; fv = 浮動小数変数番号 (整数) 変更する浮動小数変数の番号を0～39から指定します。 ; value = 浮動小数変数増加量 (浮動小数点数) 代入値を浮動小数で指定します。 ; var(番号) = 整数増減量 (整数, 整数) vとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。 代替書式 ; fvar(番号) = 小数増減量 (整数, 浮動小数点数) fvとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。 代替書式 IgnoreHitPause = ヒット停止中も処理するか (0か1) HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 最小値: 0 , 最大値: 1 省略時のデフォルト値： 0 Persistent = 実行頻度（トリガー成立回数の間引き） (整数) Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 最小値: 0 , 最大値: 128 省略時のデフォルト値： 1 仕様・バグ・エラー・変更点-var(番号),fvar(番号)で大文字を使用するとエラーが発生します。警告文SET VAR OUT OF RANGE VAR(-1): varなら-1以下または60以上、fvarなら-1以下または40以上の番号に値を代入（対象がfvarであっても警告文にはVARと表示される。）（最後の数値は指定した数値が表示される） 省略した時のデフォルト値 [State ,VarSet] Type = VarSet Trigger1 = 1 v = value = ; fv = ; value = ; var(番号) = ; fvar(番号) = パラメーターの読み込み順 v(1) => value(2) => ; fv(1) => ; value(2) => ; var(番号)(2 ;先に()内がロードされます。) => ; fvar(番号)(2 ;先に()内がロードされます。) *バージョンや実行環境,パラーメータの指定の仕方によって、読み込まれる順番が変わる可能性があります。参考程度なものだと思ってください。 引用記事VarSet - State Controller Reference(version 2002.04.14)VarSet - State Controller Reference(version 1.0)VarSet - State Controller Reference(version 1.1)VarSet - M.U.G.E.N wikiVarSet - State ControllerVarSet - 東方夢幻館VarSet - 地球の応接間 公開日:2008.06.05 最終更新日:2017.08.06 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "VarSet - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#VarSet"
+    },
+    {
+      "text": "VarSet - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#varset"
+    },
+    {
+      "text": "VarSet - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#varset"
+    },
+    {
+      "text": "VarSet - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VarSet"
+    },
+    {
+      "text": "VarSet - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VarSet&protocol=http"
+    },
+    {
+      "text": "VarSet - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#VarSet"
+    },
+    {
+      "text": "VarSet - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": [
+    "[State ,VarSet]",
+    "Type                       = VarSet",
+    "Trigger1                   = 1",
+    "v                          =",
+    "value                      =",
+    "; fv                       =",
+    "; value                    =",
+    "; var(番号)                  =",
+    "; fvar(番号)                 ="
+  ]
+}

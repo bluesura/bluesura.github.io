@@ -5,6 +5,7 @@ import { compactText } from './html.mjs';
 import { readJSON, pathFromRoot } from './files.mjs';
 import { isCnsLiteral } from '../../src/lib/mugen/defaults.mjs';
 import { createDocumentSchema } from '../../src/lib/mugen/schema.mjs';
+import { legacyLoadPriorityEvidence } from './load-priority-evidence.mjs';
 
 const definitions = {
   HitDef: { collection: 'state-controllers', kinds: ['behavior', 'version_change', 'version_change', ...Array(31).fill('warning')], changes: { 1: 'changed', 2: 'added' } },
@@ -54,7 +55,7 @@ doc.notes = (doc.version ?? []).map((entry, index) => ({
 for (const p of doc.parameter ?? []) {
   if (definition.collection !== 'state-controllers') continue;
   p.expression_policy = 'unknown';
-  p.load_priority_evidence = unverified;
+  p.load_priority_evidence = legacyLoadPriorityEvidence(p);
   const old = p.default_value?.join(', ') ?? '';
   const text = compactText(parseFragment(old)).replace(/^;\s*/, '');
   if (p.parameter_type === 'required') p.default = [{ kind: 'required', display: '値を指定してください', evidence: unverified }];

@@ -139,7 +139,8 @@
               "helper-local-1.0",
               "helper-local-1.1"
             ]
-          }
+          },
+          "visibility": "internal"
         }
       ]
     },
@@ -184,7 +185,7 @@
       "default": [
         {
           "kind": "derived",
-          "display": "呼び出した親の名前に基づくヘルパー名",
+          "display": "\"<ヘルパーを呼び出したキャラ名>\"'s helper",
           "evidence": {
             "status": "confirmed",
             "basis": [
@@ -235,9 +236,11 @@
         "1"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -290,9 +293,11 @@
         ]
       },
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -345,9 +350,11 @@
         ]
       },
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -400,9 +407,11 @@
         ]
       },
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -455,9 +464,11 @@
         ]
       },
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -510,9 +521,11 @@
         ]
       },
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -565,9 +578,11 @@
         ]
       },
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -610,9 +625,11 @@
         "8"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -655,9 +672,11 @@
         "9"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -702,9 +721,11 @@
         "11"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -749,9 +770,11 @@
         "13"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -804,9 +827,11 @@
         ]
       },
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -849,9 +874,11 @@
         "15"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -908,9 +935,11 @@
         "(16->17)"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -953,9 +982,11 @@
         "18"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -1003,9 +1034,11 @@
         "20"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -1211,9 +1244,11 @@
         "21"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -1256,9 +1291,11 @@
         "22"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [
@@ -1301,9 +1338,11 @@
         "23"
       ],
       "load_priority_evidence": {
-        "status": "unverified",
-        "basis": [],
-        "source_refs": []
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
       },
       "expression_policy": "expression",
       "default": [

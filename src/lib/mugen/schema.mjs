@@ -10,14 +10,15 @@ export const environmentSchema = z.object({
 }).strict();
 export const evidenceSchema = z.object({
   status: z.enum(['confirmed', 'probable', 'unverified', 'conflicting']),
-  basis: z.array(z.enum(['official_document', 'official_history', 'runtime_test', 'community_documentation', 'reverse_engineering', 'source_code', 'cross_version_test'])),
+  basis: z.array(z.enum(['official_document', 'official_history', 'runtime_test', 'community_documentation', 'reverse_engineering', 'source_code', 'cross_version_test', 'maintainer_report'])),
+  comment: z.string().optional(),
   tested_on: z.array(id).optional(),
   source_refs: z.array(id).optional(),
 }).strict().superRefine((value, ctx) => {
   if (value.status === 'confirmed' && !value.basis.length) {
     ctx.addIssue({ code: 'custom', path: ['basis'], message: 'Confirmed evidence requires a basis.' });
   }
-  if (value.status === 'confirmed' && value.basis.some(b => !['runtime_test', 'cross_version_test'].includes(b)) && !value.source_refs?.length) {
+  if (value.status === 'confirmed' && value.basis.some(b => !['runtime_test', 'cross_version_test', 'maintainer_report'].includes(b)) && !value.source_refs?.length) {
     ctx.addIssue({ code: 'custom', path: ['source_refs'], message: 'Confirmed documentary evidence requires source references.' });
   }
   if (value.status === 'confirmed' && value.basis.some(b => ['runtime_test', 'cross_version_test'].includes(b)) && !value.tested_on?.length) {
@@ -38,6 +39,7 @@ const constraintSchema = z.object({
 const noteShape = {
   kind: z.enum(['behavior', 'version_change', 'bug', 'warning', 'error', 'compatibility', 'undocumented', 'research', 'deprecated', 'limitation']),
   content: z.string().min(1),
+  visibility: z.enum(['public', 'internal']).optional(),
   change: z.enum(['added', 'changed', 'fixed', 'removed', 'deprecated']).optional(),
   at: id.optional(), message: z.string().optional(), condition: z.string().optional(),
   // Explicit correspondence preserves unconverted legacy entries without rendering a migrated entry twice.
@@ -45,6 +47,7 @@ const noteShape = {
   ...contextual,
 };
 export const noteSchema = z.object(noteShape).strict().superRefine((value, ctx) => {
+  if (value.kind === 'research' && value.visibility === 'public') ctx.addIssue({ code: 'custom', path: ['visibility'], message: 'Research is internal. Publish an edited behavior/bug/etc. note after review.' });
   if (value.kind === 'version_change' && !value.change) ctx.addIssue({ code: 'custom', path: ['change'], message: 'version_change requires change.' });
   if (value.kind !== 'version_change' && (value.change || value.at)) ctx.addIssue({ code: 'custom', message: 'change / at belong to version_change.' });
 });

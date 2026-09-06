@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Sidebar from '../components/Sidebar.astro';
 import { SITE_TITLE } from '../consts.ts'; // ← .ts を追加
+import '../styles/mugen-document.css';
 
 export interface Props {
   pageTitle?: string;
@@ -16,6 +17,7 @@ export interface Props {
 const props = Astro.props;
 // 本番環境の時だけ true になる変数
 const isProd = import.meta.env.PROD;
+const isReference = /^\/MUGEN\/document\/(State|Trigger|Lifebar)(\/|$)/.test(Astro.url.pathname);
 
 ---
 <!DOCTYPE html>
@@ -31,7 +33,7 @@ const isProd = import.meta.env.PROD;
   })(window,document,'script','dataLayer','GTM-MMQSZM');</script>
 )}
 </head>
-<body>
+<body class:list={{ 'mugen-doc-page': isReference }}>
 {isProd && (
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMQSZM"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

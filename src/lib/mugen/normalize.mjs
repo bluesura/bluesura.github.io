@@ -1,5 +1,9 @@
 import { effectiveParameters, effectiveArguments } from './parameters.mjs';
 
+// Publication is an editorial decision, independent of evidence status.
+export const isPublicNote = note => note.kind !== 'research' && note.visibility !== 'internal';
+export const publicNotes = content => effectiveNotes(content).filter(isPublicNote);
+
 export function effectiveNotes(content) {
   const notes = content.notes ?? [];
   const mapped = new Map(notes.filter(note => note.legacy_index !== undefined).map(note => [note.legacy_index, note]));

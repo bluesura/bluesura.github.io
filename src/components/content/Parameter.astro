@@ -1,178 +1,65 @@
 ---
-// src/components/content/Parameter.astro (メディア表示機能を追加)
-import { Image } from 'astro:assets';
 import Specification from './Specification.astro';
-import Evidence from './Evidence.astro';
 import registry from '../../data/engine-versions.json';
 import { environmentLabel } from '../../lib/mugen/versions.mjs';
 import { describeDefault } from '../../lib/mugen/defaults.mjs';
-
-// このコンポーネントが受け取るプロパティの型定義
-export interface Props {
-  parameter?: any[];
-  collection: string;
-}
-const { parameter, collection } = Astro.props;
-
-// パラメータの型を日本語に変換するヘルパー関数
-function formatType(type: string): string {
-  switch (type) {
-    case "boolean": return "0か1";
-    case "int": return "整数";
-    case "float": return "浮動小数点数";
-    case "string": return "文字列";
-    default: return type;
-  }
-}
+export interface Props { parameter?: any[]; collection: string; }
+const { parameter = [], collection } = Astro.props;
+const parameters = parameter.filter(param => param.parameter);
+const policies = { expression: '式を指定可能', constant_only: '定数のみ', string_literal: '文字列・属性のリテラル', special_syntax: '専用構文' };
+const types = { boolean: '0か1', int: '整数', float: '浮動小数点数', string: '文字列' };
+const formatType = type => types[type.toLowerCase()] ?? type;
+// Keep separate anchors even for legacy alternative forms with the same spelling.
+const anchor = (param, index) => 'parameter-' + param.parameter.replace(/[^a-zA-Z0-9_.-]+/g, '-') + '-' + index;
 ---
 <section id="Parameter">
   <div class="section">
-    <h2>
-		{collection === 'triggers' 
-		  ? `引数`
-		  : `パラメーター`
-		}
-	</h2>
-    {/* パラメータが存在しない場合の表示 */}
-    {(!parameter || parameter.length === 0 || parameter[0].parameter === "") ? (
-      <div>なし</div>
-      <hr>
-    ) : (
-      // 各パラメータをループ処理して表示
-      parameter.map(param => (
-        <dl class="parameter">
-          <dt class="main">
-            {param.parameter}
-            {/* ★★★ ここから修正 ★★★ */}
-            {/* param.value が存在し、かつ空の配列でない場合のみ「= 値」を出力する */}
-            {param.value && param.value.length > 0 && param.value[0] !== "" && (
-              ` = ${param.value.join(', ')}`
-            )}
-            {/* ★★★ 修正ここまで ★★★ */}
-            ({(param.type ?? []).map(formatType).join(', ')})
-          </dt>
-          <dd>
-            <div class="description" set:html={param.description}></div>
-            <div class="option-value">
-              {/* --- ここからメディアセクション --- */}
-              {param.media && (
-                <div class="media">
-                  {/* YouTube動画 */}
-                  {param.media.youtube?.length > 0 && (
-                    <div class="video-group">
-                      {param.media.youtube.map((youtube: any) => (
-                        <div>
-                          <div>{youtube.title}</div>
-                          <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;">
-                            <iframe 
-                              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-                              src={`https://www.youtube.com/embed/${youtube.file}`} 
-                              frameborder="0" 
-                              allowfullscreen
-                            ></iframe>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* ローカルビデオ */}
-                  {param.media.video?.length > 0 && (
-                    <div class="video-group">
-                      {param.media.video.map((video: any) => (
-                        <div class="video image-frame">
-                          <div class="title">
-                            {/* パスはpublicディレクトリからの絶対パスに修正 */}
-                            <a href={`/videos/State/${video.file}.mp4`}>{video.title}</a>
-                          </div>
-                          <video controls>
-                            <source src={`/videos/State/${video.file}.mp4`} type="video/mp4" />
-                          </video>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* ローカル画像 */}
-                  {param.media.image?.length > 0 && (
-                    <div class="image-group">
-                      {param.media.image.map((image: any) => (
-                        <div class="image">
-                          <div>{image.title}</div>
-                          <div class="image-frame">
-                            {/* パスはpublicディレクトリからの絶対パスに修正 */}
-                            <img 
-                              src={`/images/State/${image.file}`} 
-                              alt={image.title} 
-                              width={image.width} 
-                              height={image.height} 
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-              {/* --- メディアセクションここまで --- */}
-              {param.possible_value && Array.isArray(param.possible_value[0]) ? (
-                <div class="possible-value">
-                  <table>
-                    <tr>
-                      <th set:html={param.possible_value[0][0]}></th>
-                      <th set:html={param.possible_value[0][1]}></th>
-                    </tr>
-                    {param.possible_value.slice(1).map(row => (
-                      <tr>
-                        <td set:html={row[0]}></td>
-                        <td set:html={row[1]}></td>
-                      </tr>
-                    ))}
-                  </table>
-                </div>
-              ) : param.possible_value && (
-                <div class="possible-value">
-                  選択可能な文字列: {param.possible_value.join(', ')}
-                </div>
-              )}
-
-              {(param.min_value?.filter(Boolean).length > 0 || param.max_value?.filter(Boolean).length > 0) && (
-                <div class="range-value">
-                {/* 最小値を表示する際も、空の値を除外してからjoinする */}
-                {param.min_value?.filter(Boolean).length > 0 && (
-                  <span class="min-value">
-                    最小値: {param.min_value.filter(Boolean).join(', ')}
-                  </span>
-                )}
-                
-                {/* 両方に有効な値がある場合のみカンマを表示 */}
-                {param.min_value?.filter(Boolean).length > 0 && param.max_value?.filter(Boolean).length > 0 && ','}
-                
-                {/* 最大値を表示する際も、空の値を除外してからjoinする */}
-                {param.max_value?.filter(Boolean).length > 0 && (
-                  <span class="max-value">
-                    最大値: {param.max_value.filter(Boolean).join(', ')}
-                  </span>
-                )}
-                </div>
-              )}
-              
-              {param.parameter_type === "required" && <div class="required-parameter">省略不可</div>}
-              {param.parameter_type === "instead" && <div class="instead-parameter">代替書式</div>}
-              {describeDefault(param) && <div class="default-value">省略時のデフォルト値： {describeDefault(param)}</div>}
-              {param.default?.some(item => item.evidence || item.environment) && <details>
-                <summary>省略時の値の根拠・適用範囲</summary>
-                {param.default.filter((item, index, items) => items.findIndex(other => JSON.stringify([other.evidence, other.environment]) === JSON.stringify([item.evidence, item.environment])) === index).map(item => <div>
-                  {item.environment && <div>{environmentLabel(item.environment, registry)}</div>}
-                  <Evidence evidence={item.evidence} />
-                </div>)}
-              </details>}
-              <Specification value={param} parameterNotes />
-            </div>
-          </dd>
-        </dl>
-        <hr>
-      ))
-    )}
+    <h2>{collection === 'triggers' ? '引数' : 'パラメーター'}</h2>
+    {parameters.length === 0 ? <p>なし</p> : <>
+      {parameters.length > 5 && <details class="parameter-directory">
+        <summary>パラメーター一覧 <span>{parameters.length}項目</span></summary>
+        <ul>{parameters.map((param, index) => <li><a href={'#' + anchor(param, index)}>{param.parameter}</a></li>)}</ul>
+      </details>}
+      <div class="parameter-list">{parameters.map((param, index) => (
+        <section class="parameter-entry" aria-labelledby={anchor(param, index)}>
+          <div class="parameter-heading">
+            <h3 id={anchor(param, index)}><code>{param.parameter}</code></h3>
+            {param.parameter_type === 'required' && <span class="parameter-requirement">省略不可</span>}
+            {param.parameter_type === 'instead' && <span class="parameter-requirement">代替書式</span>}
+          </div>
+          {param.value?.filter(Boolean).length > 0 && <p class="parameter-purpose">{param.value.join(', ')}</p>}
+          <div class="parameter-meta">
+            {param.type?.length > 0 && <div><span class="meta-label">型</span><span>{param.type.map(formatType).join(', ')}</span></div>}
+            {policies[param.expression_policy] && <div><span class="meta-label">指定</span><span>{policies[param.expression_policy]}</span></div>}
+            {describeDefault(param) && <div class="parameter-default"><span class="meta-label">省略時</span><span class="default-value">{describeDefault(param)}</span></div>}
+            {param.min_value?.filter(Boolean).length > 0 && <div><span class="meta-label">最小値</span><span>{param.min_value.filter(Boolean).join(', ')}</span></div>}
+            {param.max_value?.filter(Boolean).length > 0 && <div><span class="meta-label">最大値</span><span>{param.max_value.filter(Boolean).join(', ')}</span></div>}
+            {param.default?.filter(item => item.environment).map(item => <div class="parameter-default"><span class="meta-label">対象</span><span>{environmentLabel(item.environment, registry)}</span></div>)}
+          </div>
+          <div class="parameter-description" set:html={param.description} />
+          {param.media && <div class="media">
+            {param.media.youtube?.map(youtube => <figure>
+              {youtube.title && <figcaption>{youtube.title}</figcaption>}
+              <div class="video-embed"><iframe src={'https://www.youtube.com/embed/' + youtube.file} title={youtube.title || param.parameter} allowfullscreen /></div>
+            </figure>)}
+            {param.media.video?.map(video => <figure>
+              <figcaption><a href={'/videos/State/' + video.file + '.mp4'}>{video.title}</a></figcaption>
+              <video controls><source src={'/videos/State/' + video.file + '.mp4'} type="video/mp4" /></video>
+            </figure>)}
+            {param.media.image?.map(image => <figure>
+              {image.title && <figcaption>{image.title}</figcaption>}
+              <img src={'/images/State/' + image.file} alt={image.title} width={image.width} height={image.height} loading="lazy" />
+            </figure>)}
+          </div>}
+          {Array.isArray(param.possible_value?.[0]) ? <div class="possible-value">
+            <table>
+              <thead><tr>{param.possible_value[0].map(cell => <th scope="col" set:html={cell} />)}</tr></thead>
+              <tbody>{param.possible_value.slice(1).map(row => <tr>{row.map(cell => <td set:html={cell} />)}</tr>)}</tbody>
+            </table>
+          </div> : param.possible_value?.length > 0 && <p class="possible-value"><span class="meta-label">指定できる値</span> {param.possible_value.join(', ')}</p>}
+          <Specification value={param} parameterNotes showPolicy={false} />
+        </section>
+      ))}</div>
+    </>}
   </div>
 </section>

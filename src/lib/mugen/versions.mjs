@@ -6,8 +6,10 @@ export function versionLabel(id, registry) {
 }
 export function environmentLabel(environment, registry) {
   if (!environment) return '';
-  return [environment.engine, ...(environment.runtime ?? []), ...(environment.compatibility_profile ?? [])]
-    .filter(Boolean).map(id => versionLabel(id, registry)).join(' / ');
+  const runtime = environment.runtime?.length ? environment.runtime : [environment.engine];
+  const label = runtime.map(id => versionLabel(id, registry).replace(/ series$/, ' 系列')).join(' / ');
+  const profiles = (environment.compatibility_profile ?? []).map(id => versionLabel(id, registry)).join(' / ');
+  return label + (profiles ? `（互換設定: ${profiles}）` : '');
 }
 export function registryIssues(registry) {
   const issues = [];

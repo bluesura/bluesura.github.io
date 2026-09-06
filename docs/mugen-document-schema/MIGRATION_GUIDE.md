@@ -137,6 +137,8 @@ Classify the meaning, for example:
 
 The renderer may still present these under a compact combined human-facing section.
 
+The publication policy in `ADOPTION.md` now keeps `research` and `visibility: internal` notes out of HTML, independent of evidence status. Evidence metadata stays in JSON. Retention checks must distinguish an explicitly internal note from an accidental loss of public documentation.
+
 ## 9. Trigger-specific stress tests
 
 Schema v2 should be able to represent at least:

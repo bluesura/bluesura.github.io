@@ -1,56 +1,48 @@
 ---
-import Evidence from './Evidence.astro';
 import Notes from './Notes.astro';
 import registry from '../../data/engine-versions.json';
 import { environmentLabel } from '../../lib/mugen/versions.mjs';
 import { describeDefault } from '../../lib/mugen/defaults.mjs';
-import { effectiveNotes } from '../../lib/mugen/normalize.mjs';
-const { value, parameterNotes = false } = Astro.props;
-const policies = { expression: '式を指定可能', constant_only: '定数のみ', string_literal: '文字列・属性のリテラル', special_syntax: '専用構文', unknown: '式の可否は未確認' };
+import { publicNotes } from '../../lib/mugen/normalize.mjs';
+const { value, parameterNotes = false, showPolicy = true } = Astro.props;
+const policies = { expression: '式を指定可能', constant_only: '定数のみ', string_literal: '文字列・属性のリテラル', special_syntax: '専用構文' };
 const constraints = { one_of: 'いずれか一つ以上が必要', mutually_exclusive: '同時指定不可', requires: '依存関係', effective_when: '有効になる条件', alias: '同義・代替書式' };
 const kinds = { nullary: '引数なし', function: '関数形式', old_style: '旧式構文', special_form: '特殊な評価形式' };
 ---
-{value.environment && <p class="environment">対象: {environmentLabel(value.environment, registry)}</p>}
-{value.expression_policy && <div>{policies[value.expression_policy]}</div>}
-{value.return_type && <div>戻り値の型: {value.return_type.join(', ')}</div>}
-{value.syntax_kind && <div>構文の種類: {kinds[value.syntax_kind]}</div>}
-<Evidence evidence={value.evidence} />
-{value.constraints?.length > 0 && <ul>{value.constraints.map(constraint => <li>
-  {constraints[constraint.kind]}: {constraint.parameters.join(' / ')}
-  {constraint.description && <div>{constraint.description}</div>}
-  {constraint.environment && <div>{environmentLabel(constraint.environment, registry)}</div>}
-  <Evidence evidence={constraint.evidence} />
-</li>)}</ul>}
-{value.variants?.length > 0 && <div class="variants">
-  {value.variants.map(variant => <details open>
-    <summary>{environmentLabel(variant.environment, registry)}</summary>
-    {variant.type && <div>型: {variant.type.join(', ')}</div>}
-    {variant.return_type && <div>戻り値の型: {variant.return_type.join(', ')}</div>}
-    {variant.expression_policy && <div>{policies[variant.expression_policy]}</div>}
-    {variant.default && <div>省略時: {describeDefault(variant)}</div>}
-    {variant.default?.filter(item => item.environment || item.evidence).map(item => <div>
-      <span>{describeDefault({ default: [item] })}: </span>
-      {item.environment && <span>{environmentLabel(item.environment, registry)}</span>}
-      <Evidence evidence={item.evidence} />
-    </div>)}
-    {variant.description && <div set:html={variant.description} />}
-    {variant.syntax_kind && <div>{kinds[variant.syntax_kind]}</div>}
-    {variant.syntax && <pre>{variant.syntax.join('\n')}</pre>}
-    {variant.arguments && <ul>{variant.arguments.map(argument => <li>
-      {argument.name} ({argument.type.join(', ')})
-      {argument.description && <div set:html={argument.description} />}
-      {argument.expression_policy && <div>{policies[argument.expression_policy]}</div>}
-      {argument.environment && <div>{environmentLabel(argument.environment, registry)}</div>}
-      <Evidence evidence={argument.evidence} />
-    </li>)}</ul>}
-    {variant.possible_value && <ul>{variant.possible_value.map(choice => <li set:html={Array.isArray(choice) ? choice.join(': ') : choice} />)}</ul>}
-    <Evidence evidence={variant.evidence} />
-  </details>)}
+{(value.environment || (showPolicy && policies[value.expression_policy]) || value.return_type || value.syntax_kind) && <div class="specification-summary">
+  {value.environment && <div><span class="meta-label">対象</span> {environmentLabel(value.environment, registry)}</div>}
+  {showPolicy && policies[value.expression_policy] && <div>{policies[value.expression_policy]}</div>}
+  {value.return_type && <div><span class="meta-label">戻り値</span> <code>{value.return_type.join(', ')}</code></div>}
+  {value.syntax_kind && <div><span class="meta-label">構文</span> {kinds[value.syntax_kind]}</div>}
 </div>}
-{parameterNotes && <Notes notes={effectiveNotes(value)} />}
-<style>
-  .variants { margin: .75em 0; overflow-wrap: anywhere; }
-  details { padding: .5em .75em; border-left: 3px solid #6b8299; margin: .5em 0; }
-  summary { cursor: pointer; font-weight: bold; }
-  pre { white-space: pre-wrap; }
-</style>
+{value.constraints?.length > 0 && <ul class="specification-constraints">{value.constraints.map(constraint => <li>
+  <strong>{constraints[constraint.kind]}</strong>: <code>{constraint.parameters.join(' / ')}</code>
+  {constraint.description && <div>{constraint.description}</div>}
+  {constraint.environment && <div class="environment">{environmentLabel(constraint.environment, registry)}</div>}
+</li>)}</ul>}
+{value.variants?.length > 0 && <div class="specification-variants">
+  <p class="detail-label">バージョンによる違い</p>
+  <ul>{value.variants.map(variant => <li>
+    <div class="variant-environment">{environmentLabel(variant.environment, registry)}</div>
+    <div class="variant-body">
+      {variant.type && <div><span class="meta-label">型</span> <code>{variant.type.join(', ')}</code></div>}
+      {variant.return_type && <div><span class="meta-label">戻り値</span> <code>{variant.return_type.join(', ')}</code></div>}
+      {policies[variant.expression_policy] && <div>{policies[variant.expression_policy]}</div>}
+      {variant.default && <div><span class="meta-label">省略時</span> {describeDefault(variant)}</div>}
+      {variant.default?.filter(item => item.environment).map(item => <div class="environment">
+        {describeDefault({ default: [item] })}: {environmentLabel(item.environment, registry)}
+      </div>)}
+      {variant.description && <div set:html={variant.description} />}
+      {variant.syntax_kind && <div>{kinds[variant.syntax_kind]}</div>}
+      {variant.syntax && <pre>{variant.syntax.join('\n')}</pre>}
+      {variant.arguments && <ul>{variant.arguments.map(argument => <li>
+        <code>{argument.name}</code> ({argument.type.join(', ')})
+        {argument.description && <div set:html={argument.description} />}
+        {policies[argument.expression_policy] && <div>{policies[argument.expression_policy]}</div>}
+        {argument.environment && <div>{environmentLabel(argument.environment, registry)}</div>}
+      </li>)}</ul>}
+      {variant.possible_value && <ul>{variant.possible_value.map(choice => <li set:html={Array.isArray(choice) ? choice.join(': ') : choice} />)}</ul>}
+    </div>
+  </li>)}</ul>
+</div>}
+{parameterNotes && <Notes notes={publicNotes(value)} />}

@@ -85,21 +85,23 @@
             }
 
             const lowerToken = token.toLowerCase();
+            // Tokens become HTML text: preserve angle brackets in placeholders and CNS comments.
+            const escaped = token.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
             if (token.startsWith(';') || token.startsWith('"')) {
-                html += `<span style="color:#4CAF50">${token}</span>`;
+                html += `<span style="color:#4CAF50">${escaped}</span>`;
             }
             else if (token.startsWith('[') && !hasEquals) {
-                html += `<span style="color:#f44336">${token}</span>`;
+                html += `<span style="color:#f44336">${escaped}</span>`;
                 hasEquals = false;
                 isStateType = false;
             }
             else if (/^-?\d/.test(token)) {
-                html += `<span style="color:#03A9F4">${token}</span>`;
+                html += `<span style="color:#03A9F4">${escaped}</span>`;
             }
             else if (/[=\+\-\*/\^&|!<>(),%\[\]]/.test(token[0]) || [":=","!=","<=",">=","&&","||","**","^^"].includes(token)) {
                 if (token === '=') hasEquals = true;
-                html += `<span style="color:#9E9E9E">${token}</span>`;
+                html += `<span style="color:#9E9E9E">${escaped}</span>`;
             }
             else {
                 // ▼ ここから優先度の調整部分 ▼
@@ -114,7 +116,7 @@
 
                     if (j < tokens.length && /^[xy]$/i.test(tokens[j])) {
                         // ベース名を Trigger 色
-                        html += `<span style="color:#FFC107">${token}</span>`;
+                        html += `<span style="color:#FFC107">${escaped}</span>`;
                         // 間の空白はそのまま
                         for (let k = i + 1; k < j; k++) {
                             html += tokens[k];
@@ -129,16 +131,16 @@
 
                 // （1）左辺の param 名の判定
                 if (!hasEquals && !preferTrigger && paramNames.has(lowerToken)) {
-                    html += `<span style="color:#E91E63">${token}</span>`;
+                    html += `<span style="color:#E91E63">${escaped}</span>`;
                     if (lowerToken === 'type') isStateType = true;
                 }
                 // Trigger1, Victory1 など
                 else if (!hasEquals && /^(trigger[1-9][0-9]*)|(victory[1-9][0-9]*)$/i.test(lowerToken)) {
-                    html += `<span style="color:#E91E63">${token}</span>`;
+                    html += `<span style="color:#E91E63">${escaped}</span>`;
                 }
                 // StateController 名
                 else if (isStateType && stateControllers.has(lowerToken)) {
-                    html += `<span style="color:#f44336">${token}</span>`;
+                    html += `<span style="color:#f44336">${escaped}</span>`;
                     isStateType = false;
                 }
                 // （2）Trigger 関数/変数（単体トークン）
@@ -150,26 +152,26 @@
                         (!hasEquals && !paramNames.has(lowerToken)) // 左辺だが param 名ではない
                     )
                 ) {
-                    html += `<span style="color:#FFC107">${token}</span>`;
+                    html += `<span style="color:#FFC107">${escaped}</span>`;
                 }
                 // リダイレクタ
                 else if (hasEquals && redirectors.has(lowerToken)) {
-                    html += `<span style="color:#3F51B5">${token}</span>`;
+                    html += `<span style="color:#3F51B5">${escaped}</span>`;
                 }
                 // 定数
                 else if (hasEquals && constants.has(lowerToken)) {
-                    html += `<span style="color:#9E9E9E">${token}</span>`;
+                    html += `<span style="color:#9E9E9E">${escaped}</span>`;
                 }
                 // Lifebar 系
                 else if (!hasEquals && (
                     lifebarDotParamRegex.test(lowerToken) ||
                     lifebarSingleParamRegex.test(lowerToken)
                 )) {
-                    html += `<span style="color:#E91E63">${token}</span>`;
+                    html += `<span style="color:#E91E63">${escaped}</span>`;
                 }
                 // その他
                 else {
-                    html += `<span>${token}</span>`;
+                    html += `<span>${escaped}</span>`;
                 }
             }
         }

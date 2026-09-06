@@ -2,14 +2,17 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { documents, pathFromRoot } from './files.mjs';
 import { isCnsLiteral } from '../../src/lib/mugen/defaults.mjs';
+import { isPublicNote } from '../../src/lib/mugen/normalize.mjs';
 
 const rows = documents().map(({ path, url, collection, data }) => {
   const inScope = data.category === 'state' || collection === 'triggers';
   const parameters = data.parameter ?? [];
   const mapped = new Set((data.notes ?? []).map(note => note.legacy_index));
   const unresolved = [];
+  const internalNotes = [];
   function walk(value, path = '') {
     if (!value || typeof value !== 'object') return;
+    if (value.content && !isPublicNote(value)) internalNotes.push(path);
     if (['unknown'].includes(value.kind)) unresolved.push({ path, reason: 'unknown default' });
     if (value.expression_policy === 'unknown') unresolved.push({ path: `${path}/expression_policy`, reason: 'expression policy unknown' });
     for (const key of ['evidence', 'load_priority_evidence']) if (['unverified', 'probable', 'conflicting'].includes(value[key]?.status)) unresolved.push({ path: `${path}/${key}`, reason: value[key].status });
@@ -31,7 +34,7 @@ const rows = documents().map(({ path, url, collection, data }) => {
     unmapped_legacy_notes: !inScope ? [] : (data.version ?? []).flatMap((_, index) => mapped.has(index) ? [] : [index]),
     load_priority_unknown: !inScope ? [] : parameters.flatMap((p, index) => p.load_priority?.some(value => value.includes('?')) ? [index] : []),
     introduced_in: !inScope ? undefined : data.page.introduced_in ?? null,
-    undisplayed_legacy_fields: undisplayed, unresolved,
+    undisplayed_legacy_fields: undisplayed, internal_notes: internalNotes, unresolved,
   };
 });
 const count = stage => rows.filter(row => row.stage === stage).length;
@@ -42,6 +45,7 @@ const summary = {
   outside_current_migration: count('outside_current_migration'),
   unmapped_legacy_notes: rows.reduce((n, row) => n + row.unmapped_legacy_notes.length, 0),
   pages_with_undisplayed_legacy_fields: rows.filter(row => row.undisplayed_legacy_fields.length).length,
+  internal_notes: rows.reduce((n, row) => n + row.internal_notes.length, 0),
 };
 const directory = pathFromRoot('artifacts/mugen');
 mkdirSync(directory, { recursive: true });

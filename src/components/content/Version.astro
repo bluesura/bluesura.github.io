@@ -1,11 +1,13 @@
 ---
 import Notes from './Notes.astro';
+import { isPublicNote } from '../../lib/mugen/normalize.mjs';
 const { notes = [] } = Astro.props;
+const visible = notes.filter(isPublicNote);
 ---
-{notes.length > 0 && <>
+{visible.length > 0 && <>
   <section id="Version"><div class="section">
     <h2>仕様・バグ・エラー・変更点</h2>
-    <Notes notes={notes} />
+    <Notes notes={visible} />
   </div></section>
   <hr>
 </>}

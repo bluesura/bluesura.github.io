@@ -15,7 +15,7 @@ import LoadParameter from '../components/content/LoadParameter.astro';
 import Quote from '../components/content/Quote.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import Specification from '../components/content/Specification.astro';
-import { normalizeDocument } from '../lib/mugen/normalize.mjs';
+import { normalizeDocument, isPublicNote } from '../lib/mugen/normalize.mjs';
 import { versionLabel } from '../lib/mugen/versions.mjs';
 import registry from '../data/engine-versions.json';
 import ignoreHitPause from '../data/common/IgnoreHitPause.json';
@@ -28,7 +28,7 @@ export interface Props {
 const { entry, pageCategory } = Astro.props;
 const content = normalizeDocument(entry.data, [ignoreHitPause, persistent]);
 const parameter = content.parameter;
-const introduced = content.page.introduced_in === null ? '未確認' : content.page.introduced_in ? versionLabel(content.page.introduced_in, registry) : content.page.version;
+const introduced = content.page.introduced_in === null ? '' : content.page.introduced_in ? versionLabel(content.page.introduced_in, registry) : content.page.version;
 
 // --- ページ固有のロジック ---
 /*
@@ -53,7 +53,7 @@ const contentBasePath = entry.collection === 'state-controllers' ? 'State' : 'Tr
   url={Astro.url}
 >
   <div id="main-inner">
-    <article class="entry hentry js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
+    <article class="entry hentry mugen-document js-entry-article date-first autopagerize_page_element chars-200 words-100 mode-hatena entry-odd">
       
 <header class="entry-header" >
   <div style={{
@@ -111,6 +111,14 @@ const contentBasePath = entry.collection === 'state-controllers' ? 'State' : 'Tr
 
       <!-- メインコンテンツ部分 -->
       <div class="entry-content">
+        <nav class="document-nav" aria-label="このページの内容">
+          <a href="#Parameter">{entry.collection === 'triggers' ? '引数' : 'パラメーター'}</a>
+          {content.resolvedNotes.some(isPublicNote) && <a href="#Version">仕様・注意点</a>}
+          {content.category === 'state' && <a href="#DefaultParameter">コピペ用</a>}
+          {content.code_sample?.length > 0 && <a href="#CodeSample">使用例</a>}
+          {content.category === 'state' && <a href="#LoadParameter">読み込み順</a>}
+          {content.quote?.length > 0 && <a href="#Quote">引用記事</a>}
+        </nav>
         
         {/* コンテンツタイプに応じて表示を切り替え */}
         {entry.collection === 'state-controllers' && <Description content={content} />}

@@ -2,6 +2,8 @@
 
 > 2026-09-06: 旧形式を維持したまま v2 の任意フィールドを段階導入しています。新しい入力規則・新旧の優先順位は [v2 採用仕様](../../docs/mugen-document-schema/ADOPTION.md)、移行状況は [STATUS.md](../../docs/mugen-document-schema/STATUS.md) を参照してください。以下の旧フィールドは引き続き有効です。
 
+> 2026-09-07: `research` と `visibility: internal` の注記、`evidence` / `load_priority_evidence` は JSON に保持し、HTML へ出力しません。検証済みと公開可否は別に管理します。具体的な既定値の書式を曖昧な説明へ置き換えないでください。
+
 このドキュメントは、`mugen-template-all.json` の各フィールドに入力すべき情報を定義した仕様書です。
 LLM（大規模言語モデル）への指示や、ドキュメントデータベース構築時のリファレンスとして利用してください。
 

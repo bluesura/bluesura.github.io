@@ -93,16 +93,16 @@
 .mugen-document .load-order-table code { background: none; padding: 0; color: inherit; }
 .mugen-document .supplement { font-size: .84rem; color: var(--doc-muted); }
 .mugen-document .code { margin-block: 1rem; max-width: 100%; border-radius: 4px; }
-.mugen-document .code ul { font-size: 13px; line-height: 1.8; color: #e4ebf2; background: #212936; padding: .9rem 1rem .9rem 3.2rem; border: 1px solid #344354; border-left-width: 1px; box-shadow: none; }
-.mugen-document .code li { padding-left: .75rem; line-height: 1.85; margin: 0; border-left-color: #485869; }
-.mugen-document .code li::marker { color: #9caabd; }
+.mugen-document .code ul { font-size: 13px; line-height: 1.8; color: #f3f4f6; background: #111827; padding: .9rem 1rem .9rem 3.2rem; border: 1px solid #344354; border-left-width: 1px; box-shadow: none; }
+.mugen-document .code li { padding-left: .75rem; line-height: 1.85; margin: 0; border-left-color: #526174; }
+.mugen-document .code li::marker { color: #aab8ca; }
 .mugen-document .code code { font-size: inherit; color: inherit; background: none; padding: 0; }
-.mugen-document .code li span[style*="#4CAF50"] { color: #9dd0a7 !important; }
-.mugen-document .code li span[style*="#E91E63"] { color: #ff9aba !important; }
-.mugen-document .code li span[style*="#f44336"] { color: #ffa39b !important; }
-.mugen-document .code li span[style*="#3F51B5"] { color: #a6baff !important; }
-.mugen-document .code li span[style*="#03A9F4"] { color: #81d3ff !important; }
-.mugen-document .code li span[style*="#9E9E9E"] { color: #c0ccd9 !important; }
+.mugen-document .code li span[style*="#4CAF50"] { color: #7ee787 !important; }
+.mugen-document .code li span[style*="#E91E63"] { color: #ff6fae !important; }
+.mugen-document .code li span[style*="#f44336"] { color: #ff7b72 !important; }
+.mugen-document .code li span[style*="#3F51B5"] { color: #b9a1ff !important; }
+.mugen-document .code li span[style*="#03A9F4"] { color: #39c5ff !important; }
+.mugen-document .code li span[style*="#9E9E9E"] { color: #d1dae5 !important; }
 .mugen-document figure { margin: 1rem 0; }
 .mugen-document figcaption { font-size: .85rem; color: var(--doc-muted); margin-bottom: .4rem; }
 .mugen-document .entry-content :is(img, video) { max-width: 100%; height: auto; }

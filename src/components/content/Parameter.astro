@@ -23,19 +23,22 @@ const anchor = (param, index) => 'parameter-' + param.parameter.replace(/[^a-zA-
       <div class="parameter-list">{parameters.map((param, index) => (
         <section class="parameter-entry" aria-labelledby={anchor(param, index)}>
           <div class="parameter-heading">
-            <h3 id={anchor(param, index)}><code>{param.parameter}</code></h3>
+            <h3 id={anchor(param, index)}>
+              <code>{param.parameter}</code>{param.value?.filter(Boolean).length > 0 && <span class="parameter-purpose">{' = ' + param.value.join(', ')}</span>}
+            </h3>
             {param.parameter_type === 'required' && <span class="parameter-requirement">省略不可</span>}
             {param.parameter_type === 'instead' && <span class="parameter-requirement">代替書式</span>}
           </div>
-          {param.value?.filter(Boolean).length > 0 && <p class="parameter-purpose">{param.value.join(', ')}</p>}
-          <div class="parameter-meta">
-            {param.type?.length > 0 && <div><span class="meta-label">型</span><span>{param.type.map(formatType).join(', ')}</span></div>}
-            {policies[param.expression_policy] && <div><span class="meta-label">指定</span><span>{policies[param.expression_policy]}</span></div>}
-            {describeDefault(param) && <div class="parameter-default"><span class="meta-label">省略時</span><span class="default-value">{describeDefault(param)}</span></div>}
-            {param.min_value?.filter(Boolean).length > 0 && <div><span class="meta-label">最小値</span><span>{param.min_value.filter(Boolean).join(', ')}</span></div>}
-            {param.max_value?.filter(Boolean).length > 0 && <div><span class="meta-label">最大値</span><span>{param.max_value.filter(Boolean).join(', ')}</span></div>}
-            {param.default?.filter(item => item.environment).map(item => <div class="parameter-default"><span class="meta-label">対象</span><span>{environmentLabel(item.environment, registry)}</span></div>)}
-          </div>
+          <table class="parameter-meta" aria-labelledby={anchor(param, index)}>
+            <tbody>
+              {param.type?.length > 0 && <tr><th scope="row">型</th><td>{param.type.map(formatType).join(', ')}</td></tr>}
+              {policies[param.expression_policy] && <tr><th scope="row">指定</th><td>{policies[param.expression_policy]}</td></tr>}
+              {describeDefault(param) && <tr><th scope="row">省略時</th><td class="default-value">{describeDefault(param)}</td></tr>}
+              {param.min_value?.filter(Boolean).length > 0 && <tr><th scope="row">最小値</th><td>{param.min_value.filter(Boolean).join(', ')}</td></tr>}
+              {param.max_value?.filter(Boolean).length > 0 && <tr><th scope="row">最大値</th><td>{param.max_value.filter(Boolean).join(', ')}</td></tr>}
+              {param.default?.filter(item => item.environment).map(item => <tr><th scope="row">対象</th><td>{environmentLabel(item.environment, registry)}</td></tr>)}
+            </tbody>
+          </table>
           <div class="parameter-description" set:html={param.description} />
           {param.media && <div class="media">
             {param.media.youtube?.map(youtube => <figure>

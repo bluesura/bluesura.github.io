@@ -44,13 +44,10 @@
 .mugen-document .parameter-entry:first-child { padding-top: 0; }
 .mugen-document .parameter-entry:last-child { border-bottom: 0; padding-bottom: 0; }
 .mugen-document .parameter-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: .5rem .8rem; }
-.mugen-document .parameter-heading h3 { margin: 0; color: #165a8c; font-size: 1.18rem; }
+.mugen-document .parameter-heading h3 { margin: 0; color: #165a8c; font-size: 1.1rem; overflow-wrap: anywhere; }
 .mugen-document .parameter-heading code { padding: 0; background: none; color: inherit; font-size: inherit; font-weight: 650; }
 .mugen-document .parameter-requirement { font-size: .78rem; font-weight: 600; color: #785009; background: #fff5dc; border-radius: 3px; padding: .1rem .5rem; }
-.mugen-document .parameter-purpose { margin: .2rem 0 .85rem; color: var(--doc-muted); font-size: .9rem; }
-.mugen-document .parameter-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4rem 1.1rem; margin: .8rem 0 1rem; padding: .75rem 1rem; border-radius: 4px; background: var(--doc-wash); font-size: .86rem; line-height: 1.7; }
-.mugen-document .parameter-meta > div { display: grid; grid-template-columns: 3.4em minmax(0, 1fr); gap: .5rem; min-width: 0; overflow-wrap: anywhere; }
-.mugen-document .parameter-default { grid-column: 1 / -1; }
+.mugen-document .parameter-purpose { color: var(--doc-ink); font-weight: 500; }
 .mugen-document .meta-label { color: var(--doc-muted); font-size: .84rem; font-weight: 500; margin-right: .45em; }
 .mugen-document .default-value { color: var(--doc-ink); }
 .mugen-document .parameter-description > :last-child { margin-bottom: .75rem; }
@@ -62,6 +59,10 @@
 .mugen-document .possible-value table td:first-child,
 .mugen-document .possible-value table th:first-child { width: 24%; }
 .mugen-document .entry-content td p:last-child { margin-bottom: 0; }
+.mugen-document #Parameter .parameter-meta { table-layout: fixed; font-size: .88rem; }
+.mugen-document #Parameter .parameter-meta th { width: 5.5em; background: var(--doc-wash); border-right: 1px solid var(--doc-line); font-weight: 500; }
+.mugen-document #Parameter .parameter-meta :is(th, td) { padding: .5rem .75rem; }
+.mugen-document #Parameter .parameter-meta tr { background: #fff; }
 .mugen-document .entry-content blockquote { font-style: normal; margin: 0; padding: 0 0 0 .9rem; border-left: 3px solid var(--doc-line); }
 .mugen-document .entry-content blockquote::before { content: none; }
 .mugen-document .specification-summary { display: flex; flex-wrap: wrap; gap: .35rem 1.25rem; font-size: .86rem; margin: .85rem 0; }
@@ -84,6 +85,7 @@
 .mugen-document [data-note-kind="warning"] .note-kind,
 .mugen-document [data-note-kind="error"] .note-kind { background: #fff5dc; color: #785009; }
 .mugen-document .note-body { font-size: .94rem; overflow-wrap: anywhere; }
+.mugen-document .note-body code { background: none; color: inherit; padding: 0; border-radius: 0; }
 .mugen-document .note-body > :last-child { margin-bottom: 0; }
 .mugen-document .note-body blockquote { padding: 0; border: 0; }
 .mugen-document .load-order-table { max-width: 100%; }
@@ -111,8 +113,7 @@
 @media (max-width: 641px) {
   .mugen-document .entry-content { padding: 20px 18px; font-size: 15px; }
   .mugen-document .entry-content h2 { font-size: 1.18rem; }
-  .mugen-document .parameter-meta { grid-template-columns: minmax(0, 1fr); padding: .75rem; }
-  .mugen-document .parameter-heading h3 { font-size: 1.1rem; }
+  .mugen-document .parameter-heading h3 { font-size: 1rem; }
   .mugen-document .entry-content :is(th, td) { padding: .6rem; font-size: .84rem; }
   .mugen-document .specification-variants > ul > li { display: block; }
   .mugen-document .variant-environment { padding-block: .5rem; }

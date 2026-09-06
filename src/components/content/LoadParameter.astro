@@ -1,8 +1,10 @@
 ---
+import Evidence from './Evidence.astro';
 export interface Props {
   parameter?: {
     parameter: string;
-    load_priority: string[];
+    load_priority?: string[];
+    load_priority_evidence?: Record<string, unknown>;
   }[];
 }
 const { parameter } = Astro.props;
@@ -16,11 +18,14 @@ const { parameter } = Astro.props;
         <p>
           {parameter.map((param, index) => (
             <>
-              {param.parameter}({param.load_priority.join(', ')})
+              {param.parameter}({(param.load_priority ?? ['?']).join(', ')})
               {index < parameter.length - 1 ? ' => ' : ''}
             </>
           ))}
         </p>
+        {parameter.filter(param => param.load_priority_evidence).map(param => <div>
+          <strong>{param.parameter}</strong><Evidence evidence={param.load_priority_evidence} />
+        </div>)}
       </div>
     )}
 

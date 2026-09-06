@@ -1,6 +1,11 @@
 ---
 // src/components/content/Parameter.astro (メディア表示機能を追加)
 import { Image } from 'astro:assets';
+import Specification from './Specification.astro';
+import Evidence from './Evidence.astro';
+import registry from '../../data/engine-versions.json';
+import { environmentLabel } from '../../lib/mugen/versions.mjs';
+import { describeDefault } from '../../lib/mugen/defaults.mjs';
 
 // このコンポーネントが受け取るプロパティの型定義
 export interface Props {
@@ -44,7 +49,7 @@ function formatType(type: string): string {
               ` = ${param.value.join(', ')}`
             )}
             {/* ★★★ 修正ここまで ★★★ */}
-            ({param.type.map(formatType).join(', ')})
+            ({(param.type ?? []).map(formatType).join(', ')})
           </dt>
           <dd>
             <div class="description" set:html={param.description}></div>
@@ -154,7 +159,15 @@ function formatType(type: string): string {
               
               {param.parameter_type === "required" && <div class="required-parameter">省略不可</div>}
               {param.parameter_type === "instead" && <div class="instead-parameter">代替書式</div>}
-              {param.default_value && param.default_value[0] !== "" && <div class="default-value">省略時のデフォルト値： {param.default_value.join(', ')}</div>}
+              {describeDefault(param) && <div class="default-value">省略時のデフォルト値： {describeDefault(param)}</div>}
+              {param.default?.some(item => item.evidence || item.environment) && <details>
+                <summary>省略時の値の根拠・適用範囲</summary>
+                {param.default.filter((item, index, items) => items.findIndex(other => JSON.stringify([other.evidence, other.environment]) === JSON.stringify([item.evidence, item.environment])) === index).map(item => <div>
+                  {item.environment && <div>{environmentLabel(item.environment, registry)}</div>}
+                  <Evidence evidence={item.evidence} />
+                </div>)}
+              </details>}
+              <Specification value={param} parameterNotes />
             </div>
           </dd>
         </dl>

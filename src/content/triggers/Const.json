@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.25",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "Const",
   "category": "trigger",
@@ -380,19 +382,51 @@
   "quote": [
     {
       "title": "Const - Trigger Reference(version 2002.04.14)",
-      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Const"
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Const",
+      "id": "const-legacy-1"
     },
     {
       "title": "Const - Trigger Reference(version 1.0)",
-      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#const"
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#const",
+      "id": "const-legacy-2"
     },
     {
       "title": "Const - Trigger Reference(version 1.1)",
-      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#const"
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#const",
+      "id": "const-legacy-3"
     },
     {
       "title": "５１２オーバーフローバグ表 - lunaの倉庫",
-      "url": "https://web.archive.org/web/20160930164807/http://blog-imgs-48-origin.fc2.com/l/u/n/lunatic284/20140218214013fe3.txt"
+      "url": "https://web.archive.org/web/20160930164807/http://blog-imgs-48-origin.fc2.com/l/u/n/lunatic284/20140218214013fe3.txt",
+      "id": "const-legacy-4"
+    },
+    {
+      "id": "const-local-1.0",
+      "title": "Const — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#const",
+      "source_type": "official_document"
+    },
+    {
+      "id": "const-local-1.1b1",
+      "title": "Const — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#const",
+      "source_type": "official_document"
+    }
+  ],
+  "notes": [],
+  "syntax_kind": "function",
+  "return_type": [
+    "int",
+    "float"
+  ],
+  "arguments": [
+    {
+      "name": "定数名",
+      "type": [
+        "string"
+      ],
+      "legacy_index": 0,
+      "expression_policy": "special_syntax"
     }
   ]
 }

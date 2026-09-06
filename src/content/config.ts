@@ -1,21 +1,19 @@
 // src/content/config.ts
 
 import { defineCollection, z } from 'astro:content';
+import { createDocumentSchema } from '../lib/mugen/schema.mjs';
+import registry from '../data/engine-versions.json';
 
 // ステートコントローラーのコレクション
 const stateControllerCollection = defineCollection({
   type: 'data',
-  schema: z.object({
-    state: z.string(),
-  }).passthrough(), 
+  schema: createDocumentSchema('state-controllers', registry),
 });
 
 // Triggerのコレクション
 const triggerCollection = defineCollection({
   type: 'data',
-  schema: z.object({
-    trigger: z.string(),
-  }).passthrough(),
+  schema: createDocumentSchema('triggers', registry),
 });
 
 // LifebarのJSONコレクションを定義し、エクスポートする

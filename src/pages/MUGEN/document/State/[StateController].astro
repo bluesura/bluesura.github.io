@@ -13,10 +13,6 @@ const { entry } = Astro.props;
 const content = entry.data;
 const pageCategory = entry.data.page.category?.[1] || 'MUGEN State Controller';
 
-import ignoreHitPauseData from '../../../../data/common/IgnoreHitPause.json';
-import persistentData from '../../../../data/common/Persistent.json';
-const commonParameters = [ignoreHitPauseData, persistentData];
-const allParameters = [...(content.parameter || []), ...commonParameters];
 
 ---
-<ArticleLayout entry={entry} pageCategory={pageCategory} parameter={allParameters} />
+<ArticleLayout entry={entry} pageCategory={pageCategory} />

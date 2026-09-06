@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2025.12.25",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "IfElse",
   "category": "trigger",
@@ -18,10 +20,10 @@
   "description": "<p><code>IfElse</code> は3引数の条件演算（疑似三項演算子）です。<code>exp_cond</code> が0以外なら <code>exp_true</code>、0なら <code>exp_false</code> の値を返します。</p><p>MUGEN 1.0/1.1 系では、返り値の型は選択された式（<code>exp_true</code> / <code>exp_false</code>）に従います。数値パラメータに使う場合は、両分岐とも数値式に揃えるのが安全です。</p>",
   "images": [
     {
-        "src": "mugen-ifelse-vs-cond-side-effects.png",
-        "width": "640",
-        "height": "300",
-        "alt": "MUGENのIfElseとCondの動作比較。IfElseは全引数を評価するため副作用（代入）がすべて実行されvar(1)が3になるが、Condは短絡評価により必要な式のみ評価されるためvar(1)が2になることを示す図解。"
+      "src": "mugen-ifelse-vs-cond-side-effects.png",
+      "width": "640",
+      "height": "300",
+      "alt": "MUGENのIfElseとCondの動作比較。IfElseは全引数を評価するため副作用（代入）がすべて実行されvar(1)が3になるが、Condは短絡評価により必要な式のみ評価されるためvar(1)が2になることを示す図解。"
     }
   ],
   "syntax": [
@@ -100,23 +102,127 @@
   "quote": [
     {
       "title": "IfElse - Trigger Reference (version 2002.04.14)",
-      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IfElse"
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IfElse",
+      "id": "ifelse-legacy-1"
     },
     {
       "title": "IfElse - Trigger Reference (version 1.0 / Updated 2010-06-29)",
-      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ifelse-math"
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ifelse-math",
+      "id": "ifelse-legacy-2"
     },
     {
       "title": "IfElse - Trigger Reference (version 1.1 beta 1)",
-      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ifelse-math"
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ifelse-math",
+      "id": "ifelse-legacy-3"
     },
     {
       "title": "IfElse - M.U.G.E.N Wiki (archived)",
-      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IfElse"
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IfElse",
+      "id": "ifelse-legacy-4"
     },
     {
       "title": "M.U.G.E.N Update History (Cond added in 1.0 RC6)",
-      "url": "https://www.elecbyte.com/mugendocs/history.html"
+      "url": "https://www.elecbyte.com/mugendocs/history.html",
+      "id": "ifelse-legacy-5"
+    },
+    {
+      "id": "ifelse-local-1.0",
+      "title": "IfElse — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#ifelse-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ifelse-local-1.1b1",
+      "title": "IfElse — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#ifelse-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ifelse-history",
+      "title": "保存済み Elecbyte 1.0 更新履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html",
+      "source_type": "official_history"
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p><code>IfElse</code> は <b>3引数すべてを事前に評価</b> します。そのため、<code>:=</code> による代入や警告を出す計算などの副作用は、条件の真偽に関わらず発生します。副作用を避けたい場合は短絡評価の <code>Cond</code> を使用してください。</p><ul><li><code>IfElse(var(1):=1, var(1):=var(1)+1, var(1):=var(1)+1)</code> → <code>var(1)</code> は最終的に 3</li><li><code>Cond(var(1):=1, var(1):=var(1)+1, var(1):=var(1)+1)</code> → <code>var(1)</code> は最終的に 2</li></ul>",
+      "legacy_index": 0,
+      "evidence": {
+        "status": "probable",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ifelse-local-1.0",
+          "ifelse-local-1.1b1"
+        ]
+      }
+    },
+    {
+      "kind": "version_change",
+      "content": "<p><code>Cond</code> が追加され、短絡評価（選択された分岐のみ評価）が可能になりました。</p>",
+      "legacy_index": 1,
+      "change": "added",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "ifelse-history"
+        ]
+      },
+      "at": "mugen-1.0-rc6"
+    },
+    {
+      "kind": "compatibility",
+      "content": "<p>旧式ドキュメントでは、式が評価不能な場合に <code>SFalse</code> を返す旨の記述があります（MUGEN 1.0+ の <code>bottom</code> に相当）。</p>",
+      "legacy_index": 2,
+      "evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": [
+          "ifelse-legacy-4"
+        ]
+      }
+    }
+  ],
+  "syntax_kind": "special_form",
+  "return_type": [
+    "int",
+    "float"
+  ],
+  "arguments": [
+    {
+      "name": "exp_cond",
+      "type": [
+        "int",
+        "float"
+      ],
+      "legacy_index": 0,
+      "expression_policy": "expression"
+    },
+    {
+      "name": "exp_true",
+      "type": [
+        "int",
+        "float",
+        "string"
+      ],
+      "legacy_index": 1,
+      "expression_policy": "expression"
+    },
+    {
+      "name": "exp_false",
+      "type": [
+        "int",
+        "float",
+        "string"
+      ],
+      "legacy_index": 2,
+      "expression_policy": "expression"
     }
   ]
 }

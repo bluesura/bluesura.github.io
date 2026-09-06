@@ -7,7 +7,12 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "mugen:baseline": "node scripts/mugen/capture-baseline.mjs",
+    "mugen:validate": "node scripts/mugen/validate.mjs",
+    "mugen:test": "node --test tests/mugen/*.test.mjs",
+    "mugen:check-html": "node scripts/mugen/check-html.mjs",
+    "mugen:inventory": "node scripts/mugen/inventory.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.9",
@@ -19,6 +24,7 @@
   },
   "devDependencies": {
     "@duckdb/duckdb-wasm": "^1.30.0",
-    "lindera-wasm": "^1.2.0"
+    "lindera-wasm": "^1.2.0",
+    "parse5": "^7.3.0"
   }
 }

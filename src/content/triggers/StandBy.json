@@ -1,36 +1,44 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "StandBy",
-        "target": "",
-        "category": [
-            "タッグ",
-            "タッグ時の控え状態判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
-    },
-    "category": "trigger",
-    "trigger": "StandBy",
-    "summary": "<p>TagOutが使用されたかどうかを返します。</p>",
-    "syntax": [
-        "StandBy"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "StandBy",
+    "target": "",
+    "category": [
+      "タッグ",
+      "タッグ時の控え状態判定"
     ],
-    "description": "TagOutが使用されたかどうかを返します。",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "",
-            "url": ""
-        }
-    ]
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "StandBy",
+  "summary": "<p>TagOutが使用されたかどうかを返します。</p>",
+  "syntax": [
+    "StandBy"
+  ],
+  "description": "TagOutが使用されたかどうかを返します。",
+  "code_sample": [
+    {
+      "title": "",
+      "code": [
+        ""
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "",
+      "url": ""
+    }
+  ],
+  "notes": [],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "unknown"
+  ],
+  "arguments": []
 }

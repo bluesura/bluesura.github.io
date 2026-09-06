@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  quote?: { title: string; url: string }[];
+  quote?: { id?: string; title: string; url: string; source_type?: string }[];
 }
 const { quote } = Astro.props;
 ---
@@ -10,7 +10,7 @@ const { quote } = Astro.props;
       <h2>引用記事</h2>
       <ul>
         {quote.map(item => (
-          <li>
+          <li id={item.id ? `source-${item.id}` : undefined}>
             <cite><a href={item.url} target="_blank" rel="external">{item.title}</a></cite>
           </li>
         ))}

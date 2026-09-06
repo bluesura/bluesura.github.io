@@ -1,0 +1,38 @@
+---
+import Evidence from './Evidence.astro';
+import registry from '../../data/engine-versions.json';
+import { versionLabel, environmentLabel } from '../../lib/mugen/versions.mjs';
+const { notes = [] } = Astro.props;
+const labels = { behavior: '仕様', version_change: '変更履歴', bug: 'バグ', warning: '警告', error: 'エラー', compatibility: '互換性', undocumented: '未文書化', research: '調査', deprecated: '非推奨', limitation: '制約' };
+const changes = { added: '追加', changed: '変更', fixed: '修正', removed: '削除', deprecated: '非推奨化' };
+---
+{notes.length > 0 && <table class="specification-notes"><tbody>
+  {notes.map(note => <tr>
+    <td>
+      {note.kind && <strong>{labels[note.kind]}</strong>}
+      {note.change && <div>{changes[note.change]}</div>}
+      {note.at && <div>{versionLabel(note.at, registry)}</div>}
+      {note.environment && <div>{environmentLabel(note.environment, registry)}</div>}
+      {note.legacy?.no && note.legacy.no !== labels[note.kind] && <div>{note.legacy.no}</div>}
+    </td>
+    <td>
+      {note.message && <div><code>{note.message}</code></div>}
+      {note.condition && <div>{note.condition}</div>}
+      {note.legacy?.blockquote ? <blockquote cite={note.legacy.blockquote} set:html={note.content} /> : <Fragment set:html={note.content} />}
+      {note.legacy && note.legacy.content !== note.content && <details><summary>移行前の記述</summary><div set:html={note.legacy.content} /></details>}
+      <Evidence evidence={note.evidence} />
+    </td>
+  </tr>)}
+</tbody></table>}
+<style>
+  .specification-notes { width: 100%; table-layout: fixed; overflow-wrap: anywhere; }
+  :global(#Version) .specification-notes td:first-child { width: 23%; white-space: normal; }
+  .specification-notes td { vertical-align: top; white-space: normal; }
+  @media (max-width: 600px) {
+    .specification-notes, .specification-notes tbody, .specification-notes tr { display: block; }
+    .specification-notes tr { margin-bottom: 1em; }
+    :global(#Version) .specification-notes td,
+    :global(#Version) .specification-notes td:first-child,
+    .specification-notes td { display: block; width: auto; }
+  }
+</style>

@@ -1,35 +1,11 @@
 ---
-export interface Props {
-  version?: {
-    no: string;
-    content: string;
-    blockquote?: string;
-  }[];
-}
-
-const { version } = Astro.props;
+import Notes from './Notes.astro';
+const { notes = [] } = Astro.props;
 ---
-{version && version.length > 0 && (
-  <section id="Version">
-    <div class="section">
-      <h2>仕様・バグ・エラー・変更点</h2>
-      <table>
-        <tbody>
-          {version.map(item => (
-            <tr>
-              <td>{item.no}</td>
-              <td>
-                {item.blockquote ? (
-                  <blockquote cite={item.blockquote} set:html={item.content}></blockquote>
-                ) : (
-                  <Fragment set:html={item.content} />
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </section>
+{notes.length > 0 && <>
+  <section id="Version"><div class="section">
+    <h2>仕様・バグ・エラー・変更点</h2>
+    <Notes notes={notes} />
+  </div></section>
   <hr>
-)}
+</>}

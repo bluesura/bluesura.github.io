@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.02",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "AnimElem",
   "category": "trigger",
@@ -18,10 +20,10 @@
   "description": "<p><code>AnimElem</code> は、現在再生中のアニメーションで「指定した要素（エレメント）」に入った瞬間、または要素開始からの経過フレーム数を比較して真偽（0/1）を返すトリガーです。</p><ul><li><b>書式1</b>: 要素 <code>value1</code> に入った最初の1フレームのみ真（<code>AnimElem = value1, = 0</code> と同等）。</li><li><b>書式2</b>: 要素 <code>value1</code> の開始からの経過フレームを <code>[oper] value2</code> で比較（実質的に <code>AnimElemTime(value1) [oper] value2</code> と同等の用途）。</li></ul><p>要素番号は0ではなく<b>1から数えます</b>。</p>",
   "images": [
     {
-        "src": "mugen-trigger-animelem-specification.png",
-        "width": "640",
-        "height": "480",
-        "alt": "MUGENのAnimElemトリガー解説図。瞬間判定（書式1）と経過時間比較（書式2）の違い、引数に計算式が使用不可である注意点、ループアニメーション時の対策についてまとめています。"
+      "src": "mugen-trigger-animelem-specification.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのAnimElemトリガー解説図。瞬間判定（書式1）と経過時間比較（書式2）の違い、引数に計算式が使用不可である注意点、ループアニメーション時の対策についてまとめています。"
     }
   ],
   "syntax": [
@@ -196,23 +198,132 @@
   "quote": [
     {
       "title": "AnimElem - Trigger Reference (MUGEN 1.0)",
-      "url": "https://www.elecbyte.com/mugendocs/trigger.html#animelem"
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#animelem",
+      "id": "animelem-legacy-1"
     },
     {
       "title": "AnimElem - Trigger Reference (MUGEN 1.1 Beta 1)",
-      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#animelem"
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#animelem",
+      "id": "animelem-legacy-2"
     },
     {
       "title": "Expressions / Irregular triggers (MUGEN 1.1 Beta 1)",
-      "url": "https://www.elecbyte.com/mugendocs-11b1/cns.html"
+      "url": "https://www.elecbyte.com/mugendocs-11b1/cns.html",
+      "id": "animelem-legacy-3"
     },
     {
       "title": "IKEMEN GO Issue: PalFX on explods（AnimElem使用例と挙動差の報告）",
-      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/407"
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/407",
+      "id": "animelem-legacy-4"
     },
     {
       "title": "Trigger Reference (MUGEN 2002.04.14 Beta docs mirror)",
-      "url": "https://mugenarchive.com/docs/beta/trigger.html"
+      "url": "https://mugenarchive.com/docs/beta/trigger.html",
+      "id": "animelem-legacy-5"
+    },
+    {
+      "id": "animelem-local-1.0",
+      "title": "AnimElem — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#animelem",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animelem-local-1.1b1",
+      "title": "AnimElem — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#animelem",
+      "source_type": "official_document"
+    }
+  ],
+  "notes": [
+    {
+      "kind": "limitation",
+      "content": "<p>ループ区間のあるアニメで、<b>looptime が有限</b>の場合、2周目以降の「ループ先頭フレーム」では <code>AnimElem = 1</code> が反応しません。毎周反応させたいなら <code>AnimElem = 1 || AnimTime = 0</code> のように書きます。</p>",
+      "legacy_index": 0,
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "animelem-local-1.0",
+          "animelem-local-1.1b1"
+        ]
+      }
+    },
+    {
+      "kind": "limitation",
+      "content": "<p><code>AnimElem</code> は旧式（***）のため、<code>AnimElem = (1+1)</code> のように引数へ式を入れられません。また <code>AnimElem = 5 + 4</code> は「<code>AnimElem=5</code> というトリガー名の評価 + 4」と解釈され得ます。可変の要素番号が必要なら <code>AnimElemTime(5+4)</code> のように置き換えてください。</p>",
+      "legacy_index": 1,
+      "evidence": {
+        "status": "probable",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "animelem-local-1.0",
+          "animelem-local-1.1b1"
+        ]
+      }
+    },
+    {
+      "kind": "error",
+      "content": "<p>指定した要素番号が無効（大きすぎる／小さすぎる等）な場合、<code>bottom</code> を返します（多くの場合、条件式としては偽扱いになります）。</p>",
+      "legacy_index": 2,
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "animelem-local-1.0",
+          "animelem-local-1.1b1"
+        ]
+      }
+    },
+    {
+      "kind": "compatibility",
+      "content": "<p>IKEMEN GO でも <code>AnimElem</code> は一般に利用されますが、バージョン差や状況（例: hitpause 周り）でタイミング差が報告されることがあります。移植時は実機での挙動確認を推奨します。</p>",
+      "legacy_index": 3,
+      "evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": [
+          "animelem-legacy-4"
+        ]
+      },
+      "environment": {
+        "engine": "ikemen-go"
+      }
+    }
+  ],
+  "syntax_kind": "old_style",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [
+    {
+      "name": "value1",
+      "type": [
+        "int"
+      ],
+      "legacy_index": 0,
+      "expression_policy": "constant_only"
+    },
+    {
+      "name": "[oper]",
+      "type": [
+        "string"
+      ],
+      "legacy_index": 1,
+      "expression_policy": "special_syntax"
+    },
+    {
+      "name": "value2",
+      "type": [
+        "int"
+      ],
+      "legacy_index": 2,
+      "expression_policy": "constant_only"
     }
   ]
 }

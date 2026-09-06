@@ -1,61 +1,187 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "TagIn",
-		"target": "自分とタッグパートナー",
-		"category": ["タッグ操作","タッグパートナーとの交代"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "TagIn",
-	"description": "<p>パートナーが存在する場合に使用可能。<code>StandBy</code>の値は変更されません。実行者の<code>Ctrl</code>は継続され、パートナーの<code>Ctrl</code>は<code>0</code>に変更されます。パートナーが存在しない場合はパラメータを読み込ません。</p><p><code>StateNo</code>でループ構造にすると「<code>stopped after 2500 loops</code>」が発生します。そのため2500ループエラー対策に<code>NumPartner</code>や変数での管理が必要です。</p><p>またヘルパー内部では動作しません。同じステートでループした場合は、<code>Time</code>がリセットされない可能性があります。</p><p>使用例としては、「<a href=\"https://www.nicovideo.jp/watch/sm12241526\">白黒スタイリッシュ</a>のダブルカットイン」や「<code>TagIn</code>で味方を<code>[StateDef 110]</code>へ移動させ、味方に攻撃をヒットさせターゲット確保して、<code>LifeAdd,LifeSet</code>を記述したステートへ移動させ蘇生する」ことに使用します。</p>",
-	"category": "state",
-	"associated_state": ["TagOut","ChangeState"],
-	"associated_trigger": ["StandBy","Time","NumPartner"],
-
-	"version": [
-		{"no": "警告文", "content": "ATTEMPTED CHANGE TO NEGATIVE ANI:PartnerStateNoに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "StateNo",
-			"value": ["ステート番号"],
-			"type": ["int"],
-			"description": "<p>プレイヤー自身を指定したステート番号に移動します。</p>",
-			"min_value": [""],
-			"max_value": ["2147483647"],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "PartnerStateNo",
-			"value": ["パートナーのステート番号"],
-			"type": ["int"],
-			"description": "<p>パートナーをパートナー自身のステートに移動させます。省略した場合、<code>StateNo</code>と同じステートに移動。また、警告文が表示されます。</p>",
-			"min_value": [""],
-			"max_value": ["2147483647"],
-			"parameter_type": "optional",
-			"default_value": ["-1 ;<code>StateNo</code>と同じステートに移動します。"],
-			"load_priority": ["2"]
-		}
-	],
-
-	"quote": [
-		{"title": "type=tagin - lunaの倉庫", "url": "http://lunatic284.blog90.fc2.com/blog-entry-2757.html"},
-		{"title": "taginの仕様 - 制作日記", "url": "http://drabs.blog40.fc2.com/blog-entry-731.html"},
-		{"title": "TagIn - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-602.html"},
-		{"title": "TagIn - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-602.html"},
-		{"title": "TagIn - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1056.html"},
-		{"title": "パラメータ優先順位、StandBy、tagin、tagout - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-2413.html"},
-		{"title": "tagin - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-2436.html"},
-		{"title": "tagin - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-2436.html"},
-		{"title": "親捏造：演出への利用、taginの本来の使い方 - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-2167.html"},
-		{"title": "タッグ対応 - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1776.html"},
-		{"title": "エラー：味方蘇生 - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-869.html"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "TagIn",
+    "target": "自分とタッグパートナー",
+    "category": [
+      "タッグ操作",
+      "タッグパートナーとの交代"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "TagIn",
+  "description": "<p>パートナーが存在する場合に使用可能。<code>StandBy</code>の値は変更されません。実行者の<code>Ctrl</code>は継続され、パートナーの<code>Ctrl</code>は<code>0</code>に変更されます。パートナーが存在しない場合はパラメータを読み込ません。</p><p><code>StateNo</code>でループ構造にすると「<code>stopped after 2500 loops</code>」が発生します。そのため2500ループエラー対策に<code>NumPartner</code>や変数での管理が必要です。</p><p>またヘルパー内部では動作しません。同じステートでループした場合は、<code>Time</code>がリセットされない可能性があります。</p><p>使用例としては、「<a href=\"https://www.nicovideo.jp/watch/sm12241526\">白黒スタイリッシュ</a>のダブルカットイン」や「<code>TagIn</code>で味方を<code>[StateDef 110]</code>へ移動させ、味方に攻撃をヒットさせターゲット確保して、<code>LifeAdd,LifeSet</code>を記述したステートへ移動させ蘇生する」ことに使用します。</p>",
+  "category": "state",
+  "associated_state": [
+    "TagOut",
+    "ChangeState"
+  ],
+  "associated_trigger": [
+    "StandBy",
+    "Time",
+    "NumPartner"
+  ],
+  "version": [
+    {
+      "no": "警告文",
+      "content": "ATTEMPTED CHANGE TO NEGATIVE ANI:PartnerStateNoに-1以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "StateNo",
+      "value": [
+        "ステート番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>プレイヤー自身を指定したステート番号に移動します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "required",
+          "display": "値を指定してください",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    },
+    {
+      "parameter": "PartnerStateNo",
+      "value": [
+        "パートナーのステート番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>パートナーをパートナー自身のステートに移動させます。省略した場合、<code>StateNo</code>と同じステートに移動。また、警告文が表示されます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "-1 ;<code>StateNo</code>と同じステートに移動します。"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "derived",
+          "display": "-1 ;StateNoと同じステートに移動します。",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "type=tagin - lunaの倉庫",
+      "url": "http://lunatic284.blog90.fc2.com/blog-entry-2757.html",
+      "id": "tagin-legacy-1"
+    },
+    {
+      "title": "taginの仕様 - 制作日記",
+      "url": "http://drabs.blog40.fc2.com/blog-entry-731.html",
+      "id": "tagin-legacy-2"
+    },
+    {
+      "title": "TagIn - 凶悪MUGEN_IRC_ログ倉庫",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-602.html",
+      "id": "tagin-legacy-3"
+    },
+    {
+      "title": "TagIn - 凶悪MUGEN_IRC_ログ倉庫",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-602.html",
+      "id": "tagin-legacy-4"
+    },
+    {
+      "title": "TagIn - 凶悪MUGEN_IRC_ログ倉庫",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1056.html",
+      "id": "tagin-legacy-5"
+    },
+    {
+      "title": "パラメータ優先順位、StandBy、tagin、tagout - 凶悪MUGEN_IRC_ログ倉庫",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-2413.html",
+      "id": "tagin-legacy-6"
+    },
+    {
+      "title": "tagin - 凶悪MUGEN_IRC_ログ倉庫",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-2436.html",
+      "id": "tagin-legacy-7"
+    },
+    {
+      "title": "tagin - 凶悪MUGEN_IRC_ログ倉庫",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-2436.html",
+      "id": "tagin-legacy-8"
+    },
+    {
+      "title": "親捏造：演出への利用、taginの本来の使い方 - 凶悪MUGEN_IRC_ログ倉庫",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-2167.html",
+      "id": "tagin-legacy-9"
+    },
+    {
+      "title": "タッグ対応 - 凶悪MUGEN_IRC_ログ倉庫",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1776.html",
+      "id": "tagin-legacy-10"
+    },
+    {
+      "title": "エラー：味方蘇生 - 凶悪MUGEN_IRC_ログ倉庫",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-869.html",
+      "id": "tagin-legacy-11"
+    }
+  ],
+  "notes": [
+    {
+      "kind": "warning",
+      "content": "ATTEMPTED CHANGE TO NEGATIVE ANI:PartnerStateNoに-1以下",
+      "legacy_index": 0,
+      "evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      }
+    }
+  ]
 }

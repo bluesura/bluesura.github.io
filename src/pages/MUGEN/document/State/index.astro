@@ -3,6 +3,9 @@
 
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { effectiveParameters } from '../../../../lib/mugen/parameters.mjs';
+import ignoreHitPause from '../../../../data/common/IgnoreHitPause.json';
+import persistent from '../../../../data/common/Persistent.json';
 
 // 1. StateControllerの全データを取得
 const allStates = await getCollection('state-controllers');
@@ -53,11 +56,11 @@ function formatParam(param: string, maxLength = 27): string {
                     <li>[StateDef 『正の整数』]</li>
                   )}
                   
-                  {content.parameter?.map(param => {
+                  {effectiveParameters(content, [ignoreHitPause, persistent]).map(param => {
                     if (!param.parameter) return null; // 空のパラメータはスキップ
                     return (
                         <li>
-                            {formatParam(param.parameter)}= {param.value.join(', ')}
+                            {formatParam(param.parameter)}= {param.value?.join(', ') ?? ''}
                         </li>
                     )
                   })}

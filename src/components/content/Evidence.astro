@@ -1,0 +1,17 @@
+---
+import registry from '../../data/engine-versions.json';
+import { versionLabel } from '../../lib/mugen/versions.mjs';
+const { evidence } = Astro.props;
+const labels = { confirmed: '確認済み', probable: '可能性が高い', unverified: '未検証', conflicting: '資料・検証結果に相違あり' };
+const basisLabels = { official_document: '公式資料', official_history: '公式更新履歴', runtime_test: '実機検証', community_documentation: 'コミュニティ資料', reverse_engineering: '解析', source_code: 'ソースコード', cross_version_test: 'バージョン比較検証' };
+---
+{evidence && <div class="evidence">
+  <strong>{labels[evidence.status]}</strong>
+  {evidence.basis?.length > 0 && <span>（{evidence.basis.map(basis => basisLabels[basis]).join('・')}）</span>}
+  {evidence.tested_on?.length > 0 && <span> 検証ビルド: {evidence.tested_on.map(id => versionLabel(id, registry)).join(', ')}</span>}
+  {evidence.source_refs?.map((id, index) => <a href={`#source-${id}`}>出典{index + 1}</a>)}
+</div>}
+<style>
+  .evidence { font-size: .9em; margin: .5em 0; overflow-wrap: anywhere; }
+  .evidence a { margin-inline-start: .6em; }
+</style>

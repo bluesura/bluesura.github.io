@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2025.12.25",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "MoveContact",
   "category": "trigger",
@@ -18,10 +20,10 @@
   "description": "<p><b>MoveContact</b> は、P1（実行者）の攻撃が相手（P2）に「接触」したかを返します。接触には <b>ヒット</b> と <b>ガード</b> の両方が含まれます。</p><p>このトリガーは攻撃ステート（一般に <code>MoveType = A</code>）でのみ有効です。</p><ul><li>接触したフレームは <code>1</code> を返します。</li><li>以後、P1がヒットポーズ等で<b>停止していない</b>更新フレームごとに <code>+1</code> されます（停止（<code>PauseTime</code>）中は増加しません）。</li><li>接触していない場合は <code>0</code> を返します。</li><li>この仕様は、<code>MoveGuarded</code>、<code>MoveHit</code>、<code>MoveReversed</code>で共通です。</li></ul><p><code>MoveContact = 1</code> は「接触直後」を拾う定番条件です。ただしヒットポーズ中は値が増えないため、ヒットポーズがある場合はその間も <code>= 1</code> のままになります。</p><p>ステート遷移すると Move* 系の接触情報は通常リセットされます。直前ステートの接触情報を次ステートへ持ち越したい場合は、遷移先 <code>StateDef</code> に <code>MoveHitPersist = 1</code> を指定します。</p><p>互換性のため、接触の有無判定は <code>MoveContact</code>（非0）/ <code>!MoveContact</code>（0）で書くのが安全です（<code>MoveContact = 1</code> 固定の比較は意図通りに動かない場合があります）。</p>",
   "images": [
     {
-        "src": "mugen-move-contact-triggers-flow.png",
-        "width": "640",
-        "height": "580",
-        "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解"
+      "src": "mugen-move-contact-triggers-flow.png",
+      "width": "640",
+      "height": "580",
+      "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解"
     }
   ],
   "syntax": [
@@ -67,24 +69,144 @@
   ],
   "quote": [
     {
-        "title": "MoveContact - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveContact"
+      "title": "MoveContact - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveContact",
+      "id": "movecontact-legacy-1"
     },
     {
       "title": "MoveContact - Trigger Reference (Elecbyte / MUGEN 1.0)",
-      "url": "https://www.elecbyte.com/mugendocs/trigger.html#movecontact"
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#movecontact",
+      "id": "movecontact-legacy-2"
     },
     {
       "title": "MoveContact - Trigger Reference (Elecbyte / MUGEN 1.1b1)",
-      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#MoveContact"
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#MoveContact",
+      "id": "movecontact-legacy-3"
     },
     {
       "title": "movehitpersist - The CNS format (Elecbyte)",
-      "url": "https://www.elecbyte.com/mugendocs/cns.html"
+      "url": "https://www.elecbyte.com/mugendocs/cns.html",
+      "id": "movecontact-legacy-4"
     },
     {
       "title": "Ikemen GO Wiki - Triggers (new)（MoveContact参照箇所あり）",
-      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29"
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29",
+      "id": "movecontact-legacy-5"
+    },
+    {
+      "id": "movecontact-local-1.0",
+      "title": "MoveContact — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#movecontact",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movecontact-local-1.1b1",
+      "title": "MoveContact — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#movecontact",
+      "source_type": "official_document"
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>戻り値の型がboolean int (1 or 0)。</p>",
+      "legacy_index": 0,
+      "evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-dos"
+        ]
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>戻り値の型がint。</p>",
+      "legacy_index": 1,
+      "evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "winmugen"
+        ]
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>接触時に <code>1</code>、以後はP1が停止していないフレームごとに増加するカウンタを返します（停止中は増加しません）。</p><p>この「停止中は増えない」性質により、<code>MoveContact = 1</code> はヒットポーズ中も成立しやすい点に注意してください。</p>",
+      "legacy_index": 2,
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "movecontact-local-1.0",
+          "movecontact-local-1.1b1"
+        ]
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0-final",
+          "mugen-1.1-b1"
+        ]
+      }
+    }
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [],
+  "variants": [
+    {
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-dos"
+        ]
+      },
+      "return_type": [
+        "int"
+      ],
+      "description": "旧記述: 0 / 1 の真偽値。対象ビルドの再検証は未実施。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      }
+    },
+    {
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0-final",
+          "mugen-1.1-b1"
+        ]
+      },
+      "return_type": [
+        "int"
+      ],
+      "description": "接触と経過時間を表す整数カウンター。停止中の扱いは下記の記述を参照。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "movecontact-local-1.0",
+          "movecontact-local-1.1b1"
+        ]
+      }
     }
   ]
 }

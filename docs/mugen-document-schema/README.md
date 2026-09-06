@@ -8,11 +8,16 @@ The **currently active** JSON-format reference remains:
 
 - `src/data/about_mugen-template-all.md`
 
-The files in this directory describe the proposed v2 structure and the procedure for adopting it. They are not active runtime/schema rules merely because they exist here.
+`ADOPTION.md` records the optional v2 fields now implemented in the shared schema and renderer. The broader `SCHEMA_V2_DRAFT.md` remains a proposal; fields are not active merely because they appear in that draft.
 
 When implementation begins, update the active source, schema, renderer, and these documents together so that they do not drift.
 
 ## Files
+
+- `ADOPTION.md` — implemented optional v2 additions, precedence rules, registry IDs, and checks.
+- `STATUS.md` — migration progress and unresolved specifications.
+- `MIGRATION_LEDGER.md` — field correspondence, retained uncertainty, and the next rollout gate.
+- `IMPLEMENTATION_PLAN.md` — repository assessment and approved staged implementation plan.
 
 - `SCHEMA_V2_DRAFT.md` — proposed data model for State Controller / Trigger documents.
 - `VERSION_MODEL.md` — rules for MUGEN runtime-build and compatibility-profile versioning.

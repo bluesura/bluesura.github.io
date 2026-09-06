@@ -14,14 +14,21 @@ import CodeSample from '../components/content/CodeSample.astro';
 import LoadParameter from '../components/content/LoadParameter.astro';
 import Quote from '../components/content/Quote.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import Specification from '../components/content/Specification.astro';
+import { normalizeDocument } from '../lib/mugen/normalize.mjs';
+import { versionLabel } from '../lib/mugen/versions.mjs';
+import registry from '../data/engine-versions.json';
+import ignoreHitPause from '../data/common/IgnoreHitPause.json';
+import persistent from '../data/common/Persistent.json';
 
 export interface Props {
   entry: CollectionEntry<'state-controllers'> | CollectionEntry<'triggers'>;
   pageCategory: string;
-  parameter: any[];
 }
-const { entry, pageCategory, parameter } = Astro.props;
-const content = entry.data;
+const { entry, pageCategory } = Astro.props;
+const content = normalizeDocument(entry.data, [ignoreHitPause, persistent]);
+const parameter = content.parameter;
+const introduced = content.page.introduced_in === null ? '未確認' : content.page.introduced_in ? versionLabel(content.page.introduced_in, registry) : content.page.version;
 
 // --- ページ固有のロジック ---
 /*
@@ -91,9 +98,9 @@ const contentBasePath = entry.collection === 'state-controllers' ? 'State' : 'Tr
         {content.page.category && (
           <div class="category">
             {content.page.category.join(' > ')}
-            {(content.page.version || content.page.target) && ' | '}
-            {content.page.version && `実装されたバージョン: ${content.page.version}`}
-            {content.page.version && content.page.target && ' | '}
+            {(introduced || content.page.target) && ' | '}
+            {introduced && `実装されたバージョン: ${introduced}`}
+            {introduced && content.page.target && ' | '}
             {content.page.target && `対象: ${content.page.target}`}
           </div>
         )}
@@ -126,8 +133,9 @@ const contentBasePath = entry.collection === 'state-controllers' ? 'State' : 'Tr
         )}
 
         {/* 各コンテンツパーツのコンポーネントを呼び出す */}
+        <Specification value={content} />
         <Parameter parameter={parameter} collection={entry.collection}/>
-        <Version version={content.version} />
+        <Version notes={content.resolvedNotes} />
         {content.category === "state" && <DefaultParameter content={content} />}
         <QandA qanda={content.qanda} />
         <CodeSample code_sample={content.code_sample} />

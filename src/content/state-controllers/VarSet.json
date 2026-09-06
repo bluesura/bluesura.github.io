@@ -1,100 +1,423 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "VarSet",
-		"target": "ステート実行者自身",
-		"category": ["変数", "指定変数に値を代入"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "VarSet",
-	"description": "<p>変数を指定値に変更します。整数・小数どちらの変数も扱えますが、同時に指定することはできません。</p>",
-	"category": "state",
-
-	"version": [
-		{"no": "-", "content": "var(番号),fvar(番号)で大文字を使用するとエラーが発生します。"},
-		{"no": "警告文", "content": "SET VAR OUT OF RANGE VAR(-1): varなら-1以下または60以上、fvarなら-1以下または40以上の番号に値を代入（対象がfvarであっても警告文にはVARと表示される。）（最後の数値は指定した数値が表示される）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "v",
-			"value": ["整数変数番号"],
-			"type": ["int"],
-			"description": "<p>変更する整数変数の番号を0～59から指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [""],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "value",
-			"value": ["整数増加量"],
-			"type": ["int"],
-			"description": "<p>代入値を整数で指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [""],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "; fv",
-			"value": ["浮動小数変数番号"],
-			"type": ["int"],
-			"description": "<p>変更する浮動小数変数の番号を0～39から指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [""],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "; value",
-			"value": ["浮動小数変数増加量"],
-			"type": ["float"],
-			"description": "<p>代入値を浮動小数で指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [""],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "; var(番号)",
-			"value": ["整数増減量"],
-			"type": ["int", "int"],
-			"description": "<p>vとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "instead",
-			"default_value": [""],
-			"load_priority": ["2 ;先に()内がロードされます。"]
-		},
-		{
-			"parameter": "; fvar(番号)",
-			"value": ["小数増減量"],
-			"type": ["int", "float"],
-			"description": "<p>fvとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "instead",
-			"default_value": [""],
-			"load_priority": ["2 ;先に()内がロードされます。"]
-		}
-	],
-
-	"quote": [
-		{"title": "VarSet - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#VarSet"},
-		{"title": "VarSet - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#varset"},
-		{"title": "VarSet - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#varset"},
-		{"title": "VarSet - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VarSet"},
-		{"title": "VarSet - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VarSet&protocol=http"},
-		{"title": "VarSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#VarSet"},
-		{"title": "VarSet - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "VarSet",
+    "target": "ステート実行者自身",
+    "category": [
+      "変数",
+      "指定変数に値を代入"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "VarSet",
+  "description": "<p>変数を指定値に変更します。整数・小数どちらの変数も扱えますが、同時に指定することはできません。</p>",
+  "category": "state",
+  "version": [
+    {
+      "no": "-",
+      "content": "var(番号),fvar(番号)で大文字を使用するとエラーが発生します。"
+    },
+    {
+      "no": "警告文",
+      "content": "SET VAR OUT OF RANGE VAR(-1): varなら-1以下または60以上、fvarなら-1以下または40以上の番号に値を代入（対象がfvarであっても警告文にはVARと表示される。）（最後の数値は指定した数値が表示される）",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "v",
+      "value": [
+        "整数変数番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>変更する整数変数の番号を0～59から指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "未確認（旧データは空欄）",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    },
+    {
+      "parameter": "value",
+      "value": [
+        "整数増加量"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>代入値を整数で指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "未確認（旧データは空欄）",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    },
+    {
+      "parameter": "; fv",
+      "value": [
+        "浮動小数変数番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>変更する浮動小数変数の番号を0～39から指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "未確認（旧データは空欄）",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    },
+    {
+      "parameter": "; value",
+      "value": [
+        "浮動小数変数増加量"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>代入値を浮動小数で指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "未確認（旧データは空欄）",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    },
+    {
+      "parameter": "; var(番号)",
+      "value": [
+        "整数増減量"
+      ],
+      "type": [
+        "int",
+        "int"
+      ],
+      "description": "<p>vとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "instead",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "2 ;先に()内がロードされます。"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "未確認（旧データは空欄）",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    },
+    {
+      "parameter": "; fvar(番号)",
+      "value": [
+        "小数増減量"
+      ],
+      "type": [
+        "int",
+        "float"
+      ],
+      "description": "<p>fvとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "instead",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "2 ;先に()内がロードされます。"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "未確認（旧データは空欄）",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "VarSet - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#VarSet",
+      "id": "varset-legacy-1"
+    },
+    {
+      "title": "VarSet - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#varset",
+      "id": "varset-legacy-2"
+    },
+    {
+      "title": "VarSet - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#varset",
+      "id": "varset-legacy-3"
+    },
+    {
+      "title": "VarSet - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VarSet",
+      "id": "varset-legacy-4"
+    },
+    {
+      "title": "VarSet - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VarSet&protocol=http",
+      "id": "varset-legacy-5"
+    },
+    {
+      "title": "VarSet - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#VarSet",
+      "id": "varset-legacy-6"
+    },
+    {
+      "title": "VarSet - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm",
+      "id": "varset-legacy-7"
+    },
+    {
+      "id": "varset-local-1.0",
+      "title": "VarSet — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#varset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "varset-local-1.1b1",
+      "title": "VarSet — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#varset",
+      "source_type": "official_document"
+    }
+  ],
+  "notes": [
+    {
+      "kind": "error",
+      "content": "var(番号),fvar(番号)で大文字を使用するとエラーが発生します。",
+      "legacy_index": 0,
+      "evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      }
+    },
+    {
+      "kind": "warning",
+      "content": "SET VAR OUT OF RANGE VAR(-1): varなら-1以下または60以上、fvarなら-1以下または40以上の番号に値を代入（対象がfvarであっても警告文にはVARと表示される。）（最後の数値は指定した数値が表示される）",
+      "legacy_index": 1,
+      "evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "kind": "one_of",
+      "parameters": [
+        "v",
+        "; fv",
+        "; var(番号)",
+        "; fvar(番号)"
+      ],
+      "description": "整数版・小数版・各代替書式から、使用する書式を選びます。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varset-local-1.0",
+          "varset-local-1.1b1"
+        ]
+      }
+    },
+    {
+      "kind": "mutually_exclusive",
+      "parameters": [
+        "v",
+        "; fv",
+        "; var(番号)",
+        "; fvar(番号)"
+      ],
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varset-local-1.0",
+          "varset-local-1.1b1"
+        ]
+      }
+    },
+    {
+      "kind": "requires",
+      "parameters": [
+        "v",
+        "value"
+      ],
+      "description": "v 形式では整数用 value も指定します。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varset-local-1.0",
+          "varset-local-1.1b1"
+        ]
+      }
+    },
+    {
+      "kind": "requires",
+      "parameters": [
+        "; fv",
+        "; value"
+      ],
+      "description": "fv 形式では小数用 value も指定します。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varset-local-1.0",
+          "varset-local-1.1b1"
+        ]
+      }
+    }
+  ]
 }

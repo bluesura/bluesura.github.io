@@ -7,6 +7,8 @@
 > この文書は、現行 `about_mugen-template-all.md` を破壊せず段階的に移行するための v2 設計案です。
 > 主対象は Elecbyte MUGEN。IKEMEN GO は現時点では記述対象外としてよいものの、将来同じデータモデルへ追加できるように識別軸だけ予約します。
 
+> 実装時の採用範囲・解決済みの設計判断は [ADOPTION.md](ADOPTION.md) を参照してください。実施順序は MIGRATION_GUIDE.md 第10節を優先し、表示の旧新両対応後に本番 JSON を移行します。
+
 ## 0. 設計目的
 
 この JSON は単なる表示用 CMS データではなく、次の用途を同時に満たすことを目標とします。
@@ -22,7 +24,7 @@
 - **公式文書は重要な一次資料だが、実装そのものと同一視しない。** Elecbyte 文書の未記載・誤記・古い記述を許容できるデータモデルにする。
 - **「公式 / 非公式」と「仕様が正しい / 間違っている」を同じ軸にしない。** 出典の種類と、実機での再現・検証状況を別々に記録する。
 - **MUGEN のバグ・未文書化仕様・処理順は資料価値が高い。** 正常系だけに正規化して消さない。
-- **既存 JSON を一括変換しない。** まず代表 10 ページで v2 を通し、表現不能な仕様がないことを確認してから全体へ展開する。
+- **既存 JSON を一括変換しない。** まず代表 10 テーマ（11 JSON）で v2 を通し、表現不能な仕様がないことを確認してから全体へ展開する。
 - **HTML の大分類は増やしすぎない。** JSON は構造化しても、表示上は既存の読みやすさを保つ。
 - **コピペ可能な CNS 記述を維持する。** MUGEN 制作環境には一般的な IDE の補完がないことを前提とする。
 
@@ -70,7 +72,7 @@ winmugen-2002.04.14
 mugen-1.0-rc2
 mugen-1.0-rc4
 mugen-1.0-rc6
-mugen-1.0
+mugen-1.0-final
 mugen-1.1-a1
 mugen-1.1-a4
 mugen-1.1-b1
@@ -522,7 +524,7 @@ MUGEN ではバグ利用・未文書化挙動・内部評価順自体が制作�
 }
 ```
 
-不明は `?` を維持してよいものの、`unverified` / `unknown` を evidence 側でも明示します。
+不明は `?` を維持してよいものの、`evidence.status = unverified` で明示します。`unknown` は default.kind / expression_policy に使い、evidence.status には使いません。
 
 ---
 
@@ -565,7 +567,7 @@ special_form  IfElse / Cond のような特殊評価形式
 
 ### 今は追加しないもの
 
-以下は代表 10 ページを通した後に必要性を再判定します。
+以下は代表 10 テーマ（11 JSON）を通した後に必要性を再判定します。
 
 - `evaluation_order` 専用トップレベルフィールド
 - `bottom_behavior` 専用トップレベルフィールド
@@ -669,7 +671,7 @@ HTML では種類ごとに別ページセクションを増やす必要はあり
 
 ---
 
-# 11. 代表 10 ページによる schema stress test
+# 11. 代表 10 テーマ（11 JSON）による schema stress test
 
 全ページを移行する前に、以下を v2 の fixture とします。
 
@@ -734,7 +736,7 @@ Nightly は可変なので、検証情報を残す場合は release tag また�
 
 ## Phase 0 — バックアップと fixture 固定
 
-- 上記 10 ページを fixture として固定
+- 上記 11 ページを fixture として固定
 - 現在の HTML 出力を比較用に保存
 - 全 JSON 一括書換えは禁止
 
@@ -762,16 +764,16 @@ Nightly は可変なので、検証情報を残す場合は release tag また�
 
 まず MUGEN のみ確定させます。
 
-## Phase 3 — 10 fixture の手動移行
-
-1 ページずつ公式文書・CHAOS Wiki・旧引用記事・実機情報を突き合わせます。
-
-## Phase 4 — renderer 改修
+## Phase 3 — renderer 改修
 
 - `notes` rendering
 - `default` からコピペ欄生成
 - 共通パラメーター merge の一本化
 - version label 解決
+
+## Phase 4 — 11 fixture の手動移行
+
+1 ページずつ公式文書・CHAOS Wiki・旧引用記事・実機情報を突き合わせます。
 
 ## Phase 5 — 全体移行
 
@@ -828,4 +830,3 @@ fixture で問題がなければ一括変換スクリプトを作成します。
 - MUGEN Cheap Wiki / Undocumented Stuff: https://mugen-cheap.fandom.com/wiki/MUGEN%27s_Undocumented_Stuff
 - MUGEN State Controller Reference mirror (mugen-net): https://www.mugen-net.work/wiki/index.php/M.U.G.E.N_Documentation%3AState_Controller_Reference
 - IKEMEN GO repository: https://github.com/ikemen-engine/Ikemen-GO
-

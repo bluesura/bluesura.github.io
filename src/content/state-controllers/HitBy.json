@@ -1,63 +1,231 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "HitBy",
-		"target": "",
-		"category": ["防御","特定攻撃のみを受ける無敵状態の設定"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "HitBy",
-	"description": "<p>一時的に特定の攻撃以外食らわないようにします。回り込み(投げのみ食らう)などに。</p><p>ジャンプの瞬間など投げのみ食らわないといった場合は姉妹品のNotHitByを使います。</p><p>また、HitBy効果持続中に、同じスロットのHitBy、NotHitByが実行されると、それまでのHitByの効果は無効となります。</p><p>2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>HitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p>",
-	"category": "state",
-	"associated_state": ["NotHitBy"],
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["攻撃属性"],
-			"type": ["string"],
-			"description": "<p>攻撃属性で指定できる値は、HitDefのattrパラメータで指定できる値と同じです。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "value2",
-			"value": ["攻撃属性"],
-			"type": ["string"],
-			"description": "<p>攻撃属性で指定できる値は、HitDefのAttrパラメータで指定できる値と同じです。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["? ;valueまたはvalue2どちらかがあればOK！"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "Time",
-			"value": ["効果持続時間"],
-			"type": ["int"],
-			"description": "<p>フレーム単位で効果の持続時間を指定します。特定の技に無敵を付加する場合は、トリガーで持続時間を指定したほうがよいでしょう。</p><p>-1以下で効果時間が永続化。</p><p>※60フレーム=1秒</p>",
-			"min_value": ["-2147483647"],
-			"max_value": ["2147483647"],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["1"]
-		}
-	],
-
-	"quote": [
-		{"title": "HitBy - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitBy"},
-		{"title": "HitBy - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitby"},
-		{"title": "HitBy - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitby"},
-		{"title": "HitBy - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitBy"},
-		{"title": "HitBy - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitBy&protocol=http"},
-		{"title": "HitBy - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitBy"},
-		{"title": "HitBy - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "HitBy",
+    "target": "",
+    "category": [
+      "防御",
+      "特定攻撃のみを受ける無敵状態の設定"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "HitBy",
+  "description": "<p>一時的に特定の攻撃以外食らわないようにします。回り込み(投げのみ食らう)などに。</p><p>ジャンプの瞬間など投げのみ食らわないといった場合は姉妹品のNotHitByを使います。</p><p>また、HitBy効果持続中に、同じスロットのHitBy、NotHitByが実行されると、それまでのHitByの効果は無効となります。</p><p>2つのスロットが用意されており、どちらもHitByとNotHitByで利用されます。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>HitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p>",
+  "category": "state",
+  "associated_state": [
+    "NotHitBy"
+  ],
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "攻撃属性"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>攻撃属性で指定できる値は、HitDefのattrパラメータで指定できる値と同じです。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "required",
+          "display": "値を指定してください",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    },
+    {
+      "parameter": "value2",
+      "value": [
+        "攻撃属性"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>攻撃属性で指定できる値は、HitDefのAttrパラメータで指定できる値と同じです。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "? ;valueまたはvalue2どちらかがあればOK！"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "required",
+          "display": "値を指定してください",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    },
+    {
+      "parameter": "Time",
+      "value": [
+        "効果持続時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>フレーム単位で効果の持続時間を指定します。特定の技に無敵を付加する場合は、トリガーで持続時間を指定したほうがよいでしょう。</p><p>-1以下で効果時間が永続化。</p><p>※60フレーム=1秒</p>",
+      "min_value": [
+        "-2147483647"
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "unknown",
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      },
+      "default": [
+        {
+          "kind": "literal",
+          "value": "1",
+          "evidence": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": []
+          }
+        }
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "HitBy - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitBy",
+      "id": "hitby-legacy-1"
+    },
+    {
+      "title": "HitBy - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitby",
+      "id": "hitby-legacy-2"
+    },
+    {
+      "title": "HitBy - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitby",
+      "id": "hitby-legacy-3"
+    },
+    {
+      "title": "HitBy - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitBy",
+      "id": "hitby-legacy-4"
+    },
+    {
+      "title": "HitBy - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitBy&protocol=http",
+      "id": "hitby-legacy-5"
+    },
+    {
+      "title": "HitBy - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitBy",
+      "id": "hitby-legacy-6"
+    },
+    {
+      "title": "HitBy - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm",
+      "id": "hitby-legacy-7"
+    },
+    {
+      "id": "hitby-local-1.0",
+      "title": "HitBy — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#hitby",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitby-local-1.1b1",
+      "title": "HitBy — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitby",
+      "source_type": "official_document"
+    }
+  ],
+  "notes": [],
+  "constraints": [
+    {
+      "kind": "one_of",
+      "parameters": [
+        "value",
+        "value2"
+      ],
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitby-local-1.0",
+          "hitby-local-1.1b1"
+        ]
+      }
+    },
+    {
+      "kind": "mutually_exclusive",
+      "parameters": [
+        "value",
+        "value2"
+      ],
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitby-local-1.0",
+          "hitby-local-1.1b1"
+        ]
+      }
+    }
+  ]
 }

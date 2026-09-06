@@ -10,7 +10,9 @@
     "version": "MUGEN 1.0 RC2",
     "update": "2026.01.01",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": "mugen-1.0-rc2"
   },
   "title": "AILevel",
   "category": "trigger",
@@ -18,10 +20,10 @@
   "description": "<p><code>AILevel</code>は、実行者がAI操作されている場合のAI難易度レベルを整数で返すトリガーです。</p><ul><li><b>返り値:</b> <code>0</code>（AI操作でない / 人間操作）または <code>1</code>〜<code>8</code>（AI難易度）</li></ul>",
   "images": [
     {
-        "src": "mugen-ailevel-trigger-flow.png",
-        "width": "640",
-        "height": "480",
-        "alt": "MUGENにおけるAILevelトリガーの仕組み図。オプション設定、トレーニングメニュー、デバッグキー（Ctrl+#）から設定値が送られ、AILevelの値が0なら人間操作、1〜8ならAI操作（難易度レベル）として分岐する処理の流れを解説。"
+      "src": "mugen-ailevel-trigger-flow.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENにおけるAILevelトリガーの仕組み図。オプション設定、トレーニングメニュー、デバッグキー（Ctrl+#）から設定値が送られ、AILevelの値が0なら人間操作、1〜8ならAI操作（難易度レベル）として分岐する処理の流れを解説。"
     }
   ],
   "syntax": [
@@ -145,23 +147,100 @@
   "quote": [
     {
       "title": "AILevel - Trigger Reference (MUGEN 1.0)",
-      "url": "https://www.elecbyte.com/mugendocs/trigger.html#ailevel"
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#ailevel",
+      "id": "ailevel-legacy-1"
     },
     {
       "title": "AILevel - Trigger Reference (MUGEN 1.1b1)",
-      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#ailevel"
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#ailevel",
+      "id": "ailevel-legacy-2"
     },
     {
       "title": "M.U.G.E.N Update History (AILevel導入/修正履歴)",
-      "url": "https://www.elecbyte.com/mugendocs/history.html"
+      "url": "https://www.elecbyte.com/mugendocs/history.html",
+      "id": "ailevel-legacy-3"
     },
     {
       "title": "readme.txt (debug keys: Ctrl-#でAIトグル)",
-      "url": "https://www.elecbyte.com/mugendocs/readme.txt"
+      "url": "https://www.elecbyte.com/mugendocs/readme.txt",
+      "id": "ailevel-legacy-4"
     },
     {
       "title": "IKEMEN changelog (Fix helper AILevel)",
-      "url": "https://github.com/fernicar/ikemen"
+      "url": "https://github.com/fernicar/ikemen",
+      "id": "ailevel-legacy-5"
+    },
+    {
+      "id": "ailevel-local-1.0",
+      "title": "AILevel — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#ailevel",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ailevel-local-1.1b1",
+      "title": "AILevel — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#ailevel",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ailevel-history",
+      "title": "保存済み Elecbyte 1.0 更新履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html",
+      "source_type": "official_history"
     }
-  ]
+  ],
+  "notes": [
+    {
+      "kind": "version_change",
+      "content": "<p><b>追加:</b> CNSの新トリガーとして<code>AILevel</code>が追加され、AI難易度設定を返せるようになりました。</p>",
+      "legacy_index": 0,
+      "change": "added",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "ailevel-history"
+        ]
+      },
+      "at": "mugen-1.0-rc2"
+    },
+    {
+      "kind": "version_change",
+      "content": "<p><b>修正:</b> トレーニングモードの「cooperative dummy」周りで、<code>AILevel</code>が誤動作するケースが修正されています。</p>",
+      "legacy_index": 1,
+      "change": "fixed",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "ailevel-history"
+        ]
+      },
+      "at": "mugen-1.0-rc4"
+    },
+    {
+      "kind": "compatibility",
+      "content": "<p><b>修正履歴:</b> Helperにおける<code>AILevel</code>の修正履歴があり、派生実装ではHelper/Rootで値が食い違う可能性があります。</p>",
+      "legacy_index": 2,
+      "evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": [
+          "ailevel-legacy-5"
+        ]
+      },
+      "environment": {
+        "engine": "ikemen"
+      }
+    }
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": []
 }

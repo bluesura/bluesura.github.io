@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -23,3 +23,19 @@ export const fixtures = {
   triggers: ['MoveContact', 'AnimElem', 'IfElse', 'Cond', 'AILevel', 'StandBy', 'Const'],
   lifebars: ['BeginAction', 'LifeBar', 'Round'],
 };
+
+// Later batches have separate snapshots; never replace the initial 24-page baseline.
+export function baselineCases() {
+  const initial = Object.entries(fixtures).flatMap(([collection, names]) => names.map(name => ({ collection, name, base: 'tests/mugen/baseline' })));
+  const directory = 'tests/mugen/batches';
+  const batches = existsSync(pathFromRoot(directory)) ? filesUnder(directory, '/manifest.json').flatMap(path =>
+    readJSON(path).documents.map(({ collection, name }) => ({ collection, name, base: path.slice(0, -'/manifest.json'.length) })),
+  ) : [];
+  const seen = new Set();
+  for (const entry of [...initial, ...batches]) {
+    const key = `${entry.collection}/${entry.name}`;
+    if (seen.has(key)) throw new Error(`Duplicate baseline: ${key}`);
+    seen.add(key);
+  }
+  return [...initial, ...batches];
+}

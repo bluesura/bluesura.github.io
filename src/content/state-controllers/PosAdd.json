@@ -1,64 +1,273 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "PosAdd",
-		"target": "実行者自身",
-		"category": ["位置の操作","現在位置からの相対移動"],
-		"version": "2002.04.14",
-		"update": "2016.07.28",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "PosAdd",
-	"description": "<p><code>PosAdd</code>の実行者を指定した値だけ瞬時に移動させます。単位はピクセル。</p><p>基準点(0,0)は、AIRファイルで設定した基準点になります。<span class=\"decoration-font-line-red\">実行者が動くと基準点も同じように動きます。</span></p>",
-	"images": [{"src": "PosAdd.png", "width": "640", "height": "480", "alt": "MUGEN PosSet"}],
-	"category": "state",
-	"associated_trigger": [
-    "PosX", "PosY", "ScreenPosX", "ScreenPosY",
-    "P2DistX", "P2DistY", "P2BodyDistX", "P2BodyDistY",
-    "FrontEdgeDist", "BackEdgeDist",
-    "FrontEdgeBodyDist", "BackEdgeBodyDist", "E", "Pi"
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "PosAdd",
+    "target": "実行者自身",
+    "category": [
+      "位置の操作",
+      "現在位置からの相対移動"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.07.28",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "PosAdd",
+  "description": "<p><code>PosAdd</code>の実行者を指定した値だけ瞬時に移動させます。単位はピクセル。</p><p>基準点(0,0)は、AIRファイルで設定した基準点になります。<span class=\"decoration-font-line-red\">実行者が動くと基準点も同じように動きます。</span></p>",
+  "images": [
+    {
+      "src": "PosAdd.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN PosSet"
+    }
   ],
-
-	"version": [
-		{"no": "-", "content": "<span style=\"text-decoration: line-through\">公式では、X,Yはfloat型と記述されているが、なぜかエラーメッセージが出る。必ずパラメータには、FloorやCeilトリガーで対策をしないといけない。</span>※2015/09/06削除 エラーメッセージは出ません。正常に動作します。"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "X",
-			"value": ["水平方向の移動距離"],
-			"type": ["float"],
-			"description": "<p>実行者を基準としたX軸の移動距離を指定。<span class=\"decoration-font-line-red\">実行者の正面が正の値、背面が負の値</span>になります。</p>",
-			"min_value": ["-2147483647", "-2147483647"],
-			"max_value": ["2147483647", "2147483647"],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Y",
-			"value": ["垂直方向の移動距離"],
-			"type": ["float"],
-			"description": "<p>実行者を基準としたY軸の移動距離を指定。<span class=\"decoration-font-line-red\">画面の下方向が正の値、上方向が負の値</span>になります。</p>",
-			"min_value": ["-2147483647", "-2147483647"],
-			"max_value": ["2147483647", "2147483647"],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["2"]
-		}
-	],
-
-	"quote": [
-		{"title": "PosAdd - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PosAdd"},
-		{"title": "PosAdd - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#posadd"},
-		{"title": "PosAdd - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#posadd"},
-		{"title": "PosAdd - State Controller Reference Documentation for version 1.1", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#posadd"},
-		{"title": "PosAdd - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PosAdd"},
-		{"title": "PosAdd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PosAdd&protocol=http"},
-		{"title": "PosAdd - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/78.html"},
-		{"title": "PosAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PosAdd"},
-		{"title": "PosAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "category": "state",
+  "associated_trigger": [
+    "PosX",
+    "PosY",
+    "ScreenPosX",
+    "ScreenPosY",
+    "P2DistX",
+    "P2DistY",
+    "P2BodyDistX",
+    "P2BodyDistY",
+    "FrontEdgeDist",
+    "BackEdgeDist",
+    "FrontEdgeBodyDist",
+    "BackEdgeBodyDist",
+    "E",
+    "Pi"
+  ],
+  "version": [
+    {
+      "no": "-",
+      "content": "<span style=\"text-decoration: line-through\">公式では、X,Yはfloat型と記述されているが、なぜかエラーメッセージが出る。必ずパラメータには、FloorやCeilトリガーで対策をしないといけない。</span>※2015/09/06削除 エラーメッセージは出ません。正常に動作します。"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "X",
+      "value": [
+        "水平方向の移動距離"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>実行者を基準としたX軸の移動距離を指定。<span class=\"decoration-font-line-red\">実行者の正面が正の値、背面が負の値</span>になります。</p>",
+      "min_value": [
+        "-2147483647",
+        "-2147483647"
+      ],
+      "max_value": [
+        "2147483647",
+        "2147483647"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "posadd-local-1.0",
+              "posadd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Y",
+      "value": [
+        "垂直方向の移動距離"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>実行者を基準としたY軸の移動距離を指定。<span class=\"decoration-font-line-red\">画面の下方向が正の値、上方向が負の値</span>になります。</p>",
+      "min_value": [
+        "-2147483647",
+        "-2147483647"
+      ],
+      "max_value": [
+        "2147483647",
+        "2147483647"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "posadd-local-1.0",
+              "posadd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "PosAdd - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PosAdd"
+    },
+    {
+      "title": "PosAdd - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#posadd"
+    },
+    {
+      "title": "PosAdd - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#posadd"
+    },
+    {
+      "title": "PosAdd - State Controller Reference Documentation for version 1.1",
+      "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#posadd"
+    },
+    {
+      "title": "PosAdd - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PosAdd"
+    },
+    {
+      "title": "PosAdd - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PosAdd&protocol=http"
+    },
+    {
+      "title": "PosAdd - MUGEN CNS WIKI CHAOS@予定",
+      "url": "http://www49.atwiki.jp/mugencns/pages/78.html"
+    },
+    {
+      "title": "PosAdd - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PosAdd"
+    },
+    {
+      "title": "PosAdd - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "id": "posadd-local-1.0",
+      "title": "PosAdd — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#posadd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "posadd-local-1.1",
+      "title": "PosAdd — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#posadd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "posadd-chaos-current",
+      "title": "SC-/PosAdd — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+      "url": "https://w.atwiki.jp/mugencns/pages/78.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "posadd-expressions-1.0",
+      "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+      "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+      "source_type": "official_document"
+    }
+  ],
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "<span style=\"text-decoration: line-through\">公式では、X,Yはfloat型と記述されているが、なぜかエラーメッセージが出る。必ずパラメータには、FloorやCeilトリガーで対策をしないといけない。</span>※2015/09/06削除 エラーメッセージは出ません。正常に動作します。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "posadd-local-1.0",
+          "posadd-local-1.1",
+          "posadd-chaos-current"
+        ],
+        "comment": "旧記事と CHAOS に残る2015-09-06の訂正記録。エンジンのバージョン変更ではなく、記事の誤説を撤回した履歴として内部保存。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p><code>X</code> と <code>Y</code> には小数を指定できます。小数を使うために <code>Floor</code> や <code>Ceil</code> で整数へ丸める必要はありません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "posadd-local-1.0",
+          "posadd-local-1.1",
+          "posadd-chaos-current"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 min_value / max_value は単独の X・Y それぞれに二要素の整数範囲が記録されている。float の有効範囲としての根拠は未確認のため、値を推測で修正しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [],
+        "source_refs": []
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式資料と旧本文は実行者基準の相対移動と説明する一方、CHAOS のオプション欄には画面中央基準の記述もある。同ページの概要・前進例とも一致しないため、座標説明の機械的な転記はしない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "posadd-local-1.0",
+          "posadd-local-1.1",
+          "posadd-chaos-current"
+        ]
+      }
+    }
+  ]
 }

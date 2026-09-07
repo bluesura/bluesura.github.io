@@ -17,6 +17,7 @@ When implementation begins, update the active source, schema, renderer, and thes
 - `ADOPTION.md` — implemented optional v2 additions, precedence rules, registry IDs, and checks.
 - `STATUS.md` — migration progress and unresolved specifications.
 - `MIGRATION_LEDGER.md` — field correspondence, retained uncertainty, and the next rollout gate.
+- `BATCH_MIGRATION.md` — reviewed small-batch plans, snapshot capture, dry-run/apply commands, and completed batches.
 - `IMPLEMENTATION_PLAN.md` — repository assessment and approved staged implementation plan.
 
 - `SCHEMA_V2_DRAFT.md` — proposed data model for State Controller / Trigger documents.

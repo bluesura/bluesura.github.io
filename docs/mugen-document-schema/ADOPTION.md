@@ -9,6 +9,7 @@
 - 本番バージョン ID: `src/data/engine-versions.json`
 - 非本番の原案: `docs/mugen-document-schema/examples/engine-versions-v2-draft.json`
 - 比較基準: `tests/mugen/baseline/`。JSON 24ページ・共通2項目、記事 HTML・抽出結果、全261 URL、全258原本のハッシュを保存
+- 小分け移行の追加基準: `tests/mugen/batches/<batch-id>/`。初回基準を上書きせずに検証対象を増やします。計画・コマンド・実施記録は [BATCH_MIGRATION.md](BATCH_MIGRATION.md) を参照してください。
 
 Node.js 20 の CI とブラウザ表示の両方で同じ処理を使うため、共有ロジックは追加トランスパイラー不要の `.mjs` としました。Astro の既存コレクション定義は `src/content/config.ts` に維持します。
 
@@ -89,5 +90,7 @@ npm run mugen:check-html
 `npm run mugen:baseline` は初回固定用で、既存の比較基準を上書きしません。基準の更新を通常テストの一部にはしません。
 
 `npm run mugen:inventory` は原本を書き換えず、全件の移行状態・未分類履歴・未確認情報・既存の未表示フィールドを `artifacts/mugen/inventory.json` / `.md` に出力します。レポートは生成物のため Git 管理外です。
+
+`npm run mugen:batch-baseline -- --batch <id>` は追加の比較基準を固定します。`npm run mugen:batch -- --batch <id> --target <name>` は追加計画の dry-run で、`--apply` を付けた場合のみ原本へ適用します。対象の未指定・計画外・既存値の上書き・移行済みデータへの再実行を拒否します。
 
 `mugen-template-all.json` は従来形式の空テンプレートとして維持します。v2 の実例は `src/content/state-controllers/Helper.json` と `src/content/triggers/Cond.json` を参照してください。新しい必須条件を空の旧テンプレートへ一律に持ち込みません。

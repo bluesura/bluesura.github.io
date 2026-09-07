@@ -2,7 +2,7 @@ import { existsSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { parse, parseFragment } from 'parse5';
 import { readArticle, findAll, attr, compactText, textContent } from './html.mjs';
-import { fixtures, collections, documents, readJSON, pathFromRoot } from './files.mjs';
+import { baselineCases, collections, documents, readJSON, pathFromRoot } from './files.mjs';
 import { normalizeDocument, effectiveNotes, isPublicNote } from '../../src/lib/mugen/normalize.mjs';
 import { copyLines } from '../../src/lib/mugen/defaults.mjs';
 
@@ -10,7 +10,8 @@ const manifest = readJSON('tests/mugen/baseline/manifest.json');
 for (const route of manifest.routes) assert.ok(existsSync(pathFromRoot(`dist${route}`)), `Missing route: ${route}`);
 const common = ['IgnoreHitPause', 'Persistent'].map(name => readJSON(`src/data/common/${name}.json`));
 const results = [];
-for (const [collection, names] of Object.entries(fixtures)) for (const name of [...names, 'index']) {
+const cases = [...baselineCases(), ...Object.keys(collections).map(collection => ({ collection, name: 'index' }))];
+for (const { collection, name, base } of cases) {
   const html = readFileSync(pathFromRoot(`dist/MUGEN/document/${collections[collection]}/${name}.html`), 'utf8');
   const rendered = readArticle(html);
   if (name === 'index') {
@@ -26,8 +27,8 @@ for (const [collection, names] of Object.entries(fixtures)) for (const name of [
     }
     results.push({ collection, name, generated: true }); continue;
   }
-  const legacy = readJSON(`tests/mugen/baseline/json/${collection}/${name}.json`);
-  const before = readJSON(`tests/mugen/baseline/rendered/${collection}/${name}.json`);
+  const legacy = readJSON(`${base}/json/${collection}/${name}.json`);
+  const before = readJSON(`${base}/rendered/${collection}/${name}.json`);
   const source = readJSON(`src/content/${collection}/${name}.json`);
   const current = normalizeDocument(source, common);
   const hidden = [source, ...(source.parameter ?? [])].flatMap(value => effectiveNotes(value).filter(note => !isPublicNote(note)));

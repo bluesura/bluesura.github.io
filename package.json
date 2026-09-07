@@ -12,7 +12,9 @@
     "mugen:validate": "node scripts/mugen/validate.mjs",
     "mugen:test": "node --test tests/mugen/*.test.mjs",
     "mugen:check-html": "node scripts/mugen/check-html.mjs",
-    "mugen:inventory": "node scripts/mugen/inventory.mjs"
+    "mugen:inventory": "node scripts/mugen/inventory.mjs",
+    "mugen:batch-baseline": "node scripts/mugen/capture-batch.mjs",
+    "mugen:batch": "node scripts/mugen/batch.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.9",

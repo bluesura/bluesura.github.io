@@ -1,0 +1,860 @@
+{
+  "id": "axis-motion-01",
+  "reviewed_on": "2026-09-07",
+  "description": "位置・速度の4件。旧フィールドを保持し、省略時・式・読み込み順・資料・内部記録を追加する。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "PosAdd",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "posadd-local-1.0",
+                  "posadd-local-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "posadd-local-1.0",
+                  "posadd-local-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "legacy_index": 0,
+              "content": "<span style=\"text-decoration: line-through\">公式では、X,Yはfloat型と記述されているが、なぜかエラーメッセージが出る。必ずパラメータには、FloorやCeilトリガーで対策をしないといけない。</span>※2015/09/06削除 エラーメッセージは出ません。正常に動作します。",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posadd-local-1.0",
+                  "posadd-local-1.1",
+                  "posadd-chaos-current"
+                ],
+                "comment": "旧記事と CHAOS に残る2015-09-06の訂正記録。エンジンのバージョン変更ではなく、記事の誤説を撤回した履歴として内部保存。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p><code>X</code> と <code>Y</code> には小数を指定できます。小数を使うために <code>Floor</code> や <code>Ceil</code> で整数へ丸める必要はありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posadd-local-1.0",
+                  "posadd-local-1.1",
+                  "posadd-chaos-current"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧 min_value / max_value は単独の X・Y それぞれに二要素の整数範囲が記録されている。float の有効範囲としての根拠は未確認のため、値を推測で修正しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [],
+                "source_refs": []
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式資料と旧本文は実行者基準の相対移動と説明する一方、CHAOS のオプション欄には画面中央基準の記述もある。同ページの概要・前進例とも一致しないため、座標説明の機械的な転記はしない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posadd-local-1.0",
+                  "posadd-local-1.1",
+                  "posadd-chaos-current"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posadd-local-1.0",
+            "title": "PosAdd — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#posadd",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posadd-local-1.1",
+            "title": "PosAdd — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#posadd",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posadd-chaos-current",
+            "title": "SC-/PosAdd — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+            "url": "https://w.atwiki.jp/mugencns/pages/78.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posadd-expressions-1.0",
+            "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "/page/introduced_in",
+          "reason": "初導入ビルドは未確定。旧 page.version を導入日の証拠として使わない。"
+        },
+        {
+          "path": "/parameter/*/min_value,max_value",
+          "reason": "float に対する整数範囲・二要素配列の根拠を要確認。旧値を保持。"
+        }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "PosSet",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "X軸の座標を変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posset-chaos-current"
+                ],
+                "comment": "2026-09-07 に資料の省略時説明を確認。対象ビルド別の実機検証は今回行っていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "Y軸の座標を変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posset-chaos-current"
+                ],
+                "comment": "2026-09-07 に資料の省略時説明を確認。対象ビルド別の実機検証は今回行っていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "legacy_index": 0,
+              "content": "<span style=\"text-decoration: line-through\">公式では、X,Yはfloat型と記述されているが、なぜかエラーメッセージが出る。必ずパラメータには、FloorやCeilトリガーで対策をしないといけない。</span>※2015/09/06削除 エラーメッセージは出ません。正常に動作します。",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posset-local-1.0",
+                  "posset-local-1.1",
+                  "posset-chaos-current"
+                ],
+                "comment": "旧記事と CHAOS に残る2015-09-06の訂正記録。エンジンのバージョン変更ではなく、記事の誤説を撤回した履歴として内部保存。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p><code>X</code> と <code>Y</code> には小数を指定できます。小数を使うために <code>Floor</code> や <code>Ceil</code> で整数へ丸める必要はありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posset-local-1.0",
+                  "posset-local-1.1",
+                  "posset-chaos-current"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧 default_value の 0 は原文のまま保存した。省略した軸を移動させないという CHAOS の記録を default に採用し、0 を明示指定する操作とは区別する。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posset-chaos-current"
+                ],
+                "comment": "2026-09-07 に資料の省略時説明を確認。対象ビルド別の実機検証は今回行っていない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧本文はステージ中央を不変の基準と説明するが、公式資料と CHAOS は X 座標を画面中央基準と説明している。カメラ移動・対象ビルドとの関係は実機で未照合。旧本文と画像を保持し、座標説明の修正は別途行う。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posset-local-1.0",
+                  "posset-local-1.1",
+                  "posset-chaos-current"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posset-local-1.0",
+            "title": "PosSet — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#posset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posset-local-1.1",
+            "title": "PosSet — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#posset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posset-chaos-current",
+            "title": "SC-/PosSet — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+            "url": "https://w.atwiki.jp/mugencns/pages/27.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posset-expressions-1.0",
+            "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "/page/introduced_in",
+          "reason": "初導入ビルドは未確定。旧 page.version を導入日の証拠として使わない。"
+        },
+        {
+          "path": "/description,/parameter/*/description",
+          "reason": "ステージ中央と画面中央の記述差。カメラ移動・ビルド別の確認を要する。"
+        }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "VelAdd",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "X軸の速度を変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "veladd-chaos-current"
+                ],
+                "comment": "2026-09-07 に資料の省略時説明を確認。対象ビルド別の実機検証は今回行っていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "Y軸の速度を変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "veladd-chaos-current"
+                ],
+                "comment": "2026-09-07 に資料の省略時説明を確認。対象ビルド別の実機検証は今回行っていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>旧 value の「乗算速度」と description の「ターゲット」は、VelAdd の公式説明と一致しない。加算する速度の量・実行者自身の向きを指す説明へ直す候補。今回の追加型移行では旧ラベルと本文を保持し、内容訂正を別途追跡する。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "veladd-local-1.0",
+                  "veladd-local-1.1"
+                ],
+                "comment": "資料と旧文章の不一致を確認した記録。旧ラベルの仕様を実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "veladd-local-1.0",
+            "title": "VelAdd — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#veladd",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "veladd-local-1.1",
+            "title": "VelAdd — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#veladd",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "veladd-chaos-current",
+            "title": "SC-/VelAdd — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+            "url": "https://w.atwiki.jp/mugencns/pages/270.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "veladd-expressions-1.0",
+            "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "/page/introduced_in",
+          "reason": "初導入ビルドは未確定。旧 page.version を導入日の証拠として使わない。"
+        },
+        {
+          "path": "/parameter/*/value,description",
+          "reason": "乗算・ターゲットという旧説明を、加算または代入・実行者の説明へ訂正する候補。原文を保持。"
+        }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "VelSet",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "X軸の速度を変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "velset-chaos-current"
+                ],
+                "comment": "2026-09-07 に資料の省略時説明を確認。対象ビルド別の実機検証は今回行っていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "Y軸の速度を変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "velset-chaos-current"
+                ],
+                "comment": "2026-09-07 に資料の省略時説明を確認。対象ビルド別の実機検証は今回行っていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>旧 value の「乗算速度」と description の「ターゲット」は、VelSet の公式説明と一致しない。設定する速度・実行者自身の向きを指す説明へ直す候補。今回の追加型移行では旧ラベルと本文を保持し、内容訂正を別途追跡する。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "velset-local-1.0",
+                  "velset-local-1.1"
+                ],
+                "comment": "資料と旧文章の不一致を確認した記録。旧ラベルの仕様を実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "velset-local-1.0",
+            "title": "VelSet — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#velset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "velset-local-1.1",
+            "title": "VelSet — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#velset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "velset-chaos-current",
+            "title": "SC-/VelSet — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+            "url": "https://w.atwiki.jp/mugencns/pages/269.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "velset-expressions-1.0",
+            "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "/page/introduced_in",
+          "reason": "初導入ビルドは未確定。旧 page.version を導入日の証拠として使わない。"
+        },
+        {
+          "path": "/parameter/*/value,description",
+          "reason": "乗算・ターゲットという旧説明を、加算または代入・実行者の説明へ訂正する候補。原文を保持。"
+        }
+      ]
+    }
+  ]
+}

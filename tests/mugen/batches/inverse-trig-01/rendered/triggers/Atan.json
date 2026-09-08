@@ -1,0 +1,80 @@
+{
+  "text": "Atan 数値計算 > アークタンジェント(逆正接)の計算 | 実装されたバージョン: 2002.04.14 | 対象: 数式 引数 仕様・注意点 使用例 引用記事 Atan は、入力値のアークタンジェント（逆正接）をラジアン(浮動小数点数)で返します。意味としては Tan(θ) = Exprn を満たす角度 θ を返す関数です（Exprn は「角度」ではなく「正接値」）。Atan は1引数のため、2次元ベクトル（X,Y）から象限込みで角度を求めたい場合は、Exprn = Y / X だけに頼らず、X の符号や X = 0 のケースも含めて条件分岐で補正するのが安全です。 関連するトリガー： Asin , Acos , Cos , Sin , Tan , PI 構文 Atan(Exprn) 引数 Exprn 省略不可 型浮動小数点数 アークタンジェントを計算したい値（正接値）を指定します。 仕様・バグ・エラー・変更点エラー条件Exprn が評価不能値（bottom）に評価された場合、戻り値も bottom になります。 コードサンプルAtan(1) は π/4 ラジアン正接値が 1 になる角度は PI/4（ラジアン）です。; 結果はおよそ PI/4Value = Atan(1) 相対位置から角度（度）を作ってランダムなブレを加える相手との相対位置から傾き Y/X を作り、Atan で角度（ラジアン）を得て度に変換します。X が 0 になりうるため、分母側にオフセットを入れる・条件分岐する等の対策が有効です。[State -3, AimAngleDegWithJitter]Type = VarSetTrigger1 = Var(0) = [0,1]Var = 3Value = Atan((-1.0 * (P2BodyDist Y - 50)) / (P2BodyDist X + 50)) * 180.0 / PI + (IfElse(Random % 2 = 0, -1, 1) * (Random % 10)) 角度の許容範囲（±25度）で条件分岐する相手との相対位置から角度（度）を求め、範囲内かどうかで処理を分ける例です。P2Dist X の符号ごとに比較方向を分けて、単純な Y/X の象限問題をある程度回避しています。[State -1, AngleGate]Type = VarSetTriggerAll = Var(20) = 1TriggerAll = StateNo = 640Trigger1 = (P2Dist X - 39) > 0Trigger1 = Atan((P2Dist Y + 53 + EnemyNear, Const(Size.Mid.Pos.Y)) / (P2Dist X - 39)) * 180.0 / PI <= 25Trigger2 = (P2Dist X - 39) < 0Trigger2 = Atan((P2Dist Y + 53 + EnemyNear, Const(Size.Mid.Pos.Y)) / (P2Dist X - 39)) * 180.0 / PI >= -25FVar = 0Value = 25 引用記事Atan - Trigger Reference(version 2002.04.14)Atan (math) - Trigger Reference (MUGEN 1.0 / archive)Atan (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)Atan - M.U.G.E.N Wiki (archive) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Asin",
+      "href": "./../Trigger/Asin.html"
+    },
+    {
+      "text": "Acos",
+      "href": "./../Trigger/Acos.html"
+    },
+    {
+      "text": "Cos",
+      "href": "./../Trigger/Cos.html"
+    },
+    {
+      "text": "Sin",
+      "href": "./../Trigger/Sin.html"
+    },
+    {
+      "text": "Tan",
+      "href": "./../Trigger/Tan.html"
+    },
+    {
+      "text": "PI",
+      "href": "./../Trigger/PI.html"
+    },
+    {
+      "text": "Atan - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Atan"
+    },
+    {
+      "text": "Atan (math) - Trigger Reference (MUGEN 1.0 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#atan-math"
+    },
+    {
+      "text": "Atan (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#atan-math"
+    },
+    {
+      "text": "Atan - M.U.G.E.N Wiki (archive)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Atan"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-trigonometry-functions-guide.png"
+  ],
+  "code": []
+}

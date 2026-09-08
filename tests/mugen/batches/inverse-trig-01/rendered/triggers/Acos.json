@@ -1,0 +1,80 @@
+{
+  "text": "Acos 数値計算 > アークコサイン(逆余弦)の計算 | 実装されたバージョン: 2002.04.14 | 対象: 数式 引数 仕様・注意点 使用例 引用記事 Acos は、入力値のアークコサイン（逆余弦）をラジアン(浮動小数点数)で返します。意味としては Cos(θ) = Exprn を満たす角度 θ を返す関数です（Exprn は「角度」ではなく「余弦値」）。度に変換したい場合は ExprnResult * 180 / PI を使います。 関連するトリガー： Asin , Atan , Cos , Sin , Tan , PI 構文 Acos(Exprn) 引数 Exprn 省略不可 型浮動小数点数 アークコサインを計算したい値（余弦値）を指定します。通常は -1.0〜1.0 の範囲を想定します。 仕様・バグ・エラー・変更点エラー条件Exprn が評価不能値（bottom）に評価された場合、戻り値も bottom になります。Exprn が定義域外（-1.0〜1.0 の外）の場合も bottom になります。 コードサンプルAcos(1) は 0 ラジアン余弦値が 1 になる角度は 0（ラジアン）です。; 結果は 0.0Value = Acos(1) 戻り値（ラジアン）を度に変換するAcos の戻り値（ラジアン）を度に変換します。Value = Acos(余弦値) * 180.0 / PI 引用記事Acos - Trigger Reference(version 2002.04.14)Acos (math) - Trigger Reference (MUGEN 1.0 / archive)Acos (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)Acos - M.U.G.E.N Wiki (archive) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Asin",
+      "href": "./../Trigger/Asin.html"
+    },
+    {
+      "text": "Atan",
+      "href": "./../Trigger/Atan.html"
+    },
+    {
+      "text": "Cos",
+      "href": "./../Trigger/Cos.html"
+    },
+    {
+      "text": "Sin",
+      "href": "./../Trigger/Sin.html"
+    },
+    {
+      "text": "Tan",
+      "href": "./../Trigger/Tan.html"
+    },
+    {
+      "text": "PI",
+      "href": "./../Trigger/PI.html"
+    },
+    {
+      "text": "Acos - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Acos"
+    },
+    {
+      "text": "Acos (math) - Trigger Reference (MUGEN 1.0 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#acos-math"
+    },
+    {
+      "text": "Acos (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#acos-math"
+    },
+    {
+      "text": "Acos - M.U.G.E.N Wiki (archive)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Acos"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-trigonometry-functions-guide.png"
+  ],
+  "code": []
+}

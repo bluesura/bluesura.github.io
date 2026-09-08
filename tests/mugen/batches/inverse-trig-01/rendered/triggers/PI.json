@@ -1,0 +1,68 @@
+{
+  "text": "PI 数値計算 > 円周率(PI) | 実装されたバージョン: 2002.04.14 | 対象: 数式 引数 使用例 引用記事 PI は円周率π（3.141593...）の近似値を返すトリガーです。戻り値は浮動小数点数で、数式内でそのまま利用できます。 関連するトリガー： Sin , Cos , Tan , Acos , Asin , Atan 構文 PI 引数 なし Q＆A(よくある質問)ラジアンと度の変換はどう書く？度にしたい場合は ラジアン * 180 / PI、ラジアンに戻したい場合は 度 * PI / 180 を使います。 コードサンプル速度ベクトルから角度（度）を求めるAtan() の戻り（ラジアン）を 180 / PI で度に変換します。分母が 0 になりうる場合は IfElse などで回避してください。[State 0, AngleFromVel]Type = AngleSetTrigger1 = 1Value = IfElse(Vel X != 0, -180.0 / PI * Atan(Vel Y / Vel X), IfElse(Vel Y < 0, 90.0, -90.0)) Sin波でExplodのスケールを揺らす2 * PI を使って周期（ここでは32フレーム）を作り、Sin() でスケールを揺らします。[State -2, ExplodScaleWave]Type = ModifyExplodTriggerAll = NumExplod(8865)Trigger1 = Root, StateNo = 3703Scale = FVar(32) ** 0.5 * 0.7 , FVar(32) * (1.0 + 0.3 * Sin(PI * 2.0 / 32.0 * (Time % 32 + Random % 8)))Trans = AddAlphaAlpha = 100, 255ID = 8865IgnoreHitPause = 1 角度（ラジアン）を -PI〜PI に正規化する角度を -PI〜PI の範囲に保つ例です（1周 = 2 * PI）。[State 0, WrapAngleRad]Type = VarAddTrigger1 = FVar(4) >= PI || FVar(4) <= -PIFVar = 4Value = IfElse(FVar(4) >= PI, -2.0 * PI, 2.0 * PI) 狙い角度にランダムなブレを加える相対位置から角度を作り、Random で微小なブレ（度）を加えます。[State -3, AimAngleDeg]Type = VarSetTrigger1 = Var(0) = [0,1]Var = 3Value = IfElse((P2BodyDist X + 50) != 0, Atan((-1.0 * (P2BodyDist Y - 50)) / (P2BodyDist X + 50)) * 180.0 / PI, 0.0) + (IfElse(Random % 2 = 0, -1, 1) * (Random % 10)) 角度の許容範囲（±25度）で条件分岐する相手との相対位置から角度（度）を求め、範囲内かどうかで処理を分ける例です。[State -1, AngleGate]Type = VarSetTriggerAll = Var(20) = 1TriggerAll = StateNo = 640Trigger1 = (P2Dist X - 39) > 0Trigger1 = Atan((P2Dist Y + 53 + EnemyNear, Const(Size.Mid.Pos.Y)) / (P2Dist X - 39)) * 180.0 / PI <= 25Trigger2 = (P2Dist X - 39) < 0Trigger2 = Atan((P2Dist Y + 53 + EnemyNear, Const(Size.Mid.Pos.Y)) / (P2Dist X - 39)) * 180.0 / PI >= -25FVar = 0Value = 25 引用記事PI - Trigger Reference(version 2002.04.14)Pi (math) - Trigger Reference (MUGEN 1.0 / archive)Pi (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive) 公開日:2008.06.05 最終更新日:2026.01.11 Home",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Sin",
+      "href": "./../Trigger/Sin.html"
+    },
+    {
+      "text": "Cos",
+      "href": "./../Trigger/Cos.html"
+    },
+    {
+      "text": "Tan",
+      "href": "./../Trigger/Tan.html"
+    },
+    {
+      "text": "Acos",
+      "href": "./../Trigger/Acos.html"
+    },
+    {
+      "text": "Asin",
+      "href": "./../Trigger/Asin.html"
+    },
+    {
+      "text": "Atan",
+      "href": "./../Trigger/Atan.html"
+    },
+    {
+      "text": "PI - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#PI"
+    },
+    {
+      "text": "Pi (math) - Trigger Reference (MUGEN 1.0 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#pi-math"
+    },
+    {
+      "text": "Pi (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#pi-math"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-trigonometry-functions-guide.png"
+  ],
+  "code": []
+}

@@ -1,0 +1,80 @@
+{
+  "text": "Asin 数値計算 > アークサイン(逆正弦)の計算 | 実装されたバージョン: 2002.04.14 | 対象: 数式 引数 仕様・注意点 使用例 引用記事 Asin は、入力値のアークサイン（逆正弦）をラジアン(浮動小数点数)で返します。意味としては Sin(θ) = Exprn を満たす角度 θ を返す関数です（Exprn は「角度」ではなく「正弦値」）。度に変換したい場合は ExprnResult * 180 / PI を使います。 関連するトリガー： Acos , Atan , Cos , Sin , Tan , PI 構文 Asin(Exprn) 引数 Exprn 省略不可 型浮動小数点数 アークサインを計算したい値（正弦値）を指定します。通常は -1.0〜1.0 の範囲を想定します。 仕様・バグ・エラー・変更点エラー条件Exprn が評価不能値（bottom）に評価された場合、戻り値も bottom になります。Exprn が定義域外（-1.0〜1.0 の外）の場合も bottom になります。 コードサンプルAsin(1) は π/2 ラジアン正弦値が 1 になる角度は PI/2（ラジアン）です。; 結果はおよそ PI/2Value = Asin(1) 戻り値（ラジアン）を度に変換するAsin の戻り値（ラジアン）を度に変換します。Value = Asin(正弦値) * 180.0 / PI 引用記事Asin - Trigger Reference(version 2002.04.14)Asin (math) - Trigger Reference (MUGEN 1.0 / archive)Asin (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)Asin - M.U.G.E.N Wiki (archive) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Acos",
+      "href": "./../Trigger/Acos.html"
+    },
+    {
+      "text": "Atan",
+      "href": "./../Trigger/Atan.html"
+    },
+    {
+      "text": "Cos",
+      "href": "./../Trigger/Cos.html"
+    },
+    {
+      "text": "Sin",
+      "href": "./../Trigger/Sin.html"
+    },
+    {
+      "text": "Tan",
+      "href": "./../Trigger/Tan.html"
+    },
+    {
+      "text": "PI",
+      "href": "./../Trigger/PI.html"
+    },
+    {
+      "text": "Asin - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Asin"
+    },
+    {
+      "text": "Asin (math) - Trigger Reference (MUGEN 1.0 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#asin-math"
+    },
+    {
+      "text": "Asin (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#asin-math"
+    },
+    {
+      "text": "Asin - M.U.G.E.N Wiki (archive)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Asin"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-trigonometry-functions-guide.png"
+  ],
+  "code": []
+}

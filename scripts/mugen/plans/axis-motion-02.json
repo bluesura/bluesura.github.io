@@ -1,0 +1,606 @@
+{
+  "id": "axis-motion-02",
+  "reviewed_on": "2026-09-08",
+  "description": "速度倍率・位置停止・重力の3件。原文を保持し、倍率と省略時を明記。Gravity / PosFreeze の相反する旧本文は根拠とともに内部へ保持し、公開概要を分離する。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "VelMul",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "1",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "velmul-chaos-current"
+                ],
+                "comment": "2026-09-08 に資料の記載を確認。今回、MUGEN の実機テストは行っていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "水平方向の速度倍率"
+            ],
+            "description": "<p>実行者自身の水平方向の速度に掛ける倍率を指定します。1なら元の速度を保ち、0ならその軸の速度が0になります。負の倍率では、その軸の速度の向きが反転します。X と Y は両方同時に指定することも、一方だけ指定することもできます。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "velmul-local-1.0",
+                "velmul-local-1.1",
+                "velmul-chaos-current"
+              ],
+              "comment": "2026-09-08: 旧文は速度そのものの指定と読めるため、実行者自身の速度に掛ける倍率であることを明記した。旧 value / description は原位置に保持。1・0の説明は乗算の意味に基づく。省略時1は CHAOS の記載確認であり、実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "1",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "velmul-chaos-current"
+                ],
+                "comment": "2026-09-08 に資料の記載を確認。今回、MUGEN の実機テストは行っていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "垂直方向の速度倍率"
+            ],
+            "description": "<p>実行者自身の垂直方向の速度に掛ける倍率を指定します。1なら元の速度を保ち、0ならその軸の速度が0になります。負の倍率では、その軸の速度の向きが反転します。X と Y は両方同時に指定することも、一方だけ指定することもできます。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "velmul-local-1.0",
+                "velmul-local-1.1",
+                "velmul-chaos-current"
+              ],
+              "comment": "2026-09-08: 旧文は速度そのものの指定と読めるため、実行者自身の速度に掛ける倍率であることを明記した。旧 value / description は原位置に保持。1・0の説明は乗算の意味に基づく。省略時1は CHAOS の記載確認であり、実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "velmul-local-1.0",
+            "title": "VelMul — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#velmul",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "velmul-local-1.1",
+            "title": "VelMul — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#velmul",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "velmul-chaos-current",
+            "title": "SC-/VelMul — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+            "url": "https://w.atwiki.jp/mugencns/pages/271.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "velmul-expressions-1.0",
+            "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document",
+              "community_documentation"
+            ],
+            "source_refs": [
+              "velmul-local-1.0",
+              "velmul-local-1.1",
+              "velmul-chaos-current",
+              "velmul-expressions-1.0"
+            ],
+            "comment": "2026-09-08 に資料の記載を確認。今回、MUGEN の実機テストは行っていない。"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは資料の掲載時期から推定せず、不明を保持する。"
+        }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "PosFreeze",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "1",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "posfreeze-local-1.0",
+                  "posfreeze-local-1.1"
+                ],
+                "comment": "2026-09-08 に資料の記載を確認。今回、MUGEN の実機テストは行っていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>0以外を指定すると、速度による座標移動を停止します。0では停止させません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "posfreeze-local-1.0",
+                "posfreeze-local-1.1"
+              ],
+              "comment": "2026-09-08 に資料の記載を確認。今回、MUGEN の実機テストは行っていない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行した1フレームの間、速度による実行者自身の座標移動を止めます。速度の値を0にする処理ではなく、<code>PosSet</code>・<code>PosAdd</code> による直接の座標変更は止めません。</p><p>停止中に <code>VelAdd</code> などで速度を変更すると、停止が終わった後は変更された速度で移動します。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "posfreeze-local-1.0",
+                "posfreeze-local-1.1",
+                "posfreeze-chaos-current"
+              ],
+              "comment": "2026-09-08: 旧本文を保持して、速度による移動の停止と速度値の変更を区別した。Gravity との相互作用は旧ページ間で相反するため notes の research に分離し、全ビルド共通の断定を公開しない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>旧 Gravity.description は PosFreeze 中に Gravity の加速を受けないと記述する一方、旧 PosFreeze.description は Gravity による加算を受けると記述しており、相反する。CHAOS の Gravity 記事も加速を受けるとし、PosFreeze 記事には Win版で加速度の反映を確認した記録がある。ただし同記事は疑問符も残しており、具体的な実行ビルド・実行順・physics・互換プロファイルは特定できない。両説とコミュニティの確認記録を残し、対象ビルドを固定した再現確認後に公開範囲を判断する。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posfreeze-chaos-current",
+                  "gravity-chaos-current"
+                ],
+                "comment": "2026-09-08: 旧文は両 JSON の description と tests/mugen/batches/axis-motion-02/json/state-controllers/ に保存。資料間の相違を記録したもので、エージェントの runtime_test ではない。Win版という記録から具体的な tested_on を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posfreeze-local-1.0",
+            "title": "PosFreeze — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#posfreeze",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posfreeze-local-1.1",
+            "title": "PosFreeze — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#posfreeze",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posfreeze-chaos-current",
+            "title": "SC-/PosFreeze — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+            "url": "https://w.atwiki.jp/mugencns/pages/254.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gravity-chaos-current",
+            "title": "SC-/Gravity — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+            "url": "https://w.atwiki.jp/mugencns/pages/230.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posfreeze-expressions-1.0",
+            "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "posfreeze-local-1.0",
+              "posfreeze-local-1.1",
+              "posfreeze-expressions-1.0"
+            ],
+            "comment": "2026-09-08 に資料の記載を確認。今回、MUGEN の実機テストは行っていない。"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは資料の掲載時期から推定せず、不明を保持する。"
+        },
+        {
+          "path": "notes[0] / description",
+          "reason": "Gravity と PosFreeze の相互作用は conflicting。旧文と CHAOS の Win版確認記録を保持し、ビルド・実行順・physics・互換設定を絞る実機確認は未実施。"
+        }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "Gravity",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身の垂直方向の速度に、CNS の <code>[Movement]</code> で設定した <code>yaccel</code> の値を加算します。固有のパラメーターはありません。</p><p>加算はこのコントローラーを実行するたびに行われます。重力を継続して適用するには、毎フレーム実行するように条件を指定します。異なる加速度を使う場合は <code>VelAdd</code> で指定します。</p><p><code>physics = N</code> で自動着地を使わない場合は、着地の判定とステート変更も記述してください。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "gravity-local-1.0",
+                "gravity-local-1.1",
+                "gravity-chaos-current",
+                "gravity-player-variables-1.0",
+                "gravity-physics-1.0"
+              ],
+              "comment": "2026-09-08: 旧本文を原位置に保存。ステート中に常時加算されるように読める箇所を、コントローラーを実行するたびの加算へ訂正。phisycs の誤記を修正し、physics=N は利用条件として説明。PosFreeze との相互作用は研究記録へ分離した。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>旧 Gravity.description は PosFreeze 中に Gravity の加速を受けないと記述する一方、旧 PosFreeze.description は Gravity による加算を受けると記述しており、相反する。CHAOS の Gravity 記事も加速を受けるとし、PosFreeze 記事には Win版で加速度の反映を確認した記録がある。ただし同記事は疑問符も残しており、具体的な実行ビルド・実行順・physics・互換プロファイルは特定できない。両説とコミュニティの確認記録を残し、対象ビルドを固定した再現確認後に公開範囲を判断する。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "posfreeze-chaos-current",
+                  "gravity-chaos-current"
+                ],
+                "comment": "2026-09-08: 旧文は両 JSON の description と tests/mugen/batches/axis-motion-02/json/state-controllers/ に保存。資料間の相違を記録したもので、エージェントの runtime_test ではない。Win版という記録から具体的な tested_on を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gravity-local-1.0",
+            "title": "Gravity — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#gravity",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gravity-local-1.1",
+            "title": "Gravity — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#gravity",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gravity-chaos-current",
+            "title": "SC-/Gravity — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+            "url": "https://w.atwiki.jp/mugencns/pages/230.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "posfreeze-chaos-current",
+            "title": "SC-/PosFreeze — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+            "url": "https://w.atwiki.jp/mugencns/pages/254.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gravity-player-variables-1.0",
+            "title": "[Movement] の yaccel — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#player-variables",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gravity-physics-1.0",
+            "title": "physics と着地処理 — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#physics",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは資料の掲載時期から推定せず、不明を保持する。"
+        },
+        {
+          "path": "notes[0] / description",
+          "reason": "Gravity と PosFreeze の相互作用は conflicting。旧文と CHAOS の Win版確認記録を保持し、ビルド・実行順・physics・互換設定を絞る実機確認は未実施。"
+        }
+      ]
+    }
+  ]
+}

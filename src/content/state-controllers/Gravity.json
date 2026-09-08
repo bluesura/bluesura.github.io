@@ -1,26 +1,121 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "Gravity",
-		"target": "実行者自身",
-		"category": ["物理演算","キャラクターへの重力適用"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "Gravity",
-	"description": "<p>cnsで設定した\"yaccel\"の値を利用してプレイヤーに重力をかけます。効果は1フレーム。パラメータはありません。</p><p>\"yaccel\"以外の重力をかけるときはVelAddを使用します。VelAddでも代用可能ですが、GravityはPosFreeze中に加速の影響を受けないという特徴があります。</p><p>そのステート中、プレイヤーに対して常に重力がかかります。</p><p>このコントローラを使う場合は、phisycsがNのはずなので、着地したときの記述を忘れないようにしましょう。</p>",
-	"category": "state",
-
-	"quote": [
-		{"title": "Gravity - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Gravity"},
-		{"title": "Gravity - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#gravity"},
-		{"title": "Gravity - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#gravity"},
-		{"title": "Gravity - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Gravity"},
-		{"title": "Gravity - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Gravity&protocol=http"},
-		{"title": "Gravity - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Gravity"},
-		{"title": "Gravity - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "Gravity",
+    "target": "実行者自身",
+    "category": [
+      "物理演算",
+      "キャラクターへの重力適用"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "Gravity",
+  "description": "<p>cnsで設定した\"yaccel\"の値を利用してプレイヤーに重力をかけます。効果は1フレーム。パラメータはありません。</p><p>\"yaccel\"以外の重力をかけるときはVelAddを使用します。VelAddでも代用可能ですが、GravityはPosFreeze中に加速の影響を受けないという特徴があります。</p><p>そのステート中、プレイヤーに対して常に重力がかかります。</p><p>このコントローラを使う場合は、phisycsがNのはずなので、着地したときの記述を忘れないようにしましょう。</p>",
+  "category": "state",
+  "quote": [
+    {
+      "title": "Gravity - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Gravity"
+    },
+    {
+      "title": "Gravity - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#gravity"
+    },
+    {
+      "title": "Gravity - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#gravity"
+    },
+    {
+      "title": "Gravity - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Gravity"
+    },
+    {
+      "title": "Gravity - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Gravity&protocol=http"
+    },
+    {
+      "title": "Gravity - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Gravity"
+    },
+    {
+      "title": "Gravity - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "id": "gravity-local-1.0",
+      "title": "Gravity — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#gravity",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gravity-local-1.1",
+      "title": "Gravity — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#gravity",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gravity-chaos-current",
+      "title": "SC-/Gravity — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+      "url": "https://w.atwiki.jp/mugencns/pages/230.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "posfreeze-chaos-current",
+      "title": "SC-/PosFreeze — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+      "url": "https://w.atwiki.jp/mugencns/pages/254.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "gravity-player-variables-1.0",
+      "title": "[Movement] の yaccel — 保存済み Elecbyte 1.0 CNS資料",
+      "url": "/MUGEN/document/Official/1.0/cns.html#player-variables",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gravity-physics-1.0",
+      "title": "physics と着地処理 — 保存済み Elecbyte 1.0 CNS資料",
+      "url": "/MUGEN/document/Official/1.0/cns.html#physics",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者自身の垂直方向の速度に、CNS の <code>[Movement]</code> で設定した <code>yaccel</code> の値を加算します。固有のパラメーターはありません。</p><p>加算はこのコントローラーを実行するたびに行われます。重力を継続して適用するには、毎フレーム実行するように条件を指定します。異なる加速度を使う場合は <code>VelAdd</code> で指定します。</p><p><code>physics = N</code> で自動着地を使わない場合は、着地の判定とステート変更も記述してください。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document",
+        "community_documentation"
+      ],
+      "source_refs": [
+        "gravity-local-1.0",
+        "gravity-local-1.1",
+        "gravity-chaos-current",
+        "gravity-player-variables-1.0",
+        "gravity-physics-1.0"
+      ],
+      "comment": "2026-09-08: 旧本文を原位置に保存。ステート中に常時加算されるように読める箇所を、コントローラーを実行するたびの加算へ訂正。phisycs の誤記を修正し、physics=N は利用条件として説明。PosFreeze との相互作用は研究記録へ分離した。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 Gravity.description は PosFreeze 中に Gravity の加速を受けないと記述する一方、旧 PosFreeze.description は Gravity による加算を受けると記述しており、相反する。CHAOS の Gravity 記事も加速を受けるとし、PosFreeze 記事には Win版で加速度の反映を確認した記録がある。ただし同記事は疑問符も残しており、具体的な実行ビルド・実行順・physics・互換プロファイルは特定できない。両説とコミュニティの確認記録を残し、対象ビルドを固定した再現確認後に公開範囲を判断する。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "posfreeze-chaos-current",
+          "gravity-chaos-current"
+        ],
+        "comment": "2026-09-08: 旧文は両 JSON の description と tests/mugen/batches/axis-motion-02/json/state-controllers/ に保存。資料間の相違を記録したもので、エージェントの runtime_test ではない。Win版という記録から具体的な tested_on を推定しない。"
+      }
+    }
+  ]
 }

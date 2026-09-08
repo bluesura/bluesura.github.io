@@ -1,40 +1,189 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "PosFreeze",
-		"target": "実行者自身",
-		"category": ["位置の操作","速度・重力による移動の一時的無効化"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "PosFreeze",
-	"description": "<p>一時的に速度・重力による移動を無効化します。効果は1フレーム(実行中)のみ有効。PosSet・PosAddは無効になりません。</p><p>停止している間もVelAdd・Gravityの影響を受けます。PosFreezeが終了した時に、停止していた間の速度が加算された状態で動き出すので注意。</p>",
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["停止フラグ"],
-			"type": ["int"],
-			"description": "<p>1を指定するとその場に停止します。0で変化なし。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["1"]
-		}
-	],
-
-	"quote": [
-		{"title": "PosFreeze - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PosFreeze"},
-		{"title": "PosFreeze - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#posfreeze"},
-		{"title": "PosFreeze - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#posfreeze"},
-		{"title": "PosFreeze - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PosFreeze"},
-		{"title": "PosFreeze - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PosFreeze&protocol=http"},
-		{"title": "PosFreeze - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PosFreeze"},
-		{"title": "PosFreeze - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "PosFreeze",
+    "target": "実行者自身",
+    "category": [
+      "位置の操作",
+      "速度・重力による移動の一時的無効化"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "PosFreeze",
+  "description": "<p>一時的に速度・重力による移動を無効化します。効果は1フレーム(実行中)のみ有効。PosSet・PosAddは無効になりません。</p><p>停止している間もVelAdd・Gravityの影響を受けます。PosFreezeが終了した時に、停止していた間の速度が加算された状態で動き出すので注意。</p>",
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "停止フラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>1を指定するとその場に停止します。0で変化なし。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "1",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "posfreeze-local-1.0",
+              "posfreeze-local-1.1"
+            ],
+            "comment": "2026-09-08 に資料の記載を確認。今回、MUGEN の実機テストは行っていない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      },
+      "documentation": {
+        "description": "<p>0以外を指定すると、速度による座標移動を停止します。0では停止させません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "posfreeze-local-1.0",
+            "posfreeze-local-1.1"
+          ],
+          "comment": "2026-09-08 に資料の記載を確認。今回、MUGEN の実機テストは行っていない。"
+        }
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "PosFreeze - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PosFreeze"
+    },
+    {
+      "title": "PosFreeze - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#posfreeze"
+    },
+    {
+      "title": "PosFreeze - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#posfreeze"
+    },
+    {
+      "title": "PosFreeze - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PosFreeze"
+    },
+    {
+      "title": "PosFreeze - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PosFreeze&protocol=http"
+    },
+    {
+      "title": "PosFreeze - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PosFreeze"
+    },
+    {
+      "title": "PosFreeze - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "id": "posfreeze-local-1.0",
+      "title": "PosFreeze — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#posfreeze",
+      "source_type": "official_document"
+    },
+    {
+      "id": "posfreeze-local-1.1",
+      "title": "PosFreeze — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#posfreeze",
+      "source_type": "official_document"
+    },
+    {
+      "id": "posfreeze-chaos-current",
+      "title": "SC-/PosFreeze — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+      "url": "https://w.atwiki.jp/mugencns/pages/254.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "gravity-chaos-current",
+      "title": "SC-/Gravity — MUGEN CNS WIKI CHAOS@予定（現行 URL）",
+      "url": "https://w.atwiki.jp/mugencns/pages/230.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "posfreeze-expressions-1.0",
+      "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+      "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行した1フレームの間、速度による実行者自身の座標移動を止めます。速度の値を0にする処理ではなく、<code>PosSet</code>・<code>PosAdd</code> による直接の座標変更は止めません。</p><p>停止中に <code>VelAdd</code> などで速度を変更すると、停止が終わった後は変更された速度で移動します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document",
+        "community_documentation"
+      ],
+      "source_refs": [
+        "posfreeze-local-1.0",
+        "posfreeze-local-1.1",
+        "posfreeze-chaos-current"
+      ],
+      "comment": "2026-09-08: 旧本文を保持して、速度による移動の停止と速度値の変更を区別した。Gravity との相互作用は旧ページ間で相反するため notes の research に分離し、全ビルド共通の断定を公開しない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 Gravity.description は PosFreeze 中に Gravity の加速を受けないと記述する一方、旧 PosFreeze.description は Gravity による加算を受けると記述しており、相反する。CHAOS の Gravity 記事も加速を受けるとし、PosFreeze 記事には Win版で加速度の反映を確認した記録がある。ただし同記事は疑問符も残しており、具体的な実行ビルド・実行順・physics・互換プロファイルは特定できない。両説とコミュニティの確認記録を残し、対象ビルドを固定した再現確認後に公開範囲を判断する。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "posfreeze-chaos-current",
+          "gravity-chaos-current"
+        ],
+        "comment": "2026-09-08: 旧文は両 JSON の description と tests/mugen/batches/axis-motion-02/json/state-controllers/ に保存。資料間の相違を記録したもので、エージェントの runtime_test ではない。Win版という記録から具体的な tested_on を推定しない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "posfreeze-local-1.0",
+      "posfreeze-local-1.1",
+      "posfreeze-expressions-1.0"
+    ],
+    "comment": "2026-09-08 に資料の記載を確認。今回、MUGEN の実機テストは行っていない。"
+  }
 }

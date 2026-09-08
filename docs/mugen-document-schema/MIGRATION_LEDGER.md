@@ -67,3 +67,7 @@
 ## 2026-09-08：公開文の訂正
 
 VelAdd / VelSet の X・Y の旧 `value` / `description` を原位置に保存したまま、任意の `documentation` で公開用のラベル・本文を訂正しました。「乗算速度」を加算する速度／設定する速度へ、「ターゲット」を実行者自身へ修正しています。旧本文・前回の内部研究・既定値・読み込み順・コピー出力は保持しています。入力規則、根拠、継続編集の手順は [EDITORIAL_GUIDE.md](EDITORIAL_GUIDE.md) を参照してください。資料間の矛盾が残る PosSet / PosAdd の調査を解消したという意味ではありません。
+
+## 2026-09-09：axis-motion-02
+
+VelMul / PosFreeze / Gravity の3件を追加し、累計23件・残り211件です。ルート `documentation.description` で概要を訂正し、旧本文を保存しました。Gravity と PosFreeze の旧本文が反対の説明を持つこと、CHAOS の Win版での確認記録を、両ページの非公開 `research` に `conflicting` として記録しています。ビルドや互換設定を推測せず、実機確認は未実施です。公開する基本動作・既定値、検証対象と実行手順は [BATCH_MIGRATION.md](BATCH_MIGRATION.md) に記録しています。

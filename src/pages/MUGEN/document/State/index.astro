@@ -4,6 +4,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { effectiveParameters } from '../../../../lib/mugen/parameters.mjs';
+import { effectiveDescription } from '../../../../lib/mugen/normalize.mjs';
 import ignoreHitPause from '../../../../data/common/IgnoreHitPause.json';
 import persistent from '../../../../data/common/Persistent.json';
 
@@ -42,7 +43,7 @@ function formatParam(param: string, maxLength = 27): string {
           return (
             <div class="section">
               <h2><a href={`/MUGEN/document/State/${entry.id}.html`}>{content.state}</a></h2>
-              <div set:html={content.description}></div>
+              <div set:html={effectiveDescription(content)}></div>
               <div class="code" contenteditable="true">
                 <ul>
                   {content.category === "state" && (

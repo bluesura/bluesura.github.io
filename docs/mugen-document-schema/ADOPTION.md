@@ -19,6 +19,7 @@ Node.js 20 の CI とブラウザ表示の両方で同じ処理を使うため�
 
 ## 新旧の対応
 
+- ルートの `documentation.description` は公開用の概要です（2026-09-09 採用）。旧 `description` を残し、詳細・一覧・説明用メタ情報へ反映します。任意の `documentation.evidence` は非公開です。パラメーター用とは異なり `value` は指定できません。
 - `parameter[].documentation.value` / `description` は公開用に訂正したラベル・本文です。指定した項目だけを優先し、旧 `value` / `description` は原位置に保持します。内部の `evidence` は HTML に出力しません。入力規則、共通定義・引数との優先順位、編集手順は [EDITORIAL_GUIDE.md](EDITORIAL_GUIDE.md) を参照してください（2026-09-08 採用）。
 - `default` を記述した項目は、それを表示に使います。未指定なら `default_value` を読みます。`default: []` は無効です。
 - `notes[].legacy_index` は同じオブジェクトの `version` 配列の0始まりインデックスです。対応する旧履歴を置き換えて表示し、旧見出し・引用先は維持します。対応していない旧履歴は引き続き表示します。

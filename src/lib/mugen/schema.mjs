@@ -84,6 +84,10 @@ const parameterDocumentationSchema = z.object({
 }).strict().refine(value => value.value !== undefined || value.description !== undefined, {
   message: 'Parameter documentation requires a value label or description.',
 });
+const documentDocumentationSchema = z.object({
+  description: z.string().min(1),
+  evidence: evidenceSchema.optional(),
+}).strict();
 export const parameterSchema = z.object({
   parameter: z.string(), type: strings.optional(), value: strings.optional(),
   parameter_type: z.string().optional(), default_value: strings.optional(),
@@ -104,6 +108,7 @@ export function createDocumentSchema(collection, registry) {
     [key]: z.string(),
     page: z.object({ engine: id.optional(), introduced_in: id.nullable().optional() }).passthrough(),
     parameter: z.array(parameterSchema).optional(),
+    documentation: documentDocumentationSchema.optional(),
     quote: z.array(quoteSchema).optional(),
     return_type: strings.optional(),
     syntax_kind: z.enum(['nullary', 'function', 'old_style', 'special_form']).optional(),

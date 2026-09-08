@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { parse, parseFragment } from 'parse5';
 import { readArticle, findAll, attr, compactText, textContent } from './html.mjs';
 import { baselineCases, collections, documents, readJSON, pathFromRoot } from './files.mjs';
-import { normalizeDocument, effectiveNotes, isPublicNote } from '../../src/lib/mugen/normalize.mjs';
+import { normalizeDocument, effectiveNotes, isPublicNote, effectiveDescription } from '../../src/lib/mugen/normalize.mjs';
 import { copyLines } from '../../src/lib/mugen/defaults.mjs';
 import { effectiveParameters } from '../../src/lib/mugen/parameters.mjs';
 
@@ -19,6 +19,12 @@ for (const { collection, name, base } of cases) {
     const tree = parse(html);
     for (const entry of documents().filter(entry => entry.collection === collection && collection !== 'lifebars')) {
       assert.ok(rendered.links.some(link => link.href === entry.url), `${collection}: missing index link ${entry.url}`);
+      if (entry.data.documentation) {
+        const section = findAll(tree, node => node.tagName === 'div' && attr(node, 'class') === 'section' && findAll(node, child => child.tagName === 'h2' && findAll(child, link => attr(link, 'href') === entry.url).length).length)[0];
+        const description = section?.childNodes.find(node => node.tagName === 'div');
+        assert.ok(description, `${entry.url}: missing index description`);
+        assert.equal(compactText(description), compactText(parseFragment(effectiveDescription(entry.data))), `${entry.url}: edited index description`);
+      }
       if (collection === 'state-controllers') {
         const section = findAll(tree, node => node.tagName === 'div' && attr(node, 'class') === 'section' && findAll(node, child => child.tagName === 'h2' && findAll(child, link => attr(link, 'href') === entry.url).length).length)[0];
         assert.ok(section, `Missing index section: ${entry.url}`);
@@ -45,8 +51,8 @@ for (const { collection, name, base } of cases) {
   for (const id of before.sections) assert.ok(rendered.sections.includes(id), `${name}: lost section #${id}`);
   for (const link of before.links) assert.ok(rendered.links.some(candidate => candidate.href === link.href && candidate.text === link.text) || hiddenLinks.some(candidate => candidate.href === link.href && candidate.text === link.text), `${name}: lost link ${link.href}`);
   for (const src of before.media) assert.ok(rendered.media.includes(src) || hiddenMedia.includes(src), `${name}: lost media ${src}`);
-  const text = compactText(parseFragment(legacy.description));
-  assert.ok(rendered.text.includes(text), `${name}: lost description`);
+  const text = compactText(parseFragment(current.description));
+  assert.ok(rendered.text.includes(text), `${name}: lost effective description`);
   for (const [index, entry] of (legacy.version ?? []).entries()) {
     const mapped = source.notes?.find(note => note.legacy_index === index);
     if (!mapped || isPublicNote(mapped)) assert.ok(rendered.text.includes(compactText(parseFragment(entry.content))), `${name}: lost public legacy history`);
@@ -64,6 +70,19 @@ for (const { collection, name, base } of cases) {
     if (name === 'Helper') assert.ok(rendered.code.some(line => /^; Size.XScale/.test(line)), 'Helper inherited assignment must be commented');
   }
   const document = parse(html);
+  if (source.documentation) {
+    const description = findAll(document, node => attr(node, 'class') === 'description' && attr(node, 'itemprop') === 'articleBody')[0];
+    assert.ok(description, `${name}: missing article description`);
+    // Associated links are rendered separately in the same container.
+    const prose = { childNodes: description.childNodes.filter(node => attr(node, 'class') !== 'associated-trigger') };
+    assert.equal(compactText(prose), text, `${name}: edited article description`);
+    const descriptionMetadata = findAll(document, node => node.tagName === 'meta' && [attr(node, 'name'), attr(node, 'property')].some(value => ['description', 'og:description', 'twitter:description'].includes(value)));
+    assert.equal(descriptionMetadata.length, 3, `${name}: missing description metadata`);
+    for (const meta of descriptionMetadata) {
+      assert.equal(attr(meta, 'content'), current.description.replace(/<[^>]*>?/gm, ''), `${name}: stale description metadata`);
+    }
+    if (source.documentation.evidence?.comment) assert.ok(!html.includes(source.documentation.evidence.comment), `${name}: description evidence leaked`);
+  }
   const parameterEntries = findAll(document, node => attr(node, 'class') === 'parameter-entry');
   for (const [index, parameter] of current.parameter.filter(parameter => parameter.parameter).entries()) {
     const editorial = source.parameter?.find(item => item.parameter === parameter.parameter)?.documentation;

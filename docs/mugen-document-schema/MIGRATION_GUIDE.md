@@ -164,6 +164,8 @@ Do not add every conceivable semantic field globally before the fixture set prov
 10. Only then design a bulk conversion script.
 11. Remove legacy fields only in a separate, explicitly authorized cleanup phase.
 
+For editorial corrections after migration, use the optional `parameter[].documentation` fields described in `EDITORIAL_GUIDE.md`. Keep the original label/description in place and retain the captured baselines. Do not weaken preservation checks to permit text replacement.
+
 ## 11. Validation
 
 Use commands that exist in the repository's `package.json`.

@@ -76,11 +76,20 @@ const additions = {
   variants: z.array(variantSchema).optional(),
   notes: notes.optional(),
 };
+// Only editorial text can be replaced; execution semantics stay in their existing fields.
+const parameterDocumentationSchema = z.object({
+  value: z.array(z.string().min(1)).min(1).optional(),
+  description: z.string().min(1).optional(),
+  evidence: evidenceSchema.optional(),
+}).strict().refine(value => value.value !== undefined || value.description !== undefined, {
+  message: 'Parameter documentation requires a value label or description.',
+});
 export const parameterSchema = z.object({
   parameter: z.string(), type: strings.optional(), value: strings.optional(),
   parameter_type: z.string().optional(), default_value: strings.optional(),
   load_priority: strings.optional(),
   default: defaultSchema.optional(), load_priority_evidence: evidenceSchema.optional(),
+  documentation: parameterDocumentationSchema.optional(),
   ...additions,
 }).passthrough();
 const quoteSchema = z.object({

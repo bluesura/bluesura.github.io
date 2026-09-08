@@ -5,6 +5,7 @@ import { readArticle, findAll, attr, compactText, textContent } from './html.mjs
 import { baselineCases, collections, documents, readJSON, pathFromRoot } from './files.mjs';
 import { normalizeDocument, effectiveNotes, isPublicNote } from '../../src/lib/mugen/normalize.mjs';
 import { copyLines } from '../../src/lib/mugen/defaults.mjs';
+import { effectiveParameters } from '../../src/lib/mugen/parameters.mjs';
 
 const manifest = readJSON('tests/mugen/baseline/manifest.json');
 for (const route of manifest.routes) assert.ok(existsSync(pathFromRoot(`dist${route}`)), `Missing route: ${route}`);
@@ -22,6 +23,12 @@ for (const { collection, name, base } of cases) {
         const section = findAll(tree, node => node.tagName === 'div' && attr(node, 'class') === 'section' && findAll(node, child => child.tagName === 'h2' && findAll(child, link => attr(link, 'href') === entry.url).length).length)[0];
         assert.ok(section, `Missing index section: ${entry.url}`);
         const lines = findAll(section, node => node.tagName === 'li').map(textContent);
+        for (const parameter of effectiveParameters(entry.data, common)) {
+          const label = parameter.value?.join(', ');
+          if (entry.data.parameter?.some(item => item.parameter === parameter.parameter && item.documentation?.value)) {
+            assert.ok(lines.some(line => line.trim().startsWith(parameter.parameter) && line.includes(label)), `${entry.url}: index lost edited parameter label`);
+          }
+        }
         for (const shared of common) assert.equal(lines.filter(line => line.trim().toLowerCase().startsWith(shared.parameter.toLowerCase())).length, entry.data.category === 'state' ? 1 : 0, `${entry.url}: index common parameter ${shared.parameter}`);
       }
     }
@@ -57,6 +64,20 @@ for (const { collection, name, base } of cases) {
     if (name === 'Helper') assert.ok(rendered.code.some(line => /^; Size.XScale/.test(line)), 'Helper inherited assignment must be commented');
   }
   const document = parse(html);
+  const parameterEntries = findAll(document, node => attr(node, 'class') === 'parameter-entry');
+  for (const [index, parameter] of current.parameter.filter(parameter => parameter.parameter).entries()) {
+    const editorial = source.parameter?.find(item => item.parameter === parameter.parameter)?.documentation;
+    if (!editorial) continue;
+    const entry = parameterEntries[index];
+    assert.ok(entry, `${name}: missing edited parameter ${parameter.parameter}`);
+    const heading = findAll(entry, node => node.tagName === 'h3')[0];
+    const purpose = parameter.value?.filter(Boolean).length ? ` = ${parameter.value.join(', ')}` : '';
+    assert.equal(compactText(heading), `${parameter.parameter}${purpose}`, `${name}: edited assignment heading`);
+    const description = findAll(entry, node => attr(node, 'class') === 'parameter-description')[0];
+    assert.equal(compactText(description), compactText(parseFragment(parameter.description)), `${name}: edited description`);
+    if (editorial.evidence?.comment) assert.ok(!html.includes(editorial.evidence.comment), `${name}: editorial evidence leaked`);
+    if (['VelAdd', 'VelSet'].includes(name)) assert.ok(!compactText(entry).includes('乗算速度') && !compactText(entry).includes('ターゲット'), `${name}: old error is still public`);
+  }
   assert.equal(findAll(document, node => attr(node, 'class')?.split(' ').includes('evidence')).length, 0, `${name}: evidence leaked into HTML`);
   const renderedNotes = findAll(document, node => attr(node, 'class') === 'specification-note');
   assert.equal(renderedNotes.length, [source, ...(source.parameter ?? [])].flatMap(value => effectiveNotes(value).filter(isPublicNote)).length, `${name}: wrong public note count`);

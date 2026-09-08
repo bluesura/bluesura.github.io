@@ -4,6 +4,8 @@
 
 > 2026-09-07: `research` と `visibility: internal` の注記、`evidence` / `load_priority_evidence` は JSON に保持し、HTML へ出力しません。検証済みと公開可否は別に管理します。具体的な既定値の書式を曖昧な説明へ置き換えないでください。
 
+> 2026-09-08: `parameter[].documentation` の `value` / `description` で、旧文を原位置に残して公開用ラベル・本文を訂正できます。指定項目のみ表示に優先し、`documentation.evidence` は内部記録です。[説明の訂正手順](../../docs/mugen-document-schema/EDITORIAL_GUIDE.md) を参照してください。
+
 このドキュメントは、`mugen-template-all.json` の各フィールドに入力すべき情報を定義した仕様書です。
 LLM（大規模言語モデル）への指示や、ドキュメントデータベース構築時のリファレンスとして利用してください。
 

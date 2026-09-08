@@ -20,6 +20,25 @@
   "parameter": [
     {
       "parameter": "X",
+      "documentation": {
+        "value": [
+          "水平方向の速度"
+        ],
+        "description": "<p>実行者自身の水平方向の速度を指定した値に変更します。正の値は実行者が向いている方向、負の値はその反対方向への速度です。X と Y は両方同時に指定することも、一方だけ指定することもできます。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document",
+            "community_documentation"
+          ],
+          "source_refs": [
+            "velset-local-1.0",
+            "velset-local-1.1",
+            "velset-chaos-current"
+          ],
+          "comment": "2026-09-08: 保存済み Elecbyte 1.0 / 1.1 資料と CHAOS の記載を照合し、旧 value の「乗算速度」と description の「ターゲット」を訂正。資料確認に基づく編集であり、今回の実機テストではない。旧文と訂正候補の research は原位置に保持する。"
+        }
+      },
       "value": [
         "水平方向乗算速度"
       ],
@@ -67,6 +86,25 @@
     },
     {
       "parameter": "Y",
+      "documentation": {
+        "value": [
+          "垂直方向の速度"
+        ],
+        "description": "<p>実行者自身の垂直方向の速度を指定した値に変更します。正の値は下方向、負の値は上方向への速度です。X と Y は両方同時に指定することも、一方だけ指定することもできます。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document",
+            "community_documentation"
+          ],
+          "source_refs": [
+            "velset-local-1.0",
+            "velset-local-1.1",
+            "velset-chaos-current"
+          ],
+          "comment": "2026-09-08: 保存済み Elecbyte 1.0 / 1.1 資料と CHAOS の記載を照合し、旧 value の「乗算速度」と description の「ターゲット」を訂正。資料確認に基づく編集であり、今回の実機テストではない。旧文と訂正候補の research は原位置に保持する。"
+        }
+      },
       "value": [
         "垂直方向乗算速度"
       ],

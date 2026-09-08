@@ -1,0 +1,73 @@
+{
+  "text": "Type = VelMul 速度の操作 > 現在の速度への乗算 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 パラメーター コピペ用 読み込み順 引用記事 速度を倍数指定で増減します。浮力、摩擦等に使用。 パラメーター X = 水平方向乗算速度 型浮動小数点数 各方向の速度を指定。水平方向は、ターゲットが向いている方向が正。垂直方向は、下方向が正です。両方同時に指定できますし、どちらか一方指定してもかまいません。 Y = 垂直方向乗算速度 型浮動小数点数 各方向の速度を指定。水平方向は、ターゲットが向いている方向が正。垂直方向は、下方向が正です。両方同時に指定できますし、どちらか一方指定してもかまいません。 IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 コピペ用パラメーター一覧（省略時の挙動） [State 0, VelMul]Type = VelMulTrigger1 = 1; X = ; 省略時: 未確認; Y = ; 省略時: 未確認IgnoreHitPause = 0Persistent = 1 パラメーターの読み込み順 パラメーター読み込み順 X 1 Y 2 IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事VelMul - State Controller Reference(version 2002.04.14)VelMul - State Controller Reference(version 1.0)VelMul - State Controller Reference(version 1.1)VelMul - M.U.G.E.N wikiVelMul - State ControllerVelMul - 東方夢幻館VelMul - 地球の応接間 公開日:2008.06.05 最終更新日:2013.11.27 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "DefaultParameter",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "VelMul - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#VelMul"
+    },
+    {
+      "text": "VelMul - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#velmul"
+    },
+    {
+      "text": "VelMul - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#velmul"
+    },
+    {
+      "text": "VelMul - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VelMul"
+    },
+    {
+      "text": "VelMul - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VelMul&protocol=http"
+    },
+    {
+      "text": "VelMul - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#VelMul"
+    },
+    {
+      "text": "VelMul - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": [
+    "[State 0, VelMul]",
+    "Type                       = VelMul",
+    "Trigger1                   = 1",
+    "; X                        =        ; 省略時: 未確認",
+    "; Y                        =        ; 省略時: 未確認",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

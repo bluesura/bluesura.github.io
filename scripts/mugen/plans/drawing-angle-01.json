@@ -1,0 +1,786 @@
+{
+  "id": "drawing-angle-01",
+  "reviewed_on": "2026-09-09",
+  "description": "AngleAdd / AngleMul / AngleSet の3件。必須値と式、角度と倍率の区別、AngleDraw による表示反映を、原文を保持して明記する。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "AngleAdd",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "required",
+              "display": "加算する角度を度で指定",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "angleadd-local-1.0",
+                  "angleadd-local-1.1"
+                ],
+                "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>現在の回転角度に加える角度を、度で指定します。小数や式も使用できます。省略できません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "angleadd-local-1.0",
+                "angleadd-local-1.1",
+                "angleadd-expressions-1.0"
+              ],
+              "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p><code>AngleDraw</code> で描画するときの回転角度を増減します。<code>value</code> の単位は度です。</p><p><code>Acos</code>・<code>Asin</code>・<code>Atan</code> の戻り値はラジアンなので、角度として使う場合は度に変換します。例えば <code>Atan(1) * 180 / Pi</code> は約45度です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "angleadd-local-1.0",
+                "angleadd-local-1.1",
+                "angleadd-acos-1.0",
+                "angleadd-asin-1.0",
+                "angleadd-atan-1.0",
+                "angleadd-pi-1.0"
+              ],
+              "comment": "2026-09-09: 旧概要を原位置に保持し、角度と倍率を区別した。単位変換は角度を指定する Add / Set に掲載し、Mul の倍率に度数変換が必要であるような説明は掲載しない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>変更した角度を表示へ反映するには <code>AngleDraw</code> を実行します。角度の値は描画しない間も保持されますが、描画の回転は <code>AngleDraw</code> を実行した1フレームに適用されます。画像を回転しても当たり判定は回転しません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "angleadd-angledraw-1.0",
+                  "angleadd-chaos-angleadd"
+                ],
+                "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleadd-local-1.0",
+            "title": "AngleAdd — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#angleadd",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleadd-local-1.1",
+            "title": "AngleAdd — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#angleadd",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleadd-expressions-1.0",
+            "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleadd-angledraw-1.0",
+            "title": "AngleDraw — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#angledraw",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleadd-chaos-angleadd",
+            "title": "AngleAdd・AngleDraw による描画反映 — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/76.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleadd-acos-1.0",
+            "title": "acos — 保存済み Elecbyte 1.0 トリガー資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#acos-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleadd-asin-1.0",
+            "title": "asin — 保存済み Elecbyte 1.0 トリガー資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#asin-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleadd-atan-1.0",
+            "title": "atan — 保存済み Elecbyte 1.0 トリガー資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#atan-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleadd-pi-1.0",
+            "title": "pi — 保存済み Elecbyte 1.0 トリガー資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#pi-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "angleadd-local-1.0",
+              "angleadd-local-1.1",
+              "angleadd-expressions-1.0"
+            ],
+            "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を維持する。"
+        }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "AngleMul",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "required",
+              "display": "角度に掛ける倍率を指定",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "anglemul-local-1.0",
+                  "anglemul-local-1.1"
+                ],
+                "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "角度に掛ける倍率"
+            ],
+            "description": "<p>現在の回転角度に掛ける倍率を指定します。1なら現在の角度を保ち、0なら角度を0度にします。0と1の間なら角度の絶対値を小さくし、1より大きい倍率なら大きくします。負の倍率では角度の符号が反転します。省略できません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "anglemul-local-1.0",
+                "anglemul-local-1.1"
+              ],
+              "comment": "2026-09-09: 旧「乗算する角度」「1以上でアクセル」を、角度への乗算と1の恒等性を区別する説明へ訂正した。数値例は乗算の意味からの説明であり、実機で角度の内部範囲を検証したものではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p><code>AngleDraw</code> で描画するときの回転角度に、指定した倍率を掛けます。<code>value</code> に指定するのは角度ではなく倍率です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "anglemul-local-1.0",
+                "anglemul-local-1.1"
+              ],
+              "comment": "2026-09-09: 旧概要を原位置に保持し、角度と倍率を区別した。単位変換は角度を指定する Add / Set に掲載し、Mul の倍率に度数変換が必要であるような説明は掲載しない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>変更した角度を表示へ反映するには <code>AngleDraw</code> を実行します。角度の値は描画しない間も保持されますが、描画の回転は <code>AngleDraw</code> を実行した1フレームに適用されます。画像を回転しても当たり判定は回転しません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "anglemul-angledraw-1.0",
+                  "anglemul-chaos-angleadd"
+                ],
+                "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧 AngleMul.description は倍率の説明に「単位は度」「ラジアンの変換」を含み、旧 parameter[0].description は「1以上でアクセル」と記述する。倍率そのものに角度の単位はなく、1は恒等変換のため、公開本文を訂正した。旧文は原位置に保持する。AngleSet / AngleMul の CHAOS 個別ページは今回取得できず、未読の内容を確認済みの根拠に含めない。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "anglemul-local-1.0",
+                  "anglemul-local-1.1"
+                ],
+                "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "anglemul-local-1.0",
+            "title": "AngleMul — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#anglemul",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "anglemul-local-1.1",
+            "title": "AngleMul — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#anglemul",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "anglemul-expressions-1.0",
+            "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "anglemul-angledraw-1.0",
+            "title": "AngleDraw — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#angledraw",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "anglemul-chaos-angleadd",
+            "title": "AngleAdd・AngleDraw による描画反映 — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/76.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "anglemul-local-1.0",
+              "anglemul-local-1.1",
+              "anglemul-expressions-1.0"
+            ],
+            "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を維持する。"
+        },
+        {
+          "path": "notes[1]",
+          "reason": "CHAOS の AngleMul / AngleSet 個別ページを取得できなかった。公開説明は保存済み公式資料と参照可能な共通説明を根拠とし、具体的な内部角度範囲・実機結果は推定しない。"
+        }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "AngleSet",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "required",
+              "display": "回転角度を度で指定",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "angleset-local-1.0",
+                  "angleset-local-1.1"
+                ],
+                "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>描画に使う回転角度を、度で指定します。小数や式も使用できます。省略できません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "angleset-local-1.0",
+                "angleset-local-1.1",
+                "angleset-expressions-1.0"
+              ],
+              "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p><code>AngleDraw</code> で描画するときの回転角度を指定値に変更します。<code>value</code> の単位は度です。</p><p><code>Acos</code>・<code>Asin</code>・<code>Atan</code> の戻り値はラジアンなので、角度として使う場合は度に変換します。例えば <code>Atan(1) * 180 / Pi</code> は約45度です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "angleset-local-1.0",
+                "angleset-local-1.1",
+                "angleset-acos-1.0",
+                "angleset-asin-1.0",
+                "angleset-atan-1.0",
+                "angleset-pi-1.0"
+              ],
+              "comment": "2026-09-09: 旧概要を原位置に保持し、角度と倍率を区別した。単位変換は角度を指定する Add / Set に掲載し、Mul の倍率に度数変換が必要であるような説明は掲載しない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>変更した角度を表示へ反映するには <code>AngleDraw</code> を実行します。角度の値は描画しない間も保持されますが、描画の回転は <code>AngleDraw</code> を実行した1フレームに適用されます。画像を回転しても当たり判定は回転しません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "angleset-angledraw-1.0",
+                  "angleset-chaos-angleadd"
+                ],
+                "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>回転角度は0度で初期化されます。<code>AngleSet</code> を使う場合、<code>value</code> の指定は必須です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "angleset-local-1.0",
+                  "angleset-local-1.1"
+                ],
+                "comment": "2026-09-09: 初期角度0と必須引数の記載を資料で確認。初期値を省略時の既定値に変換しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleset-local-1.0",
+            "title": "AngleSet — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#angleset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleset-local-1.1",
+            "title": "AngleSet — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#angleset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleset-expressions-1.0",
+            "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+            "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleset-angledraw-1.0",
+            "title": "AngleDraw — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#angledraw",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleset-chaos-angleadd",
+            "title": "AngleAdd・AngleDraw による描画反映 — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/76.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleset-acos-1.0",
+            "title": "acos — 保存済み Elecbyte 1.0 トリガー資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#acos-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleset-asin-1.0",
+            "title": "asin — 保存済み Elecbyte 1.0 トリガー資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#asin-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleset-atan-1.0",
+            "title": "atan — 保存済み Elecbyte 1.0 トリガー資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#atan-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "angleset-pi-1.0",
+            "title": "pi — 保存済み Elecbyte 1.0 トリガー資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#pi-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "angleset-local-1.0",
+              "angleset-local-1.1",
+              "angleset-expressions-1.0"
+            ],
+            "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を維持する。"
+        }
+      ]
+    }
+  ]
+}

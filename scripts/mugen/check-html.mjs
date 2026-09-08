@@ -100,6 +100,9 @@ for (const { collection, name, base } of cases) {
   assert.equal(findAll(document, node => attr(node, 'class')?.split(' ').includes('evidence')).length, 0, `${name}: evidence leaked into HTML`);
   const renderedNotes = findAll(document, node => attr(node, 'class') === 'specification-note');
   assert.equal(renderedNotes.length, [source, ...(source.parameter ?? [])].flatMap(value => effectiveNotes(value).filter(isPublicNote)).length, `${name}: wrong public note count`);
+  for (const note of [source, ...(source.parameter ?? [])].flatMap(value => effectiveNotes(value).filter(isPublicNote))) {
+    assert.ok(renderedNotes.some(node => compactText(node).includes(compactText(parseFragment(note.content)))), `${name}: public note content missing`);
+  }
   for (const note of hidden) assert.ok(!renderedNotes.some(node => compactText(node).includes(compactText(parseFragment(note.content)))), `${name}: internal note leaked`);
   if (name === 'Helper') {
     const value = source.parameter.find(p => p.parameter === 'Name').default[0].display;

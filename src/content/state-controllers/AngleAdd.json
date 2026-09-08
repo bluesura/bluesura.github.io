@@ -1,41 +1,225 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "AngleAdd",
-		"target": "実行者自身",
-		"category": ["角度操作","現在の回転角度への加算"],
-		"version": "2002.04.14",
-		"update": "2016.02.18",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "AngleAdd",
-	"description": "<p>AngleDrawで回転させる角度を増減します。</p><p>単位は度。角度を返すトリガー(arc●●●)は、戻り値がラジアンなので、変換が必要となります。</p>",
-	"images": [{"src": "AngleDraw.gif", "width": "640", "height": "480", "alt": "MUGEN AngleDraw"}],
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["加算角度"],
-			"type": ["float"],
-			"description": "<p>加算する角度を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		}
-	],
-
-	"quote": [
-		{"title": "AngleAdd - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AngleAdd"},
-		{"title": "AngleAdd - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#angleadd"},
-		{"title": "AngleAdd - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#angleadd"},
-		{"title": "AngleAdd - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AngleAdd"},
-		{"title": "AngleAdd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AngleAdd&protocol=http"},
-		{"title": "AngleAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AngleAdd"},
-		{"title": "AngleAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "AngleAdd",
+    "target": "実行者自身",
+    "category": [
+      "角度操作",
+      "現在の回転角度への加算"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.02.18",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "AngleAdd",
+  "description": "<p>AngleDrawで回転させる角度を増減します。</p><p>単位は度。角度を返すトリガー(arc●●●)は、戻り値がラジアンなので、変換が必要となります。</p>",
+  "images": [
+    {
+      "src": "AngleDraw.gif",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN AngleDraw"
+    }
+  ],
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "加算角度"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>加算する角度を指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "加算する角度を度で指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "angleadd-local-1.0",
+              "angleadd-local-1.1"
+            ],
+            "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      },
+      "documentation": {
+        "description": "<p>現在の回転角度に加える角度を、度で指定します。小数や式も使用できます。省略できません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "angleadd-local-1.0",
+            "angleadd-local-1.1",
+            "angleadd-expressions-1.0"
+          ],
+          "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+        }
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "AngleAdd - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AngleAdd"
+    },
+    {
+      "title": "AngleAdd - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#angleadd"
+    },
+    {
+      "title": "AngleAdd - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#angleadd"
+    },
+    {
+      "title": "AngleAdd - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AngleAdd"
+    },
+    {
+      "title": "AngleAdd - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AngleAdd&protocol=http"
+    },
+    {
+      "title": "AngleAdd - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AngleAdd"
+    },
+    {
+      "title": "AngleAdd - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "id": "angleadd-local-1.0",
+      "title": "AngleAdd — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#angleadd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "angleadd-local-1.1",
+      "title": "AngleAdd — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#angleadd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "angleadd-expressions-1.0",
+      "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+      "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+      "source_type": "official_document"
+    },
+    {
+      "id": "angleadd-angledraw-1.0",
+      "title": "AngleDraw — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#angledraw",
+      "source_type": "official_document"
+    },
+    {
+      "id": "angleadd-chaos-angleadd",
+      "title": "AngleAdd・AngleDraw による描画反映 — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/76.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "angleadd-acos-1.0",
+      "title": "acos — 保存済み Elecbyte 1.0 トリガー資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#acos-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "angleadd-asin-1.0",
+      "title": "asin — 保存済み Elecbyte 1.0 トリガー資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#asin-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "angleadd-atan-1.0",
+      "title": "atan — 保存済み Elecbyte 1.0 トリガー資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#atan-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "angleadd-pi-1.0",
+      "title": "pi — 保存済み Elecbyte 1.0 トリガー資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#pi-math",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p><code>AngleDraw</code> で描画するときの回転角度を増減します。<code>value</code> の単位は度です。</p><p><code>Acos</code>・<code>Asin</code>・<code>Atan</code> の戻り値はラジアンなので、角度として使う場合は度に変換します。例えば <code>Atan(1) * 180 / Pi</code> は約45度です。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "angleadd-local-1.0",
+        "angleadd-local-1.1",
+        "angleadd-acos-1.0",
+        "angleadd-asin-1.0",
+        "angleadd-atan-1.0",
+        "angleadd-pi-1.0"
+      ],
+      "comment": "2026-09-09: 旧概要を原位置に保持し、角度と倍率を区別した。単位変換は角度を指定する Add / Set に掲載し、Mul の倍率に度数変換が必要であるような説明は掲載しない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>変更した角度を表示へ反映するには <code>AngleDraw</code> を実行します。角度の値は描画しない間も保持されますが、描画の回転は <code>AngleDraw</code> を実行した1フレームに適用されます。画像を回転しても当たり判定は回転しません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "angleadd-angledraw-1.0",
+          "angleadd-chaos-angleadd"
+        ],
+        "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "angleadd-local-1.0",
+      "angleadd-local-1.1",
+      "angleadd-expressions-1.0"
+    ],
+    "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+  }
 }

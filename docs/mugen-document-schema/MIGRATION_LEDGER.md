@@ -71,3 +71,7 @@ VelAdd / VelSet の X・Y の旧 `value` / `description` を原位置に保存�
 ## 2026-09-09：axis-motion-02
 
 VelMul / PosFreeze / Gravity の3件を追加し、累計23件・残り211件です。ルート `documentation.description` で概要を訂正し、旧本文を保存しました。Gravity と PosFreeze の旧本文が反対の説明を持つこと、CHAOS の Win版での確認記録を、両ページの非公開 `research` に `conflicting` として記録しています。ビルドや互換設定を推測せず、実機確認は未実施です。公開する基本動作・既定値、検証対象と実行手順は [BATCH_MIGRATION.md](BATCH_MIGRATION.md) に記録しています。
+
+## 2026-09-09：drawing-angle-01
+
+AngleAdd / AngleMul / AngleSet を追加し、累計26件・残り208件です。必須 value の省略不可、度と倍率、初期角度と省略時、AngleDraw の表示反映を分けました。旧本文・疑問符・画像・読み込み順を保持しています。AngleMul / AngleSet の CHAOS 個別ページを取得できない制約は内部記録へ残しています。実機検証は未実施です。

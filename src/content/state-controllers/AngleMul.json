@@ -1,41 +1,214 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "AngleMul",
-		"target": "実行者自身",
-		"category": ["角度操作","現在の回転角度への乗算"],
-		"version": "2002.04.14",
-		"update": "2016.02.18",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "AngleMul",
-	"description": "<p>AngleDrawで回転させる角度を倍数で指定。</p><p>単位は度。角度を返すトリガー(arc●●●)は、戻り値がラジアンなので、変換が必要となります。</p>",
-	"images": [{"src": "AngleDraw.gif", "width": "640", "height": "480", "alt": "MUGEN AngleDraw"}],
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["倍数"],
-			"type": ["float"],
-			"description": "<p>乗算する角度を指定。省略不可。見た目としては、1以上でアクセル、0～1間の小数でブレーキとして働きます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		}
-	],
-
-	"quote": [
-		{"title": "AngleMul - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AngleMul"},
-		{"title": "AngleMul - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#anglemul"},
-		{"title": "AngleMul - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#anglemul"},
-		{"title": "AngleMul - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AngleMul"},
-		{"title": "AngleMul - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AngleMul&protocol=http"},
-		{"title": "AngleMul - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AngleMul"},
-		{"title": "AngleMul - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "AngleMul",
+    "target": "実行者自身",
+    "category": [
+      "角度操作",
+      "現在の回転角度への乗算"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.02.18",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "AngleMul",
+  "description": "<p>AngleDrawで回転させる角度を倍数で指定。</p><p>単位は度。角度を返すトリガー(arc●●●)は、戻り値がラジアンなので、変換が必要となります。</p>",
+  "images": [
+    {
+      "src": "AngleDraw.gif",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN AngleDraw"
+    }
+  ],
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "倍数"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>乗算する角度を指定。省略不可。見た目としては、1以上でアクセル、0～1間の小数でブレーキとして働きます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "角度に掛ける倍率を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "anglemul-local-1.0",
+              "anglemul-local-1.1"
+            ],
+            "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      },
+      "documentation": {
+        "value": [
+          "角度に掛ける倍率"
+        ],
+        "description": "<p>現在の回転角度に掛ける倍率を指定します。1なら現在の角度を保ち、0なら角度を0度にします。0と1の間なら角度の絶対値を小さくし、1より大きい倍率なら大きくします。負の倍率では角度の符号が反転します。省略できません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "anglemul-local-1.0",
+            "anglemul-local-1.1"
+          ],
+          "comment": "2026-09-09: 旧「乗算する角度」「1以上でアクセル」を、角度への乗算と1の恒等性を区別する説明へ訂正した。数値例は乗算の意味からの説明であり、実機で角度の内部範囲を検証したものではない。"
+        }
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "AngleMul - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AngleMul"
+    },
+    {
+      "title": "AngleMul - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#anglemul"
+    },
+    {
+      "title": "AngleMul - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#anglemul"
+    },
+    {
+      "title": "AngleMul - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AngleMul"
+    },
+    {
+      "title": "AngleMul - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AngleMul&protocol=http"
+    },
+    {
+      "title": "AngleMul - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AngleMul"
+    },
+    {
+      "title": "AngleMul - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "id": "anglemul-local-1.0",
+      "title": "AngleMul — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#anglemul",
+      "source_type": "official_document"
+    },
+    {
+      "id": "anglemul-local-1.1",
+      "title": "AngleMul — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#anglemul",
+      "source_type": "official_document"
+    },
+    {
+      "id": "anglemul-expressions-1.0",
+      "title": "式を指定できるパラメーター — 保存済み Elecbyte 1.0 CNS資料",
+      "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-state-and-state-controller-parameters",
+      "source_type": "official_document"
+    },
+    {
+      "id": "anglemul-angledraw-1.0",
+      "title": "AngleDraw — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#angledraw",
+      "source_type": "official_document"
+    },
+    {
+      "id": "anglemul-chaos-angleadd",
+      "title": "AngleAdd・AngleDraw による描画反映 — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/76.html",
+      "source_type": "community_documentation"
+    }
+  ],
+  "documentation": {
+    "description": "<p><code>AngleDraw</code> で描画するときの回転角度に、指定した倍率を掛けます。<code>value</code> に指定するのは角度ではなく倍率です。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "anglemul-local-1.0",
+        "anglemul-local-1.1"
+      ],
+      "comment": "2026-09-09: 旧概要を原位置に保持し、角度と倍率を区別した。単位変換は角度を指定する Add / Set に掲載し、Mul の倍率に度数変換が必要であるような説明は掲載しない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>変更した角度を表示へ反映するには <code>AngleDraw</code> を実行します。角度の値は描画しない間も保持されますが、描画の回転は <code>AngleDraw</code> を実行した1フレームに適用されます。画像を回転しても当たり判定は回転しません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "anglemul-angledraw-1.0",
+          "anglemul-chaos-angleadd"
+        ],
+        "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 AngleMul.description は倍率の説明に「単位は度」「ラジアンの変換」を含み、旧 parameter[0].description は「1以上でアクセル」と記述する。倍率そのものに角度の単位はなく、1は恒等変換のため、公開本文を訂正した。旧文は原位置に保持する。AngleSet / AngleMul の CHAOS 個別ページは今回取得できず、未読の内容を確認済みの根拠に含めない。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "anglemul-local-1.0",
+          "anglemul-local-1.1"
+        ],
+        "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "anglemul-local-1.0",
+      "anglemul-local-1.1",
+      "anglemul-expressions-1.0"
+    ],
+    "comment": "2026-09-09: 保存済み資料の記載確認。今回の実機テストではない。"
+  }
 }

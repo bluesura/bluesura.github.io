@@ -1,0 +1,45 @@
+{
+  "text": "Random 数値計算 > 乱数の取得 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 0〜999（両端含む）の乱数（整数）を返します。 構文 Random 引数 なし コードサンプル25%の確率判定0〜249 の250通りを当たりにすることで、約25%の確率にします。Trigger1 = Random <= 249 同じフレームで同じ乱数を使い回すRandom は参照のたびに値が変わるため、先に Var に保存してから参照します。[State -2, RandomCache]Type = VarSetTrigger1 = 1Var(10) = Random 任意の範囲へ変換する% 演算で範囲を圧縮します（例: 0〜99）。value = Random % 100 引用記事Random - Trigger Reference(version 2002.04.14)Random - Trigger Reference(version 1.0)Random - Trigger Reference(version 1.1) 公開日:2008.06.05 最終更新日:2026.01.14 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Random - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Random"
+    },
+    {
+      "text": "Random - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#random"
+    },
+    {
+      "text": "Random - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#random"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

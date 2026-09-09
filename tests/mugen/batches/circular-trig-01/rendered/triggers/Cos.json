@@ -1,0 +1,80 @@
+{
+  "text": "Cos 数値計算 > コサイン(余弦)の計算 | 実装されたバージョン: 2002.04.14 | 対象: 数式 引数 仕様・注意点 使用例 引用記事 Cos は、角度（ラジアン）の余弦(浮動小数点数)を返します。入力が度の場合は、度 * PI / 180 でラジアンに変換してから渡します。Sin と同様に、周期運動（揺れ・点滅・軌道）などの数式表現でよく使われます。 関連するトリガー： Sin , Tan , PI , Asin , Acos , Atan 構文 Cos(Radian) 引数 Radian 省略不可 型浮動小数点数 ラジアン単位の角度を指定します。 仕様・バグ・エラー・変更点エラー条件Radian が評価不能値（bottom）に評価された場合、戻り値も bottom になります。 コードサンプルCos(0) は 10 ラジアン（0度）の余弦は 1 です。Value = Cos(0) 引用記事Cos - Trigger Reference(version 2002.04.14)Cos (math) - Trigger Reference (MUGEN 1.0 / archive)Cos (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)Cos - M.U.G.E.N Wiki (archive) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Sin",
+      "href": "./../Trigger/Sin.html"
+    },
+    {
+      "text": "Tan",
+      "href": "./../Trigger/Tan.html"
+    },
+    {
+      "text": "PI",
+      "href": "./../Trigger/PI.html"
+    },
+    {
+      "text": "Asin",
+      "href": "./../Trigger/Asin.html"
+    },
+    {
+      "text": "Acos",
+      "href": "./../Trigger/Acos.html"
+    },
+    {
+      "text": "Atan",
+      "href": "./../Trigger/Atan.html"
+    },
+    {
+      "text": "Cos - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Cos"
+    },
+    {
+      "text": "Cos (math) - Trigger Reference (MUGEN 1.0 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#cos-math"
+    },
+    {
+      "text": "Cos (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#cos-math"
+    },
+    {
+      "text": "Cos - M.U.G.E.N Wiki (archive)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Cos"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-trigonometry-functions-guide.png"
+  ],
+  "code": []
+}

@@ -1,0 +1,80 @@
+{
+  "text": "Tan 数値計算 > タンジェント(正接)の計算 | 実装されたバージョン: 2002.04.14 | 対象: 数式 引数 仕様・注意点 使用例 引用記事 Tan は、角度（ラジアン）の正接(浮動小数点数)を返します。入力が度の場合は、度 * PI / 180 でラジアンに変換してから渡します。Tan は PI/2 付近で値が急激に大きくなるため、角度の扱い・条件分岐・分母に使う箇所では極端な値になりうる点に注意してください。 関連するトリガー： Sin , Cos , Atan , PI , Asin , Acos 構文 Tan(Radian) 引数 Radian 省略不可 型浮動小数点数 ラジアン単位の角度を指定します。 仕様・バグ・エラー・変更点エラー条件Radian が評価不能値（bottom）に評価された場合、戻り値も bottom になります。 コードサンプルTan(PI/4) は 1PI/4 ラジアン（45度）の正接は 1 です。Value = Tan(PI/4) 度で持っている角度から傾きを作る角度が度で管理されている場合は、PI/180 を掛けてラジアンにしてから Tan に渡します。Value = Tan(角度 * PI / 180.0) 引用記事Tan - Trigger Reference(version 2002.04.14)Tan (math) - Trigger Reference (MUGEN 1.0 / archive)Tan (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)Tan - M.U.G.E.N Wiki (archive) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Sin",
+      "href": "./../Trigger/Sin.html"
+    },
+    {
+      "text": "Cos",
+      "href": "./../Trigger/Cos.html"
+    },
+    {
+      "text": "Atan",
+      "href": "./../Trigger/Atan.html"
+    },
+    {
+      "text": "PI",
+      "href": "./../Trigger/PI.html"
+    },
+    {
+      "text": "Asin",
+      "href": "./../Trigger/Asin.html"
+    },
+    {
+      "text": "Acos",
+      "href": "./../Trigger/Acos.html"
+    },
+    {
+      "text": "Tan - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Tan"
+    },
+    {
+      "text": "Tan (math) - Trigger Reference (MUGEN 1.0 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#tan-math"
+    },
+    {
+      "text": "Tan (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#tan-math"
+    },
+    {
+      "text": "Tan - M.U.G.E.N Wiki (archive)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Tan"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-trigonometry-functions-guide.png"
+  ],
+  "code": []
+}

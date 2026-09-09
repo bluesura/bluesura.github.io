@@ -10,19 +10,21 @@
     "version": "2002.04.14",
     "update": "2026.01.11",
     "type": "document",
-    "level": "2"
+    "level": "2",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "PI",
   "category": "trigger",
   "trigger": "PI",
   "description": "<p><code>PI</code> は円周率π（3.141593...）の近似値を返すトリガーです。</p><p>戻り値は<strong>浮動小数点数</strong>で、数式内でそのまま利用できます。</p>",
   "images": [
-      {
+    {
       "src": "mugen-trigonometry-functions-guide.png",
       "width": "640",
       "height": "480",
       "alt": "MUGENにおける三角関数の仕様まとめ。Sin, Cos, Tanの入力値と出力の関係、度数からラジアンへの変換式、Atanによる角度計算の図解。"
-      }
+    }
   ],
   "syntax": [
     "PI"
@@ -44,7 +46,8 @@
         "Type = AngleSet",
         "Trigger1 = 1",
         "Value = IfElse(Vel X != 0, -180.0 / PI * Atan(Vel Y / Vel X), IfElse(Vel Y < 0, 90.0, -90.0))"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "Sin波でExplodのスケールを揺らす",
@@ -70,7 +73,8 @@
         "Trigger1 = FVar(4) >= PI || FVar(4) <= -PI",
         "FVar = 4",
         "Value = IfElse(FVar(4) >= PI, -2.0 * PI, 2.0 * PI)"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "狙い角度にランダムなブレを加える",
@@ -81,7 +85,8 @@
         "Trigger1 = Var(0) = [0,1]",
         "Var = 3",
         "Value = IfElse((P2BodyDist X + 50) != 0, Atan((-1.0 * (P2BodyDist Y - 50)) / (P2BodyDist X + 50)) * 180.0 / PI, 0.0) + (IfElse(Random % 2 = 0, -1, 1) * (Random % 10))"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "角度の許容範囲（±25度）で条件分岐する",
@@ -124,6 +129,85 @@
     {
       "title": "Pi (math) - Trigger Reference (MUGEN 1.1 Beta 1 / archive)",
       "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#pi-math"
+    },
+    {
+      "id": "pi-ifelse-1.0",
+      "title": "IfElse の全引数評価 — 保存済み Elecbyte 1.0 資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#ifelse-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "pi-ifelse-1.1",
+      "title": "IfElse の全引数評価 — 保存済み Elecbyte 1.1 資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#ifelse-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "pi-local-1.0",
+      "title": "PI — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#pi-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "pi-local-1.1",
+      "title": "PI — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#pi-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "pi-legacy-samples",
+      "title": "PI — 移行前のサンプル原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/9fe7290cd5a3ab80e66cbf47fa8223d81d3090c3/src/content/triggers/PI.json",
+      "source_type": "source_code"
+    }
+  ],
+  "return_type": [
+    "float"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "pi-local-1.0",
+      "pi-local-1.1"
+    ],
+    "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>code_sample[0] と code_sample[3] は IfElse で分母0の分岐を避けようとしているが、IfElse は選択しない側も評価する。Vel X=0 または P2BodyDist X=-50 では、選択外の式でゼロ除算が発生し得る。元の説明とコードは各要素に保持し、分母自体が0にならない式またはコントローラーの実行条件へ修正して確認するまで公開から外す。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "pi-ifelse-1.0",
+          "pi-ifelse-1.1",
+          "pi-legacy-samples"
+        ],
+        "comment": "2026-09-09: IfElse の評価規則と旧サンプルの式を照合した静的な確認。今回の実機テストではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>code_sample[2] は1回の実行で2*PIを一度だけ加減する。入力が5*PIなら結果は3*PIとなり、任意の角度を1回で-PI〜PIへ正規化する処理にはならない。入力範囲・繰り返し回数の前提を明記して確認するまで公開から外す。元のコードと説明は code_sample[2] に保持する。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "pi-legacy-samples"
+        ],
+        "comment": "2026-09-09: 式の数学的な反例を確認。実機テストではない。"
+      }
     }
   ]
 }

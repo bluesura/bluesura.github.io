@@ -1,0 +1,623 @@
+{
+  "id": "inverse-trig-01",
+  "reviewed_on": "2026-09-09",
+  "description": "Acos / Asin / Atan / PI の型・引数・構文・bottom 条件を移行する。問題のある既存サンプルは原文と判断理由を保持し、visibility=internal で公開から分離する。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "Acos",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "Exprn",
+              "type": [
+                "float"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "acos-local-1.0",
+                  "acos-local-1.1"
+                ],
+                "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "acos-local-1.0",
+              "acos-local-1.1"
+            ],
+            "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "<p><code>Exprn</code> が評価不能値（bottom）に評価された場合、戻り値も bottom になります。</p><p><code>Exprn</code> が定義域外（<code>-1.0</code>〜<code>1.0</code> の外）の場合も bottom になります。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "acos-local-1.0",
+                  "acos-local-1.1"
+                ],
+                "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "acos-local-1.0",
+            "title": "Acos — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#acos-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "acos-local-1.1",
+            "title": "Acos — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#acos-math",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Asin",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "Exprn",
+              "type": [
+                "float"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "asin-local-1.0",
+                  "asin-local-1.1"
+                ],
+                "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "asin-local-1.0",
+              "asin-local-1.1"
+            ],
+            "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "<p><code>Exprn</code> が評価不能値（bottom）に評価された場合、戻り値も bottom になります。</p><p><code>Exprn</code> が定義域外（<code>-1.0</code>〜<code>1.0</code> の外）の場合も bottom になります。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "asin-local-1.0",
+                  "asin-local-1.1"
+                ],
+                "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "asin-local-1.0",
+            "title": "Asin — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#asin-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "asin-local-1.1",
+            "title": "Asin — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#asin-math",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Atan",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "Exprn",
+              "type": [
+                "float"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "atan-local-1.0",
+                  "atan-local-1.1"
+                ],
+                "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "atan-local-1.0",
+              "atan-local-1.1"
+            ],
+            "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "<p><code>Exprn</code> が評価不能値（bottom）に評価された場合、戻り値も bottom になります。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "atan-local-1.0",
+                  "atan-local-1.1"
+                ],
+                "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>code_sample[1] の分母 P2BodyDist X + 50 は、P2BodyDist X が -50 のとき0になる。オフセットを加えるだけではゼロ除算を防げない。象限補正と実行条件も含めたサンプルの修正・確認が終わるまで公開から外す。元の説明とコードは code_sample[1] に保持する。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "atan-legacy-samples"
+                ],
+                "comment": "2026-09-09: 分母の式へ -50 を代入する静的な確認。MUGEN のサンプル実行テストではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "atan-local-1.0",
+            "title": "Atan — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#atan-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "atan-local-1.1",
+            "title": "Atan — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#atan-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "atan-legacy-samples",
+            "title": "Atan — 移行前のサンプル原本",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/9fe7290cd5a3ab80e66cbf47fa8223d81d3090c3/src/content/triggers/Atan.json",
+            "source_type": "source_code"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        },
+        {
+          "path": "code_sample / notes",
+          "reason": "内部へ分離した既存サンプルの修正・実行確認は未完了。型・構文等の資料確認と、サンプルの実機検証を区別する。"
+        }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "PI",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "pi-local-1.0",
+              "pi-local-1.1"
+            ],
+            "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "pi-ifelse-1.0",
+            "title": "IfElse の全引数評価 — 保存済み Elecbyte 1.0 資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#ifelse-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "pi-ifelse-1.1",
+            "title": "IfElse の全引数評価 — 保存済み Elecbyte 1.1 資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#ifelse-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>code_sample[0] と code_sample[3] は IfElse で分母0の分岐を避けようとしているが、IfElse は選択しない側も評価する。Vel X=0 または P2BodyDist X=-50 では、選択外の式でゼロ除算が発生し得る。元の説明とコードは各要素に保持し、分母自体が0にならない式またはコントローラーの実行条件へ修正して確認するまで公開から外す。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "pi-ifelse-1.0",
+                  "pi-ifelse-1.1",
+                  "pi-legacy-samples"
+                ],
+                "comment": "2026-09-09: IfElse の評価規則と旧サンプルの式を照合した静的な確認。今回の実機テストではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>code_sample[2] は1回の実行で2*PIを一度だけ加減する。入力が5*PIなら結果は3*PIとなり、任意の角度を1回で-PI〜PIへ正規化する処理にはならない。入力範囲・繰り返し回数の前提を明記して確認するまで公開から外す。元のコードと説明は code_sample[2] に保持する。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "pi-legacy-samples"
+                ],
+                "comment": "2026-09-09: 式の数学的な反例を確認。実機テストではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "pi-local-1.0",
+            "title": "PI — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#pi-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "pi-local-1.1",
+            "title": "PI — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pi-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "pi-legacy-samples",
+            "title": "PI — 移行前のサンプル原本",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/9fe7290cd5a3ab80e66cbf47fa8223d81d3090c3/src/content/triggers/PI.json",
+            "source_type": "source_code"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        },
+        {
+          "path": "code_sample / notes",
+          "reason": "内部へ分離した既存サンプルの修正・実行確認は未完了。型・構文等の資料確認と、サンプルの実機検証を区別する。"
+        }
+      ]
+    }
+  ]
+}

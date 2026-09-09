@@ -15,7 +15,7 @@ Node.js 20 の CI とブラウザ表示の両方で同じ処理を使うため�
 
 ## 任意追加として使える構造
 
-`page.engine` / `page.introduced_in`、`environment`、`expression_policy`、`constraints`、`variants`、`default`、`notes`、`evidence`、`load_priority_evidence`、Trigger の `return_type` / `syntax_kind` / `arguments`、`quote.id` / `quote.source_type` を採用しています。階層・列挙値・型は `schema.mjs` を正とします。旧フィールドと未知の旧メタデータを引き続き保持します。
+`page.engine` / `page.introduced_in`、`environment`、`expression_policy`、`constraints`、`variants`、`default`、`notes`、`evidence`、`load_priority_evidence`、Trigger の `return_type` / `syntax_kind` / `arguments`、`code_sample[].visibility`、`quote.id` / `quote.source_type` を採用しています。階層・列挙値・型は `schema.mjs` を正とします。旧フィールドと未知の旧メタデータを引き続き保持します。
 
 ## 新旧の対応
 
@@ -57,6 +57,7 @@ Node.js 20 の CI とブラウザ表示の両方で同じ処理を使うため�
 - それ以外の注記も `visibility: internal` で HTML への出力を抑止できます。公開する通常の注記は `visibility` 省略または `public` とします。
 - `evidence` / `load_priority_evidence` はすべて JSON 内の記録です。確認済み・未検証などの表示、根拠の折りたたみ、根拠への個別リンクは生成しません。既存の「引用記事」一覧は残します。
 - 非公開にした注記に `legacy_index` がある場合、対応する旧 `version` も公開表示へ復活させません。新旧の両方を原本に残します。
+- `code_sample[].visibility: internal` は、誤りや前提不足が見つかった既存サンプルのコード・説明・画像を JSON に残したまま HTML から外します。省略または `public` の例だけを掲載します。非公開の例しかない場合はサンプルコード節自体を生成しません。
 - ページ全体の注記と、パラメーター内の注記に同じ規則を適用します。
 - 確認できた研究結果を掲載するときは、制作上の結論を `behavior` / `bug` 等の公開用注記として編集します。調査過程は `research` または `visibility: internal` の別記録で保持できます。`evidence.status` の変更だけでは自動公開しません。
 

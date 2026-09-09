@@ -10,6 +10,10 @@ import { effectiveParameters } from '../../src/lib/mugen/parameters.mjs';
 const manifest = readJSON('tests/mugen/baseline/manifest.json');
 for (const route of manifest.routes) assert.ok(existsSync(pathFromRoot(`dist${route}`)), `Missing route: ${route}`);
 const common = ['IgnoreHitPause', 'Persistent'].map(name => readJSON(`src/data/common/${name}.json`));
+const sampleNodes = document => {
+  const section = findAll(document, node => attr(node, 'id') === 'CodeSample')[0];
+  return section ? findAll(section, node => node.tagName === 'div' && node.childNodes?.some(child => child.tagName === 'h3')) : [];
+};
 const results = [];
 const cases = [...baselineCases(), ...Object.keys(collections).map(collection => ({ collection, name: 'index' }))];
 for (const { collection, name, base } of cases) {
@@ -45,10 +49,12 @@ for (const { collection, name, base } of cases) {
   const source = readJSON(`src/content/${collection}/${name}.json`);
   const current = normalizeDocument(source, common);
   const hidden = [source, ...(source.parameter ?? [])].flatMap(value => effectiveNotes(value).filter(note => !isPublicNote(note)));
-  const hiddenFragments = hidden.map(note => parseFragment(note.content));
+  const internalSampleIndices = (source.code_sample ?? []).flatMap((sample, i) => sample.visibility === 'internal' ? [i] : []);
+  const oldSampleNodes = internalSampleIndices.length ? sampleNodes(parse(readFileSync(pathFromRoot(`${base}/html/${collection}/${name}.html`), 'utf8'))) : [];
+  const hiddenFragments = [...hidden.map(note => parseFragment(note.content)), ...internalSampleIndices.flatMap(i => oldSampleNodes[i] ? [oldSampleNodes[i]] : [])];
   const hiddenLinks = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'href')).map(node => ({ href: attr(node, 'href'), text: compactText(node) })));
   const hiddenMedia = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'src')).map(node => attr(node, 'src')));
-  for (const id of before.sections) assert.ok(rendered.sections.includes(id), `${name}: lost section #${id}`);
+  for (const id of before.sections) assert.ok(rendered.sections.includes(id) || (id === 'CodeSample' && internalSampleIndices.length > 0 && !current.code_sample.length), `${name}: lost section #${id}`);
   for (const link of before.links) assert.ok(rendered.links.some(candidate => candidate.href === link.href && candidate.text === link.text) || hiddenLinks.some(candidate => candidate.href === link.href && candidate.text === link.text), `${name}: lost link ${link.href}`);
   for (const src of before.media) assert.ok(rendered.media.includes(src) || hiddenMedia.includes(src), `${name}: lost media ${src}`);
   const text = compactText(parseFragment(current.description));
@@ -70,6 +76,16 @@ for (const { collection, name, base } of cases) {
     if (name === 'Helper') assert.ok(rendered.code.some(line => /^; Size.XScale/.test(line)), 'Helper inherited assignment must be commented');
   }
   const document = parse(html);
+  if (collection !== 'lifebars' && source.code_sample) {
+    const samples = sampleNodes(document);
+    assert.equal(samples.length, current.code_sample.length, `${name}: wrong public sample count`);
+    for (const [i, sample] of current.code_sample.entries()) {
+      assert.equal(compactText(samples[i].childNodes.find(node => node.tagName === 'h3')), sample.title.trim(), `${name}: public sample order/title`);
+      const lines = findAll(samples[i], node => attr(node, 'class') === 'code').flatMap(code => findAll(code, node => node.tagName === 'li').map(textContent));
+      assert.deepEqual(lines, sample.code.map(line => textContent(parseFragment(line))), `${name}: public sample code changed`);
+      if (sample.description) assert.ok(compactText(samples[i]).includes(compactText(parseFragment(sample.description))), `${name}: sample description missing`);
+    }
+  }
   if (source.documentation) {
     const description = findAll(document, node => attr(node, 'class') === 'description' && attr(node, 'itemprop') === 'articleBody')[0];
     assert.ok(description, `${name}: missing article description`);

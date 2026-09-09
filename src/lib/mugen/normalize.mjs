@@ -4,6 +4,7 @@ import { effectiveParameters, effectiveArguments } from './parameters.mjs';
 export const isPublicNote = note => note.kind !== 'research' && note.visibility !== 'internal';
 export const publicNotes = content => effectiveNotes(content).filter(isPublicNote);
 export const effectiveDescription = content => content.documentation?.description ?? content.description;
+export const publicCodeSamples = content => (content.code_sample ?? []).filter(sample => sample.visibility !== 'internal');
 
 export function effectiveNotes(content) {
   const notes = content.notes ?? [];
@@ -19,6 +20,7 @@ export function normalizeDocument(content, common = []) {
   return {
     ...fields,
     description: effectiveDescription(content),
+    ...(content.code_sample !== undefined ? { code_sample: publicCodeSamples(content) } : {}),
     parameter: content.category === 'trigger' ? effectiveArguments(content) : effectiveParameters(content, common),
     resolvedNotes: effectiveNotes(content),
   };

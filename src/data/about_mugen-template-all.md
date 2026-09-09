@@ -6,7 +6,7 @@
 
 > 2026-09-08: `parameter[].documentation` の `value` / `description` で、旧文を原位置に残して公開用ラベル・本文を訂正できます。指定項目のみ表示に優先し、`documentation.evidence` は内部記録です。[説明の訂正手順](../../docs/mugen-document-schema/EDITORIAL_GUIDE.md) を参照してください。
 
-> 2026-09-09: ルートの `documentation: { description, evidence? }` でページ概要も訂正できます。旧 `description` を保持し、詳細・一覧・説明用メタ情報には公開本文を使います。
+> 2026-09-09: ルートの `documentation: { description, evidence? }` でページ概要も訂正できます。旧 `description` を保持し、詳細・一覧・説明用メタ情報には公開本文を使います。`code_sample[].visibility: "internal"` は、例を JSON に保持したまま HTML から外します。
 
 このドキュメントは、`mugen-template-all.json` の各フィールドに入力すべき情報を定義した仕様書です。
 LLM（大規模言語モデル）への指示や、ドキュメントデータベース構築時のリファレンスとして利用してください。
@@ -159,10 +159,13 @@ LLM（大規模言語モデル）への指示や、ドキュメントデータ�
                 "Trigger1 = MoveType = H",
                 "Time = 0"
             ],
-            "media": { ... }
+            "media": { ... },
+            "visibility": "public"
         }
     ]
     ```
+
+    `visibility` は `public` / `internal`。省略時は公開します。誤りや前提不足が見つかった既存例は、コードや説明を削除せず `internal` にして検証・訂正まで HTML から外せます。検証済みでも掲載不要な例は内部のまま保持できます。
 
 ### FAQ (`qanda`) **[改訂]**
 質問 (`q`)、回答 (`a`) に加え、補足 (`c`) や参照 (`r`) が設定可能です。

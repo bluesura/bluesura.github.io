@@ -10,20 +10,22 @@
     "version": "2002.04.14",
     "update": "2026.01.11",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "Asin",
   "category": "trigger",
   "trigger": "Asin",
   "description": "<p><code>Asin</code> は、入力値のアークサイン（逆正弦）を<strong>ラジアン</strong>(浮動小数点数)で返します。</p><p>意味としては <code>Sin(θ) = Exprn</code> を満たす角度 <code>θ</code> を返す関数です（<code>Exprn</code> は「角度」ではなく「正弦値」）。</p><p>度に変換したい場合は <code>ExprnResult * 180 / PI</code> を使います。</p>",
-    "images": [
-        {
-        "src": "mugen-trigonometry-functions-guide.png",
-        "width": "640",
-        "height": "480",
-        "alt": "MUGENにおける三角関数の仕様まとめ。Sin, Cos, Tanの入力値と出力の関係、度数からラジアンへの変換式、Atanによる角度計算の図解。"
-        }
-    ],
+  "images": [
+    {
+      "src": "mugen-trigonometry-functions-guide.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENにおける三角関数の仕様まとめ。Sin, Cos, Tanの入力値と出力の関係、度数からラジアンへの変換式、Atanによる角度計算の図解。"
+    }
+  ],
   "syntax": [
     "Asin(Exprn)"
   ],
@@ -70,8 +72,8 @@
   ],
   "quote": [
     {
-        "title": "Asin - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Asin"
+      "title": "Asin - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Asin"
     },
     {
       "title": "Asin (math) - Trigger Reference (MUGEN 1.0 / archive)",
@@ -84,6 +86,73 @@
     {
       "title": "Asin - M.U.G.E.N Wiki (archive)",
       "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Asin"
+    },
+    {
+      "id": "asin-local-1.0",
+      "title": "Asin — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#asin-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "asin-local-1.1",
+      "title": "Asin — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#asin-math",
+      "source_type": "official_document"
+    }
+  ],
+  "return_type": [
+    "float"
+  ],
+  "syntax_kind": "function",
+  "arguments": [
+    {
+      "name": "Exprn",
+      "type": [
+        "float"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "expression",
+      "legacy_index": 0,
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "asin-local-1.0",
+          "asin-local-1.1"
+        ],
+        "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "asin-local-1.0",
+      "asin-local-1.1"
+    ],
+    "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+  },
+  "notes": [
+    {
+      "kind": "error",
+      "legacy_index": 0,
+      "content": "<p><code>Exprn</code> が評価不能値（bottom）に評価された場合、戻り値も bottom になります。</p><p><code>Exprn</code> が定義域外（<code>-1.0</code>〜<code>1.0</code> の外）の場合も bottom になります。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "asin-local-1.0",
+          "asin-local-1.1"
+        ],
+        "comment": "2026-09-09: 保存済み公式資料の引数・構文・戻り値・エラー条件を確認。既存の全サンプルを実機検証したという意味ではない。"
+      }
     }
   ]
 }

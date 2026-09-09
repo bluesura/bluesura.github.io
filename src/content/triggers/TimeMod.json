@@ -1,59 +1,202 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "TimeMod",
-        "target": "",
-        "category": [
-            "時間",
-            "ステート経過時間の剰余計算と比較"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.28",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "TimeMod",
+    "target": "",
+    "category": [
+      "時間",
+      "ステート経過時間の剰余計算と比較"
+    ],
+    "version": "2002.04.14",
+    "update": "2015.12.28",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "TimeMod",
+  "summary": "<p>Timeの剰余計算を比較した結果を返します。</p>",
+  "syntax": [
+    "TimeMod = 除数・正の整数, 剰余・整数",
+    "TimeMod != 除数・正の整数, 剰余・整数",
+    "TimeMod < 除数・正の整数, 剰余・整数",
+    "TimeMod > 除数・正の整数, 剰余・整数",
+    "TimeMod <= 除数・正の整数, 剰余・整数",
+    "TimeMod >= 除数・正の整数, 剰余・整数"
+  ],
+  "description": "Timeの剰余計算を比較した結果を返します。<br>ステート時間を第1指定値で割った余りが第2指定値と符号の条件を満たしている場合は1、満たしていない場合は0を返します。<br>%も割り算の余りを返す符号なので、代用可能で、このトリガーは使う必要がありません。",
+  "version": [
+    {
+      "no": "エラー",
+      "content": "除数を0にするとSFalseを返します。"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "ステートの経過時間が 3, 7, 11, 15, ...のときのトリガー",
+      "code": [
+        "Trigger1 = TimeMod = 4, 3"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "TimeMod - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TimeMod"
     },
-    "category": "trigger",
-    "trigger": "TimeMod",
-    "summary": "<p>Timeの剰余計算を比較した結果を返します。</p>",
-    "syntax": [
-        "TimeMod = 除数・正の整数, 剰余・整数",
-        "TimeMod != 除数・正の整数, 剰余・整数",
-        "TimeMod < 除数・正の整数, 剰余・整数",
-        "TimeMod > 除数・正の整数, 剰余・整数",
-        "TimeMod <= 除数・正の整数, 剰余・整数",
-        "TimeMod >= 除数・正の整数, 剰余・整数"
+    {
+      "title": "TimeMod - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#timemod"
+    },
+    {
+      "title": "TimeMod - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#timemod"
+    },
+    {
+      "title": "TimeMod - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TimeMod"
+    },
+    {
+      "id": "timemod-local-2002",
+      "title": "TimeMod — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TimeMod(*,**,***)",
+      "source_type": "official_document"
+    },
+    {
+      "id": "timemod-local-1.0",
+      "title": "TimeMod — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#timemod",
+      "source_type": "official_document"
+    },
+    {
+      "id": "timemod-local-1.1",
+      "title": "TimeMod — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#timemod",
+      "source_type": "official_document"
+    },
+    {
+      "id": "timemod-cns-1.0",
+      "title": "旧式トリガーの引数 — 保存済み Elecbyte 1.0 CNS資料",
+      "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-trigger-arguments",
+      "source_type": "official_document"
+    },
+    {
+      "id": "timemod-cns-1.1",
+      "title": "旧式トリガーの引数 — 保存済み Elecbyte 1.1 CNS資料",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#expressions-in-trigger-arguments",
+      "source_type": "official_document"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "old_style",
+  "arguments": [
+    {
+      "name": "[oper]",
+      "type": [
+        "string"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "timemod-local-2002",
+          "timemod-local-1.0",
+          "timemod-local-1.1"
+        ]
+      }
+    },
+    {
+      "name": "divisor",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "constant_only",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "timemod-local-2002",
+          "timemod-local-1.0",
+          "timemod-local-1.1",
+          "timemod-cns-1.0",
+          "timemod-cns-1.1"
+        ]
+      }
+    },
+    {
+      "name": "value1",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "constant_only",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "timemod-local-2002",
+          "timemod-local-1.0",
+          "timemod-local-1.1",
+          "timemod-cns-1.0",
+          "timemod-cns-1.1"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "Timeの剰余計算を比較した結果を返します。<br>ステート時間を第1指定値で割った余りが第2指定値と符号の条件を満たしている場合は1、満たしていない場合は0を返します。<br>%も割り算の余りを返す符号なので、代用可能で、このトリガーは使う必要がありません。",
-    "version": [
-        {
-            "no": "エラー",
-            "content": "除数を0にするとSFalseを返します。"
-        }
+    "source_refs": [
+      "timemod-local-2002",
+      "timemod-local-1.0",
+      "timemod-local-1.1",
+      "timemod-cns-1.0",
+      "timemod-cns-1.1"
     ],
-    "code_sample": [
-        {
-            "title": "ステートの経過時間が 3, 7, 11, 15, ...のときのトリガー",
-            "code": [
-                "Trigger1 = TimeMod = 4, 3"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "TimeMod - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TimeMod"
-        },
-        {
-            "title": "TimeMod - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#timemod"
-        },
-        {
-            "title": "TimeMod - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#timemod"
-        },
-        {
-            "title": "TimeMod - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TimeMod"
-        }
-    ]
+    "comment": "2026-09-09: 保存済み公式資料で旧式構文、比較演算子、整数の除数と比較値、戻り値、式を引数に取れない制約、% 演算子への置換、SFalse / bottom 条件を確認。"
+  },
+  "notes": [
+    {
+      "kind": "error",
+      "legacy_index": 0,
+      "content": "除数を0にするとSFalseを返します。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "timemod-local-2002"
+        ]
+      }
+    },
+    {
+      "kind": "error",
+      "content": "<p>MUGEN 1.0 / 1.1 では、除数が0の場合は <code>bottom</code> を返します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "timemod-local-1.0",
+          "timemod-local-1.1"
+        ]
+      }
+    }
+  ]
 }

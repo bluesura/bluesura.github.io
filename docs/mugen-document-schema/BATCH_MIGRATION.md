@@ -173,3 +173,21 @@ npm run mugen:batch -- --batch numeric-basic-01 --target Abs --target Ceil --tar
 ```
 
 このバッチは適用済みです。次は Random / GameTime / Time / TimeMod の値と時間単位、特殊構文を照合します。
+
+## random-time-01：乱数と時間の4件
+
+2026-09-09、Random / GameTime / Time / TimeMod を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/random-time-01/` へ保存しています。既存のコード例も原本に保持しています。
+
+- Random / GameTime / Time は引数なしで int を返します。Random の範囲は0〜999、GameTime はゲーム開始からの総 tick 数、Time は現在のステートに滞在した tick 数です。
+- TimeMod は `[oper] divisor, value1` の旧式構文で、整数の2値は式を取れません。戻り値は0または1の int です。式を使える `%` 演算子への置換が公式資料で推奨されています。
+- TimeMod の除数0について、2002.04.14 の SFalse と1.0 / 1.1 の bottom を別々に保存しました。旧履歴の SFalse 本文は変更していません。
+- Random の旧 `code_sample[1]` は、同じフレームでも参照ごとに値が変わることを前提にしています。保存済み公式トリガー資料には更新単位の記載がなく、実行記録もないため、コードと説明を残して `visibility: internal` で HTML から外しました。
+- Random の確率判定・剰余変換、GameTime・Time・TimeMod の公式例と一致するコードは公開を維持しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch random-time-01
+npm run mugen:batch -- --batch random-time-01 --target Random --target GameTime --target Time --target TimeMod
+npm run mugen:batch -- --batch random-time-01 --target Random --target GameTime --target Time --target TimeMod --apply
+```
+
+このバッチは適用済みです。次は AnimTime / AnimElemNo / AnimElemTime のアニメーション時間トリガーを照合します。

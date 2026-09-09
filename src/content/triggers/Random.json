@@ -9,7 +9,9 @@
     "version": "2002.04.14",
     "update": "2026.01.14",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "Random",
   "category": "trigger",
@@ -34,7 +36,8 @@
         "Type = VarSet",
         "Trigger1 = 1",
         "Var(10) = Random"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "任意の範囲へ変換する",
@@ -44,7 +47,6 @@
       ]
     }
   ],
-
   "quote": [
     {
       "title": "Random - Trigger Reference(version 2002.04.14)",
@@ -57,6 +59,67 @@
     {
       "title": "Random - Trigger Reference(version 1.1)",
       "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#random"
+    },
+    {
+      "id": "random-local-2002",
+      "title": "Random — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Random",
+      "source_type": "official_document"
+    },
+    {
+      "id": "random-local-1.0",
+      "title": "Random — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#random",
+      "source_type": "official_document"
+    },
+    {
+      "id": "random-local-1.1",
+      "title": "Random — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#random",
+      "source_type": "official_document"
+    },
+    {
+      "id": "random-legacy-samples",
+      "title": "Random — 移行前のコード例原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/29647256e6d3c41adf7d1e0c15493f8b6671ae8a/src/content/triggers/Random.json",
+      "source_type": "source_code"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "random-local-2002",
+      "random-local-1.0",
+      "random-local-1.1"
+    ],
+    "comment": "2026-09-09: 保存済み公式資料で0〜999の範囲、引数なしの構文、整数の戻り値を確認。参照ごとに新しい値を返すという既存コード例を実機検証したという意味ではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>code_sample[1] は同じフレーム内でも <code>Random</code> の参照ごとに値が変わることを前提としているが、保存済み公式トリガー資料には参照単位の更新規則が明記されておらず、対応する実行記録も残っていない。元のタイトル、説明、コードは code_sample[1] に保持し、実機確認まで公開から外す。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "random-local-2002",
+          "random-local-1.0",
+          "random-local-1.1",
+          "random-legacy-samples"
+        ],
+        "comment": "2026-09-09: 資料に書かれた戻り値範囲と、旧サンプルが前提にする呼び出しごとの更新規則を区別した。"
+      }
     }
   ]
 }

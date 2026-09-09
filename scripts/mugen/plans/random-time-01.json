@@ -1,0 +1,237 @@
+{
+  "id": "random-time-01",
+  "reviewed_on": "2026-09-09",
+  "description": "Random / GameTime / Time の引数なし整数トリガーと、TimeMod の旧式構文・版別エラーを移行する。Random の実行記録がない参照回数依存サンプルは原本を保持して公開から分離する。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "Random",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "nullary" },
+        { "path": ["arguments"], "value": [] },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["random-local-2002", "random-local-1.0", "random-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料で0〜999の範囲、引数なしの構文、整数の戻り値を確認。参照ごとに新しい値を返すという既存コード例を実機検証したという意味ではない。"
+          }
+        },
+        { "path": ["code_sample", 1, "visibility"], "value": "internal" },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>code_sample[1] は同じフレーム内でも <code>Random</code> の参照ごとに値が変わることを前提としているが、保存済み公式トリガー資料には参照単位の更新規則が明記されておらず、対応する実行記録も残っていない。元のタイトル、説明、コードは code_sample[1] に保持し、実機確認まで公開から外す。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": ["official_document", "source_code"],
+                "source_refs": ["random-local-2002", "random-local-1.0", "random-local-1.1", "random-legacy-samples"],
+                "comment": "2026-09-09: 資料に書かれた戻り値範囲と、旧サンプルが前提にする呼び出しごとの更新規則を区別した。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "random-local-2002", "title": "Random — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Random", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "random-local-1.0", "title": "Random — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#random", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "random-local-1.1", "title": "Random — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#random", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "random-legacy-samples", "title": "Random — 移行前のコード例原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/29647256e6d3c41adf7d1e0c15493f8b6671ae8a/src/content/triggers/Random.json", "source_type": "source_code" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "code_sample / notes", "reason": "内部へ分離した参照回数依存サンプルの実機確認は未完了。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "GameTime",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "nullary" },
+        { "path": ["arguments"], "value": [] },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["gametime-local-2002", "gametime-local-1.0", "gametime-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料でゲーム開始後の総 tick 数、引数なしの構文、整数の戻り値を確認。"
+          }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "gametime-local-2002", "title": "GameTime — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#GameTime", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "gametime-local-1.0", "title": "GameTime — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#gametime", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "gametime-local-1.1", "title": "GameTime — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#gametime", "source_type": "official_document" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Time",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "nullary" },
+        { "path": ["arguments"], "value": [] },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["time-local-2002", "time-local-1.0", "time-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料で現在のステートに滞在した tick 数、引数なしの構文、整数の戻り値を確認。"
+          }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "time-local-2002", "title": "Time — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Time", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "time-local-1.0", "title": "Time — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#time", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "time-local-1.1", "title": "Time — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#time", "source_type": "official_document" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "TimeMod",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "old_style" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "[oper]",
+              "type": ["string"],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["timemod-local-2002", "timemod-local-1.0", "timemod-local-1.1"]
+              }
+            },
+            {
+              "name": "divisor",
+              "type": ["int"],
+              "parameter_type": "required",
+              "expression_policy": "constant_only",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["timemod-local-2002", "timemod-local-1.0", "timemod-local-1.1", "timemod-cns-1.0", "timemod-cns-1.1"]
+              }
+            },
+            {
+              "name": "value1",
+              "type": ["int"],
+              "parameter_type": "required",
+              "expression_policy": "constant_only",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["timemod-local-2002", "timemod-local-1.0", "timemod-local-1.1", "timemod-cns-1.0", "timemod-cns-1.1"]
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["timemod-local-2002", "timemod-local-1.0", "timemod-local-1.1", "timemod-cns-1.0", "timemod-cns-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料で旧式構文、比較演算子、整数の除数と比較値、戻り値、式を引数に取れない制約、% 演算子への置換、SFalse / bottom 条件を確認。"
+          }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "除数を0にするとSFalseを返します。",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["timemod-local-2002"]
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1 では、除数が0の場合は <code>bottom</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["timemod-local-1.0", "timemod-local-1.1"]
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "timemod-local-2002", "title": "TimeMod — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TimeMod(*,**,***)", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "timemod-local-1.0", "title": "TimeMod — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#timemod", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "timemod-local-1.1", "title": "TimeMod — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#timemod", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "timemod-cns-1.0", "title": "旧式トリガーの引数 — 保存済み Elecbyte 1.0 CNS資料", "url": "/MUGEN/document/Official/1.0/cns.html#expressions-in-trigger-arguments", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "timemod-cns-1.1", "title": "旧式トリガーの引数 — 保存済み Elecbyte 1.1 CNS資料", "url": "/MUGEN/document/Official/1.1b1/cns.html#expressions-in-trigger-arguments", "source_type": "official_document" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }
+      ]
+    }
+  ]
+}

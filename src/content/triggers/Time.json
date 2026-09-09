@@ -1,48 +1,85 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Time",
-        "target": "",
-        "category": [
-            "キャラクターのパラメーター",
-            "現在のステートでどれだけ時間が経過したか？"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.28",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Time",
+    "target": "",
+    "category": [
+      "キャラクターのパラメーター",
+      "現在のステートでどれだけ時間が経過したか？"
+    ],
+    "version": "2002.04.14",
+    "update": "2015.12.28",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "Time",
+  "summary": "<p>ステートの経過時間を返します。</p>",
+  "syntax": [
+    "Time"
+  ],
+  "description": "ステートの経過時間を返します。<br>現在のステートでの経過時間をフレーム単位の整数で返します。",
+  "code_sample": [
+    {
+      "title": "現在のステートに移行して2フレーム後のトリガー。",
+      "code": [
+        "Trigger1 = Time = 2"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Time - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Time"
     },
-    "category": "trigger",
-    "trigger": "Time",
-    "summary": "<p>ステートの経過時間を返します。</p>",
-    "syntax": [
-        "Time"
+    {
+      "title": "Time - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#time"
+    },
+    {
+      "title": "Time - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#time"
+    },
+    {
+      "title": "Time - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Time"
+    },
+    {
+      "id": "time-local-2002",
+      "title": "Time — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Time",
+      "source_type": "official_document"
+    },
+    {
+      "id": "time-local-1.0",
+      "title": "Time — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#time",
+      "source_type": "official_document"
+    },
+    {
+      "id": "time-local-1.1",
+      "title": "Time — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#time",
+      "source_type": "official_document"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "ステートの経過時間を返します。<br>現在のステートでの経過時間をフレーム単位の整数で返します。",
-    "code_sample": [
-        {
-            "title": "現在のステートに移行して2フレーム後のトリガー。",
-            "code": [
-                "Trigger1 = Time = 2"
-            ]
-        }
+    "source_refs": [
+      "time-local-2002",
+      "time-local-1.0",
+      "time-local-1.1"
     ],
-    "quote": [
-        {
-            "title": "Time - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Time"
-        },
-        {
-            "title": "Time - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#time"
-        },
-        {
-            "title": "Time - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#time"
-        },
-        {
-            "title": "Time - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Time"
-        }
-    ]
+    "comment": "2026-09-09: 保存済み公式資料で現在のステートに滞在した tick 数、引数なしの構文、整数の戻り値を確認。"
+  }
 }

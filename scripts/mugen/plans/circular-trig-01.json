@@ -1,0 +1,328 @@
+{
+  "id": "circular-trig-01",
+  "reviewed_on": "2026-09-09",
+  "description": "Sin / Cos / Tan の型・引数・構文・bottom 条件を移行する。MUGEN 式として未定義の説明用プレースホルダーを含む既存サンプルは、原文と判断理由を保持して visibility=internal で公開から分離する。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "Sin",
+      "additions": [
+        {
+          "path": ["page", "engine"],
+          "value": "mugen"
+        },
+        {
+          "path": ["page", "introduced_in"],
+          "value": null
+        },
+        {
+          "path": ["return_type"],
+          "value": ["float"]
+        },
+        {
+          "path": ["syntax_kind"],
+          "value": "function"
+        },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "Radian",
+              "type": ["float"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["sin-local-1.0", "sin-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料の構文・引数・戻り値・エラー条件を確認。既存のコード例を実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["sin-local-1.0", "sin-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料の構文・引数・戻り値・エラー条件を確認。既存のコード例を実機検証したという意味ではない。"
+          }
+        },
+        {
+          "path": ["code_sample", 1, "visibility"],
+          "value": "internal"
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "<p><code>Radian</code> が評価不能値（bottom）に評価された場合、戻り値も bottom になります。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["sin-local-1.0", "sin-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料の構文・引数・戻り値・エラー条件を確認。既存のコード例を実機検証したという意味ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>code_sample[1] は MUGEN の式として定義されていない説明用プレースホルダー <code>ラディウス</code> をコードに含むため、そのままでは実行できない。実在する定数または Var / FVar 等の式に置き換えて確認するまで公開から外す。元の説明とコードは code_sample[1] に保持する。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["source_code"],
+                "source_refs": ["sin-legacy-samples"],
+                "comment": "2026-09-09: 旧サンプル内の説明用プレースホルダーを静的に確認。MUGEN のサンプル実行テストではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": {
+            "id": "sin-local-1.0",
+            "title": "Sin — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#sin-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": {
+            "id": "sin-local-1.1",
+            "title": "Sin — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#sin-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": {
+            "id": "sin-legacy-samples",
+            "title": "Sin — 移行前のサンプル原本",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/7c485fbec9b88e5bcbeeca71f1191cbf16362dc2/src/content/triggers/Sin.json",
+            "source_type": "source_code"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        },
+        {
+          "path": "code_sample / notes",
+          "reason": "内部へ分離した既存サンプルの修正・実行確認は未完了。型・構文等の資料確認と、サンプルの実機検証を区別する。"
+        }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Cos",
+      "additions": [
+        {
+          "path": ["page", "engine"],
+          "value": "mugen"
+        },
+        {
+          "path": ["page", "introduced_in"],
+          "value": null
+        },
+        {
+          "path": ["return_type"],
+          "value": ["float"]
+        },
+        {
+          "path": ["syntax_kind"],
+          "value": "function"
+        },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "Radian",
+              "type": ["float"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["cos-local-1.0", "cos-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料の構文・引数・戻り値・エラー条件を確認。既存のコード例を実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["cos-local-1.0", "cos-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料の構文・引数・戻り値・エラー条件を確認。既存のコード例を実機検証したという意味ではない。"
+          }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "<p><code>Radian</code> が評価不能値（bottom）に評価された場合、戻り値も bottom になります。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["cos-local-1.0", "cos-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料の構文・引数・戻り値・エラー条件を確認。既存のコード例を実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": {
+            "id": "cos-local-1.0",
+            "title": "Cos — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#cos-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": {
+            "id": "cos-local-1.1",
+            "title": "Cos — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#cos-math",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Tan",
+      "additions": [
+        {
+          "path": ["page", "engine"],
+          "value": "mugen"
+        },
+        {
+          "path": ["page", "introduced_in"],
+          "value": null
+        },
+        {
+          "path": ["return_type"],
+          "value": ["float"]
+        },
+        {
+          "path": ["syntax_kind"],
+          "value": "function"
+        },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "Radian",
+              "type": ["float"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["tan-local-1.0", "tan-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料の構文・引数・戻り値・エラー条件を確認。既存のコード例を実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["tan-local-1.0", "tan-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料の構文・引数・戻り値・エラー条件を確認。既存のコード例を実機検証したという意味ではない。"
+          }
+        },
+        {
+          "path": ["code_sample", 1, "visibility"],
+          "value": "internal"
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "<p><code>Radian</code> が評価不能値（bottom）に評価された場合、戻り値も bottom になります。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["tan-local-1.0", "tan-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料の構文・引数・戻り値・エラー条件を確認。既存のコード例を実機検証したという意味ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>code_sample[1] は MUGEN の式として定義されていない説明用プレースホルダー <code>角度</code> をコードに含むため、そのままでは実行できない。実在する定数または Var / FVar 等の式に置き換えて確認するまで公開から外す。元の説明とコードは code_sample[1] に保持する。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["source_code"],
+                "source_refs": ["tan-legacy-samples"],
+                "comment": "2026-09-09: 旧サンプル内の説明用プレースホルダーを静的に確認。MUGEN のサンプル実行テストではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": {
+            "id": "tan-local-1.0",
+            "title": "Tan — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#tan-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": {
+            "id": "tan-local-1.1",
+            "title": "Tan — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#tan-math",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": {
+            "id": "tan-legacy-samples",
+            "title": "Tan — 移行前のサンプル原本",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/7c485fbec9b88e5bcbeeca71f1191cbf16362dc2/src/content/triggers/Tan.json",
+            "source_type": "source_code"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        },
+        {
+          "path": "code_sample / notes",
+          "reason": "内部へ分離した既存サンプルの修正・実行確認は未完了。型・構文等の資料確認と、サンプルの実機検証を区別する。"
+        }
+      ]
+    }
+  ]
+}

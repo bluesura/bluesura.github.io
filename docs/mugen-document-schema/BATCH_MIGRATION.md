@@ -119,3 +119,20 @@ npm run mugen:batch -- --batch inverse-trig-01 --target Acos --target Asin --tar
 ```
 
 このバッチは適用済みです。次の対象は、戻り値やエラー条件を同じ資料群で比較できる数学トリガーから3〜5件を選びます。
+
+## circular-trig-01：正弦・余弦・正接の3件
+
+2026-09-09、Sin / Cos / Tan を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/circular-trig-01/` へ保存しています。既存の画像とコード例も原本に保持しています。
+
+- 3件ともラジアン単位の必須式1個を取り、float を返す関数として対応付けました。bottom のエラー条件は旧履歴の同じ項目へ対応させています。初導入ビルドは未確定です。
+- 保存済み Elecbyte 1.0 / 1.1 資料で構文、引数、戻り値、エラー条件を確認しました。既存コード例を MUGEN で実行したという意味ではありません。
+- Sin の旧 `code_sample[1]` は `ラディウス`、Tan の旧 `code_sample[1]` は `角度` という説明用プレースホルダーを式へ直接含み、そのままでは実行できません。コードと説明を残し、`visibility: internal` で HTML から外しました。
+- Sin / Cos / Tan の基本値を示す先頭の例は公開を維持しました。公開例の数・順序・コード・説明は生成 HTML でも比較しています。
+
+```sh
+npm run mugen:batch-baseline -- --batch circular-trig-01
+npm run mugen:batch -- --batch circular-trig-01 --target Sin --target Cos --target Tan
+npm run mugen:batch -- --batch circular-trig-01 --target Sin --target Cos --target Tan --apply
+```
+
+このバッチは適用済みです。次は E / Exp / Ln / Log の指数・対数トリガーを同じ公式資料で照合します。

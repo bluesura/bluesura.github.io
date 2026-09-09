@@ -1,0 +1,58 @@
+{
+  "text": "Abs 数値計算 > 絶対値の計算 | 実装されたバージョン: 2002.04.14 引数 仕様・注意点 使用例 引用記事 exprn の絶対値を返します。戻り値の型は引数の評価結果に従います（整数なら整数、浮動小数点なら浮動小数点）。 関連するトリガー： Floor , Ceil 構文 Abs(exprn) 引数 exprn 省略不可 型定数や変数、他のトリガー、関数、演算子 絶対値を計算したい式を指定します（整数も指定可能）。戻り値は exprn の評価結果と同じ型になります。 仕様・バグ・エラー・変更点2002.04.14exprn が SFalse の場合は SFalse を返します。MUGEN 1.0/1.1式が評価不能の場合は bottom を返します。 コードサンプル左右方向を無視して距離判定（符号を消す）P2Dist X の符号（左右）を無視して距離として扱いたい場合に使います。Trigger1 = Abs(P2Dist X) < 40 三角波っぽい値を作る（点滅・振動などの素材）0〜15〜0…のような往復パターンを作り、周期的な演出に使います（GameTime はゲーム開始からの経過フレーム）。Var(0) = Abs(15 - (GameTime % 30)) 引用記事Abs - Trigger Reference(version 2002.04.14)Abs - Trigger Reference(version 1.0)Abs - Trigger Reference(version 1.1) 公開日:2008.06.05 最終更新日:2026.01.14 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Floor",
+      "href": "./../Trigger/Floor.html"
+    },
+    {
+      "text": "Ceil",
+      "href": "./../Trigger/Ceil.html"
+    },
+    {
+      "text": "Abs - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Abs"
+    },
+    {
+      "text": "Abs - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#abs-math"
+    },
+    {
+      "text": "Abs - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#abs-math"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

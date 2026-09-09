@@ -1,0 +1,54 @@
+{
+  "text": "Floor 数値計算 > 小数点以下の切り捨て | 実装されたバージョン: 2002.04.14 引数 仕様・注意点 使用例 引用記事 床関数（Floor）です。引数以下の最大の整数を返します。負数のときも「0方向への丸め」ではなく、数学的な Floor として動作します（例: Floor(-2.3) = -3）。 関連するトリガー： Ceil 構文 Floor(exprn) 引数 exprn 省略不可 型浮動小数点数 Floorを計算する式を指定します（整数も指定可能）。 仕様・バグ・エラー・変更点2002.04.14系（旧ドキュメント表記）exprn が SFalse の場合は SFalse を返します。MUGEN 1.0/1.1exprn が bottom の場合は bottom を返します。 コードサンプル小数を整数へ（正数）; 5value = Floor(5.5) 小数を整数へ（負数）負数はより小さい整数側へ丸められます。; -3value = Floor(-2.3) 引用記事Floor - Trigger Reference(version 2002.04.14)Floor - Trigger Reference(version 1.0)Floor - Trigger Reference(version 1.1) 公開日:2008.06.05 最終更新日:2026.01.14 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Ceil",
+      "href": "./../Trigger/Ceil.html"
+    },
+    {
+      "text": "Floor - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Floor"
+    },
+    {
+      "text": "Floor - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#floor-math"
+    },
+    {
+      "text": "Floor - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#floor-math"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

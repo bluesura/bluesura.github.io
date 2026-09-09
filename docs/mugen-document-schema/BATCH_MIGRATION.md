@@ -156,3 +156,20 @@ npm run mugen:batch -- --batch exponential-log-01 --target E --target Exp --targ
 ```
 
 このバッチは適用済みです。次は Abs / Ceil / Floor の基本数値関数を同じ資料で照合します。
+
+## numeric-basic-01：基本数値関数の3件
+
+2026-09-09、Abs / Ceil / Floor を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/numeric-basic-01/` へ保存しています。既存のコード例も原本に保持しています。
+
+- 3件とも整数または浮動小数点の式 `exprn` を1個取る関数として対応付けました。Abs は引数と同じ int / float、Ceil / Floor は int を返します。初導入ビルドは未確定です。
+- 2002.04.14 で式が SFalse の場合に SFalse を返す記述と、1.0 / 1.1 で式が bottom の場合に bottom を返す記述を、旧履歴の別項目へ対応させました。
+- 保存済み Elecbyte 2002.04.14 / 1.0 / 1.1 資料で構文、引数、戻り値、エラー条件を確認しました。既存コード例を MUGEN で実行したという意味ではありません。
+- 既存の6コード例は式として完結しており、今回確認した仕様とも矛盾しないため公開を維持しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch numeric-basic-01
+npm run mugen:batch -- --batch numeric-basic-01 --target Abs --target Ceil --target Floor
+npm run mugen:batch -- --batch numeric-basic-01 --target Abs --target Ceil --target Floor --apply
+```
+
+このバッチは適用済みです。次は Random / GameTime / Time / TimeMod の値と時間単位、特殊構文を照合します。

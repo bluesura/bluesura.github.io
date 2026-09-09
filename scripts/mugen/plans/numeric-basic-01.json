@@ -1,0 +1,238 @@
+{
+  "id": "numeric-basic-01",
+  "reviewed_on": "2026-09-09",
+  "description": "Abs / Ceil / Floor の型・引数・構文と、旧版の SFalse・1.0/1.1 の bottom 条件を移行する。既存本文とコード例は変更せず保持する。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "Abs",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int", "float"] },
+        { "path": ["syntax_kind"], "value": "function" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "exprn",
+              "type": ["int", "float"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["abs-local-2002", "abs-local-1.0", "abs-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料で構文、数値式の引数、引数と同じ戻り値型、SFalse / bottom 条件を確認。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["abs-local-2002", "abs-local-1.0", "abs-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料で構文、数値式の引数、引数と同じ戻り値型、SFalse / bottom 条件を確認。"
+          }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "<p><code>exprn</code> が <code>SFalse</code> の場合は <code>SFalse</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["abs-local-2002"]
+              }
+            },
+            {
+              "kind": "error",
+              "legacy_index": 1,
+              "content": "<p>式が評価不能の場合は <code>bottom</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["abs-local-1.0", "abs-local-1.1"]
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "abs-local-2002", "title": "Abs — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Abs", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "abs-local-1.0", "title": "Abs — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#abs-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "abs-local-1.1", "title": "Abs — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#abs-math", "source_type": "official_document" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Ceil",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "function" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "exprn",
+              "type": ["int", "float"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["ceil-local-2002", "ceil-local-1.0", "ceil-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料で構文、数値式の引数、整数の戻り値、SFalse / bottom 条件を確認。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["ceil-local-2002", "ceil-local-1.0", "ceil-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料で構文、数値式の引数、整数の戻り値、SFalse / bottom 条件を確認。"
+          }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "<p><code>exprn</code> が <code>SFalse</code> の場合は <code>SFalse</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["ceil-local-2002"]
+              }
+            },
+            {
+              "kind": "error",
+              "legacy_index": 1,
+              "content": "<p><code>exprn</code> が <code>bottom</code> の場合は <code>bottom</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["ceil-local-1.0", "ceil-local-1.1"]
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "ceil-local-2002", "title": "Ceil — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Ceil", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "ceil-local-1.0", "title": "Ceil — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#ceil-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "ceil-local-1.1", "title": "Ceil — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#ceil-math", "source_type": "official_document" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Floor",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "function" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "exprn",
+              "type": ["int", "float"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["floor-local-2002", "floor-local-1.0", "floor-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料で構文、数値式の引数、整数の戻り値、SFalse / bottom 条件を確認。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["floor-local-2002", "floor-local-1.0", "floor-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料で構文、数値式の引数、整数の戻り値、SFalse / bottom 条件を確認。"
+          }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "<p><code>exprn</code> が <code>SFalse</code> の場合は <code>SFalse</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["floor-local-2002"]
+              }
+            },
+            {
+              "kind": "error",
+              "legacy_index": 1,
+              "content": "<p><code>exprn</code> が <code>bottom</code> の場合は <code>bottom</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["floor-local-1.0", "floor-local-1.1"]
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "floor-local-2002", "title": "Floor — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Floor", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "floor-local-1.0", "title": "Floor — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#floor-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "floor-local-1.1", "title": "Floor — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#floor-math", "source_type": "official_document" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }
+      ]
+    }
+  ]
+}

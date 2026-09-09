@@ -1,0 +1,76 @@
+{
+  "text": "Log 数値計算 > 対数計算 | 実装されたバージョン: 2002.04.14 | 対象: 数学 引数 仕様・注意点 使用例 引用記事 Log(base, exprn) は、指定した底 base による対数（log_base(exprn)）を返します。自然対数（Ln）との関係は Log(base, x) = Ln(x) / Ln(base) です。特に Log(E, x) は Ln(x) と同等です。格ゲーの毎フレーム評価される数式では、底を選べることを活かして「段階化（底2＝2倍ごとの段階）」「桁感覚の圧縮（底10＝大きい数値の表示・演出を圧縮）」「指数挙動の設計（Ln/Expと組み合わせて係数を決める）」に使うと調整が直感的になります。戻り値の型: float 関連するトリガー： Ln , Exp , E , Floor , Ceil , Abs 構文 Log(base, exprn) 引数 base 省略不可 型浮動小数点数 対数の底を指定します。0より大きい値が必要です。1 は使用できません（対数が定義できません）。用途の定番は 2（2倍ごとの段階）や 10（桁感覚の圧縮）、E（自然対数相当）です。 exprn 省略不可 型浮動小数点数 対数を取りたい値を指定します。0より大きい値が必要です。距離や時間など「0になり得る値」は +1 を足してから使うのが安全です。 仕様・バグ・エラー・変更点警告メッセージTOOK LOG WITH A NON-POSITIVE BASE OR ARGUMENT.: 底・引数に0より大きい値を入れて下さい コードサンプル対数（底2/底10）の挙動デモ（段階化と圧縮のイメージ）下のミニデモは Log(2, x)（2倍ごとに+1の感覚）と Log(10, x)（桁感覚の圧縮）を同じグラフに描画し、x の増加に対する伸び方の違いを視覚化します。このデモは <iframe sandbox='allow-scripts'> に閉じ込めてあり、外部資源を読まず、親ページへ干渉もしません。実装の読み替えとしては、Log(2, 値) は「値が2倍になるたびに+1」なので段階化に向き、Log(10, 値) は大きい数値の圧縮（桁感覚）に向きます。; 例: 段階化の基本（2倍ごとに段階が上がる）Var(0) = Floor(Log(2.0, Time + 1.0)) 距離レンジの段階化（底2）Log(2, d) は d が2倍になるたびに1増えるため、距離・速度・スケールなど“倍々”の世界を段階化しやすいです。距離が0になり得るので +1 して安全化します。; 0:近距離 / 1:中距離 / 2:遠距離... のような分類に使うVar(10) = Floor(Log(2.0, Abs(P2Dist X) + 1.0)) 大きい数値の圧縮（底10）ダメージ量やスコア、演出強度などの“大きい数値”をそのまま使うと破綻しやすい場合、Log(10, x) で桁感覚に圧縮すると調整しやすくなります。; 例: 大ダメージほど伸びが鈍る演出強度（xは正にする）FVar(20) = Log(10.0, Var(30) + 1.0) 同一行動の連発抑制（クールダウン的な重み）連発回数が増えるほど抑制は強くなるが、無限に急減はさせたくない場合に、ログ圧縮が効きます。序盤の効きが強く、後半ほど鈍ります。; Var(50)=連発カウンタ（0以上）; weight は 1→0へゆっくり落ちる（必要ならClampする）FVar(30) = 1.0 / (1.0 + Log(2.0, Var(50) + 1.0)) 引用記事Log - Trigger Reference(version 2002.04.14)Log - Trigger Reference(version 1.0)Log - Trigger Reference(version 1.1) 公開日:2008.06.05 最終更新日:2026.01.20 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Ln",
+      "href": "./../Trigger/Ln.html"
+    },
+    {
+      "text": "Exp",
+      "href": "./../Trigger/Exp.html"
+    },
+    {
+      "text": "E",
+      "href": "./../Trigger/E.html"
+    },
+    {
+      "text": "Floor",
+      "href": "./../Trigger/Floor.html"
+    },
+    {
+      "text": "Ceil",
+      "href": "./../Trigger/Ceil.html"
+    },
+    {
+      "text": "Abs",
+      "href": "./../Trigger/Abs.html"
+    },
+    {
+      "text": "Log - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Log"
+    },
+    {
+      "text": "Log - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#log-math"
+    },
+    {
+      "text": "Log - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#log-math"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    null
+  ],
+  "code": []
+}

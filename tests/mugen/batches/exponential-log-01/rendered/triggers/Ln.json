@@ -1,0 +1,76 @@
+{
+  "text": "Ln 数値計算 > 自然対数の計算 | 実装されたバージョン: 2002.04.14 引数 仕様・注意点 使用例 引用記事 Ln(exprn) は、引数の自然対数（底 e）を返します。Log(E, exprn) と同等の計算ですが、Ln の方がわずかに精度面で有利とされています。格ゲーの毎フレーム評価される数式では、「値の増え方を鈍らせて圧縮する（ログスケール）」「指数（Exp）を扱う式の逆変換（係数の逆算・倍率補間）」などに使うと実用的です。戻り値の型: float 関連するトリガー： Exp , Log , E , Abs , Floor , Ceil 構文 Ln(exprn) 引数 exprn 型定数や変数、他のトリガー、関数、演算子 自然対数を計算したい値を指定します（floatとして評価されます）。制約: 0より大きい値が必要です。毎フレームの式では、Time + 1 や Abs(P2Dist X) + 1 のように + 1 して安全域を作るのが定番です。 仕様・バグ・エラー・変更点2002.04.140以下など定義域外の場合、評価不能値（SFalse）として扱われます。MUGEN 1.0/1.10以下など定義域外の場合、bottom を返します。警告メッセージTOOK LN OF A NON-POSITIVE NUMBER: 引数に0より大きい値を入れて下さい コードサンプル時間の伸びが鈍るカウント（ログスケール）Time のように増え続ける値を、そのまま使うと増加が速すぎる場面があります。Ln(Time + 1) を使うと、序盤はよく変化し、後半ほど伸びが鈍るカーブになります（演出の収束、UI表示値の圧縮、AIの重み付けなど）。グラフは 黒 が Ln(Time+1)、灰 が線形（Time/60）です。黒は後半ほど伸びが鈍り、値の圧縮に向くことが視覚的に分かります。FVar(0) = Ln(Time + 1.0)Var(0) = Floor(20.0 * Ln(Time + 1.0)) 「30フレームで10%まで落とす」減衰係数をLnで逆算する指数減衰（毎フレーム一定割合で減る）を作るとき、r（最終比率）と t（到達フレーム数）から、1フレームあたりの係数を Exp(Ln(r)/t) で作れます。この例は「30フレーム後に値が10%になる」減衰です（Ln(0.10) は負になります）。FVar(10) = FVar(10) * Exp(Ln(0.10) / 30.0) 距離をログで圧縮して、遠距離ほど効きにくくする重み距離に応じて威力・吸い込み・AI評価などを落とす際、距離をそのまま使うと変化が急になりがちです。Ln(距離+1) で距離を圧縮し、遠距離側の変化を鈍らせると調整がしやすくなります。FVar(20) = 1.0 / (1.0 + Ln(Abs(P2Dist X) + 1.0)) 引用記事Ln - Trigger Reference(version 2002.04.14)Ln - Trigger Reference(version 1.0)Ln - Trigger Reference(version 1.1) 公開日:2008.06.05 最終更新日:2026.01.20 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Exp",
+      "href": "./../Trigger/Exp.html"
+    },
+    {
+      "text": "Log",
+      "href": "./../Trigger/Log.html"
+    },
+    {
+      "text": "E",
+      "href": "./../Trigger/E.html"
+    },
+    {
+      "text": "Abs",
+      "href": "./../Trigger/Abs.html"
+    },
+    {
+      "text": "Floor",
+      "href": "./../Trigger/Floor.html"
+    },
+    {
+      "text": "Ceil",
+      "href": "./../Trigger/Ceil.html"
+    },
+    {
+      "text": "Ln - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Ln"
+    },
+    {
+      "text": "Ln - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ln-math"
+    },
+    {
+      "text": "Ln - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ln-math"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    null
+  ],
+  "code": []
+}

@@ -1,0 +1,59 @@
+{
+  "text": "E 定数 > 自然対数の底 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 E は自然対数の底 e（ネイピア数）を返す定数です。戻り値の型: floatE 単体は定数ですが、E ** x で「e を底にしたべき乗」を作れます。指数関数を直接求めたい場合は Exp(x) を使います。 関連するトリガー： Exp , Ln , Log 構文 E 引数 なし コードサンプルEは計算によって値がぶれる[State ]Type = Null;2.718282Trigger1 = E;27.182817Trigger1 = E*10;271.828186Trigger1 = E*100;2718.281738Trigger1 = E*1000;27182.818359Trigger1 = E*10000;271828.187500Trigger1 = E*100000;2718281.750000Trigger1 = E*1000000;27182818.000000Trigger1 = E*10000000;271828160.000000Trigger1 = E*100000000;2718281728.000000Trigger1 = E*1000000000;5837465600.000000Trigger1 = E*10000000000;7.389056Trigger1 = E*E Eを底にした指数減衰（毎フレーム一定割合で減る）毎フレーム 係数 = E ** (-k) を掛けると、値は指数的に0へ近づきます（減衰）。下のアニメーションは「指数減衰（e^{-kt}）」と「線形減少」の違いを同じ初期値で比較します。[State -2, 減衰率を事前計算]Type = VarSetTrigger1 = !TimeFV = 10Value = E ** (-0.10) ; 1フレームあたり約0.9048倍[State -2, 速度を指数減衰させる]Type = VelMulTrigger1 = 1X = FVar(10)Y = FVar(10) 自然対数との関係（Ln と Log(E, x)）自然対数（底が E の対数）は、Ln(x) と Log(E, x) のどちらでも表せます。[State -2, xを用意]Type = VarSetTrigger1 = !TimeFV = 0Value = 10.0[State -2, Ln(x)]Type = VarSetTrigger1 = !TimeFV = 1Value = Ln(FVar(0))[State -2, Log(E, x)]Type = VarSetTrigger1 = !TimeFV = 2Value = Log(E, FVar(0))[State -2, 表示]Type = DisplayToClipboardTrigger1 = 1Text = \"x=%f | Ln(x)=%f | Log(E,x)=%f\"Params = FVar(0), FVar(1), FVar(2) 引用記事E - Trigger Reference (version 2002.04.14)E (math) - Trigger Reference (MUGEN 1.0)E (math) - Trigger Reference (MUGEN 1.1 Beta 1) 公開日:2008.06.05 最終更新日:2026.01.20 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Exp",
+      "href": "./../Trigger/Exp.html"
+    },
+    {
+      "text": "Ln",
+      "href": "./../Trigger/Ln.html"
+    },
+    {
+      "text": "Log",
+      "href": "./../Trigger/Log.html"
+    },
+    {
+      "text": "E - Trigger Reference (version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#E"
+    },
+    {
+      "text": "E (math) - Trigger Reference (MUGEN 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#e-math"
+    },
+    {
+      "text": "E (math) - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#e-math"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    null
+  ],
+  "code": []
+}

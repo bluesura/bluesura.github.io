@@ -136,3 +136,23 @@ npm run mugen:batch -- --batch circular-trig-01 --target Sin --target Cos --targ
 ```
 
 このバッチは適用済みです。次は E / Exp / Ln / Log の指数・対数トリガーを同じ公式資料で照合します。
+
+## exponential-log-01：指数・対数の4件
+
+2026-09-09、E / Exp / Ln / Log を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/exponential-log-01/` へ保存しています。既存の長いコード例、iframe、警告文字列も原本に保持しています。
+
+- E は float を返す引数なしの定数、Exp / Ln は float 式1個、Log は `base, exprn` の順で float 式2個を取る関数として対応付けました。初導入ビルドは未確定です。
+- Exp が `E ** exprn` よりわずかに高精度であること、Ln が `Log(E, exprn)` よりわずかに高精度であること、Ln / Log の正値条件とエラー結果を保存済み Elecbyte 資料で確認しました。
+- Ln の2002.04.14における SFalse と、1.0 / 1.1における bottom は旧履歴の別項目へ対応させ、両方を公開します。発生ビルドやログ原本を確認できない `TOOK LN...` / `TOOK LOG...` の警告文字列は、旧履歴を残して `research` として非公開にしました。
+- E / Exp の先頭コード例は、具体的な浮動小数点出力に対応するビルド・実行環境・再現手順がありません。`[State ]` の未完成見出しも含むため、コードと説明を残して `visibility: internal` にしました。公式に記載された一般的な精度差は本文に残ります。
+- Log の既存説明は底1を使用不可としています。これは数学上必要な条件ですが、保存済み公式資料は正値条件だけを記しているため、MUGEN が底1へ返す値と警告は内部の未検証事項として残しました。
+
+HTML 比較では `src` を持たない `srcdoc` iframe を媒体 URL として数えず、公開コード例の iframe の `src` / `srcdoc` 自体を比較します。これにより、URLのない埋め込みデモも内容の欠落を検出します。
+
+```sh
+npm run mugen:batch-baseline -- --batch exponential-log-01
+npm run mugen:batch -- --batch exponential-log-01 --target E --target Exp --target Ln --target Log
+npm run mugen:batch -- --batch exponential-log-01 --target E --target Exp --target Ln --target Log --apply
+```
+
+このバッチは適用済みです。次は Abs / Ceil / Floor の基本数値関数を同じ資料で照合します。

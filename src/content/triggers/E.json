@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.20",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "E",
   "category": "trigger",
@@ -26,47 +28,48 @@
   ],
   "code_sample": [
     {
-        "title": "Eは計算によって値がぶれる",
-        "code": [
-            "[State ]",
-            "Type = Null",
-            "",
-            ";2.718282",
-            "Trigger1 = E",
-            "",
-            ";27.182817",
-            "Trigger1 = E*10",
-            "",
-            ";271.828186",
-            "Trigger1 = E*100",
-            "",
-            ";2718.281738",
-            "Trigger1 = E*1000",
-            "",
-            ";27182.818359",
-            "Trigger1 = E*10000",
-            "",
-            ";271828.187500",
-            "Trigger1 = E*100000",
-            "",
-            ";2718281.750000",
-            "Trigger1 = E*1000000",
-            "",
-            ";27182818.000000",
-            "Trigger1 = E*10000000",
-            "",
-            ";271828160.000000",
-            "Trigger1 = E*100000000",
-            "",
-            ";2718281728.000000",
-            "Trigger1 = E*1000000000",
-            "",
-            ";5837465600.000000",
-            "Trigger1 = E*10000000000",
-            "",
-            ";7.389056",
-            "Trigger1 = E*E"
-        ]
+      "title": "Eは計算によって値がぶれる",
+      "code": [
+        "[State ]",
+        "Type = Null",
+        "",
+        ";2.718282",
+        "Trigger1 = E",
+        "",
+        ";27.182817",
+        "Trigger1 = E*10",
+        "",
+        ";271.828186",
+        "Trigger1 = E*100",
+        "",
+        ";2718.281738",
+        "Trigger1 = E*1000",
+        "",
+        ";27182.818359",
+        "Trigger1 = E*10000",
+        "",
+        ";271828.187500",
+        "Trigger1 = E*100000",
+        "",
+        ";2718281.750000",
+        "Trigger1 = E*1000000",
+        "",
+        ";27182818.000000",
+        "Trigger1 = E*10000000",
+        "",
+        ";271828160.000000",
+        "Trigger1 = E*100000000",
+        "",
+        ";2718281728.000000",
+        "Trigger1 = E*1000000000",
+        "",
+        ";5837465600.000000",
+        "Trigger1 = E*10000000000",
+        "",
+        ";7.389056",
+        "Trigger1 = E*E"
+      ],
+      "visibility": "internal"
     },
     {
       "title": "Eを底にした指数減衰（毎フレーム一定割合で減る）",
@@ -127,6 +130,56 @@
     {
       "title": "E (math) - Trigger Reference (MUGEN 1.1 Beta 1)",
       "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#e-math"
+    },
+    {
+      "id": "e-local-1.0",
+      "title": "E — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#e-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "e-local-1.1",
+      "title": "E — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#e-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "e-legacy-samples",
+      "title": "E — 移行前のコード例原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/d5b1ebe9e56a4a80f8549c914e1943243d49efb7/src/content/triggers/E.json",
+      "source_type": "source_code"
+    }
+  ],
+  "return_type": [
+    "float"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "e-local-1.0",
+      "e-local-1.1"
+    ],
+    "comment": "2026-09-09: 保存済み公式資料で値、引数なしの構文、戻り値型、エラーなしを確認。既存コード例の出力値を実機検証したという意味ではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>code_sample[0] は多数の具体的な浮動小数点出力を記録しているが、MUGEN のビルド、実行環境、再現手順が残っていない。節見出しも <code>[State ]</code> のままで、そのまま使える完成例ではない。条件を確認して公開用に直すまで、元のタイトルとコードは code_sample[0] に保持して公開から外す。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "e-legacy-samples"
+        ],
+        "comment": "2026-09-09: 移行前 JSON に数値とコードはあるが、対応する実行記録を確認できていない。"
+      }
     }
   ]
 }

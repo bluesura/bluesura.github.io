@@ -53,10 +53,10 @@ for (const { collection, name, base } of cases) {
   const oldSampleNodes = internalSampleIndices.length ? sampleNodes(parse(readFileSync(pathFromRoot(`${base}/html/${collection}/${name}.html`), 'utf8'))) : [];
   const hiddenFragments = [...hidden.map(note => parseFragment(note.content)), ...internalSampleIndices.flatMap(i => oldSampleNodes[i] ? [oldSampleNodes[i]] : [])];
   const hiddenLinks = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'href')).map(node => ({ href: attr(node, 'href'), text: compactText(node) })));
-  const hiddenMedia = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'src')).map(node => attr(node, 'src')));
+  const hiddenMedia = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'src')).map(node => attr(node, 'src')).filter(Boolean));
   for (const id of before.sections) assert.ok(rendered.sections.includes(id) || (id === 'CodeSample' && internalSampleIndices.length > 0 && !current.code_sample.length), `${name}: lost section #${id}`);
   for (const link of before.links) assert.ok(rendered.links.some(candidate => candidate.href === link.href && candidate.text === link.text) || hiddenLinks.some(candidate => candidate.href === link.href && candidate.text === link.text), `${name}: lost link ${link.href}`);
-  for (const src of before.media) assert.ok(rendered.media.includes(src) || hiddenMedia.includes(src), `${name}: lost media ${src}`);
+  for (const src of before.media.filter(Boolean)) assert.ok(rendered.media.includes(src) || hiddenMedia.includes(src), `${name}: lost media ${src}`);
   const text = compactText(parseFragment(current.description));
   assert.ok(rendered.text.includes(text), `${name}: lost effective description`);
   for (const [index, entry] of (legacy.version ?? []).entries()) {
@@ -83,7 +83,12 @@ for (const { collection, name, base } of cases) {
       assert.equal(compactText(samples[i].childNodes.find(node => node.tagName === 'h3')), sample.title.trim(), `${name}: public sample order/title`);
       const lines = findAll(samples[i], node => attr(node, 'class') === 'code').flatMap(code => findAll(code, node => node.tagName === 'li').map(textContent));
       assert.deepEqual(lines, sample.code.map(line => textContent(parseFragment(line))), `${name}: public sample code changed`);
-      if (sample.description) assert.ok(compactText(samples[i]).includes(compactText(parseFragment(sample.description))), `${name}: sample description missing`);
+      if (sample.description) {
+        const expectedDescription = parseFragment(sample.description);
+        assert.ok(compactText(samples[i]).includes(compactText(expectedDescription)), `${name}: sample description missing`);
+        const iframeAttrs = tree => findAll(tree, node => node.tagName === 'iframe').map(node => ({ src: attr(node, 'src') ?? '', srcdoc: attr(node, 'srcdoc') ?? '' }));
+        assert.deepEqual(iframeAttrs(samples[i]), iframeAttrs(expectedDescription), `${name}: sample iframe changed`);
+      }
     }
   }
   if (source.documentation) {

@@ -23,7 +23,7 @@ export function readArticle(html) {
     text: compactText(main),
     sections: findAll(main, n => n.tagName === 'section' && attr(n, 'id')).map(n => attr(n, 'id')),
     links: findAll(main, n => n.tagName === 'a').map(n => ({ text: compactText(n), href: attr(n, 'href') ?? '' })),
-    media: findAll(main, n => ['img', 'source', 'iframe'].includes(n.tagName)).map(n => attr(n, 'src')),
+    media: findAll(main, n => ['img', 'source', 'iframe'].includes(n.tagName)).map(n => attr(n, 'src')).filter(Boolean),
     code: code ? findAll(code, n => n.tagName === 'li').map(n => textContent(n).trim()) : [],
   };
 }

@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.20",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "Log",
   "category": "trigger",
@@ -29,8 +31,8 @@
   ],
   "version": [
     {
-        "no": "警告メッセージ",
-        "content": "TOOK LOG WITH A NON-POSITIVE BASE OR ARGUMENT.: 底・引数に0より大きい値を入れて下さい"
+      "no": "警告メッセージ",
+      "content": "TOOK LOG WITH A NON-POSITIVE BASE OR ARGUMENT.: 底・引数に0より大きい値を入れて下さい"
     }
   ],
   "parameter": [
@@ -98,6 +100,137 @@
     {
       "title": "Log - Trigger Reference(version 1.1)",
       "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#log-math"
+    },
+    {
+      "id": "log-local-2002",
+      "title": "Log — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Log",
+      "source_type": "official_document"
+    },
+    {
+      "id": "log-local-1.0",
+      "title": "Log — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#log-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "log-local-1.1",
+      "title": "Log — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#log-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "log-legacy-data",
+      "title": "Log — 移行前の警告記録",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/d5b1ebe9e56a4a80f8549c914e1943243d49efb7/src/content/triggers/Log.json",
+      "source_type": "source_code"
+    }
+  ],
+  "return_type": [
+    "float"
+  ],
+  "syntax_kind": "function",
+  "arguments": [
+    {
+      "name": "base",
+      "type": [
+        "float"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "expression",
+      "legacy_index": 0,
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "log-local-2002",
+          "log-local-1.0",
+          "log-local-1.1"
+        ],
+        "comment": "2026-09-09: 保存済み公式資料で2引数の順序、正値条件、戻り値型を確認。底1での実機結果は資料に記載がなく未検証。"
+      }
+    },
+    {
+      "name": "exprn",
+      "type": [
+        "float"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "expression",
+      "legacy_index": 1,
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "log-local-2002",
+          "log-local-1.0",
+          "log-local-1.1"
+        ],
+        "comment": "2026-09-09: 保存済み公式資料で2引数の順序、正値条件、戻り値型を確認。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "log-local-2002",
+      "log-local-1.0",
+      "log-local-1.1"
+    ],
+    "comment": "2026-09-09: 保存済み公式資料で2引数の順序、正値条件、戻り値型、SFalse / bottom 条件を確認。底1での実機結果と警告文字列は資料に記載がなく未検証。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "TOOK LOG WITH A NON-POSITIVE BASE OR ARGUMENT.: 底・引数に0より大きい値を入れて下さい",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "log-legacy-data"
+        ],
+        "comment": "2026-09-09: 警告文字列は移行前 JSON に残るが、発生ビルド、ログ原本、再現手順を確認できていない。"
+      }
+    },
+    {
+      "kind": "error",
+      "content": "<p><code>base</code> または <code>exprn</code> が評価不能値（bottom）の場合、または0以下の場合、戻り値は bottom になります。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "log-local-1.0",
+          "log-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>保存済み公式資料は <code>base</code> を正の値とだけ記し、数学上対数の底にできない <code>1</code> を明記していない。既存の引数説明は底1を使用不可として保持するが、MUGEN が返す値や警告は実機未確認である。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "log-local-2002",
+          "log-local-1.0",
+          "log-local-1.1"
+        ],
+        "comment": "2026-09-09: 資料の記載範囲と数学上の条件を分け、実装結果を推測しない。"
+      }
     }
   ]
 }

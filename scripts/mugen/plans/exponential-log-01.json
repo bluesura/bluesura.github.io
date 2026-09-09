@@ -1,0 +1,337 @@
+{
+  "id": "exponential-log-01",
+  "reviewed_on": "2026-09-09",
+  "description": "E / Exp / Ln / Log の型・引数・構文・定義域エラーを移行する。環境不明の数値測定例と出所未確認の警告文字列は原本を保持して公開から分離する。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "E",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["float"] },
+        { "path": ["syntax_kind"], "value": "nullary" },
+        { "path": ["arguments"], "value": [] },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["e-local-1.0", "e-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料で値、引数なしの構文、戻り値型、エラーなしを確認。既存コード例の出力値を実機検証したという意味ではない。"
+          }
+        },
+        { "path": ["code_sample", 0, "visibility"], "value": "internal" },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>code_sample[0] は多数の具体的な浮動小数点出力を記録しているが、MUGEN のビルド、実行環境、再現手順が残っていない。節見出しも <code>[State ]</code> のままで、そのまま使える完成例ではない。条件を確認して公開用に直すまで、元のタイトルとコードは code_sample[0] に保持して公開から外す。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": ["source_code"],
+                "source_refs": ["e-legacy-samples"],
+                "comment": "2026-09-09: 移行前 JSON に数値とコードはあるが、対応する実行記録を確認できていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "e-local-1.0", "title": "E — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#e-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "e-local-1.1", "title": "E — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#e-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "e-legacy-samples", "title": "E — 移行前のコード例原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/d5b1ebe9e56a4a80f8549c914e1943243d49efb7/src/content/triggers/E.json", "source_type": "source_code" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "code_sample / notes", "reason": "内部へ分離した浮動小数点出力例の環境特定と実行確認は未完了。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Exp",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["float"] },
+        { "path": ["syntax_kind"], "value": "function" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "exprn",
+              "type": ["float"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["exp-local-1.0", "exp-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料で構文、引数、戻り値型、bottom 条件を確認。既存コード例の出力値を実機検証したという意味ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["exp-local-1.0", "exp-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料で構文、引数、戻り値型、bottom 条件を確認。既存コード例の出力値を実機検証したという意味ではない。"
+          }
+        },
+        { "path": ["code_sample", 0, "visibility"], "value": "internal" },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "content": "<p><code>exprn</code> が評価不能値（bottom）に評価された場合、戻り値も bottom になります。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["exp-local-1.0", "exp-local-1.1"]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>code_sample[0] は <code>Exp</code> と <code>E ** exprn</code> の具体的な差を列挙しているが、MUGEN のビルド、実行環境、再現手順が残っていない。公式資料で確認できるのは <code>Exp</code> の方がわずかに高精度という仕様までである。元のタイトル、説明、コードは code_sample[0] に保持し、数値を再確認するまで公開から外す。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": ["official_document", "source_code"],
+                "source_refs": ["exp-local-1.0", "exp-local-1.1", "exp-legacy-samples"],
+                "comment": "2026-09-09: 公式の一般仕様と移行前 JSON の具体値を区別した。具体値の実機確認は未実施。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "exp-local-1.0", "title": "Exp — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#exp-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "exp-local-1.1", "title": "Exp — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#exp-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "exp-legacy-samples", "title": "Exp — 移行前のコード例原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/d5b1ebe9e56a4a80f8549c914e1943243d49efb7/src/content/triggers/Exp.json", "source_type": "source_code" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "code_sample / notes", "reason": "内部へ分離した精度差の具体値について、環境特定と実行確認は未完了。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Ln",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["float"] },
+        { "path": ["syntax_kind"], "value": "function" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "exprn",
+              "type": ["float"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["ln-local-2002", "ln-local-1.0", "ln-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料で自然対数、構文、引数、戻り値型、正の定義域を確認。警告メッセージの実機確認とは区別する。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["ln-local-2002", "ln-local-1.0", "ln-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料で自然対数、構文、引数、戻り値型、正の定義域を確認。警告メッセージの実機確認とは区別する。"
+          }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "<p>0以下など定義域外の場合、評価不能値（<code>SFalse</code>）として扱われます。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["ln-local-2002"],
+                "comment": "2002.04.14 の保存済み公式資料は非正値または SFalse の引数に SFalse を返すと記載。"
+              }
+            },
+            {
+              "kind": "error",
+              "legacy_index": 1,
+              "content": "<p>0以下など定義域外の場合、<code>bottom</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["ln-local-1.0", "ln-local-1.1"]
+              }
+            },
+            {
+              "kind": "research",
+              "legacy_index": 2,
+              "content": "TOOK LN OF A NON-POSITIVE NUMBER: 引数に0より大きい値を入れて下さい",
+              "evidence": {
+                "status": "unverified",
+                "basis": ["source_code"],
+                "source_refs": ["ln-legacy-data"],
+                "comment": "2026-09-09: 警告文字列は移行前 JSON に残るが、発生ビルド、ログ原本、再現手順を確認できていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "ln-local-2002", "title": "Ln — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Ln", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "ln-local-1.0", "title": "Ln — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#ln-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "ln-local-1.1", "title": "Ln — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#ln-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "ln-legacy-data", "title": "Ln — 移行前の警告記録", "url": "https://github.com/bluesura/bluesura.github.io/blob/d5b1ebe9e56a4a80f8549c914e1943243d49efb7/src/content/triggers/Ln.json", "source_type": "source_code" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version[2] / notes", "reason": "警告メッセージの発生ビルド、ログ原本、再現手順は未確認。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Log",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["float"] },
+        { "path": ["syntax_kind"], "value": "function" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "base",
+              "type": ["float"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["log-local-2002", "log-local-1.0", "log-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料で2引数の順序、正値条件、戻り値型を確認。底1での実機結果は資料に記載がなく未検証。"
+              }
+            },
+            {
+              "name": "exprn",
+              "type": ["float"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 1,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["log-local-2002", "log-local-1.0", "log-local-1.1"],
+                "comment": "2026-09-09: 保存済み公式資料で2引数の順序、正値条件、戻り値型を確認。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["log-local-2002", "log-local-1.0", "log-local-1.1"],
+            "comment": "2026-09-09: 保存済み公式資料で2引数の順序、正値条件、戻り値型、SFalse / bottom 条件を確認。底1での実機結果と警告文字列は資料に記載がなく未検証。"
+          }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "research",
+              "legacy_index": 0,
+              "content": "TOOK LOG WITH A NON-POSITIVE BASE OR ARGUMENT.: 底・引数に0より大きい値を入れて下さい",
+              "evidence": {
+                "status": "unverified",
+                "basis": ["source_code"],
+                "source_refs": ["log-legacy-data"],
+                "comment": "2026-09-09: 警告文字列は移行前 JSON に残るが、発生ビルド、ログ原本、再現手順を確認できていない。"
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p><code>base</code> または <code>exprn</code> が評価不能値（bottom）の場合、または0以下の場合、戻り値は bottom になります。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["log-local-1.0", "log-local-1.1"]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>保存済み公式資料は <code>base</code> を正の値とだけ記し、数学上対数の底にできない <code>1</code> を明記していない。既存の引数説明は底1を使用不可として保持するが、MUGEN が返す値や警告は実機未確認である。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": ["official_document"],
+                "source_refs": ["log-local-2002", "log-local-1.0", "log-local-1.1"],
+                "comment": "2026-09-09: 資料の記載範囲と数学上の条件を分け、実装結果を推測しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "log-local-2002", "title": "Log — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Log", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "log-local-1.0", "title": "Log — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#log-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "log-local-1.1", "title": "Log — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#log-math", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "log-legacy-data", "title": "Log — 移行前の警告記録", "url": "https://github.com/bluesura/bluesura.github.io/blob/d5b1ebe9e56a4a80f8549c914e1943243d49efb7/src/content/triggers/Log.json", "source_type": "source_code" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version[0] / notes", "reason": "警告メッセージの発生ビルド、ログ原本、再現手順は未確認。" },
+        { "path": "parameter[0] / notes", "reason": "底1を指定したときの MUGEN の戻り値と警告は未確認。数学上の制約と実装挙動を区別する。" }
+      ]
+    }
+  ]
+}

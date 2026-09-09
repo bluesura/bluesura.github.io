@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.20",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "category": "trigger",
   "trigger": "Ln",
@@ -36,8 +38,8 @@
       "content": "<p>0以下など定義域外の場合、<code>bottom</code> を返します。</p>"
     },
     {
-        "no": "警告メッセージ",
-        "content": "TOOK LN OF A NON-POSITIVE NUMBER: 引数に0より大きい値を入れて下さい"
+      "no": "警告メッセージ",
+      "content": "TOOK LN OF A NON-POSITIVE NUMBER: 引数に0より大きい値を入れて下さい"
     }
   ],
   "parameter": [
@@ -85,6 +87,116 @@
     {
       "title": "Ln - Trigger Reference(version 1.1)",
       "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ln-math"
+    },
+    {
+      "id": "ln-local-2002",
+      "title": "Ln — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Ln",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ln-local-1.0",
+      "title": "Ln — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#ln-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ln-local-1.1",
+      "title": "Ln — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#ln-math",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ln-legacy-data",
+      "title": "Ln — 移行前の警告記録",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/d5b1ebe9e56a4a80f8549c914e1943243d49efb7/src/content/triggers/Ln.json",
+      "source_type": "source_code"
+    }
+  ],
+  "return_type": [
+    "float"
+  ],
+  "syntax_kind": "function",
+  "arguments": [
+    {
+      "name": "exprn",
+      "type": [
+        "float"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "expression",
+      "legacy_index": 0,
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ln-local-2002",
+          "ln-local-1.0",
+          "ln-local-1.1"
+        ],
+        "comment": "2026-09-09: 保存済み公式資料で自然対数、構文、引数、戻り値型、正の定義域を確認。警告メッセージの実機確認とは区別する。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "ln-local-2002",
+      "ln-local-1.0",
+      "ln-local-1.1"
+    ],
+    "comment": "2026-09-09: 保存済み公式資料で自然対数、構文、引数、戻り値型、正の定義域を確認。警告メッセージの実機確認とは区別する。"
+  },
+  "notes": [
+    {
+      "kind": "error",
+      "legacy_index": 0,
+      "content": "<p>0以下など定義域外の場合、評価不能値（<code>SFalse</code>）として扱われます。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ln-local-2002"
+        ],
+        "comment": "2002.04.14 の保存済み公式資料は非正値または SFalse の引数に SFalse を返すと記載。"
+      }
+    },
+    {
+      "kind": "error",
+      "legacy_index": 1,
+      "content": "<p>0以下など定義域外の場合、<code>bottom</code> を返します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ln-local-1.0",
+          "ln-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 2,
+      "content": "TOOK LN OF A NON-POSITIVE NUMBER: 引数に0より大きい値を入れて下さい",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "ln-legacy-data"
+        ],
+        "comment": "2026-09-09: 警告文字列は移行前 JSON に残るが、発生ビルド、ログ原本、再現手順を確認できていない。"
+      }
     }
   ]
 }

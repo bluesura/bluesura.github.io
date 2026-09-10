@@ -1,0 +1,265 @@
+{
+  "id": "animation-time-01",
+  "reviewed_on": "2026-09-10",
+  "description": "AnimTime / AnimElemNo / AnimElemTime の型・引数・構文・版別エラーを移行する。空のコード例を原本に保持して非公開とし、AnimTime は資料確認済みの範囲だけを公開説明にする。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "AnimTime",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "nullary" },
+        { "path": ["arguments"], "value": [] },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>現在のアニメーションの <code>animation-time</code> と <code>looptime</code> の差を整数で返します。アニメーション終端の判定に使用します。</p><p>再生中は0以下となり、<code>AnimTime = 0</code> は <code>animation-time</code> が <code>looptime</code> に達した時点を表します。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": ["official_document"],
+              "source_refs": ["animtime-local-2002", "animtime-local-1.0", "animtime-local-1.1"],
+              "comment": "2026-09-10: 保存済み公式資料で定義、符号、構文、戻り値、終端判定例を確認。旧説明にある時間-1の特殊例は含めていない。"
+            }
+          }
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["animtime-local-2002", "animtime-local-1.0", "animtime-local-1.1"],
+            "comment": "2026-09-10: 保存済み公式資料で定義、符号、引数なしの構文、整数の戻り値、エラーなしを確認。旧説明の時間-1に関する細部を実機確認したという意味ではない。"
+          }
+        },
+        { "path": ["code_sample", 0, "visibility"], "value": "internal" },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>旧 description は表示時間が <code>-1</code> のアニメーションで正値を返す条件と、1枚目が <code>-1</code> の場合は1だけを返すという細部を含む。保存済み公式資料にはこの条件がなく、対応する実行記録も確認できないため、原文を description に保持して公開説明から外す。code_sample[0] はタイトルとコードが空文字だけなので、要素を保持したまま公開から外す。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": ["official_document", "source_code"],
+                "source_refs": ["animtime-local-2002", "animtime-local-1.0", "animtime-local-1.1", "animtime-legacy-data"],
+                "comment": "2026-09-10: 公式資料で確認できる基本仕様と、移行前 JSON だけに残る特殊例を区別した。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animtime-local-2002", "title": "AnimTime — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimTime", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animtime-local-1.0", "title": "AnimTime — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#animtime", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animtime-local-1.1", "title": "AnimTime — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#animtime", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animtime-legacy-data", "title": "AnimTime — 移行前の説明とコード例原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/f6a08fd79186154741fd3878debfbd3dad0f56b8/src/content/triggers/AnimTime.json", "source_type": "source_code" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / notes", "reason": "内部へ分離した表示時間-1の特殊例は実機未確認。" },
+        { "path": "code_sample", "reason": "公開可能なコード例は未作成。旧空要素は原本として保持する。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "AnimElemNo",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "function" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "exprn",
+              "type": ["int"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animelemno-local-2002", "animelemno-local-1.0", "animelemno-local-1.1"],
+                "comment": "2026-09-10: 引数は現在を基準とする tick オフセットの整数式。旧 JSON に parameter はないため legacy_index は付けない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["animelemno-local-2002", "animelemno-local-1.0", "animelemno-local-1.1"],
+            "comment": "2026-09-10: 保存済み公式資料で現在基準の時間オフセット、構文、整数の戻り値、ループ時の扱い、SFalse / bottom 条件を確認。"
+          }
+        },
+        { "path": ["code_sample", 0, "visibility"], "value": "internal" },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "引数に、0枚目以前を返すことになるような時間を指定すると、SFalseを返します。",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animelemno-local-2002"]
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1 では、指定時間が現在のアクション開始前になる場合は <code>bottom</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animelemno-local-1.0", "animelemno-local-1.1"]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>code_sample[0] はタイトルとコードが空文字だけで、公開できる例を含まない。元の要素を保持したまま公開から外す。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["source_code"],
+                "source_refs": ["animelemno-legacy-data"]
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animelemno-local-2002", "title": "AnimElemNo — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElemNo", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animelemno-local-1.0", "title": "AnimElemNo — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#animelemno", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animelemno-local-1.1", "title": "AnimElemNo — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#animelemno", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animelemno-legacy-data", "title": "AnimElemNo — 移行前の空コード例原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/f6a08fd79186154741fd3878debfbd3dad0f56b8/src/content/triggers/AnimElemNo.json", "source_type": "source_code" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "code_sample", "reason": "公開可能なコード例は未作成。旧空要素は原本として保持する。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "AnimElemTime",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "function" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "exprn",
+              "type": ["int"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animelemtime-local-2002", "animelemtime-local-1.0", "animelemtime-local-1.1"],
+                "comment": "2026-09-10: 引数は確認する要素番号の整数式。旧 JSON に parameter はないため legacy_index は付けない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["animelemtime-local-2002", "animelemtime-local-1.0", "animelemtime-local-1.1"],
+            "comment": "2026-09-10: 保存済み公式資料で1始まりの要素番号、構文、整数の戻り値、有限 looptime のループ、SFalse / bottom 条件を確認。"
+          }
+        },
+        { "path": ["code_sample", 0, "visibility"], "value": "internal" },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "legacy_index": 0,
+              "content": "存在しないアニメ順番を指定した場合も、SFalseを返します。",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animelemtime-local-2002"]
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1 では、<code>exprn</code> が bottom、または現在のアクションに存在しない要素番号の場合は <code>bottom</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animelemtime-local-1.0", "animelemtime-local-1.1"]
+              }
+            },
+            {
+              "kind": "limitation",
+              "content": "<p>有限の <code>looptime</code> を持つアニメーションでは、2周目以降のループ先頭 tick に <code>AnimElemTime(1) = 0</code> は成立しません。毎周判定する場合は <code>AnimElemTime(1) = 0 || AnimTime = 0</code> を使用します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animelemtime-local-2002", "animelemtime-local-1.0", "animelemtime-local-1.1"]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>code_sample[0] はタイトルとコードが空文字だけで、公開できる例を含まない。元の要素を保持したまま公開から外す。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["source_code"],
+                "source_refs": ["animelemtime-legacy-data"]
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animelemtime-local-2002", "title": "AnimElemTime — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElemTime", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animelemtime-local-1.0", "title": "AnimElemTime — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#animelemtime", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animelemtime-local-1.1", "title": "AnimElemTime — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#animelemtime", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animelemtime-legacy-data", "title": "AnimElemTime — 移行前の空コード例原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/f6a08fd79186154741fd3878debfbd3dad0f56b8/src/content/triggers/AnimElemTime.json", "source_type": "source_code" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "code_sample", "reason": "公開可能なコード例は未作成。旧空要素は原本として保持する。" }
+      ]
+    }
+  ]
+}

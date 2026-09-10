@@ -1,48 +1,127 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "AnimTime",
-        "target": "",
-        "category": [
-            "時間",
-            "現ステートの経過時間取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "AnimTime",
+    "target": "",
+    "category": [
+      "時間",
+      "現ステートの経過時間取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2015.12.24",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "AnimTime",
+  "summary": "<p>アニメーションが残り何フレームで終了するかを返します。</p>",
+  "syntax": [
+    "AnimTime"
+  ],
+  "description": "アニメーションが残り何フレームで終了するかを返します。<br>アニメ終了からの経過時間を返します。アニメが終了していない場合、終了までの時間を負数で返すことになります。<br>アニメが終了した場合、アニメの最初に戻るか、他のアニメに切り替わることになりますので、基本的にこのトリガーが正の数を返すことはありません。<br>しかし、最後の絵の表示時間が-1の場合など、「終わらないアニメ」が表示されているときは、表示時間-1の絵になってからの経過時間が、正の数で返されます。<br>ただし、1枚目の表示時間が-1の場合、1しか返しません。",
+  "code_sample": [
+    {
+      "title": "",
+      "code": [
+        ""
+      ],
+      "visibility": "internal"
+    }
+  ],
+  "quote": [
+    {
+      "title": "AnimTime - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimTime"
     },
-    "category": "trigger",
-    "trigger": "AnimTime",
-    "summary": "<p>アニメーションが残り何フレームで終了するかを返します。</p>",
-    "syntax": [
-        "AnimTime"
+    {
+      "title": "AnimTime - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animtime"
+    },
+    {
+      "title": "AnimTime - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animtime"
+    },
+    {
+      "title": "AnimTime - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimTime"
+    },
+    {
+      "id": "animtime-local-2002",
+      "title": "AnimTime — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimTime",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animtime-local-1.0",
+      "title": "AnimTime — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#animtime",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animtime-local-1.1",
+      "title": "AnimTime — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#animtime",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animtime-legacy-data",
+      "title": "AnimTime — 移行前の説明とコード例原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/f6a08fd79186154741fd3878debfbd3dad0f56b8/src/content/triggers/AnimTime.json",
+      "source_type": "source_code"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "documentation": {
+    "description": "<p>現在のアニメーションの <code>animation-time</code> と <code>looptime</code> の差を整数で返します。アニメーション終端の判定に使用します。</p><p>再生中は0以下となり、<code>AnimTime = 0</code> は <code>animation-time</code> が <code>looptime</code> に達した時点を表します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "animtime-local-2002",
+        "animtime-local-1.0",
+        "animtime-local-1.1"
+      ],
+      "comment": "2026-09-10: 保存済み公式資料で定義、符号、構文、戻り値、終端判定例を確認。旧説明にある時間-1の特殊例は含めていない。"
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "アニメーションが残り何フレームで終了するかを返します。<br>アニメ終了からの経過時間を返します。アニメが終了していない場合、終了までの時間を負数で返すことになります。<br>アニメが終了した場合、アニメの最初に戻るか、他のアニメに切り替わることになりますので、基本的にこのトリガーが正の数を返すことはありません。<br>しかし、最後の絵の表示時間が-1の場合など、「終わらないアニメ」が表示されているときは、表示時間-1の絵になってからの経過時間が、正の数で返されます。<br>ただし、1枚目の表示時間が-1の場合、1しか返しません。",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
+    "source_refs": [
+      "animtime-local-2002",
+      "animtime-local-1.0",
+      "animtime-local-1.1"
     ],
-    "quote": [
-        {
-            "title": "AnimTime - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimTime"
-        },
-        {
-            "title": "AnimTime - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animtime"
-        },
-        {
-            "title": "AnimTime - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animtime"
-        },
-        {
-            "title": "AnimTime - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimTime"
-        }
-    ]
+    "comment": "2026-09-10: 保存済み公式資料で定義、符号、引数なしの構文、整数の戻り値、エラーなしを確認。旧説明の時間-1に関する細部を実機確認したという意味ではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 description は表示時間が <code>-1</code> のアニメーションで正値を返す条件と、1枚目が <code>-1</code> の場合は1だけを返すという細部を含む。保存済み公式資料にはこの条件がなく、対応する実行記録も確認できないため、原文を description に保持して公開説明から外す。code_sample[0] はタイトルとコードが空文字だけなので、要素を保持したまま公開から外す。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "animtime-local-2002",
+          "animtime-local-1.0",
+          "animtime-local-1.1",
+          "animtime-legacy-data"
+        ],
+        "comment": "2026-09-10: 公式資料で確認できる基本仕様と、移行前 JSON だけに残る特殊例を区別した。"
+      }
+    }
+  ]
 }

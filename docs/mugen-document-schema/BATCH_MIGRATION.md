@@ -191,3 +191,21 @@ npm run mugen:batch -- --batch random-time-01 --target Random --target GameTime 
 ```
 
 このバッチは適用済みです。次は AnimTime / AnimElemNo / AnimElemTime のアニメーション時間トリガーを照合します。
+
+## animation-time-01：アニメーション時間の3件
+
+2026-09-10、AnimTime / AnimElemNo / AnimElemTime を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/animation-time-01/` へ保存しています。空文字だけのコード例も原本に保持しています。
+
+- 3件とも int を返します。AnimTime は引数なし、AnimElemNo は現在を基準にした tick オフセットの整数式、AnimElemTime は確認する要素番号の整数式を取ります。
+- AnimElemNo / AnimElemTime について、2002.04.14 の SFalse と1.0 / 1.1 の bottom を別々に保存しました。AnimElemTime が有限 looptime の2周目以降のループ先頭で成立しない制約と、`AnimTime = 0` を併用する公式の回避例も公開注記にしました。
+- AnimTime の旧説明にある表示時間 `-1` の特殊例は、保存済み公式資料に記載がなく実行記録もありません。原文を description に保持し、公開説明は終端からの符号付き時間と `AnimTime = 0` の確認済み仕様へ差し替えました。
+- 3ページの旧 `code_sample[0]` はタイトルもコードも空文字です。各要素を削除せず `visibility: internal` とし、空のサンプル節とページ内ナビを生成しません。
+- HTML 比較器は、全コード例が明示的に内部化された場合に限り、`#CodeSample` 節とそのページ内リンクの消失を許可します。他の節・リンクの欠落検出は維持します。
+
+```sh
+npm run mugen:batch-baseline -- --batch animation-time-01
+npm run mugen:batch -- --batch animation-time-01 --target AnimTime --target AnimElemNo --target AnimElemTime
+npm run mugen:batch -- --batch animation-time-01 --target AnimTime --target AnimElemNo --target AnimElemTime --apply
+```
+
+このバッチは適用済みです。次は Anim / AnimExist / SelfAnimExist のアニメーション識別トリガーを照合します。

@@ -55,7 +55,12 @@ for (const { collection, name, base } of cases) {
   const hiddenLinks = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'href')).map(node => ({ href: attr(node, 'href'), text: compactText(node) })));
   const hiddenMedia = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'src')).map(node => attr(node, 'src')).filter(Boolean));
   for (const id of before.sections) assert.ok(rendered.sections.includes(id) || (id === 'CodeSample' && internalSampleIndices.length > 0 && !current.code_sample.length), `${name}: lost section #${id}`);
-  for (const link of before.links) assert.ok(rendered.links.some(candidate => candidate.href === link.href && candidate.text === link.text) || hiddenLinks.some(candidate => candidate.href === link.href && candidate.text === link.text), `${name}: lost link ${link.href}`);
+  for (const link of before.links) assert.ok(
+    rendered.links.some(candidate => candidate.href === link.href && candidate.text === link.text)
+      || hiddenLinks.some(candidate => candidate.href === link.href && candidate.text === link.text)
+      || (link.href === '#CodeSample' && internalSampleIndices.length > 0 && !current.code_sample.length),
+    `${name}: lost link ${link.href}`,
+  );
   for (const src of before.media.filter(Boolean)) assert.ok(rendered.media.includes(src) || hiddenMedia.includes(src), `${name}: lost media ${src}`);
   const text = compactText(parseFragment(current.description));
   assert.ok(rendered.text.includes(text), `${name}: lost effective description`);

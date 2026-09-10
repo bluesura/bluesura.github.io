@@ -1,54 +1,177 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "AnimElemTime",
-        "target": "",
-        "category": [
-            "アニメーション",
-            "アニメーション特定コマの経過時間取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.07.18",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "AnimElemTime",
+    "target": "",
+    "category": [
+      "アニメーション",
+      "アニメーション特定コマの経過時間取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.07.18",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "AnimElemTime",
+  "summary": "<p>アニメーションがx枚目になった時の経過時間を返します。</p>",
+  "syntax": [
+    "AnimElemTime(x)"
+  ],
+  "description": "アニメーションがx枚目になった時の経過時間を返します。<br>特定のアニメ順番の経過時間を返します。アニメの順番は0からでなく、1から数えます。<br>AnimElemトリガーの代わりに登場したトリガーで、ファンクションとして使う場合はこちらを使用します。<br>引数には、経過時間をチェックしたいアニメ順番をintで指定します。",
+  "version": [
+    {
+      "no": "エラー",
+      "content": "存在しないアニメ順番を指定した場合も、SFalseを返します。"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "",
+      "code": [
+        ""
+      ],
+      "visibility": "internal"
+    }
+  ],
+  "quote": [
+    {
+      "title": "AnimElemTime - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElemTime"
     },
-    "category": "trigger",
-    "trigger": "AnimElemTime",
-    "summary": "<p>アニメーションがx枚目になった時の経過時間を返します。</p>",
-    "syntax": [
-        "AnimElemTime(x)"
+    {
+      "title": "AnimElemTime - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animelemtime"
+    },
+    {
+      "title": "AnimElemTime - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animelemtime"
+    },
+    {
+      "title": "AnimElemTime - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimElemTime"
+    },
+    {
+      "id": "animelemtime-local-2002",
+      "title": "AnimElemTime — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElemTime",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animelemtime-local-1.0",
+      "title": "AnimElemTime — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#animelemtime",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animelemtime-local-1.1",
+      "title": "AnimElemTime — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#animelemtime",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animelemtime-legacy-data",
+      "title": "AnimElemTime — 移行前の空コード例原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/f6a08fd79186154741fd3878debfbd3dad0f56b8/src/content/triggers/AnimElemTime.json",
+      "source_type": "source_code"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "function",
+  "arguments": [
+    {
+      "name": "exprn",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "expression",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "animelemtime-local-2002",
+          "animelemtime-local-1.0",
+          "animelemtime-local-1.1"
+        ],
+        "comment": "2026-09-10: 引数は確認する要素番号の整数式。旧 JSON に parameter はないため legacy_index は付けない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "アニメーションがx枚目になった時の経過時間を返します。<br>特定のアニメ順番の経過時間を返します。アニメの順番は0からでなく、1から数えます。<br>AnimElemトリガーの代わりに登場したトリガーで、ファンクションとして使う場合はこちらを使用します。<br>引数には、経過時間をチェックしたいアニメ順番をintで指定します。",
-    "version": [
-        {
-            "no": "エラー",
-            "content": "存在しないアニメ順番を指定した場合も、SFalseを返します。"
-        }
+    "source_refs": [
+      "animelemtime-local-2002",
+      "animelemtime-local-1.0",
+      "animelemtime-local-1.1"
     ],
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "AnimElemTime - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElemTime"
-        },
-        {
-            "title": "AnimElemTime - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animelemtime"
-        },
-        {
-            "title": "AnimElemTime - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animelemtime"
-        },
-        {
-            "title": "AnimElemTime - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimElemTime"
-        }
-    ]
+    "comment": "2026-09-10: 保存済み公式資料で1始まりの要素番号、構文、整数の戻り値、有限 looptime のループ、SFalse / bottom 条件を確認。"
+  },
+  "notes": [
+    {
+      "kind": "error",
+      "legacy_index": 0,
+      "content": "存在しないアニメ順番を指定した場合も、SFalseを返します。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "animelemtime-local-2002"
+        ]
+      }
+    },
+    {
+      "kind": "error",
+      "content": "<p>MUGEN 1.0 / 1.1 では、<code>exprn</code> が bottom、または現在のアクションに存在しない要素番号の場合は <code>bottom</code> を返します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "animelemtime-local-1.0",
+          "animelemtime-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "limitation",
+      "content": "<p>有限の <code>looptime</code> を持つアニメーションでは、2周目以降のループ先頭 tick に <code>AnimElemTime(1) = 0</code> は成立しません。毎周判定する場合は <code>AnimElemTime(1) = 0 || AnimTime = 0</code> を使用します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "animelemtime-local-2002",
+          "animelemtime-local-1.0",
+          "animelemtime-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>code_sample[0] はタイトルとコードが空文字だけで、公開できる例を含まない。元の要素を保持したまま公開から外す。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "animelemtime-legacy-data"
+        ]
+      }
+    }
+  ]
 }

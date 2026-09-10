@@ -1,54 +1,162 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "AnimElemNo",
-        "target": "",
-        "category": [
-            "アニメーション",
-            "指定時間後のアニメーションコマ数予測"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "AnimElemNo",
+    "target": "",
+    "category": [
+      "アニメーション",
+      "指定時間後のアニメーションコマ数予測"
+    ],
+    "version": "2002.04.14",
+    "update": "2015.12.24",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "AnimElemNo",
+  "summary": "<p>x経過時間のアニメーションが何枚目かを返します。</p>",
+  "syntax": [
+    "AnimElemNo(x)"
+  ],
+  "description": "x経過時間のアニメーションが何枚目かを返します。<br>特定の経過時間におけるアニメの絵が何枚目かを返します。使用に当たっては、時間の経過をよく考慮する必要があります。<br>引数には、現時点からの経過時間をintで指定します。例えば、0なら現在、-1なら1フレーム前、1なら1フレーム後です。<br>注意:ループアニメ部分が表示されている場合、引数にどんな値を指定しても、ループ部分のアニメ順番しか返しません。",
+  "version": [
+    {
+      "no": "エラー",
+      "content": "引数に、0枚目以前を返すことになるような時間を指定すると、SFalseを返します。"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "",
+      "code": [
+        ""
+      ],
+      "visibility": "internal"
+    }
+  ],
+  "quote": [
+    {
+      "title": "AnimElemNo - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElemNo"
     },
-    "category": "trigger",
-    "trigger": "AnimElemNo",
-    "summary": "<p>x経過時間のアニメーションが何枚目かを返します。</p>",
-    "syntax": [
-        "AnimElemNo(x)"
+    {
+      "title": "AnimElemNo - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animelemno"
+    },
+    {
+      "title": "AnimElemNo - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animelemno"
+    },
+    {
+      "title": "AnimElemNo - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimElemNo"
+    },
+    {
+      "id": "animelemno-local-2002",
+      "title": "AnimElemNo — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElemNo",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animelemno-local-1.0",
+      "title": "AnimElemNo — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#animelemno",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animelemno-local-1.1",
+      "title": "AnimElemNo — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#animelemno",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animelemno-legacy-data",
+      "title": "AnimElemNo — 移行前の空コード例原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/f6a08fd79186154741fd3878debfbd3dad0f56b8/src/content/triggers/AnimElemNo.json",
+      "source_type": "source_code"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "function",
+  "arguments": [
+    {
+      "name": "exprn",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "expression",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "animelemno-local-2002",
+          "animelemno-local-1.0",
+          "animelemno-local-1.1"
+        ],
+        "comment": "2026-09-10: 引数は現在を基準とする tick オフセットの整数式。旧 JSON に parameter はないため legacy_index は付けない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "x経過時間のアニメーションが何枚目かを返します。<br>特定の経過時間におけるアニメの絵が何枚目かを返します。使用に当たっては、時間の経過をよく考慮する必要があります。<br>引数には、現時点からの経過時間をintで指定します。例えば、0なら現在、-1なら1フレーム前、1なら1フレーム後です。<br>注意:ループアニメ部分が表示されている場合、引数にどんな値を指定しても、ループ部分のアニメ順番しか返しません。",
-    "version": [
-        {
-            "no": "エラー",
-            "content": "引数に、0枚目以前を返すことになるような時間を指定すると、SFalseを返します。"
-        }
+    "source_refs": [
+      "animelemno-local-2002",
+      "animelemno-local-1.0",
+      "animelemno-local-1.1"
     ],
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "AnimElemNo - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElemNo"
-        },
-        {
-            "title": "AnimElemNo - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animelemno"
-        },
-        {
-            "title": "AnimElemNo - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animelemno"
-        },
-        {
-            "title": "AnimElemNo - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimElemNo"
-        }
-    ]
+    "comment": "2026-09-10: 保存済み公式資料で現在基準の時間オフセット、構文、整数の戻り値、ループ時の扱い、SFalse / bottom 条件を確認。"
+  },
+  "notes": [
+    {
+      "kind": "error",
+      "legacy_index": 0,
+      "content": "引数に、0枚目以前を返すことになるような時間を指定すると、SFalseを返します。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "animelemno-local-2002"
+        ]
+      }
+    },
+    {
+      "kind": "error",
+      "content": "<p>MUGEN 1.0 / 1.1 では、指定時間が現在のアクション開始前になる場合は <code>bottom</code> を返します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "animelemno-local-1.0",
+          "animelemno-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>code_sample[0] はタイトルとコードが空文字だけで、公開できる例を含まない。元の要素を保持したまま公開から外す。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "animelemno-legacy-data"
+        ]
+      }
+    }
+  ]
 }

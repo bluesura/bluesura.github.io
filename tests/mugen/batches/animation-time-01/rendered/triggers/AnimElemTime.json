@@ -1,0 +1,54 @@
+{
+  "text": "AnimElemTime アニメーション > アニメーション特定コマの経過時間取得 | 実装されたバージョン: 2002.04.14 引数 仕様・注意点 使用例 引用記事 アニメーションがx枚目になった時の経過時間を返します。特定のアニメ順番の経過時間を返します。アニメの順番は0からでなく、1から数えます。AnimElemトリガーの代わりに登場したトリガーで、ファンクションとして使う場合はこちらを使用します。引数には、経過時間をチェックしたいアニメ順番をintで指定します。 構文 AnimElemTime(x) 引数 なし 仕様・バグ・エラー・変更点エラー存在しないアニメ順番を指定した場合も、SFalseを返します。 コードサンプル 引用記事AnimElemTime - Trigger Reference(version 2002.04.14)AnimElemTime - Trigger Reference(version 1.0)AnimElemTime - Trigger Reference(version 1.1)AnimElemTime - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.07.18 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "AnimElemTime - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElemTime"
+    },
+    {
+      "text": "AnimElemTime - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animelemtime"
+    },
+    {
+      "text": "AnimElemTime - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animelemtime"
+    },
+    {
+      "text": "AnimElemTime - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimElemTime"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

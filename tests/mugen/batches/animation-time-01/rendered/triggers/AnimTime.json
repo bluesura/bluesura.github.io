@@ -1,0 +1,49 @@
+{
+  "text": "AnimTime 時間 > 現ステートの経過時間取得 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 アニメーションが残り何フレームで終了するかを返します。アニメ終了からの経過時間を返します。アニメが終了していない場合、終了までの時間を負数で返すことになります。アニメが終了した場合、アニメの最初に戻るか、他のアニメに切り替わることになりますので、基本的にこのトリガーが正の数を返すことはありません。しかし、最後の絵の表示時間が-1の場合など、「終わらないアニメ」が表示されているときは、表示時間-1の絵になってからの経過時間が、正の数で返されます。ただし、1枚目の表示時間が-1の場合、1しか返しません。 構文 AnimTime 引数 なし コードサンプル 引用記事AnimTime - Trigger Reference(version 2002.04.14)AnimTime - Trigger Reference(version 1.0)AnimTime - Trigger Reference(version 1.1)AnimTime - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2015.12.24 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "AnimTime - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimTime"
+    },
+    {
+      "text": "AnimTime - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animtime"
+    },
+    {
+      "text": "AnimTime - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animtime"
+    },
+    {
+      "text": "AnimTime - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimTime"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

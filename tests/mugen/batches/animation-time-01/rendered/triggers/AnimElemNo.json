@@ -1,0 +1,54 @@
+{
+  "text": "AnimElemNo アニメーション > 指定時間後のアニメーションコマ数予測 | 実装されたバージョン: 2002.04.14 引数 仕様・注意点 使用例 引用記事 x経過時間のアニメーションが何枚目かを返します。特定の経過時間におけるアニメの絵が何枚目かを返します。使用に当たっては、時間の経過をよく考慮する必要があります。引数には、現時点からの経過時間をintで指定します。例えば、0なら現在、-1なら1フレーム前、1なら1フレーム後です。注意:ループアニメ部分が表示されている場合、引数にどんな値を指定しても、ループ部分のアニメ順番しか返しません。 構文 AnimElemNo(x) 引数 なし 仕様・バグ・エラー・変更点エラー引数に、0枚目以前を返すことになるような時間を指定すると、SFalseを返します。 コードサンプル 引用記事AnimElemNo - Trigger Reference(version 2002.04.14)AnimElemNo - Trigger Reference(version 1.0)AnimElemNo - Trigger Reference(version 1.1)AnimElemNo - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2015.12.24 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "AnimElemNo - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimElemNo"
+    },
+    {
+      "text": "AnimElemNo - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#animelemno"
+    },
+    {
+      "text": "AnimElemNo - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#animelemno"
+    },
+    {
+      "text": "AnimElemNo - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AnimElemNo"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

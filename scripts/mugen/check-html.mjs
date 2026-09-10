@@ -14,6 +14,24 @@ const sampleNodes = document => {
   const section = findAll(document, node => attr(node, 'id') === 'CodeSample')[0];
   return section ? findAll(section, node => node.tagName === 'div' && node.childNodes?.some(child => child.tagName === 'h3')) : [];
 };
+const qandaNodes = document => {
+  const section = findAll(document, node => attr(node, 'id') === 'QandA')[0];
+  const container = section && findAll(section, node => node.tagName === 'div' && node.childNodes?.some(child => child.tagName === 'h3'))[0];
+  if (!container) return [];
+  const entries = [];
+  let nodes;
+  for (const node of container.childNodes ?? []) {
+    if (node.tagName === 'h3') {
+      if (nodes?.length) entries.push({ childNodes: nodes });
+      nodes = [node];
+    } else if (nodes) {
+      nodes.push(node);
+      if (node.tagName === 'hr') { entries.push({ childNodes: nodes }); nodes = undefined; }
+    }
+  }
+  if (nodes?.length) entries.push({ childNodes: nodes });
+  return entries;
+};
 const results = [];
 const cases = [...baselineCases(), ...Object.keys(collections).map(collection => ({ collection, name: 'index' }))];
 for (const { collection, name, base } of cases) {
@@ -50,11 +68,23 @@ for (const { collection, name, base } of cases) {
   const current = normalizeDocument(source, common);
   const hidden = [source, ...(source.parameter ?? [])].flatMap(value => effectiveNotes(value).filter(note => !isPublicNote(note)));
   const internalSampleIndices = (source.code_sample ?? []).flatMap((sample, i) => sample.visibility === 'internal' ? [i] : []);
-  const oldSampleNodes = internalSampleIndices.length ? sampleNodes(parse(readFileSync(pathFromRoot(`${base}/html/${collection}/${name}.html`), 'utf8'))) : [];
-  const hiddenFragments = [...hidden.map(note => parseFragment(note.content)), ...internalSampleIndices.flatMap(i => oldSampleNodes[i] ? [oldSampleNodes[i]] : [])];
+  const internalQandAIndices = (source.qanda ?? []).flatMap((item, i) => item.visibility === 'internal' ? [i] : []);
+  const oldDocument = internalSampleIndices.length || internalQandAIndices.length ? parse(readFileSync(pathFromRoot(`${base}/html/${collection}/${name}.html`), 'utf8')) : undefined;
+  const oldSampleNodes = internalSampleIndices.length ? sampleNodes(oldDocument) : [];
+  const oldQandANodes = internalQandAIndices.length ? qandaNodes(oldDocument) : [];
+  const hiddenFragments = [
+    ...hidden.map(note => parseFragment(note.content)),
+    ...internalSampleIndices.flatMap(i => oldSampleNodes[i] ? [oldSampleNodes[i]] : []),
+    ...internalQandAIndices.flatMap(i => oldQandANodes[i] ? [oldQandANodes[i]] : []),
+  ];
   const hiddenLinks = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'href')).map(node => ({ href: attr(node, 'href'), text: compactText(node) })));
   const hiddenMedia = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'src')).map(node => attr(node, 'src')).filter(Boolean));
-  for (const id of before.sections) assert.ok(rendered.sections.includes(id) || (id === 'CodeSample' && internalSampleIndices.length > 0 && !current.code_sample.length), `${name}: lost section #${id}`);
+  for (const id of before.sections) assert.ok(
+    rendered.sections.includes(id)
+      || (id === 'CodeSample' && internalSampleIndices.length > 0 && !current.code_sample.length)
+      || (id === 'QandA' && internalQandAIndices.length > 0 && !current.qanda.length),
+    `${name}: lost section #${id}`,
+  );
   for (const link of before.links) assert.ok(
     rendered.links.some(candidate => candidate.href === link.href && candidate.text === link.text)
       || hiddenLinks.some(candidate => candidate.href === link.href && candidate.text === link.text)
@@ -94,6 +124,16 @@ for (const { collection, name, base } of cases) {
         const iframeAttrs = tree => findAll(tree, node => node.tagName === 'iframe').map(node => ({ src: attr(node, 'src') ?? '', srcdoc: attr(node, 'srcdoc') ?? '' }));
         assert.deepEqual(iframeAttrs(samples[i]), iframeAttrs(expectedDescription), `${name}: sample iframe changed`);
       }
+    }
+  }
+  if (collection !== 'lifebars' && source.qanda) {
+    const entries = qandaNodes(document);
+    assert.equal(entries.length, current.qanda.length, `${name}: wrong public Q&A count`);
+    for (const [i, item] of current.qanda.entries()) {
+      const heading = findAll(entries[i], node => node.tagName === 'h3')[0];
+      assert.equal(compactText(heading), item.q.trim(), `${name}: public Q&A order/question`);
+      const answer = { childNodes: entries[i].childNodes.filter(node => !['h3', 'hr'].includes(node.tagName)) };
+      assert.equal(compactText(answer), compactText(parseFragment(item.a)), `${name}: public Q&A answer changed`);
     }
   }
   if (source.documentation) {

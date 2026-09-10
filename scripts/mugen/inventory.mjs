@@ -24,7 +24,7 @@ const rows = documents().map(({ path, url, collection, data }) => {
   if (inScope) walk(data);
   const undisplayed = [];
   if (inScope && data.sample_code?.length) undisplayed.push('sample_code');
-  if (inScope) for (const [index, item] of (data.qanda ?? []).entries()) for (const key of Object.keys(item)) if (!['q', 'a'].includes(key)) undisplayed.push(`qanda/${index}/${key}`);
+  if (inScope) for (const [index, item] of (data.qanda ?? []).entries()) for (const key of Object.keys(item)) if (!['q', 'a', 'visibility'].includes(key)) undisplayed.push(`qanda/${index}/${key}`);
   return {
     path, url, collection, category: data.category ?? 'lifebar',
     stage: !inScope ? 'outside_current_migration' : data.page.engine ? 'v2_additions_present' : 'legacy',

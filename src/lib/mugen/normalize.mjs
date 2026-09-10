@@ -5,6 +5,7 @@ export const isPublicNote = note => note.kind !== 'research' && note.visibility 
 export const publicNotes = content => effectiveNotes(content).filter(isPublicNote);
 export const effectiveDescription = content => content.documentation?.description ?? content.description;
 export const publicCodeSamples = content => (content.code_sample ?? []).filter(sample => sample.visibility !== 'internal');
+export const publicQandA = content => (content.qanda ?? []).filter(item => item.visibility !== 'internal');
 
 export function effectiveNotes(content) {
   const notes = content.notes ?? [];
@@ -21,6 +22,7 @@ export function normalizeDocument(content, common = []) {
     ...fields,
     description: effectiveDescription(content),
     ...(content.code_sample !== undefined ? { code_sample: publicCodeSamples(content) } : {}),
+    ...(content.qanda !== undefined ? { qanda: publicQandA(content) } : {}),
     parameter: content.category === 'trigger' ? effectiveArguments(content) : effectiveParameters(content, common),
     resolvedNotes: effectiveNotes(content),
   };

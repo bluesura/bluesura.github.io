@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  qanda?: { q: string; a: string }[];
+  qanda?: { q: string; a: string; visibility?: 'public' | 'internal' }[];
 }
 const { qanda } = Astro.props;
 ---

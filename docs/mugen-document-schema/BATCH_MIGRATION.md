@@ -209,3 +209,21 @@ npm run mugen:batch -- --batch animation-time-01 --target AnimTime --target Anim
 ```
 
 このバッチは適用済みです。次は Anim / AnimExist / SelfAnimExist のアニメーション識別トリガーを照合します。
+
+## animation-identity-01：アニメーション番号・存在判定の3件
+
+2026-09-10、Anim / AnimExist / SelfAnimExist を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/animation-identity-01/` へ保存しています。旧履歴・Q&A・コード例も原本に保持しています。
+
+- Anim は引数なしで現在のアクション番号を int で返します。AnimExist / SelfAnimExist はアニメーション番号を返す整数式1個を取り、存在を1または0の int で返します。初導入ビルドは3件とも未確定です。
+- AnimExist は、成功した攻撃によってカスタムステートへ置かれた場合の結果が公式上未定義です。旧履歴と Q&A は攻撃側データを参照すると断定しているため、原文を保持して `research` / `visibility: internal` で非公開にしました。公開文には未定義条件と SelfAnimExist の使用だけを記載しています。
+- SelfAnimExist は、攻撃によって P2 のアニメーションデータを与えられている場合でも P1 自身のデータだけを確認します。対象が反対にも読める旧説明を description に残し、documentation.description で公開文を訂正しました。
+- AnimExist の旧コード例は `Value =` が未記入で、未定義条件に当たり得る特殊やられ例です。SelfAnimExist の旧コード例は空文字だけです。どちらも要素を削除せず `visibility: internal` で HTML から外しました。
+- このバッチで `qanda[].visibility` の `public` / `internal` を追加しました。省略時は従来どおり公開し、内部項目しかないページでは Q&A 節を生成しません。比較検査は公開 Q&A の数・順序・質問・回答と、内部項目だけに存在するリンク・画像の非表示を確認します。
+
+```sh
+npm run mugen:batch-baseline -- --batch animation-identity-01
+npm run mugen:batch -- --batch animation-identity-01 --target Anim --target AnimExist --target SelfAnimExist
+npm run mugen:batch -- --batch animation-identity-01 --target Anim --target AnimExist --target SelfAnimExist --apply
+```
+
+このバッチは適用済みです。次は ChangeAnim / ChangeAnim2 / AnimElem のアニメーション変更・要素判定を照合します。

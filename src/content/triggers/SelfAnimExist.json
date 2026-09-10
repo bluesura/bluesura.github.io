@@ -1,48 +1,200 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "SelfAnimExist",
-        "target": "",
-        "category": [
-            "アニメーション",
-            "AIRファイル内のアニメーション存在判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "SelfAnimExist",
+    "target": "",
+    "category": [
+      "アニメーション",
+      "AIRファイル内のアニメーション存在判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2015.12.24",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "SelfAnimExist",
+  "summary": "<p>x番のアニメーションがAIRファイルに存在するかどうかを返します。</p>",
+  "syntax": [
+    "SelfAnimExist(x)"
+  ],
+  "description": "x番のアニメーションがAIRファイルに存在するかどうかを返します。<br>自分のairに引数のアニメが存在するときは1を、なければ0を返します。<br>AnimExistトリガーとの違いは、相手に参照させるステートで、相手のアニメが対象になることです。",
+  "code_sample": [
+    {
+      "title": "",
+      "code": [
+        ""
+      ],
+      "visibility": "internal"
+    }
+  ],
+  "quote": [
+    {
+      "title": "SelfAnimExist - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#SelfAnimExist"
     },
-    "category": "trigger",
-    "trigger": "SelfAnimExist",
-    "summary": "<p>x番のアニメーションがAIRファイルに存在するかどうかを返します。</p>",
-    "syntax": [
-        "SelfAnimExist(x)"
+    {
+      "title": "SelfAnimExist - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#selfanimexist"
+    },
+    {
+      "title": "SelfAnimExist - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#selfanimexist"
+    },
+    {
+      "title": "SelfAnimExist - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SelfAnimExist"
+    },
+    {
+      "id": "selfanimexist-local-2002",
+      "title": "SelfAnimExist — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#SelfAnimExist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "selfanimexist-local-1.0",
+      "title": "SelfAnimExist — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#selfanimexist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "selfanimexist-local-1.1",
+      "title": "SelfAnimExist — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#selfanimexist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animexist-for-self-local-2002",
+      "title": "SelfAnimExist が引き継ぐ AnimExist 仕様 — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimExist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animexist-for-self-local-1.0",
+      "title": "SelfAnimExist が引き継ぐ AnimExist 仕様 — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#animexist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "animexist-for-self-local-1.1",
+      "title": "SelfAnimExist が引き継ぐ AnimExist 仕様 — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#animexist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "selfanimexist-legacy-data",
+      "title": "SelfAnimExist — 移行前の説明・構文・空コード例原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/94e5d14a2cd48ba96078b2cb75dd2ac6311590da/src/content/triggers/SelfAnimExist.json",
+      "source_type": "source_code"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "function",
+  "arguments": [
+    {
+      "name": "x",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "expression",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "selfanimexist-local-2002",
+          "selfanimexist-local-1.0",
+          "selfanimexist-local-1.1",
+          "selfanimexist-legacy-data"
+        ],
+        "comment": "2026-09-10: 旧構文の引数名 x を保持。SelfAnimExist は公式に AnimExist と同様とされ、アニメーション番号を返す整数式を取る。旧 JSON に parameter はないため legacy_index は付けない。"
+      }
+    }
+  ],
+  "documentation": {
+    "description": "<p>指定したアクション番号が実行者自身（公式資料の P1）のアニメーションデータに存在する場合は <code>1</code>、存在しない場合は <code>0</code> を返します。</p><p>攻撃によって P2 のアニメーションデータを与えられている場合でも、<code>SelfAnimExist</code> は P2 側のデータを存在判定に使用しません。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "selfanimexist-local-2002",
+        "selfanimexist-local-1.0",
+        "selfanimexist-local-1.1"
+      ],
+      "comment": "2026-09-10: SelfAnimExist が常に P1 側のアニメーションデータだけを確認するという公式記載へ公開説明を合わせた。"
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document",
+      "source_code"
     ],
-    "description": "x番のアニメーションがAIRファイルに存在するかどうかを返します。<br>自分のairに引数のアニメが存在するときは1を、なければ0を返します。<br>AnimExistトリガーとの違いは、相手に参照させるステートで、相手のアニメが対象になることです。",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
+    "source_refs": [
+      "selfanimexist-local-2002",
+      "selfanimexist-local-1.0",
+      "selfanimexist-local-1.1",
+      "selfanimexist-legacy-data"
     ],
-    "quote": [
-        {
-            "title": "SelfAnimExist - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#SelfAnimExist"
-        },
-        {
-            "title": "SelfAnimExist - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#selfanimexist"
-        },
-        {
-            "title": "SelfAnimExist - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#selfanimexist"
-        },
-        {
-            "title": "SelfAnimExist - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SelfAnimExist"
-        }
-    ]
+    "comment": "2026-09-10: 保存済み公式資料の『AnimExist と同様』という定義、P1 のみを確認する参照範囲、旧構文を照合。"
+  },
+  "notes": [
+    {
+      "kind": "error",
+      "content": "<p>MUGEN 2002.04.14 では、引数が SFalse の場合は SFalse を返します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "selfanimexist-local-2002",
+          "animexist-for-self-local-2002"
+        ]
+      }
+    },
+    {
+      "kind": "error",
+      "content": "<p>MUGEN 1.0 / 1.1 では、引数が bottom の場合は <code>bottom</code> を返します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "selfanimexist-local-1.0",
+          "selfanimexist-local-1.1",
+          "animexist-for-self-local-1.0",
+          "animexist-for-self-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 description の末尾は『相手に参照させるステートで、相手のアニメが対象』と読めるが、公式資料では <code>SelfAnimExist</code> は P1 自身のデータだけを確認し、攻撃で P2 のデータを与えられても P2 側を確認しない。原文を description に保持し、公開説明を documentation.description で訂正する。code_sample[0] はタイトルとコードが空文字だけなので、要素を保持したまま公開から外す。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "selfanimexist-local-2002",
+          "selfanimexist-local-1.0",
+          "selfanimexist-local-1.1",
+          "selfanimexist-legacy-data"
+        ],
+        "comment": "2026-09-10: 旧本文の曖昧な対象説明と空コード例を、公式資料および移行前 JSON と照合。"
+      }
+    }
+  ]
 }

@@ -1,40 +1,77 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Anim",
-        "target": "実行者",
-        "category": [
-            "アニメーション",
-            "アニメーションの何枚目ですか？"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
-    },
-    "category": "trigger",
-    "trigger": "Anim",
-    "summary": "<p>プレイヤーの現在のアクションナンバーを返します。</p>",
-    "syntax": [
-        "Anim"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Anim",
+    "target": "実行者",
+    "category": [
+      "アニメーション",
+      "アニメーションの何枚目ですか？"
     ],
-    "description": "プレイヤーの現在のアクションナンバーを返します。",
-    "quote": [
-        {
-            "title": "Anim - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Anim"
-        },
-        {
-            "title": "Anim - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#anim"
-        },
-        {
-            "title": "Anim - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#anim"
-        },
-        {
-            "title": "Anim - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Anim"
-        }
-    ]
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "Anim",
+  "summary": "<p>プレイヤーの現在のアクションナンバーを返します。</p>",
+  "syntax": [
+    "Anim"
+  ],
+  "description": "プレイヤーの現在のアクションナンバーを返します。",
+  "quote": [
+    {
+      "title": "Anim - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Anim"
+    },
+    {
+      "title": "Anim - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#anim"
+    },
+    {
+      "title": "Anim - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#anim"
+    },
+    {
+      "title": "Anim - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Anim"
+    },
+    {
+      "id": "anim-local-2002",
+      "title": "Anim — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Anim",
+      "source_type": "official_document"
+    },
+    {
+      "id": "anim-local-1.0",
+      "title": "Anim — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#anim",
+      "source_type": "official_document"
+    },
+    {
+      "id": "anim-local-1.1",
+      "title": "Anim — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#anim",
+      "source_type": "official_document"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "anim-local-2002",
+      "anim-local-1.0",
+      "anim-local-1.1"
+    ],
+    "comment": "2026-09-10: 保存済み公式資料で現在のアクション番号、引数なしの構文、整数の戻り値、エラーなしを確認。"
+  }
 }

@@ -110,6 +110,10 @@ export function createDocumentSchema(collection, registry) {
     parameter: z.array(parameterSchema).optional(),
     documentation: documentDocumentationSchema.optional(),
     code_sample: z.array(z.object({ visibility: z.enum(['public', 'internal']).optional() }).passthrough()).optional(),
+    qanda: z.array(z.object({
+      q: z.string().optional(), a: z.string().optional(),
+      visibility: z.enum(['public', 'internal']).optional(),
+    }).passthrough()).optional(),
     quote: z.array(quoteSchema).optional(),
     return_type: strings.optional(),
     syntax_kind: z.enum(['nullary', 'function', 'old_style', 'special_form']).optional(),

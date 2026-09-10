@@ -1,0 +1,282 @@
+{
+  "id": "animation-identity-01",
+  "reviewed_on": "2026-09-10",
+  "description": "Anim / AnimExist / SelfAnimExist の型・引数・参照範囲・版別エラーを移行する。公式仕様と衝突する旧履歴・Q&A、未完成または空のコード例は原本に保持して非公開にする。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "Anim",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "nullary" },
+        { "path": ["arguments"], "value": [] },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["anim-local-2002", "anim-local-1.0", "anim-local-1.1"],
+            "comment": "2026-09-10: 保存済み公式資料で現在のアクション番号、引数なしの構文、整数の戻り値、エラーなしを確認。"
+          }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "anim-local-2002", "title": "Anim — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Anim", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "anim-local-1.0", "title": "Anim — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#anim", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "anim-local-1.1", "title": "Anim — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#anim", "source_type": "official_document" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "AnimExist",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "function" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "exprn",
+              "type": ["int"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "legacy_index": 0,
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animexist-local-2002", "animexist-local-1.0", "animexist-local-1.1"],
+                "comment": "2026-09-10: 引数は確認するアニメーション番号を返す整数式。旧 parameter[0] の説明は legacy_index で保持する。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>指定したアクション番号がプレイヤーに存在する場合は <code>1</code>、存在しない場合は <code>0</code> を返します。</p><p>成功した攻撃によってカスタムステートへ置かれた状況では、このトリガーの結果は未定義です。この状況では <code>SelfAnimExist</code> を使用します。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": ["official_document"],
+              "source_refs": ["animexist-local-2002", "animexist-local-1.0", "animexist-local-1.1"],
+              "comment": "2026-09-10: 公式資料が保証する存在判定と、カスタムステート時の未定義条件だけを公開説明へ反映。"
+            }
+          }
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["animexist-local-2002", "animexist-local-1.0", "animexist-local-1.1"],
+            "comment": "2026-09-10: 保存済み公式資料で構文、整数式の引数、boolean int の戻り値、SFalse / bottom、カスタムステート時の未定義条件を確認。"
+          }
+        },
+        { "path": ["qanda", 0, "visibility"], "value": "internal" },
+        { "path": ["code_sample", 0, "visibility"], "value": "internal" },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "research",
+              "legacy_index": 0,
+              "content": "<p>キャラクターが相手の攻撃を受け、その攻撃が「カスタムステート」に移行させる効果を持っている場合（例：投げ技、特殊なヒットステート）、M.U.G.E.Nのシステムは、攻撃を受けたキャラクターのアニメーションデータを<strong>一時的に攻撃側キャラクターのアニメーションデータ</strong>に切り替えることがあります。<br>この状態で<code>AnimExis</code>を使用すると、<code>AnimExist</code>は意図せず<strong>「攻撃側キャラクター」</strong>のアニメーションデータを参照してしまいます。</p><p>この問題を回避するために<code>SelfAnimExist</code>トリガーが提供されています。<code>SelfAnimExist</code>は、どのような状況下でも<strong>常に自分自身（本来の）のアニメーションデータ</strong>を参照して判定を行います。そのため、特に被弾中など外部要因が絡むステートで自身のアニメーションを確認する際は、<code>AnimExist</code>ではなく<code>SelfAnimExist</code>を使用するのが安全です。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": ["official_document", "source_code"],
+                "source_refs": ["animexist-local-2002", "animexist-local-1.0", "animexist-local-1.1", "animexist-legacy-data"],
+                "comment": "2026-09-10: 旧履歴は攻撃側データを参照すると断定するが、公式資料は成功した攻撃によるカスタムステート中の AnimExist を未定義としている。旧本文は原文のまま対応付け、公開しない。"
+              }
+            },
+            {
+              "kind": "limitation",
+              "content": "<p>成功した攻撃によってプレイヤーがカスタムステートへ置かれた場合、<code>AnimExist</code> の結果は未定義です。この状況では <code>SelfAnimExist</code> を使用します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animexist-local-2002", "animexist-local-1.0", "animexist-local-1.1"]
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 2002.04.14 では、<code>exprn</code> が SFalse の場合は SFalse を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animexist-local-2002"]
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1 では、<code>exprn</code> が bottom の場合は <code>bottom</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["animexist-local-1.0", "animexist-local-1.1"]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧 Q&A は、攻撃でステートを奪取したキャラクターのアニメーションデータを確認する用途に <code>AnimExist</code> を使うとしている。しかし公式資料は、成功した攻撃によるカスタムステート中の結果を未定義としているため、Q&A 原文を qanda[0] に保持したまま公開から外す。code_sample[0] は <code>Value =</code> が未記入で、そのまま実行できず、同じ未定義条件に当たり得る特殊やられ例なので、原文を保持して公開から外す。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": ["official_document", "source_code"],
+                "source_refs": ["animexist-local-2002", "animexist-local-1.0", "animexist-local-1.1", "animexist-legacy-data"],
+                "comment": "2026-09-10: 旧 Q&A とコード例を静的に照合。実機で未定義動作の結果を特定した記録ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animexist-local-2002", "title": "AnimExist — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimExist", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animexist-local-1.0", "title": "AnimExist — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#animexist", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animexist-local-1.1", "title": "AnimExist — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#animexist", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animexist-legacy-data", "title": "AnimExist — 移行前の履歴・Q&A・コード例原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/94e5d14a2cd48ba96078b2cb75dd2ac6311590da/src/content/triggers/AnimExist.json", "source_type": "source_code" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / qanda", "reason": "攻撃成功によるカスタムステート中の具体的な参照先は公式上未定義。旧断定を内部記録として保持する。" },
+        { "path": "code_sample", "reason": "Value 未記入かつ未定義条件に当たり得る旧例は、修正・検証まで内部に保持する。" }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "SelfAnimExist",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["return_type"], "value": ["int"] },
+        { "path": ["syntax_kind"], "value": "function" },
+        {
+          "path": ["arguments"],
+          "value": [
+            {
+              "name": "x",
+              "type": ["int"],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document", "source_code"],
+                "source_refs": ["selfanimexist-local-2002", "selfanimexist-local-1.0", "selfanimexist-local-1.1", "selfanimexist-legacy-data"],
+                "comment": "2026-09-10: 旧構文の引数名 x を保持。SelfAnimExist は公式に AnimExist と同様とされ、アニメーション番号を返す整数式を取る。旧 JSON に parameter はないため legacy_index は付けない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>指定したアクション番号が実行者自身（公式資料の P1）のアニメーションデータに存在する場合は <code>1</code>、存在しない場合は <code>0</code> を返します。</p><p>攻撃によって P2 のアニメーションデータを与えられている場合でも、<code>SelfAnimExist</code> は P2 側のデータを存在判定に使用しません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": ["official_document"],
+              "source_refs": ["selfanimexist-local-2002", "selfanimexist-local-1.0", "selfanimexist-local-1.1"],
+              "comment": "2026-09-10: SelfAnimExist が常に P1 側のアニメーションデータだけを確認するという公式記載へ公開説明を合わせた。"
+            }
+          }
+        },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document", "source_code"],
+            "source_refs": ["selfanimexist-local-2002", "selfanimexist-local-1.0", "selfanimexist-local-1.1", "selfanimexist-legacy-data"],
+            "comment": "2026-09-10: 保存済み公式資料の『AnimExist と同様』という定義、P1 のみを確認する参照範囲、旧構文を照合。"
+          }
+        },
+        { "path": ["code_sample", 0, "visibility"], "value": "internal" },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 2002.04.14 では、引数が SFalse の場合は SFalse を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["selfanimexist-local-2002", "animexist-for-self-local-2002"]
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1 では、引数が bottom の場合は <code>bottom</code> を返します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": ["official_document"],
+                "source_refs": ["selfanimexist-local-1.0", "selfanimexist-local-1.1", "animexist-for-self-local-1.0", "animexist-for-self-local-1.1"]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧 description の末尾は『相手に参照させるステートで、相手のアニメが対象』と読めるが、公式資料では <code>SelfAnimExist</code> は P1 自身のデータだけを確認し、攻撃で P2 のデータを与えられても P2 側を確認しない。原文を description に保持し、公開説明を documentation.description で訂正する。code_sample[0] はタイトルとコードが空文字だけなので、要素を保持したまま公開から外す。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": ["official_document", "source_code"],
+                "source_refs": ["selfanimexist-local-2002", "selfanimexist-local-1.0", "selfanimexist-local-1.1", "selfanimexist-legacy-data"],
+                "comment": "2026-09-10: 旧本文の曖昧な対象説明と空コード例を、公式資料および移行前 JSON と照合。"
+              }
+            }
+          ]
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "selfanimexist-local-2002", "title": "SelfAnimExist — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#SelfAnimExist", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "selfanimexist-local-1.0", "title": "SelfAnimExist — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#selfanimexist", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "selfanimexist-local-1.1", "title": "SelfAnimExist — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#selfanimexist", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animexist-for-self-local-2002", "title": "SelfAnimExist が引き継ぐ AnimExist 仕様 — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AnimExist", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animexist-for-self-local-1.0", "title": "SelfAnimExist が引き継ぐ AnimExist 仕様 — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/trigger.html#animexist", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "animexist-for-self-local-1.1", "title": "SelfAnimExist が引き継ぐ AnimExist 仕様 — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/trigger.html#animexist", "source_type": "official_document" }
+        },
+        {
+          "path": ["quote", "-"],
+          "value": { "id": "selfanimexist-legacy-data", "title": "SelfAnimExist — 移行前の説明・構文・空コード例原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/94e5d14a2cd48ba96078b2cb75dd2ac6311590da/src/content/triggers/SelfAnimExist.json", "source_type": "source_code" }
+        }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description", "reason": "対象が曖昧な旧本文は原本として保持し、公開説明だけを訂正する。" },
+        { "path": "code_sample", "reason": "公開可能なコード例は未作成。旧空要素は原本として保持する。" }
+      ]
+    }
+  ]
+}

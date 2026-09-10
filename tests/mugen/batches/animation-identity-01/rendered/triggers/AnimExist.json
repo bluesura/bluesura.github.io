@@ -1,0 +1,59 @@
+{
+  "text": "AnimExist アニメーション > アニメーションの存在判定 | 実装されたバージョン: 2002.04.14 引数 仕様・注意点 使用例 引用記事 引数で指定されたアクション番号が、キャラクターのアニメーションデータ（.airファイルで定義され、.sffファイルで参照されるもの）に存在するかどうかをチェックします。戻り値: アニメーションが存在する場合は1、存在しない場合は0を返します。 関連するトリガー： SelfAnimExist 構文 AnimExist(exprn) 引数 exprn 省略不可 型定数や変数、他のトリガー、関数、演算子 確認したいアニメーション（アクション）番号を指定します。 仕様・バグ・エラー・変更点仕様キャラクターが相手の攻撃を受け、その攻撃が「カスタムステート」に移行させる効果を持っている場合（例：投げ技、特殊なヒットステート）、M.U.G.E.Nのシステムは、攻撃を受けたキャラクターのアニメーションデータを一時的に攻撃側キャラクターのアニメーションデータに切り替えることがあります。この状態でAnimExisを使用すると、AnimExistは意図せず「攻撃側キャラクター」のアニメーションデータを参照してしまいます。この問題を回避するためにSelfAnimExistトリガーが提供されています。SelfAnimExistは、どのような状況下でも常に自分自身（本来の）のアニメーションデータを参照して判定を行います。そのため、特に被弾中など外部要因が絡むステートで自身のアニメーションを確認する際は、AnimExistではなくSelfAnimExistを使用するのが安全です。 Q＆A(よくある質問)AnimExistとSelfAnimExistはどのように使い分ければよいですか？基本的に、自分自身のアニメーションの存在を確認する場合は常にSelfAnimExistを使用することが推奨されます。攻撃でステートを奪取したキャラクターのアニメーションデータを確認したい場合に、AnimExistを使用します。 コードサンプルオプションアニメの有無による技の有効化アクション番号（例:特殊やられ）が存在する場合にのみ、ステートを有効にします。[State , 特殊やられ]Type = ChangeStateTrigger1 = MoveType = HTrigger1 = AnimExist(7697)Value = 引用記事AnimExist - Trigger Reference(version 2002.04.14)AnimExist - Trigger Reference(version 1.0)AnimExist - Trigger Reference(version 1.1)特殊対応に使われているAnim番号一覧 公開日:2008.06.05 最終更新日:2024.05.21 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "SelfAnimExist",
+      "href": "./../Trigger/SelfAnimExist.html"
+    },
+    {
+      "text": "AnimExist - Trigger Reference(version 2002.04.14)",
+      "href": "https://bluesura.github.io/MUGEN/document/Official/2002.04.14/trigger.html#AnimExist"
+    },
+    {
+      "text": "AnimExist - Trigger Reference(version 1.0)",
+      "href": "http://www.elecbyte.com/mugendocs/trigger.html#animexist"
+    },
+    {
+      "text": "AnimExist - Trigger Reference(version 1.1)",
+      "href": "http://www.elecbyte.com/mugendocs-11b1/trigger.html#animexist"
+    },
+    {
+      "text": "特殊対応に使われているAnim番号一覧",
+      "href": "https://shakesdream.web.fc2.com/AnimNo.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

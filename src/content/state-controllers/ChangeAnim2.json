@@ -1,57 +1,240 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "ChangeAnim2",
-		"target": "",
-		"category": ["アニメーションの変更","ステートを奪った相手のアニメーション変更"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "ChangeAnim2",
-	"description": "<p>ChangeAnimと似た効果があります。パラメータについてはそちらを参照のこと。</p><p>HitDefのp2stateパラメータやTargetStateを使って相手に参照させるステート内で、プレイヤーのairファイルを使用して相手のアニメーションを変更するのに使用します。</p>",
-	"category": "state",
-	"associated_state": ["ChangeAnim"],
-
-	"version": [
-		{"no": "警告文", "content": "CHANGED TO NEGATIVE ANIMELEM:ELEMに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["アクション番号"],
-			"type": ["int"],
-			"description": "<p>変更するアクション番号を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Elem",
-			"value": ["要素番号"],
-			"type": ["int"],
-			"description": "<p>何枚目から始めるかを指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["2"]
-		}
-	],
-
-	"quote": [
-		{"title": "ChangeAnim2 - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ChangeAnim2"},
-		{"title": "ChangeAnim2 - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#changeanim2"},
-		{"title": "ChangeAnim2 - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#changeanim2"},
-		{"title": "ChangeAnim2 - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ChangeAnim2"},
-		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-		{"title": "ChangeAnim2 - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ChangeAnim2&protocol=http"},
-		{"title": "ChangeAnim2 - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ChangeAnim2"},
-		{"title": "ChangeAnim2 - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "ChangeAnim2",
+    "target": "",
+    "category": [
+      "アニメーションの変更",
+      "ステートを奪った相手のアニメーション変更"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "ChangeAnim2",
+  "description": "<p>ChangeAnimと似た効果があります。パラメータについてはそちらを参照のこと。</p><p>HitDefのp2stateパラメータやTargetStateを使って相手に参照させるステート内で、プレイヤーのairファイルを使用して相手のアニメーションを変更するのに使用します。</p>",
+  "category": "state",
+  "associated_state": [
+    "ChangeAnim"
+  ],
+  "version": [
+    {
+      "no": "警告文",
+      "content": "CHANGED TO NEGATIVE ANIMELEM:ELEMに-1以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "アクション番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>変更するアクション番号を指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "P1 の AIR から使用するアクション番号を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "changeanim2-local-2002",
+              "changeanim2-local-1.0",
+              "changeanim2-local-1.1",
+              "changeanim-for-changeanim2-local-2002",
+              "changeanim-for-changeanim2-local-1.0",
+              "changeanim-for-changeanim2-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Elem",
+      "value": [
+        "要素番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>何枚目から始めるかを指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "expression",
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "ChangeAnim2 - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ChangeAnim2"
+    },
+    {
+      "title": "ChangeAnim2 - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#changeanim2"
+    },
+    {
+      "title": "ChangeAnim2 - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#changeanim2"
+    },
+    {
+      "title": "ChangeAnim2 - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ChangeAnim2"
+    },
+    {
+      "title": "不具合・対策まとめ - MUGENの便覧",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "id": "changeanim2-binran",
+      "source_type": "community_documentation"
+    },
+    {
+      "title": "ChangeAnim2 - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ChangeAnim2&protocol=http"
+    },
+    {
+      "title": "ChangeAnim2 - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ChangeAnim2"
+    },
+    {
+      "title": "ChangeAnim2 - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"
+    },
+    {
+      "id": "changeanim2-local-2002",
+      "title": "ChangeAnim2 — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ChangeAnim2",
+      "source_type": "official_document"
+    },
+    {
+      "id": "changeanim2-local-1.0",
+      "title": "ChangeAnim2 — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#changeanim2",
+      "source_type": "official_document"
+    },
+    {
+      "id": "changeanim2-local-1.1",
+      "title": "ChangeAnim2 — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#changeanim2",
+      "source_type": "official_document"
+    },
+    {
+      "id": "changeanim-for-changeanim2-local-2002",
+      "title": "ChangeAnim2 が引き継ぐ ChangeAnim パラメーター — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ChangeAnim",
+      "source_type": "official_document"
+    },
+    {
+      "id": "changeanim-for-changeanim2-local-1.0",
+      "title": "ChangeAnim2 が引き継ぐ ChangeAnim パラメーター — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#changeanim",
+      "source_type": "official_document"
+    },
+    {
+      "id": "changeanim-for-changeanim2-local-1.1",
+      "title": "ChangeAnim2 が引き継ぐ ChangeAnim パラメーター — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#changeanim",
+      "source_type": "official_document"
+    },
+    {
+      "id": "changeanim2-legacy-data",
+      "title": "ChangeAnim2 — 移行前の警告記録原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/a05ff02f045f94e5d56783728e304ea33028b658/src/content/state-controllers/ChangeAnim2.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>攻撃によって P2 をカスタムステートへ置き、P1 の AIR ファイルに定義されたアニメーションへ P2 を変更するときに使用します。投げで P2 を投げられ側のアニメーションへ変更する用途などが該当します。</p><p>パラメーターは <code>ChangeAnim</code> と同じです。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "changeanim2-local-2002",
+        "changeanim2-local-1.0",
+        "changeanim2-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "changeanim2-local-2002",
+      "changeanim2-local-1.0",
+      "changeanim2-local-1.1",
+      "changeanim-for-changeanim2-local-2002",
+      "changeanim-for-changeanim2-local-1.0",
+      "changeanim-for-changeanim2-local-1.1"
+    ],
+    "comment": "2026-09-10: 保存済み公式資料で P2 のカスタムステート、P1 の AIR、ChangeAnim と同じパラメーターを確認。elem の既存 default_value=1 と旧警告を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "CHANGED TO NEGATIVE ANIMELEM:ELEMに-1以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "changeanim2-binran",
+          "changeanim2-legacy-data"
+        ],
+        "comment": "2026-09-10: 旧記録とリンクを保持。文章が完結しておらず、具体的なビルド、入力値、完全な警告文、再現ログは今回確認していない。"
+      }
+    }
+  ]
 }

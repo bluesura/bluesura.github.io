@@ -2,11 +2,13 @@
 function documentedParameter(parameter) {
   const { documentation, ...fields } = parameter;
   if (!documentation) return parameter;
-  return {
+  const resolved = {
     ...fields,
     ...(documentation.value !== undefined ? { value: documentation.value } : {}),
     ...(documentation.description !== undefined ? { description: documentation.description } : {}),
   };
+  for (const field of documentation.hide_legacy ?? []) delete resolved[field];
+  return resolved;
 }
 
 // Match only the common parameter names. Do not normalize semicolons or collapse alternative forms.

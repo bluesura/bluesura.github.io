@@ -76,13 +76,15 @@ const additions = {
   variants: z.array(variantSchema).optional(),
   notes: notes.optional(),
 };
-// Only editorial text can be replaced; execution semantics stay in their existing fields.
+const legacyParameterDisplayField = z.enum(['default_value', 'min_value', 'max_value']);
+// Editorial overrides change only the public view. The retained legacy fields remain untouched.
 const parameterDocumentationSchema = z.object({
   value: z.array(z.string().min(1)).min(1).optional(),
   description: z.string().min(1).optional(),
+  hide_legacy: z.array(legacyParameterDisplayField).min(1).optional(),
   evidence: evidenceSchema.optional(),
-}).strict().refine(value => value.value !== undefined || value.description !== undefined, {
-  message: 'Parameter documentation requires a value label or description.',
+}).strict().refine(value => value.value !== undefined || value.description !== undefined || value.hide_legacy !== undefined, {
+  message: 'Parameter documentation requires a value label, description or legacy display field to hide.',
 });
 const documentDocumentationSchema = z.object({
   description: z.string().min(1),

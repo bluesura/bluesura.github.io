@@ -33,6 +33,7 @@
           "path": ["parameter", 0, "documentation"],
           "value": {
             "description": "<p>実行者を変更するステート番号を指定します。省略できません。</p>",
+            "hide_legacy": ["max_value"],
             "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["changestate-local-2002", "changestate-local-1.0", "changestate-local-1.1"] }
           }
         },
@@ -42,6 +43,7 @@
           "path": ["parameter", 1, "documentation"],
           "value": {
             "description": "<p>ステート変更と同時に設定するコントロールフラグを指定します。<code>0</code> は操作不可、0以外は操作可能です。</p>",
+            "hide_legacy": ["default_value"],
             "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["changestate-local-2002", "changestate-local-1.0", "changestate-local-1.1"] }
           }
         },
@@ -125,7 +127,7 @@
         { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>実行者自身のステートデータから、変更先のステート番号を指定します。省略できません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "changestate-for-self-local-2002", "changestate-for-self-local-1.0", "changestate-for-self-local-1.1"] } } },
         { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
         { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
-        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>ステート変更と同時に設定するコントロールフラグを指定します。<code>0</code> は操作不可、0以外は操作可能です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "changestate-for-self-local-2002", "changestate-for-self-local-1.0", "changestate-for-self-local-1.1"] } } },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>ステート変更と同時に設定するコントロールフラグを指定します。<code>0</code> は操作不可、0以外は操作可能です。</p>", "hide_legacy": ["default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "changestate-for-self-local-2002", "changestate-for-self-local-1.0", "changestate-for-self-local-1.1"] } } },
         { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
         { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
         { "path": ["parameter", 2, "default"], "value": [{ "kind": "inherit", "display": "前のアニメーションを維持", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "changestate-for-self-local-2002", "changestate-for-self-local-1.0", "changestate-for-self-local-1.1"] } }] },

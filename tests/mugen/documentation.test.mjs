@@ -52,6 +52,27 @@ test('partial editorial text preserves legacy fallback and local/common/argument
   assert.equal(effectiveArguments({ ...trigger, arguments: [{ name: 'value', legacy_index: 0, description: '引数固有の説明' }] })[0].description, '引数固有の説明');
 });
 
+test('editorial publication can hide unverified legacy metadata without deleting it', () => {
+  const source = {
+    parameter: [{
+      parameter: 'X',
+      default_value: ['旧既定値'],
+      min_value: ['0'],
+      max_value: ['999'],
+      documentation: { hide_legacy: ['default_value', 'max_value'] },
+    }],
+  };
+  const snapshot = structuredClone(source);
+  const resolved = effectiveParameters(source)[0];
+  assert.equal(resolved.default_value, undefined);
+  assert.equal(resolved.max_value, undefined);
+  assert.deepEqual(resolved.min_value, ['0']);
+  assert.deepEqual(source, snapshot);
+  assert.deepEqual(schema.parse({ state: 'Example', page: {}, ...source }), { state: 'Example', page: {}, ...source });
+  assert.equal(schema.safeParse({ state: 'Example', page: {}, parameter: [{ parameter: 'X', documentation: { hide_legacy: [] } }] }).success, false);
+  assert.equal(schema.safeParse({ state: 'Example', page: {}, parameter: [{ parameter: 'X', documentation: { hide_legacy: ['possible_value'] } }] }).success, false);
+});
+
 test('VelAdd and VelSet correct public text while retaining the entire prior migration and CNS output', () => {
   const plan = readJSON('scripts/mugen/plans/axis-motion-01.json');
   for (const name of ['VelAdd', 'VelSet']) {

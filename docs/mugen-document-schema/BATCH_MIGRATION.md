@@ -246,3 +246,22 @@ npm run mugen:batch -- --batch animation-change-01 --target ChangeAnim --target 
 ```
 
 このバッチは適用済みです。次は ChangeState / SelfState / TargetState のステート遷移を照合します。
+
+## state-transition-01：ステート遷移の3件
+
+2026-09-30、ChangeState / SelfState / TargetState を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/state-transition-01/` へ保存しています。
+
+- ChangeState は実行者、SelfState は実行者自身のステートデータ、TargetState は対象ターゲットのステートを変更します。各 value は省略不可の整数式です。
+- ChangeState / SelfState の Anim は任意で、省略時は現在のアニメーションを維持します。Ctrl は任意で 0 が操作不可、0以外が操作可能です。旧 JSON の Ctrl 省略時説明は保存済み公式資料で確認できないため、原本に保持したまま公開ビューから除外しました。
+- TargetState の ID は任意の整数式で、既定値 -1 は全ターゲットを対象にします。旧説明の「特定のターゲットを指定できない」は公式資料と衝突するため原文を保持し、公開ラベルと本文だけを一致するターゲット ID の指定へ訂正しました。
+- 負数指定の警告文、ChangeState value の旧上限・強制変更説明、HitPause に関する補足、SelfState の制作上の推奨、TargetState の復帰・simul 等の運用説明は、対象ビルドや実行記録が不足しています。すべて `research` として JSON に保持し、HTML から外しました。
+- `parameter[].documentation.hide_legacy` を追加しました。`default_value` / `min_value` / `max_value` の原本を削除せず、未検証の旧メタ項目だけを公開ビューと CNS コピペ出力から除外できます。このバッチでは ChangeState の旧 max_value と ChangeState / SelfState の旧 Ctrl 既定値に使用しています。
+- 既存の読み込み順は管理者確認を `maintainer_report` として JSON に記録しました。根拠メタデータは HTML に表示しません。
+
+```sh
+npm run mugen:batch-baseline -- --batch state-transition-01
+npm run mugen:batch -- --batch state-transition-01 --target ChangeState --target SelfState --target TargetState
+npm run mugen:batch -- --batch state-transition-01 --target ChangeState --target SelfState --target TargetState --apply
+```
+
+このバッチは適用済みです。次は CtrlSet / StateTypeSet / SprPriority の状態・表示制御を照合します。

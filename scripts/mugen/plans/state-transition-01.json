@@ -1,0 +1,196 @@
+{
+  "id": "state-transition-01",
+  "reviewed_on": "2026-09-30",
+  "description": "ChangeState / SelfState / TargetState の遷移先、対象、任意パラメーター、既定値を移行する。公式資料にない旧補足と条件不足の警告は原文を保持して非公開にする。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "ChangeState",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者のステート番号を変更します。必須の <code>value</code> に遷移先を指定し、任意の <code>Ctrl</code> と <code>Anim</code> でコントロールフラグとアクション番号も設定できます。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": ["official_document"],
+              "source_refs": ["changestate-local-2002", "changestate-local-1.0", "changestate-local-1.1"]
+            }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        {
+          "path": ["parameter", 0, "default"],
+          "value": [{
+            "kind": "required",
+            "display": "遷移先のステート番号を指定",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["changestate-local-2002", "changestate-local-1.0", "changestate-local-1.1"] }
+          }]
+        },
+        {
+          "path": ["parameter", 0, "documentation"],
+          "value": {
+            "description": "<p>実行者を変更するステート番号を指定します。省略できません。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["changestate-local-2002", "changestate-local-1.0", "changestate-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        {
+          "path": ["parameter", 1, "documentation"],
+          "value": {
+            "description": "<p>ステート変更と同時に設定するコントロールフラグを指定します。<code>0</code> は操作不可、0以外は操作可能です。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["changestate-local-2002", "changestate-local-1.0", "changestate-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        {
+          "path": ["parameter", 2, "default"],
+          "value": [{
+            "kind": "inherit",
+            "display": "前のアニメーションを維持",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["changestate-local-2002", "changestate-local-1.0", "changestate-local-1.1"] }
+          }]
+        },
+        {
+          "path": ["parameter", 2, "documentation"],
+          "value": {
+            "description": "<p>ステート変更と同時に切り替えるアクション番号を指定します。省略時は現在のアニメーションを維持します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["changestate-local-2002", "changestate-local-1.0", "changestate-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        {
+          "path": ["evidence"],
+          "value": {
+            "status": "confirmed",
+            "basis": ["official_document"],
+            "source_refs": ["changestate-local-2002", "changestate-local-1.0", "changestate-local-1.1"],
+            "comment": "2026-09-30: 保存済み公式資料で対象、必須 value、任意 Ctrl / Anim、Anim 省略時の維持を確認。旧上限値、HitPause 補足、警告文を確認済みとするものではない。"
+          }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "research", "legacy_index": 0,
+              "content": "ATTEMPTED CHANGE TO NEGATIVE STATE:Valueに-1以下",
+              "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["changestate-binran", "changestate-legacy-data"], "comment": "2026-09-30: 旧記録とリンクを保持。対象ビルド、完全な警告文、再現ログは今回確認していない。" }
+            },
+            {
+              "kind": "research", "legacy_index": 1,
+              "content": "ATTEMPTED CHANGE TO NEGATIVE ANIME:Animに-2以下",
+              "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["changestate-binran", "changestate-legacy-data"], "comment": "2026-09-30: 旧記録とリンクを保持。対象ビルド、完全な警告文、再現ログは今回確認していない。" }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧 value 説明は 2147483647 より大きい指定を同値へ強制変更するとし、旧 Anim 説明は <code>IgnoreHitPause</code> を指定しても HitPause の影響を受けるとしている。元の説明・max_value は各 parameter に保持しているが、保存済み公式コントローラー資料に対応する記載がなく実行記録もないため、公開本文では断定しない。</p>",
+              "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["changestate-local-2002", "changestate-local-1.0", "changestate-local-1.1", "changestate-legacy-data"], "comment": "2026-09-30: 保存済み公式資料と旧 JSON を静的に照合。実機確認ではない。" }
+            }
+          ]
+        },
+        { "path": ["quote", 4, "id"], "value": "changestate-binran" },
+        { "path": ["quote", 4, "source_type"], "value": "community_documentation" },
+        { "path": ["quote", "-"], "value": { "id": "changestate-local-2002", "title": "ChangeState — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ChangeState", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "changestate-local-1.0", "title": "ChangeState — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#changestate", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "changestate-local-1.1", "title": "ChangeState — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#changestate", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "changestate-legacy-data", "title": "ChangeState — 移行前の説明・警告記録原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/257b0ed55ef97153926b5eba79b91065465f4776/src/content/state-controllers/ChangeState.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "parameter[0].max_value / notes", "reason": "2147483647 への強制変更は実機未確認。旧値を保持する。" },
+        { "path": "parameter[1].default_value", "reason": "旧データの Ctrl 引き継ぎ説明は保持するが、今回確認した公式資料に省略時の明記がない。" },
+        { "path": "parameter[2].description / notes", "reason": "IgnoreHitPause と HitPause の相互作用は実機未確認。" },
+        { "path": "version", "reason": "負数に対する警告の対象ビルドと完全な出力を確認できていない。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "SelfState",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p><code>ChangeState</code> と同じパラメーターで、実行者を自身のステートデータにあるステートへ戻します。攻撃によって相手をカスタムステートへ置いた後、その相手を自身のステートへ復帰させるときに使用します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "自身のステートデータにある遷移先を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "changestate-for-self-local-2002", "changestate-for-self-local-1.0", "changestate-for-self-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>実行者自身のステートデータから、変更先のステート番号を指定します。省略できません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "changestate-for-self-local-2002", "changestate-for-self-local-1.0", "changestate-for-self-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>ステート変更と同時に設定するコントロールフラグを指定します。<code>0</code> は操作不可、0以外は操作可能です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "changestate-for-self-local-2002", "changestate-for-self-local-1.0", "changestate-for-self-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "inherit", "display": "前のアニメーションを維持", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "changestate-for-self-local-2002", "changestate-for-self-local-1.0", "changestate-for-self-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p>ステート変更と同時に切り替えるアクション番号を指定します。省略時は現在のアニメーションを維持します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "changestate-for-self-local-2002", "changestate-for-self-local-1.0", "changestate-for-self-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "changestate-for-self-local-2002", "changestate-for-self-local-1.0", "changestate-for-self-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で自身のステートデータへの復帰と ChangeState と同じパラメーターを確認。旧運用上の推奨、-2 からの脱出、HitPause 補足、警告文を確認済みとするものではない。" } },
+        {
+          "path": ["notes"],
+          "value": [
+            { "kind": "research", "legacy_index": 0, "content": "ATTEMPTED SELFSTATE TO NEGATIVE STATE:Valueに-1以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["selfstate-binran", "selfstate-legacy-data"], "comment": "2026-09-30: 旧記録とリンクを保持。対象ビルド、完全な警告文、再現ログは今回確認していない。" } },
+            { "kind": "research", "legacy_index": 1, "content": "ATTEMPTED CHANGE TO NEGATIVE STATE:Animに-2以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["selfstate-binran", "selfstate-legacy-data"], "comment": "2026-09-30: 旧記録は STATE と Anim を併記するが原文のまま保持。対象ビルド、完全な警告文、再現ログは今回確認していない。" } },
+            { "kind": "research", "content": "<p>旧 description は必ず SelfState で戻すという制作上の推奨、ChangeState の通常代替、-2 ステートから相手側カスタムステートを強制的に抜ける用法と不具合の可能性を含む。旧 Anim 説明には <code>IgnoreHitPause</code> を指定しても HitPause の影響を受けるという記録もある。原文は保持しているが、保存済み公式資料と実行記録で確認できないため公開本文では断定しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["selfstate-local-2002", "selfstate-local-1.0", "selfstate-local-1.1", "selfstate-legacy-data"], "comment": "2026-09-30: 保存済み公式資料と旧 JSON を静的に照合。実機確認ではない。" } }
+          ]
+        },
+        { "path": ["quote", "-"], "value": { "id": "selfstate-binran", "title": "不具合・対策まとめ — SelfState の旧警告出典", "url": "http://mugenbinran.web.fc2.com/error.html#12", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "selfstate-local-2002", "title": "SelfState — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SelfState", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "selfstate-local-1.0", "title": "SelfState — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#selfstate", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "selfstate-local-1.1", "title": "SelfState — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#selfstate", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "changestate-for-self-local-2002", "title": "SelfState が引き継ぐ ChangeState パラメーター — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ChangeState", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "changestate-for-self-local-1.0", "title": "SelfState が引き継ぐ ChangeState パラメーター — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#changestate", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "changestate-for-self-local-1.1", "title": "SelfState が引き継ぐ ChangeState パラメーター — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#changestate", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "selfstate-legacy-data", "title": "SelfState — 移行前の説明・警告記録原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/257b0ed55ef97153926b5eba79b91065465f4776/src/content/state-controllers/SelfState.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / notes", "reason": "旧運用上の推奨、-2 からの強制脱出と不具合は実機未確認。" },
+        { "path": "parameter[1].default_value", "reason": "旧データの Ctrl 引き継ぎ説明は保持するが、今回確認した公式資料に省略時の明記がない。" },
+        { "path": "parameter[2].description / notes", "reason": "IgnoreHitPause と HitPause の相互作用は実機未確認。" },
+        { "path": "version", "reason": "負数に対する警告の対象ビルドと完全な出力を確認できていない。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "TargetState",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>ターゲットを指定したステート番号へ変更します。<code>ID</code> を省略すると全ターゲット、指定すると一致するターゲット ID だけが対象です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetstate-local-2002", "targetstate-local-1.0", "targetstate-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": -1, "display": "すべてのターゲット", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetstate-local-2002", "targetstate-local-1.0", "targetstate-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "value": ["対象にするターゲット ID"], "description": "<p>対象にするターゲット ID を指定します。一致する ID のターゲットだけが影響を受けます。省略時は <code>-1</code> で、すべてのターゲットが対象です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetstate-local-2002", "targetstate-local-1.0", "targetstate-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "required", "display": "ターゲットの遷移先を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetstate-local-2002", "targetstate-local-1.0", "targetstate-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>ターゲットを変更するステート番号を指定します。省略できません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetstate-local-2002", "targetstate-local-1.0", "targetstate-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetstate-local-2002", "targetstate-local-1.0", "targetstate-local-1.1"], "comment": "2026-09-30: 保存済み公式資料でターゲットのステート変更、必須 value、ID による絞り込み、ID=-1 の既定値を確認。旧本文のステート参照・操作・復帰・simul に関する補足と警告文を確認済みとするものではない。" } },
+        {
+          "path": ["notes"],
+          "value": [
+            { "kind": "research", "legacy_index": 0, "content": "ATTEMPTED TARGETSTATE TO NEGATIVE: Valueに-1以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["targetstate-binran", "targetstate-legacy-data"], "comment": "2026-09-30: 旧記録とリンクを保持。対象ビルド、完全な警告文、再現ログは今回確認していない。" } },
+            { "kind": "research", "content": "<p>旧 description は TargetState 後のステート参照、Ctrl が有効な場合の共通動作、-1 / -2 ステート、攻撃・防御による復帰、SelfState の推奨、HitDef の P2StateNo 代替、simul や連続技での不具合可能性を含む。旧 ID 説明は特定ターゲットを指定できないとしているが、公式資料は一致する ID のターゲットだけを対象にできると明記する。原文は保持し、確認済みの対象指定だけを公開する。</p>", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["targetstate-local-2002", "targetstate-local-1.0", "targetstate-local-1.1", "targetstate-legacy-data"], "comment": "2026-09-30: ID 説明の衝突と、公式資料にない旧補足を区別した。詳細挙動の実機確認ではない。" } }
+          ]
+        },
+        { "path": ["quote", "-"], "value": { "id": "targetstate-binran", "title": "不具合・対策まとめ — TargetState の旧警告出典", "url": "http://mugenbinran.web.fc2.com/error.html#12", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "targetstate-local-2002", "title": "TargetState — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetState", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetstate-local-1.0", "title": "TargetState — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#targetstate", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetstate-local-1.1", "title": "TargetState — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#targetstate", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetstate-legacy-data", "title": "TargetState — 移行前の説明・警告記録原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/257b0ed55ef97153926b5eba79b91065465f4776/src/content/state-controllers/TargetState.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / notes", "reason": "旧本文のステート参照、操作、復帰、simul・連続技に関する詳細は実機未確認。" },
+        { "path": "version", "reason": "負数に対する警告の対象ビルドと完全な出力を確認できていない。" }
+      ]
+    }
+  ]
+}

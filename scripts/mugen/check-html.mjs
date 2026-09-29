@@ -67,6 +67,8 @@ for (const { collection, name, base } of cases) {
   const source = readJSON(`src/content/${collection}/${name}.json`);
   const current = normalizeDocument(source, common);
   const hidden = [source, ...(source.parameter ?? [])].flatMap(value => effectiveNotes(value).filter(note => !isPublicNote(note)));
+  const sourceNotes = [source, ...(source.parameter ?? [])].flatMap(effectiveNotes);
+  const hasOnlyInternalNotes = sourceNotes.length > 0 && sourceNotes.every(note => !isPublicNote(note));
   const internalSampleIndices = (source.code_sample ?? []).flatMap((sample, i) => sample.visibility === 'internal' ? [i] : []);
   const internalQandAIndices = (source.qanda ?? []).flatMap((item, i) => item.visibility === 'internal' ? [i] : []);
   const oldDocument = internalSampleIndices.length || internalQandAIndices.length ? parse(readFileSync(pathFromRoot(`${base}/html/${collection}/${name}.html`), 'utf8')) : undefined;
@@ -82,13 +84,15 @@ for (const { collection, name, base } of cases) {
   for (const id of before.sections) assert.ok(
     rendered.sections.includes(id)
       || (id === 'CodeSample' && internalSampleIndices.length > 0 && !current.code_sample.length)
-      || (id === 'QandA' && internalQandAIndices.length > 0 && !current.qanda.length),
+      || (id === 'QandA' && internalQandAIndices.length > 0 && !current.qanda.length)
+      || (id === 'Version' && hasOnlyInternalNotes),
     `${name}: lost section #${id}`,
   );
   for (const link of before.links) assert.ok(
     rendered.links.some(candidate => candidate.href === link.href && candidate.text === link.text)
       || hiddenLinks.some(candidate => candidate.href === link.href && candidate.text === link.text)
-      || (link.href === '#CodeSample' && internalSampleIndices.length > 0 && !current.code_sample.length),
+      || (link.href === '#CodeSample' && internalSampleIndices.length > 0 && !current.code_sample.length)
+      || (link.href === '#Version' && hasOnlyInternalNotes),
     `${name}: lost link ${link.href}`,
   );
   for (const src of before.media.filter(Boolean)) assert.ok(rendered.media.includes(src) || hiddenMedia.includes(src), `${name}: lost media ${src}`);

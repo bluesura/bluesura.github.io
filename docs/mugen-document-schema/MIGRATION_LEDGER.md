@@ -104,3 +104,7 @@ AnimTime / AnimElemNo / AnimElemTime を追加し、累計47件・残り187件�
 ## 2026-09-10：animation-identity-01
 
 Anim / AnimExist / SelfAnimExist を追加し、累計50件・残り184件です。Anim は引数なし、存在判定2件は整数式1個を取り、いずれも int を返します。AnimExist の旧履歴と Q&A は、成功した攻撃によるカスタムステート中に攻撃側データを確認すると断定していましたが、保存済み公式資料は結果を未定義としています。原文は削除せず内部化し、公開文には未定義条件と SelfAnimExist の使用を記載しました。Q&A にも `visibility: internal` を実装し、既存の質問・回答・補足を JSON に保持したまま非表示にできます。AnimExist の未完成コード例と SelfAnimExist の空コード例も内部化しています。
+
+## 2026-09-29：animation-change-01
+
+ChangeAnim / ChangeAnim2 を追加し、累計52件・残り182件です。必須の value、任意の Elem、式入力、管理者確認済みの読み込み順を構造化しました。ChangeAnim2 の公開説明は、P2 をカスタムステートへ置いて P1 の AIR にあるアニメーションへ変更するという公式記載へ合わせています。既存の Elem=1 は保持していますが、今回確認した公式コントローラー資料には省略時の明記がないため確認済みの `default` へは移していません。負の Elem 警告、存在しないアニメ番号のエラー、断片的なクラッシュ文は原文を各 `version` に残し、再現条件が揃うまで非公開 `research` として対応付けました。

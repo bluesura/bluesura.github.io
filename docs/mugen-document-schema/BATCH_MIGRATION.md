@@ -227,3 +227,22 @@ npm run mugen:batch -- --batch animation-identity-01 --target Anim --target Anim
 ```
 
 このバッチは適用済みです。次は ChangeAnim / ChangeAnim2 / AnimElem のアニメーション変更・要素判定を照合します。
+
+## animation-change-01：アニメーション変更の2件
+
+2026-09-29、ChangeAnim / ChangeAnim2 を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/animation-change-01/` へ保存しています。AnimElem は代表セット段階ですでに v2 追加済みのため、再移行せず対象から外しました。
+
+- ChangeAnim は実行者のアクション番号を変更します。value は必須、Elem は任意で、どちらも整数式を取ります。ChangeAnim2 は同じパラメーターを使用します。
+- ChangeAnim2 は、攻撃によって P2 をカスタムステートへ置き、P1 の AIR に定義されたアニメーションへ P2 を変更するときに使用します。旧 description を保持し、P1 / P2 の関係を明示した公開説明を追加しました。
+- 既存の Elem の `default_value: ["1"]` とコピー出力は維持しました。一方、保存済み公式コントローラー資料は Elem を任意とするだけで省略時1を明記していないため、確認済みの構造化 `default` は追加していません。
+- 既存の読み込み順1・2は管理者確認を付けました。value の必須条件を構造化し、コピー欄では値未指定の必須行をコメントのまま、Elem=1 を従来どおり有効行として出力します。
+- 負の Elem に関する警告、存在しないアニメ番号の「エラー」、`Assert failure in array.h line 110:` は、対象ビルド、完全な出力、結果、再現手順が不足しています。旧本文とリンクを保持し、`research` として HTML から外しました。
+- HTML 比較器は、旧履歴が存在し、対応後の注記がすべて内部記録になった場合に限り、`#Version` 節とそのナビリンクの消失を許可します。公開注記が1件でもあるページの節欠落は引き続き失敗します。
+
+```sh
+npm run mugen:batch-baseline -- --batch animation-change-01
+npm run mugen:batch -- --batch animation-change-01 --target ChangeAnim --target ChangeAnim2
+npm run mugen:batch -- --batch animation-change-01 --target ChangeAnim --target ChangeAnim2 --apply
+```
+
+このバッチは適用済みです。次は ChangeState / SelfState / TargetState のステート遷移を照合します。

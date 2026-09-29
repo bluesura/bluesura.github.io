@@ -1,40 +1,184 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "CtrlSet",
-		"target": "",
-		"category": ["操作制御","プレイヤー操作可否フラグの切り替え"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "CtrlSet",
-	"description": "<p>プレイヤーのコントロールフラグをセットします。フラグが立っていると技の途中でも歩行、ジャンプ等の動作ができてしまいます。</p><p>通常はStateDef?の冒頭でセットするので、ステートの途中でフラグを変更するときなどに使用します。</p>",
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["コントロールフラグ"],
-			"type": ["int"],
-			"description": "<p>1なら操作可能。0で不可。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		}
-	],
-
-	"quote": [
-		{"title": "CtrlSet - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#CtrlSet"},
-		{"title": "CtrlSet - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#ctrlset"},
-		{"title": "CtrlSet - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#ctrlset"},
-		{"title": "CtrlSet - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/CtrlSet"},
-		{"title": "CtrlSet - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?CtrlSet&protocol=http"},
-		{"title": "CtrlSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#CtrlSet"},
-		{"title": "CtrlSet - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "CtrlSet",
+    "target": "",
+    "category": [
+      "操作制御",
+      "プレイヤー操作可否フラグの切り替え"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "CtrlSet",
+  "description": "<p>プレイヤーのコントロールフラグをセットします。フラグが立っていると技の途中でも歩行、ジャンプ等の動作ができてしまいます。</p><p>通常はStateDef?の冒頭でセットするので、ステートの途中でフラグを変更するときなどに使用します。</p>",
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "コントロールフラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>1なら操作可能。0で不可。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "コントロールフラグを指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "ctrlset-local-2002",
+              "ctrlset-local-1.0",
+              "ctrlset-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>0</code> で操作不可、0以外で操作可能にします。省略できません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "ctrlset-local-2002",
+            "ctrlset-local-1.0",
+            "ctrlset-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "CtrlSet - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#CtrlSet"
+    },
+    {
+      "title": "CtrlSet - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#ctrlset"
+    },
+    {
+      "title": "CtrlSet - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#ctrlset"
+    },
+    {
+      "title": "CtrlSet - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/CtrlSet"
+    },
+    {
+      "title": "CtrlSet - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?CtrlSet&protocol=http"
+    },
+    {
+      "title": "CtrlSet - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#CtrlSet"
+    },
+    {
+      "title": "CtrlSet - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"
+    },
+    {
+      "id": "ctrlset-local-2002",
+      "title": "CtrlSet — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#CtrlSet",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ctrlset-local-1.0",
+      "title": "CtrlSet — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#ctrlset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ctrlset-local-1.1",
+      "title": "CtrlSet — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#ctrlset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ctrlset-legacy-data",
+      "title": "CtrlSet — 移行前の説明原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/42a1683d882ab520d96d31bd09a9a7cc0a640ddd/src/content/state-controllers/CtrlSet.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者のコントロールフラグを設定します。<code>value</code> が <code>0</code> なら操作不可、0以外なら操作可能です。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "ctrlset-local-2002",
+        "ctrlset-local-1.0",
+        "ctrlset-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "ctrlset-local-2002",
+      "ctrlset-local-1.0",
+      "ctrlset-local-1.1"
+    ],
+    "comment": "2026-09-30: 保存済み公式資料でコントロールフラグ、必須 value、0と0以外の意味を確認。旧本文の制作上の補足を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 description は、フラグが立っていると技の途中でも歩行・ジャンプ等ができ、通常は StateDef の冒頭で設定するため途中で変更するときに使用する、と説明する。原文は保持しているが、今回確認した公式コントローラー資料にはこの制作上の補足がないため公開本文では断定しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "ctrlset-local-2002",
+          "ctrlset-local-1.0",
+          "ctrlset-local-1.1",
+          "ctrlset-legacy-data"
+        ],
+        "comment": "2026-09-30: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。"
+      }
+    }
+  ]
 }

@@ -1,40 +1,164 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "SprPriority",
-		"target": "",
-		"category": ["表示の操作","スプライトの表示優先度の変更"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "SprPriority",
-	"description": "<p>プレイヤーのスプライト表示優先度を変更します。</p>",
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["スプライト表示優先度"],
-			"type": ["int"],
-			"description": "<p>スプライト表示優先度を-5から5までの値を指定。当然、値が大きいほうが手前に表示されます。</p>",
-			"min_value": ["-5"],
-			"max_value": ["5"],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		}
-	],
-
-	"quote": [
-		{"title": "SprPriority - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SprPriority"},
-		{"title": "SprPriority - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#sprpriority"},
-		{"title": "SprPriority - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#sprpriority"},
-		{"title": "SprPriority - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SprPriority"},
-		{"title": "SprPriority - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?SprPriority&protocol=http"},
-		{"title": "SprPriority - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#SprPriority"},
-		{"title": "SprPriority - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "SprPriority",
+    "target": "",
+    "category": [
+      "表示の操作",
+      "スプライトの表示優先度の変更"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "SprPriority",
+  "description": "<p>プレイヤーのスプライト表示優先度を変更します。</p>",
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "スプライト表示優先度"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>スプライト表示優先度を-5から5までの値を指定。当然、値が大きいほうが手前に表示されます。</p>",
+      "min_value": [
+        "-5"
+      ],
+      "max_value": [
+        "5"
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "-5〜5の表示優先度を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "sprpriority-local-2002",
+              "sprpriority-local-1.0",
+              "sprpriority-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>-5</code> から <code>5</code> までの整数を指定します。値が大きいほど手前に描画されます。省略できません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "sprpriority-local-2002",
+            "sprpriority-local-1.0",
+            "sprpriority-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "SprPriority - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SprPriority"
+    },
+    {
+      "title": "SprPriority - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#sprpriority"
+    },
+    {
+      "title": "SprPriority - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#sprpriority"
+    },
+    {
+      "title": "SprPriority - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SprPriority"
+    },
+    {
+      "title": "SprPriority - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?SprPriority&protocol=http"
+    },
+    {
+      "title": "SprPriority - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#SprPriority"
+    },
+    {
+      "title": "SprPriority - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"
+    },
+    {
+      "id": "sprpriority-local-2002",
+      "title": "SprPriority — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SprPriority",
+      "source_type": "official_document"
+    },
+    {
+      "id": "sprpriority-local-1.0",
+      "title": "SprPriority — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#sprpriority",
+      "source_type": "official_document"
+    },
+    {
+      "id": "sprpriority-local-1.1",
+      "title": "SprPriority — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#sprpriority",
+      "source_type": "official_document"
+    },
+    {
+      "id": "sprpriority-legacy-data",
+      "title": "SprPriority — 移行前の説明原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/42a1683d882ab520d96d31bd09a9a7cc0a640ddd/src/content/state-controllers/SprPriority.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者のスプライト表示優先度を変更します。値が大きいスプライトほど、値が小さいスプライトより手前に描画されます。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "sprpriority-local-2002",
+        "sprpriority-local-1.0",
+        "sprpriority-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "sprpriority-local-2002",
+      "sprpriority-local-1.0",
+      "sprpriority-local-1.1"
+    ],
+    "comment": "2026-09-30: 保存済み公式資料で実行者の表示優先度、必須 value、有効範囲 -5〜5、値が大きいほど手前になることを確認。"
+  }
 }

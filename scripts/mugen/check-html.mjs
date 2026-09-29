@@ -32,6 +32,7 @@ const qandaNodes = document => {
   if (nodes?.length) entries.push({ childNodes: nodes });
   return entries;
 };
+const stringLeaves = value => typeof value === 'string' ? [value] : Array.isArray(value) ? value.flatMap(stringLeaves) : [];
 const results = [];
 const cases = [...baselineCases(), ...Object.keys(collections).map(collection => ({ collection, name: 'index' }))];
 for (const { collection, name, base } of cases) {
@@ -74,8 +75,12 @@ for (const { collection, name, base } of cases) {
   const oldDocument = internalSampleIndices.length || internalQandAIndices.length ? parse(readFileSync(pathFromRoot(`${base}/html/${collection}/${name}.html`), 'utf8')) : undefined;
   const oldSampleNodes = internalSampleIndices.length ? sampleNodes(oldDocument) : [];
   const oldQandANodes = internalQandAIndices.length ? qandaNodes(oldDocument) : [];
+  const hiddenLegacyFragments = (source.parameter ?? []).flatMap(parameter =>
+    (parameter.documentation?.hide_legacy ?? []).flatMap(field => stringLeaves(parameter[field]).map(parseFragment))
+  );
   const hiddenFragments = [
     ...hidden.map(note => parseFragment(note.content)),
+    ...hiddenLegacyFragments,
     ...internalSampleIndices.flatMap(i => oldSampleNodes[i] ? [oldSampleNodes[i]] : []),
     ...internalQandAIndices.flatMap(i => oldQandANodes[i] ? [oldQandANodes[i]] : []),
   ];

@@ -265,3 +265,21 @@ npm run mugen:batch -- --batch state-transition-01 --target ChangeState --target
 ```
 
 このバッチは適用済みです。次は CtrlSet / StateTypeSet / SprPriority の状態・表示制御を照合します。
+
+## state-control-01：状態・表示制御の3件
+
+2026-09-30、CtrlSet / StateTypeSet / SprPriority を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/state-control-01/` へ保存しています。
+
+- CtrlSet は必須の整数式 value でコントロールフラグを設定します。0は操作不可、0以外は操作可能です。旧本文の技途中の操作と StateDef 冒頭に関する制作補足は原文に保持し、確認できる記載がないため `research` として非公開にしました。
+- StateTypeSet の StateType / Physics / MoveType は省略可能な固定トークンです。公式資料で StateType の A/C/S/L、Physics の A/C/S/N、MoveType の I/A/H と、省略時に現在値を維持することを確認しました。コピー欄では継承値を有効な代入行にしません。
+- StateTypeSet の旧候補表は、`U` の明示指定、摩擦式、重力式、自動着地を含みます。原表を JSON に残し、公式コントローラー資料だけでは確認できない詳細を公開HTMLから外しました。読み込み順の `?` も推測していません。
+- SprPriority は必須の整数式 value、範囲 -5〜5、値が大きいほど手前に描画されることを確認しました。
+- `parameter[].documentation.hide_legacy` の対象に `possible_value` を追加しました。HTML比較器は、明示的に非公開化した旧候補表に含まれる画像・リンクを内部保存として扱い、それ以外の媒体欠落は引き続き失敗させます。
+
+```sh
+npm run mugen:batch-baseline -- --batch state-control-01
+npm run mugen:batch -- --batch state-control-01 --target CtrlSet --target StateTypeSet --target SprPriority
+npm run mugen:batch -- --batch state-control-01 --target CtrlSet --target StateTypeSet --target SprPriority --apply
+```
+
+このバッチは適用済みです。次は AttackMulSet / DefenceMulSet / PowerAdd / PowerSet の数値変更系を照合します。

@@ -59,18 +59,20 @@ test('editorial publication can hide unverified legacy metadata without deleting
       default_value: ['旧既定値'],
       min_value: ['0'],
       max_value: ['999'],
-      documentation: { hide_legacy: ['default_value', 'max_value'] },
+      possible_value: [['旧候補', '旧説明']],
+      documentation: { hide_legacy: ['default_value', 'max_value', 'possible_value'] },
     }],
   };
   const snapshot = structuredClone(source);
   const resolved = effectiveParameters(source)[0];
   assert.equal(resolved.default_value, undefined);
   assert.equal(resolved.max_value, undefined);
+  assert.equal(resolved.possible_value, undefined);
   assert.deepEqual(resolved.min_value, ['0']);
   assert.deepEqual(source, snapshot);
   assert.deepEqual(schema.parse({ state: 'Example', page: {}, ...source }), { state: 'Example', page: {}, ...source });
   assert.equal(schema.safeParse({ state: 'Example', page: {}, parameter: [{ parameter: 'X', documentation: { hide_legacy: [] } }] }).success, false);
-  assert.equal(schema.safeParse({ state: 'Example', page: {}, parameter: [{ parameter: 'X', documentation: { hide_legacy: ['possible_value'] } }] }).success, false);
+  assert.equal(schema.safeParse({ state: 'Example', page: {}, parameter: [{ parameter: 'X', documentation: { hide_legacy: ['load_priority'] } }] }).success, false);
 });
 
 test('VelAdd and VelSet correct public text while retaining the entire prior migration and CNS output', () => {

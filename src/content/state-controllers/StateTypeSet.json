@@ -1,81 +1,363 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "StateTypeSet",
-		"target": "",
-		"category": ["ステートタイプの変更","ステートタイプ（立ち・しゃがみ等）の動的変更"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "StateTypeSet",
-	"description": "<p>プレイヤーのステートタイプ、行動状態、物理状態を変更します。技の途中で宙に浮いたりする場合に使用します。</p>",
-	"category": "state",
-	"associated_trigger": ["P2StateType"],
-	"associated_state": ["S","C","A","L","U","StateTypeSet"],
-
-	"parameter": [
-		{
-			"parameter": "StateType",
-			"value": ["ステートタイプ"],
-			"type": ["string"],
-			"description": "<p>ステートの状態を指定。</p>",
-			"parameter_type": "optional",
-			"default_value": ["U"],
-			"load_priority": ["?"],
-			"possible_value": [
-				["状況", "内容"],
-				["S", "<div>立ち(Stand)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Stand_s.png\" alt=\"カンフーマン立ち(Stand)状態\" width=\"140\" height=\"140\"></div>"],
-				["C", "<div>屈み(Crouch)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Crouch_s.png\" alt=\"カンフーマン屈み(Crouch)状態\" width=\"140\" height=\"140\"></div>"],
-				["A", "<div>空中(Air)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Air_s.png\" alt=\"カンフーマン空中(Air)状態\" width=\"140\" height=\"140\"></div>"],
-				["L", "<div>倒れ(Lying down)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Lying_s.png\" alt=\"倒れ(Lying down)状態\" width=\"140\" height=\"140\"></div>"],
-				["U", "直前のステートから引き継ぐ(Unchanged)"]
-			]
-		},
-		{
-			"parameter": "Physics",
-			"value": ["物理状態"],
-			"type": ["string"],
-			"description": "<p>物理状態を文字で指定。</p>",
-			"parameter_type": "optional",
-			"default_value": ["U"],
-			"load_priority": ["?"],
-			"possible_value": [
-				["重力", "効果"],
-				["S", "立ち(Stand)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Stand.friction)</code>)がかかります。"],
-				["C", "屈み(Crouch)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Crouch.friction)</code>)がかかります。"],
-				["A", "空中(Air)。CNSで設定されている重力(<code>Vel Y+Const(Movement.yaccel)</code>)がかかり、着地時は自動的に着地ステートに移行します。"],
-				["N", "重力や摩擦を無視(None)。"],
-				["U", "直前のステートから引き継ぐ(Unchanged)。"]
-			]
-		},
-		{
-			"parameter": "MoveType",
-			"value": ["行動状態"],
-			"type": ["string"],
-			"description": "<p>行動状態を文字で指定。</p>",
-			"parameter_type": "optional",
-			"default_value": ["U"],
-			"load_priority": ["?"],
-			"possible_value": [
-				["行動", "内容"],
-				["I", "待機(Idle)。"],
-				["A", "攻撃している(Attack)。HitDefが有効になり、敵もガードモーションをとれるようになります。"],
-				["H", "食らい状態(Hit)。相手のHitDefが有効になります。"],
-				["U", "直前のステートから引き継ぐ(Unchanged)。"]
-			]
-		}
-	],
-
-	"quote": [
-		{"title": "StateTypeSet - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#StateTypeSet"},
-		{"title": "StateTypeSet - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#statetypeset"},
-		{"title": "StateTypeSet - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#statetypeset"},
-		{"title": "StateTypeSet - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StateTypeSet"},
-		{"title": "StateTypeSet - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?StateTypeSet&protocol=http"},
-		{"title": "StateTypeSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#StateTypeSet"},
-		{"title": "StateTypeSet - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "StateTypeSet",
+    "target": "",
+    "category": [
+      "ステートタイプの変更",
+      "ステートタイプ（立ち・しゃがみ等）の動的変更"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "StateTypeSet",
+  "description": "<p>プレイヤーのステートタイプ、行動状態、物理状態を変更します。技の途中で宙に浮いたりする場合に使用します。</p>",
+  "category": "state",
+  "associated_trigger": [
+    "P2StateType"
+  ],
+  "associated_state": [
+    "S",
+    "C",
+    "A",
+    "L",
+    "U",
+    "StateTypeSet"
+  ],
+  "parameter": [
+    {
+      "parameter": "StateType",
+      "value": [
+        "ステートタイプ"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>ステートの状態を指定。</p>",
+      "parameter_type": "optional",
+      "default_value": [
+        "U"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "possible_value": [
+        [
+          "状況",
+          "内容"
+        ],
+        [
+          "S",
+          "<div>立ち(Stand)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Stand_s.png\" alt=\"カンフーマン立ち(Stand)状態\" width=\"140\" height=\"140\"></div>"
+        ],
+        [
+          "C",
+          "<div>屈み(Crouch)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Crouch_s.png\" alt=\"カンフーマン屈み(Crouch)状態\" width=\"140\" height=\"140\"></div>"
+        ],
+        [
+          "A",
+          "<div>空中(Air)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Air_s.png\" alt=\"カンフーマン空中(Air)状態\" width=\"140\" height=\"140\"></div>"
+        ],
+        [
+          "L",
+          "<div>倒れ(Lying down)</div><div class=\"image-frame\"><img src=\"./media/img/StateDef_Lying_s.png\" alt=\"倒れ(Lying down)状態\" width=\"140\" height=\"140\"></div>"
+        ],
+        [
+          "U",
+          "直前のステートから引き継ぐ(Unchanged)"
+        ]
+      ],
+      "expression_policy": "constant_only",
+      "default": [
+        {
+          "kind": "inherit",
+          "display": "現在のステートタイプを維持",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "statetypeset-local-2002",
+              "statetypeset-local-1.0",
+              "statetypeset-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>A</code> は空中、<code>C</code> は屈み、<code>S</code> は立ち、<code>L</code> は倒れ状態です。省略時は現在のステートタイプを維持します。</p>",
+        "hide_legacy": [
+          "possible_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "statetypeset-local-2002",
+            "statetypeset-local-1.0",
+            "statetypeset-local-1.1"
+          ]
+        }
+      }
+    },
+    {
+      "parameter": "Physics",
+      "value": [
+        "物理状態"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>物理状態を文字で指定。</p>",
+      "parameter_type": "optional",
+      "default_value": [
+        "U"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "possible_value": [
+        [
+          "重力",
+          "効果"
+        ],
+        [
+          "S",
+          "立ち(Stand)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Stand.friction)</code>)がかかります。"
+        ],
+        [
+          "C",
+          "屈み(Crouch)。CNSで設定されている摩擦(<code>Vel X*Const(Movement.Crouch.friction)</code>)がかかります。"
+        ],
+        [
+          "A",
+          "空中(Air)。CNSで設定されている重力(<code>Vel Y+Const(Movement.yaccel)</code>)がかかり、着地時は自動的に着地ステートに移行します。"
+        ],
+        [
+          "N",
+          "重力や摩擦を無視(None)。"
+        ],
+        [
+          "U",
+          "直前のステートから引き継ぐ(Unchanged)。"
+        ]
+      ],
+      "expression_policy": "constant_only",
+      "default": [
+        {
+          "kind": "inherit",
+          "display": "現在の物理状態を維持",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "statetypeset-local-2002",
+              "statetypeset-local-1.0",
+              "statetypeset-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>A</code> は空中、<code>C</code> は屈み、<code>S</code> は立ち、<code>N</code> はなしを指定します。省略時は現在の物理状態を維持します。</p>",
+        "hide_legacy": [
+          "possible_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "statetypeset-local-2002",
+            "statetypeset-local-1.0",
+            "statetypeset-local-1.1"
+          ]
+        }
+      }
+    },
+    {
+      "parameter": "MoveType",
+      "value": [
+        "行動状態"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>行動状態を文字で指定。</p>",
+      "parameter_type": "optional",
+      "default_value": [
+        "U"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "possible_value": [
+        [
+          "行動",
+          "内容"
+        ],
+        [
+          "I",
+          "待機(Idle)。"
+        ],
+        [
+          "A",
+          "攻撃している(Attack)。HitDefが有効になり、敵もガードモーションをとれるようになります。"
+        ],
+        [
+          "H",
+          "食らい状態(Hit)。相手のHitDefが有効になります。"
+        ],
+        [
+          "U",
+          "直前のステートから引き継ぐ(Unchanged)。"
+        ]
+      ],
+      "expression_policy": "constant_only",
+      "default": [
+        {
+          "kind": "inherit",
+          "display": "現在の行動状態を維持",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "statetypeset-local-2002",
+              "statetypeset-local-1.0",
+              "statetypeset-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>I</code> は待機、<code>A</code> は攻撃、<code>H</code> はくらい状態を指定します。省略時は現在の行動状態を維持します。</p>",
+        "hide_legacy": [
+          "possible_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "statetypeset-local-2002",
+            "statetypeset-local-1.0",
+            "statetypeset-local-1.1"
+          ]
+        }
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "StateTypeSet - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#StateTypeSet"
+    },
+    {
+      "title": "StateTypeSet - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#statetypeset"
+    },
+    {
+      "title": "StateTypeSet - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#statetypeset"
+    },
+    {
+      "title": "StateTypeSet - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StateTypeSet"
+    },
+    {
+      "title": "StateTypeSet - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?StateTypeSet&protocol=http"
+    },
+    {
+      "title": "StateTypeSet - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#StateTypeSet"
+    },
+    {
+      "title": "StateTypeSet - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"
+    },
+    {
+      "id": "statetypeset-local-2002",
+      "title": "StateTypeSet — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#StateTypeSet",
+      "source_type": "official_document"
+    },
+    {
+      "id": "statetypeset-local-1.0",
+      "title": "StateTypeSet — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#statetypeset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "statetypeset-local-1.1",
+      "title": "StateTypeSet — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#statetypeset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "statetypeset-legacy-data",
+      "title": "StateTypeSet — 移行前の候補値・説明原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/42a1683d882ab520d96d31bd09a9a7cc0a640ddd/src/content/state-controllers/StateTypeSet.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者の現在のステートタイプ、行動状態、物理状態を変更します。地上から空中へ移るステートなどで使用できます。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "statetypeset-local-2002",
+        "statetypeset-local-1.0",
+        "statetypeset-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "statetypeset-local-2002",
+      "statetypeset-local-1.0",
+      "statetypeset-local-1.1"
+    ],
+    "comment": "2026-09-30: 保存済み公式資料で3個の任意パラメーター、各トークン、各省略時の no change を確認。旧 possible_value の U 明示指定と物理処理の詳細を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 possible_value は各パラメーターで <code>U</code> を『直前のステートから引き継ぐ』値として掲載し、Physics の S / C に摩擦式、A に重力式と自動着地を記載している。原表は各 parameter に保持しているが、今回確認した公式コントローラー資料は省略時の no change と基本トークンだけを記載しているため、詳細表は公開ビューから外す。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "statetypeset-local-2002",
+          "statetypeset-local-1.0",
+          "statetypeset-local-1.1",
+          "statetypeset-legacy-data"
+        ],
+        "comment": "2026-09-30: 保存済み公式コントローラー資料と旧 JSON の静的照合。U 明示指定や詳細な物理処理の実機確認ではない。"
+      }
+    }
+  ]
 }

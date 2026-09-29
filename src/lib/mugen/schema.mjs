@@ -76,7 +76,7 @@ const additions = {
   variants: z.array(variantSchema).optional(),
   notes: notes.optional(),
 };
-const legacyParameterDisplayField = z.enum(['default_value', 'min_value', 'max_value']);
+const legacyParameterDisplayField = z.enum(['default_value', 'min_value', 'max_value', 'possible_value']);
 // Editorial overrides change only the public view. The retained legacy fields remain untouched.
 const parameterDocumentationSchema = z.object({
   value: z.array(z.string().min(1)).min(1).optional(),

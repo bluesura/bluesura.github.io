@@ -112,3 +112,7 @@ ChangeAnim / ChangeAnim2 を追加し、累計52件・残り182件です。必�
 ## 2026-09-30：state-transition-01
 
 ChangeState / SelfState / TargetState を追加し、累計55件・残り179件です。実行者・自身のステートデータ・ターゲットという遷移対象を区別し、必須 value、任意 Ctrl / Anim、TargetState の ID=-1、管理者確認済みの読み込み順を構造化しました。TargetState の ID を指定できないとする旧説明は原本に保持し、保存済み公式資料に基づく公開文へ訂正しています。負数警告、ChangeState の旧上限、HitPause や復帰・simul 等の旧補足は実行条件が不足しているため内部 `research` にしました。旧 JSON の未検証メタ項目を削除せず公開だけ止める `parameter[].documentation.hide_legacy` を追加し、ChangeState の旧 max_value と ChangeState / SelfState の旧 Ctrl 既定値を HTML と CNS コピペ欄から除外しました。
+
+## 2026-09-30：state-control-01
+
+CtrlSet / StateTypeSet / SprPriority を追加し、累計58件・残り176件です。CtrlSet の必須フラグと0/非0、StateTypeSet の3種の固定トークンと省略時の維持、SprPriority の必須値・範囲 -5〜5・描画順を保存済み公式資料へ対応させました。CtrlSet の旧制作補足と StateTypeSet の U 明示指定・摩擦・重力・自動着地の詳細は原本と内部 `research` に保持しています。`documentation.hide_legacy` を `possible_value` にも適用できるようにし、StateTypeSet の未検証な旧候補表を公開HTMLから外しました。旧表内の画像は比較器が内部保存を確認します。StateTypeSet の読み込み順 `?` は推測していません。

@@ -1,0 +1,146 @@
+{
+  "id": "state-control-01",
+  "reviewed_on": "2026-09-30",
+  "description": "CtrlSet / StateTypeSet / SprPriority の必須値、状態トークン、継承、省略時、範囲を保存済み公式資料と照合する。公式資料にない旧運用補足と StateTypeSet の詳細表は原本に保持して公開ビューから外す。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "CtrlSet",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者のコントロールフラグを設定します。<code>value</code> が <code>0</code> なら操作不可、0以外なら操作可能です。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["ctrlset-local-2002", "ctrlset-local-1.0", "ctrlset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        {
+          "path": ["parameter", 0, "default"],
+          "value": [{ "kind": "required", "display": "コントロールフラグを指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["ctrlset-local-2002", "ctrlset-local-1.0", "ctrlset-local-1.1"] } }]
+        },
+        {
+          "path": ["parameter", 0, "documentation"],
+          "value": {
+            "description": "<p><code>0</code> で操作不可、0以外で操作可能にします。省略できません。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["ctrlset-local-2002", "ctrlset-local-1.0", "ctrlset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        {
+          "path": ["evidence"],
+          "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["ctrlset-local-2002", "ctrlset-local-1.0", "ctrlset-local-1.1"], "comment": "2026-09-30: 保存済み公式資料でコントロールフラグ、必須 value、0と0以外の意味を確認。旧本文の制作上の補足を確認済みとするものではない。" }
+        },
+        {
+          "path": ["notes"],
+          "value": [{ "kind": "research", "content": "<p>旧 description は、フラグが立っていると技の途中でも歩行・ジャンプ等ができ、通常は StateDef の冒頭で設定するため途中で変更するときに使用する、と説明する。原文は保持しているが、今回確認した公式コントローラー資料にはこの制作上の補足がないため公開本文では断定しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["ctrlset-local-2002", "ctrlset-local-1.0", "ctrlset-local-1.1", "ctrlset-legacy-data"], "comment": "2026-09-30: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。" } }]
+        },
+        { "path": ["quote", "-"], "value": { "id": "ctrlset-local-2002", "title": "CtrlSet — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#CtrlSet", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "ctrlset-local-1.0", "title": "CtrlSet — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#ctrlset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "ctrlset-local-1.1", "title": "CtrlSet — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#ctrlset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "ctrlset-legacy-data", "title": "CtrlSet — 移行前の説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/42a1683d882ab520d96d31bd09a9a7cc0a640ddd/src/content/state-controllers/CtrlSet.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / notes", "reason": "技の途中の操作と StateDef 冒頭に関する旧制作補足は実機未確認。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "StateTypeSet",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者の現在のステートタイプ、行動状態、物理状態を変更します。地上から空中へ移るステートなどで使用できます。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["statetypeset-local-2002", "statetypeset-local-1.0", "statetypeset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "constant_only" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "inherit", "display": "現在のステートタイプを維持", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["statetypeset-local-2002", "statetypeset-local-1.0", "statetypeset-local-1.1"] } }] },
+        {
+          "path": ["parameter", 0, "documentation"],
+          "value": {
+            "description": "<p><code>A</code> は空中、<code>C</code> は屈み、<code>S</code> は立ち、<code>L</code> は倒れ状態です。省略時は現在のステートタイプを維持します。</p>",
+            "hide_legacy": ["possible_value"],
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["statetypeset-local-2002", "statetypeset-local-1.0", "statetypeset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 1, "expression_policy"], "value": "constant_only" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "inherit", "display": "現在の物理状態を維持", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["statetypeset-local-2002", "statetypeset-local-1.0", "statetypeset-local-1.1"] } }] },
+        {
+          "path": ["parameter", 1, "documentation"],
+          "value": {
+            "description": "<p><code>A</code> は空中、<code>C</code> は屈み、<code>S</code> は立ち、<code>N</code> はなしを指定します。省略時は現在の物理状態を維持します。</p>",
+            "hide_legacy": ["possible_value"],
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["statetypeset-local-2002", "statetypeset-local-1.0", "statetypeset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 2, "expression_policy"], "value": "constant_only" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "inherit", "display": "現在の行動状態を維持", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["statetypeset-local-2002", "statetypeset-local-1.0", "statetypeset-local-1.1"] } }] },
+        {
+          "path": ["parameter", 2, "documentation"],
+          "value": {
+            "description": "<p><code>I</code> は待機、<code>A</code> は攻撃、<code>H</code> はくらい状態を指定します。省略時は現在の行動状態を維持します。</p>",
+            "hide_legacy": ["possible_value"],
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["statetypeset-local-2002", "statetypeset-local-1.0", "statetypeset-local-1.1"] }
+          }
+        },
+        {
+          "path": ["evidence"],
+          "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["statetypeset-local-2002", "statetypeset-local-1.0", "statetypeset-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で3個の任意パラメーター、各トークン、各省略時の no change を確認。旧 possible_value の U 明示指定と物理処理の詳細を確認済みとするものではない。" }
+        },
+        {
+          "path": ["notes"],
+          "value": [{ "kind": "research", "content": "<p>旧 possible_value は各パラメーターで <code>U</code> を『直前のステートから引き継ぐ』値として掲載し、Physics の S / C に摩擦式、A に重力式と自動着地を記載している。原表は各 parameter に保持しているが、今回確認した公式コントローラー資料は省略時の no change と基本トークンだけを記載しているため、詳細表は公開ビューから外す。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["statetypeset-local-2002", "statetypeset-local-1.0", "statetypeset-local-1.1", "statetypeset-legacy-data"], "comment": "2026-09-30: 保存済み公式コントローラー資料と旧 JSON の静的照合。U 明示指定や詳細な物理処理の実機確認ではない。" } }]
+        },
+        { "path": ["quote", "-"], "value": { "id": "statetypeset-local-2002", "title": "StateTypeSet — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#StateTypeSet", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "statetypeset-local-1.0", "title": "StateTypeSet — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#statetypeset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "statetypeset-local-1.1", "title": "StateTypeSet — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#statetypeset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "statetypeset-legacy-data", "title": "StateTypeSet — 移行前の候補値・説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/42a1683d882ab520d96d31bd09a9a7cc0a640ddd/src/content/state-controllers/StateTypeSet.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "parameter[].load_priority", "reason": "旧値はすべて ?。並び順から推測しない。" },
+        { "path": "parameter[].possible_value / notes", "reason": "U の明示指定と摩擦・重力・自動着地の詳細は実機未確認。原表を保持する。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "SprPriority",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者のスプライト表示優先度を変更します。値が大きいスプライトほど、値が小さいスプライトより手前に描画されます。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["sprpriority-local-2002", "sprpriority-local-1.0", "sprpriority-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "-5〜5の表示優先度を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["sprpriority-local-2002", "sprpriority-local-1.0", "sprpriority-local-1.1"] } }] },
+        {
+          "path": ["parameter", 0, "documentation"],
+          "value": {
+            "description": "<p><code>-5</code> から <code>5</code> までの整数を指定します。値が大きいほど手前に描画されます。省略できません。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["sprpriority-local-2002", "sprpriority-local-1.0", "sprpriority-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["sprpriority-local-2002", "sprpriority-local-1.0", "sprpriority-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で実行者の表示優先度、必須 value、有効範囲 -5〜5、値が大きいほど手前になることを確認。" } },
+        { "path": ["quote", "-"], "value": { "id": "sprpriority-local-2002", "title": "SprPriority — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SprPriority", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "sprpriority-local-1.0", "title": "SprPriority — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#sprpriority", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "sprpriority-local-1.1", "title": "SprPriority — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#sprpriority", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "sprpriority-legacy-data", "title": "SprPriority — 移行前の説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/42a1683d882ab520d96d31bd09a9a7cc0a640ddd/src/content/state-controllers/SprPriority.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }
+      ]
+    }
+  ]
+}

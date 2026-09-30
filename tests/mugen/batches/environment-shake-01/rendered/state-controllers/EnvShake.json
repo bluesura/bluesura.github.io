@@ -1,0 +1,114 @@
+{
+  "text": "Type = EnvShake 画面演出 > 画面全体を揺らす演出 | 実装されたバージョン: 2002.04.14 パラメーター 仕様・注意点 コピペ用 読み込み順 引用記事 画面を揺らします。ただし、ライフバーは揺れません。次のフレームからTime-1フレーム後まで作用。1フレーム毎に実行すると、前回の効果に上書きされるため、内容が同じだと画面が揺れません。揺れは正弦波であり、初期位相Phase°、角周波数Freq°/フレーム、振幅Amplピクセル。（正弦波は円周上を回る点を縦軸に映した影と見ることが出来、円の半径をAmpl、1フレームに反時計回りに回る角度をFreq、スタート地点をPhaseと考えることが出来る。） パラメーター パラメーター一覧 6項目 TimeAmplPhaseFreqIgnoreHitPausePersistent Time = 揺れる時間 省略不可 型整数 最小値0 ;効果なし 最大値2147483647 揺れの持続時間をフレーム単位で指定。※60フレーム=1秒 Ampl = 揺れ幅 型整数 省略時-4 ;ただし、画面の縦が240ピクセル：-4, 480ピクセル：-8, 720ピクセル：-16 揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。ハイレゾ(1024×768ドット以上の解像度)のステージでは背景の振れ幅は半減します。 Phase = 位相開始位置 型浮動小数点数 省略時0 ;ただし、Freqが90以上の場合、90になります。 揺れ幅をどこから始めるか指定出来ます。 Freq = 揺れの速度 型浮動小数点数 省略時60 最小値0 最大値180 揺れるスピードを、0(固定),1(低速)～180(高速)の間で指定。180を中心からズレて中心に戻るまでとした速度数値。半周が180なので一周＝360。360/Freq値＝一周にかかるフレーム数。 IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 仕様・バグ・エラー・変更点警告文NEGATIVE FREQ FOR ENVSHAKE:Freqに-1以下 コピペ用パラメーター一覧（省略時の挙動） [State 0, EnvShake]Type = EnvShakeTrigger1 = 1; Time = ; 必須: 値を指定してください: 未確認; Ampl = ; 省略時: -4 ;ただし、画面の縦が240ピクセル：-4, 480ピクセル：-8, 720ピクセル：-16; Phase = ; 省略時: 0 ;ただし、Freqが90以上の場合、90になります。Freq = 60IgnoreHitPause = 0Persistent = 1 パラメーターの読み込み順 パラメーター読み込み順 Time 1 Ampl 2 Phase 3 Freq 4 IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事EnvShake - State Controller Reference(version 2002.04.14)EnvShake - State Controller Reference(version 1.0)EnvShake - State Controller Reference(version 1.1)EnvShake - M.U.G.E.N wiki不具合・対策まとめ - MUGENの便覧EnvShake - State ControllerEnvShake - MUGEN CNS WIKI CHAOS@予定EnvShake - 東方夢幻館EnvShake - 地球の応接間 公開日:2008.06.05 最終更新日:2017.08.06 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Time",
+      "href": "#parameter-Time-0"
+    },
+    {
+      "text": "Ampl",
+      "href": "#parameter-Ampl-1"
+    },
+    {
+      "text": "Phase",
+      "href": "#parameter-Phase-2"
+    },
+    {
+      "text": "Freq",
+      "href": "#parameter-Freq-3"
+    },
+    {
+      "text": "IgnoreHitPause",
+      "href": "#parameter-IgnoreHitPause-4"
+    },
+    {
+      "text": "Persistent",
+      "href": "#parameter-Persistent-5"
+    },
+    {
+      "text": "EnvShake - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#EnvShake"
+    },
+    {
+      "text": "EnvShake - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#envshake"
+    },
+    {
+      "text": "EnvShake - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#envshake"
+    },
+    {
+      "text": "EnvShake - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/EnvShake"
+    },
+    {
+      "text": "不具合・対策まとめ - MUGENの便覧",
+      "href": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "text": "EnvShake - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?EnvShake&protocol=http"
+    },
+    {
+      "text": "EnvShake - MUGEN CNS WIKI CHAOS@予定",
+      "href": "http://www49.atwiki.jp/mugencns/pages/214.html"
+    },
+    {
+      "text": "EnvShake - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#EnvShake"
+    },
+    {
+      "text": "EnvShake - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/State/EnvShake.gif"
+  ],
+  "code": [
+    "[State 0, EnvShake]",
+    "Type                       = EnvShake",
+    "Trigger1                   = 1",
+    "; Time                     =        ; 必須: 値を指定してください: 未確認",
+    "; Ampl                     =        ; 省略時: -4 ;ただし、画面の縦が240ピクセル：-4, 480ピクセル：-8, 720ピクセル：-16",
+    "; Phase                    =        ; 省略時: 0 ;ただし、Freqが90以上の場合、90になります。",
+    "Freq                       = 60",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

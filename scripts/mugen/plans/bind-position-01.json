@@ -1,0 +1,128 @@
+{
+  "id": "bind-position-01",
+  "reviewed_on": "2026-10-01",
+  "description": "BindToParent / BindToRoot / BindToTarget の固定対象、基準軸、任意パラメーターと既定値を保存済み公式資料へ対応させる。旧資料だけにある負数時間、数値範囲、座標飛び、速度同期、警告記録は原文を保持して公開ビューから外す。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "BindToParent",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>Helper である実行者を、親の軸を基準とする位置へ固定します。実行者が Helper でない場合は何も起きません。親が破棄されると固定は終了します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoparent-local-2002", "bindtoparent-local-1.0", "bindtoparent-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": 1, "display": "1 tick 固定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoparent-local-2002", "bindtoparent-local-1.0", "bindtoparent-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>固定を有効にする tick 数を整数式で指定します。省略時は <code>1</code> です。</p>", "hide_legacy": ["min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoparent-local-2002", "bindtoparent-local-1.0", "bindtoparent-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": 0, "display": "向きを変えない", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoparent-local-2002", "bindtoparent-local-1.0", "bindtoparent-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p><code>-1</code> なら親と反対方向、<code>1</code> なら親と同じ方向を固定中に向き続けます。<code>0</code> なら親の向きが変わっても実行者の向きを変えません。省略時は <code>0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoparent-local-2002", "bindtoparent-local-1.0", "bindtoparent-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "literal", "value": "0, 0", "display": "親の軸", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoparent-local-2002", "bindtoparent-local-1.0", "bindtoparent-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p>親の軸からの x, y オフセットを浮動小数点式で指定します。省略時は <code>0, 0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoparent-local-2002", "bindtoparent-local-1.0", "bindtoparent-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoparent-local-2002", "bindtoparent-local-1.0", "bindtoparent-local-1.1"], "comment": "2026-10-01: 保存済み公式資料で Helper 専用、親基準、親破棄時の終了、任意の Time / Facing / Pos と既定値を確認。Time=-1、32-bit 範囲を確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [{ "kind": "research", "content": "<p>旧 Time 説明とメタ情報は <code>-1</code> で永続、最小値 <code>-1</code>、最大値 <code>2147483647</code> とする。原文と値は保持しているが、今回確認した公式コントローラー資料には記載がないため公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["bindtoparent-local-2002", "bindtoparent-local-1.0", "bindtoparent-local-1.1", "bindtoparent-legacy-data"], "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。" } }] },
+        { "path": ["quote", "-"], "value": { "id": "bindtoparent-local-2002", "title": "BindToParent — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#BindToParent", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "bindtoparent-local-1.0", "title": "BindToParent — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#bindtoparent", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "bindtoparent-local-1.1", "title": "BindToParent — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#bindtoparent", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "bindtoparent-legacy-data", "title": "BindToParent — 移行前の説明・範囲原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/e828fb2e1feb852af7e8a7cfc8b2150249f242ad/src/content/state-controllers/BindToParent.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "parameter[0].description / min_value / max_value", "reason": "Time=-1 の永続化と数値範囲は実機未確認。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "BindToRoot",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>Helper である実行者を、ルートキャラクターの軸を基準とする位置へ固定します。実行者が Helper でない場合は何も起きません。ルートが無効になると固定は終了します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoroot-local-2002", "bindtoroot-local-1.0", "bindtoroot-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": 1, "display": "1 tick 固定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoroot-local-2002", "bindtoroot-local-1.0", "bindtoroot-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>固定を有効にする tick 数を整数式で指定します。省略時は <code>1</code> です。</p>", "hide_legacy": ["min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoroot-local-2002", "bindtoroot-local-1.0", "bindtoroot-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": 0, "display": "向きを変えない", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoroot-local-2002", "bindtoroot-local-1.0", "bindtoroot-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p><code>-1</code> ならルートと反対方向、<code>1</code> ならルートと同じ方向を固定中に向き続けます。<code>0</code> ならルートの向きが変わっても実行者の向きを変えません。省略時は <code>0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoroot-local-2002", "bindtoroot-local-1.0", "bindtoroot-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "literal", "value": "0, 0", "display": "ルートの軸", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoroot-local-2002", "bindtoroot-local-1.0", "bindtoroot-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p>ルートの軸からの x, y オフセットを浮動小数点式で指定します。省略時は <code>0, 0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoroot-local-2002", "bindtoroot-local-1.0", "bindtoroot-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtoroot-local-2002", "bindtoroot-local-1.0", "bindtoroot-local-1.1"], "comment": "2026-10-01: 保存済み公式資料で Helper 専用、ルート基準、ルート無効時の終了、任意の Time / Facing / Pos と既定値を確認。旧 description の親基準説明、Time=-1、32-bit 範囲を確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "research", "content": "<p>旧 description は BindToRoot でも呼び出したステートや親 Helper のスプライトを基準にすると説明する。公式3資料はルート基準とするため、旧文を原位置に保持し、公開本文では使用しない。</p>", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["bindtoroot-local-2002", "bindtoroot-local-1.0", "bindtoroot-local-1.1", "bindtoroot-legacy-data"], "comment": "2026-10-01: 固定基準の記述差を確認。" } },
+          { "kind": "research", "content": "<p>旧 Time 説明とメタ情報は <code>-1</code> で永続、最小値 <code>-1</code>、最大値 <code>2147483647</code> とする。原文と値は保持しているが、今回確認した公式コントローラー資料には記載がないため公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["bindtoroot-local-2002", "bindtoroot-local-1.0", "bindtoroot-local-1.1", "bindtoroot-legacy-data"], "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。" } }
+        ] },
+        { "path": ["quote", "-"], "value": { "id": "bindtoroot-local-2002", "title": "BindToRoot — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#BindToRoot", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "bindtoroot-local-1.0", "title": "BindToRoot — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#bindtoroot", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "bindtoroot-local-1.1", "title": "BindToRoot — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#bindtoroot", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "bindtoroot-legacy-data", "title": "BindToRoot — 移行前の説明・範囲原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/e828fb2e1feb852af7e8a7cfc8b2150249f242ad/src/content/state-controllers/BindToRoot.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / parameter[0]", "reason": "旧親基準説明、Time=-1 の永続化、数値範囲は実機未確認。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "BindToTarget",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者を、指定したターゲットの基準点からの相対位置へ固定します。<code>ID</code> で固定基準にするターゲットを選べます。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtotarget-local-2002", "bindtotarget-local-1.0", "bindtotarget-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": -1, "display": "任意のターゲット1体", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtotarget-local-2002", "bindtotarget-local-1.0", "bindtotarget-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>固定基準にするターゲットの HitDef ID を整数式で指定します。省略時は <code>-1</code> で、任意のターゲット1体を選びます。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtotarget-local-2002", "bindtotarget-local-1.0", "bindtotarget-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": 1, "display": "1 tick 固定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtotarget-local-2002", "bindtotarget-local-1.0", "bindtotarget-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>固定を有効にする tick 数を整数式で指定します。省略時は <code>1</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtotarget-local-2002", "bindtotarget-local-1.0", "bindtotarget-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "special_syntax" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "unknown", "display": "基準点はターゲットの軸。x/y オフセット省略時は未確認", "evidence": { "status": "unverified", "basis": ["official_document"], "source_refs": ["bindtotarget-local-2002", "bindtotarget-local-1.0", "bindtotarget-local-1.1"], "comment": "公式資料は postype 省略時の基準点を明記するが、pos_x / pos_y の省略値を明記していない。" } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p>x, y の浮動小数点式と、任意の基準位置 <code>Foot</code> / <code>Mid</code> / <code>Head</code> を指定します。<code>Foot</code> はターゲットの軸、<code>Mid</code> と <code>Head</code> はターゲット CNS の <code>mid.pos</code> と <code>head.pos</code> を基準にします。基準位置を省略するとターゲットの軸を使います。x, y の省略値は今回確認した公式資料に明記されていません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtotarget-local-2002", "bindtotarget-local-1.0", "bindtotarget-local-1.1"] } } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["bindtotarget-local-2002", "bindtotarget-local-1.0", "bindtotarget-local-1.1"], "comment": "2026-10-01: 保存済み公式資料で実行者をターゲット基準へ固定する動作、任意の Time / ID / Pos、Time=1、ID=-1、基準位置を確認。x/y 省略値、速度同期、次フレーム移動、負数警告を確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "research", "legacy_index": 0, "content": "BindToTargetを実行した次のフレームに自身のPosをTargetの基準とした位置に移動する。", "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["bindtotarget-legacy-data"], "comment": "2026-10-01: 旧タイミング記録を保持。対象ビルド、再現手順、実行ログは未確認。" } },
+          { "kind": "research", "legacy_index": 1, "content": "”Time-1”フレーム まではTargetの速度が実行者の速度と同じになる。（Time-1フレーム後はTargetが速度を変えない限り、速度はほぼそのままである。）残りのTimeは相手がこちらを基準として動いてしまう。", "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["bindtotarget-legacy-data"], "comment": "2026-10-01: 旧速度記録を保持。主語と固定方向が公式説明とも整合せず、実行ログもないため公開しない。" } },
+          { "kind": "research", "legacy_index": 2, "content": "Set ILLEGAL TARGET BINDTIME:Timeに-2以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["bindtotarget-warning-binran", "bindtotarget-legacy-data"], "comment": "2026-10-01: 旧警告文と条件を保持。完全なメッセージ、対象ビルド、実行ログは未確認。" } },
+          { "kind": "research", "content": "<p>旧 Time 説明は <code>-1</code> で永続するとし、旧 Pos 説明は省略時に Target を実行者から <code>P2BodyDist x = -1025, P2BodyDist y = -1025</code> の位置へ移動させるとする。コントローラーが移動・固定する主体は公式資料では実行者であり、x/y 省略値の公式記載もないため、旧文を原位置に保持して公開本文では使用しない。</p>", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["bindtotarget-local-2002", "bindtotarget-local-1.0", "bindtotarget-local-1.1", "bindtotarget-legacy-data"], "comment": "2026-10-01: 固定主体の記述差を確認。Time=-1 と座標値の実機確認ではない。" } }
+        ] },
+        { "path": ["quote", 4, "id"], "value": "bindtotarget-warning-binran" },
+        { "path": ["quote", 4, "source_type"], "value": "community_documentation" },
+        { "path": ["quote", "-"], "value": { "id": "bindtotarget-local-2002", "title": "BindToTarget — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#BindToTarget", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "bindtotarget-local-1.0", "title": "BindToTarget — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#bindtotarget", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "bindtotarget-local-1.1", "title": "BindToTarget — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#bindtotarget", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "bindtotarget-legacy-data", "title": "BindToTarget — 移行前の説明・仕様・警告原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/e828fb2e1feb852af7e8a7cfc8b2150249f242ad/src/content/state-controllers/BindToTarget.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "parameter[2].default / load_priority", "reason": "Pos の x/y 省略値と3番目の読み込み順は不明を維持する。" },
+        { "path": "version / parameter descriptions", "reason": "次フレーム移動、速度同期、Time=-1、座標飛び、負数警告は実機未確認。" }
+      ]
+    }
+  ]
+}

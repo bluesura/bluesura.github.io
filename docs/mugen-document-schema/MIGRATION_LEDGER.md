@@ -136,3 +136,7 @@ BindToParent / BindToRoot / BindToTarget を追加し、累計71件・残り163�
 ## 2026-10-01：target-velocity-01
 
 TargetVelAdd / TargetVelSet を追加し、累計73件・残り161件です。加算と設定、任意 X / Y、軸を省略した場合の非変更、ID=-1 の全対象、各正方向を保存済み公式資料へ対応させました。TargetVelSet の X 正方向は公式3資料が実行者基準、旧 JSON がターゲット基準とするため、旧文を保持して公開説明だけを公式記載へ合わせ、差異を内部記録に残しています。
+
+## 2026-10-01：hit-control-01
+
+HitAdd / MoveHitReset / HitVelSet を追加し、累計76件・残り158件です。コンボカウンターへの必須加算、3種の接触トリガーのリセット、任意 X / Y フラグによる被弾速度設定、HitVelSet の非推奨状態を保存済み公式資料へ対応させました。HitAdd の旧値域・GetHitVar影響・残存期間、MoveHitReset の MoveReversed、HitVelSet の旧バージョン限定と制作用途は実機条件不足または公式記載との差があるため非公開です。

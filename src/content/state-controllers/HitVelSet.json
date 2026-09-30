@@ -1,54 +1,269 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "HitVelSet",
-		"target": "",
-		"category": ["速度の操作","速度の直接設定"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "HitVelSet",
-	"description": "<p>プレイヤーがやられモーション中であるとき、相手のHitDefで指定された速度を有効にします。</p><p>　ヒットバックを発生させる、共通ステートを上書きするときや、相手に参照させるステートで使用します。</p>",
-	"category": "state",
-
-	"version": [
-		{"no": "MUGEN 1.0以上", "content": "このステートコントローラーの使用は非推奨です！"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "X",
-			"value": ["水平速度フラグ"],
-			"type": ["int"],
-			"description": "<p>それぞれの方向の速度を有効にするフラグです。0で無効、0以外で有効。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [";変更なし"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Y",
-			"value": ["垂直速度フラグ"],
-			"type": ["int"],
-			"description": "<p>それぞれの方向の速度を有効にするフラグです。0で無効、0以外で有効。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [";変更なし"],
-			"load_priority": ["2"]
-		}
-	],
-
-	"quote": [
-		{"title": "HitVelSet - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitVelSet"},
-		{"title": "HitVelSet - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitvelset"},
-		{"title": "HitVelSet - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitvelset"},
-		{"title": "HitVelSet - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitVelSet"},
-		{"title": "HitVelSet - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitVelSet&protocol=http"},
-		{"title": "HitVelSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitVelSet"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "HitVelSet",
+    "target": "",
+    "category": [
+      "速度の操作",
+      "速度の直接設定"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "HitVelSet",
+  "description": "<p>プレイヤーがやられモーション中であるとき、相手のHitDefで指定された速度を有効にします。</p><p>　ヒットバックを発生させる、共通ステートを上書きするときや、相手に参照させるステートで使用します。</p>",
+  "category": "state",
+  "version": [
+    {
+      "no": "MUGEN 1.0以上",
+      "content": "このステートコントローラーの使用は非推奨です！"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "X",
+      "value": [
+        "水平速度フラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>それぞれの方向の速度を有効にするフラグです。0で無効、0以外で有効。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ";変更なし"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "none",
+          "display": "X速度を変更しない",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitvelset-local-2002",
+              "hitvelset-local-1.0",
+              "hitvelset-local-1.1"
+            ],
+            "comment": "X は任意で、非0の場合だけ被弾速度へ変更する。"
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>0以外なら、実行者の X 速度を HitDef 由来の被弾 X 速度へ設定します。<code>0</code> または省略時は X 速度を変更しません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitvelset-local-2002",
+            "hitvelset-local-1.0",
+            "hitvelset-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Y",
+      "value": [
+        "垂直速度フラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>それぞれの方向の速度を有効にするフラグです。0で無効、0以外で有効。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ";変更なし"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "none",
+          "display": "Y速度を変更しない",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitvelset-local-2002",
+              "hitvelset-local-1.0",
+              "hitvelset-local-1.1"
+            ],
+            "comment": "Y は任意で、非0の場合だけ被弾速度へ変更する。"
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>0以外なら、実行者の Y 速度を HitDef 由来の被弾 Y 速度へ設定します。<code>0</code> または省略時は Y 速度を変更しません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitvelset-local-2002",
+            "hitvelset-local-1.0",
+            "hitvelset-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "HitVelSet - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitVelSet"
+    },
+    {
+      "title": "HitVelSet - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitvelset"
+    },
+    {
+      "title": "HitVelSet - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitvelset"
+    },
+    {
+      "title": "HitVelSet - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitVelSet"
+    },
+    {
+      "title": "HitVelSet - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitVelSet&protocol=http"
+    },
+    {
+      "title": "HitVelSet - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitVelSet"
+    },
+    {
+      "id": "hitvelset-local-2002",
+      "title": "HitVelSet — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitVelSet",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitvelset-local-1.0",
+      "title": "HitVelSet — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#hitvelset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitvelset-local-1.1",
+      "title": "HitVelSet — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitvelset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitvelset-legacy-data",
+      "title": "HitVelSet — 移行前の説明・非推奨記録原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/426c438aecde152c2b6ae44a1f16015d468b658a/src/content/state-controllers/HitVelSet.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>被弾中の実行者について、指定した速度成分を HitDef 由来の被弾速度へ設定します。このステートコントローラーは保存済み公式資料で非推奨とされています。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "hitvelset-local-2002",
+        "hitvelset-local-1.0",
+        "hitvelset-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "hitvelset-local-2002",
+      "hitvelset-local-1.0",
+      "hitvelset-local-1.1"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で被弾速度の反映、任意 X / Y、非0フラグ、非推奨状態を確認。旧制作用途を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "このステートコントローラーの使用は非推奨です！",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitvelset-local-2002",
+          "hitvelset-local-1.0",
+          "hitvelset-local-1.1",
+          "hitvelset-legacy-data"
+        ],
+        "comment": "2026-10-01: 非推奨自体は公式3資料で確認したが、旧 no の『MUGEN 1.0以上』という範囲は2002.04.14資料の Obsolete と一致しない。原文を保持し、公開説明は世代を限定しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 description は共通ステートを上書きするときや、相手に参照させるステートで使用すると説明する。原文は保持しているが、今回確認した公式コントローラー資料にはこの制作上の用途補足がないため公開本文では断定しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitvelset-local-2002",
+          "hitvelset-local-1.0",
+          "hitvelset-local-1.1",
+          "hitvelset-legacy-data"
+        ],
+        "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。"
+      }
+    }
+  ]
 }

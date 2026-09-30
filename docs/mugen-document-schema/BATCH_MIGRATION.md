@@ -372,3 +372,20 @@ npm run mugen:batch -- --batch target-velocity-01 --target TargetVelAdd --target
 ```
 
 このバッチは適用済みです。次は HitAdd / MoveHitReset / HitVelSet のヒット関連制御を照合します。
+
+## hit-control-01：コンボ・接触フラグ・被弾速度の3件
+
+2026-10-01、HitAdd / MoveHitReset / HitVelSet を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/hit-control-01/` へ保存しています。
+
+- HitAdd は現在のコンボカウンターへ必須の整数式 value を加算します。旧 -2147483647〜2147483647 の値域、GetHitVar の HitCount への影響、リセットまで残るという記録は、対象ビルドと実行ログがないため内部 `research` に保持しました。
+- MoveHitReset はパラメーターを取らず、実行後に MoveContact / MoveGuarded / MoveHit を0へ戻します。旧 description の Win版 MoveReversed も0にするという記録は、保存済み公式3資料に記載がないため非公開にしました。
+- HitVelSet は任意の X / Y フラグを取り、0以外なら対応する実行者の速度成分を HitDef 由来の被弾速度へ設定します。0または省略時はその軸を変更しません。
+- HitVelSet は2002.04.14資料から Obsolete、1.0 / 1.1資料でも Deprecated とされています。非推奨であることは公開本文へ移し、旧記録の「MUGEN 1.0以上」という限定と制作用途の補足は原文を保持して内部化しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch hit-control-01
+npm run mugen:batch -- --batch hit-control-01 --target HitAdd --target MoveHitReset --target HitVelSet
+npm run mugen:batch -- --batch hit-control-01 --target HitAdd --target MoveHitReset --target HitVelSet --apply
+```
+
+このバッチは適用済みです。次は HitFallSet / HitFallVel / HitFallDamage の落下関連制御を照合します。

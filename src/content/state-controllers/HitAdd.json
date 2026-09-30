@@ -1,50 +1,243 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "HitAdd",
-		"target": "使用者",
-		"category": ["攻撃","ヒットカウントの手動増減"],
-		"version": "2002.04.14",
-		"update": "2014.05.04",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "HitAdd",
-	"description": "<p>連続技実行中、ヒット数を増減します。</p>",
-	"category": "state",
-
-	"version": [
-		{"no": "", "content": "GetHItVar()のHitCountには影響しない。"},
-		{"no": "", "content": "リセットされなければ残り続ける。"}
-	],
-
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["ヒット数増減値"],
-			"type": ["int"],
-			"description": "<p>増減したい値を指定。</p>",
-			"min_value": ["-2147483647"],
-			"max_value": ["2147483647"],
-			"parameter_type": "required",
-			"default_value": [""],
-			"load_priority": ["1"],
-			"associated_trigger": ["HitCount"]
-		}
-	],
-
-	"quote": [
-		{"title": "HitAdd - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitAdd"},
-		{"title": "HitAdd - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitadd"},
-		{"title": "HitAdd - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitadd"},
-		{"title": "HitAdd - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitAdd"},
-		{"title": "HitAdd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitAdd&protocol=http"},
-		{"title": "HitAdd - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/235.html"},
-		{"title": "HitAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitAdd"},
-		{"title": "HitAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"},
-		{"title": "永続ターゲット時のhitadd - lunaの倉庫", "url": "http://lunatic284.blog90.fc2.com/?no=699"},
-		{"title": "永続ターゲット時のhitadd - 芹香の夫のチラ裏", "url": "http://suikanootto.blog67.fc2.com/blog-entry-26.html"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "HitAdd",
+    "target": "使用者",
+    "category": [
+      "攻撃",
+      "ヒットカウントの手動増減"
+    ],
+    "version": "2002.04.14",
+    "update": "2014.05.04",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "HitAdd",
+  "description": "<p>連続技実行中、ヒット数を増減します。</p>",
+  "category": "state",
+  "version": [
+    {
+      "no": "",
+      "content": "GetHItVar()のHitCountには影響しない。"
+    },
+    {
+      "no": "",
+      "content": "リセットされなければ残り続ける。"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "ヒット数増減値"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>増減したい値を指定。</p>",
+      "min_value": [
+        "-2147483647"
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "associated_trigger": [
+        "HitCount"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "コンボカウンターへ加算する数を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitadd-local-2002",
+              "hitadd-local-1.0",
+              "hitadd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>現在のコンボカウンターへ加算するヒット数を整数式で指定します。省略できません。</p>",
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitadd-local-2002",
+            "hitadd-local-1.0",
+            "hitadd-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "HitAdd - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitAdd"
+    },
+    {
+      "title": "HitAdd - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitadd"
+    },
+    {
+      "title": "HitAdd - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitadd"
+    },
+    {
+      "title": "HitAdd - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitAdd"
+    },
+    {
+      "title": "HitAdd - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitAdd&protocol=http"
+    },
+    {
+      "title": "HitAdd - MUGEN CNS WIKI CHAOS@予定",
+      "url": "http://www49.atwiki.jp/mugencns/pages/235.html"
+    },
+    {
+      "title": "HitAdd - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitAdd"
+    },
+    {
+      "title": "HitAdd - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "title": "永続ターゲット時のhitadd - lunaの倉庫",
+      "url": "http://lunatic284.blog90.fc2.com/?no=699"
+    },
+    {
+      "title": "永続ターゲット時のhitadd - 芹香の夫のチラ裏",
+      "url": "http://suikanootto.blog67.fc2.com/blog-entry-26.html"
+    },
+    {
+      "id": "hitadd-local-2002",
+      "title": "HitAdd — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitAdd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitadd-local-1.0",
+      "title": "HitAdd — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#hitadd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitadd-local-1.1",
+      "title": "HitAdd — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitadd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitadd-legacy-data",
+      "title": "HitAdd — 移行前の値域・仕様記録原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/426c438aecde152c2b6ae44a1f16015d468b658a/src/content/state-controllers/HitAdd.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>現在のコンボカウンターに、<code>value</code> で指定したヒット数を加算します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "hitadd-local-2002",
+        "hitadd-local-1.0",
+        "hitadd-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "hitadd-local-2002",
+      "hitadd-local-1.0",
+      "hitadd-local-1.1"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で現在のコンボカウンターへの加算と必須の整数 value を確認。旧値域、GetHitVar への影響、リセットまでの残存を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "GetHItVar()のHitCountには影響しない。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "hitadd-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧仕様記録を原文のまま保持。対象ビルド、再現手順、実行ログは未確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 1,
+      "content": "リセットされなければ残り続ける。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "hitadd-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧仕様記録を原文のまま保持。リセット条件、対象ビルド、実行ログは未確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 min_value / max_value は <code>-2147483647</code> から <code>2147483647</code> を記録する。今回確認した公式コントローラー資料には値域がないため、値を原位置に保持して公開メタ情報から外す。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitadd-local-2002",
+          "hitadd-local-1.0",
+          "hitadd-local-1.1",
+          "hitadd-legacy-data"
+        ],
+        "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。"
+      }
+    }
+  ]
 }

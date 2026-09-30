@@ -1,25 +1,116 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "MoveHitReset",
-		"target": "",
-		"category": ["攻撃","攻撃の接触判定フラグのリセット"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "MoveHitReset",
-	"description": "<p>ヒットフラグ(MoveContact?、MoveGuarded?、MoveHit?、WinではMoveReversed?も)を0にします。</p>",
-	"category": "state",
-
-	"quote": [
-		{"title": "MoveHitReset - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#MoveHitReset"},
-		{"title": "MoveHitReset - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#movehitreset"},
-		{"title": "MoveHitReset - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#movehitreset"},
-		{"title": "MoveHitReset - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveHitReset"},
-		{"title": "MoveHitReset - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?MoveHitReset&protocol=http"},
-		{"title": "MoveHitReset - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#MoveHitReset"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "MoveHitReset",
+    "target": "",
+    "category": [
+      "攻撃",
+      "攻撃の接触判定フラグのリセット"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "MoveHitReset",
+  "description": "<p>ヒットフラグ(MoveContact?、MoveGuarded?、MoveHit?、WinではMoveReversed?も)を0にします。</p>",
+  "category": "state",
+  "quote": [
+    {
+      "title": "MoveHitReset - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#MoveHitReset"
+    },
+    {
+      "title": "MoveHitReset - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#movehitreset"
+    },
+    {
+      "title": "MoveHitReset - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#movehitreset"
+    },
+    {
+      "title": "MoveHitReset - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveHitReset"
+    },
+    {
+      "title": "MoveHitReset - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?MoveHitReset&protocol=http"
+    },
+    {
+      "title": "MoveHitReset - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#MoveHitReset"
+    },
+    {
+      "id": "movehitreset-local-2002",
+      "title": "MoveHitReset — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#MoveHitReset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehitreset-local-1.0",
+      "title": "MoveHitReset — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#movehitreset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehitreset-local-1.1",
+      "title": "MoveHitReset — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#movehitreset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehitreset-legacy-data",
+      "title": "MoveHitReset — 移行前の説明原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/426c438aecde152c2b6ae44a1f16015d468b658a/src/content/state-controllers/MoveHitReset.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者の movehit フラグを0へ戻します。実行後は <code>MoveContact</code>、<code>MoveGuarded</code>、<code>MoveHit</code> が0を返します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "movehitreset-local-2002",
+        "movehitreset-local-1.0",
+        "movehitreset-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "movehitreset-local-2002",
+      "movehitreset-local-1.0",
+      "movehitreset-local-1.1"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で引数なしの movehit リセットと MoveContact / MoveGuarded / MoveHit の0を確認。MoveReversed への影響を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 description は Win版では <code>MoveReversed</code> も0にすると記録する。今回確認した公式3資料は MoveContact / MoveGuarded / MoveHit だけを挙げており、対象ビルドと実行ログがないため、旧文を原位置に保持して公開本文では断定しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "movehitreset-local-2002",
+          "movehitreset-local-1.0",
+          "movehitreset-local-1.1",
+          "movehitreset-legacy-data"
+        ],
+        "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。MoveReversed の実機確認ではない。"
+      }
+    }
+  ]
 }

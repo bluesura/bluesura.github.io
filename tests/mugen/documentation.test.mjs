@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createDocumentSchema } from '../../src/lib/mugen/schema.mjs';
 import { effectiveParameters, effectiveArguments } from '../../src/lib/mugen/parameters.mjs';
-import { normalizeDocument, publicNotes, effectiveDescription } from '../../src/lib/mugen/normalize.mjs';
+import { normalizeDocument, publicNotes, effectiveDescription, effectivePageCategory } from '../../src/lib/mugen/normalize.mjs';
 import { copyLines } from '../../src/lib/mugen/defaults.mjs';
 import { addFields } from '../../scripts/mugen/batch.mjs';
 import { readJSON } from '../../scripts/mugen/files.mjs';
@@ -12,13 +12,16 @@ const common = ['IgnoreHitPause', 'Persistent'].map(name => readJSON(`src/data/c
 const withDocumentation = documentation => ({ state: 'Example', page: {}, parameter: [{ parameter: 'X', documentation }] });
 
 test('document-level prose is optional, strictly scoped, and resolved without modifying the original', () => {
-  const source = { state: 'Example', page: {}, description: '旧本文', documentation: { description: '<p>公開本文</p>', evidence: { status: 'confirmed', basis: ['maintainer_report'] } } };
+  const source = { state: 'Example', page: { category: ['分類', '旧カテゴリ'] }, description: '旧本文', documentation: { description: '<p>公開本文</p>', page_category: '公開カテゴリ', evidence: { status: 'confirmed', basis: ['maintainer_report'] } } };
   const snapshot = structuredClone(source);
   assert.deepEqual(schema.parse(source), source);
   assert.equal(effectiveDescription(source), '<p>公開本文</p>');
   assert.equal(normalizeDocument(source).description, '<p>公開本文</p>');
+  assert.deepEqual(normalizeDocument(source).page.category, ['分類', '公開カテゴリ']);
   assert.equal(normalizeDocument(source).documentation, undefined);
   assert.equal(effectiveDescription({ description: '旧本文' }), '旧本文');
+  assert.equal(effectivePageCategory(source), '公開カテゴリ');
+  assert.equal(effectivePageCategory({ page: { category: ['分類', '旧カテゴリ'] } }), '旧カテゴリ');
   assert.deepEqual(source, snapshot);
   for (const documentation of [{}, { description: '' }, { description: '説明', value: ['ラベル'] }, { description: '説明', parameter: [] }]) {
     assert.equal(schema.safeParse({ ...source, documentation }).success, false);

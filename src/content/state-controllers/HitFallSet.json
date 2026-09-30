@@ -1,61 +1,334 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "HitFallSet",
-		"target": "",
-		"category": ["状態変化","空中やられ落下状態への強制移行"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "HitFallSet",
-	"description": "<p>プレイヤーがヒットモーション中にあるとき、落下状態にします。共通ステートを上書きするときや、相手に参照させるステートで使用します。</p>",
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["落下フラグ"],
-			"type": ["int"],
-			"description": "<p>-1で変更なし。1もしくは-2以下でfall、0だとfallが解除となります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "XVel",
-			"value": ["水平速度"],
-			"type": ["float"],
-			"description": "<p>速度を変更したい場合は、指定します。もしかしたら、このパラメータは読み込まれていない可能性があります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["GetHitVar(Fall.XVel) ;多分違う？"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "YVel",
-			"value": ["垂直速度"],
-			"type": ["float"],
-			"description": "<p>速度を変更したい場合は、指定します。もしかしたら、このパラメータは読み込まれていない可能性があります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["GetHitVar(Fall.YVel) ;多分違う？"],
-			"load_priority": ["?"]
-		}
-	],
-
-	"quote": [
-		{"title": "HitFallSet - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitFallSet"},
-		{"title": "HitFallSet - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitfallset"},
-		{"title": "HitFallSet - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitfallset"},
-		{"title": "HitFallSet - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitFallSet"},
-		{"title": "HitFallSet - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitFallSet&protocol=http"},
-		{"title": "HitFallSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitFallSet"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "HitFallSet",
+    "target": "",
+    "category": [
+      "状態変化",
+      "空中やられ落下状態への強制移行"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "HitFallSet",
+  "description": "<p>プレイヤーがヒットモーション中にあるとき、落下状態にします。共通ステートを上書きするときや、相手に参照させるステートで使用します。</p>",
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "落下フラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>-1で変更なし。1もしくは-2以下でfall、0だとfallが解除となります。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "-1"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": -1,
+          "display": "落下フラグを変更しない",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitfallset-local-2002",
+              "hitfallset-local-1.0",
+              "hitfallset-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>落下フラグを整数式で指定します。<code>-1</code> は変更なし、<code>0</code> は落下しない、<code>1</code> は落下する設定です。省略時は <code>-1</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitfallset-local-2002",
+            "hitfallset-local-1.0",
+            "hitfallset-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "XVel",
+      "value": [
+        "水平速度"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>速度を変更したい場合は、指定します。もしかしたら、このパラメータは読み込まれていない可能性があります。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "GetHitVar(Fall.XVel) ;多分違う？"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "none",
+          "display": "fall.xvel を変更しない",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitfallset-local-2002",
+              "hitfallset-local-1.0",
+              "hitfallset-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>実行者が保持する <code>fall.xvel</code> を浮動小数点式で設定します。省略時は変更しません。</p>",
+        "hide_legacy": [
+          "default_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitfallset-local-2002",
+            "hitfallset-local-1.0",
+            "hitfallset-local-1.1"
+          ]
+        }
+      }
+    },
+    {
+      "parameter": "YVel",
+      "value": [
+        "垂直速度"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>速度を変更したい場合は、指定します。もしかしたら、このパラメータは読み込まれていない可能性があります。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "GetHitVar(Fall.YVel) ;多分違う？"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "none",
+          "display": "fall.yvel を変更しない",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitfallset-local-2002",
+              "hitfallset-local-1.0",
+              "hitfallset-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>実行者が保持する <code>fall.yvel</code> を浮動小数点式で設定します。省略時は変更しません。</p>",
+        "hide_legacy": [
+          "default_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitfallset-local-2002",
+            "hitfallset-local-1.0",
+            "hitfallset-local-1.1"
+          ]
+        }
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "HitFallSet - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitFallSet"
+    },
+    {
+      "title": "HitFallSet - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitfallset"
+    },
+    {
+      "title": "HitFallSet - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitfallset"
+    },
+    {
+      "title": "HitFallSet - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitFallSet"
+    },
+    {
+      "title": "HitFallSet - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitFallSet&protocol=http"
+    },
+    {
+      "title": "HitFallSet - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitFallSet"
+    },
+    {
+      "id": "hitfallset-local-2002",
+      "title": "HitFallSet — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitFallSet",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfallset-local-1.0",
+      "title": "HitFallSet — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#hitfallset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfallset-local-1.1",
+      "title": "HitFallSet — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitfallset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfallset-legacy-data",
+      "title": "HitFallSet — 移行前の説明・推測値原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/81e978730308931c82b7547ef58f52c6678f1dd4/src/content/state-controllers/HitFallSet.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>被弾した実行者の落下フラグと、HitDef が保持する落下時の X / Y 速度を設定します。</p>",
+    "page_category": "空中やられ時の落下変数を設定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "hitfallset-local-2002",
+        "hitfallset-local-1.0",
+        "hitfallset-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "hitfallset-local-2002",
+      "hitfallset-local-1.0",
+      "hitfallset-local-1.1"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で落下変数の設定、任意 value / xvel / yvel、value の既定値と -1 / 0 / 1 の意味を確認。-2以下の挙動、旧 XVel / YVel 既定値、読み込み順を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 description はプレイヤーを落下状態へ移行させるコントローラーと説明する。公式3資料は落下変数を設定するとしているため、原文を保持し、公開本文では使用しない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitfallset-local-2002",
+          "hitfallset-local-1.0",
+          "hitfallset-local-1.1",
+          "hitfallset-legacy-data"
+        ],
+        "comment": "2026-10-01: 保存済み公式資料と旧 JSON の記述差を確認。実行時の状態遷移を検証したものではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 value 説明は <code>-2</code> 以下でも fall にすると記録する。公式3資料が説明する値は <code>-1</code>、<code>0</code>、<code>1</code> だけであり、対象ビルドと実行ログがないため公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitfallset-local-2002",
+          "hitfallset-local-1.0",
+          "hitfallset-local-1.1",
+          "hitfallset-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧負数挙動を原文に保持。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 XVel / YVel 説明はパラメーターが読み込まれない可能性を記録するが、公式3資料は指定時に <code>fall.xvel</code> / <code>fall.yvel</code> を設定すると明記する。旧 default_value の <code>GetHitVar(Fall.XVel) ;多分違う？</code> と <code>GetHitVar(Fall.YVel) ;多分違う？</code> は推測を含むため、値を原位置に保持して公開メタ情報から外す。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitfallset-local-2002",
+          "hitfallset-local-1.0",
+          "hitfallset-local-1.1",
+          "hitfallset-legacy-data"
+        ],
+        "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。対象ビルド別の実機確認ではない。"
+      }
+    }
+  ]
 }

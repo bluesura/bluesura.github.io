@@ -4,6 +4,7 @@ import { effectiveParameters, effectiveArguments } from './parameters.mjs';
 export const isPublicNote = note => note.kind !== 'research' && note.visibility !== 'internal';
 export const publicNotes = content => effectiveNotes(content).filter(isPublicNote);
 export const effectiveDescription = content => content.documentation?.description ?? content.description;
+export const effectivePageCategory = content => content.documentation?.page_category ?? content.page?.category?.[1];
 export const publicImages = content => (content.images ?? []).filter(image => image.visibility !== 'internal');
 export const publicCodeSamples = content => (content.code_sample ?? []).filter(sample => sample.visibility !== 'internal');
 export const publicQandA = content => (content.qanda ?? []).filter(item => item.visibility !== 'internal');
@@ -19,8 +20,13 @@ export function effectiveNotes(content) {
 }
 export function normalizeDocument(content, common = []) {
   const { documentation, ...fields } = content;
+  const pageCategory = effectivePageCategory(content);
+  const page = documentation?.page_category
+    ? { ...fields.page, category: [...(fields.page?.category ?? []).slice(0, 1), pageCategory] }
+    : fields.page;
   return {
     ...fields,
+    ...(fields.page !== undefined ? { page } : {}),
     description: effectiveDescription(content),
     ...(content.images !== undefined ? { images: publicImages(content) } : {}),
     ...(content.code_sample !== undefined ? { code_sample: publicCodeSamples(content) } : {}),

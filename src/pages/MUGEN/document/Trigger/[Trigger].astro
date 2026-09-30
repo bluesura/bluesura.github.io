@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import ArticleLayout from '../../../../layouts/ArticleLayout.astro';
+import { effectivePageCategory } from '../../../../lib/mugen/normalize.mjs';
 
 export async function getStaticPaths() {
   const allTriggerEntries = await getCollection('triggers');
@@ -12,7 +13,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const content = entry.data;
-const pageCategory = entry.data.page.category?.[1] || 'MUGEN Trigger Reference';
+const pageCategory = effectivePageCategory(entry.data) || 'MUGEN Trigger Reference';
 
 
 if (!entry) {

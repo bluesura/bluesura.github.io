@@ -88,6 +88,7 @@ const parameterDocumentationSchema = z.object({
 });
 const documentDocumentationSchema = z.object({
   description: z.string().min(1),
+  page_category: z.string().min(1).optional(),
   evidence: evidenceSchema.optional(),
 }).strict();
 export const parameterSchema = z.object({

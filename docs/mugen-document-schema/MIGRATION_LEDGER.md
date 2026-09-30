@@ -140,3 +140,7 @@ TargetVelAdd / TargetVelSet を追加し、累計73件・残り161件です。�
 ## 2026-10-01：hit-control-01
 
 HitAdd / MoveHitReset / HitVelSet を追加し、累計76件・残り158件です。コンボカウンターへの必須加算、3種の接触トリガーのリセット、任意 X / Y フラグによる被弾速度設定、HitVelSet の非推奨状態を保存済み公式資料へ対応させました。HitAdd の旧値域・GetHitVar影響・残存期間、MoveHitReset の MoveReversed、HitVelSet の旧バージョン限定と制作用途は実機条件不足または公式記載との差があるため非公開です。
+
+## 2026-10-01：hit-fall-01
+
+HitFallSet / HitFallVel / HitFallDamage を追加し、累計79件・残り155件です。落下フラグと落下速度変数、HitDef 由来の速度反映、落下ダメージ適用を保存済み公式資料へ対応させました。HitFallSet の旧「強制移行」カテゴリも原位置へ残したまま公開表示だけを訂正できる `documentation.page_category` を追加しました。value=-2以下、XVel / YVel の未読疑義・推測既定値、3件の旧制作用途は条件不足または公式記載との差があるため非公開です。

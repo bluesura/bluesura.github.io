@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import ArticleLayout from '../../../../layouts/ArticleLayout.astro';
+import { effectivePageCategory } from '../../../../lib/mugen/normalize.mjs';
 
 export async function getStaticPaths() {
   const allEntries = await getCollection('state-controllers');
@@ -11,7 +12,7 @@ export async function getStaticPaths() {
 }
 const { entry } = Astro.props;
 const content = entry.data;
-const pageCategory = entry.data.page.category?.[1] || 'MUGEN State Controller';
+const pageCategory = effectivePageCategory(entry.data) || 'MUGEN State Controller';
 
 
 ---

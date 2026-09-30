@@ -389,3 +389,20 @@ npm run mugen:batch -- --batch hit-control-01 --target HitAdd --target MoveHitRe
 ```
 
 このバッチは適用済みです。次は HitFallSet / HitFallVel / HitFallDamage の落下関連制御を照合します。
+
+## hit-fall-01：落下変数・落下速度・落下ダメージの3件
+
+2026-10-01、HitFallSet / HitFallVel / HitFallDamage を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/hit-fall-01/` へ保存しています。
+
+- HitFallSet は任意の value / XVel / YVel を取り、value は省略時 -1 で落下フラグを変更しません。0は落下しない、1は落下する設定です。XVel / YVel は指定した場合だけ `fall.xvel` / `fall.yvel` を変更します。
+- 旧 description とページカテゴリの「落下状態への強制移行」は、公式3資料の「落下変数を設定」と差があるため、原文を保持して公開本文・見出し・title・OGPを訂正しました。このため `documentation.page_category` を追加しています。
+- 旧 value 説明の -2 以下、XVel / YVel が読み込まれない可能性、推測を含む GetHitVar 既定値は、対象ビルドと実行ログがないため内部 `research` に保持しました。XVel / YVel の読み込み順 `?` は推測していません。
+- HitFallVel と HitFallDamage はパラメーターを取らず、前者は落下状態の実行者へ HitDef の落下速度を設定し、後者は落下ダメージを適用します。旧制作用途の補足は条件不足のため非公開です。
+
+```sh
+npm run mugen:batch-baseline -- --batch hit-fall-01
+npm run mugen:batch -- --batch hit-fall-01 --target HitFallSet --target HitFallVel --target HitFallDamage
+npm run mugen:batch -- --batch hit-fall-01 --target HitFallSet --target HitFallVel --target HitFallDamage --apply
+```
+
+このバッチは適用済みです。次は HitOverRide / NotHitBy の防御関連制御を照合します。

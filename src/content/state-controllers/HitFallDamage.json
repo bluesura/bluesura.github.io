@@ -1,25 +1,112 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "HitFallDamage",
-		"target": "",
-		"category": ["攻撃","空中やられからの地面激突時の追加ダメージ"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "HitFallDamage",
-	"description": "<p>攻撃を受けたとき、HitDefで設定された落下ダメージを与えます(自分に)。共通ステートを上書きするときや、相手に参照させるステートで使用します。</p>",
-	"category": "state",
-
-	"quote": [
-		{"title": "HitFallDamage - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitFallDamage"},
-		{"title": "HitFallDamage - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitfalldamage"},
-		{"title": "HitFallDamage - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitfalldamage"},
-		{"title": "HitFallDamage - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitFallDamage"},
-		{"title": "HitFallDamage - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitFallDamage&protocol=http"},
-		{"title": "HitFallDamage - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitFallDamage"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "HitFallDamage",
+    "target": "",
+    "category": [
+      "攻撃",
+      "空中やられからの地面激突時の追加ダメージ"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "HitFallDamage",
+  "description": "<p>攻撃を受けたとき、HitDefで設定された落下ダメージを与えます(自分に)。共通ステートを上書きするときや、相手に参照させるステートで使用します。</p>",
+  "category": "state",
+  "quote": [
+    {
+      "title": "HitFallDamage - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitFallDamage"
+    },
+    {
+      "title": "HitFallDamage - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitfalldamage"
+    },
+    {
+      "title": "HitFallDamage - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitfalldamage"
+    },
+    {
+      "title": "HitFallDamage - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitFallDamage"
+    },
+    {
+      "title": "HitFallDamage - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitFallDamage&protocol=http"
+    },
+    {
+      "title": "HitFallDamage - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitFallDamage"
+    },
+    {
+      "id": "hitfalldamage-local-2002",
+      "title": "HitFallDamage — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitFallDamage",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfalldamage-local-1.0",
+      "title": "HitFallDamage — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#hitfalldamage",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfalldamage-local-1.1",
+      "title": "HitFallDamage — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitfalldamage",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfalldamage-legacy-data",
+      "title": "HitFallDamage — 移行前の説明原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/81e978730308931c82b7547ef58f52c6678f1dd4/src/content/state-controllers/HitFallDamage.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>被弾して落下状態にある実行者へ、HitDef で設定された落下ダメージを適用します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "hitfalldamage-local-2002",
+        "hitfalldamage-local-1.0",
+        "hitfalldamage-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "hitfalldamage-local-2002",
+      "hitfalldamage-local-1.0",
+      "hitfalldamage-local-1.1"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で引数なしの落下ダメージ適用を確認。旧制作用途を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 description は共通ステートを上書きするときや相手に参照させるステートで使用すると補足する。対象ビルド、具体的なステート構成、実行ログがないため、原文を保持して公開本文では使用しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "hitfalldamage-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧制作用途を原文に保持。"
+      }
+    }
+  ]
 }

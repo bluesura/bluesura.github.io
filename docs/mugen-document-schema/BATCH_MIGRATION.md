@@ -337,3 +337,21 @@ npm run mugen:batch -- --batch target-control-01 --target TargetBind --target Ta
 ```
 
 このバッチは適用済みです。次は BindToParent / BindToRoot / BindToTarget の位置固定を照合します。
+
+## bind-position-01：親・ルート・ターゲット基準の位置固定3件
+
+2026-10-01、BindToParent / BindToRoot / BindToTarget を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/bind-position-01/` へ保存しています。
+
+- BindToParent / BindToRoot は Helper である実行者だけに作用し、それぞれ親・ルートの軸を基準に固定します。Time / Facing / Pos はすべて任意で、省略時は1 tick、向きを変えない、基準軸から 0,0 です。
+- BindToRoot の旧 description は親 Helper を基準にすると説明していました。原文を保持し、公開本文では公式資料に合わせてルート基準へ訂正しました。
+- BindToParent / BindToRoot の旧 Time 説明にある -1 の永続化、最小値 -1、最大値 2147483647 は、今回確認した公式コントローラー資料に記載がないため、JSON に保持して公開メタ情報から外しました。
+- BindToTarget は任意の ID / Time / Pos を取り、ID は省略時 -1 で任意のターゲット1体、Time は省略時1です。Pos の基準位置は Foot / Mid / Head で、省略時の基準点はターゲットの軸です。
+- BindToTarget の x/y オフセット省略値は公式資料に明記がないため不明を維持しました。旧 -1025 座標、次フレーム移動、速度同期、Time=-1、Time=-2以下の警告も対象ビルドと実行ログがないため内部 `research` に保持しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch bind-position-01
+npm run mugen:batch -- --batch bind-position-01 --target BindToParent --target BindToRoot --target BindToTarget
+npm run mugen:batch -- --batch bind-position-01 --target BindToParent --target BindToRoot --target BindToTarget --apply
+```
+
+このバッチは適用済みです。次は TargetVelAdd / TargetVelSet のターゲット速度操作を照合します。

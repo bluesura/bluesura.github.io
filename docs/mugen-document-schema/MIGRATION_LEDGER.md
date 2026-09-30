@@ -128,3 +128,7 @@ LifeAdd / LifeSet / TargetPowerAdd を追加し、累計65件・残り169件で�
 ## 2026-10-01：target-control-01
 
 TargetBind / TargetDrop / TargetFacing を追加し、累計68件・残り166件です。対象 ID、固定時間・位置、一覧から外す条件、向きと各既定値を保存済み公式資料へ対応させました。TargetBind の「対象指定不能」と Pos 省略時 `-1025,-1025` は公式資料との衝突を内部記録へ残し、公開文を修正しています。TargetBind / TargetFacing の複数ターゲット時フリーズ、TargetBind の負数警告、速度同期も条件不足のため非公開です。TargetFacing の必須 value に付いていた旧既定値1は削除せず公開だけ止め、読み込み順 `?` は維持しました。
+
+## 2026-10-01：bind-position-01
+
+BindToParent / BindToRoot / BindToTarget を追加し、累計71件・残り163件です。Helper 専用の親・ルート基準、各 Time / Facing / Pos、Target の ID と基準位置を保存済み公式資料へ対応させました。BindToRoot の旧親基準説明は原本を保持して公開文だけを訂正しています。Parent / Root の Time=-1 と32-bit範囲、Target の x/y 省略値、-1025 座標、次フレーム移動、速度同期、負数警告は条件不足のため非公開です。Target Pos の読み込み順末尾 `?` も推測していません。

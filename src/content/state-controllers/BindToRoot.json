@@ -1,62 +1,334 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "BindToRoot",
-		"target": "Helper自身",
-		"category": ["位置の固定","ルートキャラクター基準での位置固定"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "BindToRoot",
-	"description": "<p>Helperのステート内で記述します。そのhelperを呼び出したステートのスプライトを基準に位置を固定します。</p><p>親がHelperの場合、当然そのHelperのスプライトが対象となります。</p><p>※Helper等がルートの場合、ルートがDestroySelfすると、このステートコントローラーは無効になります。でも、Helperがルートになるって、ありえるのか？なお、親がDestroySelfした場合も、無効となります。</p>",
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "Time",
-			"value": ["固定時間"],
-			"type": ["int"],
-			"description": "<p>固定する時間をフレーム単位で指定します。</p><p>-1で固定時間が永続化。</p><p>※60フレーム=1秒</p>",
-			"min_value": ["-1"],
-			"max_value": ["2147483647"],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Facing",
-			"value": ["向きフラグ"],
-			"type": ["int"],
-			"description": "<p>-1で常に親と反対の方を向きます。0で向きを変えません。1で常に親と同じ方を向きます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "Pos",
-			"value": ["x座標, y座標"],
-			"type": ["float", "float"],
-			"description": "<p>親の足元を0, 0とした相対座標を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0, 0"],
-			"load_priority": ["3, 4"]
-		}
-	],
-
-	"quote": [
-		{"title": "BindToRoot - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#BindToRoot"},
-		{"title": "BindToRoot - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#bindtoroot"},
-		{"title": "BindToRoot - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#bindtoroot"},
-		{"title": "BindToRoot - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/BindToRoot"},
-		{"title": "BindToRoot - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BindToRoot&protocol=http"},
-		{"title": "BindToRoot - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#BindToRoot"},
-		{"title": "BindToRoot - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "BindToRoot",
+    "target": "Helper自身",
+    "category": [
+      "位置の固定",
+      "ルートキャラクター基準での位置固定"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "BindToRoot",
+  "description": "<p>Helperのステート内で記述します。そのhelperを呼び出したステートのスプライトを基準に位置を固定します。</p><p>親がHelperの場合、当然そのHelperのスプライトが対象となります。</p><p>※Helper等がルートの場合、ルートがDestroySelfすると、このステートコントローラーは無効になります。でも、Helperがルートになるって、ありえるのか？なお、親がDestroySelfした場合も、無効となります。</p>",
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "Time",
+      "value": [
+        "固定時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>固定する時間をフレーム単位で指定します。</p><p>-1で固定時間が永続化。</p><p>※60フレーム=1秒</p>",
+      "min_value": [
+        "-1"
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 1,
+          "display": "1 tick 固定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bindtoroot-local-2002",
+              "bindtoroot-local-1.0",
+              "bindtoroot-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>固定を有効にする tick 数を整数式で指定します。省略時は <code>1</code> です。</p>",
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "bindtoroot-local-2002",
+            "bindtoroot-local-1.0",
+            "bindtoroot-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Facing",
+      "value": [
+        "向きフラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>-1で常に親と反対の方を向きます。0で向きを変えません。1で常に親と同じ方を向きます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 0,
+          "display": "向きを変えない",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bindtoroot-local-2002",
+              "bindtoroot-local-1.0",
+              "bindtoroot-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>-1</code> ならルートと反対方向、<code>1</code> ならルートと同じ方向を固定中に向き続けます。<code>0</code> ならルートの向きが変わっても実行者の向きを変えません。省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "bindtoroot-local-2002",
+            "bindtoroot-local-1.0",
+            "bindtoroot-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Pos",
+      "value": [
+        "x座標, y座標"
+      ],
+      "type": [
+        "float",
+        "float"
+      ],
+      "description": "<p>親の足元を0, 0とした相対座標を指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0, 0"
+      ],
+      "load_priority": [
+        "3, 4"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0, 0",
+          "display": "ルートの軸",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bindtoroot-local-2002",
+              "bindtoroot-local-1.0",
+              "bindtoroot-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>ルートの軸からの x, y オフセットを浮動小数点式で指定します。省略時は <code>0, 0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "bindtoroot-local-2002",
+            "bindtoroot-local-1.0",
+            "bindtoroot-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "BindToRoot - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#BindToRoot"
+    },
+    {
+      "title": "BindToRoot - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#bindtoroot"
+    },
+    {
+      "title": "BindToRoot - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#bindtoroot"
+    },
+    {
+      "title": "BindToRoot - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/BindToRoot"
+    },
+    {
+      "title": "BindToRoot - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BindToRoot&protocol=http"
+    },
+    {
+      "title": "BindToRoot - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#BindToRoot"
+    },
+    {
+      "title": "BindToRoot - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"
+    },
+    {
+      "id": "bindtoroot-local-2002",
+      "title": "BindToRoot — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#BindToRoot",
+      "source_type": "official_document"
+    },
+    {
+      "id": "bindtoroot-local-1.0",
+      "title": "BindToRoot — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#bindtoroot",
+      "source_type": "official_document"
+    },
+    {
+      "id": "bindtoroot-local-1.1",
+      "title": "BindToRoot — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#bindtoroot",
+      "source_type": "official_document"
+    },
+    {
+      "id": "bindtoroot-legacy-data",
+      "title": "BindToRoot — 移行前の説明・範囲原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/e828fb2e1feb852af7e8a7cfc8b2150249f242ad/src/content/state-controllers/BindToRoot.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>Helper である実行者を、ルートキャラクターの軸を基準とする位置へ固定します。実行者が Helper でない場合は何も起きません。ルートが無効になると固定は終了します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "bindtoroot-local-2002",
+        "bindtoroot-local-1.0",
+        "bindtoroot-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "bindtoroot-local-2002",
+      "bindtoroot-local-1.0",
+      "bindtoroot-local-1.1"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で Helper 専用、ルート基準、ルート無効時の終了、任意の Time / Facing / Pos と既定値を確認。旧 description の親基準説明、Time=-1、32-bit 範囲を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 description は BindToRoot でも呼び出したステートや親 Helper のスプライトを基準にすると説明する。公式3資料はルート基準とするため、旧文を原位置に保持し、公開本文では使用しない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "bindtoroot-local-2002",
+          "bindtoroot-local-1.0",
+          "bindtoroot-local-1.1",
+          "bindtoroot-legacy-data"
+        ],
+        "comment": "2026-10-01: 固定基準の記述差を確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 Time 説明とメタ情報は <code>-1</code> で永続、最小値 <code>-1</code>、最大値 <code>2147483647</code> とする。原文と値は保持しているが、今回確認した公式コントローラー資料には記載がないため公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "bindtoroot-local-2002",
+          "bindtoroot-local-1.0",
+          "bindtoroot-local-1.1",
+          "bindtoroot-legacy-data"
+        ],
+        "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。"
+      }
+    }
+  ]
 }

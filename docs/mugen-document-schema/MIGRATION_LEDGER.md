@@ -132,3 +132,7 @@ TargetBind / TargetDrop / TargetFacing を追加し、累計68件・残り166件
 ## 2026-10-01：bind-position-01
 
 BindToParent / BindToRoot / BindToTarget を追加し、累計71件・残り163件です。Helper 専用の親・ルート基準、各 Time / Facing / Pos、Target の ID と基準位置を保存済み公式資料へ対応させました。BindToRoot の旧親基準説明は原本を保持して公開文だけを訂正しています。Parent / Root の Time=-1 と32-bit範囲、Target の x/y 省略値、-1025 座標、次フレーム移動、速度同期、負数警告は条件不足のため非公開です。Target Pos の読み込み順末尾 `?` も推測していません。
+
+## 2026-10-01：target-velocity-01
+
+TargetVelAdd / TargetVelSet を追加し、累計73件・残り161件です。加算と設定、任意 X / Y、軸を省略した場合の非変更、ID=-1 の全対象、各正方向を保存済み公式資料へ対応させました。TargetVelSet の X 正方向は公式3資料が実行者基準、旧 JSON がターゲット基準とするため、旧文を保持して公開説明だけを公式記載へ合わせ、差異を内部記録に残しています。

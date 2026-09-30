@@ -355,3 +355,20 @@ npm run mugen:batch -- --batch bind-position-01 --target BindToParent --target B
 ```
 
 このバッチは適用済みです。次は TargetVelAdd / TargetVelSet のターゲット速度操作を照合します。
+
+## target-velocity-01：ターゲット速度の加算・設定2件
+
+2026-10-01、TargetVelAdd / TargetVelSet を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/target-velocity-01/` へ保存しています。
+
+- TargetVelAdd は対象ターゲットの現在速度へ X / Y を加算し、TargetVelSet は指定した X / Y へ設定します。両方とも X / Y は任意で片方だけを指定でき、省略した軸の速度は変更しません。
+- ID は任意の整数式で、省略時は -1 となり、すべてのターゲットを対象にします。既存の読み込み順1・2・3には管理者確認を付けました。
+- 両コントローラーとも Y の正方向は画面下です。TargetVelAdd の X 正方向は各ターゲットが向いている方向、TargetVelSet は実行者が向いている方向です。
+- TargetVelSet の旧 X / Y description は X 正方向もターゲット基準とします。原文を保持し、保存済み公式3資料に基づく実行者基準の説明を公開しました。対象ビルド別の実機照合までは行っていないため、差異を内部 `research` に残しています。
+
+```sh
+npm run mugen:batch-baseline -- --batch target-velocity-01
+npm run mugen:batch -- --batch target-velocity-01 --target TargetVelAdd --target TargetVelSet
+npm run mugen:batch -- --batch target-velocity-01 --target TargetVelAdd --target TargetVelSet --apply
+```
+
+このバッチは適用済みです。次は HitAdd / MoveHitReset / HitVelSet のヒット関連制御を照合します。

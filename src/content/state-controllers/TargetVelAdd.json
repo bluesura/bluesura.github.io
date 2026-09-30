@@ -1,67 +1,301 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "TargetVelAdd",
-		"target": "ターゲット",
-		"category": ["速度の操作","現在の速度への加算"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "TargetVelAdd",
-	"description": "<p>ターゲットの速度を増減します。</p>",
-	"category": "state",
-	"associated_state": [
-		"BindToTarget","TargetBind",
-		"TargetDrop","TargetFacing","TargetLifeAdd","TargetPowerAdd",
-		"TargetState","TargetVelSet"
-	],
-
-	"parameter": [
-		{
-			"parameter": "ID",
-			"value": ["ヒットID"],
-			"type": ["int"],
-			"description": "<p>対象とするターゲットのヒットIDを指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1 ;すべてのターゲットが対象"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "X",
-			"value": ["水平速度"],
-			"type": ["float"],
-			"description": "<p>各方向の速度を指定。水平方向は、ターゲットが向いている方向が正。垂直方向は、下方向が正です。両方同時に指定できますし、どちらか一方指定してもかまいません。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [""],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "Y",
-			"value": ["垂直速度"],
-			"type": ["float"],
-			"description": "<p>各方向の速度を指定。水平方向は、ターゲットが向いている方向が正。垂直方向は、下方向が正です。両方同時に指定できますし、どちらか一方指定してもかまいません。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [""],
-			"load_priority": ["3"]
-		}
-	],
-
-	"quote": [
-		{"title": "TargetVelAdd - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetVelAdd"},
-		{"title": "TargetVelAdd - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#targetveladd"},
-		{"title": "TargetVelAdd - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#targetveladd"},
-		{"title": "TargetVelAdd - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TargetVelAdd"},
-		{"title": "TargetVelAdd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetVelAdd&protocol=http"},
-		{"title": "TargetVelAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetVelAdd"},
-		{"title": "TargetVelAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "TargetVelAdd",
+    "target": "ターゲット",
+    "category": [
+      "速度の操作",
+      "現在の速度への加算"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "TargetVelAdd",
+  "description": "<p>ターゲットの速度を増減します。</p>",
+  "category": "state",
+  "associated_state": [
+    "BindToTarget",
+    "TargetBind",
+    "TargetDrop",
+    "TargetFacing",
+    "TargetLifeAdd",
+    "TargetPowerAdd",
+    "TargetState",
+    "TargetVelSet"
+  ],
+  "parameter": [
+    {
+      "parameter": "ID",
+      "value": [
+        "ヒットID"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>対象とするターゲットのヒットIDを指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "-1 ;すべてのターゲットが対象"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": -1,
+          "display": "すべてのターゲット",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "targetveladd-local-2002",
+              "targetveladd-local-1.0",
+              "targetveladd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>速度を変更するターゲットの HitDef ID を整数式で指定します。一致する ID のターゲットだけが対象です。省略時は <code>-1</code> で、すべてのターゲットを対象にします。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "targetveladd-local-2002",
+            "targetveladd-local-1.0",
+            "targetveladd-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "X",
+      "value": [
+        "水平速度"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>各方向の速度を指定。水平方向は、ターゲットが向いている方向が正。垂直方向は、下方向が正です。両方同時に指定できますし、どちらか一方指定してもかまいません。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "none",
+          "display": "X軸の速度を変更しない",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "targetveladd-local-2002",
+              "targetveladd-local-1.0",
+              "targetveladd-local-1.1"
+            ],
+            "comment": "X と Y は任意で、一方だけを指定できる。"
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>各ターゲットの X 速度へ加算する量を浮動小数点式で指定します。正数はそのターゲットが向いている方向です。省略時は X 速度を変更しません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "targetveladd-local-2002",
+            "targetveladd-local-1.0",
+            "targetveladd-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Y",
+      "value": [
+        "垂直速度"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>各方向の速度を指定。水平方向は、ターゲットが向いている方向が正。垂直方向は、下方向が正です。両方同時に指定できますし、どちらか一方指定してもかまいません。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "3"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "none",
+          "display": "Y軸の速度を変更しない",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "targetveladd-local-2002",
+              "targetveladd-local-1.0",
+              "targetveladd-local-1.1"
+            ],
+            "comment": "X と Y は任意で、一方だけを指定できる。"
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>各ターゲットの Y 速度へ加算する量を浮動小数点式で指定します。正数は画面下方向です。省略時は Y 速度を変更しません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "targetveladd-local-2002",
+            "targetveladd-local-1.0",
+            "targetveladd-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "TargetVelAdd - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetVelAdd"
+    },
+    {
+      "title": "TargetVelAdd - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#targetveladd"
+    },
+    {
+      "title": "TargetVelAdd - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#targetveladd"
+    },
+    {
+      "title": "TargetVelAdd - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TargetVelAdd"
+    },
+    {
+      "title": "TargetVelAdd - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetVelAdd&protocol=http"
+    },
+    {
+      "title": "TargetVelAdd - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetVelAdd"
+    },
+    {
+      "title": "TargetVelAdd - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"
+    },
+    {
+      "id": "targetveladd-local-2002",
+      "title": "TargetVelAdd — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetVelAdd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "targetveladd-local-1.0",
+      "title": "TargetVelAdd — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#targetveladd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "targetveladd-local-1.1",
+      "title": "TargetVelAdd — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#targetveladd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "targetveladd-legacy-data",
+      "title": "TargetVelAdd — 移行前の説明原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/4d8502e85ba2c9111be15796297f4b8ba96e14cb/src/content/state-controllers/TargetVelAdd.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>対象ターゲットの現在速度に、<code>X</code> と <code>Y</code> で指定した量を加算します。<code>ID</code> で対象を絞り込めます。X の正方向は各ターゲットが向いている方向、Y の正方向は画面下です。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "targetveladd-local-2002",
+        "targetveladd-local-1.0",
+        "targetveladd-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "targetveladd-local-2002",
+      "targetveladd-local-1.0",
+      "targetveladd-local-1.1"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で速度への加算、X / Y の任意指定、正方向、任意 ID、ID=-1 の全対象を確認。"
+  }
 }

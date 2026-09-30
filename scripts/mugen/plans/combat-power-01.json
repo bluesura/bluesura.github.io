@@ -1,0 +1,219 @@
+{
+  "id": "combat-power-01",
+  "reviewed_on": "2026-09-30",
+  "description": "AttackMulSet / DefenceMulSet / PowerAdd / PowerSet の必須値と基本動作を保存済み公式資料へ対応させる。公式資料間で食い違う DefenceMulSet の倍率、実機記録がない特殊値・適用範囲・ゲージ制限・RoundState 条件は原本を保持して公開ビューから外す。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "AttackMulSet",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者の攻撃倍率を設定します。実行者が与えるダメージは、指定した倍率で拡大または縮小されます。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["attackmulset-local-2002", "attackmulset-local-1.0", "attackmulset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        {
+          "path": ["parameter", 0, "default"],
+          "value": [{ "kind": "required", "display": "攻撃倍率を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["attackmulset-local-2002", "attackmulset-local-1.0", "attackmulset-local-1.1"] } }]
+        },
+        {
+          "path": ["parameter", 0, "documentation"],
+          "value": {
+            "description": "<p>攻撃倍率を浮動小数点式で指定します。たとえば <code>2</code> なら、与えるダメージは2倍になります。省略できません。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["attackmulset-local-2002", "attackmulset-local-1.0", "attackmulset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        {
+          "path": ["evidence"],
+          "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["attackmulset-local-2002", "attackmulset-local-1.0", "attackmulset-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で攻撃倍率、必須の浮動小数点 value、2で与ダメージが2倍になることを確認。効果時間、負数・0、攻撃主体別の適用範囲を確認済みとするものではない。" }
+        },
+        {
+          "path": ["notes"],
+          "value": [{
+            "kind": "research",
+            "content": "<p>旧 description は効果が1フレームとし、旧 value 説明は負数で回復、0で一律1ダメージ、通常攻撃と Projectile の state 攻撃には反映される一方で Helper を介した攻撃には適用されない、と記録している。原文は保持しているが、今回確認した公式コントローラー資料だけでは条件を確定できず、実機記録もないため公開本文では断定しない。</p>",
+            "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["attackmulset-local-2002", "attackmulset-local-1.0", "attackmulset-local-1.1", "attackmulset-legacy-data"], "comment": "2026-09-30: 保存済み公式資料と旧 JSON の静的照合。特殊値と攻撃主体別の実機確認ではない。" }
+          }]
+        },
+        { "path": ["quote", "-"], "value": { "id": "attackmulset-local-2002", "title": "AttackMulSet — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AttackMulSet", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "attackmulset-local-1.0", "title": "AttackMulSet — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#attackmulset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "attackmulset-local-1.1", "title": "AttackMulSet — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#attackmulset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "attackmulset-legacy-data", "title": "AttackMulSet — 移行前の説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/6e20511ce6a81ecf23379321401644d75e4499a3/src/content/state-controllers/AttackMulSet.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / parameter[0].description / notes", "reason": "効果時間、負数・0、攻撃主体別の適用範囲は実機未確認。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "DefenceMulSet",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者の防御倍率を設定し、実行者が受けるダメージの倍率を変更します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["defencemulset-local-2002", "defencemulset-local-1.0", "defencemulset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        {
+          "path": ["parameter", 0, "default"],
+          "value": [{ "kind": "required", "display": "防御倍率を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["defencemulset-local-2002", "defencemulset-local-1.0", "defencemulset-local-1.1"] } }]
+        },
+        {
+          "path": ["parameter", 0, "documentation"],
+          "value": {
+            "description": "<p>防御倍率を浮動小数点式で指定します。省略できません。倍率と実ダメージの関係は、対象とする MUGEN 世代の仕様を確認してください。</p>",
+            "evidence": { "status": "conflicting", "basis": ["official_document"], "source_refs": ["defencemulset-local-2002", "defencemulset-local-1.0", "defencemulset-local-1.1"], "comment": "2002.04.14 は指定値の逆数、1.0 / 1.1 は指定値を直接用いる説明と例を掲載している。" }
+          }
+        },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        {
+          "path": ["evidence"],
+          "value": { "status": "conflicting", "basis": ["official_document"], "source_refs": ["defencemulset-local-2002", "defencemulset-local-1.0", "defencemulset-local-1.1"], "comment": "2026-09-30: 必須の浮動小数点 value と防御倍率の設定は全資料で一致する。2002.04.14 の reciprocal と1.0 / 1.1 の直接倍率は一致しないため、具体的な倍率例は公開本文で統合しない。" }
+        },
+        {
+          "path": ["notes"],
+          "value": [{
+            "kind": "research",
+            "content": "<p>Elecbyte 2002.04.14 資料は受けるダメージを指定値の逆数で変化させ、<code>value = 2</code> で半減すると説明する。1.0 / 1.1 資料は指定値を直接用い、<code>value = .5</code> で半減する例を掲載し、LifeAdd は影響を受けないとしている。旧 JSON は後者と同じ直接乗算に加え、Win版では MoveType=H のときだけ有効、1ヒット目は適用外、負数で回復、0で一律1ダメージと記録している。公式資料間の差と旧追加条件を解消する実機記録がないため、すべて調査記録として保持する。</p>",
+            "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["defencemulset-local-2002", "defencemulset-local-1.0", "defencemulset-local-1.1", "defencemulset-legacy-data"], "comment": "2026-09-30: 保存済み公式資料間の差と旧 JSON を記録。MUGEN 各世代の実機比較ではない。" }
+          }]
+        },
+        { "path": ["quote", "-"], "value": { "id": "defencemulset-local-2002", "title": "DefenceMulSet — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#DefenceMulSet", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "defencemulset-local-1.0", "title": "DefenceMulSet — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#defencemulset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "defencemulset-local-1.1", "title": "DefenceMulSet — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#defencemulset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "defencemulset-legacy-data", "title": "DefenceMulSet — 移行前の説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/6e20511ce6a81ecf23379321401644d75e4499a3/src/content/state-controllers/DefenceMulSet.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "documentation / notes", "reason": "公式世代間の倍率解釈の差と、Win版の MoveType・初回ヒット・特殊値は実機比較が必要。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "PowerAdd",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者のパワーゲージに、<code>Value</code> で指定した量を加算します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["poweradd-local-2002", "poweradd-local-1.0", "poweradd-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        {
+          "path": ["parameter", 0, "default"],
+          "value": [{ "kind": "required", "display": "パワーへ加算する量を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["poweradd-local-2002", "poweradd-local-1.0", "poweradd-local-1.1"] } }]
+        },
+        {
+          "path": ["parameter", 0, "documentation"],
+          "value": {
+            "description": "<p>パワーゲージへ加算する量を整数式で指定します。省略できません。</p>",
+            "hide_legacy": ["min_value", "max_value"],
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["poweradd-local-2002", "poweradd-local-1.0", "poweradd-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        {
+          "path": ["evidence"],
+          "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["poweradd-local-2002", "poweradd-local-1.0", "poweradd-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で実行者のパワーへ指定量を加算することと、必須の整数 value を確認。値域、ゲージ端での処理、RoundState 条件を確認済みとするものではない。" }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>旧 description は正数で増加、負数で減少し、最終値を 0〜PowerMax に制限すると説明する。旧 value には32-bit整数範囲が記録されている。原文と図は保持しているが、今回確認した公式コントローラー資料には値域とゲージ端での処理が明記されていないため、公開本文とパラメーターメタ情報では断定しない。</p>",
+              "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["poweradd-local-2002", "poweradd-local-1.0", "poweradd-local-1.1", "poweradd-legacy-data"], "comment": "2026-09-30: 保存済み公式資料と旧 JSON の静的照合。値域・上限下限処理の実機確認ではない。" }
+            },
+            {
+              "kind": "research",
+              "legacy_index": 0,
+              "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。",
+              "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["poweradd-legacy-data"], "comment": "2026-09-30: 旧仕様記録を原文のまま対応付けた。対象ビルド、再現手順、実行ログがないため公開しない。" }
+            }
+          ]
+        },
+        { "path": ["quote", "-"], "value": { "id": "poweradd-local-2002", "title": "PowerAdd — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PowerAdd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "poweradd-local-1.0", "title": "PowerAdd — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#poweradd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "poweradd-local-1.1", "title": "PowerAdd — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#poweradd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "poweradd-legacy-data", "title": "PowerAdd — 移行前の説明・値域・仕様記録原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/6e20511ce6a81ecf23379321401644d75e4499a3/src/content/state-controllers/PowerAdd.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / parameter[0].min_value / parameter[0].max_value", "reason": "ゲージ端での処理と32-bit値域は実機未確認。" },
+        { "path": "version[0]", "reason": "RoundState 3 / 4 の記録は対象ビルドと実行ログがない。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "PowerSet",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者のパワーゲージを、<code>Value</code> で指定した値に設定します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["powerset-local-2002", "powerset-local-1.0", "powerset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        {
+          "path": ["parameter", 0, "default"],
+          "value": [{ "kind": "required", "display": "パワーへ設定する値を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["powerset-local-2002", "powerset-local-1.0", "powerset-local-1.1"] } }]
+        },
+        {
+          "path": ["parameter", 0, "documentation"],
+          "value": {
+            "description": "<p>パワーゲージへ設定する値を整数式で指定します。省略できません。</p>",
+            "hide_legacy": ["min_value", "max_value"],
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["powerset-local-2002", "powerset-local-1.0", "powerset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        {
+          "path": ["evidence"],
+          "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["powerset-local-2002", "powerset-local-1.0", "powerset-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で実行者のパワーを指定値へ設定することと、必須の整数 value を確認。値域、ゲージ端での処理、RoundState 条件を確認済みとするものではない。" }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>旧 description は最終値を 0〜PowerMax に制限すると説明し、旧 value には32-bit整数範囲が記録されている。原文と図は保持しているが、今回確認した公式コントローラー資料には値域とゲージ端での処理が明記されていないため、公開本文とパラメーターメタ情報では断定しない。</p>",
+              "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["powerset-local-2002", "powerset-local-1.0", "powerset-local-1.1", "powerset-legacy-data"], "comment": "2026-09-30: 保存済み公式資料と旧 JSON の静的照合。値域・上限下限処理の実機確認ではない。" }
+            },
+            {
+              "kind": "research",
+              "legacy_index": 0,
+              "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。",
+              "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["powerset-legacy-data"], "comment": "2026-09-30: 旧仕様記録を原文のまま対応付けた。対象ビルド、再現手順、実行ログがないため公開しない。" }
+            }
+          ]
+        },
+        { "path": ["quote", "-"], "value": { "id": "powerset-local-2002", "title": "PowerSet — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PowerSet", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "powerset-local-1.0", "title": "PowerSet — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#powerset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "powerset-local-1.1", "title": "PowerSet — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#powerset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "powerset-legacy-data", "title": "PowerSet — 移行前の説明・値域・仕様記録原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/6e20511ce6a81ecf23379321401644d75e4499a3/src/content/state-controllers/PowerSet.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / parameter[0].min_value / parameter[0].max_value", "reason": "ゲージ端での処理と32-bit値域は実機未確認。" },
+        { "path": "version[0]", "reason": "RoundState 3 / 4 の記録は対象ビルドと実行ログがない。" }
+      ]
+    }
+  ]
+}

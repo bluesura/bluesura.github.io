@@ -1,0 +1,101 @@
+{
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "PowerAdd",
+    "target": "実行者自身",
+    "category": [
+      "パワーゲージの操作",
+      "パワーゲージ量の加算・減算"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3",
+    "contributor": [
+      "Iwakick"
+    ]
+  },
+  "title": "PowerAdd",
+  "category": "state",
+  "state": "PowerAdd",
+  "description": "<p>実行者（ステート実行者）のパワーゲージに、<code>Value</code>で指定した量を加算（または減算）します。正数で増加、負数で減少します。</p><p>最終的なパワー値は <code>0</code>～<code>PowerMax</code> の範囲に収まるよう制限されます。<code>PowerMax</code>はキャラクター定義（<code>[Data]</code> の <code>Power</code>）で決まります。</p>",
+    "images": [
+        {
+        "src": "mugen-power-gauge-mechanism.png",
+        "width": "640",
+        "height": "480",
+        "alt": "MUGENにおけるパワーゲージの処理構造図。キャラクターがTriggerで現在のパワー量と最大値を取得し、State（PowerAdd/PowerSet）によってゲージの値を加算・減算・設定する仕組みの解説。"
+        }
+    ],
+  "associated_trigger": [
+    "Power",
+    "PowerMax"
+  ],
+  "associated_state": [
+    "PowerSet"
+  ],
+  "parameter": [
+    {
+      "parameter": "Value",
+      "value": [
+        "増減量"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>パワーゲージへ加算（減算）する量を指定します。</p>",
+      "min_value": [
+        "-2147483648"
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "required",
+      "load_priority": [
+        "1"
+      ]
+    }
+  ],
+	"version": [
+		{"no": "仕様", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}
+	],
+  "sample_code": {
+    "code": [
+      "[State 0, PowerAdd]",
+      "Type = PowerAdd",
+      "Trigger1 = 1",
+      "Value = 0"
+    ]
+  },
+  "code_sample": [
+    {
+      "title": "パワーゲージを自動回復",
+      "description": "<p>毎フレーム、ゲージが <code>1</code> ずつ回復していく設定です（いわゆる「ゲジマシ」）。<code>[StateDef -2]</code> などの常時ステートに記述します。</p>",
+      "code": [
+        "[StateDef -2]",
+        "[State -2, PowerGaugeIncrease]",
+        "Type = PowerAdd",
+        "Trigger1 = 1",
+        "Value = 1"
+      ]
+    }
+  ],
+  "quote": [
+	{
+		"title": "PowerAdd - State Controller Reference(version 2002.04.14)",
+		"url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PowerAdd"
+	},
+    {
+      "title": "PowerAdd - State Controller Reference (Elecbyte)",
+      "url": "https://www.elecbyte.com/mugendocs/sctrls.html#poweradd"
+    },
+    {
+      "title": "PowerAdd - State Controller Reference (Elecbyte 1.1 Beta 1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html#poweradd"
+    },
+    {
+      "title": "CNS data types (32-bit integer range) - MUGEN Archive Docs",
+      "url": "https://mugenarchive.com/forums/downloads.php?do=file&id=30860"
+    }
+  ]
+}

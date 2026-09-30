@@ -1,0 +1,77 @@
+{
+  "id": "target-velocity-01",
+  "reviewed_on": "2026-10-01",
+  "description": "TargetVelAdd / TargetVelSet の加算と設定、対象 ID、軸ごとの任意指定、正方向を保存済み公式資料へ対応させる。TargetVelSet の X 正方向に関する旧説明との差は原文を保持して内部記録に残す。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "TargetVelAdd",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>対象ターゲットの現在速度に、<code>X</code> と <code>Y</code> で指定した量を加算します。<code>ID</code> で対象を絞り込めます。X の正方向は各ターゲットが向いている方向、Y の正方向は画面下です。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetveladd-local-2002", "targetveladd-local-1.0", "targetveladd-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": -1, "display": "すべてのターゲット", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetveladd-local-2002", "targetveladd-local-1.0", "targetveladd-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>速度を変更するターゲットの HitDef ID を整数式で指定します。一致する ID のターゲットだけが対象です。省略時は <code>-1</code> で、すべてのターゲットを対象にします。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetveladd-local-2002", "targetveladd-local-1.0", "targetveladd-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "none", "display": "X軸の速度を変更しない", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetveladd-local-2002", "targetveladd-local-1.0", "targetveladd-local-1.1"], "comment": "X と Y は任意で、一方だけを指定できる。" } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>各ターゲットの X 速度へ加算する量を浮動小数点式で指定します。正数はそのターゲットが向いている方向です。省略時は X 速度を変更しません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetveladd-local-2002", "targetveladd-local-1.0", "targetveladd-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "none", "display": "Y軸の速度を変更しない", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetveladd-local-2002", "targetveladd-local-1.0", "targetveladd-local-1.1"], "comment": "X と Y は任意で、一方だけを指定できる。" } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p>各ターゲットの Y 速度へ加算する量を浮動小数点式で指定します。正数は画面下方向です。省略時は Y 速度を変更しません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetveladd-local-2002", "targetveladd-local-1.0", "targetveladd-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetveladd-local-2002", "targetveladd-local-1.0", "targetveladd-local-1.1"], "comment": "2026-10-01: 保存済み公式資料で速度への加算、X / Y の任意指定、正方向、任意 ID、ID=-1 の全対象を確認。" } },
+        { "path": ["quote", "-"], "value": { "id": "targetveladd-local-2002", "title": "TargetVelAdd — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetVelAdd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetveladd-local-1.0", "title": "TargetVelAdd — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#targetveladd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetveladd-local-1.1", "title": "TargetVelAdd — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#targetveladd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetveladd-legacy-data", "title": "TargetVelAdd — 移行前の説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/4d8502e85ba2c9111be15796297f4b8ba96e14cb/src/content/state-controllers/TargetVelAdd.json", "source_type": "source_code" } }
+      ],
+      "remaining": [{ "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "TargetVelSet",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>対象ターゲットの速度を、<code>X</code> と <code>Y</code> で指定した値へ設定します。<code>ID</code> で対象を絞り込めます。X の正方向は実行者が向いている方向、Y の正方向は画面下です。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetvelset-local-2002", "targetvelset-local-1.0", "targetvelset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": -1, "display": "すべてのターゲット", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetvelset-local-2002", "targetvelset-local-1.0", "targetvelset-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>速度を変更するターゲットの HitDef ID を整数式で指定します。一致する ID のターゲットだけが対象です。省略時は <code>-1</code> で、すべてのターゲットを対象にします。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetvelset-local-2002", "targetvelset-local-1.0", "targetvelset-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "none", "display": "X軸の速度を変更しない", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetvelset-local-2002", "targetvelset-local-1.0", "targetvelset-local-1.1"], "comment": "X と Y は任意で、一方だけを指定できる。" } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>各ターゲットの X 速度を設定する値を浮動小数点式で指定します。正数は実行者が向いている方向です。省略時は X 速度を変更しません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetvelset-local-2002", "targetvelset-local-1.0", "targetvelset-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "none", "display": "Y軸の速度を変更しない", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetvelset-local-2002", "targetvelset-local-1.0", "targetvelset-local-1.1"], "comment": "X と Y は任意で、一方だけを指定できる。" } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p>各ターゲットの Y 速度を設定する値を浮動小数点式で指定します。正数は画面下方向です。省略時は Y 速度を変更しません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetvelset-local-2002", "targetvelset-local-1.0", "targetvelset-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetvelset-local-2002", "targetvelset-local-1.0", "targetvelset-local-1.1"], "comment": "2026-10-01: 保存済み公式資料で速度の設定、X / Y の任意指定、正方向、任意 ID、ID=-1 の全対象を確認。旧 X 説明のターゲット基準を確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [{ "kind": "research", "content": "<p>旧 X / Y description は TargetVelSet の X 正方向をターゲットが向いている方向と説明する。保存済み公式3資料は実行者が向いている方向とするため、旧文を各 parameter に保持し、公開本文では使用しない。</p>", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["targetvelset-local-2002", "targetvelset-local-1.0", "targetvelset-local-1.1", "targetvelset-legacy-data"], "comment": "2026-10-01: 正方向の記述差を確認。対象ビルドでの実機照合ではない。" } }] },
+        { "path": ["quote", "-"], "value": { "id": "targetvelset-local-2002", "title": "TargetVelSet — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetVelSet", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetvelset-local-1.0", "title": "TargetVelSet — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#targetvelset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetvelset-local-1.1", "title": "TargetVelSet — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#targetvelset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetvelset-legacy-data", "title": "TargetVelSet — 移行前の説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/4d8502e85ba2c9111be15796297f4b8ba96e14cb/src/content/state-controllers/TargetVelSet.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "parameter[1].description / notes", "reason": "X 正方向の公式記述と旧説明の差は対象ビルド別の実機照合が必要。" }
+      ]
+    }
+  ]
+}

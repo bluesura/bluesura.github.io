@@ -1,0 +1,101 @@
+{
+  "id": "hit-control-01",
+  "reviewed_on": "2026-10-01",
+  "description": "HitAdd / MoveHitReset / HitVelSet の基本動作、必須値、引数なし構文、被弾速度フラグ、非推奨状態を保存済み公式資料へ対応させる。旧資料だけにある値域、GetHitVar、残存期間、MoveReversed、用途補足は原文を保持して公開ビューから外す。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "HitAdd",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>現在のコンボカウンターに、<code>value</code> で指定したヒット数を加算します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitadd-local-2002", "hitadd-local-1.0", "hitadd-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "コンボカウンターへ加算する数を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitadd-local-2002", "hitadd-local-1.0", "hitadd-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>現在のコンボカウンターへ加算するヒット数を整数式で指定します。省略できません。</p>", "hide_legacy": ["min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitadd-local-2002", "hitadd-local-1.0", "hitadd-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitadd-local-2002", "hitadd-local-1.0", "hitadd-local-1.1"], "comment": "2026-10-01: 保存済み公式資料で現在のコンボカウンターへの加算と必須の整数 value を確認。旧値域、GetHitVar への影響、リセットまでの残存を確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "research", "legacy_index": 0, "content": "GetHItVar()のHitCountには影響しない。", "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["hitadd-legacy-data"], "comment": "2026-10-01: 旧仕様記録を原文のまま保持。対象ビルド、再現手順、実行ログは未確認。" } },
+          { "kind": "research", "legacy_index": 1, "content": "リセットされなければ残り続ける。", "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["hitadd-legacy-data"], "comment": "2026-10-01: 旧仕様記録を原文のまま保持。リセット条件、対象ビルド、実行ログは未確認。" } },
+          { "kind": "research", "content": "<p>旧 min_value / max_value は <code>-2147483647</code> から <code>2147483647</code> を記録する。今回確認した公式コントローラー資料には値域がないため、値を原位置に保持して公開メタ情報から外す。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["hitadd-local-2002", "hitadd-local-1.0", "hitadd-local-1.1", "hitadd-legacy-data"], "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。" } }
+        ] },
+        { "path": ["quote", "-"], "value": { "id": "hitadd-local-2002", "title": "HitAdd — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitAdd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "hitadd-local-1.0", "title": "HitAdd — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#hitadd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "hitadd-local-1.1", "title": "HitAdd — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitadd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "hitadd-legacy-data", "title": "HitAdd — 移行前の値域・仕様記録原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/426c438aecde152c2b6ae44a1f16015d468b658a/src/content/state-controllers/HitAdd.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / parameter[0].min_value / max_value", "reason": "GetHitVar への影響、残存期間、値域は実機未確認。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "MoveHitReset",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者の movehit フラグを0へ戻します。実行後は <code>MoveContact</code>、<code>MoveGuarded</code>、<code>MoveHit</code> が0を返します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["movehitreset-local-2002", "movehitreset-local-1.0", "movehitreset-local-1.1"] }
+          }
+        },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["movehitreset-local-2002", "movehitreset-local-1.0", "movehitreset-local-1.1"], "comment": "2026-10-01: 保存済み公式資料で引数なしの movehit リセットと MoveContact / MoveGuarded / MoveHit の0を確認。MoveReversed への影響を確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [{ "kind": "research", "content": "<p>旧 description は Win版では <code>MoveReversed</code> も0にすると記録する。今回確認した公式3資料は MoveContact / MoveGuarded / MoveHit だけを挙げており、対象ビルドと実行ログがないため、旧文を原位置に保持して公開本文では断定しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["movehitreset-local-2002", "movehitreset-local-1.0", "movehitreset-local-1.1", "movehitreset-legacy-data"], "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。MoveReversed の実機確認ではない。" } }] },
+        { "path": ["quote", "-"], "value": { "id": "movehitreset-local-2002", "title": "MoveHitReset — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#MoveHitReset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "movehitreset-local-1.0", "title": "MoveHitReset — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#movehitreset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "movehitreset-local-1.1", "title": "MoveHitReset — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#movehitreset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "movehitreset-legacy-data", "title": "MoveHitReset — 移行前の説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/426c438aecde152c2b6ae44a1f16015d468b658a/src/content/state-controllers/MoveHitReset.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / notes", "reason": "MoveReversed への影響は対象ビルド別の実機確認が必要。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "HitVelSet",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>被弾中の実行者について、指定した速度成分を HitDef 由来の被弾速度へ設定します。このステートコントローラーは保存済み公式資料で非推奨とされています。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitvelset-local-2002", "hitvelset-local-1.0", "hitvelset-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "none", "display": "X速度を変更しない", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitvelset-local-2002", "hitvelset-local-1.0", "hitvelset-local-1.1"], "comment": "X は任意で、非0の場合だけ被弾速度へ変更する。" } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>0以外なら、実行者の X 速度を HitDef 由来の被弾 X 速度へ設定します。<code>0</code> または省略時は X 速度を変更しません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitvelset-local-2002", "hitvelset-local-1.0", "hitvelset-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "none", "display": "Y速度を変更しない", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitvelset-local-2002", "hitvelset-local-1.0", "hitvelset-local-1.1"], "comment": "Y は任意で、非0の場合だけ被弾速度へ変更する。" } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>0以外なら、実行者の Y 速度を HitDef 由来の被弾 Y 速度へ設定します。<code>0</code> または省略時は Y 速度を変更しません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitvelset-local-2002", "hitvelset-local-1.0", "hitvelset-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitvelset-local-2002", "hitvelset-local-1.0", "hitvelset-local-1.1"], "comment": "2026-10-01: 保存済み公式資料で被弾速度の反映、任意 X / Y、非0フラグ、非推奨状態を確認。旧制作用途を確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "research", "legacy_index": 0, "content": "このステートコントローラーの使用は非推奨です！", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["hitvelset-local-2002", "hitvelset-local-1.0", "hitvelset-local-1.1", "hitvelset-legacy-data"], "comment": "2026-10-01: 非推奨自体は公式3資料で確認したが、旧 no の『MUGEN 1.0以上』という範囲は2002.04.14資料の Obsolete と一致しない。原文を保持し、公開説明は世代を限定しない。" } },
+          { "kind": "research", "content": "<p>旧 description は共通ステートを上書きするときや、相手に参照させるステートで使用すると説明する。原文は保持しているが、今回確認した公式コントローラー資料にはこの制作上の用途補足がないため公開本文では断定しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["hitvelset-local-2002", "hitvelset-local-1.0", "hitvelset-local-1.1", "hitvelset-legacy-data"], "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。" } }
+        ] },
+        { "path": ["quote", "-"], "value": { "id": "hitvelset-local-2002", "title": "HitVelSet — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitVelSet", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "hitvelset-local-1.0", "title": "HitVelSet — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#hitvelset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "hitvelset-local-1.1", "title": "HitVelSet — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitvelset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "hitvelset-legacy-data", "title": "HitVelSet — 移行前の説明・非推奨記録原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/426c438aecde152c2b6ae44a1f16015d468b658a/src/content/state-controllers/HitVelSet.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / version", "reason": "旧用途補足と非推奨の旧バージョン範囲は原文を保持する。" }
+      ]
+    }
+  ]
+}

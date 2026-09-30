@@ -1,75 +1,409 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "TargetBind",
-		"target": "ターゲット",
-		"category": ["ターゲットの操作","ターゲットの自身を基準とした位置固定"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "TargetBind",
-	"description": "<p>自分の位置を基点にターゲット(自分の攻撃によりヒット/ガード中の相手)を実行したフレームからTime - 1フレーム後までTargetを実行者を基準とした位置に固定し続けます。</p><p>注意点が2点あり、実行したフレームからTime - 1フレーム後まで、Targetの速度は実行者の速度と同じになる。Target系のステートコントローラーは、特定のターゲットを指定できないため、敵が2以上いるSimulモードでは不具合が出やすいです。</p><p>例えば、1方がヒット、1方がガードだった場合でも、両方巻き込んでしまいます。両方ともヒットIDは同じであるため、ヒットの方だけ対象にすることは不可能です。</p><p>主に投げ技に使用。</p>",
-	"category": "state",
-	"associated_state": [
-		"BindToTarget",
-		"TargetDrop","TargetFacing","TargetLifeAdd","TargetPowerAdd",
-		"TargetState","TargetVelAdd","TargetVelSet"
-	],
-
-
-	"version": [
-		{"no": "", "content": "Posを省略してしまうと、Targetを実行者からP2BodyDist x = -1025, P2BodyDist y = -1025の位置に移動させる。"},
-		{"no": "", "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。"},
-		{"no": "警告文", "content": "Set ILLEGAL TARGET BINDTIME:Timeに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "ID",
-			"value": ["ヒットID"],
-			"type": ["int"],
-			"description": "<p>固定する敵のヒットIDを指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1 ;全てのターゲットを固定"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Time",
-			"value": ["固定時間"],
-			"type": ["int"],
-			"description": "<p>固定する時間をフレーム単位で指定。”Time = 0”では動作しない。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1 ;1フレームだけ実行"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "Pos",
-			"value": ["x位置, y位置"],
-			"type": ["float", "float"],
-			"description": "<p>プレイヤーの原点座標からの位置を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0, 0 ;のはずだけど"],
-			"load_priority": ["3,  4"]
-		}
-	],
-
-	"quote": [
-		{"title": "TargetBind - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetBind"},
-		{"title": "TargetBind - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#targetbind"},
-		{"title": "TargetBind - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#targetbind"},
-		{"title": "TargetBind - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TargetBind"},
-		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-		{"title": "TargetBind - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetBind&protocol=http"},
-		{"title": "TargetBind - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetBind"},
-		{"title": "TargetBind - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "TargetBind",
+    "target": "ターゲット",
+    "category": [
+      "ターゲットの操作",
+      "ターゲットの自身を基準とした位置固定"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "TargetBind",
+  "description": "<p>自分の位置を基点にターゲット(自分の攻撃によりヒット/ガード中の相手)を実行したフレームからTime - 1フレーム後までTargetを実行者を基準とした位置に固定し続けます。</p><p>注意点が2点あり、実行したフレームからTime - 1フレーム後まで、Targetの速度は実行者の速度と同じになる。Target系のステートコントローラーは、特定のターゲットを指定できないため、敵が2以上いるSimulモードでは不具合が出やすいです。</p><p>例えば、1方がヒット、1方がガードだった場合でも、両方巻き込んでしまいます。両方ともヒットIDは同じであるため、ヒットの方だけ対象にすることは不可能です。</p><p>主に投げ技に使用。</p>",
+  "category": "state",
+  "associated_state": [
+    "BindToTarget",
+    "TargetDrop",
+    "TargetFacing",
+    "TargetLifeAdd",
+    "TargetPowerAdd",
+    "TargetState",
+    "TargetVelAdd",
+    "TargetVelSet"
+  ],
+  "version": [
+    {
+      "no": "",
+      "content": "Posを省略してしまうと、Targetを実行者からP2BodyDist x = -1025, P2BodyDist y = -1025の位置に移動させる。"
+    },
+    {
+      "no": "",
+      "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。"
+    },
+    {
+      "no": "警告文",
+      "content": "Set ILLEGAL TARGET BINDTIME:Timeに-2以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "ID",
+      "value": [
+        "ヒットID"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>固定する敵のヒットIDを指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "-1 ;全てのターゲットを固定"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": -1,
+          "display": "すべてのターゲット",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "targetbind-local-2002",
+              "targetbind-local-1.0",
+              "targetbind-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>固定するターゲット ID を整数式で指定します。一致する ID のターゲットだけが対象です。省略時は <code>-1</code> で、すべてのターゲットを固定します。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "targetbind-local-2002",
+            "targetbind-local-1.0",
+            "targetbind-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Time",
+      "value": [
+        "固定時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>固定する時間をフレーム単位で指定。”Time = 0”では動作しない。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1 ;1フレームだけ実行"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 1,
+          "display": "1 tick 固定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "targetbind-local-2002",
+              "targetbind-local-1.0",
+              "targetbind-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>固定を有効にする tick 数を整数式で指定します。省略時は <code>1</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "targetbind-local-2002",
+            "targetbind-local-1.0",
+            "targetbind-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Pos",
+      "value": [
+        "x位置, y位置"
+      ],
+      "type": [
+        "float",
+        "float"
+      ],
+      "description": "<p>プレイヤーの原点座標からの位置を指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0, 0 ;のはずだけど"
+      ],
+      "load_priority": [
+        "3,  4"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0, 0",
+          "display": "実行者の軸",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "targetbind-local-2002",
+              "targetbind-local-1.0",
+              "targetbind-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>実行者の軸からの x, y オフセットを浮動小数点式で指定します。省略時は <code>0, 0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "targetbind-local-2002",
+            "targetbind-local-1.0",
+            "targetbind-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "TargetBind - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetBind"
+    },
+    {
+      "title": "TargetBind - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#targetbind"
+    },
+    {
+      "title": "TargetBind - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#targetbind"
+    },
+    {
+      "title": "TargetBind - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TargetBind"
+    },
+    {
+      "title": "不具合・対策まとめ - MUGENの便覧",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "id": "targetbind-warning-binran",
+      "source_type": "community_documentation"
+    },
+    {
+      "title": "TargetBind - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetBind&protocol=http"
+    },
+    {
+      "title": "TargetBind - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetBind"
+    },
+    {
+      "title": "TargetBind - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state2.htm"
+    },
+    {
+      "id": "targetbind-freeze-binran",
+      "title": "Target リダイレクト中の複数ターゲット記録 — MUGENの便覧",
+      "url": "http://mugenbinran.web.fc2.com/error.html#02",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "targetbind-freeze-wiki",
+      "title": "TargetFacing — MUGEN CNS WIKI CHAOS@予定",
+      "url": "http://www49.atwiki.jp/mugencns/pages/263.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "targetbind-local-2002",
+      "title": "TargetBind — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetBind",
+      "source_type": "official_document"
+    },
+    {
+      "id": "targetbind-local-1.0",
+      "title": "TargetBind — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#targetbind",
+      "source_type": "official_document"
+    },
+    {
+      "id": "targetbind-local-1.1",
+      "title": "TargetBind — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#targetbind",
+      "source_type": "official_document"
+    },
+    {
+      "id": "targetbind-legacy-data",
+      "title": "TargetBind — 移行前の説明・不具合・警告原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/0d581b7c5018eeeb63adf6803437490811703cb8/src/content/state-controllers/TargetBind.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>指定したターゲットを、実行者の軸を基準とする位置へ一定時間固定します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "targetbind-local-2002",
+        "targetbind-local-1.0",
+        "targetbind-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "targetbind-local-2002",
+      "targetbind-local-1.0",
+      "targetbind-local-1.1"
+    ],
+    "comment": "2026-09-30: 保存済み公式資料で位置固定、任意の Time / ID / Pos と既定値を確認。速度同期、Simul の旧説明、フリーズ、負数警告を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "Posを省略してしまうと、Targetを実行者からP2BodyDist x = -1025, P2BodyDist y = -1025の位置に移動させる。",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "targetbind-local-2002",
+          "targetbind-local-1.0",
+          "targetbind-local-1.1",
+          "targetbind-legacy-data"
+        ],
+        "comment": "2026-09-30: 公式3資料は Pos 省略時 0,0 とする。旧記録の対象ビルド・再現手順がないため原文を内部保持する。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 1,
+      "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "targetbind-freeze-binran",
+          "targetbind-freeze-wiki",
+          "targetbind-legacy-data"
+        ],
+        "comment": "2026-09-30: 旧記録と参照を保持。対象ビルド、具体的なリダイレクト式、ターゲット数、実行ログは未確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 2,
+      "content": "Set ILLEGAL TARGET BINDTIME:Timeに-2以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "targetbind-warning-binran",
+          "targetbind-legacy-data"
+        ],
+        "comment": "2026-09-30: 旧警告文と条件を保持。完全なメッセージ、対象ビルド、実行ログは未確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 description は固定中のターゲット速度が実行者と同じになるとし、Target 系コントローラーでは特定ターゲットを指定できないため Simul で複数対象を巻き込むと説明する。公式資料は ID で対象を絞り込めることを明記するため、旧文を原位置に保持し、公開本文では使用しない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "targetbind-local-2002",
+          "targetbind-local-1.0",
+          "targetbind-local-1.1",
+          "targetbind-legacy-data"
+        ],
+        "comment": "2026-09-30: 対象選択の記述差を確認。速度同期の実機確認ではない。"
+      }
+    }
+  ]
 }

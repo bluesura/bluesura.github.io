@@ -1,60 +1,267 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "TargetFacing",
-		"target": "ターゲット",
-		"category": ["ステータス","キャラクターの向きの取得"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "TargetFacing",
-	"description": "<p>ターゲットの向きを変更します。投げ技などに使用。</p>",
-	"category": "state",
-	"associated_state": [
-		"BindToTarget","TargetBind",
-		"TargetDrop","TargetLifeAdd","TargetPowerAdd",
-		"TargetState","TargetVelAdd","TargetVelSet"
-	],
-
-	"version": [
-		{"no": "-", "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "ID",
-			"value": ["ヒットID"],
-			"type": ["int"],
-			"description": "<p>対象とするターゲットのヒットIDを指定。でも、ヒットIDって、IDの意味があまりないです。。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1 ;全てのターゲットが対象"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "value",
-			"value": ["敵の向き"],
-			"type": ["int"],
-			"description": "<p>正数を指定すると、ターゲットがプレイヤーの方向を、負数で逆を向きます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["1"],
-			"load_priority": ["?"]
-		}
-	],
-
-	"quote": [
-		{"title": "TargetFacing - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetFacing"},
-		{"title": "TargetFacing - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#targetfacing"},
-		{"title": "TargetFacing - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#targetfacing"},
-		{"title": "TargetFacing - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TargetFacing"},
-		{"title": "TargetFacing - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetFacing&protocol=http"},
-		{"title": "TargetFacing - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/263.html"},
-		{"title": "TargetFacing - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetFacing"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "TargetFacing",
+    "target": "ターゲット",
+    "category": [
+      "ステータス",
+      "キャラクターの向きの取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "TargetFacing",
+  "description": "<p>ターゲットの向きを変更します。投げ技などに使用。</p>",
+  "category": "state",
+  "associated_state": [
+    "BindToTarget",
+    "TargetBind",
+    "TargetDrop",
+    "TargetLifeAdd",
+    "TargetPowerAdd",
+    "TargetState",
+    "TargetVelAdd",
+    "TargetVelSet"
+  ],
+  "version": [
+    {
+      "no": "-",
+      "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "ID",
+      "value": [
+        "ヒットID"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>対象とするターゲットのヒットIDを指定。でも、ヒットIDって、IDの意味があまりないです。。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "-1 ;全てのターゲットが対象"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": -1,
+          "display": "すべてのターゲット",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "targetfacing-local-2002",
+              "targetfacing-local-1.0",
+              "targetfacing-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>向きを変えるターゲット ID を整数式で指定します。一致する ID のターゲットだけが対象です。省略時は <code>-1</code> で、すべてのターゲットを対象にします。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "targetfacing-local-2002",
+            "targetfacing-local-1.0",
+            "targetfacing-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "value",
+      "value": [
+        "敵の向き"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>正数を指定すると、ターゲットがプレイヤーの方向を、負数で逆を向きます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "実行者を基準とする向きを指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "targetfacing-local-2002",
+              "targetfacing-local-1.0",
+              "targetfacing-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>正数なら実行者と同じ方向、負数なら実行者と反対方向を向かせます。省略できません。</p>",
+        "hide_legacy": [
+          "default_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "targetfacing-local-2002",
+            "targetfacing-local-1.0",
+            "targetfacing-local-1.1"
+          ]
+        }
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "TargetFacing - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetFacing"
+    },
+    {
+      "title": "TargetFacing - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#targetfacing"
+    },
+    {
+      "title": "TargetFacing - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#targetfacing"
+    },
+    {
+      "title": "TargetFacing - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TargetFacing"
+    },
+    {
+      "title": "TargetFacing - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?TargetFacing&protocol=http"
+    },
+    {
+      "title": "TargetFacing - MUGEN CNS WIKI CHAOS@予定",
+      "url": "http://www49.atwiki.jp/mugencns/pages/263.html",
+      "id": "targetfacing-freeze-wiki",
+      "source_type": "community_documentation"
+    },
+    {
+      "title": "TargetFacing - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#TargetFacing"
+    },
+    {
+      "id": "targetfacing-freeze-binran",
+      "title": "Target リダイレクト中の複数ターゲット記録 — MUGENの便覧",
+      "url": "http://mugenbinran.web.fc2.com/error.html#02",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "targetfacing-local-2002",
+      "title": "TargetFacing — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetFacing",
+      "source_type": "official_document"
+    },
+    {
+      "id": "targetfacing-local-1.0",
+      "title": "TargetFacing — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#targetfacing",
+      "source_type": "official_document"
+    },
+    {
+      "id": "targetfacing-local-1.1",
+      "title": "TargetFacing — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#targetfacing",
+      "source_type": "official_document"
+    },
+    {
+      "id": "targetfacing-legacy-data",
+      "title": "TargetFacing — 移行前の説明・不具合原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/0d581b7c5018eeeb63adf6803437490811703cb8/src/content/state-controllers/TargetFacing.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>ターゲットの向きを、実行者と同じ方向または反対方向へ変更します。<code>ID</code> で対象を絞り込めます。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "targetfacing-local-2002",
+        "targetfacing-local-1.0",
+        "targetfacing-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "targetfacing-local-2002",
+      "targetfacing-local-1.0",
+      "targetfacing-local-1.1"
+    ],
+    "comment": "2026-09-30: 保存済み公式資料で必須 value の正負、任意 ID、ID=-1 の全対象を確認。旧 default_value=1 と複数ターゲット時のフリーズを確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "targetfacing-freeze-binran",
+          "targetfacing-freeze-wiki",
+          "targetfacing-legacy-data"
+        ],
+        "comment": "2026-09-30: 旧記録と参照を保持。対象ビルド、具体的なリダイレクト式、ターゲット数、実行ログは未確認。"
+      }
+    }
+  ]
 }

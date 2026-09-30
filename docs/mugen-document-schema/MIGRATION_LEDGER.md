@@ -124,3 +124,7 @@ AttackMulSet / DefenceMulSet / PowerAdd / PowerSet を追加し、累計62件・
 ## 2026-09-30：life-power-01
 
 LifeAdd / LifeSet / TargetPowerAdd を追加し、累計65件・残り169件です。LifeAdd の Value / Absolute / Kill、LifeSet の Value、TargetPowerAdd の value / ID と既定値を保存済み公式資料へ対応させました。ライフ操作の RoundState 固定化、Win/Lose 順序、IKEMEN GO の競合、TargetPowerAdd の RoundState 3 / 4 記録は内部 `research` に保持しています。未検証情報を含むライフ図と LifeSet Q&A も JSON から削除せず非公開にするため、`images[].visibility` を実装しました。
+
+## 2026-10-01：target-control-01
+
+TargetBind / TargetDrop / TargetFacing を追加し、累計68件・残り166件です。対象 ID、固定時間・位置、一覧から外す条件、向きと各既定値を保存済み公式資料へ対応させました。TargetBind の「対象指定不能」と Pos 省略時 `-1025,-1025` は公式資料との衝突を内部記録へ残し、公開文を修正しています。TargetBind / TargetFacing の複数ターゲット時フリーズ、TargetBind の負数警告、速度同期も条件不足のため非公開です。TargetFacing の必須 value に付いていた旧既定値1は削除せず公開だけ止め、読み込み順 `?` は維持しました。

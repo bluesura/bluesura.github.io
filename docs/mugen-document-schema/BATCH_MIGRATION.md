@@ -319,3 +319,21 @@ npm run mugen:batch -- --batch life-power-01 --target LifeAdd --target LifeSet -
 ```
 
 このバッチは適用済みです。次は TargetBind / TargetDrop / TargetFacing のターゲット制御を照合します。
+
+## target-control-01：ターゲット選択・固定・向きの3件
+
+2026-10-01、TargetBind / TargetDrop / TargetFacing を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/target-control-01/` へ保存しています。
+
+- TargetBind は任意の ID / Time / Pos を取り、省略時はそれぞれ -1（全ターゲット）、1 tick、実行者の軸から 0,0 です。旧 description の「特定ターゲットを指定できない」は公式資料の ID 説明と衝突するため、原文を保持し、公開本文では ID による絞り込みを案内します。
+- TargetBind の旧 Pos 省略時 `P2BodyDist=-1025,-1025` は、公式3資料の `0,0` と衝突します。旧記録、複数ターゲット時のフリーズ、Time=-2以下の警告、固定中の速度説明は内部 `research` に保持しました。
+- TargetDrop は任意の ExcludeID / KeepOne を取り、省略時は -1（全ターゲットを外す）と1（最大1体を残す）です。KeepOne が0以外の場合のランダムな1体選択と、0の場合の全一致対象保持を公開しました。
+- TargetFacing は必須 value の正負で、実行者と同方向・反対方向を指定します。任意 ID は省略時 -1 です。必須 value に付いていた旧 `default_value=1` は原本へ残して公開ビューと CNS コピペ欄から外し、読み込み順 `?` は推測していません。
+- TargetFacing の複数ターゲット時フリーズ記録も、対象ビルドと再現ログがないため内部化しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch target-control-01
+npm run mugen:batch -- --batch target-control-01 --target TargetBind --target TargetDrop --target TargetFacing
+npm run mugen:batch -- --batch target-control-01 --target TargetBind --target TargetDrop --target TargetFacing --apply
+```
+
+このバッチは適用済みです。次は BindToParent / BindToRoot / BindToTarget の位置固定を照合します。

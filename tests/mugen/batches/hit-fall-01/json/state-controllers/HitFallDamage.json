@@ -1,0 +1,25 @@
+{
+	"page": {
+		"title": "MUGEN State Controller",
+		"subtitle": "HitFallDamage",
+		"target": "",
+		"category": ["攻撃","空中やられからの地面激突時の追加ダメージ"],
+		"version": "2002.04.14",
+		"update": "2013.11.27",
+		"type": "document",
+		"level": "3"
+	},
+
+	"state": "HitFallDamage",
+	"description": "<p>攻撃を受けたとき、HitDefで設定された落下ダメージを与えます(自分に)。共通ステートを上書きするときや、相手に参照させるステートで使用します。</p>",
+	"category": "state",
+
+	"quote": [
+		{"title": "HitFallDamage - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitFallDamage"},
+		{"title": "HitFallDamage - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitfalldamage"},
+		{"title": "HitFallDamage - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitfalldamage"},
+		{"title": "HitFallDamage - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitFallDamage"},
+		{"title": "HitFallDamage - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitFallDamage&protocol=http"},
+		{"title": "HitFallDamage - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitFallDamage"}
+	]
+}

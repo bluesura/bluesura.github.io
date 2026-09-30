@@ -116,3 +116,7 @@ ChangeState / SelfState / TargetState を追加し、累計55件・残り179件�
 ## 2026-09-30：state-control-01
 
 CtrlSet / StateTypeSet / SprPriority を追加し、累計58件・残り176件です。CtrlSet の必須フラグと0/非0、StateTypeSet の3種の固定トークンと省略時の維持、SprPriority の必須値・範囲 -5〜5・描画順を保存済み公式資料へ対応させました。CtrlSet の旧制作補足と StateTypeSet の U 明示指定・摩擦・重力・自動着地の詳細は原本と内部 `research` に保持しています。`documentation.hide_legacy` を `possible_value` にも適用できるようにし、StateTypeSet の未検証な旧候補表を公開HTMLから外しました。旧表内の画像は比較器が内部保存を確認します。StateTypeSet の読み込み順 `?` は推測していません。
+
+## 2026-09-30：combat-power-01
+
+AttackMulSet / DefenceMulSet / PowerAdd / PowerSet を追加し、累計62件・残り172件です。4件の必須 value と基本動作を保存済み公式資料へ対応させました。DefenceMulSet は2002.04.14の逆数説明と1.0 / 1.1の直接倍率説明を統合せず、`conflicting` の内部 `research` に両方を保持しています。AttackMulSet の効果時間・特殊値・攻撃主体別適用、Power 系の32-bit値域・ゲージ端処理・RoundState 条件も原本を削除せず非公開にしました。PowerAdd / PowerSet の完全なコード例と既存図は公開を維持しています。

@@ -283,3 +283,21 @@ npm run mugen:batch -- --batch state-control-01 --target CtrlSet --target StateT
 ```
 
 このバッチは適用済みです。次は AttackMulSet / DefenceMulSet / PowerAdd / PowerSet の数値変更系を照合します。
+
+## combat-power-01：攻撃・防御倍率とパワー操作の4件
+
+2026-09-30、AttackMulSet / DefenceMulSet / PowerAdd / PowerSet を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/combat-power-01/` へ保存しています。
+
+- 4件の value は省略不可の式です。AttackMulSet / DefenceMulSet は float、PowerAdd / PowerSet は int として、既存の読み込み順1には管理者確認を付けました。
+- AttackMulSet は攻撃倍率を設定し、与えるダメージを倍率で変化させる基本動作と、`value = 2` で2倍になる例を公開しました。旧本文の効果1フレーム、負数・0、Projectile / Helper 別の適用範囲は原文を保持し、実機記録がないため `research` として非公開にしました。
+- DefenceMulSet は保存済み公式資料自体に差があります。2002.04.14 は指定値の逆数で受けるダメージを変化させ `value = 2` で半減、1.0 / 1.1 は指定値を直接用い `value = .5` で半減すると説明します。公開文は防御倍率で受けるダメージを変更する範囲に留め、世代差、LifeAdd、旧 Win版の MoveType・初回ヒット・特殊値を `conflicting` の内部記録に保存しました。
+- PowerAdd / PowerSet は、指定量の加算と指定値への設定という公式資料で確認できる基本動作を公開しました。旧 JSON の32-bit値域、0〜PowerMaxへの制限、RoundState 3 / 4 で変化しないという記録は削除せず、パラメーターメタ情報・履歴節・公開本文から外しました。
+- PowerAdd / PowerSet の既存コード例は、必須値を含む完全な例として公開を維持しています。既存のパワーゲージ図も原本に保持しています。
+
+```sh
+npm run mugen:batch-baseline -- --batch combat-power-01
+npm run mugen:batch -- --batch combat-power-01 --target AttackMulSet --target DefenceMulSet --target PowerAdd --target PowerSet
+npm run mugen:batch -- --batch combat-power-01 --target AttackMulSet --target DefenceMulSet --target PowerAdd --target PowerSet --apply
+```
+
+このバッチは適用済みです。次は LifeAdd / LifeSet / TargetPowerAdd のライフ・パワー操作を照合します。

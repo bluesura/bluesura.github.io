@@ -13,20 +13,22 @@
     "level": "3",
     "contributor": [
       "Iwakick"
-    ]
+    ],
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "PowerAdd",
   "category": "state",
   "state": "PowerAdd",
   "description": "<p>実行者（ステート実行者）のパワーゲージに、<code>Value</code>で指定した量を加算（または減算）します。正数で増加、負数で減少します。</p><p>最終的なパワー値は <code>0</code>～<code>PowerMax</code> の範囲に収まるよう制限されます。<code>PowerMax</code>はキャラクター定義（<code>[Data]</code> の <code>Power</code>）で決まります。</p>",
-    "images": [
-        {
-        "src": "mugen-power-gauge-mechanism.png",
-        "width": "640",
-        "height": "480",
-        "alt": "MUGENにおけるパワーゲージの処理構造図。キャラクターがTriggerで現在のパワー量と最大値を取得し、State（PowerAdd/PowerSet）によってゲージの値を加算・減算・設定する仕組みの解説。"
-        }
-    ],
+  "images": [
+    {
+      "src": "mugen-power-gauge-mechanism.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENにおけるパワーゲージの処理構造図。キャラクターがTriggerで現在のパワー量と最大値を取得し、State（PowerAdd/PowerSet）によってゲージの値を加算・減算・設定する仕組みの解説。"
+    }
+  ],
   "associated_trigger": [
     "Power",
     "PowerMax"
@@ -53,12 +55,58 @@
       "parameter_type": "required",
       "load_priority": [
         "1"
-      ]
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "パワーへ加算する量を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "poweradd-local-2002",
+              "poweradd-local-1.0",
+              "poweradd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>パワーゲージへ加算する量を整数式で指定します。省略できません。</p>",
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "poweradd-local-2002",
+            "poweradd-local-1.0",
+            "poweradd-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
     }
   ],
-	"version": [
-		{"no": "仕様", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"}
-	],
+  "version": [
+    {
+      "no": "仕様",
+      "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"
+    }
+  ],
   "sample_code": {
     "code": [
       "[State 0, PowerAdd]",
@@ -81,10 +129,10 @@
     }
   ],
   "quote": [
-	{
-		"title": "PowerAdd - State Controller Reference(version 2002.04.14)",
-		"url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PowerAdd"
-	},
+    {
+      "title": "PowerAdd - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PowerAdd"
+    },
     {
       "title": "PowerAdd - State Controller Reference (Elecbyte)",
       "url": "https://www.elecbyte.com/mugendocs/sctrls.html#poweradd"
@@ -96,6 +144,91 @@
     {
       "title": "CNS data types (32-bit integer range) - MUGEN Archive Docs",
       "url": "https://mugenarchive.com/forums/downloads.php?do=file&id=30860"
+    },
+    {
+      "id": "poweradd-local-2002",
+      "title": "PowerAdd — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PowerAdd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "poweradd-local-1.0",
+      "title": "PowerAdd — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#poweradd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "poweradd-local-1.1",
+      "title": "PowerAdd — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#poweradd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "poweradd-legacy-data",
+      "title": "PowerAdd — 移行前の説明・値域・仕様記録原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/6e20511ce6a81ecf23379321401644d75e4499a3/src/content/state-controllers/PowerAdd.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者のパワーゲージに、<code>Value</code> で指定した量を加算します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "poweradd-local-2002",
+        "poweradd-local-1.0",
+        "poweradd-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "poweradd-local-2002",
+      "poweradd-local-1.0",
+      "poweradd-local-1.1"
+    ],
+    "comment": "2026-09-30: 保存済み公式資料で実行者のパワーへ指定量を加算することと、必須の整数 value を確認。値域、ゲージ端での処理、RoundState 条件を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 description は正数で増加、負数で減少し、最終値を 0〜PowerMax に制限すると説明する。旧 value には32-bit整数範囲が記録されている。原文と図は保持しているが、今回確認した公式コントローラー資料には値域とゲージ端での処理が明記されていないため、公開本文とパラメーターメタ情報では断定しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "poweradd-local-2002",
+          "poweradd-local-1.0",
+          "poweradd-local-1.1",
+          "poweradd-legacy-data"
+        ],
+        "comment": "2026-09-30: 保存済み公式資料と旧 JSON の静的照合。値域・上限下限処理の実機確認ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "poweradd-legacy-data"
+        ],
+        "comment": "2026-09-30: 旧仕様記録を原文のまま対応付けた。対象ビルド、再現手順、実行ログがないため公開しない。"
+      }
     }
   ]
 }

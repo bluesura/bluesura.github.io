@@ -1,0 +1,106 @@
+{
+  "id": "hit-defense-01",
+  "reviewed_on": "2026-10-01",
+  "description": "HitOverRide / NotHitBy の攻撃属性、スロット、効果時間、世代差を保存済み公式資料へ対応させる。HitOverride の StateNo 必須性は2002と1.0/1.1で統合せず、旧警告、制作補足、未確認のヒット処理、NotHitBy の負数時間・値域・属性解釈は原文を保持して公開ビューから外す。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "HitOverRide",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>指定した属性の攻撃を受けたとき、通常の被弾処理の代わりに指定ステートへ移行させます。同時に最大8個の HitOverride を有効にできます。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "special_syntax" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "対象にする攻撃属性を必須指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>置き換える攻撃の種類を、HitDef の <code>attr</code> と同じ攻撃属性書式で指定します。省略できません。</p>", "hide_legacy": ["default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"] } } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": 0, "display": "スロット0", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>HitOverride を格納するスロット番号を <code>0</code> から <code>7</code> の整数式で指定します。省略時は <code>0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [
+          { "kind": "literal", "value": -1, "display": "Linux MUGEN 2002.04.14: ステートを変更しない", "environment": { "engine": "mugen", "runtime": ["mugen-linux"] }, "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002"] } },
+          { "kind": "required", "display": "MUGEN 1.0 / 1.1: 移行先を必須指定", "environment": { "engine": "mugen", "runtime": ["mugen-1.0", "mugen-1.1"] }, "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-1.0", "hitoverride-local-1.1"] } }
+        ] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p>対象属性の HitDef を受けたときの移行先ステート番号を整数式で指定します。Linux MUGEN 2002.04.14資料では任意で省略時 <code>-1</code>（変更なし）、MUGEN 1.0 / 1.1資料では必須です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 3, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 3, "default"], "value": [{ "kind": "literal", "value": 1, "display": "1 tick 有効", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"] } }] },
+        { "path": ["parameter", 3, "documentation"], "value": { "description": "<p>HitOverride を有効にする tick 数を整数式で指定します。省略時は <code>1</code>、<code>-1</code> なら別の HitOverride に上書きされるまで有効です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"] } } },
+        { "path": ["parameter", 3, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 4, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 4, "default"], "value": [{ "kind": "literal", "value": 0, "display": "通常の被弾状態として扱う", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"] } }] },
+        { "path": ["parameter", 4, "documentation"], "value": { "description": "<p><code>1</code> にすると、攻撃を受けたときの被弾変数を空中状態で被弾した場合と同様に設定します。省略時は <code>0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"] } } },
+        { "path": ["parameter", 4, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-2002", "hitoverride-local-1.0", "hitoverride-local-1.1"], "comment": "2026-10-01: 保存済み公式資料で基本動作、最大8スロット、各パラメーター、StateNo の世代差、1.0 / 1.1 の HitDef 制約を確認。旧 MoveType・スパーク・音、警告条件を確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "behavior", "content": "<p>MUGEN 1.0 / 1.1では、実行者に有効な HitOverride がある場合、相手の一致する HitDef に <code>p1stateno != -1</code> または <code>p2getp1state = 1</code> が設定されていると、その HitDef の影響を受けません。</p>", "environment": { "engine": "mugen", "runtime": ["mugen-1.0", "mugen-1.1"] }, "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["hitoverride-local-1.0", "hitoverride-local-1.1"] } },
+          { "kind": "research", "legacy_index": 0, "content": "ILLEGAL OVERRIDE SLOT 0 ASSUMED:Slotに-1以下、8以上", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["hitoverride-warning-binran", "hitoverride-legacy-data"], "comment": "2026-10-01: 旧警告文と条件を原文のまま保持。対象ビルドと実行ログは未確認。" } },
+          { "kind": "research", "legacy_index": 1, "content": "ILLEGAL HITOVERRIDE TIME:Timeに-2以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["hitoverride-warning-binran", "hitoverride-legacy-data"], "comment": "2026-10-01: 旧警告文と条件を原文のまま保持。対象ビルドと実行ログは未確認。" } },
+          { "kind": "research", "legacy_index": 2, "content": "ILLEGAL HITOVERRIDE STATENO.:StateNoに-2以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["hitoverride-warning-binran", "hitoverride-legacy-data"], "comment": "2026-10-01: 旧警告文と条件を原文のまま保持。対象ビルドと実行ログは未確認。" } },
+          { "kind": "research", "content": "<p>旧 description はカウンター技や Helper の被弾への用途を挙げ、MoveType が H 以外のステートへ移行すると HitDef を無効にできる一方でヒットスパークとヒット音は必ず発生すると記録する。対象ビルド、再現ステート、実行ログがないため公開しない。</p>", "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["hitoverride-legacy-data"], "comment": "2026-10-01: 旧制作・ヒット処理記録を原文に保持。" } }
+        ] },
+        { "path": ["quote", "-"], "value": { "id": "hitoverride-warning-binran", "title": "HitOverride — MUGENエラー・警告メッセージ集", "url": "http://mugenbinran.web.fc2.com/error.html#12", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "hitoverride-local-2002", "title": "HitOverride — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitOverride", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "hitoverride-local-1.0", "title": "HitOverride — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#hitoverride", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "hitoverride-local-1.1", "title": "HitOverride — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitoverride", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "hitoverride-legacy-data", "title": "HitOverRide — 移行前の説明・警告原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/b6c540e2fe72d373fb49fee4b8b3478201a99ffd/src/content/state-controllers/HitOverRide.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / description", "reason": "旧警告、MoveType・スパーク・音、制作補足は実機未確認。" },
+        { "path": "parameter[0].load_priority", "reason": "Attr の読み込み順 ? は不明を維持する。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "NotHitBy",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者が一時的に受けない攻撃属性を指定します。HitBy と共有する2つの属性スロットの一方へ、指定属性を除いた攻撃属性を設定します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "special_syntax" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "value または value2 のどちらか一方を必須指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>1番目の属性スロットへ設定する標準攻撃属性書式です。<code>value2</code> と同時には指定できず、どちらか一方を必ず指定します。</p>", "hide_legacy": ["default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"] } } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "special_syntax" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "required", "display": "value または value2 のどちらか一方を必須指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>2番目の属性スロットへ設定する標準攻撃属性書式です。<code>value</code> と同時には指定できず、どちらか一方を必ず指定します。</p>", "hide_legacy": ["default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"] } } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "literal", "value": 1, "display": "1 tick 有効", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p>指定した NotHitBy 属性を有効にするゲーム tick 数を整数式で指定します。省略時は <code>1</code> です。</p>", "hide_legacy": ["min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["constraints"], "value": [
+          { "kind": "one_of", "parameters": ["value", "value2"], "description": "value と value2 のどちらか一方を必ず指定する。", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"] } },
+          { "kind": "mutually_exclusive", "parameters": ["value", "value2"], "description": "value と value2 は同時に指定できない。", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"] } }
+        ] },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"], "comment": "2026-10-01: 保存済み公式資料で一時的な攻撃属性除外、共有2スロット、value / value2 の排他的必須指定、Time=1を確認。旧 OR 解釈、Time=-1以下、32-bit値域、60fps補足を確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "behavior", "content": "<p>属性スロットには有効時間があり、0へ到達するまで有効です。実行者が攻撃を受けられるのは、HitDef の属性が現在有効なすべてのスロットに含まれる場合だけです。NotHitBy は、指定した属性を除くすべての攻撃属性を選択したスロットへ設定します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1"] } },
+          { "kind": "research", "content": "<p>旧 value / value2 説明はカンマを OR 条件と解釈し、<code>SCA, NA</code> が全攻撃への無敵になると記録する。公式資料は標準攻撃属性書式とスロットの補集合動作を説明するが、この旧例そのものの解釈と対象ビルドでの実行ログは確認できないため公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1", "nothitby-legacy-data"], "comment": "2026-10-01: 旧属性解釈を原文に保持。" } },
+          { "kind": "research", "content": "<p>旧 Time 説明は <code>-1</code> 以下で永続、値域 <code>-2147483647</code> から <code>2147483647</code>、60フレーム=1秒と記録する。今回確認した公式コントローラー資料は省略時1だけを明記するため、旧文と値を原位置に保持して公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["nothitby-local-2002", "nothitby-local-1.0", "nothitby-local-1.1", "nothitby-legacy-data"], "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。" } }
+        ] },
+        { "path": ["quote", "-"], "value": { "id": "nothitby-local-2002", "title": "NotHitBy — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#NotHitBy", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "nothitby-local-1.0", "title": "NotHitBy — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#nothitby", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "nothitby-local-1.1", "title": "NotHitBy — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#nothitby", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "nothitby-legacy-data", "title": "NotHitBy — 移行前の説明・値域原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/b6c540e2fe72d373fb49fee4b8b3478201a99ffd/src/content/state-controllers/NotHitBy.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "parameter[0..1].description / load_priority", "reason": "旧属性例は非公開とし、value / value2 の読み込み順 ? は不明を維持する。" },
+        { "path": "parameter[2].description / min_value / max_value", "reason": "Time=-1以下、32-bit値域、60fps補足は実機未確認。" }
+      ]
+    }
+  ]
+}

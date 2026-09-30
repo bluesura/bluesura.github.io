@@ -144,3 +144,7 @@ HitAdd / MoveHitReset / HitVelSet を追加し、累計76件・残り158件で�
 ## 2026-10-01：hit-fall-01
 
 HitFallSet / HitFallVel / HitFallDamage を追加し、累計79件・残り155件です。落下フラグと落下速度変数、HitDef 由来の速度反映、落下ダメージ適用を保存済み公式資料へ対応させました。HitFallSet の旧「強制移行」カテゴリも原位置へ残したまま公開表示だけを訂正できる `documentation.page_category` を追加しました。value=-2以下、XVel / YVel の未読疑義・推測既定値、3件の旧制作用途は条件不足または公式記載との差があるため非公開です。
+
+## 2026-10-01：hit-defense-01
+
+HitOverRide / NotHitBy を追加し、累計81件・残り153件です。HitOverRide の属性・8スロット・有効時間・ForceAir と、StateNo の2002.04.14対1.0 / 1.1の世代差を保存済み公式資料へ対応させました。NotHitBy は共有2スロット、value / value2 の排他的必須指定、Time=1を構造化しました。HitOverRide の旧警告・MoveType・スパーク／サウンド記録と、NotHitBy の旧カンマ解釈・永続時間・値域は原本を保持して非公開です。

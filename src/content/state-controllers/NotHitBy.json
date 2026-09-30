@@ -1,64 +1,381 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "NotHitBy",
-		"target": "",
-		"category": ["防御","特定攻撃を無効化する無敵状態の設定"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "NotHitBy",
-	"description": "<p>一時的に特定の攻撃を食らわなくなります。無敵技、ジャンプ開始モーションなどに。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>NotHitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p>",
-	"category": "state",
-	"associated_state": ["HitBy"],
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["攻撃属性"],
-			"type": ["string"],
-			"description": "<p>攻撃属性で指定できる値は、HitDefのAttrパラメータで指定できる値と同じです。が、このステートコントローラーでは、,(カンマ)がOR条件とみなされるようです。</p><p>例えば、value = SCA, NAとすると、HitDefでは「立屈空の通常攻撃」を意味しますが、このNotHitByでは、「立屈空または通常攻撃」とみなされ、すべての攻撃に対し無敵となります。</p><p>ですので、value = SCAあるいはvalue = , NAとして、どちらかの状態のみ指定するのが普通です。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "value2",
-			"value": ["攻撃属性"],
-			"type": ["string"],
-			"description": "<p>攻撃属性で指定できる値は、HitDefのAttrパラメータで指定できる値と同じです。が、このステートコントローラーでは、,(カンマ)がOR条件とみなされるようです。</p><p>例えば、value = SCA, NAとすると、HitDefでは「立屈空の通常攻撃」を意味しますが、このNotHitByでは、「立屈空または通常攻撃」とみなされ、すべての攻撃に対し無敵となります。</p><p>ですので、value = SCAあるいはvalue = , NAとして、どちらかの状態のみ指定するのが普通です。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["? ;valueまたはvalue2どちらかがあればOK！"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "Time",
-			"value": ["効果持続時間"],
-			"type": ["int"],
-			"description": "<p>フレーム単位で効果の持続時間を指定します。特定の技に無敵を付加する場合は、トリガーで持続時間を指定したほうがよいでしょう。</p><p>-1以下で効果時間が永続化。</p><p>※60フレーム=1秒</p>",
-			"min_value": ["-2147483647"],
-			"max_value": ["2147483647"],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["1"]
-		}
-	],
-
-
-	"quote": [
-		{"title": "NotHitBy - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#NotHitBy"},
-		{"title": "NotHitBy - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#nothitby"},
-		{"title": "NotHitBy - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#nothitby"},
-		{"title": "NotHitBy - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NotHitBy"},
-		{"title": "NotHitBy - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?NotHitBy&protocol=http"},
-		{"title": "NotHitBy - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#NotHitBy"},
-		{"title": "NotHitBy - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "NotHitBy",
+    "target": "",
+    "category": [
+      "防御",
+      "特定攻撃を無効化する無敵状態の設定"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "NotHitBy",
+  "description": "<p>一時的に特定の攻撃を食らわなくなります。無敵技、ジャンプ開始モーションなどに。</p><p>ステートコントローラーが実行されると、指定されたスロットのtimeパラメータで指定された時間がカウントダウンし、0になるまでの間はそのスロットが有効と判断され、有効なすべてのスロットの攻撃属性の攻撃のみ受け付けられます。</p><p>NotHitByを使用することにより、これらのスロットに有効な攻撃属性をセットできます。</p>",
+  "category": "state",
+  "associated_state": [
+    "HitBy"
+  ],
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "攻撃属性"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>攻撃属性で指定できる値は、HitDefのAttrパラメータで指定できる値と同じです。が、このステートコントローラーでは、,(カンマ)がOR条件とみなされるようです。</p><p>例えば、value = SCA, NAとすると、HitDefでは「立屈空の通常攻撃」を意味しますが、このNotHitByでは、「立屈空または通常攻撃」とみなされ、すべての攻撃に対し無敵となります。</p><p>ですので、value = SCAあるいはvalue = , NAとして、どちらかの状態のみ指定するのが普通です。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "expression_policy": "special_syntax",
+      "default": [
+        {
+          "kind": "required",
+          "display": "value または value2 のどちらか一方を必須指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "nothitby-local-2002",
+              "nothitby-local-1.0",
+              "nothitby-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>1番目の属性スロットへ設定する標準攻撃属性書式です。<code>value2</code> と同時には指定できず、どちらか一方を必ず指定します。</p>",
+        "hide_legacy": [
+          "default_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "nothitby-local-2002",
+            "nothitby-local-1.0",
+            "nothitby-local-1.1"
+          ]
+        }
+      }
+    },
+    {
+      "parameter": "value2",
+      "value": [
+        "攻撃属性"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>攻撃属性で指定できる値は、HitDefのAttrパラメータで指定できる値と同じです。が、このステートコントローラーでは、,(カンマ)がOR条件とみなされるようです。</p><p>例えば、value = SCA, NAとすると、HitDefでは「立屈空の通常攻撃」を意味しますが、このNotHitByでは、「立屈空または通常攻撃」とみなされ、すべての攻撃に対し無敵となります。</p><p>ですので、value = SCAあるいはvalue = , NAとして、どちらかの状態のみ指定するのが普通です。</p><p>2つのスロットが用意されており、どちらか一方のみ指定可能。</p><p>他のHitBy、NotHitBy効果持続中に実行される可能性があるなら、value2の方を使うとよいでしょう。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "? ;valueまたはvalue2どちらかがあればOK！"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "expression_policy": "special_syntax",
+      "default": [
+        {
+          "kind": "required",
+          "display": "value または value2 のどちらか一方を必須指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "nothitby-local-2002",
+              "nothitby-local-1.0",
+              "nothitby-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>2番目の属性スロットへ設定する標準攻撃属性書式です。<code>value</code> と同時には指定できず、どちらか一方を必ず指定します。</p>",
+        "hide_legacy": [
+          "default_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "nothitby-local-2002",
+            "nothitby-local-1.0",
+            "nothitby-local-1.1"
+          ]
+        }
+      }
+    },
+    {
+      "parameter": "Time",
+      "value": [
+        "効果持続時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>フレーム単位で効果の持続時間を指定します。特定の技に無敵を付加する場合は、トリガーで持続時間を指定したほうがよいでしょう。</p><p>-1以下で効果時間が永続化。</p><p>※60フレーム=1秒</p>",
+      "min_value": [
+        "-2147483647"
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 1,
+          "display": "1 tick 有効",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "nothitby-local-2002",
+              "nothitby-local-1.0",
+              "nothitby-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>指定した NotHitBy 属性を有効にするゲーム tick 数を整数式で指定します。省略時は <code>1</code> です。</p>",
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "nothitby-local-2002",
+            "nothitby-local-1.0",
+            "nothitby-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "NotHitBy - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#NotHitBy"
+    },
+    {
+      "title": "NotHitBy - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#nothitby"
+    },
+    {
+      "title": "NotHitBy - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#nothitby"
+    },
+    {
+      "title": "NotHitBy - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NotHitBy"
+    },
+    {
+      "title": "NotHitBy - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?NotHitBy&protocol=http"
+    },
+    {
+      "title": "NotHitBy - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#NotHitBy"
+    },
+    {
+      "title": "NotHitBy - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"
+    },
+    {
+      "id": "nothitby-local-2002",
+      "title": "NotHitBy — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#NotHitBy",
+      "source_type": "official_document"
+    },
+    {
+      "id": "nothitby-local-1.0",
+      "title": "NotHitBy — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#nothitby",
+      "source_type": "official_document"
+    },
+    {
+      "id": "nothitby-local-1.1",
+      "title": "NotHitBy — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#nothitby",
+      "source_type": "official_document"
+    },
+    {
+      "id": "nothitby-legacy-data",
+      "title": "NotHitBy — 移行前の説明・値域原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/b6c540e2fe72d373fb49fee4b8b3478201a99ffd/src/content/state-controllers/NotHitBy.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者が一時的に受けない攻撃属性を指定します。HitBy と共有する2つの属性スロットの一方へ、指定属性を除いた攻撃属性を設定します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "nothitby-local-2002",
+        "nothitby-local-1.0",
+        "nothitby-local-1.1"
+      ]
+    }
+  },
+  "constraints": [
+    {
+      "kind": "one_of",
+      "parameters": [
+        "value",
+        "value2"
+      ],
+      "description": "value と value2 のどちらか一方を必ず指定する。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "nothitby-local-2002",
+          "nothitby-local-1.0",
+          "nothitby-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "mutually_exclusive",
+      "parameters": [
+        "value",
+        "value2"
+      ],
+      "description": "value と value2 は同時に指定できない。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "nothitby-local-2002",
+          "nothitby-local-1.0",
+          "nothitby-local-1.1"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "nothitby-local-2002",
+      "nothitby-local-1.0",
+      "nothitby-local-1.1"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で一時的な攻撃属性除外、共有2スロット、value / value2 の排他的必須指定、Time=1を確認。旧 OR 解釈、Time=-1以下、32-bit値域、60fps補足を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>属性スロットには有効時間があり、0へ到達するまで有効です。実行者が攻撃を受けられるのは、HitDef の属性が現在有効なすべてのスロットに含まれる場合だけです。NotHitBy は、指定した属性を除くすべての攻撃属性を選択したスロットへ設定します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "nothitby-local-2002",
+          "nothitby-local-1.0",
+          "nothitby-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 value / value2 説明はカンマを OR 条件と解釈し、<code>SCA, NA</code> が全攻撃への無敵になると記録する。公式資料は標準攻撃属性書式とスロットの補集合動作を説明するが、この旧例そのものの解釈と対象ビルドでの実行ログは確認できないため公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "nothitby-local-2002",
+          "nothitby-local-1.0",
+          "nothitby-local-1.1",
+          "nothitby-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧属性解釈を原文に保持。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 Time 説明は <code>-1</code> 以下で永続、値域 <code>-2147483647</code> から <code>2147483647</code>、60フレーム=1秒と記録する。今回確認した公式コントローラー資料は省略時1だけを明記するため、旧文と値を原位置に保持して公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "nothitby-local-2002",
+          "nothitby-local-1.0",
+          "nothitby-local-1.1",
+          "nothitby-legacy-data"
+        ],
+        "comment": "2026-10-01: 保存済み公式資料と旧 JSON の静的照合。実機確認ではない。"
+      }
+    }
+  ]
 }

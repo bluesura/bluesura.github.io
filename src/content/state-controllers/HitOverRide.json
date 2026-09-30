@@ -1,90 +1,548 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "HitOverRide",
-		"target": "",
-		"category": ["防御","特定攻撃に対する特殊なやられステートへの移行"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "HitOverRide",
-	"description": "<p>指定した種類の攻撃を受けたときに、指定したステートに移行することができます。カウンター技や、helperのやられなどに。ただし、攻撃側がp2Statenoを設定していると、攻撃が当たらなくなります(不具合防止のため？)。</p><p>なお、このコントローラでMovetypeがH以外のステートに移行すると、HitDefを無効にできますが、ヒットスパークとヒット音は必ず発生してしまいます。</p><p>一度に8種類の指定が可能。</p>",
-	"category": "state",
-
-	"version": [
-		{"no": "警告文", "content": "ILLEGAL OVERRIDE SLOT 0 ASSUMED:Slotに-1以下、8以上", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "ILLEGAL HITOVERRIDE TIME:Timeに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "ILLEGAL HITOVERRIDE STATENO.:StateNoに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "Attr",
-			"value": ["攻撃属性"],
-			"type": ["string"],
-			"description": "<p>どのような攻撃で有効になるかを指定します。設定できる値はHitDefのAttrと同じ。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "Slot",
-			"value": ["スロット番号"],
-			"type": ["int"],
-			"description": "<p>このステートコントローラーは一度に8つまで定義ができますが、それぞれSlotに指定された番号で区別されます。Attr毎に異なる挙動にしたいときに指定。</p><p>同じ番号のHitOverrideが有効になると、前のHitOverrideの効果は消えます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "StateNo",
-			"value": ["ステート番号"],
-			"type": ["int"],
-			"description": "<p>Attrの攻撃を受けたときに移行するステートを指定します。-1を指定すると、HitOverrideそのものが機能しなくなります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1 ;ステート移行しない。"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "Time",
-			"value": ["効果時間"],
-			"type": ["int"],
-			"description": "<p>このコントローラの有効時間。-1にすると、同じSlotのHitOverrideに上書きされるまで有効。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["3"]
-		},
-		{
-			"parameter": "ForceAir",
-			"value": ["空中ヒットフラグ"],
-			"type": ["boolean"],
-			"description": "<p>1にすると、空中で攻撃を受けたときと同じ状態になります。全ての攻撃でダウンさせたいときに有効らしい。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["4"]
-		}
-	],
-
-	"quote": [
-		{"title": "HitOverride - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitOverride"},
-		{"title": "HitOverride - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitoverride"},
-		{"title": "HitOverride - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitoverride"},
-		{"title": "HitOverRide - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitOverRide"},
-		{"title": "HitOverRide - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitOverRide&protocol=http"},
-		{"title": "HitOverRide - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitOverRide"},
-		{"title": "HitOverRide - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "HitOverRide",
+    "target": "",
+    "category": [
+      "防御",
+      "特定攻撃に対する特殊なやられステートへの移行"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "HitOverRide",
+  "description": "<p>指定した種類の攻撃を受けたときに、指定したステートに移行することができます。カウンター技や、helperのやられなどに。ただし、攻撃側がp2Statenoを設定していると、攻撃が当たらなくなります(不具合防止のため？)。</p><p>なお、このコントローラでMovetypeがH以外のステートに移行すると、HitDefを無効にできますが、ヒットスパークとヒット音は必ず発生してしまいます。</p><p>一度に8種類の指定が可能。</p>",
+  "category": "state",
+  "version": [
+    {
+      "no": "警告文",
+      "content": "ILLEGAL OVERRIDE SLOT 0 ASSUMED:Slotに-1以下、8以上",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "ILLEGAL HITOVERRIDE TIME:Timeに-2以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "ILLEGAL HITOVERRIDE STATENO.:StateNoに-2以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "Attr",
+      "value": [
+        "攻撃属性"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>どのような攻撃で有効になるかを指定します。設定できる値はHitDefのAttrと同じ。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "expression_policy": "special_syntax",
+      "default": [
+        {
+          "kind": "required",
+          "display": "対象にする攻撃属性を必須指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitoverride-local-2002",
+              "hitoverride-local-1.0",
+              "hitoverride-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>置き換える攻撃の種類を、HitDef の <code>attr</code> と同じ攻撃属性書式で指定します。省略できません。</p>",
+        "hide_legacy": [
+          "default_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitoverride-local-2002",
+            "hitoverride-local-1.0",
+            "hitoverride-local-1.1"
+          ]
+        }
+      }
+    },
+    {
+      "parameter": "Slot",
+      "value": [
+        "スロット番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>このステートコントローラーは一度に8つまで定義ができますが、それぞれSlotに指定された番号で区別されます。Attr毎に異なる挙動にしたいときに指定。</p><p>同じ番号のHitOverrideが有効になると、前のHitOverrideの効果は消えます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 0,
+          "display": "スロット0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitoverride-local-2002",
+              "hitoverride-local-1.0",
+              "hitoverride-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>HitOverride を格納するスロット番号を <code>0</code> から <code>7</code> の整数式で指定します。省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitoverride-local-2002",
+            "hitoverride-local-1.0",
+            "hitoverride-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "StateNo",
+      "value": [
+        "ステート番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>Attrの攻撃を受けたときに移行するステートを指定します。-1を指定すると、HitOverrideそのものが機能しなくなります。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "-1 ;ステート移行しない。"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": -1,
+          "display": "Linux MUGEN 2002.04.14: ステートを変更しない",
+          "environment": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-linux"
+            ]
+          },
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitoverride-local-2002"
+            ]
+          }
+        },
+        {
+          "kind": "required",
+          "display": "MUGEN 1.0 / 1.1: 移行先を必須指定",
+          "environment": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0",
+              "mugen-1.1"
+            ]
+          },
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitoverride-local-1.0",
+              "hitoverride-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>対象属性の HitDef を受けたときの移行先ステート番号を整数式で指定します。Linux MUGEN 2002.04.14資料では任意で省略時 <code>-1</code>（変更なし）、MUGEN 1.0 / 1.1資料では必須です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitoverride-local-2002",
+            "hitoverride-local-1.0",
+            "hitoverride-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Time",
+      "value": [
+        "効果時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>このコントローラの有効時間。-1にすると、同じSlotのHitOverrideに上書きされるまで有効。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "3"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 1,
+          "display": "1 tick 有効",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitoverride-local-2002",
+              "hitoverride-local-1.0",
+              "hitoverride-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>HitOverride を有効にする tick 数を整数式で指定します。省略時は <code>1</code>、<code>-1</code> なら別の HitOverride に上書きされるまで有効です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitoverride-local-2002",
+            "hitoverride-local-1.0",
+            "hitoverride-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "ForceAir",
+      "value": [
+        "空中ヒットフラグ"
+      ],
+      "type": [
+        "boolean"
+      ],
+      "description": "<p>1にすると、空中で攻撃を受けたときと同じ状態になります。全ての攻撃でダウンさせたいときに有効らしい。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "4"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 0,
+          "display": "通常の被弾状態として扱う",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitoverride-local-2002",
+              "hitoverride-local-1.0",
+              "hitoverride-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>1</code> にすると、攻撃を受けたときの被弾変数を空中状態で被弾した場合と同様に設定します。省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "hitoverride-local-2002",
+            "hitoverride-local-1.0",
+            "hitoverride-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "HitOverride - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitOverride"
+    },
+    {
+      "title": "HitOverride - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#hitoverride"
+    },
+    {
+      "title": "HitOverride - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#hitoverride"
+    },
+    {
+      "title": "HitOverRide - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitOverRide"
+    },
+    {
+      "title": "HitOverRide - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?HitOverRide&protocol=http"
+    },
+    {
+      "title": "HitOverRide - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#HitOverRide"
+    },
+    {
+      "title": "HitOverRide - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"
+    },
+    {
+      "id": "hitoverride-warning-binran",
+      "title": "HitOverride — MUGENエラー・警告メッセージ集",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "hitoverride-local-2002",
+      "title": "HitOverride — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#HitOverride",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitoverride-local-1.0",
+      "title": "HitOverride — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#hitoverride",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitoverride-local-1.1",
+      "title": "HitOverride — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitoverride",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitoverride-legacy-data",
+      "title": "HitOverRide — 移行前の説明・警告原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/b6c540e2fe72d373fb49fee4b8b3478201a99ffd/src/content/state-controllers/HitOverRide.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>指定した属性の攻撃を受けたとき、通常の被弾処理の代わりに指定ステートへ移行させます。同時に最大8個の HitOverride を有効にできます。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "hitoverride-local-2002",
+        "hitoverride-local-1.0",
+        "hitoverride-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "hitoverride-local-2002",
+      "hitoverride-local-1.0",
+      "hitoverride-local-1.1"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で基本動作、最大8スロット、各パラメーター、StateNo の世代差、1.0 / 1.1 の HitDef 制約を確認。旧 MoveType・スパーク・音、警告条件を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>MUGEN 1.0 / 1.1では、実行者に有効な HitOverride がある場合、相手の一致する HitDef に <code>p1stateno != -1</code> または <code>p2getp1state = 1</code> が設定されていると、その HitDef の影響を受けません。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitoverride-local-1.0",
+          "hitoverride-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "ILLEGAL OVERRIDE SLOT 0 ASSUMED:Slotに-1以下、8以上",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitoverride-warning-binran",
+          "hitoverride-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧警告文と条件を原文のまま保持。対象ビルドと実行ログは未確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 1,
+      "content": "ILLEGAL HITOVERRIDE TIME:Timeに-2以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitoverride-warning-binran",
+          "hitoverride-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧警告文と条件を原文のまま保持。対象ビルドと実行ログは未確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 2,
+      "content": "ILLEGAL HITOVERRIDE STATENO.:StateNoに-2以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitoverride-warning-binran",
+          "hitoverride-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧警告文と条件を原文のまま保持。対象ビルドと実行ログは未確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 description はカウンター技や Helper の被弾への用途を挙げ、MoveType が H 以外のステートへ移行すると HitDef を無効にできる一方でヒットスパークとヒット音は必ず発生すると記録する。対象ビルド、再現ステート、実行ログがないため公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "hitoverride-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧制作・ヒット処理記録を原文に保持。"
+      }
+    }
+  ]
 }

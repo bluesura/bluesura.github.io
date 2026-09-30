@@ -406,3 +406,21 @@ npm run mugen:batch -- --batch hit-fall-01 --target HitFallSet --target HitFallV
 ```
 
 このバッチは適用済みです。次は HitOverRide / NotHitBy の防御関連制御を照合します。
+
+## hit-defense-01：攻撃属性への特殊防御2件
+
+2026-10-01、HitOverRide / NotHitBy を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/hit-defense-01/` へ保存しています。
+
+- HitOverRide は指定属性の HitDef を受けたときに通常のやられ処理を置き換え、最大8スロットを同時に有効化できます。Attr は必須、Slot は省略時0、Time は省略時1で -1 は上書きまで有効、ForceAir は省略時0です。
+- HitOverRide の StateNo は公式資料の世代差を統合せず、Linux MUGEN 2002.04.14では任意・省略時 -1、MUGEN 1.0 / 1.1では必須として環境別に保存しました。CNS コピペ欄では環境依存値を有効な行へ決め打ちしません。
+- MUGEN 1.0 / 1.1で有効な HitOverride がある場合、一致する相手 HitDef の `p1stateno != -1` または `p2getp1state = 1` の影響を受けない公式記載は公開注記にしました。旧警告文、MoveType H、スパーク／サウンドの記録は対象ビルドと再現ログがないため内部 `research` に保持しました。
+- NotHitBy は HitBy と共有する2スロットの一方へ、指定属性を除く攻撃属性を設定します。value / value2 はどちらか一方が必須で同時指定不可、Time は省略時1です。CNS コピペ欄では value / value2 の両方を未指定のコメント行として残します。
+- NotHitBy の旧カンマ／OR解釈と `SCA, NA` の例、Time=-1以下の永続化、32-bit値域、60フレーム補足は今回確認した公式資料から確定できないため、原文と内部 `research` に保存して HTML から外しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch hit-defense-01
+npm run mugen:batch -- --batch hit-defense-01 --target HitOverRide --target NotHitBy
+npm run mugen:batch -- --batch hit-defense-01 --target HitOverRide --target NotHitBy --apply
+```
+
+このバッチは適用済みです。次は FallEnvShake / EnvShake の画面振動関連制御を照合します。

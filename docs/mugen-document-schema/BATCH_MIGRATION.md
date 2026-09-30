@@ -424,3 +424,21 @@ npm run mugen:batch -- --batch hit-defense-01 --target HitOverRide --target NotH
 ```
 
 このバッチは適用済みです。次は FallEnvShake / EnvShake の画面振動関連制御を照合します。
+
+## environment-shake-01：落下時・任意指定の画面振動2件
+
+2026-10-01、FallEnvShake / EnvShake を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/environment-shake-01/` へ保存しています。
+
+- FallEnvShake はパラメーターを取らず、HitDef 由来の `fall.envshake` を使って落下時の画面振動を開始します。`GetHitVar(fall.envshake.time)` が0以外の場合だけ有効で、実行後は同値を0へ戻します。
+- 保存済み公式更新履歴は2000-11-18項目で FallEnvShake を新規コントローラーと記録します。ただし対応する正確なビルドIDを現行レジストリで特定できないため、`introduced_in` は null のままです。旧制作用途は公式説明との差を内部 `research` に保持しました。
+- EnvShake は上下方向の画面振動です。Time は省略不可、Freq は省略時60で0〜180、Ampl は2002.04.14では -4、1.0 / 1.1では240p=-4・480p=-8・720p=-16、Phase は Freq が90未満なら0・90以上なら90です。
+- 解像度で変わる Ampl と Freq により変わる Phase は、CNS コピペ欄で単一の有効値へ決め打ちせずコメント行にします。Freq=60だけは確認済み固定値として有効行を維持します。
+- EnvShake の旧負数警告、連続実行と作用開始、ライフバー、正弦波・`360 / Freq` 計算、高解像度ステージの背景振幅、Time の32-bit値域・60fps補足は対象ビルドと実行ログが不足しているため、原文と内部 `research` に保存して HTML から外しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch environment-shake-01
+npm run mugen:batch -- --batch environment-shake-01 --target FallEnvShake --target EnvShake
+npm run mugen:batch -- --batch environment-shake-01 --target FallEnvShake --target EnvShake --apply
+```
+
+このバッチは適用済みです。次は AttackDist / PlayerPush / ScreenBound / Width の接触・画面境界関連制御を照合します。

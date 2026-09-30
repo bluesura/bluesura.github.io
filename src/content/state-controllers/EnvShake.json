@@ -1,75 +1,481 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "EnvShake",
-		"target": "",
-		"category": ["画面演出","画面全体を揺らす演出"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "EnvShake",
-	"description": "<p>画面を揺らします。ただし、ライフバーは揺れません。</p><p>次のフレームからTime-1フレーム後まで作用。1フレーム毎に実行すると、前回の効果に上書きされるため、内容が同じだと画面が揺れません。</p><p>揺れは正弦波であり、初期位相Phase°、角周波数Freq°/フレーム、振幅Amplピクセル。（正弦波は円周上を回る点を縦軸に映した影と見ることが出来、円の半径をAmpl、1フレームに反時計回りに回る角度をFreq、スタート地点をPhaseと考えることが出来る。）</p>",
-	"images": [{"src": "EnvShake.gif", "width": "640", "height": "480", "alt": "MUGEN EnvShake"}],
-	"category": "state",
-
-	"version": [
-		{"no": "警告文", "content": "NEGATIVE FREQ FOR ENVSHAKE:Freqに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "Time",
-			"value": ["揺れる時間"],
-			"type": ["int"],
-			"description": "<p>揺れの持続時間をフレーム単位で指定。</p><p>※60フレーム=1秒</p>",
-			"min_value": ["0 ;効果なし"],
-			"max_value": ["2147483647"],
-			"parameter_type": "required",
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Ampl",
-			"value": ["揺れ幅"],
-			"type": ["int"],
-			"description": "<p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p><p>ハイレゾ(1024×768ドット以上の解像度)のステージでは背景の振れ幅は半減します。</p>",
-			"parameter_type": "optional",
-			"default_value": ["-4 ;ただし、画面の縦が240ピクセル：-4, 480ピクセル：-8, 720ピクセル：-16"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "Phase",
-			"value": ["位相開始位置"],
-			"type": ["float"],
-			"description": "<p>揺れ幅をどこから始めるか指定出来ます。</p>",
-			"parameter_type": "optional",
-			"default_value": ["0 ;ただし、Freqが90以上の場合、90になります。"],
-			"load_priority": ["3"]
-		},
-		{
-			"parameter": "Freq",
-			"value": ["揺れの速度"],
-			"type": ["float"],
-			"description": "<p>揺れるスピードを、0(固定),1(低速)～180(高速)の間で指定。180を中心からズレて中心に戻るまでとした速度数値。半周が180なので一周＝360。360/Freq値＝一周にかかるフレーム数。</p>",
-			"min_value": ["0"],
-			"max_value": ["180"],
-			"parameter_type": "optional",
-			"default_value": ["60"],
-			"load_priority": ["4"]
-		}
-	],
-
-	"quote": [
-		{"title": "EnvShake - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#EnvShake"},
-		{"title": "EnvShake - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#envshake"},
-		{"title": "EnvShake - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#envshake"},
-		{"title": "EnvShake - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/EnvShake"},
-		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-		{"title": "EnvShake - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?EnvShake&protocol=http"},
-		{"title": "EnvShake - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/214.html"},
-		{"title": "EnvShake - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#EnvShake"},
-		{"title": "EnvShake - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "EnvShake",
+    "target": "",
+    "category": [
+      "画面演出",
+      "画面全体を揺らす演出"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "EnvShake",
+  "description": "<p>画面を揺らします。ただし、ライフバーは揺れません。</p><p>次のフレームからTime-1フレーム後まで作用。1フレーム毎に実行すると、前回の効果に上書きされるため、内容が同じだと画面が揺れません。</p><p>揺れは正弦波であり、初期位相Phase°、角周波数Freq°/フレーム、振幅Amplピクセル。（正弦波は円周上を回る点を縦軸に映した影と見ることが出来、円の半径をAmpl、1フレームに反時計回りに回る角度をFreq、スタート地点をPhaseと考えることが出来る。）</p>",
+  "images": [
+    {
+      "src": "EnvShake.gif",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN EnvShake"
+    }
+  ],
+  "category": "state",
+  "version": [
+    {
+      "no": "警告文",
+      "content": "NEGATIVE FREQ FOR ENVSHAKE:Freqに-1以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "Time",
+      "value": [
+        "揺れる時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>揺れの持続時間をフレーム単位で指定。</p><p>※60フレーム=1秒</p>",
+      "min_value": [
+        "0 ;効果なし"
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "required",
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "画面を揺らす tick 数を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "envshake-local-2002",
+              "envshake-local-1.0",
+              "envshake-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>画面を揺らすゲーム tick 数を整数式で指定します。省略できません。</p>",
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "envshake-local-2002",
+            "envshake-local-1.0",
+            "envshake-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Ampl",
+      "value": [
+        "揺れ幅"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。</p><p>ハイレゾ(1024×768ドット以上の解像度)のステージでは背景の振れ幅は半減します。</p>",
+      "parameter_type": "optional",
+      "default_value": [
+        "-4 ;ただし、画面の縦が240ピクセル：-4, 480ピクセル：-8, 720ピクセル：-16"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": -4,
+          "display": "Linux MUGEN 2002.04.14",
+          "environment": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-linux"
+            ]
+          },
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "envshake-local-2002"
+            ]
+          }
+        },
+        {
+          "kind": "derived",
+          "display": "MUGEN 1.0 / 1.1: 240pでは-4、480pでは-8、720pでは-16",
+          "environment": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0",
+              "mugen-1.1"
+            ]
+          },
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "envshake-local-1.0",
+              "envshake-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>画面を上下へ動かす振幅をピクセル数の整数式で指定します。絶対値が大きいほど移動量が増え、負数では最初に下へ動きます。Linux MUGEN 2002.04.14では省略時 <code>-4</code>、MUGEN 1.0 / 1.1では240pで <code>-4</code>、480pで <code>-8</code>、720pで <code>-16</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "envshake-local-2002",
+            "envshake-local-1.0",
+            "envshake-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Phase",
+      "value": [
+        "位相開始位置"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>揺れ幅をどこから始めるか指定出来ます。</p>",
+      "parameter_type": "optional",
+      "default_value": [
+        "0 ;ただし、Freqが90以上の場合、90になります。"
+      ],
+      "load_priority": [
+        "3"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "derived",
+          "display": "Freq が90未満なら0、90以上なら90",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "envshake-local-2002",
+              "envshake-local-1.0",
+              "envshake-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>振動を開始する位相オフセットを浮動小数点式で指定します。省略時は <code>Freq</code> が90未満なら <code>0</code>、90以上なら <code>90</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "envshake-local-2002",
+            "envshake-local-1.0",
+            "envshake-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Freq",
+      "value": [
+        "揺れの速度"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>揺れるスピードを、0(固定),1(低速)～180(高速)の間で指定。180を中心からズレて中心に戻るまでとした速度数値。半周が180なので一周＝360。360/Freq値＝一周にかかるフレーム数。</p>",
+      "min_value": [
+        "0"
+      ],
+      "max_value": [
+        "180"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "60"
+      ],
+      "load_priority": [
+        "4"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 60,
+          "display": "標準速度",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "envshake-local-2002",
+              "envshake-local-1.0",
+              "envshake-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>振動の速さを <code>0</code>（遅い）から <code>180</code>（速い）の浮動小数点式で指定します。省略時は <code>60</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "envshake-local-2002",
+            "envshake-local-1.0",
+            "envshake-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "EnvShake - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#EnvShake"
+    },
+    {
+      "title": "EnvShake - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#envshake"
+    },
+    {
+      "title": "EnvShake - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#envshake"
+    },
+    {
+      "title": "EnvShake - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/EnvShake"
+    },
+    {
+      "title": "不具合・対策まとめ - MUGENの便覧",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "title": "EnvShake - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?EnvShake&protocol=http"
+    },
+    {
+      "title": "EnvShake - MUGEN CNS WIKI CHAOS@予定",
+      "url": "http://www49.atwiki.jp/mugencns/pages/214.html"
+    },
+    {
+      "title": "EnvShake - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#EnvShake"
+    },
+    {
+      "title": "EnvShake - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"
+    },
+    {
+      "id": "envshake-warning-binran",
+      "title": "EnvShake — MUGENエラー・警告メッセージ集",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "envshake-local-2002",
+      "title": "EnvShake — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#EnvShake",
+      "source_type": "official_document"
+    },
+    {
+      "id": "envshake-local-1.0",
+      "title": "EnvShake — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#envshake",
+      "source_type": "official_document"
+    },
+    {
+      "id": "envshake-local-1.1",
+      "title": "EnvShake — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#envshake",
+      "source_type": "official_document"
+    },
+    {
+      "id": "envshake-legacy-data",
+      "title": "EnvShake — 移行前の説明・警告原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/675b9d36719d589ca4007ec57c40dd6b3163c5a0/src/content/state-controllers/EnvShake.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>画面を上下方向へ揺らします。必須の <code>Time</code> で持続時間を指定し、任意の <code>Freq</code>、<code>Ampl</code>、<code>Phase</code> で振動の速さ、振幅、開始位相を調整します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "envshake-local-2002",
+        "envshake-local-1.0",
+        "envshake-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "envshake-local-2002",
+      "envshake-local-1.0",
+      "envshake-local-1.1"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で上下方向の画面振動、Time の必須性、Freq / Ampl / Phase の型・既定値・基本動作を確認。旧連続実行、ライフバー、正弦波式、高解像度ステージ、整数範囲、警告条件を確認済みとするものではない。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "NEGATIVE FREQ FOR ENVSHAKE:Freqに-1以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "envshake-warning-binran",
+          "envshake-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧警告文と条件を原文のまま保持。対象ビルドと実行ログは未確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 description はライフバーが揺れないこと、次フレームから Time-1 フレーム後まで作用すること、毎フレーム実行すると前回の効果を上書きし、同じ内容では揺れないことを記録する。対象ビルドと実行ログがないため公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "envshake-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧実行タイミング・描画範囲記録を原文に保持。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 description と Freq 説明は振動を正弦波とし、初期位相・角周波数・振幅の関係、<code>360 / Freq</code> を1周のフレーム数とする計算を記録する。今回確認した公式コントローラー資料はこの計算式を明記しないため公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "envshake-local-2002",
+          "envshake-local-1.0",
+          "envshake-local-1.1",
+          "envshake-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧波形説明を原文に保持。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 Ampl 説明は1024×768以上のステージで背景の振れ幅が半減すると記録する。公式1.0 / 1.1資料は解像度別の省略値を示すが、この背景振幅の実行時補正は明記しないため公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "envshake-local-1.0",
+          "envshake-local-1.1",
+          "envshake-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧高解像度ステージ記録を原文に保持。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 Time 説明は <code>0</code> を効果なし、最大値 <code>2147483647</code>、60フレーム=1秒と記録する。今回確認した公式資料は Time を必須の tick 数とするだけで、この整数範囲と60fps補足を明記しないため公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "envshake-local-2002",
+          "envshake-local-1.0",
+          "envshake-local-1.1",
+          "envshake-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧値域・時間換算を原文に保持。"
+      }
+    }
+  ]
 }

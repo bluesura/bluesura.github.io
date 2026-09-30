@@ -1,25 +1,124 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "FallEnvShake",
-		"target": "",
-		"category": ["画面演出","地面叩きつけ時の画面揺れ発生"],
-		"update": "2013.11.27",
-		"version": "2002.04.14",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "FallEnvShake",
-	"description": "<p>プレイヤーが攻撃を受けているときに有効。相手のHitDef中のfall.envshakeパラメータを実行します。やられステートを上書きするときや、特殊なやられなどに使用。</p>",
-	"category": "state",
-
-	"quote": [
-		{"title": "FallEnvShake - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#FallEnvShake"},
-		{"title": "FallEnvShake - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#fallenvshake"},
-		{"title": "FallEnvShake - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#fallenvshake"},
-		{"title": "FallEnvShake - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/FallEnvShake"},
-		{"title": "FallEnvShake - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?FallEnvShake&protocol=http"},
-		{"title": "FallEnvShake - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#FallEnvShake"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "FallEnvShake",
+    "target": "",
+    "category": [
+      "画面演出",
+      "地面叩きつけ時の画面揺れ発生"
+    ],
+    "update": "2013.11.27",
+    "version": "2002.04.14",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "FallEnvShake",
+  "description": "<p>プレイヤーが攻撃を受けているときに有効。相手のHitDef中のfall.envshakeパラメータを実行します。やられステートを上書きするときや、特殊なやられなどに使用。</p>",
+  "category": "state",
+  "quote": [
+    {
+      "title": "FallEnvShake - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#FallEnvShake"
+    },
+    {
+      "title": "FallEnvShake - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#fallenvshake"
+    },
+    {
+      "title": "FallEnvShake - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#fallenvshake"
+    },
+    {
+      "title": "FallEnvShake - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/FallEnvShake"
+    },
+    {
+      "title": "FallEnvShake - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?FallEnvShake&protocol=http"
+    },
+    {
+      "title": "FallEnvShake - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#FallEnvShake"
+    },
+    {
+      "id": "fallenvshake-local-2002",
+      "title": "FallEnvShake — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#FallEnvShake",
+      "source_type": "official_document"
+    },
+    {
+      "id": "fallenvshake-local-1.0",
+      "title": "FallEnvShake — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#fallenvshake",
+      "source_type": "official_document"
+    },
+    {
+      "id": "fallenvshake-local-1.1",
+      "title": "FallEnvShake — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#fallenvshake",
+      "source_type": "official_document"
+    },
+    {
+      "id": "fallenvshake-history-2000",
+      "title": "FallEnvShake — 保存済み Elecbyte 更新履歴（2000-11-18）",
+      "url": "/MUGEN/document/Official/2002.04.14/updates.txt",
+      "source_type": "official_history"
+    },
+    {
+      "id": "fallenvshake-legacy-data",
+      "title": "FallEnvShake — 移行前の説明原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/675b9d36719d589ca4007ec57c40dd6b3163c5a0/src/content/state-controllers/FallEnvShake.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>HitDef が設定した <code>fall.envshake</code> の値を使い、実行者が地面へ落下したときの画面振動を開始します。<code>GetHitVar(fall.envshake.time)</code> が0以外の場合だけ有効で、実行後は同値を0へ戻します。パラメーターはありません。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "fallenvshake-local-2002",
+        "fallenvshake-local-1.0",
+        "fallenvshake-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document",
+      "official_history"
+    ],
+    "source_refs": [
+      "fallenvshake-local-2002",
+      "fallenvshake-local-1.0",
+      "fallenvshake-local-1.1",
+      "fallenvshake-history-2000"
+    ],
+    "comment": "2026-10-01: 保存済み公式資料で基本動作、発動条件、実行後の time 消去、パラメーターなしを確認。公式更新履歴は2000-11-18項目で新規コントローラーと記録するが、対応する正確なビルドIDは現行レジストリにないため introduced_in は未確定。"
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 description は、やられステートを上書きするときや特殊なやられで使用すると説明する。公式資料は common1.cns の落下処理で使用し、それ以外では通常有用でないとするため、旧制作用途は原文に保持して公開しない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "fallenvshake-local-2002",
+          "fallenvshake-local-1.0",
+          "fallenvshake-local-1.1",
+          "fallenvshake-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧制作用途と公式説明の差を静的に照合。"
+      }
+    }
+  ]
 }

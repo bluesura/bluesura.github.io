@@ -148,3 +148,7 @@ HitFallSet / HitFallVel / HitFallDamage を追加し、累計79件・残り155�
 ## 2026-10-01：hit-defense-01
 
 HitOverRide / NotHitBy を追加し、累計81件・残り153件です。HitOverRide の属性・8スロット・有効時間・ForceAir と、StateNo の2002.04.14対1.0 / 1.1の世代差を保存済み公式資料へ対応させました。NotHitBy は共有2スロット、value / value2 の排他的必須指定、Time=1を構造化しました。HitOverRide の旧警告・MoveType・スパーク／サウンド記録と、NotHitBy の旧カンマ解釈・永続時間・値域は原本を保持して非公開です。
+
+## 2026-10-01：environment-shake-01
+
+FallEnvShake / EnvShake を追加し、累計83件・残り151件です。FallEnvShake の発動条件と実行後の値消去、EnvShake の必須 Time、Freq / Ampl / Phase の既定値と解像度・周波数依存を保存済み公式資料へ対応させました。旧制作用途、警告、連続実行、ライフバー、波形計算、高解像度ステージ、Time 値域は原本を保持して非公開です。

@@ -301,3 +301,21 @@ npm run mugen:batch -- --batch combat-power-01 --target AttackMulSet --target De
 ```
 
 このバッチは適用済みです。次は LifeAdd / LifeSet / TargetPowerAdd のライフ・パワー操作を照合します。
+
+## life-power-01：ライフ・ターゲットパワー操作の3件
+
+2026-09-30、LifeAdd / LifeSet / TargetPowerAdd を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/life-power-01/` へ保存しています。
+
+- LifeAdd は必須の整数式 Value、任意の Absolute / Kill を構造化しました。Absolute は省略時0で防御倍率による調整、1で指定量をそのまま加算します。Kill は省略時1、0ならこの加算によってライフが1未満にならないようにします。
+- LifeSet は実行者のライフを必須の整数式 Value へ設定します。旧本文の用途例は原本に残し、公開文は公式資料で確認できる基本動作へ絞りました。
+- TargetPowerAdd は必須の整数式 value をターゲットのパワーへ加算します。任意の整数式 ID は省略時 -1 で全ターゲットを対象にします。RoundState 3 / 4 の旧記録は `research` として非公開にしました。
+- LifeAdd / LifeSet の RoundState 3 における固定化と Win/Lose の順序は、旧コミュニティ資料へのリンクと原文を維持したまま非公開にしました。IKEMEN GO の競合記録は `environment.engine: ikemen-go` を付け、MUGEN の公開本文から分離しています。
+- 旧ヘッダー画像は未検証の RoundState・記述位置の推奨・IKEMEN GO 互換性を1枚に含むため、画像データを削除せず `visibility: internal` にしました。LifeSet の同じ説明に基づく Q&A も内部化しました。文書画像にも公開範囲を指定できるよう、スキーマ・正規化・HTML比較検査を拡張しています。
+
+```sh
+npm run mugen:batch-baseline -- --batch life-power-01
+npm run mugen:batch -- --batch life-power-01 --target LifeAdd --target LifeSet --target TargetPowerAdd
+npm run mugen:batch -- --batch life-power-01 --target LifeAdd --target LifeSet --target TargetPowerAdd --apply
+```
+
+このバッチは適用済みです。次は TargetBind / TargetDrop / TargetFacing のターゲット制御を照合します。

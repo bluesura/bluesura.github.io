@@ -111,6 +111,7 @@ export function createDocumentSchema(collection, registry) {
     page: z.object({ engine: id.optional(), introduced_in: id.nullable().optional() }).passthrough(),
     parameter: z.array(parameterSchema).optional(),
     documentation: documentDocumentationSchema.optional(),
+    images: z.array(z.object({ visibility: z.enum(['public', 'internal']).optional() }).passthrough()).optional(),
     code_sample: z.array(z.object({ visibility: z.enum(['public', 'internal']).optional() }).passthrough()).optional(),
     qanda: z.array(z.object({
       q: z.string().optional(), a: z.string().optional(),

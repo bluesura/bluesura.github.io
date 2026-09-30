@@ -120,3 +120,7 @@ CtrlSet / StateTypeSet / SprPriority を追加し、累計58件・残り176件�
 ## 2026-09-30：combat-power-01
 
 AttackMulSet / DefenceMulSet / PowerAdd / PowerSet を追加し、累計62件・残り172件です。4件の必須 value と基本動作を保存済み公式資料へ対応させました。DefenceMulSet は2002.04.14の逆数説明と1.0 / 1.1の直接倍率説明を統合せず、`conflicting` の内部 `research` に両方を保持しています。AttackMulSet の効果時間・特殊値・攻撃主体別適用、Power 系の32-bit値域・ゲージ端処理・RoundState 条件も原本を削除せず非公開にしました。PowerAdd / PowerSet の完全なコード例と既存図は公開を維持しています。
+
+## 2026-09-30：life-power-01
+
+LifeAdd / LifeSet / TargetPowerAdd を追加し、累計65件・残り169件です。LifeAdd の Value / Absolute / Kill、LifeSet の Value、TargetPowerAdd の value / ID と既定値を保存済み公式資料へ対応させました。ライフ操作の RoundState 固定化、Win/Lose 順序、IKEMEN GO の競合、TargetPowerAdd の RoundState 3 / 4 記録は内部 `research` に保持しています。未検証情報を含むライフ図と LifeSet Q&A も JSON から削除せず非公開にするため、`images[].visibility` を実装しました。

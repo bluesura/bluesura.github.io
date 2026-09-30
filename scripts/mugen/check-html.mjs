@@ -86,6 +86,7 @@ for (const { collection, name, base } of cases) {
   ];
   const hiddenLinks = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'href')).map(node => ({ href: attr(node, 'href'), text: compactText(node) })));
   const hiddenMedia = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'src')).map(node => attr(node, 'src')).filter(Boolean));
+  hiddenMedia.push(...(source.images ?? []).filter(image => image.visibility === 'internal').map(image => `/images/${collections[collection]}/${image.src}`));
   for (const id of before.sections) assert.ok(
     rendered.sections.includes(id)
       || (id === 'CodeSample' && internalSampleIndices.length > 0 && !current.code_sample.length)

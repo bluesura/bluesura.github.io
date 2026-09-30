@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 import { parseFragment } from 'parse5';
 import { textContent } from '../../scripts/mugen/html.mjs';
 import { readJSON, pathFromRoot } from '../../scripts/mugen/files.mjs';
-import { publicNotes, effectiveNotes } from '../../src/lib/mugen/normalize.mjs';
+import { publicImages, publicNotes, effectiveNotes, normalizeDocument } from '../../src/lib/mugen/normalize.mjs';
 import { createDocumentSchema } from '../../src/lib/mugen/schema.mjs';
 import { describeDefault, parameterLine } from '../../src/lib/mugen/defaults.mjs';
 
@@ -21,6 +21,17 @@ test('internal publication choices survive validation and never resurrect mapped
   assert.deepEqual(publicNotes(parsed).map(note => note.content), ['公開する説明']);
   assert.equal(parsed.notes[0].evidence.status, 'confirmed');
   assert.equal(createDocumentSchema('state-controllers', registry).safeParse({ ...doc, notes: [{ kind: 'research', visibility: 'public', content: '公開不可' }] }).success, false);
+});
+test('internal document images remain stored but are removed from the public view', () => {
+  const doc = { state: 'Example', page: {}, images: [
+    { src: 'public.png', alt: '公開画像' },
+    { src: 'research.png', alt: '内部画像', visibility: 'internal' },
+  ] };
+  const parsed = createDocumentSchema('state-controllers', registry).parse(doc);
+  assert.deepEqual(publicImages(parsed).map(image => image.src), ['public.png']);
+  assert.deepEqual(normalizeDocument(parsed).images.map(image => image.src), ['public.png']);
+  assert.equal(parsed.images[1].src, 'research.png');
+  assert.equal(createDocumentSchema('state-controllers', registry).safeParse({ ...doc, images: [{ src: 'bad.png', visibility: 'hidden' }] }).success, false);
 });
 test('Helper name retains the precise suffix and placeholder, including in copied CNS comments', () => {
   const doc = readJSON('src/content/state-controllers/Helper.json');

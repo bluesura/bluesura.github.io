@@ -1,0 +1,103 @@
+{
+  "id": "target-control-01",
+  "reviewed_on": "2026-09-30",
+  "description": "TargetBind / TargetDrop / TargetFacing の対象選択、既定値、必須値を保存済み公式資料へ対応させる。公式記述と衝突する旧 Pos 省略時挙動・ターゲット指定不能説明・TargetFacing value 既定値、および条件不足のフリーズ・警告記録は原本を保持して公開ビューから外す。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "TargetBind",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>指定したターゲットを、実行者の軸を基準とする位置へ一定時間固定します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetbind-local-2002", "targetbind-local-1.0", "targetbind-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": -1, "display": "すべてのターゲット", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetbind-local-2002", "targetbind-local-1.0", "targetbind-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>固定するターゲット ID を整数式で指定します。一致する ID のターゲットだけが対象です。省略時は <code>-1</code> で、すべてのターゲットを固定します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetbind-local-2002", "targetbind-local-1.0", "targetbind-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": 1, "display": "1 tick 固定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetbind-local-2002", "targetbind-local-1.0", "targetbind-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>固定を有効にする tick 数を整数式で指定します。省略時は <code>1</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetbind-local-2002", "targetbind-local-1.0", "targetbind-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "literal", "value": "0, 0", "display": "実行者の軸", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetbind-local-2002", "targetbind-local-1.0", "targetbind-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p>実行者の軸からの x, y オフセットを浮動小数点式で指定します。省略時は <code>0, 0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetbind-local-2002", "targetbind-local-1.0", "targetbind-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetbind-local-2002", "targetbind-local-1.0", "targetbind-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で位置固定、任意の Time / ID / Pos と既定値を確認。速度同期、Simul の旧説明、フリーズ、負数警告を確認済みとするものではない。" } },
+        {
+          "path": ["notes"],
+          "value": [
+            { "kind": "research", "legacy_index": 0, "content": "Posを省略してしまうと、Targetを実行者からP2BodyDist x = -1025, P2BodyDist y = -1025の位置に移動させる。", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["targetbind-local-2002", "targetbind-local-1.0", "targetbind-local-1.1", "targetbind-legacy-data"], "comment": "2026-09-30: 公式3資料は Pos 省略時 0,0 とする。旧記録の対象ビルド・再現手順がないため原文を内部保持する。" } },
+            { "kind": "research", "legacy_index": 1, "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["targetbind-freeze-binran", "targetbind-freeze-wiki", "targetbind-legacy-data"], "comment": "2026-09-30: 旧記録と参照を保持。対象ビルド、具体的なリダイレクト式、ターゲット数、実行ログは未確認。" } },
+            { "kind": "research", "legacy_index": 2, "content": "Set ILLEGAL TARGET BINDTIME:Timeに-2以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["targetbind-warning-binran", "targetbind-legacy-data"], "comment": "2026-09-30: 旧警告文と条件を保持。完全なメッセージ、対象ビルド、実行ログは未確認。" } },
+            { "kind": "research", "content": "<p>旧 description は固定中のターゲット速度が実行者と同じになるとし、Target 系コントローラーでは特定ターゲットを指定できないため Simul で複数対象を巻き込むと説明する。公式資料は ID で対象を絞り込めることを明記するため、旧文を原位置に保持し、公開本文では使用しない。</p>", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["targetbind-local-2002", "targetbind-local-1.0", "targetbind-local-1.1", "targetbind-legacy-data"], "comment": "2026-09-30: 対象選択の記述差を確認。速度同期の実機確認ではない。" } }
+          ]
+        },
+        { "path": ["quote", 4, "id"], "value": "targetbind-warning-binran" },
+        { "path": ["quote", 4, "source_type"], "value": "community_documentation" },
+        { "path": ["quote", "-"], "value": { "id": "targetbind-freeze-binran", "title": "Target リダイレクト中の複数ターゲット記録 — MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#02", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "targetbind-freeze-wiki", "title": "TargetFacing — MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/263.html", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "targetbind-local-2002", "title": "TargetBind — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetBind", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetbind-local-1.0", "title": "TargetBind — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#targetbind", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetbind-local-1.1", "title": "TargetBind — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#targetbind", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetbind-legacy-data", "title": "TargetBind — 移行前の説明・不具合・警告原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/0d581b7c5018eeeb63adf6803437490811703cb8/src/content/state-controllers/TargetBind.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "description / version / notes", "reason": "速度同期、旧 Pos 省略時挙動、複数ターゲット時のフリーズ、負数警告は実機未確認。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "TargetDrop",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>実行者のターゲット一覧から対象を外します。<code>ExcludeID</code> と <code>KeepOne</code> を使い、指定 ID のターゲットを残せます。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetdrop-local-2002", "targetdrop-local-1.0", "targetdrop-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": -1, "display": "すべてのターゲットを外す", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetdrop-local-2002", "targetdrop-local-1.0", "targetdrop-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>一覧に残すターゲット ID を整数式で指定します。この ID と一致しないターゲットは一覧から外れます。省略時は <code>-1</code> で、すべてのターゲットを外します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetdrop-local-2002", "targetdrop-local-1.0", "targetdrop-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": 1, "display": "最大1体を残す", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetdrop-local-2002", "targetdrop-local-1.0", "targetdrop-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>0以外なら、<code>ExcludeID</code> と一致する対象が複数いてもランダムに1体だけを残します。<code>0</code> なら、一致する対象をすべて残します。省略時は <code>1</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetdrop-local-2002", "targetdrop-local-1.0", "targetdrop-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetdrop-local-2002", "targetdrop-local-1.0", "targetdrop-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で一覧から外す動作、任意 ExcludeID / KeepOne と既定値を確認。" } },
+        { "path": ["quote", "-"], "value": { "id": "targetdrop-local-2002", "title": "TargetDrop — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetDrop", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetdrop-local-1.0", "title": "TargetDrop — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#targetdrop", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetdrop-local-1.1", "title": "TargetDrop — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#targetdrop", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetdrop-legacy-data", "title": "TargetDrop — 移行前の説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/0d581b7c5018eeeb63adf6803437490811703cb8/src/content/state-controllers/TargetDrop.json", "source_type": "source_code" } }
+      ],
+      "remaining": [{ "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "TargetFacing",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>ターゲットの向きを、実行者と同じ方向または反対方向へ変更します。<code>ID</code> で対象を絞り込めます。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetfacing-local-2002", "targetfacing-local-1.0", "targetfacing-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": -1, "display": "すべてのターゲット", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetfacing-local-2002", "targetfacing-local-1.0", "targetfacing-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>向きを変えるターゲット ID を整数式で指定します。一致する ID のターゲットだけが対象です。省略時は <code>-1</code> で、すべてのターゲットを対象にします。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetfacing-local-2002", "targetfacing-local-1.0", "targetfacing-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "required", "display": "実行者を基準とする向きを指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetfacing-local-2002", "targetfacing-local-1.0", "targetfacing-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>正数なら実行者と同じ方向、負数なら実行者と反対方向を向かせます。省略できません。</p>", "hide_legacy": ["default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetfacing-local-2002", "targetfacing-local-1.0", "targetfacing-local-1.1"] } } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetfacing-local-2002", "targetfacing-local-1.0", "targetfacing-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で必須 value の正負、任意 ID、ID=-1 の全対象を確認。旧 default_value=1 と複数ターゲット時のフリーズを確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [{ "kind": "research", "legacy_index": 0, "content": "パラメーターでTargetリダイレクトを使用中に、複数ターゲットを保持するとフリーズする。対策方法は<a href=\"http://mugenbinran.web.fc2.com/error.html#02\" target=\"_blank\" rel=\"external\">こちら</a>・<a href=\"http://www49.atwiki.jp/mugencns/pages/263.html\" target=\"_blank\" rel=\"external\">こちら</a>。", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["targetfacing-freeze-binran", "targetfacing-freeze-wiki", "targetfacing-legacy-data"], "comment": "2026-09-30: 旧記録と参照を保持。対象ビルド、具体的なリダイレクト式、ターゲット数、実行ログは未確認。" } }] },
+        { "path": ["quote", 5, "id"], "value": "targetfacing-freeze-wiki" },
+        { "path": ["quote", 5, "source_type"], "value": "community_documentation" },
+        { "path": ["quote", "-"], "value": { "id": "targetfacing-freeze-binran", "title": "Target リダイレクト中の複数ターゲット記録 — MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#02", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "targetfacing-local-2002", "title": "TargetFacing — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetFacing", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetfacing-local-1.0", "title": "TargetFacing — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#targetfacing", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetfacing-local-1.1", "title": "TargetFacing — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#targetfacing", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetfacing-legacy-data", "title": "TargetFacing — 移行前の説明・不具合原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/0d581b7c5018eeeb63adf6803437490811703cb8/src/content/state-controllers/TargetFacing.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "parameter[1].load_priority", "reason": "旧値は ?。並び順から推測しない。" },
+        { "path": "version[0]", "reason": "複数ターゲット時のフリーズは対象ビルドと実行ログがない。" }
+      ]
+    }
+  ]
+}

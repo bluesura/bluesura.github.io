@@ -1,0 +1,121 @@
+{
+  "id": "life-power-01",
+  "reviewed_on": "2026-09-30",
+  "description": "LifeAdd / LifeSet / TargetPowerAdd の対象、必須値、任意フラグ、既定値を保存済み公式資料へ対応させる。実機記録のない RoundState 条件と、それを含む図・Q&A、別エンジンである IKEMEN GO の互換性記録は原本を保持して公開ビューから外す。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "LifeAdd",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["images", 0, "visibility"], "value": "internal" },
+        {
+          "path": ["documentation"],
+          "value": {
+            "description": "<p>実行者のライフに、<code>Value</code> で指定した量を加算します。<code>Absolute</code> が <code>0</code> の場合は実行者の防御倍率で調整され、<code>1</code> の場合は指定量をそのまま加算します。</p>",
+            "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeadd-local-2002", "lifeadd-local-1.0", "lifeadd-local-1.1"] }
+          }
+        },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": 0, "display": "防御倍率で調整", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeadd-local-2002", "lifeadd-local-1.0", "lifeadd-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p><code>1</code> なら防御倍率を無視し、<code>Value</code> の量をそのまま加算します。<code>0</code> なら防御倍率で調整します。省略時は <code>0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeadd-local-2002", "lifeadd-local-1.0", "lifeadd-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": 1, "display": "KO可能", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeadd-local-2002", "lifeadd-local-1.0", "lifeadd-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p><code>0</code> なら、この加算によってライフが1未満にならないようにします。省略時は <code>1</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeadd-local-2002", "lifeadd-local-1.0", "lifeadd-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "required", "display": "ライフへ加算する量を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeadd-local-2002", "lifeadd-local-1.0", "lifeadd-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p>実行者のライフへ加算する量を整数式で指定します。省略できません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeadd-local-2002", "lifeadd-local-1.0", "lifeadd-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        {
+          "path": ["evidence"],
+          "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeadd-local-2002", "lifeadd-local-1.0", "lifeadd-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で Value、Kill、Absolute の意味と既定値を確認。RoundState の固定化と IKEMEN GO の適用順を確認済みとするものではない。" }
+        },
+        {
+          "path": ["notes"],
+          "value": [
+            { "kind": "research", "legacy_index": 0, "content": "<p><code>RoundState=3</code>（ラウンド終了処理）では、一定の猶予を過ぎるとライフ変更が固定され、<code>LifeAdd</code>を含むライフ操作が反映されなくなる場合があります。<br>Win/Lose 判定（フラグ適用）はこの固定化より後に行われるため、Win/Lose が出た後にゲージを動かす用途には使えません。</p>", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["lifeadd-death-community", "lifeadd-legacy-data"], "comment": "2026-09-30: 旧記録とリンクを保持。対象ビルド別の再現手順・実行ログを今回確認していない。" } },
+            { "kind": "research", "legacy_index": 1, "content": "<p>同一更新フレーム内に複数のライフ操作（<code>LifeSet</code>/<code>LifeAdd</code> と <code>TargetLifeAdd</code> 等）が競合する場合、適用順序がMUGEN 1.1と異なる可能性が報告されています（互換性課題）。</p>", "environment": { "engine": "ikemen-go" }, "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["lifeadd-ikemen-issue", "lifeadd-legacy-data"], "comment": "2026-09-30: IKEMEN GO の課題を MUGEN 本文から分離して保持。対象リリースと再現確認は未実施。" } },
+            { "kind": "research", "content": "<p>旧ヘッダー画像は RoundState=3 の固定化、ステート-2での記述推奨、IKEMEN GO の競合を1枚にまとめている。各主張の対象ビルドと実行記録を確認するまで、画像ファイルとメタデータを JSON に残して公開しない。</p>", "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["lifeadd-legacy-data"], "comment": "2026-09-30: 画像内容を目視確認し、未検証項目を含むため内部化。" } }
+          ]
+        },
+        { "path": ["quote", 2, "id"], "value": "lifeadd-death-community" },
+        { "path": ["quote", 2, "source_type"], "value": "community_documentation" },
+        { "path": ["quote", "-"], "value": { "id": "lifeadd-ikemen-issue", "title": "IKEMEN GO issue 2957 — life controller priority discrepancy", "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/2957", "source_type": "source_code" } },
+        { "path": ["quote", "-"], "value": { "id": "lifeadd-local-2002", "title": "LifeAdd — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#LifeAdd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "lifeadd-local-1.0", "title": "LifeAdd — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#lifeadd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "lifeadd-local-1.1", "title": "LifeAdd — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#lifeadd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "lifeadd-legacy-data", "title": "LifeAdd — 移行前の説明・図・互換性記録原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/896d82fe56a4827bcdfd6732bf7af8f75e684d3b/src/content/state-controllers/LifeAdd.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / images", "reason": "RoundState の固定化と IKEMEN GO の競合は対象ビルド別の実機確認が必要。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "LifeSet",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["images", 0, "visibility"], "value": "internal" },
+        { "path": ["qanda", 0, "visibility"], "value": "internal" },
+        { "path": ["documentation"], "value": { "description": "<p>実行者のライフを、<code>Value</code> で指定した値に設定します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeset-local-2002", "lifeset-local-1.0", "lifeset-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "設定後のライフを指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeset-local-2002", "lifeset-local-1.0", "lifeset-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>実行後のライフを整数式で指定します。省略できません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeset-local-2002", "lifeset-local-1.0", "lifeset-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["lifeset-local-2002", "lifeset-local-1.0", "lifeset-local-1.1"], "comment": "2026-09-30: 保存済み公式資料で実行者のライフを必須の整数 value へ設定することを確認。RoundState の固定化と IKEMEN GO の適用順を確認済みとするものではない。" } },
+        {
+          "path": ["notes"],
+          "value": [
+            { "kind": "research", "legacy_index": 0, "content": "<p><code>RoundState=3</code>（ラウンド終了処理）では、一定の猶予を過ぎるとライフ変更が固定され、<code>LifeSet</code>が反映されない場合があります。<br>Win/Lose 判定（フラグ適用）は固定化より後に行われるため、Win/Lose 後のゲージ操作には使えません。</p>", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["lifeset-death-community", "lifeset-legacy-data"], "comment": "2026-09-30: 旧記録とリンクを保持。対象ビルド別の再現手順・実行ログを今回確認していない。" } },
+            { "kind": "research", "legacy_index": 1, "content": "<p>同一更新フレーム内に複数のライフ操作（<code>LifeSet</code>/<code>LifeAdd</code> と <code>TargetLifeAdd</code> 等）が競合する場合、適用順序がMUGEN 1.1と異なる可能性が報告されています（互換性課題）。</p>", "environment": { "engine": "ikemen-go" }, "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["lifeset-ikemen-issue", "lifeset-legacy-data"], "comment": "2026-09-30: IKEMEN GO の課題を MUGEN 本文から分離して保持。対象リリースと再現確認は未実施。" } },
+            { "kind": "research", "content": "<p>旧ヘッダー画像と Q&A は RoundState=3 の固定化、Win/Lose フラグの適用順、ステート-2での記述推奨、IKEMEN GO の競合を扱う。対象ビルドと実行記録を確認するまで、画像・質問・回答・参照を JSON に残して公開しない。</p>", "evidence": { "status": "unverified", "basis": ["source_code", "community_documentation"], "source_refs": ["lifeset-death-community", "lifeset-ikemen-issue", "lifeset-legacy-data"], "comment": "2026-09-30: 画像と Q&A の内容を確認し、未検証項目を含むため内部化。" } }
+          ]
+        },
+        { "path": ["quote", 2, "id"], "value": "lifeset-death-community" },
+        { "path": ["quote", 2, "source_type"], "value": "community_documentation" },
+        { "path": ["quote", 3, "id"], "value": "lifeset-ikemen-issue" },
+        { "path": ["quote", 3, "source_type"], "value": "source_code" },
+        { "path": ["quote", "-"], "value": { "id": "lifeset-local-2002", "title": "LifeSet — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#LifeSet", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "lifeset-local-1.0", "title": "LifeSet — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#lifeset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "lifeset-local-1.1", "title": "LifeSet — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#lifeset", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "lifeset-legacy-data", "title": "LifeSet — 移行前の説明・図・Q&A・互換性記録原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/896d82fe56a4827bcdfd6732bf7af8f75e684d3b/src/content/state-controllers/LifeSet.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / images / qanda", "reason": "RoundState の固定化と IKEMEN GO の競合は対象ビルド別の実機確認が必要。" }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "TargetPowerAdd",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>ターゲットのパワーゲージに、<code>value</code> で指定した量を加算します。<code>ID</code> で対象を絞り込めます。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetpoweradd-local-2002", "targetpoweradd-local-1.0", "targetpoweradd-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": -1, "display": "すべてのターゲット", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetpoweradd-local-2002", "targetpoweradd-local-1.0", "targetpoweradd-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>対象にするターゲット ID を整数式で指定します。一致する ID のターゲットだけが対象です。省略時は <code>-1</code> で、すべてのターゲットを対象にします。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetpoweradd-local-2002", "targetpoweradd-local-1.0", "targetpoweradd-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "required", "display": "ターゲットのパワーへ加算する量を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetpoweradd-local-2002", "targetpoweradd-local-1.0", "targetpoweradd-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>各ターゲットのパワーゲージへ加算する量を整数式で指定します。省略できません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetpoweradd-local-2002", "targetpoweradd-local-1.0", "targetpoweradd-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["targetpoweradd-local-2002", "targetpoweradd-local-1.0", "targetpoweradd-local-1.1"], "comment": "2026-09-30: 保存済み公式資料でターゲットへの加算、必須 value、任意 ID、ID=-1 の全対象を確認。RoundState 条件を確認済みとするものではない。" } },
+        { "path": ["notes"], "value": [{ "kind": "research", "legacy_index": 0, "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。", "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["targetpoweradd-legacy-data"], "comment": "2026-09-30: 旧仕様記録を原文のまま対応付けた。対象ビルド、再現手順、実行ログがないため公開しない。" } }] },
+        { "path": ["quote", "-"], "value": { "id": "targetpoweradd-local-2002", "title": "TargetPowerAdd — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#TargetPowerAdd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetpoweradd-local-1.0", "title": "TargetPowerAdd — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#targetpoweradd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetpoweradd-local-1.1", "title": "TargetPowerAdd — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#targetpoweradd", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "targetpoweradd-legacy-data", "title": "TargetPowerAdd — 移行前の説明・仕様記録原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/896d82fe56a4827bcdfd6732bf7af8f75e684d3b/src/content/state-controllers/TargetPowerAdd.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version[0]", "reason": "RoundState 3 / 4 の記録は対象ビルドと実行ログがない。" }
+      ]
+    }
+  ]
+}

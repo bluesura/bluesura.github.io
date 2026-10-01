@@ -8,6 +8,8 @@
 
 > 2026-09-09: ルートの `documentation: { description, evidence? }` でページ概要も訂正できます。旧 `description` を保持し、詳細・一覧・説明用メタ情報には公開本文を使います。`code_sample[].visibility: "internal"` は、例を JSON に保持したまま HTML から外します。
 
+> 2026-10-01: `parameter[].documentation.parameter_type` に `required` / `optional` / `instead` を指定すると、旧 `parameter_type` を保持したまま公開見出しと CNS コピペ欄の必須・任意扱いを訂正できます。`Width` の旧必須表記と公式資料の任意指定の差に使用しています。
+
 このドキュメントは、`mugen-template-all.json` の各フィールドに入力すべき情報を定義した仕様書です。
 LLM（大規模言語モデル）への指示や、ドキュメントデータベース構築時のリファレンスとして利用してください。
 

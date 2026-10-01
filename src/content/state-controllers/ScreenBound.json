@@ -1,51 +1,282 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "ScreenBound",
-		"target": "画面",
-		"category": ["カメラの操作","カメラのプレイヤー追従とスクロール制御"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "ScreenBound",
-	"description": "<p>カメラ？がプレイヤーを追うか否かを設定します。</p><p>軌道の低いジャンプや高速で往復したりする場合などは、画面を固定した方がよいことが多いです。1フレームのみ有効。</p>",
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["画面固定フラグ"],
-			"type": ["int"],
-			"description": "<p>0を指定すると、カメラがプレイヤーを追わなくなります。敵との距離が離れると、敵のみカメラが追うため、自分は画面の外に出ることになります。</p><p>フラグが解除されたときに、プレイヤーがステージのスクロール開始位置の範囲外にいる場合、その範囲内に強制的に引き戻されます。この仕様が問題で、たとえ画面内にいても、スクロール開始位置までワープしてしまいます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [""],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "MoveCamera",
-			"value": ["水平移動フラグ, 垂直移動フラグ"],
-			"type": ["int"],
-			"description": "<p>カメラがプレイヤーを追わなくなります。0以外を指定すると、その方向にはカメラが追うようになります。縦方向のみ固定する場合等に。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0, 0"],
-			"load_priority": ["2, 3"]
-		}
-	],
-
-	"quote": [
-		{"title": "ScreenBound - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ScreenBound"},
-		{"title": "ScreenBound - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#screenbound"},
-		{"title": "ScreenBound - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#screenbound"},
-		{"title": "ScreenBound - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ScreenBound"},
-		{"title": "ScreenBound - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ScreenBound&protocol=http"},
-		{"title": "ScreenBound - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ScreenBound"},
-		{"title": "ScreenBound - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "ScreenBound",
+    "target": "画面",
+    "category": [
+      "カメラの操作",
+      "カメラのプレイヤー追従とスクロール制御"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "ScreenBound",
+  "description": "<p>カメラ？がプレイヤーを追うか否かを設定します。</p><p>軌道の低いジャンプや高速で往復したりする場合などは、画面を固定した方がよいことが多いです。1フレームのみ有効。</p>",
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "画面固定フラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>0を指定すると、カメラがプレイヤーを追わなくなります。敵との距離が離れると、敵のみカメラが追うため、自分は画面の外に出ることになります。</p><p>フラグが解除されたときに、プレイヤーがステージのスクロール開始位置の範囲外にいる場合、その範囲内に強制的に引き戻されます。この仕様が問題で、たとえ画面内にいても、スクロール開始位置までワープしてしまいます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "Linux MUGEN 2002.04.14: 省略値は資料に明記なし",
+          "environment": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-linux"
+            ]
+          },
+          "evidence": {
+            "status": "unverified",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "screenbound-local-2002"
+            ]
+          }
+        },
+        {
+          "kind": "literal",
+          "value": 0,
+          "display": "MUGEN 1.0 / 1.1: 画面外への移動を許可",
+          "environment": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0",
+              "mugen-1.1"
+            ]
+          },
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "screenbound-local-1.0",
+              "screenbound-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "value": [
+          "画面境界フラグ"
+        ],
+        "description": "<p>0なら実行者は画面外へ移動できます。MUGEN 1.0 / 1.1 の公式資料では1なら画面内へ制限し、省略時は0です。Linux MUGEN 2002.04.14資料には省略値が明記されていません。</p>",
+        "hide_legacy": [
+          "default_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "screenbound-local-2002",
+            "screenbound-local-1.0",
+            "screenbound-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "MoveCamera",
+      "value": [
+        "水平移動フラグ, 垂直移動フラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>カメラがプレイヤーを追わなくなります。0以外を指定すると、その方向にはカメラが追うようになります。縦方向のみ固定する場合等に。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0, 0"
+      ],
+      "load_priority": [
+        "2, 3"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0, 0",
+          "display": "X・Yとも追従しない",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "screenbound-local-2002",
+              "screenbound-local-1.0",
+              "screenbound-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "value": [
+          "水平方向の追従フラグ",
+          "垂直方向の追従フラグ"
+        ],
+        "description": "<p>カメラが実行者を追うかを、X・Y方向の2つの整数フラグで指定します。MUGEN 1.0 / 1.1 の公式資料では1で追従し、省略時は両方とも0です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "screenbound-local-2002",
+            "screenbound-local-1.0",
+            "screenbound-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "ScreenBound - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ScreenBound"
+    },
+    {
+      "title": "ScreenBound - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#screenbound"
+    },
+    {
+      "title": "ScreenBound - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#screenbound"
+    },
+    {
+      "title": "ScreenBound - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ScreenBound"
+    },
+    {
+      "title": "ScreenBound - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ScreenBound&protocol=http"
+    },
+    {
+      "title": "ScreenBound - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ScreenBound"
+    },
+    {
+      "title": "ScreenBound - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"
+    },
+    {
+      "id": "screenbound-local-2002",
+      "title": "ScreenBound — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ScreenBound",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenbound-local-1.0",
+      "title": "ScreenBound — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#screenbound",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenbound-local-1.1",
+      "title": "ScreenBound — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#screenbound",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenbound-legacy-data",
+      "title": "ScreenBound — 移行前の説明原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/0684461851fff0bcf6c31b6dea19076030effdb4/src/content/state-controllers/ScreenBound.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者が画面外へ移動できるかと、カメラが実行者を追うかを指定します。効果は1 tickです。<code>value</code> は画面境界、<code>MoveCamera</code> はカメラ追従を制御します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "screenbound-local-2002",
+        "screenbound-local-1.0",
+        "screenbound-local-1.1"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧 value 説明は value=0 がカメラ追従を止めるとし、解除時にスクロール開始位置へワープするとも記録する。公式資料は value を画面境界、MoveCamera を追従として区別し、旧ワープ条件は明記しないため、原文に保持して公開しない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "screenbound-local-2002",
+          "screenbound-local-1.0",
+          "screenbound-local-1.1",
+          "screenbound-legacy-data"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "screenbound-local-2002",
+      "screenbound-local-1.0",
+      "screenbound-local-1.1"
+    ],
+    "comment": "2026-10-01: 画面境界とカメラ追従の別パラメーター、1 tick、MoveCamera=0,0、1.0/1.1のvalue=0を確認。旧ワープ条件と2002のvalue省略値は未確認。"
+  }
 }

@@ -442,3 +442,21 @@ npm run mugen:batch -- --batch environment-shake-01 --target FallEnvShake --targ
 ```
 
 このバッチは適用済みです。次は AttackDist / PlayerPush / ScreenBound / Width の接触・画面境界関連制御を照合します。
+
+## boundary-push-01：ガード距離・押し合い・画面境界の4件
+
+2026-10-01、AttackDist / PlayerPush / ScreenBound / Width を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/boundary-push-01/` へ保存しています。
+
+- AttackDist は現在の HitDef の `guard.dist` を変更します。2002資料は有効な HitDef がない場合に効果がないとし、1.0 / 1.1資料は `MoveType = A` の条件を記載します。value は必須のピクセル距離です。
+- PlayerPush は押し合い判定を1 tick切り替え、value=0で無効、非0で有効です。旧説明のプレイヤー／Helper初期値は公式コントローラー資料で確認できないため原文と内部 `research` に保持しました。
+- ScreenBound は画面外への移動許可とカメラ追従を別々に制御し、効果は1 tickです。value の省略時は2002資料で不明、1.0 / 1.1資料で0、MoveCamera は0,0です。旧「value=0で追従を止める」と解除時ワープの記録は内部化しました。
+- Width は Edge / Player が任意でそれぞれ省略時0,0、`; value` が両方を同時に設定する代替書式です。旧 JSON は Edge / Player を必須としていたため原文を保持し、公開分類とCNSコピペ欄だけを任意へ訂正できる `parameter[].documentation.parameter_type` を追加しました。未検証の値域と投げ技用途は内部に残しました。
+- Width の既存デバッグ画像と、画面端幅を橙・押し合い幅を黄で表示する確認済み情報は保持しています。代替の `value` は CNS コピー欄で有効化しません。
+
+```sh
+npm run mugen:batch-baseline -- --batch boundary-push-01
+npm run mugen:batch -- --batch boundary-push-01 --target AttackDist --target PlayerPush --target ScreenBound --target Width
+npm run mugen:batch -- --batch boundary-push-01 --target AttackDist --target PlayerPush --target ScreenBound --target Width --apply
+```
+
+このバッチは適用済みです。次は画面演出・表示制御の未移行ページを照合します。

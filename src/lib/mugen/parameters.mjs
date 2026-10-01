@@ -6,6 +6,7 @@ function documentedParameter(parameter) {
     ...fields,
     ...(documentation.value !== undefined ? { value: documentation.value } : {}),
     ...(documentation.description !== undefined ? { description: documentation.description } : {}),
+    ...(documentation.parameter_type !== undefined ? { parameter_type: documentation.parameter_type } : {}),
   };
   for (const field of documentation.hide_legacy ?? []) delete resolved[field];
   return resolved;

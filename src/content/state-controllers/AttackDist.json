@@ -1,40 +1,161 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "AttackDist",
-		"target": "",
-		"category": ["攻撃","相手のガードモーション開始距離の変更"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "AttackDist",
-	"description": "<p>攻撃を行ったときに相手が防御体制をとる距離を変更します。</p>",
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["攻撃認識距離"],
-			"type": ["int"],
-			"description": "<p>新しい認識距離をピクセルで指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		}
-	],
-
-	"quote": [
-		{"title": "AttackDist - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AttackDist"},
-		{"title": "AttackDist - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#attackdist"},
-		{"title": "AttackDist - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#attackdist"},
-		{"title": "AttackDist - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AttackDist"},
-		{"title": "AttackDist - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AttackDist&protocol=http"},
-		{"title": "AttackDist - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AttackDist"},
-		{"title": "AttackDist - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "AttackDist",
+    "target": "",
+    "category": [
+      "攻撃",
+      "相手のガードモーション開始距離の変更"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "AttackDist",
+  "description": "<p>攻撃を行ったときに相手が防御体制をとる距離を変更します。</p>",
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "攻撃認識距離"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>新しい認識距離をピクセルで指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "新しいガード距離を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "attackdist-local-2002",
+              "attackdist-local-1.0",
+              "attackdist-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>新しいガード距離をピクセル単位の整数式で指定します。省略できません。</p>",
+        "hide_legacy": [
+          "default_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "attackdist-local-2002",
+            "attackdist-local-1.0",
+            "attackdist-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "AttackDist - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AttackDist"
+    },
+    {
+      "title": "AttackDist - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#attackdist"
+    },
+    {
+      "title": "AttackDist - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#attackdist"
+    },
+    {
+      "title": "AttackDist - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AttackDist"
+    },
+    {
+      "title": "AttackDist - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AttackDist&protocol=http"
+    },
+    {
+      "title": "AttackDist - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AttackDist"
+    },
+    {
+      "title": "AttackDist - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "id": "attackdist-local-2002",
+      "title": "AttackDist — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AttackDist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "attackdist-local-1.0",
+      "title": "AttackDist — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#attackdist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "attackdist-local-1.1",
+      "title": "AttackDist — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#attackdist",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者の現在の HitDef にある <code>guard.dist</code> を変更します。相手が後ろ方向を入力したときにガード状態へ移る距離です。現在有効な HitDef がなければ効果はありません。MUGEN 1.0 / 1.1 の公式資料は <code>MoveType = A</code> のときに効果があると記載します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "attackdist-local-2002",
+        "attackdist-local-1.0",
+        "attackdist-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "attackdist-local-2002",
+      "attackdist-local-1.0",
+      "attackdist-local-1.1"
+    ],
+    "comment": "2026-10-01: HitDef guard.dist、必須 value、ピクセル距離を確認。2002資料はHitDefがないと効果なし、1.0/1.1資料はMoveType=A条件を記載。両条件の世代間同一性を実機確認したものではない。"
+  }
 }

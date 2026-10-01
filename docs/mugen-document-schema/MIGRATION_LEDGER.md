@@ -152,3 +152,7 @@ HitOverRide / NotHitBy を追加し、累計81件・残り153件です。HitOver
 ## 2026-10-01：environment-shake-01
 
 FallEnvShake / EnvShake を追加し、累計83件・残り151件です。FallEnvShake の発動条件と実行後の値消去、EnvShake の必須 Time、Freq / Ampl / Phase の既定値と解像度・周波数依存を保存済み公式資料へ対応させました。旧制作用途、警告、連続実行、ライフバー、波形計算、高解像度ステージ、Time 値域は原本を保持して非公開です。
+
+## 2026-10-01：boundary-push-01
+
+AttackDist / PlayerPush / ScreenBound / Width を追加し、累計87件・残り147件です。ガード距離、押し合い判定、画面境界とカメラ追従、前後幅と代替書式を保存済み公式資料へ対応させました。Width の旧必須分類を原位置に残し、公開表示とCNSコピーだけを任意へ訂正する `parameter[].documentation.parameter_type` を採用しました。PlayerPush の初期値、ScreenBound の2002省略値と旧ワープ記録、Width の旧制作用途・値域は内部で追跡します。

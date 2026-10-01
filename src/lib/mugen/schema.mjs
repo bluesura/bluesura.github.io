@@ -81,10 +81,11 @@ const legacyParameterDisplayField = z.enum(['default_value', 'min_value', 'max_v
 const parameterDocumentationSchema = z.object({
   value: z.array(z.string().min(1)).min(1).optional(),
   description: z.string().min(1).optional(),
+  parameter_type: z.enum(['required', 'optional', 'instead']).optional(),
   hide_legacy: z.array(legacyParameterDisplayField).min(1).optional(),
   evidence: evidenceSchema.optional(),
-}).strict().refine(value => value.value !== undefined || value.description !== undefined || value.hide_legacy !== undefined, {
-  message: 'Parameter documentation requires a value label, description or legacy display field to hide.',
+}).strict().refine(value => value.value !== undefined || value.description !== undefined || value.parameter_type !== undefined || value.hide_legacy !== undefined, {
+  message: 'Parameter documentation requires a value label, description, requirement or legacy display field to hide.',
 });
 const documentDocumentationSchema = z.object({
   description: z.string().min(1),

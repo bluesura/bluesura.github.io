@@ -29,15 +29,30 @@ test('document-level prose is optional, strictly scoped, and resolved without mo
   assert.equal(schema.safeParse({ ...source, documentation: { description: '説明', evidence: { status: 'confirmed', basis: ['official_document'], source_refs: ['missing'] } } }).success, false);
 });
 
-test('editorial documentation accepts only nonempty text fields and validates nested evidence', () => {
+test('editorial documentation accepts scoped public fields and validates nested evidence', () => {
   const valid = withDocumentation({ value: ['加える速度'], description: '<p>実行者自身への加算。</p>' });
   assert.deepEqual(schema.parse(valid), valid);
-  for (const documentation of [{}, { value: [] }, { value: [''] }, { description: '' }, { value: ['速度'], default_value: ['0'] }, { description: '説明', parameter: 'Fake' }]) {
+  for (const documentation of [{}, { value: [] }, { value: [''] }, { description: '' }, { value: ['速度'], default_value: ['0'] }, { description: '説明', parameter: 'Fake' }, { parameter_type: 'unknown' }]) {
     assert.equal(schema.safeParse(withDocumentation(documentation)).success, false);
   }
   const doc = withDocumentation({ description: '説明', evidence: { status: 'confirmed', basis: ['official_document'], source_refs: ['source'] } });
   assert.equal(schema.safeParse(doc).success, false);
   assert.equal(schema.safeParse({ ...doc, quote: [{ id: 'source', title: '資料', url: '/source' }] }).success, true);
+});
+
+test('reviewed parameter requirement override changes the public view and CNS output only', () => {
+  const source = { category: 'state', parameter: [{
+    parameter: 'Edge', parameter_type: 'required', default_value: ['0', '0'],
+    documentation: { parameter_type: 'optional' },
+  }] };
+  const snapshot = structuredClone(source);
+  assert.equal(schema.safeParse({ state: 'Example', page: {}, ...source }).success, true);
+  const resolved = effectiveParameters(source)[0];
+  assert.equal(resolved.parameter_type, 'optional');
+  assert.equal(resolved.documentation, undefined);
+  assert.ok(copyLines(source, [resolved])[3].startsWith('Edge'));
+  assert.equal(source.parameter[0].parameter_type, 'required');
+  assert.deepEqual(source, snapshot);
 });
 
 test('partial editorial text preserves legacy fallback and local/common/argument precedence', () => {

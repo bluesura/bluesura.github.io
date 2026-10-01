@@ -508,3 +508,18 @@ npm run mugen:batch -- --batch game-animation-01 --target GameMakeAnim --apply
 ```
 
 このバッチは適用済みです。次はほかの画面演出・表示制御ページを照合します。
+## transparency-01：アニメーション透過の1件
+
+2026-10-02、Trans を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/transparency-01/` へ保存しています。
+
+- 公式3世代資料で1 tickの透過上書き、必須の Trans と任意の Alpha を確認しました。Default（変更なし）と None（透過なし）を区別し、旧候補表の推測を公開しません。
+- Alpha の2002 / 1.0資料における省略値256,0と、1.1資料における透過型別の値を分けました。Transが必須、Alphaが型依存のため、CNSコピー欄では両方をコメント行にします。
+- 1.1資料で AddAlpha / Add1 が非推奨であることを公開し、旧影・反射記録と負数アルファは内部 `research` に保持しました。2002 / 1.0資料内の「AddAlphaではAlpha指定必須」と「Alpha省略時256,0」の不整合も内部で追跡します。旧サンプルと画像は保持しています。
+
+```sh
+npm run mugen:batch-baseline -- --batch transparency-01
+npm run mugen:batch -- --batch transparency-01 --target Trans
+npm run mugen:batch -- --batch transparency-01 --target Trans --apply
+```
+
+このバッチは適用済みです。次はほかの画面演出・表示制御ページを照合します。

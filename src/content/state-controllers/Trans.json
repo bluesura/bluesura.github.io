@@ -1,141 +1,485 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "Trans",
-		"target": "実行者自身",
-		"category": ["色の操作","スプライトへの透過処理の適用"],
-		"version": "2002.04.14",
-		"update": "2016.01.25",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "Trans",
-	"description": "<p>Airファイルの透過指定を1フレームのみ変更します。</p>",
-	"images": [{"src": "trans.gif", "width": "640", "height": "480", "alt": "MUGEN "}],
-	"category": "state",
-
-  "version": [
-    {"no": "", "content": "AddAlpha・Add1は影と反射に影響を及ぼします。"},
-    {"no": "Version1.1から", "content": "AddAlpha・Add1でAlphaのソースアルファに負数が使えるようになりました。負数で透過されます。"}
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "Trans",
+    "target": "実行者自身",
+    "category": [
+      "色の操作",
+      "スプライトへの透過処理の適用"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.25",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "Trans",
+  "description": "<p>Airファイルの透過指定を1フレームのみ変更します。</p>",
+  "images": [
+    {
+      "src": "trans.gif",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN "
+    }
   ],
-
-	"parameter": [
-		{
-			"parameter": "Trans",
-			"value": ["透過型"],
-			"type": ["string"],
-			"description": "<p>透過型には、以下のいずれかの文字列を指定します。</p>",
-			"possible_value": [
-				["透過の種類", "効果"],
-				["Default", "何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。"],
-				["None", "透過処理無し。Airで透過処理している時無効にできる。"],
-				["Add", "画像を半透明にする。アルファ値256,256の加算透過。"],
-				["Add1", "Addより暗い感じの半透明にする。アルファ値256,128の加算透過。"],
-				["Sub", "画像を影のように半透明にする。減算透過。"],
-				["AddAlpha", "Alphaとセットで使用します。"]
-			],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "Alpha",
-			"value": ["ソースアルファ, デスティネーションアルファ"],
-			"type": ["int", "int"],
-			"description": "<p>透過型が\"AddAlpha\"の場合に指定します。有効範囲は0(低)から256(高)です。</p><p>ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。</p>",
-			"min_value": ["0 ;-256"],
-			"max_value": ["256"],
-			"parameter_type": "optional",
-			"default_value": ["256", "0"],
-			"load_priority": ["1", "2"]
-		}
-	],
-
-	"code_sample": [
-		{
-			"title": "",
-			"description": "",
-			"code": [
-				"[StateDef -2]",
-				"[State ]",
-				"Type                       = Null",
-				"Trigger1                   = !var(10)",
-				"Trigger1                   = var(10):=1",
-				"Trigger1                   = var(11):=1",
-				"[State ]",
-				"Type                       = Null",
-				"Trigger1                   = var(10)>256",
-				"Trigger1                   = var(11):=-1",
-				"Trigger2                   = var(10)<1",
-				"Trigger2                   = var(11):=1",
-				"[State ]",
-				"Type                       = Null",
-				"Trigger1                   = var(11)=1",
-				"Trigger1                   = var(10):=var(10)+3",
-				"Trigger2                   = var(11)=-1",
-				"Trigger2                   = var(10):=var(10)-3",
-				"",
-				"[State ,Trans]",
-				"Type                       = Trans",
-				"Trigger1                   = 1",
-				"Trans                      = AddAlpha",
-				"Alpha                      = var(10),125",
-				"Persistent                 = 1",
-				"IgnoreHitPause             = 0"
-			],
-			"media": {
-				"youtube": [
-					{"title": "", "file": "50zY223iGF0"}
-				]
-			}
-		},
-		{
-			"title": "",
-			"description": "",
-			"code": [
-				"[StateDef -2]",
-				"[State ]",
-				"Type                       = Null",
-				"Trigger1                   = !var(10)",
-				"Trigger1                   = var(10):=1",
-				"Trigger1                   = var(11):=1",
-				"[State ]",
-				"Type                       = Null",
-				"Trigger1                   = var(10)>256",
-				"Trigger1                   = var(11):=-1",
-				"Trigger2                   = var(10)<1",
-				"Trigger2                   = var(11):=1",
-				"[State ]",
-				"Type                       = Null",
-				"Trigger1                   = var(11)=1",
-				"Trigger1                   = var(10):=var(10)+3",
-				"Trigger2                   = var(11)=-1",
-				"Trigger2                   = var(10):=var(10)-3",
-				"",
-				"[State ,Trans]",
-				"Type                       = Trans",
-				"Trigger1                   = 1",
-				"Trans                      = AddAlpha",
-				"Alpha                      = 125,var(10)",
-				"Persistent                 = 1",
-				"IgnoreHitPause             = 0"
-			],
-			"media": {
-				"youtube": [
-					{"title": "", "file": "868b5oz8I9c"}
-				]
-			}
-		}
-	],
-
-
-	"quote": [
-		{"title": "Trans - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Trans"},
-		{"title": "Trans - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#trans"},
-		{"title": "Trans - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#trans"},
-		{"title": "Trans - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Trans"},
-		{"title": "Trans - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Trans&protocol=http"},
-		{"title": "Trans - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Trans"}
-	]
+  "category": "state",
+  "version": [
+    {
+      "no": "",
+      "content": "AddAlpha・Add1は影と反射に影響を及ぼします。"
+    },
+    {
+      "no": "Version1.1から",
+      "content": "AddAlpha・Add1でAlphaのソースアルファに負数が使えるようになりました。負数で透過されます。"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "Trans",
+      "value": [
+        "透過型"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>透過型には、以下のいずれかの文字列を指定します。</p>",
+      "possible_value": [
+        [
+          "透過の種類",
+          "効果"
+        ],
+        [
+          "Default",
+          "何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。"
+        ],
+        [
+          "None",
+          "透過処理無し。Airで透過処理している時無効にできる。"
+        ],
+        [
+          "Add",
+          "画像を半透明にする。アルファ値256,256の加算透過。"
+        ],
+        [
+          "Add1",
+          "Addより暗い感じの半透明にする。アルファ値256,128の加算透過。"
+        ],
+        [
+          "Sub",
+          "画像を影のように半透明にする。減算透過。"
+        ],
+        [
+          "AddAlpha",
+          "Alphaとセットで使用します。"
+        ]
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "expression_policy": "special_syntax",
+      "default": [
+        {
+          "kind": "required",
+          "display": "透過型を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "trans-local-2002",
+              "trans-local-1.0",
+              "trans-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>透過型を <code>Default</code>（変更なし）、<code>None</code>（透過なし）、<code>Add</code>（加算透過）、<code>AddAlpha</code>（Alpha指定付き加算透過）、<code>Add1</code>（加算透過、Alpha 256,128）、<code>Sub</code>（減算透過）から指定します。MUGEN 1.1では <code>AddAlpha</code> と <code>Add1</code> は非推奨です。</p>",
+        "hide_legacy": [
+          "default_value",
+          "possible_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "trans-local-2002",
+            "trans-local-1.0",
+            "trans-local-1.1"
+          ]
+        }
+      }
+    },
+    {
+      "parameter": "Alpha",
+      "value": [
+        "ソースアルファ, デスティネーションアルファ"
+      ],
+      "type": [
+        "int",
+        "int"
+      ],
+      "description": "<p>透過型が\"AddAlpha\"の場合に指定します。有効範囲は0(低)から256(高)です。</p><p>ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。</p>",
+      "min_value": [
+        "0 ;-256"
+      ],
+      "max_value": [
+        "256"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "256",
+        "0"
+      ],
+      "load_priority": [
+        "1",
+        "2"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "256, 0",
+          "display": "2002 / 1.0資料のAlpha項目",
+          "environment": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-linux",
+              "mugen-1.0"
+            ]
+          },
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "trans-local-2002",
+              "trans-local-1.0"
+            ]
+          }
+        },
+        {
+          "kind": "derived",
+          "display": "1.1: Add=256,256、AddAlpha=256,0、Add1=256,128、Sub=256,256（固定）",
+          "environment": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          },
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "trans-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "value": [
+          "ソースアルファ",
+          "背景側アルファ"
+        ],
+        "description": "<p>加算透過のソースと描画先の強さを整数式2つで指定します。公式2002 / 1.0資料は <code>AddAlpha</code> 用の省略値を <code>256, 0</code> とします。1.1資料では透過型で省略値が変わり、<code>Add</code> は <code>256, 256</code>、<code>AddAlpha</code> は <code>256, 0</code>、<code>Add1</code> は <code>256, 128</code>、<code>Sub</code> は <code>256, 256</code> 固定です。公式資料が示す通常の値域は0〜256です。</p>",
+        "hide_legacy": [
+          "default_value",
+          "min_value",
+          "max_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "trans-local-2002",
+            "trans-local-1.0",
+            "trans-local-1.1"
+          ]
+        }
+      },
+      "constraints": [
+        {
+          "kind": "effective_when",
+          "parameters": [
+            "Trans"
+          ],
+          "description": "Alpha の意味と省略値は Trans の透過型と実行世代に依存する。",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "trans-local-2002",
+              "trans-local-1.0",
+              "trans-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "",
+      "description": "",
+      "code": [
+        "[StateDef -2]",
+        "[State ]",
+        "Type                       = Null",
+        "Trigger1                   = !var(10)",
+        "Trigger1                   = var(10):=1",
+        "Trigger1                   = var(11):=1",
+        "[State ]",
+        "Type                       = Null",
+        "Trigger1                   = var(10)>256",
+        "Trigger1                   = var(11):=-1",
+        "Trigger2                   = var(10)<1",
+        "Trigger2                   = var(11):=1",
+        "[State ]",
+        "Type                       = Null",
+        "Trigger1                   = var(11)=1",
+        "Trigger1                   = var(10):=var(10)+3",
+        "Trigger2                   = var(11)=-1",
+        "Trigger2                   = var(10):=var(10)-3",
+        "",
+        "[State ,Trans]",
+        "Type                       = Trans",
+        "Trigger1                   = 1",
+        "Trans                      = AddAlpha",
+        "Alpha                      = var(10),125",
+        "Persistent                 = 1",
+        "IgnoreHitPause             = 0"
+      ],
+      "media": {
+        "youtube": [
+          {
+            "title": "",
+            "file": "50zY223iGF0"
+          }
+        ]
+      }
+    },
+    {
+      "title": "",
+      "description": "",
+      "code": [
+        "[StateDef -2]",
+        "[State ]",
+        "Type                       = Null",
+        "Trigger1                   = !var(10)",
+        "Trigger1                   = var(10):=1",
+        "Trigger1                   = var(11):=1",
+        "[State ]",
+        "Type                       = Null",
+        "Trigger1                   = var(10)>256",
+        "Trigger1                   = var(11):=-1",
+        "Trigger2                   = var(10)<1",
+        "Trigger2                   = var(11):=1",
+        "[State ]",
+        "Type                       = Null",
+        "Trigger1                   = var(11)=1",
+        "Trigger1                   = var(10):=var(10)+3",
+        "Trigger2                   = var(11)=-1",
+        "Trigger2                   = var(10):=var(10)-3",
+        "",
+        "[State ,Trans]",
+        "Type                       = Trans",
+        "Trigger1                   = 1",
+        "Trans                      = AddAlpha",
+        "Alpha                      = 125,var(10)",
+        "Persistent                 = 1",
+        "IgnoreHitPause             = 0"
+      ],
+      "media": {
+        "youtube": [
+          {
+            "title": "",
+            "file": "868b5oz8I9c"
+          }
+        ]
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "Trans - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Trans"
+    },
+    {
+      "title": "Trans - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#trans"
+    },
+    {
+      "title": "Trans - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#trans"
+    },
+    {
+      "title": "Trans - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Trans"
+    },
+    {
+      "title": "Trans - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Trans&protocol=http"
+    },
+    {
+      "title": "Trans - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Trans"
+    },
+    {
+      "id": "trans-local-2002",
+      "title": "Trans — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Trans",
+      "source_type": "official_document"
+    },
+    {
+      "id": "trans-local-1.0",
+      "title": "Trans — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#trans",
+      "source_type": "official_document"
+    },
+    {
+      "id": "trans-local-1.1",
+      "title": "Trans — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#trans",
+      "source_type": "official_document"
+    },
+    {
+      "id": "trans-legacy-data",
+      "title": "Trans — 移行前の説明・候補表・履歴原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/9df6e47c7aec73b12fb819b693d4e40b95899e7a/src/content/state-controllers/Trans.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者のアニメーションに設定された透過方法を現在のゲーム tick の間だけ上書きします。<code>Trans</code> で透過型を指定し、必要に応じて <code>Alpha</code> で加算透過の強さを調整します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "trans-local-2002",
+        "trans-local-1.0",
+        "trans-local-1.1"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "AddAlpha・Add1は影と反射に影響を及ぼします。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "trans-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧影・反射記録は対象ビルドと再現ログがないため公開しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 1,
+      "content": "AddAlpha・Add1でAlphaのソースアルファに負数が使えるようになりました。負数で透過されます。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "trans-local-1.1",
+          "trans-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧1.1負数記録と公式1.1の通常値域0〜256の差。実機記録がないため保持のみ。"
+      }
+    },
+    {
+      "kind": "deprecated",
+      "content": "MUGEN 1.1では AddAlpha と Add1 は非推奨です。",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "trans-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧候補表は Default を None と同じ動作かもしれないとし、Add を半透明と表現する。公式3資料は Default を「変更なし」、None を「透過なし」と区別するため、候補表を原文に残し公開しない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "trans-local-2002",
+          "trans-local-1.0",
+          "trans-local-1.1",
+          "trans-legacy-data"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>2002 / 1.0資料の Trans 候補説明では AddAlpha に Alpha 指定が必要とする一方、Alpha 項目には省略時 256,0 と記載する。今回は資料内の不整合を実機で解消せず、それぞれの記述を保持する。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "trans-local-2002",
+          "trans-local-1.0"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "trans-local-2002",
+      "trans-local-1.0",
+      "trans-local-1.1"
+    ],
+    "comment": "2026-10-01: 1 tick、必須Trans、候補トークン、1.1 AddAlpha/Add1非推奨、Alphaの通常値域と世代別省略値を資料で確認。旧負数・影/反射は未検証。"
+  }
 }

@@ -156,3 +156,7 @@ FallEnvShake / EnvShake を追加し、累計83件・残り151件です。FallEn
 ## 2026-10-01：boundary-push-01
 
 AttackDist / PlayerPush / ScreenBound / Width を追加し、累計87件・残り147件です。ガード距離、押し合い判定、画面境界とカメラ追従、前後幅と代替書式を保存済み公式資料へ対応させました。Width の旧必須分類を原位置に残し、公開表示とCNSコピーだけを任意へ訂正する `parameter[].documentation.parameter_type` を採用しました。PlayerPush の初期値、ScreenBound の2002省略値と旧ワープ記録、Width の旧制作用途・値域は内部で追跡します。
+
+## 2026-10-01：dust-effect-01
+
+MakeDust を追加し、累計88件・残り146件です。Pos / Pos2 / Spacing の省略値と1.0 / 1.1における非推奨を保存済み公式資料へ対応させました。旧警告・素材・効果時間の記録は原文と内部注記に保持して非公開です。

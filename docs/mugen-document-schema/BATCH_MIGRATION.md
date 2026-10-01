@@ -460,3 +460,19 @@ npm run mugen:batch -- --batch boundary-push-01 --target AttackDist --target Pla
 ```
 
 このバッチは適用済みです。次は画面演出・表示制御の未移行ページを照合します。
+
+## dust-effect-01：土煙表示の1件
+
+2026-10-01、MakeDust を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/dust-effect-01/` へ保存しています。
+
+- 公式3世代資料で必須パラメーターなし、Pos の省略時 0,0、Pos2 省略時は2つ目を表示しないこと、Spacing の省略時3・指定値1以上を確認しました。CNSコピー欄は Pos / Spacing を有効行、Pos2 をコメント行にします。
+- 1.0 / 1.1資料で非推奨と Explod の案内を確認しました。旧履歴本文を保持し、対象世代を構造化しました。
+- 旧警告文 `MAKEDUST SPACING <= 0`、fightfx.air の素材、1フレーム効果は対象ビルドの実行記録がないため、原文と内部 `research` に保存してHTMLから外しました。旧画像は維持しています。
+
+```sh
+npm run mugen:batch-baseline -- --batch dust-effect-01
+npm run mugen:batch -- --batch dust-effect-01 --target MakeDust
+npm run mugen:batch -- --batch dust-effect-01 --target MakeDust --apply
+```
+
+このバッチは適用済みです。次は EnvColor など画面演出・表示制御の未移行ページを照合します。

@@ -476,3 +476,19 @@ npm run mugen:batch -- --batch dust-effect-01 --target MakeDust --apply
 ```
 
 このバッチは適用済みです。次は EnvColor など画面演出・表示制御の未移行ページを照合します。
+
+## environment-color-01：画面の単色表示の1件
+
+2026-10-01、EnvColor を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/environment-color-01/` へ保存しています。
+
+- 公式3世代資料で RGB各成分0〜255、省略時255,255,255（白）、Time省略時1 tick・-1で無期限、Under省略時0・1でキャラクターと飛び道具の下に描画することを確認しました。CNSコピー欄は3パラメーターとも確認済みの省略値を有効行にします。
+- 前面レイヤーのアニメーションと `ontop` Explod は塗りつぶしの上に表示され、ステージの前面レイヤーは表示されないという公式説明を公開します。旧画像は維持しています。
+- 旧 Time=-2 描画不具合、警告文、AllPalFX・ライフバー等との細かなレイヤー相互作用、制作用途、数値上限は原文と内部 `research` に残し、HTMLから外しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch environment-color-01
+npm run mugen:batch -- --batch environment-color-01 --target EnvColor
+npm run mugen:batch -- --batch environment-color-01 --target EnvColor --apply
+```
+
+このバッチは適用済みです。次はほかの画面演出・表示制御ページを照合します。

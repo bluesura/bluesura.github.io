@@ -1,70 +1,425 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "EnvColor",
-		"target": "画面",
-		"category": ["色の操作","画面全体の色変更による演出"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "EnvColor",
-	"description": "<p>画面を指定色で塗りつぶします。</p><p>ただし、AllPalFX(PalFX・BGPalFXはダメ ※PalFXはライフバーのLayerNo=1以上に設定されたFaceには効果がある。)・ヒットスパークやOnTop=1のスプライト・アニメーションやライフバーでLayer=1以上に設定されたスプライト(アニメーションは除く)は表示されます。ステージは、LayerNoの設定関係なしに塗りつぶされます。</p><p>超必殺・特殊技の演出などに使用出来ます。</p>",
-	"images": [{"src": "EnvColor.png", "width": "640", "height": "480", "alt": "MUGEN EnvColor"}],
-	"category": "state",
-	"associated_state": ["BGPalFX","AllPalFX","PalFX"],
-
-	"version": [
-		{"no": "-", "content": "Timeを-1,-2に設定すると、ライフバーが塗りつぶされなくなり、ステージのLayerNo=1スプライトが塗りつぶされず前面に表示されそれ以外のレイヤーはvalueに関係なく透明に表示されなくなります。ラウンドごとにリセットされないかなり嫌がらせなバグ。"},
-		{"no": "警告文", "content": "SET ILLEGAL ENVCOLORTIME:Timeに-3以下または2147483647以上", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["赤", "緑", "青"],
-			"type": ["int", "int", "int"],
-			"description": "<p>画面を塗りつぶす色のR,G,B要素で指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["255", "255", "255 ;真白"],
-			"load_priority": ["1", "2", "3"]
-		},
-		{
-			"parameter": "Time",
-			"value": ["効果持続時間"],
-			"type": ["int"],
-			"description": "<p画面を塗りつぶすす時間をフレーム単位で指定。</p><p>-1,-2で効果の持続時間が永久になるが、謎のバグが発生するため使用を推奨できません。</p>",
-			"min_value": ["-2"],
-			"max_value": ["2147483646"],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["4"]
-		},
-		{
-			"parameter": "Under",
-			"value": ["背面フラグ"],
-			"type": ["int"],
-			"description": "<p>1にすると、キャラクターやAfterImage・Explod・Helper・MakeDust・Projectile・ステージでLayerNo=1に設定されたスプライトを塗りつぶさなくなります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["5"]
-		}
-	],
-
-	"quote": [
-		{"title": "EnvColor - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#EnvColor"},
-		{"title": "EnvColor - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#envcolor"},
-		{"title": "EnvColor - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#envcolor"},
-		{"title": "EnvColor - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/EnvColor"},
-		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-		{"title": "EnvColor - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?EnvColor&protocol=http"},
-		{"title": "EnvColor - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#EnvColor"},
-		{"title": "EnvColor - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "EnvColor",
+    "target": "画面",
+    "category": [
+      "色の操作",
+      "画面全体の色変更による演出"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "EnvColor",
+  "description": "<p>画面を指定色で塗りつぶします。</p><p>ただし、AllPalFX(PalFX・BGPalFXはダメ ※PalFXはライフバーのLayerNo=1以上に設定されたFaceには効果がある。)・ヒットスパークやOnTop=1のスプライト・アニメーションやライフバーでLayer=1以上に設定されたスプライト(アニメーションは除く)は表示されます。ステージは、LayerNoの設定関係なしに塗りつぶされます。</p><p>超必殺・特殊技の演出などに使用出来ます。</p>",
+  "images": [
+    {
+      "src": "EnvColor.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN EnvColor"
+    }
+  ],
+  "category": "state",
+  "associated_state": [
+    "BGPalFX",
+    "AllPalFX",
+    "PalFX"
+  ],
+  "version": [
+    {
+      "no": "-",
+      "content": "Timeを-1,-2に設定すると、ライフバーが塗りつぶされなくなり、ステージのLayerNo=1スプライトが塗りつぶされず前面に表示されそれ以外のレイヤーはvalueに関係なく透明に表示されなくなります。ラウンドごとにリセットされないかなり嫌がらせなバグ。"
+    },
+    {
+      "no": "警告文",
+      "content": "SET ILLEGAL ENVCOLORTIME:Timeに-3以下または2147483647以上",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "赤",
+        "緑",
+        "青"
+      ],
+      "type": [
+        "int",
+        "int",
+        "int"
+      ],
+      "description": "<p>画面を塗りつぶす色のR,G,B要素で指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "255",
+        "255",
+        "255 ;真白"
+      ],
+      "load_priority": [
+        "1",
+        "2",
+        "3"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "255, 255, 255",
+          "display": "白",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "envcolor-local-2002",
+              "envcolor-local-1.0",
+              "envcolor-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "value": [
+          "赤の強さ",
+          "緑の強さ",
+          "青の強さ"
+        ],
+        "description": "<p>塗りつぶす色を赤・緑・青の整数式3つで指定します。各成分は0〜255で、省略時は <code>255, 255, 255</code>（白）です。</p>",
+        "hide_legacy": [
+          "default_value",
+          "min_value",
+          "max_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "envcolor-local-2002",
+            "envcolor-local-1.0",
+            "envcolor-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Time",
+      "value": [
+        "効果持続時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p画面を塗りつぶすす時間をフレーム単位で指定。</p><p>-1,-2で効果の持続時間が永久になるが、謎のバグが発生するため使用を推奨できません。</p>",
+      "min_value": [
+        "-2"
+      ],
+      "max_value": [
+        "2147483646"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "4"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 1,
+          "display": "1 tick",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "envcolor-local-2002",
+              "envcolor-local-1.0",
+              "envcolor-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "value": [
+          "持続時間"
+        ],
+        "description": "<p>塗りつぶしを表示するゲーム tick 数の整数式です。省略時は <code>1</code>、<code>-1</code> なら無期限に持続します。</p>",
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "envcolor-local-2002",
+            "envcolor-local-1.0",
+            "envcolor-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Under",
+      "value": [
+        "背面フラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>1にすると、キャラクターやAfterImage・Explod・Helper・MakeDust・Projectile・ステージでLayerNo=1に設定されたスプライトを塗りつぶさなくなります。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "5"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 0,
+          "display": "キャラクターと飛び道具の上に描画",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "envcolor-local-2002",
+              "envcolor-local-1.0",
+              "envcolor-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "value": [
+          "背面描画フラグ"
+        ],
+        "description": "<p><code>1</code> にすると、塗りつぶしをキャラクターと飛び道具の下に描画します。省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "envcolor-local-2002",
+            "envcolor-local-1.0",
+            "envcolor-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "EnvColor - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#EnvColor"
+    },
+    {
+      "title": "EnvColor - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#envcolor"
+    },
+    {
+      "title": "EnvColor - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#envcolor"
+    },
+    {
+      "title": "EnvColor - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/EnvColor"
+    },
+    {
+      "title": "不具合・対策まとめ - MUGENの便覧",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "title": "EnvColor - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?EnvColor&protocol=http"
+    },
+    {
+      "title": "EnvColor - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#EnvColor"
+    },
+    {
+      "title": "EnvColor - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"
+    },
+    {
+      "id": "envcolor-local-2002",
+      "title": "EnvColor — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#EnvColor",
+      "source_type": "official_document"
+    },
+    {
+      "id": "envcolor-local-1.0",
+      "title": "EnvColor — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#envcolor",
+      "source_type": "official_document"
+    },
+    {
+      "id": "envcolor-local-1.1",
+      "title": "EnvColor — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#envcolor",
+      "source_type": "official_document"
+    },
+    {
+      "id": "envcolor-warning-binran",
+      "title": "EnvColor — MUGENエラー・警告メッセージ集",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "envcolor-legacy-data",
+      "title": "EnvColor — 移行前の説明・警告原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/a4a61972ab710b47fabf92f8db882b564d0d6b5f/src/content/state-controllers/EnvColor.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>画面を単色で塗りつぶします。ヒットスパークなど前面レイヤーのアニメーションや <code>ontop</code> 指定の Explod はその上に表示され、ステージの前面レイヤーは表示されません。<code>Under=1</code> ならキャラクターと飛び道具も塗りつぶしの上に表示します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "envcolor-local-2002",
+        "envcolor-local-1.0",
+        "envcolor-local-1.1"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "Timeを-1,-2に設定すると、ライフバーが塗りつぶされなくなり、ステージのLayerNo=1スプライトが塗りつぶされず前面に表示されそれ以外のレイヤーはvalueに関係なく透明に表示されなくなります。ラウンドごとにリセットされないかなり嫌がらせなバグ。",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "envcolor-local-2002",
+          "envcolor-local-1.0",
+          "envcolor-local-1.1",
+          "envcolor-legacy-data"
+        ],
+        "comment": "2026-10-01: 公式資料は-1の無期限持続を説明する一方、旧記録は-1/-2の追加描画不具合を主張。対象ビルド・再現ログがないため公開しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 1,
+      "content": "SET ILLEGAL ENVCOLORTIME:Timeに-3以下または2147483647以上",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "envcolor-warning-binran",
+          "envcolor-legacy-data"
+        ],
+        "comment": "2026-10-01: 旧警告文と数値条件を原文のまま保持。対象ビルドの実行ログは未確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 description は AllPalFX、PalFX、BGPalFX、ヒットスパーク、OnTop=1、ライフバーの LayerNo、ステージの LayerNo と超必殺・特殊技の制作用途を詳述する。今回確認した公式3資料は前面アニメーションと ontop Explod、ステージ前面レイヤーの非表示までを明記するが、旧文の各相互作用と用途を一括して裏付けないため公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "envcolor-local-2002",
+          "envcolor-local-1.0",
+          "envcolor-local-1.1",
+          "envcolor-legacy-data"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 Under 説明は AfterImage、Explod、Helper、MakeDust、Projectile、LayerNo=1 のステージスプライトを列挙する。公式資料はキャラクターと飛び道具だけを明記するため、詳細な包含関係は原文に保持して公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "envcolor-local-2002",
+          "envcolor-local-1.0",
+          "envcolor-local-1.1",
+          "envcolor-legacy-data"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "envcolor-local-2002",
+      "envcolor-local-1.0",
+      "envcolor-local-1.1"
+    ],
+    "comment": "2026-10-01: RGB各0〜255・既定値255,255,255、Time既定値1/-1無期限、Under既定値0と1の描画位置、前面アニメーション・ontop Explod・ステージ前面レイヤーを確認。旧-2、警告、詳細なレイヤー相互作用は未確認。"
+  }
 }

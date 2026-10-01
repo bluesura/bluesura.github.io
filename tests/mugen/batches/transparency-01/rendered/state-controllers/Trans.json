@@ -1,0 +1,83 @@
+{
+  "text": "Type = Trans 色の操作 > スプライトへの透過処理の適用 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 パラメーター 仕様・注意点 コピペ用 使用例 読み込み順 引用記事 Airファイルの透過指定を1フレームのみ変更します。 パラメーター Trans = 透過型 省略不可 型文字列 省略時? 透過型には、以下のいずれかの文字列を指定します。 透過の種類効果 Default何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。None透過処理無し。Airで透過処理している時無効にできる。Add画像を半透明にする。アルファ値256,256の加算透過。Add1Addより暗い感じの半透明にする。アルファ値256,128の加算透過。Sub画像を影のように半透明にする。減算透過。AddAlphaAlphaとセットで使用します。 Alpha = ソースアルファ, デスティネーションアルファ 型整数, 整数 省略時256, 0 最小値0 ;-256 最大値256 透過型が\"AddAlpha\"の場合に指定します。有効範囲は0(低)から256(高)です。ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。 IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 仕様・バグ・エラー・変更点AddAlpha・Add1は影と反射に影響を及ぼします。Version1.1からAddAlpha・Add1でAlphaのソースアルファに負数が使えるようになりました。負数で透過されます。 コピペ用パラメーター一覧（省略時の挙動） [State 0, Trans]Type = TransTrigger1 = 1; Trans = ; 必須: 値を指定してください: ?Alpha = 256, 0IgnoreHitPause = 0Persistent = 1 コードサンプル[StateDef -2][State ]Type = NullTrigger1 = !var(10)Trigger1 = var(10):=1Trigger1 = var(11):=1[State ]Type = NullTrigger1 = var(10)>256Trigger1 = var(11):=-1Trigger2 = var(10)<1Trigger2 = var(11):=1[State ]Type = NullTrigger1 = var(11)=1Trigger1 = var(10):=var(10)+3Trigger2 = var(11)=-1Trigger2 = var(10):=var(10)-3[State ,Trans]Type = TransTrigger1 = 1Trans = AddAlphaAlpha = var(10),125Persistent = 1IgnoreHitPause = 0 [StateDef -2][State ]Type = NullTrigger1 = !var(10)Trigger1 = var(10):=1Trigger1 = var(11):=1[State ]Type = NullTrigger1 = var(10)>256Trigger1 = var(11):=-1Trigger2 = var(10)<1Trigger2 = var(11):=1[State ]Type = NullTrigger1 = var(11)=1Trigger1 = var(10):=var(10)+3Trigger2 = var(11)=-1Trigger2 = var(10):=var(10)-3[State ,Trans]Type = TransTrigger1 = 1Trans = AddAlphaAlpha = 125,var(10)Persistent = 1IgnoreHitPause = 0 パラメーターの読み込み順 パラメーター読み込み順 Trans ? Alpha 1, 2 IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事Trans - State Controller Reference(version 2002.04.14)Trans - State Controller Reference(version 1.0)Trans - State Controller Reference(version 1.1)Trans - M.U.G.E.N wikiTrans - State ControllerTrans - 東方夢幻館 公開日:2008.06.05 最終更新日:2016.01.25 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "CodeSample",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Trans - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#Trans"
+    },
+    {
+      "text": "Trans - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#trans"
+    },
+    {
+      "text": "Trans - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#trans"
+    },
+    {
+      "text": "Trans - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Trans"
+    },
+    {
+      "text": "Trans - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Trans&protocol=http"
+    },
+    {
+      "text": "Trans - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Trans"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/State/trans.gif",
+    "https://www.youtube.com/embed/50zY223iGF0",
+    "https://www.youtube.com/embed/868b5oz8I9c"
+  ],
+  "code": [
+    "[State 0, Trans]",
+    "Type                       = Trans",
+    "Trigger1                   = 1",
+    "; Trans                    =        ; 必須: 値を指定してください: ?",
+    "Alpha                      = 256, 0",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

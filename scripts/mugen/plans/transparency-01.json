@@ -1,0 +1,43 @@
+{
+  "id": "transparency-01",
+  "reviewed_on": "2026-10-01",
+  "description": "Trans の1 tick透過指定、型トークン、世代別Alpha省略値を保存済み公式資料に対応させる。旧候補表、影と反射、1.1の負数アルファは原文を残して内部追跡する。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "Trans",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>実行者のアニメーションに設定された透過方法を現在のゲーム tick の間だけ上書きします。<code>Trans</code> で透過型を指定し、必要に応じて <code>Alpha</code> で加算透過の強さを調整します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["trans-local-2002", "trans-local-1.0", "trans-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "special_syntax" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "透過型を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["trans-local-2002", "trans-local-1.0", "trans-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>透過型を <code>Default</code>（変更なし）、<code>None</code>（透過なし）、<code>Add</code>（加算透過）、<code>AddAlpha</code>（Alpha指定付き加算透過）、<code>Add1</code>（加算透過、Alpha 256,128）、<code>Sub</code>（減算透過）から指定します。MUGEN 1.1では <code>AddAlpha</code> と <code>Add1</code> は非推奨です。</p>", "hide_legacy": ["default_value", "possible_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["trans-local-2002", "trans-local-1.0", "trans-local-1.1"] } } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [
+          { "kind": "literal", "value": "256, 0", "display": "2002 / 1.0資料のAlpha項目", "environment": { "engine": "mugen", "runtime": ["mugen-linux", "mugen-1.0"] }, "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["trans-local-2002", "trans-local-1.0"] } },
+          { "kind": "derived", "display": "1.1: Add=256,256、AddAlpha=256,0、Add1=256,128、Sub=256,256（固定）", "environment": { "engine": "mugen", "runtime": ["mugen-1.1"] }, "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["trans-local-1.1"] } }
+        ] },
+        { "path": ["parameter", 1, "documentation"], "value": { "value": ["ソースアルファ", "背景側アルファ"], "description": "<p>加算透過のソースと描画先の強さを整数式2つで指定します。公式2002 / 1.0資料は <code>AddAlpha</code> 用の省略値を <code>256, 0</code> とします。1.1資料では透過型で省略値が変わり、<code>Add</code> は <code>256, 256</code>、<code>AddAlpha</code> は <code>256, 0</code>、<code>Add1</code> は <code>256, 128</code>、<code>Sub</code> は <code>256, 256</code> 固定です。公式資料が示す通常の値域は0〜256です。</p>", "hide_legacy": ["default_value", "min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["trans-local-2002", "trans-local-1.0", "trans-local-1.1"] } } },
+        { "path": ["parameter", 1, "constraints"], "value": [{ "kind": "effective_when", "parameters": ["Trans"], "description": "Alpha の意味と省略値は Trans の透過型と実行世代に依存する。", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["trans-local-2002", "trans-local-1.0", "trans-local-1.1"] } }] },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "research", "legacy_index": 0, "content": "AddAlpha・Add1は影と反射に影響を及ぼします。", "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["trans-legacy-data"], "comment": "2026-10-01: 旧影・反射記録は対象ビルドと再現ログがないため公開しない。" } },
+          { "kind": "research", "legacy_index": 1, "content": "AddAlpha・Add1でAlphaのソースアルファに負数が使えるようになりました。負数で透過されます。", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["trans-local-1.1", "trans-legacy-data"], "comment": "2026-10-01: 旧1.1負数記録と公式1.1の通常値域0〜256の差。実機記録がないため保持のみ。" } },
+          { "kind": "deprecated", "content": "MUGEN 1.1では AddAlpha と Add1 は非推奨です。", "environment": { "engine": "mugen", "runtime": ["mugen-1.1"] }, "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["trans-local-1.1"] } },
+          { "kind": "research", "content": "<p>旧候補表は Default を None と同じ動作かもしれないとし、Add を半透明と表現する。公式3資料は Default を「変更なし」、None を「透過なし」と区別するため、候補表を原文に残し公開しない。</p>", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["trans-local-2002", "trans-local-1.0", "trans-local-1.1", "trans-legacy-data"] } },
+          { "kind": "research", "content": "<p>2002 / 1.0資料の Trans 候補説明では AddAlpha に Alpha 指定が必要とする一方、Alpha 項目には省略時 256,0 と記載する。今回は資料内の不整合を実機で解消せず、それぞれの記述を保持する。</p>", "evidence": { "status": "conflicting", "basis": ["official_document"], "source_refs": ["trans-local-2002", "trans-local-1.0"] } }
+        ] },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["trans-local-2002", "trans-local-1.0", "trans-local-1.1"], "comment": "2026-10-01: 1 tick、必須Trans、候補トークン、1.1 AddAlpha/Add1非推奨、Alphaの通常値域と世代別省略値を資料で確認。旧負数・影/反射は未検証。" } },
+        { "path": ["quote", "-"], "value": { "id": "trans-local-2002", "title": "Trans — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Trans", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "trans-local-1.0", "title": "Trans — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#trans", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "trans-local-1.1", "title": "Trans — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#trans", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "trans-legacy-data", "title": "Trans — 移行前の説明・候補表・履歴原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/9df6e47c7aec73b12fb819b693d4e40b95899e7a/src/content/state-controllers/Trans.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / parameter", "reason": "旧影・反射、1.1の負数アルファ、候補表の詳細、2002 / 1.0資料内の必須/省略記述の差は実機未確認。" }
+      ]
+    }
+  ]
+}

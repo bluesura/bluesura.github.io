@@ -523,3 +523,18 @@ npm run mugen:batch -- --batch transparency-01 --target Trans --apply
 ```
 
 このバッチは適用済みです。次はほかの画面演出・表示制御ページを照合します。
+
+## explod-binding-01：Explodの位置結合時間の1件
+
+2026-10-02、ExplodBindTime を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/explod-binding-01/` へ保存しています。
+
+- 公式3世代資料で ID の省略時 -1（すべての実行者のExplod）、Timeの省略時1 tickと -1 の無期限結合、value の代替書式を確認しました。CNSコピー欄は ID / Time を有効行、value をコメント行にします。
+- 旧Time説明の「-1以下で永続化」は公式資料の「-1」と範囲が異なり、旧警告の -2 以下とも食い違います。警告文2件と値域の差は原文・内部 `research` に保持しました。Time/value併記時の優先順位も内部に残します。
+
+```sh
+npm run mugen:batch-baseline -- --batch explod-binding-01
+npm run mugen:batch -- --batch explod-binding-01 --target ExplodBindTime
+npm run mugen:batch -- --batch explod-binding-01 --target ExplodBindTime --apply
+```
+
+このバッチは適用済みです。次はほかの画面演出・表示制御ページを照合します。

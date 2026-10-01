@@ -1,0 +1,48 @@
+{
+  "id": "game-animation-01",
+  "reviewed_on": "2026-10-01",
+  "description": "GameMakeAnim の公式3世代に共通する4パラメーターと非推奨を対応させる。旧 Random の正方形解釈は公式説明との差を保持し、警告は未検証として非公開にする。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "GameMakeAnim",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>ヒットスパークなど <code>fightfx</code> の共通アニメーションを表示します。公式3世代の資料では <code>Explod</code> に置き換えられた非推奨のコントローラーで、将来サポートがなくなる可能性があると説明しています。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": 0, "display": "アニメーション番号0", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p><code>fightfx</code> にあるアニメーション番号を整数式で指定します。省略時は <code>0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": "0, 0", "display": "実行者の軸", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "value": ["X位置", "Y位置"], "description": "<p>表示位置を実行者の軸からの相対座標を表す浮動小数点式2つで指定します。省略時は <code>0, 0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "literal", "value": 0, "display": "位置のランダム変位なし", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "value": ["位置のばらつき幅"], "description": "<p>アニメーションの表示位置をX・Y方向それぞれ独立した乱数でずらします。ずれ幅は指定値の半分までで、省略時は <code>0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 3, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 3, "default"], "value": [{ "kind": "literal", "value": 0, "display": "キャラクターの前に描画", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"] } }] },
+        { "path": ["parameter", 3, "documentation"], "value": { "description": "<p><code>1</code> にするとキャラクターのスプライトの後ろに、<code>0</code> なら前にアニメーションを表示します。省略時は <code>0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"] } } },
+        { "path": ["parameter", 3, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "deprecated", "legacy_index": 0, "content": "このステートコントローラーは廃止予定のため、Explodで代用しましょう。", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"], "comment": "2026-10-01: 旧見出しは MUGEN version.? で未確定。公式2002資料ですでに obsolete、1.0/1.1で deprecated。導入・廃止予定の開始ビルドは特定しない。" } },
+          { "kind": "research", "legacy_index": 1, "content": "MADE NEGATIVE GAMEANIM: Valueに-1以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["gamemakeanim-warning-binran", "gamemakeanim-legacy-data"] } },
+          { "kind": "research", "legacy_index": 2, "content": "NEGATIVE RANDOM PARAM FOR GAMEMAKEANIM: Randomに-1以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["gamemakeanim-warning-binran", "gamemakeanim-legacy-data"] } },
+          { "kind": "research", "content": "<p>旧 Random 説明は指定値を辺の長さとする正方形内のランダム出現とする。公式資料はX・Yに別々のランダム変位を与え、各変位は指定値の半分までとする。旧比喩の厳密な含意を確認していないため原文に残す。</p>", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1", "gamemakeanim-legacy-data"] } }
+        ] },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["gamemakeanim-local-2002", "gamemakeanim-local-1.0", "gamemakeanim-local-1.1"], "comment": "2026-10-01: fightfxアニメーション、4パラメーターの既定値、Randomの各軸変位と非推奨を確認。旧警告・非推奨開始ビルドは未確認。" } },
+        { "path": ["quote", "-"], "value": { "id": "gamemakeanim-local-2002", "title": "GameMakeAnim — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#GameMakeAnim", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "gamemakeanim-local-1.0", "title": "GameMakeAnim — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#gamemakeanim", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "gamemakeanim-local-1.1", "title": "GameMakeAnim — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#gamemakeanim", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "gamemakeanim-warning-binran", "title": "GameMakeAnim — MUGENエラー・警告メッセージ集", "url": "http://mugenbinran.web.fc2.com/error.html#12", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "gamemakeanim-legacy-data", "title": "GameMakeAnim — 移行前の説明・警告原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/fc38b01dc26ca5be042f8bda2e7f31074cad2520/src/content/state-controllers/GameMakeAnim.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / parameter[2].description", "reason": "旧警告・非推奨開始ビルド・Random比喩の厳密な意味は実機未確認。" }
+      ]
+    }
+  ]
+}

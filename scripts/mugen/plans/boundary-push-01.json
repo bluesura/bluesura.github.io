@@ -1,0 +1,89 @@
+{
+  "id": "boundary-push-01",
+  "reviewed_on": "2026-10-01",
+  "description": "AttackDist / PlayerPush / ScreenBound / Width の押し合い・画面境界を公式3世代資料へ対応させる。Width の旧必須表記と ScreenBound の旧カメラ中心説明は公開だけ訂正し、旧用途・数値範囲・未確認の戻り動作は保存する。",
+  "documents": [
+    {
+      "collection": "state-controllers", "name": "AttackDist", "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>実行者の現在の HitDef にある <code>guard.dist</code> を変更します。相手が後ろ方向を入力したときにガード状態へ移る距離です。現在有効な HitDef がなければ効果はありません。MUGEN 1.0 / 1.1 の公式資料は <code>MoveType = A</code> のときに効果があると記載します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["attackdist-local-2002", "attackdist-local-1.0", "attackdist-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "新しいガード距離を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["attackdist-local-2002", "attackdist-local-1.0", "attackdist-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>新しいガード距離をピクセル単位の整数式で指定します。省略できません。</p>", "hide_legacy": ["default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["attackdist-local-2002", "attackdist-local-1.0", "attackdist-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["attackdist-local-2002", "attackdist-local-1.0", "attackdist-local-1.1"], "comment": "2026-10-01: HitDef guard.dist、必須 value、ピクセル距離を確認。2002資料はHitDefがないと効果なし、1.0/1.1資料はMoveType=A条件を記載。両条件の世代間同一性を実機確認したものではない。" } },
+        { "path": ["quote", "-"], "value": { "id": "attackdist-local-2002", "title": "AttackDist — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AttackDist", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "attackdist-local-1.0", "title": "AttackDist — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#attackdist", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "attackdist-local-1.1", "title": "AttackDist — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#attackdist", "source_type": "official_document" } }
+      ], "remaining": [{ "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }]
+    },
+    {
+      "collection": "state-controllers", "name": "PlayerPush", "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>実行者とほかのプレイヤーが重なるのを防ぐ押し合い判定を、1 tick だけ切り替えます。判定を無効にすると相手をすり抜けられますが、攻撃を受ける判定とは別です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["playerpush-local-2002", "playerpush-local-1.0", "playerpush-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "押し合い判定の有効・無効を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["playerpush-local-2002", "playerpush-local-1.0", "playerpush-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>0なら押し合い判定を無効にし、0以外なら有効にする整数式です。省略できません。</p>", "hide_legacy": ["default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["playerpush-local-2002", "playerpush-local-1.0", "playerpush-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["notes"], "value": [{ "kind": "research", "content": "<p>旧 value 説明はプレイヤーの初期値1、ヘルパーの初期値0を記録する。今回確認した公式コントローラー資料は実行時の両者の初期状態を明記しないため、原文に保持して公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["playerpush-local-2002", "playerpush-local-1.0", "playerpush-local-1.1", "playerpush-legacy-data"] } }] },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["playerpush-local-2002", "playerpush-local-1.0", "playerpush-local-1.1"], "comment": "2026-10-01: 押し合い判定、1 tick、有効値、すり抜け中も被弾可能を確認。プレイヤー/Helper初期値は未確認。" } },
+        { "path": ["quote", "-"], "value": { "id": "playerpush-local-2002", "title": "PlayerPush — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PlayerPush", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "playerpush-local-1.0", "title": "PlayerPush — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#playerpush", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "playerpush-local-1.1", "title": "PlayerPush — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#playerpush", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "playerpush-legacy-data", "title": "PlayerPush — 移行前の初期値説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/0684461851fff0bcf6c31b6dea19076030effdb4/src/content/state-controllers/PlayerPush.json", "source_type": "source_code" } }
+      ], "remaining": [{ "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }, { "path": "parameter[0].description", "reason": "プレイヤー/Helper初期値は対象ビルドの実行記録がない。" }]
+    },
+    {
+      "collection": "state-controllers", "name": "ScreenBound", "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>実行者が画面外へ移動できるかと、カメラが実行者を追うかを指定します。効果は1 tickです。<code>value</code> は画面境界、<code>MoveCamera</code> はカメラ追従を制御します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["screenbound-local-2002", "screenbound-local-1.0", "screenbound-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [
+          { "kind": "unknown", "display": "Linux MUGEN 2002.04.14: 省略値は資料に明記なし", "environment": { "engine": "mugen", "runtime": ["mugen-linux"] }, "evidence": { "status": "unverified", "basis": ["official_document"], "source_refs": ["screenbound-local-2002"] } },
+          { "kind": "literal", "value": 0, "display": "MUGEN 1.0 / 1.1: 画面外への移動を許可", "environment": { "engine": "mugen", "runtime": ["mugen-1.0", "mugen-1.1"] }, "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["screenbound-local-1.0", "screenbound-local-1.1"] } }
+        ] },
+        { "path": ["parameter", 0, "documentation"], "value": { "value": ["画面境界フラグ"], "description": "<p>0なら実行者は画面外へ移動できます。MUGEN 1.0 / 1.1 の公式資料では1なら画面内へ制限し、省略時は0です。Linux MUGEN 2002.04.14資料には省略値が明記されていません。</p>", "hide_legacy": ["default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["screenbound-local-2002", "screenbound-local-1.0", "screenbound-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": "0, 0", "display": "X・Yとも追従しない", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["screenbound-local-2002", "screenbound-local-1.0", "screenbound-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "value": ["水平方向の追従フラグ", "垂直方向の追従フラグ"], "description": "<p>カメラが実行者を追うかを、X・Y方向の2つの整数フラグで指定します。MUGEN 1.0 / 1.1 の公式資料では1で追従し、省略時は両方とも0です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["screenbound-local-2002", "screenbound-local-1.0", "screenbound-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["notes"], "value": [{ "kind": "research", "content": "<p>旧 value 説明は value=0 がカメラ追従を止めるとし、解除時にスクロール開始位置へワープするとも記録する。公式資料は value を画面境界、MoveCamera を追従として区別し、旧ワープ条件は明記しないため、原文に保持して公開しない。</p>", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["screenbound-local-2002", "screenbound-local-1.0", "screenbound-local-1.1", "screenbound-legacy-data"] } }] },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["screenbound-local-2002", "screenbound-local-1.0", "screenbound-local-1.1"], "comment": "2026-10-01: 画面境界とカメラ追従の別パラメーター、1 tick、MoveCamera=0,0、1.0/1.1のvalue=0を確認。旧ワープ条件と2002のvalue省略値は未確認。" } },
+        { "path": ["quote", "-"], "value": { "id": "screenbound-local-2002", "title": "ScreenBound — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ScreenBound", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "screenbound-local-1.0", "title": "ScreenBound — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#screenbound", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "screenbound-local-1.1", "title": "ScreenBound — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#screenbound", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "screenbound-legacy-data", "title": "ScreenBound — 移行前の説明原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/0684461851fff0bcf6c31b6dea19076030effdb4/src/content/state-controllers/ScreenBound.json", "source_type": "source_code" } }
+      ], "remaining": [{ "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }, { "path": "parameter[0].default", "reason": "2002資料では value 省略値が未記載。" }, { "path": "parameter[0].description", "reason": "旧ワープ条件は対象ビルドと再現ログがない。" }]
+    },
+    {
+      "collection": "state-controllers", "name": "Width", "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>実行者の画面端に対する幅と、ほかのプレイヤーとの押し合い幅を1 tickだけ変更します。<code>Edge</code> は画面端、<code>Player</code> はほかのプレイヤーとの距離を調整します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": "0, 0", "display": "前方・後方とも0", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "parameter_type": "optional", "description": "<p>画面端に対する前方・後方の幅を整数式2つで指定します。省略時は <code>0, 0</code> です。</p>", "hide_legacy": ["min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": "0, 0", "display": "前方・後方とも0", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "parameter_type": "optional", "description": "<p>ほかのプレイヤーとの押し合いに使う前方・後方の幅を整数式2つで指定します。省略時は <code>0, 0</code> です。</p>", "hide_legacy": ["min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "none", "display": "Edge / Player の代替書式であり、単独の既定値はない", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p><code>Edge</code> と <code>Player</code> の前方・後方の幅を同じ値へ一度に設定する代替書式です。<code>Edge</code> または <code>Player</code> と同時には指定できません。</p>", "hide_legacy": ["default_value", "min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1"] } } },
+        { "path": ["parameter", 2, "constraints"], "value": [{ "kind": "alias", "parameters": ["Edge", "Player"], "description": "value は Edge と Player の両方を一度に設定する代替構文。両パラメーターと併用できない。", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1"] } }] },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["notes"], "value": [{ "kind": "research", "content": "<p>旧 Width 概要は投げ技中の攻撃側での使用、ScreenBound 代替、<code>Edge=40</code> による進入不能域を説明する。公式資料は基本的な幅と押し合いを記載するが、この制作用途と例の対象ビルドは不明なため原文に保持し公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1", "width-legacy-data"] } }, { "kind": "research", "content": "<p>旧 Edge / Player / value の各値域は -2147483647〜2147483647 とする。公式3資料に範囲の明記がないため、旧値を残して公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1", "width-legacy-data"] } }] },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["width-local-2002", "width-local-1.0", "width-local-1.1"], "comment": "2026-10-01: 1 tick、Edge/Player任意、省略時各0,0、value代替構文と併用禁止、デバッグ表示色を確認。旧 required 表記と32-bit値域は確認済みとしない。" } },
+        { "path": ["quote", "-"], "value": { "id": "width-local-2002", "title": "Width — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Width", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "width-local-1.0", "title": "Width — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#width", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "width-local-1.1", "title": "Width — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#width", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "width-legacy-data", "title": "Width — 移行前の説明・値域原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/0684461851fff0bcf6c31b6dea19076030effdb4/src/content/state-controllers/Width.json", "source_type": "source_code" } }
+      ], "remaining": [{ "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }, { "path": "parameter[].min_value / max_value", "reason": "旧32-bit値域は実機記録と公式明記がない。" }, { "path": "description", "reason": "投げ技・ScreenBound代替など旧運用例は条件不足。" }]
+    }
+  ]
+}

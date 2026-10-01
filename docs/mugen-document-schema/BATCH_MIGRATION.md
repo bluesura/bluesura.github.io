@@ -553,3 +553,19 @@ npm run mugen:batch -- --batch explod-removal-01 --target RemoveExplod --apply
 ```
 
 このバッチは適用済みです。次はほかの画面演出・表示制御ページを照合します。
+
+## afterimage-duration-01：残像持続時間の1件
+
+2026-10-02、AfterImageTime を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/afterimage-duration-01/` へ保存しています。
+
+- 公式3世代資料で表示中の残像効果にのみ作用すること、Time が必須で Value が代替書式であることを確認しました。旧 Time の任意分類は原位置へ残し、公開分類とCNSコピー欄だけを必須に訂正しました。
+- 元の AfterImage の TimeGap が1以外だとフレーム位置がリセットされる不具合は公式3資料に明記されていました。旧疑問形の記録は内部に保持し、制作に役立つ断定文を公開の bug 注記として追加しました。
+- 旧概要・Time説明の計算式、特殊値、警告、動画付き3例は今回の資料だけで裏付けられないため、原文・コード・動画IDをJSONに残し、HTMLから外しました。CNSコピー欄ではTime / Valueともコメント行にします。
+
+```sh
+npm run mugen:batch-baseline -- --batch afterimage-duration-01
+npm run mugen:batch -- --batch afterimage-duration-01 --target AfterImageTime
+npm run mugen:batch -- --batch afterimage-duration-01 --target AfterImageTime --apply
+```
+
+このバッチは適用済みです。次は AfterImage 本体など残像表示関連ページを照合します。

@@ -538,3 +538,18 @@ npm run mugen:batch -- --batch explod-binding-01 --target ExplodBindTime --apply
 ```
 
 このバッチは適用済みです。次はほかの画面演出・表示制御ページを照合します。
+
+## explod-removal-01：Explod削除の1件
+
+2026-10-02、RemoveExplod を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/explod-removal-01/` へ保存しています。
+
+- 公式3世代資料で実行者が所有するExplodの削除、ID指定による絞り込み、省略時の全件削除を確認しました。
+- 旧JSONの `ID=-1` は公式のRemoveExplod資料では具体値として記されていません。原文と内部 `research` に保持し、CNSコピー欄ではIDをコメント行にしました。旧負数警告も対象ビルドの実行ログがないため内部に保持しています。
+
+```sh
+npm run mugen:batch-baseline -- --batch explod-removal-01
+npm run mugen:batch -- --batch explod-removal-01 --target RemoveExplod
+npm run mugen:batch -- --batch explod-removal-01 --target RemoveExplod --apply
+```
+
+このバッチは適用済みです。次はほかの画面演出・表示制御ページを照合します。

@@ -1,0 +1,45 @@
+{
+  "id": "explod-binding-01",
+  "reviewed_on": "2026-10-02",
+  "description": "ExplodBindTime の対象ID、位置結合時間、value代替書式を保存済み公式3世代資料へ対応させる。旧警告と-1以下を永続とする範囲の主張は原文を保持して非公開にする。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "ExplodBindTime",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>実行者が作成した Explod の位置を、作成時に決まった基準点へ結合しておく時間を変更します。<code>ID</code> で対象を選び、<code>Time</code> または代替書式の <code>value</code> で結合時間を指定します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": -1, "display": "すべてのExplod", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>変更する Explod のIDを整数式で指定します。省略時の <code>-1</code> は実行者が作成したすべての Explod を対象にします。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": 1, "display": "1 tick", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>Explod を位置の基準点へ結合しておくゲーム tick 数を整数式で指定します。省略時は <code>1</code>、<code>-1</code> なら無期限です。MUGEN 1.0 / 1.1 の公式資料は、別のコントローラーが結合時間を変更するまでと補足します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "literal", "value": 1, "display": "Timeの代替書式", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p><code>Time</code> の代わりに同じ結合時間を指定する書式です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1"] } } },
+        { "path": ["parameter", 2, "constraints"], "value": [{ "kind": "alias", "parameters": ["Time"], "description": "value は Time の代替書式。", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1"] } }] },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "research", "legacy_index": 0, "content": "ILLEGAL ID TO EXPLODBONDTIME:IDに-2以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["explodbindtime-warning-binran", "explodbindtime-legacy-data"], "comment": "2026-10-02: 旧警告文の綴りを含め原文を保持。対象ビルドの実行ログは未確認。" } },
+          { "kind": "research", "legacy_index": 1, "content": "ILLEGAL EXPLODBINDTIME:BindTimeに-2以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["explodbindtime-warning-binran", "explodbindtime-legacy-data"], "comment": "2026-10-02: 旧警告文と条件を原文保持。対象ビルドの実行ログは未確認。" } },
+          { "kind": "research", "content": "<p>旧 Time 説明は -1以下を永続化とするが、公式3資料は -1 だけを明記する。-2以下は旧警告記録とも衝突するため、値域を原文に残して公開しない。</p>", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1", "explodbindtime-legacy-data"] } },
+          { "kind": "research", "content": "<p>公式資料は value を Time の代替書式とするが、両方を記載した場合の優先順位は明記しない。実機でも未確認のため公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1"] } }
+        ] },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["explodbindtime-local-2002", "explodbindtime-local-1.0", "explodbindtime-local-1.1"], "comment": "2026-10-02: 対象ExplodのID=-1、Time=1/-1、value代替書式を資料で確認。旧警告、-2以下、併記時の優先順位は未確認。" } },
+        { "path": ["quote", "-"], "value": { "id": "explodbindtime-local-2002", "title": "ExplodBindTime — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ExplodBindTime", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "explodbindtime-local-1.0", "title": "ExplodBindTime — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#explodbindtime", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "explodbindtime-local-1.1", "title": "ExplodBindTime — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#explodbindtime", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "explodbindtime-warning-binran", "title": "ExplodBindTime — MUGENエラー・警告メッセージ集", "url": "http://mugenbinran.web.fc2.com/error.html#12", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "explodbindtime-legacy-data", "title": "ExplodBindTime — 移行前の説明・警告原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/81c3ed6f0cde7b49cee3d6db914053e676e2d3c8/src/content/state-controllers/ExplodBindTime.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / parameter[1] / parameter[2]", "reason": "旧警告と-2以下、Time/value併記時の優先順位は未確認。" }
+      ]
+    }
+  ]
+}

@@ -492,3 +492,19 @@ npm run mugen:batch -- --batch environment-color-01 --target EnvColor --apply
 ```
 
 このバッチは適用済みです。次はほかの画面演出・表示制御ページを照合します。
+
+## game-animation-01：共通アニメーション表示の1件
+
+2026-10-01、GameMakeAnim を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/game-animation-01/` へ保存しています。
+
+- 公式3世代資料で `fightfx` の共通アニメーション表示、非推奨と Explod への置き換え、4つの任意パラメーターを確認しました。value=0、Pos=0,0、Random=0、Under=0をCNSコピー欄に有効行で出します。
+- Random はX・Y方向へ独立したランダム変位を与え、各変位は指定値の半分までという公式説明に対応しました。旧「正方形の範囲」説明は原位置と内部 `research` に残します。
+- 旧2警告は対象ビルドの実行記録がないため内部 `research` へ対応付けました。旧履歴の非推奨文はそのまま公開し、旧見出しの不明な開始バージョンは確定しません。
+
+```sh
+npm run mugen:batch-baseline -- --batch game-animation-01
+npm run mugen:batch -- --batch game-animation-01 --target GameMakeAnim
+npm run mugen:batch -- --batch game-animation-01 --target GameMakeAnim --apply
+```
+
+このバッチは適用済みです。次はほかの画面演出・表示制御ページを照合します。

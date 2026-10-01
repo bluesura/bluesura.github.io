@@ -1,80 +1,455 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "GameMakeAnim",
-		"target": "",
-		"category": ["演出","共通エフェクト(ヒットスパーク等)の表示"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "GameMakeAnim",
-	"description": "<p>ヒットマークやダウン衝撃などの共通アニメを表示します。</p>",
-	"category": "state",
-	"associated_state": ["Explod"],
-
-	"version": [
-		{"no": "MUGEN version.?", "content": "このステートコントローラーは廃止予定のため、Explodで代用しましょう。"},
-		{"no": "警告文", "content": "MADE NEGATIVE GAMEANIM: Valueに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "NEGATIVE RANDOM PARAM FOR GAMEMAKEANIM: Randomに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["アクション番号"],
-			"type": ["int"],
-			"description": "<p>fightfxに登録されているアクション番号を指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Pos",
-			"value": ["x_座標, y_座標"],
-			"type": ["float", "float"],
-			"description": "<p>キャラの軸を基準とした出現位置を指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0, 0"],
-			"load_priority": ["2, 3"]
-		},
-		{
-			"parameter": "Random",
-			"value": ["出現範囲"],
-			"type": ["int"],
-			"description": "<p>指定した値を辺の長さとする正方形の範囲内でランダムな位置に出現さるときに指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["4"]
-		},
-		{
-			"parameter": "Under",
-			"value": ["背面フラグ"],
-			"type": ["int"],
-			"description": "<p>1にすれば、キャラの奥側に表示されます。0にすれば、キャラの前面に表示されます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["5"]
-		}
-	],
-
-	"quote": [
-		{"title": "GameMakeAnim - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#GameMakeAnim"},
-		{"title": "GameMakeAnim - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#gamemakeanim"},
-		{"title": "GameMakeAnim - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#gamemakeanim"},
-		{"title": "GameMakeAnim - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/GameMakeAnim"},
-		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-		{"title": "GameMakeAnim - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?GameMakeAnim&protocol=http"},
-		{"title": "GameMakeAnim - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#GameMakeAnim"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "GameMakeAnim",
+    "target": "",
+    "category": [
+      "演出",
+      "共通エフェクト(ヒットスパーク等)の表示"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "GameMakeAnim",
+  "description": "<p>ヒットマークやダウン衝撃などの共通アニメを表示します。</p>",
+  "category": "state",
+  "associated_state": [
+    "Explod"
+  ],
+  "version": [
+    {
+      "no": "MUGEN version.?",
+      "content": "このステートコントローラーは廃止予定のため、Explodで代用しましょう。"
+    },
+    {
+      "no": "警告文",
+      "content": "MADE NEGATIVE GAMEANIM: Valueに-1以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "NEGATIVE RANDOM PARAM FOR GAMEMAKEANIM: Randomに-1以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "アクション番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>fightfxに登録されているアクション番号を指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 0,
+          "display": "アニメーション番号0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "gamemakeanim-local-2002",
+              "gamemakeanim-local-1.0",
+              "gamemakeanim-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>fightfx</code> にあるアニメーション番号を整数式で指定します。省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "gamemakeanim-local-2002",
+            "gamemakeanim-local-1.0",
+            "gamemakeanim-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Pos",
+      "value": [
+        "x_座標, y_座標"
+      ],
+      "type": [
+        "float",
+        "float"
+      ],
+      "description": "<p>キャラの軸を基準とした出現位置を指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0, 0"
+      ],
+      "load_priority": [
+        "2, 3"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0, 0",
+          "display": "実行者の軸",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "gamemakeanim-local-2002",
+              "gamemakeanim-local-1.0",
+              "gamemakeanim-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "value": [
+          "X位置",
+          "Y位置"
+        ],
+        "description": "<p>表示位置を実行者の軸からの相対座標を表す浮動小数点式2つで指定します。省略時は <code>0, 0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "gamemakeanim-local-2002",
+            "gamemakeanim-local-1.0",
+            "gamemakeanim-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Random",
+      "value": [
+        "出現範囲"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>指定した値を辺の長さとする正方形の範囲内でランダムな位置に出現さるときに指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "4"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 0,
+          "display": "位置のランダム変位なし",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "gamemakeanim-local-2002",
+              "gamemakeanim-local-1.0",
+              "gamemakeanim-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "value": [
+          "位置のばらつき幅"
+        ],
+        "description": "<p>アニメーションの表示位置をX・Y方向それぞれ独立した乱数でずらします。ずれ幅は指定値の半分までで、省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "gamemakeanim-local-2002",
+            "gamemakeanim-local-1.0",
+            "gamemakeanim-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Under",
+      "value": [
+        "背面フラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>1にすれば、キャラの奥側に表示されます。0にすれば、キャラの前面に表示されます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "5"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 0,
+          "display": "キャラクターの前に描画",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "gamemakeanim-local-2002",
+              "gamemakeanim-local-1.0",
+              "gamemakeanim-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>1</code> にするとキャラクターのスプライトの後ろに、<code>0</code> なら前にアニメーションを表示します。省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "gamemakeanim-local-2002",
+            "gamemakeanim-local-1.0",
+            "gamemakeanim-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "GameMakeAnim - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#GameMakeAnim"
+    },
+    {
+      "title": "GameMakeAnim - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#gamemakeanim"
+    },
+    {
+      "title": "GameMakeAnim - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#gamemakeanim"
+    },
+    {
+      "title": "GameMakeAnim - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/GameMakeAnim"
+    },
+    {
+      "title": "不具合・対策まとめ - MUGENの便覧",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "title": "GameMakeAnim - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?GameMakeAnim&protocol=http"
+    },
+    {
+      "title": "GameMakeAnim - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#GameMakeAnim"
+    },
+    {
+      "id": "gamemakeanim-local-2002",
+      "title": "GameMakeAnim — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#GameMakeAnim",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gamemakeanim-local-1.0",
+      "title": "GameMakeAnim — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#gamemakeanim",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gamemakeanim-local-1.1",
+      "title": "GameMakeAnim — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#gamemakeanim",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gamemakeanim-warning-binran",
+      "title": "GameMakeAnim — MUGENエラー・警告メッセージ集",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "gamemakeanim-legacy-data",
+      "title": "GameMakeAnim — 移行前の説明・警告原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/fc38b01dc26ca5be042f8bda2e7f31074cad2520/src/content/state-controllers/GameMakeAnim.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>ヒットスパークなど <code>fightfx</code> の共通アニメーションを表示します。公式3世代の資料では <code>Explod</code> に置き換えられた非推奨のコントローラーで、将来サポートがなくなる可能性があると説明しています。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "gamemakeanim-local-2002",
+        "gamemakeanim-local-1.0",
+        "gamemakeanim-local-1.1"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "kind": "deprecated",
+      "legacy_index": 0,
+      "content": "このステートコントローラーは廃止予定のため、Explodで代用しましょう。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "gamemakeanim-local-2002",
+          "gamemakeanim-local-1.0",
+          "gamemakeanim-local-1.1"
+        ],
+        "comment": "2026-10-01: 旧見出しは MUGEN version.? で未確定。公式2002資料ですでに obsolete、1.0/1.1で deprecated。導入・廃止予定の開始ビルドは特定しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 1,
+      "content": "MADE NEGATIVE GAMEANIM: Valueに-1以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "gamemakeanim-warning-binran",
+          "gamemakeanim-legacy-data"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 2,
+      "content": "NEGATIVE RANDOM PARAM FOR GAMEMAKEANIM: Randomに-1以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "gamemakeanim-warning-binran",
+          "gamemakeanim-legacy-data"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧 Random 説明は指定値を辺の長さとする正方形内のランダム出現とする。公式資料はX・Yに別々のランダム変位を与え、各変位は指定値の半分までとする。旧比喩の厳密な含意を確認していないため原文に残す。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "gamemakeanim-local-2002",
+          "gamemakeanim-local-1.0",
+          "gamemakeanim-local-1.1",
+          "gamemakeanim-legacy-data"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "gamemakeanim-local-2002",
+      "gamemakeanim-local-1.0",
+      "gamemakeanim-local-1.1"
+    ],
+    "comment": "2026-10-01: fightfxアニメーション、4パラメーターの既定値、Randomの各軸変位と非推奨を確認。旧警告・非推奨開始ビルドは未確認。"
+  }
 }

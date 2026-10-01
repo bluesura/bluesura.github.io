@@ -1,0 +1,44 @@
+{
+  "id": "environment-color-01",
+  "reviewed_on": "2026-10-01",
+  "description": "EnvColor のRGB・持続時間・背面描画を保存済み公式3世代資料へ対応させる。旧-2のバグ記録、警告、細かな描画順・制作用途は原文を残して内部に置く。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "EnvColor",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>画面を単色で塗りつぶします。ヒットスパークなど前面レイヤーのアニメーションや <code>ontop</code> 指定の Explod はその上に表示され、ステージの前面レイヤーは表示されません。<code>Under=1</code> ならキャラクターと飛び道具も塗りつぶしの上に表示します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "literal", "value": "255, 255, 255", "display": "白", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "value": ["赤の強さ", "緑の強さ", "青の強さ"], "description": "<p>塗りつぶす色を赤・緑・青の整数式3つで指定します。各成分は0〜255で、省略時は <code>255, 255, 255</code>（白）です。</p>", "hide_legacy": ["default_value", "min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": 1, "display": "1 tick", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "value": ["持続時間"], "description": "<p>塗りつぶしを表示するゲーム tick 数の整数式です。省略時は <code>1</code>、<code>-1</code> なら無期限に持続します。</p>", "hide_legacy": ["min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 2, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "literal", "value": 0, "display": "キャラクターと飛び道具の上に描画", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "value": ["背面描画フラグ"], "description": "<p><code>1</code> にすると、塗りつぶしをキャラクターと飛び道具の下に描画します。省略時は <code>0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "research", "legacy_index": 0, "content": "Timeを-1,-2に設定すると、ライフバーが塗りつぶされなくなり、ステージのLayerNo=1スプライトが塗りつぶされず前面に表示されそれ以外のレイヤーはvalueに関係なく透明に表示されなくなります。ラウンドごとにリセットされないかなり嫌がらせなバグ。", "evidence": { "status": "conflicting", "basis": ["official_document", "source_code"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1", "envcolor-legacy-data"], "comment": "2026-10-01: 公式資料は-1の無期限持続を説明する一方、旧記録は-1/-2の追加描画不具合を主張。対象ビルド・再現ログがないため公開しない。" } },
+          { "kind": "research", "legacy_index": 1, "content": "SET ILLEGAL ENVCOLORTIME:Timeに-3以下または2147483647以上", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["envcolor-warning-binran", "envcolor-legacy-data"], "comment": "2026-10-01: 旧警告文と数値条件を原文のまま保持。対象ビルドの実行ログは未確認。" } },
+          { "kind": "research", "content": "<p>旧 description は AllPalFX、PalFX、BGPalFX、ヒットスパーク、OnTop=1、ライフバーの LayerNo、ステージの LayerNo と超必殺・特殊技の制作用途を詳述する。今回確認した公式3資料は前面アニメーションと ontop Explod、ステージ前面レイヤーの非表示までを明記するが、旧文の各相互作用と用途を一括して裏付けないため公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1", "envcolor-legacy-data"] } },
+          { "kind": "research", "content": "<p>旧 Under 説明は AfterImage、Explod、Helper、MakeDust、Projectile、LayerNo=1 のステージスプライトを列挙する。公式資料はキャラクターと飛び道具だけを明記するため、詳細な包含関係は原文に保持して公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1", "envcolor-legacy-data"] } }
+        ] },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["envcolor-local-2002", "envcolor-local-1.0", "envcolor-local-1.1"], "comment": "2026-10-01: RGB各0〜255・既定値255,255,255、Time既定値1/-1無期限、Under既定値0と1の描画位置、前面アニメーション・ontop Explod・ステージ前面レイヤーを確認。旧-2、警告、詳細なレイヤー相互作用は未確認。" } },
+        { "path": ["quote", "-"], "value": { "id": "envcolor-local-2002", "title": "EnvColor — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#EnvColor", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "envcolor-local-1.0", "title": "EnvColor — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#envcolor", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "envcolor-local-1.1", "title": "EnvColor — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#envcolor", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "envcolor-warning-binran", "title": "EnvColor — MUGENエラー・警告メッセージ集", "url": "http://mugenbinran.web.fc2.com/error.html#12", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "envcolor-legacy-data", "title": "EnvColor — 移行前の説明・警告原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/a4a61972ab710b47fabf92f8db882b564d0d6b5f/src/content/state-controllers/EnvColor.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / description / parameter", "reason": "旧-2描画不具合、警告条件、レイヤー相互作用・制作用途と最大値は実機未確認。" }
+      ]
+    }
+  ]
+}

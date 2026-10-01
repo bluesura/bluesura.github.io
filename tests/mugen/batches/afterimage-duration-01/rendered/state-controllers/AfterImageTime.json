@@ -1,0 +1,103 @@
+{
+  "text": "Type = AfterImageTime 演出 > 残像表示時間の変更 | 実装されたバージョン: 2002.04.14 | 対象: ステート実行者自身 パラメーター 仕様・注意点 コピペ用 使用例 読み込み順 引用記事 AfterImageのTime(残像表示時間)を上書きすることができます。AfterImageを連続で実行した場合、今まで表示されていた残像が消えてしまいます。なので、AfterImageのTimeを持続させたい場合はAfterImageTimeを使用します。ただし、AfterImageTimeで残像を消去する処理は厳しいです。なぜなら、残像が表示される時間を変更するだけなので、残像の履歴が残っており履歴がなくなるまで残像が表示され続けます。ですので、完全に消去した場合はAfterImageでTime=0に設定し、1フレームだけ実行することによって一瞬で残像を消去できます。また、AfterImageが実行されていない時は、AfterImageTimeのパラメータは無視されます。例えば、\"Time = var(0) := 9\"としていた場合、代入が実行されません。 関連するステートコントローラー： AfterImage パラメーター Time = 新しい継続時間 型整数 省略時? 最小値-1 最大値2147483627 AfterImageのTimeパラメータを上書きします。また、AfterImageの終了時間はそのフレームから元のAfterTimeのTimeGapとLengthのTimeGap*Length+Time-1になります。-1で表示を永続化。0・1では表示されず、2以上か-1を指定しなければなりません。※60フレーム=1秒 ; Value = 新しい時間 代替書式 型整数 省略時? Timeの代わりにValueと書いても同じ動作をします。 IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 仕様・バグ・エラー・変更点不明AfterImageのTimeGapが1に設定されていない状態で、AfterImageTimeを使用するとフレームの位置がリセットされる？警告文SET ILLEGAL AFTERIMAGETIME:Timeに-2以下 コピペ用パラメーター一覧（省略時の挙動） [State 0, AfterImageTime]Type = AfterImageTimeTrigger1 = 1; Time = ; 省略時: ?; Value = ; 代替書式・条件を確認: ?IgnoreHitPause = 0Persistent = 1 コードサンプルTimeの時間で残像が消える場合[State 100]Type = AfterimageTrigger1 = Time = 0Trans = NoneLength = 60TimeGap = 1FrameGap = 1Time = 60PalColor = 256PalInvertAll = 0PalBright = 0, 0, 0PalContrast = 256, 256, 256PalPostBright = 0, 0, 0PalAdd = 0, 0, 0PalMul = 1, 1, 160F経過しても残像は残る AfterTimeImage value = 0にした場合[State 100]Type = AfterimageTrigger1 = Time = 0Trans = NoneLength = 60TimeGap = 1FrameGap = 1Time = 60PalColor = 256PalInvertAll = 0PalBright = 0, 0, 0PalContrast = 256, 256, 256PalPostBright = 0, 0, 0PalAdd = 0, 0, 0PalMul = 1, 1, 1[State 100]Type = AfterImageTimeTrigger1 = Time = 60Value = 0残像は残る AfterImageでAfterImageを消去した場合[State 100]Type = AfterimageTrigger1 = Time = 0Trans = NoneLength = 60TimeGap = 1FrameGap = 1Time = 60PalColor = 256PalInvertAll = 0PalBright = 0, 0, 0PalContrast = 256, 256, 256PalPostBright = 0, 0, 0PalAdd = 0, 0, 0PalMul = 1, 1, 1[State ]Type = AfterImageTrigger1 = Time = 60Time = 0一瞬で消えるよ！ パラメーターの読み込み順 パラメーター読み込み順 Time 1 ; Value 1 IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事AfterImageTime - State Controller Reference(version 2002.04.14)AfterImageTime - State Controller Reference(version 1.0)AfterImageTime - State Controller Reference(version 1.1)AfterImage - M.U.G.E.N wikiAfterImage - MUGEN CNS WIKI CHAOS@予定不具合・対策まとめ - MUGENの便覧AfterImage - State ControllerAfterImage - 東方夢幻館AfterImage - 地球の応接間afterimageの消去について 公開日:2008.06.05 最終更新日:2017.08.06 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "CodeSample",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "AfterImage",
+      "href": "./../State/AfterImage.html"
+    },
+    {
+      "text": "AfterImageTime - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#AfterImageTime"
+    },
+    {
+      "text": "AfterImageTime - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#afterimagetime"
+    },
+    {
+      "text": "AfterImageTime - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#afterimagetime"
+    },
+    {
+      "text": "AfterImage - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AfterImageTime"
+    },
+    {
+      "text": "AfterImage - MUGEN CNS WIKI CHAOS@予定",
+      "href": "http://www49.atwiki.jp/mugencns/pages/61.html"
+    },
+    {
+      "text": "不具合・対策まとめ - MUGENの便覧",
+      "href": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "text": "AfterImage - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AfterImageTime&protocol=http"
+    },
+    {
+      "text": "AfterImage - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AfterImageTime"
+    },
+    {
+      "text": "AfterImage - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/1.htm"
+    },
+    {
+      "text": "afterimageの消去について",
+      "href": "http://cj2.pv.land.to/4/8.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "https://www.youtube.com/embed/4Lcs-al3_zw",
+    "https://www.youtube.com/embed/Ip9oXOX8Bd0",
+    "https://www.youtube.com/embed/vYOYg7DjCUw"
+  ],
+  "code": [
+    "[State 0, AfterImageTime]",
+    "Type                       = AfterImageTime",
+    "Trigger1                   = 1",
+    "; Time                     =        ; 省略時: ?",
+    "; Value                    =        ; 代替書式・条件を確認: ?",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

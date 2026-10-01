@@ -1,0 +1,46 @@
+{
+  "id": "afterimage-duration-01",
+  "reviewed_on": "2026-10-02",
+  "description": "AfterImageTime の必須時間・value代替構文・TimeGap由来の既知バグを公式3世代資料へ対応させる。旧計算式・特殊値・警告・動画付き例は原文を保持して非公開にする。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "AfterImageTime",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>表示中の残像効果の持続時間を変更します。残像が表示されていないときは効果がありません。新しい持続時間は <code>Time</code> または代替書式の <code>Value</code> で指定します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "新しい残像持続時間を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "parameter_type": "required", "description": "<p>残像が消えるまでの新しいゲーム tick 数を整数式で指定します。<code>Value</code> を使う場合は <code>Time</code> の代わりに指定します。</p>", "hide_legacy": ["min_value", "max_value", "default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "required", "display": "Timeの代わりに新しい残像持続時間を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p><code>Time</code> と同じ新しい残像持続時間を指定する代替書式です。</p>", "hide_legacy": ["default_value", "min_value", "max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1"] } } },
+        { "path": ["parameter", 1, "constraints"], "value": [{ "kind": "alias", "parameters": ["Time"], "description": "Value は Time の代替書式。", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1"] } }] },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "research", "legacy_index": 0, "content": "AfterImageのTimeGapが1に設定されていない状態で、AfterImageTimeを使用するとフレームの位置がリセットされる？", "evidence": { "status": "confirmed", "basis": ["official_document", "source_code"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1", "afterimagetime-legacy-data"], "comment": "2026-10-02: 旧疑問形の原文を内部保持。公式資料の断定文から別の公開 bug 注記を作成。" } },
+          { "kind": "research", "legacy_index": 1, "content": "SET ILLEGAL AFTERIMAGETIME:Timeに-2以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["afterimagetime-warning-binran", "afterimagetime-legacy-data"], "comment": "2026-10-02: 旧警告文と条件を原文保持。対象ビルドの実行ログは未確認。" } },
+          { "kind": "bug", "content": "元の AfterImage の <code>TimeGap</code> が1以外のとき、AfterImageTime を実行すると残像フレームの位置がリセットされます。", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1"] } },
+          { "kind": "research", "content": "<p>旧概要は AfterImage の連続実行による既存残像の消去、AfterImageTime=0でも履歴が残ること、AfterImage Time=0による即時消去、残像がないときの代入式の評価抑止を記録する。公式コントローラー資料はこれらの詳細を明記しないため原文を保持し公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1", "afterimagetime-legacy-data"] } },
+          { "kind": "research", "content": "<p>旧 Time 説明は TimeGap×Length+Time-1 の終了時刻、-1の永続化、0/1の非表示、60フレーム=1秒、最大2147483627を記録する。公式3資料は新しいtick数とだけ説明し、これらの値・計算式を明記しないため原文に保持する。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1", "afterimagetime-legacy-data"] } },
+          { "kind": "research", "content": "<p>旧動画付き使用例3件は残像履歴の表示・消去を実演するとする。対象ビルド、再現設定、動画の再確認が未記録のため、コードと動画をJSONに残して公開しない。</p>", "evidence": { "status": "unverified", "basis": ["source_code"], "source_refs": ["afterimagetime-legacy-data"] } }
+        ] },
+        { "path": ["code_sample", 0, "visibility"], "value": "internal" },
+        { "path": ["code_sample", 1, "visibility"], "value": "internal" },
+        { "path": ["code_sample", 2, "visibility"], "value": "internal" },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["afterimagetime-local-2002", "afterimagetime-local-1.0", "afterimagetime-local-1.1"], "comment": "2026-10-02: 表示中のみ効果、Time必須とvalue代替、TimeGap!=1の既知バグを資料で確認。旧時間計算・特殊値・警告・動画例は未検証。" } },
+        { "path": ["quote", "-"], "value": { "id": "afterimagetime-local-2002", "title": "AfterImageTime — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AfterImageTime", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "afterimagetime-local-1.0", "title": "AfterImageTime — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#afterimagetime", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "afterimagetime-local-1.1", "title": "AfterImageTime — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#afterimagetime", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "afterimagetime-warning-binran", "title": "AfterImageTime — MUGENエラー・警告メッセージ集", "url": "http://mugenbinran.web.fc2.com/error.html#12", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "afterimagetime-legacy-data", "title": "AfterImageTime — 移行前の説明・例・警告原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/a2d24ed7152e5e29f15e151b0807c905da538210/src/content/state-controllers/AfterImageTime.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / description / parameter[0] / code_sample", "reason": "旧時間計算、特殊値、警告、動画付き例は対象ビルドの再現記録がない。" }
+      ]
+    }
+  ]
+}

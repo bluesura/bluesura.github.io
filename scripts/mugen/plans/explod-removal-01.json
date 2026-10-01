@@ -1,0 +1,34 @@
+{
+  "id": "explod-removal-01",
+  "reviewed_on": "2026-10-02",
+  "description": "RemoveExplod の所有Explod削除と省略時全件を公式3世代資料へ対応させる。旧ID=-1の固定値と負数警告は原文を残し、公式資料にない定数を有効なCNS行へ出さない。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "RemoveExplod",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>実行者が作成した Explod を削除します。<code>ID</code> を指定すると一致する Explod だけを、<code>ID</code> を省略すると実行者が所有するすべての Explod を削除します。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["removeexplod-local-2002", "removeexplod-local-1.0", "removeexplod-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "derived", "display": "省略すると実行者が所有するすべてのExplod", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["removeexplod-local-2002", "removeexplod-local-1.0", "removeexplod-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>削除する Explod のIDを整数式で指定します。省略すると実行者が所有するすべての Explod を削除します。</p>", "hide_legacy": ["default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["removeexplod-local-2002", "removeexplod-local-1.0", "removeexplod-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "research", "legacy_index": 0, "content": "REMOVAL OF ILLEGAL EXPLOD ID:IDに-2以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["removeexplod-warning-binran", "removeexplod-legacy-data"], "comment": "2026-10-02: 旧警告文と条件を原文保持。対象ビルドの実行ログは未確認。" } },
+          { "kind": "research", "content": "<p>旧 ID 省略値は -1 と記録する。今回確認した公式3資料はいずれも省略時に全 Explod を削除すると記すが、内部で -1 に置き換えるとは明記しないため、原文を残して固定値を公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["removeexplod-local-2002", "removeexplod-local-1.0", "removeexplod-local-1.1", "removeexplod-legacy-data"] } }
+        ] },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["removeexplod-local-2002", "removeexplod-local-1.0", "removeexplod-local-1.1"], "comment": "2026-10-02: 実行者の所有Explod削除、ID指定時の絞り込み、省略時の全件削除を確認。旧-1内部値と警告は未検証。" } },
+        { "path": ["quote", "-"], "value": { "id": "removeexplod-local-2002", "title": "RemoveExplod — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#RemoveExplod", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "removeexplod-local-1.0", "title": "RemoveExplod — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#removeexplod", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "removeexplod-local-1.1", "title": "RemoveExplod — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#removeexplod", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "removeexplod-warning-binran", "title": "RemoveExplod — MUGENエラー・警告メッセージ集", "url": "http://mugenbinran.web.fc2.com/error.html#12", "source_type": "community_documentation" } },
+        { "path": ["quote", "-"], "value": { "id": "removeexplod-legacy-data", "title": "RemoveExplod — 移行前の省略値・警告原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/8fd41351e66880a8cefe54cb704380e672b717e3/src/content/state-controllers/RemoveExplod.json", "source_type": "source_code" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / parameter[0].default_value", "reason": "旧警告とID=-1の内部置換を実機で確認していない。" }
+      ]
+    }
+  ]
+}

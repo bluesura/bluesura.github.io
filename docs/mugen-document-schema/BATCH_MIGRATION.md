@@ -665,3 +665,19 @@ npm run mugen:batch -- --batch superpause-time-01 --target SuperPause --apply
 ```
 
 このバッチは適用済みです。次は PlaySnd / StopSnd / SndPan などサウンド関連ページを照合します。
+
+## sound-control-01：サウンド再生・停止・定位の3件
+
+2026-10-03、PlaySnd / StopSnd / SndPan を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/sound-control-01/` に保存しています。
+
+- 保存済み公式3世代資料で、PlaySndのSND識別子・F接頭辞・Channel=-1/0・周波数と繰り返し、StopSndのChannel必須と-1で他プレイヤーも含む全停止、SndPanのChannelとPan / AbsPanの代替必須指定を確認しました。旧SndPanの任意分類・Pan=0は原位置へ残し、公開分類とCNSコピー欄を訂正しています。StopSndの旧コード2例は保持しました。
+- PlaySndの音量方式は1.0 RC8からVolumeScaleへ変わり、Volumeが無視されます。`mugen-1.0-rc8` をレジストリへ追加し、公式履歴の2010-06-29を記録しました。1.0系列全体をRC8以降として扱わず、RC8・正式版・1.1に適用範囲を絞っています。旧`;VolumeScale` 名も保持し、世代依存の音量行はCNS欄でコメントのままです。
+- [CHAOSのPlaySnd記録](https://w.atwiki.jp/mugencns/pages/251.html)で旧Volume=0とLowPriority=0の省略値を照合しました。旧Volumeの±255は同記事でも推定値なので、元の最小・最大値を保持し公開表から外しています。旧common.snd候補表、警告、Pan / AbsPan併記時の優先順位、Loopによる影響、大きいチャンネル番号の挙動は内部で追跡します。
+
+```sh
+npm run mugen:batch-baseline -- --batch sound-control-01
+npm run mugen:batch -- --batch sound-control-01 --target PlaySnd --target StopSnd --target SndPan
+npm run mugen:batch -- --batch sound-control-01 --target PlaySnd --target StopSnd --target SndPan --apply
+```
+
+このバッチは適用済みです。次は PalFX / AllPalFX / BGPalFX など色調関連ページを照合します。

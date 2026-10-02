@@ -208,3 +208,7 @@ Pause を追加し、累計100件・残り134件です。Timeの0許容、MoveTi
 ## 2026-10-03：superpause-time-01
 
 SuperPause を追加し、累計101件・残り133件です。11任意項目の既定値、Pauseの任意項目の継承、Sound引数順、Posの実行者軸基準、P2DefMul=0の設定参照とPause中断を保存済み公式3世代資料へ対応させました。旧RoundState条件・警告・更新停止の詳細・固定最大値は原本と内部researchへ保持しています。UnHitTableの綴りとPowerAddの読み込み順20は変更していません。新たなスキーマ・表示機能は追加していません。
+
+## 2026-10-03：sound-control-01
+
+PlaySnd / StopSnd / SndPan を追加し、累計104件・残り130件です。SND識別子、再生・停止チャンネル、定位の排他指定とSndPanでの代替必須、VolumeScaleのRC8切り替えを保存済み公式3世代資料へ対応させました。RC8のビルドIDを追加し、旧VolumeとLowPriorityの省略値は[CHAOSの記録](https://w.atwiki.jp/mugencns/pages/251.html)へ対応させています。旧警告・音量の推定範囲・素材表・詳細な評価条件は原本と内部researchへ保持しました。旧チャンネル上限とコミュニティの大きい番号でも機能する記録はconflictingとし、対象ビルドの実測で未解決です。

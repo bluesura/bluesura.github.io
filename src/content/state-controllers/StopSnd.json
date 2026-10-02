@@ -1,67 +1,220 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "StopSnd",
-		"target": "音声",
-		"category": ["音声の再生","指定チャンネルのサウンド停止"],
-		"version": "2002.04.14",
-		"update": "2017.09.24",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "StopSnd",
-	"description": "<p>特定チャンネルの音を止めます。</p>",
-	"category": "state",
-	"associated_state": ["PlaySnd", "SndPan"],
-
-	"version": [
-		{"no": "警告文", "content": "STOPPED ILLEGAL CHANNEL NUMBER -2:Channelに-2以下、32以上。（最後の数値は指定した数値が表示される）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "Channel",
-			"value": ["チャンネル番号"],
-			"type": ["int"],
-			"description": "<p>停止させたい音のチャンネルを指定。</p><p>-1で全プレイヤーの全チャンネルの音を停止させます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		}
-	],
-
-	"code_sample": [
-		{
-			"title": "必殺技の演出で無音にする",
-			"code": [
-				"[State ]",
-				"Type           = StopSnd",
-				"Trigger1       = Time = 0",
-				"Channel        = -1",
-				"Ignorehitpause = 1"
-			]
-		},
-		{
-			"title": "コンボや特殊動作中に音声がかぶらないように停止",
-			"code": [
-				"[State ]",
-				"Type           = StopSnd",
-				"Trigger1       = StateNo != 2000",
-				"Channel        = 2",
-				"Ignorehitpause = 1"
-			]
-		}
-	],
-
-	"quote": [
-		{"title": "StopSnd - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#StopSnd"},
-		{"title": "StopSnd - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#stopsnd"},
-		{"title": "StopSnd - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#stopsnd"},
-		{"title": "StopSnd - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StopSnd"},
-		{"title": "StopSnd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?StopSnd&protocol=http"},
-		{"title": "StopSnd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#StopSnd"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "StopSnd",
+    "target": "音声",
+    "category": [
+      "音声の再生",
+      "指定チャンネルのサウンド停止"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.09.24",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "StopSnd",
+  "description": "<p>特定チャンネルの音を止めます。</p>",
+  "category": "state",
+  "associated_state": [
+    "PlaySnd",
+    "SndPan"
+  ],
+  "version": [
+    {
+      "no": "警告文",
+      "content": "STOPPED ILLEGAL CHANNEL NUMBER -2:Channelに-2以下、32以上。（最後の数値は指定した数値が表示される）",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "Channel",
+      "value": [
+        "チャンネル番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>停止させたい音のチャンネルを指定。</p><p>-1で全プレイヤーの全チャンネルの音を停止させます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "description": "<p>停止するサウンドのチャンネル番号を指定します。<code>-1</code> なら、他のプレイヤーに属する音も含めて全サウンドを停止します。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "stopsnd-local-2002",
+            "stopsnd-local-1.0",
+            "stopsnd-local-1.1"
+          ]
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "停止するチャンネル番号を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "stopsnd-local-2002",
+              "stopsnd-local-1.0",
+              "stopsnd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "必殺技の演出で無音にする",
+      "code": [
+        "[State ]",
+        "Type           = StopSnd",
+        "Trigger1       = Time = 0",
+        "Channel        = -1",
+        "Ignorehitpause = 1"
+      ]
+    },
+    {
+      "title": "コンボや特殊動作中に音声がかぶらないように停止",
+      "code": [
+        "[State ]",
+        "Type           = StopSnd",
+        "Trigger1       = StateNo != 2000",
+        "Channel        = 2",
+        "Ignorehitpause = 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "StopSnd - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#StopSnd"
+    },
+    {
+      "title": "StopSnd - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#stopsnd"
+    },
+    {
+      "title": "StopSnd - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#stopsnd"
+    },
+    {
+      "title": "StopSnd - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StopSnd"
+    },
+    {
+      "title": "StopSnd - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?StopSnd&protocol=http"
+    },
+    {
+      "title": "StopSnd - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#StopSnd"
+    },
+    {
+      "id": "stopsnd-local-2002",
+      "title": "StopSnd — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#StopSnd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "stopsnd-local-1.0",
+      "title": "StopSnd — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#stopsnd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "stopsnd-local-1.1",
+      "title": "StopSnd — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#stopsnd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "stopsnd-warning-binran",
+      "title": "StopSnd — MUGEN警告メッセージ集",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "stopsnd-legacy-data",
+      "title": "StopSnd — 移行前の説明・警告原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/3ad6215440dc1e943430481cfe70466a5a69ed44/src/content/state-controllers/StopSnd.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>指定したチャンネルで再生中のサウンドを停止します。<code>Channel = -1</code> は、他のプレイヤーの音も含む全サウンドを停止します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "stopsnd-local-2002",
+        "stopsnd-local-1.0",
+        "stopsnd-local-1.1"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "STOPPED ILLEGAL CHANNEL NUMBER -2:Channelに-2以下、32以上。（最後の数値は指定した数値が表示される）",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "stopsnd-warning-binran",
+          "stopsnd-legacy-data"
+        ],
+        "comment": "2026-10-03: 旧警告は対象ビルドのログ未確認。チャンネル上限と大きい番号でも機能するコミュニティ記録の相違は実機未解決。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "stopsnd-local-2002",
+      "stopsnd-local-1.0",
+      "stopsnd-local-1.1"
+    ],
+    "comment": "2026-10-03: 保存済み公式3世代資料を照合。旧警告と詳細な評価条件は原文と内部メモに保持する。"
+  }
 }

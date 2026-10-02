@@ -1,66 +1,411 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "SndPan",
-		"target": "音声",
-		"category": ["音声の再生","再生中サウンドの定位変更"],
-		"version": "2002.04.14",
-		"update": "2017.09.24",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "SndPan",
-	"description": "<p>PlaySnd実行中、特定チャンネルのサウンドのPan,AbsPanパラメータを変更します。PlaySndで音が再生されていて、指定したチャンネル存在しないとPan,AbsPanは読み込まれません。</p>",
-	"category": "state",
-	"associated_state": ["PlaySnd", "StopSnd"],
-
-	"version": [
-		{"no": "警告文", "content": "ATTEMTED TO PAN ILLEGAL:CHANNEL NUMBER -1:Channelに-1以下、32以上。（最後の数値は指定した数値が表示される）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "Channel",
-			"value": ["チャンネル番号"],
-			"type": ["int"],
-			"description": "<p>パンしたいチャンネルの番号を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Pan",
-			"value": ["パノラマ距離"],
-			"type": ["int"],
-			"description": "<p>音を鳴らしたい位置を、ピクセルで指定。基準位置(0)は、panの場合が、プレイヤー位置、abspanの場合がスクリーン中央です。省略不可。</p><p>これらのパラメータは、同時に指定できません。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "AbsPan",
-			"value": ["パノラマ距離"],
-			"type": ["int"],
-			"description": "<p>音を鳴らしたい位置を、ピクセルで指定。基準位置(0)は、panの場合が、プレイヤー位置、abspanの場合がスクリーン中央です。省略不可。</p><p>これらのパラメータは、同時に指定できません。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [";Panが優先して実行されます。"],
-			"load_priority": ["2"]
-		}
-	],
-
-	"quote": [
-		{"title": "SndPan - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SndPan"},
-		{"title": "SndPan - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#sndpan"},
-		{"title": "SndPan - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#sndpan"},
-		{"title": "SndPan - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SndPan"},
-		{"title": "SndPan - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?SndPan&protocol=http"},
-		{"title": "SndPan - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#SndPan"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "SndPan",
+    "target": "音声",
+    "category": [
+      "音声の再生",
+      "再生中サウンドの定位変更"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.09.24",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "SndPan",
+  "description": "<p>PlaySnd実行中、特定チャンネルのサウンドのPan,AbsPanパラメータを変更します。PlaySndで音が再生されていて、指定したチャンネル存在しないとPan,AbsPanは読み込まれません。</p>",
+  "category": "state",
+  "associated_state": [
+    "PlaySnd",
+    "StopSnd"
+  ],
+  "version": [
+    {
+      "no": "警告文",
+      "content": "ATTEMTED TO PAN ILLEGAL:CHANNEL NUMBER -1:Channelに-1以下、32以上。（最後の数値は指定した数値が表示される）",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "Channel",
+      "value": [
+        "チャンネル番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>パンしたいチャンネルの番号を指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "description": "<p>定位を変更する再生中のサウンドのチャンネル番号を指定します。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "sndpan-local-2002",
+            "sndpan-local-1.0",
+            "sndpan-local-1.1"
+          ]
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "定位を変更するチャンネル番号を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "sndpan-local-2002",
+              "sndpan-local-1.0",
+              "sndpan-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "Pan",
+      "value": [
+        "パノラマ距離"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>音を鳴らしたい位置を、ピクセルで指定。基準位置(0)は、panの場合が、プレイヤー位置、abspanの場合がスクリーン中央です。省略不可。</p><p>これらのパラメータは、同時に指定できません。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "documentation": {
+        "description": "<p>実行者を基準にした音の位置をピクセル単位で指定します。正の値は実行者の前方、負の値は後方です。<code>Pan</code> と <code>AbsPan</code> のどちらか一方を指定し、両方は指定しません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "sndpan-local-2002",
+            "sndpan-local-1.0",
+            "sndpan-local-1.1",
+            "sndpan-playsnd-2002",
+            "sndpan-playsnd-1.0",
+            "sndpan-playsnd-1.1"
+          ]
+        },
+        "value": [
+          "実行者からの音の位置"
+        ],
+        "parameter_type": "instead"
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "Pan / AbsPanのどちらか一方を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "sndpan-local-2002",
+              "sndpan-local-1.0",
+              "sndpan-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "AbsPan",
+      "value": [
+        "パノラマ距離"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>音を鳴らしたい位置を、ピクセルで指定。基準位置(0)は、panの場合が、プレイヤー位置、abspanの場合がスクリーン中央です。省略不可。</p><p>これらのパラメータは、同時に指定できません。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ";Panが優先して実行されます。"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "documentation": {
+        "description": "<p>画面中央を基準にした音の位置をピクセル単位で指定します。<code>Pan</code> と <code>AbsPan</code> のどちらか一方を指定し、両方は指定しません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "sndpan-local-2002",
+            "sndpan-local-1.0",
+            "sndpan-local-1.1",
+            "sndpan-playsnd-2002",
+            "sndpan-playsnd-1.0",
+            "sndpan-playsnd-1.1"
+          ]
+        },
+        "value": [
+          "画面中央からの音の位置"
+        ],
+        "parameter_type": "instead"
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "Pan / AbsPanのどちらか一方を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "sndpan-local-2002",
+              "sndpan-local-1.0",
+              "sndpan-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "SndPan - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SndPan"
+    },
+    {
+      "title": "SndPan - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#sndpan"
+    },
+    {
+      "title": "SndPan - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#sndpan"
+    },
+    {
+      "title": "SndPan - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SndPan"
+    },
+    {
+      "title": "SndPan - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?SndPan&protocol=http"
+    },
+    {
+      "title": "SndPan - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#SndPan"
+    },
+    {
+      "id": "sndpan-local-2002",
+      "title": "SndPan — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SndPan",
+      "source_type": "official_document"
+    },
+    {
+      "id": "sndpan-local-1.0",
+      "title": "SndPan — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#sndpan",
+      "source_type": "official_document"
+    },
+    {
+      "id": "sndpan-local-1.1",
+      "title": "SndPan — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#sndpan",
+      "source_type": "official_document"
+    },
+    {
+      "id": "sndpan-playsnd-2002",
+      "title": "PlaySnd の定位指定 — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PlaySnd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "sndpan-playsnd-1.0",
+      "title": "PlaySnd の定位指定 — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#playsnd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "sndpan-playsnd-1.1",
+      "title": "PlaySnd の定位指定 — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#playsnd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "sndpan-warning-binran",
+      "title": "SndPan — MUGEN警告メッセージ集",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "sndpan-legacy-data",
+      "title": "SndPan — 移行前の説明・警告原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/3ad6215440dc1e943430481cfe70466a5a69ed44/src/content/state-controllers/SndPan.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>指定チャンネルで再生中のサウンドの定位を変更します。連続して実行すると、音の位置を滑らかに移動させたり、プレイヤーの移動に追従させたりできます。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "sndpan-local-2002",
+        "sndpan-local-1.0",
+        "sndpan-local-1.1"
+      ]
+    }
+  },
+  "constraints": [
+    {
+      "kind": "one_of",
+      "parameters": [
+        "Pan",
+        "AbsPan"
+      ],
+      "description": "Pan / AbsPanのどちらか一方が必要。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "sndpan-local-2002",
+          "sndpan-local-1.0",
+          "sndpan-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "mutually_exclusive",
+      "parameters": [
+        "Pan",
+        "AbsPan"
+      ],
+      "description": "PanとAbsPanは同時指定しない。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "sndpan-local-2002",
+          "sndpan-local-1.0",
+          "sndpan-local-1.1"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "ATTEMTED TO PAN ILLEGAL:CHANNEL NUMBER -1:Channelに-1以下、32以上。（最後の数値は指定した数値が表示される）",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "sndpan-warning-binran",
+          "sndpan-legacy-data"
+        ],
+        "comment": "2026-10-03: 旧警告は対象ビルドのログ未確認。チャンネル上限と大きい番号でも機能するコミュニティ記録の相違は実機未解決。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧概要の「指定チャンネルが存在しないとPan/AbsPanは読み込まれない」と旧AbsPan省略時のPan優先表記は公式資料の定位説明では裏付けられない。評価条件を原本に残して公開しない。Panは旧JSONでは任意・既定値0だが、公式3資料はPan / AbsPanのいずれか一方を必須としている。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "sndpan-local-2002",
+          "sndpan-local-1.0",
+          "sndpan-local-1.1",
+          "sndpan-legacy-data"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "sndpan-local-2002",
+      "sndpan-local-1.0",
+      "sndpan-local-1.1"
+    ],
+    "comment": "2026-10-03: 保存済み公式3世代資料を照合。旧警告と詳細な評価条件は原文と内部メモに保持する。"
+  }
 }

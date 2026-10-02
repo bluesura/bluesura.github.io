@@ -1,150 +1,975 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "PlaySnd",
-		"target": "音声",
-		"category": ["音声の再生","サウンド（ボイス・効果音）の再生"],
-		"version": "2002.04.14",
-		"update": "2017.09.24",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "PlaySnd",
-	"description": "<p>音を鳴らします。</p>",
-	"category": "state",
-	"associated_state": ["StopSnd", "SndPan"],
-
-	"version": [
-		{"no": "", "content": ""},
-		{"no": "警告文", "content": "ILLEGAL PLAYSND GROUPNO:Value第1引数に-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "ILLEGAL PLAYSND SNDNO:Value第2引数に-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "ILLEGAL PLAYSND CHANNEL.:Channelに-2以下、32以上", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "NON-POSITIVE FREQMUL.:FreqMulに0以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "Channel",
-			"value": ["チャンネル番号"],
-			"type": ["int"],
-			"description": "<p>チャンネルを指定。</p><p>同じチャンネルのPlaySndが実行されると、それまで鳴っていた音は止まります。StopSndで特定の音を止める場合にも必要。また、チャンネル0は、ボイス再生専用で、再生中にmovetypeがH(やられ)になると、音が停止するという特性を持っています。-1で空いてるチャンネルを使用することになり、再生間隔が短いと、音声がオーバーラップします。キャラ音声の場合は、激しく不自然となるので、忘れずに0を指定しましょう。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "value",
-			"value": ["グループ番号, サウンド番号"],
-			"type": ["int", "int"],
-			"description": "<p>再生する音声を指定。</p><p>10,1のようにDEFファイルのSoundで指定したSNDファイルに登録されている音声を指定して再生します。</p><p>F0,5のようにFをつけるとcommon.sndから共通の音声を再生できます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?", "?"],
-			"load_priority": ["2", "3"],
-			"possible_value": [
-				["common.sndグループ", "音"],
-				["F5,0","打撃音(弱)"],
-				["F5,1","打撃音(やや弱)"],
-				["F5,2","打撃音(中)"],
-				["F5,3","打撃音(やや強)"],
-				["F5,4","打撃音(強)"],
-				["F6,0","ガード音"],
-				["F7,0","倒れ着地音(弱)"],
-				["F7,1","倒れ着地音(中)"],
-				["F7,2","倒れ着地音(強)"],
-				["F20,0","暗転音"]
-			]
-		},
-		{
-			"parameter": "Volume",
-			"value": ["音量"],
-			"type": ["int"],
-			"description": "<p>音量の強弱を調整。</p><p>0が標準で、正数だと音が大きく、負数だと小さくなります。</p>",
-			"min_value": ["-255"],
-			"max_value": ["255"],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["4"]
-		},
-		{
-			"parameter": ";VolumeScale",
-			"value": ["音量"],
-			"type": ["float"],
-			"description": "<p>音量を調整。</p><p>Version1.0からVolumeがVolumeScaleに変更されました。</p><p>100は100%、50は50%になります。0で無音。</p>",
-			"min_value": ["0"],
-			"max_value": ["100"],
-			"parameter_type": "optional",
-			"default_value": ["100"],
-			"load_priority": ["4"]
-		},
-		{
-			"parameter": "LowPriority",
-			"value": ["先方優先フラグ"],
-			"type": ["int"],
-			"description": "<p>基本的に、同じチャンネルのPlaySndが実行されると、それまで鳴っていた音は止まりますが、lowpriorityを0以外に指定すると、同じチャンネルの音が鳴ってる場合は、PlaySndが実行されなくなります。チャンネルが-1の場合は無効。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [";LowPriorityが実行されません。"],
-			"load_priority": ["5"]
-		},
-		{
-			"parameter": "FreqMul",
-			"value": ["周波数"],
-			"type": ["float"],
-			"description": "<p>周波数を倍数で指定。</p><p>1.0で音声に変化はなし、1.0より小さくすると低音、1.0より大きくすると高音になります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1.0"],
-			"load_priority": ["6"]
-		},
-		{
-			"parameter": "Loop",
-			"value": ["繰り返しフラグ"],
-			"type": ["int"],
-			"description": "<p>0以外を指定すると、サウンドがループするようになります。BGMを鳴らすときなどに？</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["7"]
-		},
-		{
-			"parameter": "Pan",
-			"value": ["パノラマ位置"],
-			"type": ["int"],
-			"description": "<p>音が出る位置を変更します。正で自分の前方、負で後方位置から音が鳴ります。単位はピクセル。</p><p>0でプレイヤーの位置から音が鳴ります。<!--未検証--></p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["8"]
-		},
-		{
-			"parameter": "AbsPan",
-			"value": ["パノラマ位置"],
-			"type": ["int"],
-			"description": "<p>panとほぼ同じ。panはプレイヤーを基準として位置を指定(正の値が前方、負は後方)しますが、こちらはスクリーンの中央からの位置で指定します。panとの同時指定不可。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [";Panが優先して実行されます。"],
-			"load_priority": ["8"]
-		}
-	],
-
-	"quote": [
-		{"title": "PlaySnd - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PlaySnd"},
-		{"title": "PlaySnd - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#playsnd"},
-		{"title": "PlaySnd - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#playsnd"},
-		{"title": "PlaySnd - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PlaySnd"},
-		{"title": "PlaySnd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PlaySnd&protocol=http"},
-		{"title": "PlaySnd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PlaySnd"},
-		{"title": "PlaySnd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "PlaySnd",
+    "target": "音声",
+    "category": [
+      "音声の再生",
+      "サウンド（ボイス・効果音）の再生"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.09.24",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "PlaySnd",
+  "description": "<p>音を鳴らします。</p>",
+  "category": "state",
+  "associated_state": [
+    "StopSnd",
+    "SndPan"
+  ],
+  "version": [
+    {
+      "no": "",
+      "content": ""
+    },
+    {
+      "no": "警告文",
+      "content": "ILLEGAL PLAYSND GROUPNO:Value第1引数に-2以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "ILLEGAL PLAYSND SNDNO:Value第2引数に-2以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "ILLEGAL PLAYSND CHANNEL.:Channelに-2以下、32以上",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "NON-POSITIVE FREQMUL.:FreqMulに0以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "Channel",
+      "value": [
+        "チャンネル番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>チャンネルを指定。</p><p>同じチャンネルのPlaySndが実行されると、それまで鳴っていた音は止まります。StopSndで特定の音を止める場合にも必要。また、チャンネル0は、ボイス再生専用で、再生中にmovetypeがH(やられ)になると、音が停止するという特性を持っています。-1で空いてるチャンネルを使用することになり、再生間隔が短いと、音声がオーバーラップします。キャラ音声の場合は、激しく不自然となるので、忘れずに0を指定しましょう。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "-1"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "description": "<p>実行者の再生チャンネルを指定します。同じチャンネルでは一度に1つの音を再生し、通常は後から再生した音が前の音を止めます。<code>0</code> はボイス用の特別なチャンネルで、実行者が攻撃を受けると停止します。省略時の <code>-1</code> は空いているチャンネルを使います。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "playsnd-local-2002",
+            "playsnd-local-1.0",
+            "playsnd-local-1.1"
+          ]
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "-1",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "playsnd-local-2002",
+              "playsnd-local-1.0",
+              "playsnd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "value",
+      "value": [
+        "グループ番号, サウンド番号"
+      ],
+      "type": [
+        "int",
+        "int"
+      ],
+      "description": "<p>再生する音声を指定。</p><p>10,1のようにDEFファイルのSoundで指定したSNDファイルに登録されている音声を指定して再生します。</p><p>F0,5のようにFをつけるとcommon.sndから共通の音声を再生できます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?",
+        "?"
+      ],
+      "load_priority": [
+        "2",
+        "3"
+      ],
+      "possible_value": [
+        [
+          "common.sndグループ",
+          "音"
+        ],
+        [
+          "F5,0",
+          "打撃音(弱)"
+        ],
+        [
+          "F5,1",
+          "打撃音(やや弱)"
+        ],
+        [
+          "F5,2",
+          "打撃音(中)"
+        ],
+        [
+          "F5,3",
+          "打撃音(やや強)"
+        ],
+        [
+          "F5,4",
+          "打撃音(強)"
+        ],
+        [
+          "F6,0",
+          "ガード音"
+        ],
+        [
+          "F7,0",
+          "倒れ着地音(弱)"
+        ],
+        [
+          "F7,1",
+          "倒れ着地音(中)"
+        ],
+        [
+          "F7,2",
+          "倒れ着地音(強)"
+        ],
+        [
+          "F20,0",
+          "暗転音"
+        ]
+      ],
+      "documentation": {
+        "description": "<p>再生するサウンドを、実行者の SND ファイルのグループ番号・サウンド番号で指定します。<code>value = 10,1</code> のように記述します。グループ番号の前に <code>F</code> を付けた <code>value = F0,5</code> は <code>common.snd</code> を参照します。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "playsnd-local-2002",
+            "playsnd-local-1.0",
+            "playsnd-local-1.1"
+          ]
+        },
+        "value": [
+          "グループ番号",
+          "サウンド番号"
+        ],
+        "hide_legacy": [
+          "possible_value",
+          "default_value"
+        ]
+      },
+      "expression_policy": "special_syntax",
+      "default": [
+        {
+          "kind": "required",
+          "display": "グループ番号とサウンド番号を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "playsnd-local-2002",
+              "playsnd-local-1.0",
+              "playsnd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "Volume",
+      "value": [
+        "音量"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>音量の強弱を調整。</p><p>0が標準で、正数だと音が大きく、負数だと小さくなります。</p>",
+      "min_value": [
+        "-255"
+      ],
+      "max_value": [
+        "255"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "4"
+      ],
+      "documentation": {
+        "description": "<p>旧方式の音量調整です。<code>0</code> は標準音量で、正の値で大きく、負の値で小さくします。MUGEN 1.0 RC8 以降はこのパラメーターが無視されるため、<code>VolumeScale</code> を使います。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document",
+            "community_documentation"
+          ],
+          "source_refs": [
+            "playsnd-local-2002",
+            "playsnd-local-1.0",
+            "playsnd-local-1.1",
+            "playsnd-chaos"
+          ]
+        },
+        "value": [
+          "音量の増減（旧方式）"
+        ],
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "display": "Volumeを使う旧方式",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "community_documentation"
+            ],
+            "source_refs": [
+              "playsnd-chaos"
+            ]
+          }
+        }
+      ],
+      "variants": [
+        {
+          "environment": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0-rc8",
+              "mugen-1.0-final",
+              "mugen-1.1"
+            ]
+          },
+          "default": [
+            {
+              "kind": "none",
+              "display": "Volumeは無視される。VolumeScaleを使用",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "playsnd-local-1.0",
+                  "playsnd-local-1.1"
+                ]
+              }
+            }
+          ],
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "playsnd-local-1.0",
+              "playsnd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    },
+    {
+      "parameter": ";VolumeScale",
+      "value": [
+        "音量"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>音量を調整。</p><p>Version1.0からVolumeがVolumeScaleに変更されました。</p><p>100は100%、50は50%になります。0で無音。</p>",
+      "min_value": [
+        "0"
+      ],
+      "max_value": [
+        "100"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "100"
+      ],
+      "load_priority": [
+        "4"
+      ],
+      "documentation": {
+        "description": "<p>MUGEN 1.0 RC8 以降の音量調整です。<code>VolumeScale = 100</code> で100%、<code>50</code> で50%、<code>0</code> で無音になります。指定範囲は0〜100で、省略時は <code>100</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "playsnd-local-1.0",
+            "playsnd-local-1.1"
+          ]
+        },
+        "value": [
+          "音量の割合（1.0 RC8以降）"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "100",
+          "environment": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0-rc8",
+              "mugen-1.0-final",
+              "mugen-1.1"
+            ]
+          },
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "playsnd-local-1.0",
+              "playsnd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0-rc8",
+          "mugen-1.0-final",
+          "mugen-1.1"
+        ]
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "LowPriority",
+      "value": [
+        "先方優先フラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>基本的に、同じチャンネルのPlaySndが実行されると、それまで鳴っていた音は止まりますが、lowpriorityを0以外に指定すると、同じチャンネルの音が鳴ってる場合は、PlaySndが実行されなくなります。チャンネルが-1の場合は無効。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ";LowPriorityが実行されません。"
+      ],
+      "load_priority": [
+        "5"
+      ],
+      "documentation": {
+        "description": "<p><code>Channel</code> が <code>-1</code> 以外の場合に有効です。非0を指定すると、そのチャンネルで既に再生している音を優先し、新しい音で中断しません。省略時は <code>0</code> で、後から再生する音を優先します。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document",
+            "community_documentation"
+          ],
+          "source_refs": [
+            "playsnd-local-2002",
+            "playsnd-local-1.0",
+            "playsnd-local-1.1",
+            "playsnd-chaos"
+          ]
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "community_documentation"
+            ],
+            "source_refs": [
+              "playsnd-chaos"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "FreqMul",
+      "value": [
+        "周波数"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>周波数を倍数で指定。</p><p>1.0で音声に変化はなし、1.0より小さくすると低音、1.0より大きくすると高音になります。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1.0"
+      ],
+      "load_priority": [
+        "6"
+      ],
+      "documentation": {
+        "description": "<p>サウンドの周波数に掛ける倍率です。<code>1.0</code> で変更せず、<code>1.1</code> など大きい値で音程が高くなります。省略時は <code>1.0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "playsnd-local-2002",
+            "playsnd-local-1.0",
+            "playsnd-local-1.1"
+          ]
+        },
+        "value": [
+          "周波数倍率"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "1.0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "playsnd-local-2002",
+              "playsnd-local-1.0",
+              "playsnd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "Loop",
+      "value": [
+        "繰り返しフラグ"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>0以外を指定すると、サウンドがループするようになります。BGMを鳴らすときなどに？</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "7"
+      ],
+      "documentation": {
+        "description": "<p>非0を指定するとサウンドを繰り返し再生します。省略時は <code>0</code> で、繰り返しません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "playsnd-local-2002",
+            "playsnd-local-1.0",
+            "playsnd-local-1.1"
+          ]
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "playsnd-local-2002",
+              "playsnd-local-1.0",
+              "playsnd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "Pan",
+      "value": [
+        "パノラマ位置"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>音が出る位置を変更します。正で自分の前方、負で後方位置から音が鳴ります。単位はピクセル。</p><p>0でプレイヤーの位置から音が鳴ります。<!--未検証--></p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "8"
+      ],
+      "documentation": {
+        "description": "<p>実行者を基準にした音の位置をピクセル単位で指定します。正の値は実行者の前方、負の値は後方です。省略時は <code>0</code> で実行者の位置になります。<code>AbsPan</code> とは同時指定できません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "playsnd-local-2002",
+            "playsnd-local-1.0",
+            "playsnd-local-1.1"
+          ]
+        },
+        "value": [
+          "実行者からの音の位置"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "playsnd-local-2002",
+              "playsnd-local-1.0",
+              "playsnd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "AbsPan",
+      "value": [
+        "パノラマ位置"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>panとほぼ同じ。panはプレイヤーを基準として位置を指定(正の値が前方、負は後方)しますが、こちらはスクリーンの中央からの位置で指定します。panとの同時指定不可。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ";Panが優先して実行されます。"
+      ],
+      "load_priority": [
+        "8"
+      ],
+      "documentation": {
+        "description": "<p>画面中央を基準にした音の位置をピクセル単位で指定します。<code>Pan</code> とは同時指定できません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "playsnd-local-2002",
+            "playsnd-local-1.0",
+            "playsnd-local-1.1"
+          ]
+        },
+        "value": [
+          "画面中央からの音の位置"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "none",
+          "display": "Panとの代替指定。両方省略時はPan=0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "playsnd-local-2002",
+              "playsnd-local-1.0",
+              "playsnd-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。各チャンネル・定位の評価条件とは別に原位置で保持する。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "PlaySnd - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PlaySnd"
+    },
+    {
+      "title": "PlaySnd - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#playsnd"
+    },
+    {
+      "title": "PlaySnd - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#playsnd"
+    },
+    {
+      "title": "PlaySnd - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PlaySnd"
+    },
+    {
+      "title": "PlaySnd - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?PlaySnd&protocol=http"
+    },
+    {
+      "title": "PlaySnd - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#PlaySnd"
+    },
+    {
+      "title": "PlaySnd - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"
+    },
+    {
+      "id": "playsnd-local-2002",
+      "title": "PlaySnd — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PlaySnd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "playsnd-local-1.0",
+      "title": "PlaySnd — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#playsnd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "playsnd-local-1.1",
+      "title": "PlaySnd — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#playsnd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "playsnd-chaos",
+      "title": "PlaySnd — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/251.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "playsnd-warning-binran",
+      "title": "PlaySnd — MUGEN警告メッセージ集",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "playsnd-legacy-data",
+      "title": "PlaySnd — 移行前の説明・警告原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/3ad6215440dc1e943430481cfe70466a5a69ed44/src/content/state-controllers/PlaySnd.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者の SND ファイルに登録されたサウンドを再生します。グループ番号に <code>F</code> を付けると共通の <code>common.snd</code> を使います。チャンネル、音量、周波数、繰り返し、左右の定位を指定できます。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "playsnd-local-2002",
+        "playsnd-local-1.0",
+        "playsnd-local-1.1"
+      ]
+    }
+  },
+  "constraints": [
+    {
+      "kind": "mutually_exclusive",
+      "parameters": [
+        "Pan",
+        "AbsPan"
+      ],
+      "description": "PanとAbsPanは同時指定しない。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "playsnd-local-2002",
+          "playsnd-local-1.0",
+          "playsnd-local-1.1"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "旧version[0]は空のプレースホルダー。原位置に保持し公開しない。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "playsnd-legacy-data"
+        ],
+        "comment": "2026-10-03: 旧警告は対象ビルドのログ未確認。チャンネル上限と大きい番号でも機能するコミュニティ記録の相違は実機未解決。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 1,
+      "content": "ILLEGAL PLAYSND GROUPNO:Value第1引数に-2以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "playsnd-warning-binran",
+          "playsnd-legacy-data"
+        ],
+        "comment": "2026-10-03: 旧警告は対象ビルドのログ未確認。チャンネル上限と大きい番号でも機能するコミュニティ記録の相違は実機未解決。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 2,
+      "content": "ILLEGAL PLAYSND SNDNO:Value第2引数に-2以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "playsnd-warning-binran",
+          "playsnd-legacy-data"
+        ],
+        "comment": "2026-10-03: 旧警告は対象ビルドのログ未確認。チャンネル上限と大きい番号でも機能するコミュニティ記録の相違は実機未解決。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 3,
+      "content": "ILLEGAL PLAYSND CHANNEL.:Channelに-2以下、32以上",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "playsnd-warning-binran",
+          "playsnd-legacy-data",
+          "playsnd-chaos"
+        ],
+        "comment": "2026-10-03: 旧警告は対象ビルドのログ未確認。チャンネル上限と大きい番号でも機能するコミュニティ記録の相違は実機未解決。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 4,
+      "content": "NON-POSITIVE FREQMUL.:FreqMulに0以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "playsnd-warning-binran",
+          "playsnd-legacy-data"
+        ],
+        "comment": "2026-10-03: 旧警告は対象ビルドのログ未確認。チャンネル上限と大きい番号でも機能するコミュニティ記録の相違は実機未解決。"
+      }
+    },
+    {
+      "kind": "version_change",
+      "change": "changed",
+      "at": "mugen-1.0-rc8",
+      "content": "<p>MUGEN 1.0 RC8 以降は、音量調整に <code>VolumeScale</code> を使います。旧 <code>Volume</code> は無視されます。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "playsnd-local-1.0",
+          "playsnd-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧Volumeの-255..255はCHAOSでも推定値とされるため、原文を残して数値範囲を公開しない。common.sndの旧候補表、MoveType=Hを停止条件とする詳細、AbsPan併記時の優先順位も未確認。CHAOSのLoop=1でVolume/Panが無効になる記録、AbsPanの向き・大きいチャンネル番号の挙動は対象ビルドの実機検証が必要。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "playsnd-local-2002",
+          "playsnd-local-1.0",
+          "playsnd-local-1.1",
+          "playsnd-chaos",
+          "playsnd-legacy-data"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "playsnd-local-2002",
+      "playsnd-local-1.0",
+      "playsnd-local-1.1"
+    ],
+    "comment": "2026-10-03: 保存済み公式3世代資料を照合。旧警告・評価条件は内部に保持。PlaySndのLowPriority=0と旧Volume=0はCHAOSの文書記録を根拠とし、今回の実機検証とは区別する。"
+  }
 }

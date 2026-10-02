@@ -5,6 +5,7 @@ function documentedParameter(parameter) {
   const resolved = {
     ...fields,
     ...(documentation.value !== undefined ? { value: documentation.value } : {}),
+    ...(documentation.type !== undefined ? { type: documentation.type } : {}),
     ...(documentation.description !== undefined ? { description: documentation.description } : {}),
     ...(documentation.parameter_type !== undefined ? { parameter_type: documentation.parameter_type } : {}),
   };

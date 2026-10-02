@@ -601,3 +601,19 @@ npm run mugen:batch -- --batch clipboard-display-01 --target DisplayToClipboard 
 ```
 
 このバッチは適用済みです。次は AppendToClipboard を照合します。
+
+## clipboard-append-01：クリップボード追記表示の1件
+
+2026-10-02、AppendToClipboard を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/clipboard-append-01/` に保存しています。
+
+- 保存済み公式資料で、DisplayToClipboard と同じ書式を使いながら既存内容の次の行へ追記することを確認しました。`Text` の必須書式、`Params` の2002資料では最大5個、1.0 / 1.1資料では最大6個という差も対応させました。
+- 旧 `Params.type` は `string` ですが、公式資料では数値式のリストです。原本を残しつつ公開型だけ `parameter[].documentation.type` で「数値式」に訂正しました。CNS コピー欄では未指定の `Text` / `Params` を有効な代入行にしません。
+- 旧 `%s` フリーズ・`%n` の危険性・未確認の書式候補、コード例3件、内部調査用出典は JSON に残してHTMLから外しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch clipboard-append-01
+npm run mugen:batch -- --batch clipboard-append-01 --target AppendToClipboard
+npm run mugen:batch -- --batch clipboard-append-01 --target AppendToClipboard --apply
+```
+
+このバッチは適用済みです。次はほかのデバッグ表示系か残像関連ページを照合します。

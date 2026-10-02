@@ -20,7 +20,7 @@ Node.js 20 の CI とブラウザ表示の両方で同じ処理を使うため�
 ## 新旧の対応
 
 - ルートの `documentation.description` は公開用の概要です（2026-09-09 採用）。旧 `description` を残し、詳細・一覧・説明用メタ情報へ反映します。任意の `documentation.evidence` は非公開です。パラメーター用とは異なり `value` は指定できません。
-- `parameter[].documentation.value` / `description` は公開用に訂正したラベル・本文です。指定した項目だけを優先し、旧 `value` / `description` は原位置に保持します。内部の `evidence` は HTML に出力しません。入力規則、共通定義・引数との優先順位、編集手順は [EDITORIAL_GUIDE.md](EDITORIAL_GUIDE.md) を参照してください（2026-09-08 採用）。
+- `parameter[].documentation.value` / `type` / `description` は公開用に訂正したラベル・型・本文です。指定した項目だけを優先し、旧 `value` / `type` / `description` は原位置に保持します。内部の `evidence` は HTML に出力しません。入力規則、共通定義・引数との優先順位、編集手順は [EDITORIAL_GUIDE.md](EDITORIAL_GUIDE.md) を参照してください（`type` は2026-10-02採用）。
 - `parameter[].documentation.parameter_type` は公開表示と CNS コピペ欄で使う必須・任意・代替の分類を訂正します（2026-10-01 採用）。`required` / `optional` / `instead` に限定し、旧 `parameter_type` は原位置に保持します。`Width` の旧「必須」と公式資料の「任意」の差に使用しています。
 - `default` を記述した項目は、それを表示に使います。未指定なら `default_value` を読みます。`default: []` は無効です。
 - `notes[].legacy_index` は同じオブジェクトの `version` 配列の0始まりインデックスです。対応する旧履歴を置き換えて表示し、旧見出し・引用先は維持します。対応していない旧履歴は引き続き表示します。

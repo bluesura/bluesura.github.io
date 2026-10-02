@@ -192,3 +192,7 @@ ClearClipboard を追加し、累計95件・残り139件です。実行者のク
 ## 2026-10-02：clipboard-display-01
 
 DisplayToClipboard を追加し、累計96件・残り138件です。`Text` の必須書式、`Params` の数値式と5個／6個のバージョン差を保存済み公式資料へ対応させました。旧 `%s` フリーズ、`%n` の危険性、型不一致の詳細、コード例、誤ラベルの画像は原本を保持して非公開です。内部調査だけで使う旧出典を引用一覧から除外できる `quote[].visibility` を採用しました。次は AppendToClipboard です。
+
+## 2026-10-02：clipboard-append-01
+
+AppendToClipboard を追加し、累計97件・残り137件です。既存クリップボードへの改行追記と DisplayToClipboard と同じ書式、5個／6個の数値式上限を保存済み公式資料へ対応させました。旧 `Params.type: string` は原位置へ残し、公開型を「数値式」に訂正する `parameter[].documentation.type` を採用しました。旧 `%s`・`%n` の記録、例、内部調査用出典は非公開です。

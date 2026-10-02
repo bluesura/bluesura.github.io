@@ -12,6 +12,8 @@
 
 > 2026-10-02: 引用元の `quote[].visibility: "internal"` は JSON 内の参照だけに使い、HTML の引用記事一覧から外します。省略時は従来どおり公開します。
 
+> 2026-10-02: `parameter[].documentation.type` で公開する型を訂正できます。旧 `type` は原位置に保持します。`AppendToClipboard.Params` の旧 `string` を数値式へ訂正する用途です。
+
 このドキュメントは、`mugen-template-all.json` の各フィールドに入力すべき情報を定義した仕様書です。
 LLM（大規模言語モデル）への指示や、ドキュメントデータベース構築時のリファレンスとして利用してください。
 

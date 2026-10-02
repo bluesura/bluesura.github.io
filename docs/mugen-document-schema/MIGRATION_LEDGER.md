@@ -196,3 +196,7 @@ DisplayToClipboard を追加し、累計96件・残り138件です。`Text` の�
 ## 2026-10-02：clipboard-append-01
 
 AppendToClipboard を追加し、累計97件・残り137件です。既存クリップボードへの改行追記と DisplayToClipboard と同じ書式、5個／6個の数値式上限を保存済み公式資料へ対応させました。旧 `Params.type: string` は原位置へ残し、公開型を「数値式」に訂正する `parameter[].documentation.type` を採用しました。旧 `%s`・`%n` の記録、例、内部調査用出典は非公開です。
+
+## 2026-10-02：parameterless-controllers-01
+
+Turn / Null を追加し、累計99件・残り135件です。どちらも固有パラメーターを持たないことを保存済み公式3世代資料へ対応させました。Turn はアニメーションを再生せず即座に反転します。Null のトリガー評価は1.1資料に限って明記されているため、1.1系列の注記として公開しました。

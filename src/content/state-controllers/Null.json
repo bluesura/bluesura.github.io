@@ -1,28 +1,115 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "Null",
-		"target": "",
-		"category": ["処理の無効化","処理の無効化（何もしない）"],
-		"version": "",
-		"update": "2013.11.27",
-		"level": "3",
-		"type": "document"
-	},
-
-	"state": "Null",
-	"description": "<p>何もしません。ステートコントローラーを一時的に無効にするときなどに使用します。動作チェック用。</p>",
-	"category": "state",
-
-
-
-	"quote": [
-		{"title": "Null - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Null"},
-		{"title": "Null - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#null"},
-		{"title": "Null - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#null"},
-		{"title": "Null - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Null"},
-		{"title": "Null - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Null&protocol=http"},
-		{"title": "Null - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Null"},
-		{"title": "Null - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "Null",
+    "target": "",
+    "category": [
+      "処理の無効化",
+      "処理の無効化（何もしない）"
+    ],
+    "version": "",
+    "update": "2013.11.27",
+    "level": "3",
+    "type": "document",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "Null",
+  "description": "<p>何もしません。ステートコントローラーを一時的に無効にするときなどに使用します。動作チェック用。</p>",
+  "category": "state",
+  "quote": [
+    {
+      "title": "Null - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Null"
+    },
+    {
+      "title": "Null - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#null"
+    },
+    {
+      "title": "Null - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#null"
+    },
+    {
+      "title": "Null - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Null"
+    },
+    {
+      "title": "Null - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Null&protocol=http"
+    },
+    {
+      "title": "Null - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Null"
+    },
+    {
+      "title": "Null - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"
+    },
+    {
+      "id": "null-local-2002",
+      "title": "Null — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Null",
+      "source_type": "official_document"
+    },
+    {
+      "id": "null-local-1.0",
+      "title": "Null — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#null",
+      "source_type": "official_document"
+    },
+    {
+      "id": "null-local-1.1",
+      "title": "Null — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#null",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>何も実行しません。他のステートコントローラーの <code>Type</code> を <code>Null</code> に変えると、その処理を一時的に無効にできます。固有の必須・任意パラメーターはありません。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "null-local-2002",
+        "null-local-1.0",
+        "null-local-1.1"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>MUGEN 1.1 の資料では、<code>Null</code> に設定したコントローラーのトリガーも評価されると明記されています。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "null-local-1.1"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "null-local-2002",
+      "null-local-1.0",
+      "null-local-1.1"
+    ],
+    "comment": "2026-10-02: 無処理、Type差し替えによる一時無効化、固有パラメーターなしを資料で確認。トリガー評価は1.1資料の記載に限定する。実機テストではない。"
+  }
 }

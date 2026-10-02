@@ -1,28 +1,106 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "Turn",
-		"target": "ステート実行者自身",
-		"category": ["向きの操作","キャラクターの向き反転"],
-		"version": "2002.04.14",
-		"update": "2016.02.18",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "Turn",
-	"description": "<p>振り向きます。相手を後ろに投げる技の途中で振り向く場合や、相手に背を向けたい場合などに。</p>",
-	"images": [{"src": "Turn.gif", "width": "640", "height": "480", "alt": "MUGEN Turn"}],
-	"category": "state",
-
-	"quote": [
-		{"title": "Turn - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Turn"},
-		{"title": "Turn - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#turn"},
-		{"title": "Turn - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#turn"},
-		{"title": "Turn - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Turn"},
-		{"title": "Turn - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Turn&protocol=http"},
-		{"title": "Turn - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/272.html"},
-		{"title": "Turn - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Turn"},
-		{"title": "Turn - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "Turn",
+    "target": "ステート実行者自身",
+    "category": [
+      "向きの操作",
+      "キャラクターの向き反転"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.02.18",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "Turn",
+  "description": "<p>振り向きます。相手を後ろに投げる技の途中で振り向く場合や、相手に背を向けたい場合などに。</p>",
+  "images": [
+    {
+      "src": "Turn.gif",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN Turn"
+    }
+  ],
+  "category": "state",
+  "quote": [
+    {
+      "title": "Turn - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Turn"
+    },
+    {
+      "title": "Turn - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#turn"
+    },
+    {
+      "title": "Turn - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#turn"
+    },
+    {
+      "title": "Turn - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Turn"
+    },
+    {
+      "title": "Turn - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Turn&protocol=http"
+    },
+    {
+      "title": "Turn - MUGEN CNS WIKI CHAOS@予定",
+      "url": "http://www49.atwiki.jp/mugencns/pages/272.html"
+    },
+    {
+      "title": "Turn - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Turn"
+    },
+    {
+      "title": "Turn - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"
+    },
+    {
+      "id": "turn-local-2002",
+      "title": "Turn — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Turn",
+      "source_type": "official_document"
+    },
+    {
+      "id": "turn-local-1.0",
+      "title": "Turn — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#turn",
+      "source_type": "official_document"
+    },
+    {
+      "id": "turn-local-1.1",
+      "title": "Turn — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#turn",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者の向きを即座に反転します。振り向きアニメーションは再生されません。固有の必須・任意パラメーターはありません。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "turn-local-2002",
+        "turn-local-1.0",
+        "turn-local-1.1"
+      ]
+    }
+  },
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "turn-local-2002",
+      "turn-local-1.0",
+      "turn-local-1.1"
+    ],
+    "comment": "2026-10-02: 即座の向き反転、振り向きアニメーションなし、固有パラメーターなしを資料で確認。実機テストではない。"
+  }
 }

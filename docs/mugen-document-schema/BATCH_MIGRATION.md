@@ -617,3 +617,19 @@ npm run mugen:batch -- --batch clipboard-append-01 --target AppendToClipboard --
 ```
 
 このバッチは適用済みです。次はほかのデバッグ表示系か残像関連ページを照合します。
+
+## parameterless-controllers-01：固有パラメーター不要の2件
+
+2026-10-02、Turn と Null を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/parameterless-controllers-01/` に保存しています。
+
+- 保存済み Elecbyte 2002.04.14 / 1.0 / 1.1 資料で、Turn は振り向きアニメーションなしの即時反転、Null は無処理で一時的なコントローラー無効化に使えることを確認しました。両方とも固有の必須・任意パラメーターはありません。
+- Null のトリガーも評価されるという補足は1.1資料だけに明記されていたため、対象を1.1系列に絞った公開注記として追加しました。Turn の既存画像と両ページの旧説明・出典は保持しています。
+- CNS コピペ欄に架空の固有パラメーターが現れず、共通の IgnoreHitPause / Persistent だけが続くことを検査しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch parameterless-controllers-01
+npm run mugen:batch -- --batch parameterless-controllers-01 --target Turn --target Null
+npm run mugen:batch -- --batch parameterless-controllers-01 --target Turn --target Null --apply
+```
+
+このバッチは適用済みです。次は Pause など時間停止関連ページを照合します。

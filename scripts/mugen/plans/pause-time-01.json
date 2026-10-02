@@ -1,0 +1,49 @@
+{
+  "id": "pause-time-01",
+  "reviewed_on": "2026-10-02",
+  "description": "Pause の必須Time、MoveTime / PauseBG / EndCmdBufTimeの範囲と既定値、Pause間・SuperPauseとの関係を公式3世代資料へ対応させる。旧警告・未検証の更新停止詳細は原文を残して非公開にする。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "Pause",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>指定したゲーム tick 数だけゲームを一時停止します。停止中はプレイヤーの更新を止めます。背景の更新と実行者が動ける時間は、<code>PauseBG</code> と <code>MoveTime</code> で制御できます。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"] } } },
+        { "path": ["parameter", 0, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 0, "default"], "value": [{ "kind": "required", "display": "停止するゲーム tick 数を指定", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"] } }] },
+        { "path": ["parameter", 0, "documentation"], "value": { "description": "<p>停止するゲーム tick 数を非負の整数で指定します。<code>0</code> も公式資料の指定可能な値に含まれます。<code>MoveTime</code> と <code>EndCmdBufTime</code> はこの値以下にします。</p>", "hide_legacy": ["max_value", "default_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"] } } },
+        { "path": ["parameter", 0, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。" } },
+        { "path": ["parameter", 1, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 1, "default"], "value": [{ "kind": "literal", "value": "0", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"] } }] },
+        { "path": ["parameter", 1, "documentation"], "value": { "description": "<p>停止開始から実行者が動けるゲーム tick 数を指定します。この間は当たり判定も行われます。指定範囲は <code>0</code> から <code>Time</code> までで、省略時は <code>0</code> です。</p>", "hide_legacy": ["max_value"], "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"] } } },
+        { "path": ["parameter", 1, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。" } },
+        { "path": ["parameter", 2, "default"], "value": [{ "kind": "literal", "value": "1", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"] } }] },
+        { "path": ["parameter", 2, "documentation"], "value": { "description": "<p><code>1</code> なら一時停止中に背景の更新も止めます。<code>0</code> なら背景は更新を続けます。省略時は <code>1</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"] } } },
+        { "path": ["parameter", 2, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。" } },
+        { "path": ["parameter", 3, "expression_policy"], "value": "expression" },
+        { "path": ["parameter", 3, "default"], "value": [{ "kind": "literal", "value": "0", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"] } }] },
+        { "path": ["parameter", 3, "documentation"], "value": { "value": ["停止終了直前のコマンド入力保持時間"], "description": "<p>停止終了直前に、動けないプレイヤーのコマンド入力を保持するゲーム tick 数です。停止終了直後に <code>command</code> トリガーで検出できます。指定範囲は <code>0</code> から <code>Time</code> までで、省略時は <code>0</code> です。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"] } } },
+        { "path": ["parameter", 3, "load_priority_evidence"], "value": { "status": "confirmed", "basis": ["maintainer_report"], "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。" } },
+        { "path": ["notes"], "value": [
+          { "kind": "research", "legacy_index": 0, "content": "SET ILLEGAL PAUSETIME:Timeに0以下", "evidence": { "status": "conflicting", "basis": ["official_document", "community_documentation", "source_code"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1", "pause-warning-binran", "pause-legacy-data"], "comment": "2026-10-02: 公式資料は0を許容。旧警告条件は対象ビルドのログ未確認であり原文保持・非公開。" } },
+          { "kind": "research", "legacy_index": 1, "content": "SET ILLEGAL PAUSEMOVETIME:MoveTimeに -1以下またはパラメータのTime+1以上", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["pause-warning-binran", "pause-legacy-data"], "comment": "2026-10-02: 数値範囲は公式資料へ対応。警告文そのものの実行ログは未確認。" } },
+          { "kind": "research", "legacy_index": 2, "content": "SET ILLEGAL ENDCMDBUFTIME:EndCmdBufTimeに-1以下", "evidence": { "status": "unverified", "basis": ["community_documentation", "source_code"], "source_refs": ["pause-warning-binran", "pause-legacy-data"], "comment": "2026-10-02: 旧警告文を保持。対象ビルドのログは未確認。" } },
+          { "kind": "behavior", "content": "<p>一時停止中に別の Pause を実行すると、前の Pause の効果は取り消されます。SuperPause 中に Pause を実行した場合は、SuperPause の終了後に Pause が有効になります。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"] } },
+          { "kind": "research", "content": "<p>旧概要は全スプライトや-1/-2/-3ステートの更新停止、Helper / Explod の例外を説明する。今回の公式Pause欄だけでは各要素の更新・評価条件を一括して裏付けられないため、原文を残して公開しない。</p>", "evidence": { "status": "unverified", "basis": ["official_document", "source_code"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1", "pause-legacy-data"] } }
+        ] },
+        { "path": ["quote", 4, "visibility"], "value": "internal" },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["pause-local-2002", "pause-local-1.0", "pause-local-1.1"], "comment": "2026-10-02: 必須Timeと0許容、MoveTimeとEndCmdBufTimeの0..Time、PauseBGの既定値とPause重複時の挙動を資料で確認。旧警告と詳細な更新停止条件は未検証。" } },
+        { "path": ["quote", "-"], "value": { "id": "pause-local-2002", "title": "Pause — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Pause", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "pause-local-1.0", "title": "Pause — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#pause", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "pause-local-1.1", "title": "Pause — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#pause", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "pause-warning-binran", "title": "Pause — MUGEN警告メッセージ集", "url": "http://mugenbinran.web.fc2.com/error.html#12", "source_type": "community_documentation", "visibility": "internal" } },
+        { "path": ["quote", "-"], "value": { "id": "pause-legacy-data", "title": "Pause — 移行前の説明・警告原本", "url": "https://github.com/bluesura/bluesura.github.io/blob/b33be0f5afa13edd98973707539b3936214443ff/src/content/state-controllers/Pause.json", "source_type": "source_code", "visibility": "internal" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" },
+        { "path": "version / description / parameter[0].max_value / parameter[1].max_value", "reason": "旧警告の実行ログ、細かな更新停止条件、固定最大値の根拠を確認していない。" }
+      ]
+    }
+  ]
+}

@@ -569,3 +569,19 @@ npm run mugen:batch -- --batch afterimage-duration-01 --target AfterImageTime --
 ```
 
 このバッチは適用済みです。次は AfterImage 本体など残像表示関連ページを照合します。
+
+## clipboard-clear-01：クリップボード消去の1件
+
+2026-10-02、ClearClipboard を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/clipboard-clear-01/` に保存しています。
+
+- 保存済み Elecbyte 2002.04.14 / 1.0 / 1.1 資料で、実行者のクリップボードにあるテキストの消去と固有の必須・任意パラメーターがないことを確認しました。
+- 旧説明と出典をそのまま保持し、公開説明・内部根拠・ローカル公式出典を追加しました。CNS コピー欄の共通パラメーターは維持し、`Text` / `Params` のような他の Clipboard コントローラーの項目を生成しません。
+- AfterImage 本体の旧 `Alpha` と `Trans=AddAlpha` は今回確認した保存済み公式資料に見当たらず、残像本体の移行は別途公開範囲を整理してから行います。
+
+```sh
+npm run mugen:batch-baseline -- --batch clipboard-clear-01
+npm run mugen:batch -- --batch clipboard-clear-01 --target ClearClipboard
+npm run mugen:batch -- --batch clipboard-clear-01 --target ClearClipboard --apply
+```
+
+このバッチは適用済みです。次は DisplayToClipboard / AppendToClipboard の書式とバージョン差を照合します。

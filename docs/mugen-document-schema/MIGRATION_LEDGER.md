@@ -184,3 +184,7 @@ RemoveExplod を追加し、累計93件・残り141件です。ID指定時の絞
 ## 2026-10-02：afterimage-duration-01
 
 AfterImageTime を追加し、累計94件・残り140件です。Time必須とValue代替、TimeGap!=1時の既知のフレーム位置リセットを保存済み公式資料へ対応させました。旧時間計算・特殊値・警告・動画付き例は原文と内部注記に保持して非公開です。
+
+## 2026-10-02：clipboard-clear-01
+
+ClearClipboard を追加し、累計95件・残り139件です。実行者のクリップボードのテキスト消去と固有パラメーターなしを保存済み公式3世代資料へ対応させました。次の DisplayToClipboard / AppendToClipboard は書式指定・引数数・旧バージョンの危険な書式指定の記録を個別に精査します。AfterImage 本体の旧 `Alpha` / `Trans=AddAlpha` は公式3世代の AfterImage 欄に見当たらず、根拠と公開範囲が決まるまで推測で移行しません。

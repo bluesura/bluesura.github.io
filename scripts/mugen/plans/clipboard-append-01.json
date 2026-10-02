@@ -1,0 +1,405 @@
+{
+  "id": "clipboard-append-01",
+  "reviewed_on": "2026-10-02",
+  "description": "AppendToClipboard の改行追記と DisplayToClipboard と共通の書式・引数上限を保存済み公式資料へ対応させる。旧%sフリーズと未確認の書式候補・例は保持して非公開にする。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "AppendToClipboard",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者のクリップボードにメッセージを改行して追記します。既存の表示内容を上書きしたい場合は DisplayToClipboard を使用します。文字列の書式と Params の指定方法は DisplayToClipboard と同じです。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "appendclipboard-local-2002",
+                "appendclipboard-local-1.0",
+                "appendclipboard-local-1.1"
+              ]
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "string_literal"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "required",
+              "display": "ダブルクォートで囲んだ表示文字列を指定",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "appendclipboard-local-2002",
+                  "appendclipboard-local-1.0",
+                  "appendclipboard-local-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "表示する書式文字列"
+            ],
+            "description": "<p>表示する文字列をダブルクォートで囲んで指定します。<code>%d</code> は整数、<code>%f</code> は浮動小数点数を <code>Params</code> から差し込み、<code>%%</code> は % 自体を表示します。改行には <code>&#92;n</code>、タブには <code>&#92;t</code> を使えます。MUGEN 1.0 / 1.1 では数値の書式指定として <code>%d</code>、<code>%i</code>、<code>%f</code>、<code>%F</code>、<code>%e</code>、<code>%E</code>、<code>%g</code>、<code>%G</code> が記載されています。</p>",
+            "hide_legacy": [
+              "default_value",
+              "possible_value"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "appendclipboard-local-2002",
+                "appendclipboard-local-1.0",
+                "appendclipboard-local-1.1"
+              ]
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "書式指定で値を差し込まない場合は省略",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "appendclipboard-local-2002",
+                  "appendclipboard-local-1.0",
+                  "appendclipboard-local-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "書式指定へ渡す数値式"
+            ],
+            "description": "<p><code>Text</code> 内の数値書式指定に対応する式を、指定順に並べます。書式指定の個数と式の個数を一致させてください。保存済み2002資料では最大5個、MUGEN 1.0 / 1.1資料では最大6個です。</p>",
+            "hide_legacy": [
+              "default_value"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "appendclipboard-local-2002",
+                "appendclipboard-local-1.0",
+                "appendclipboard-local-1.1"
+              ]
+            },
+            "type": [
+              "数値式"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。6番目は旧2002資料の最大5個を越えるため、適用バージョンを区別する。"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "legacy_index": 0,
+              "content": "<p>MUGEN 1.0 / 1.1 の公式資料は、数値の書式指定として <code>%d</code>、<code>%i</code>、<code>%f</code>、<code>%F</code>、<code>%e</code>、<code>%E</code>、<code>%g</code>、<code>%G</code> のみを挙げています。長さ修飾子付きの書式はサポートされません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "appendclipboard-local-1.0",
+                  "appendclipboard-local-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "legacy_index": 1,
+              "content": "%sを記載しているとフリーズします。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "appendclipboard-legacy-data"
+                ],
+                "comment": "2026-10-02: 旧記録を原文保持。1.0 / 1.1 公式資料に%sは対応書式として記載されないが、フリーズの実機記録はない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "legacy_index": 2,
+              "content": "<p>保存済み2002資料では <code>Params</code> に指定できる数値式は最大5個です。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-linux-2002.04.14"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "appendclipboard-local-2002"
+                ]
+              }
+            },
+            {
+              "kind": "behavior",
+              "legacy_index": 3,
+              "content": "<p>MUGEN 1.0 / 1.1 の公式資料では <code>Params</code> に指定できる数値式は最大6個です。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "appendclipboard-local-1.0",
+                  "appendclipboard-local-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Textの候補表は2002資料・1.0資料のどちらにも対応が明記されない書式や、%nによるメモリ書き込み・危険性を記録する。実機再現と対象ビルドの特定がないため原文に保持して非公開にする。旧Params説明の型不一致時の結果も公式1.0資料の記載と異なるため公開説明へ引き継がない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "appendclipboard-local-2002",
+                  "appendclipboard-local-1.0",
+                  "appendclipboard-local-1.1",
+                  "appendclipboard-legacy-data"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧コード例3件は対象ビルドでの再現が未記録のため、原文のコードをJSONに保持して公開しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "appendclipboard-legacy-data"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            6,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "appendclipboard-local-2002",
+              "appendclipboard-local-1.0",
+              "appendclipboard-local-1.1"
+            ],
+            "comment": "2026-10-02: 改行追記、Text書式、2002の最大5個と1.0/1.1の最大6個を資料で確認。%sフリーズ、旧候補表、例は未検証。"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "appendclipboard-local-2002",
+            "title": "AppendToClipboard — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AppendToClipboard",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "appendclipboard-local-1.0",
+            "title": "AppendToClipboard — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#appendtoclipboard",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "appendclipboard-local-1.1",
+            "title": "AppendToClipboard — 保存済み Elecbyte 1.1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#appendtoclipboard",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "appendclipboard-legacy-data",
+            "title": "AppendToClipboard — 移行前の書式候補・例原本",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/47fffaa6/src/content/state-controllers/AppendToClipboard.json",
+            "source_type": "source_code"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        },
+        {
+          "path": "version[1] / parameter[0].possible_value / code_sample",
+          "reason": "%sフリーズ、旧書式候補、例の対象ビルドと再現結果は未確認。"
+        }
+      ]
+    }
+  ]
+}

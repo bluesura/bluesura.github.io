@@ -649,3 +649,19 @@ npm run mugen:batch -- --batch pause-time-01 --target Pause --apply
 ```
 
 このバッチは適用済みです。次は SuperPause を照合します。
+
+## superpause-time-01：演出付き時間停止の1件
+
+2026-10-03、SuperPause を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/superpause-time-01/` に保存しています。
+
+- 保存済み公式3世代資料と同じ世代の Pause 欄を照合し、11項目の任意指定と既定値を構造化しました。Time=30、Anim=-1の演出なし、Sound=-1の無音、S接頭辞、Posの実行者軸基準、P2DefMul=0の設定参照、Pauseの中断と残り時間保持を対応させました。
+- 旧 Sound ラベルは番号の順が逆なので、公開ラベルを「グループ番号・サウンド番号」へ訂正しました。TimeとMoveTimeの厳密な大小関係、EndCmdBufTimeの対象、PosとP2DefMulの説明も原文を残して訂正しています。UnHitTableは公式のunhittableと大文字小文字だけが異なるため、既存名を保持しました。
+- RoundStateによるパワー増減条件、警告5件、細かな更新停止条件と固定最大値は原文・内部researchへ保持しました。PowerAddの読み込み順20を含め既存順序は維持しています。CNS欄は確認した11項目の省略値を有効行にします。
+
+```sh
+npm run mugen:batch-baseline -- --batch superpause-time-01
+npm run mugen:batch -- --batch superpause-time-01 --target SuperPause
+npm run mugen:batch -- --batch superpause-time-01 --target SuperPause --apply
+```
+
+このバッチは適用済みです。次は PlaySnd / StopSnd / SndPan などサウンド関連ページを照合します。

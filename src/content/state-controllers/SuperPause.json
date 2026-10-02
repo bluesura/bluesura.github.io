@@ -1,165 +1,1063 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "SuperPause",
-		"target": "時間",
-		"category": ["時間の操作","演出付きの時間停止（暗転など）"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "SuperPause",
-	"description": "<p>必殺技演出用に時間を止めます。画面の暗転、超必殺技エフェクトも指定可能。</p><p>時間が止まっている間は、ステート時間も経過しませんが、設定によっては行動可能。設定されていないステートは全て停止しているので注意。<!--by vesperさん--></p><p>Pauseコントローラ実行中にSuperPauseが実行されると、Pauseは中断されます。SuperPauseの効果が終了すると、Pauseの効果が再開されます。</p>",
-	"images": [{"src": "SuperPause.gif", "width": "640", "height": "480", "alt": "MUGEN SuperPause"}],
-	"category": "state",
-
-	"associated_state": ["Pause"],
-
-	"version": [
-		{"no": "-", "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"},
-		{"no": "警告文", "content": "SET ILLEGAL PAUSETIME: Timeに0以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "NEGATIVE SPARK ANIMENO IGNORE: Animeに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "SET ILLEGAL PAUSEMOVETIME: MoveTimeに -1以下またはパラメータのTime+1以上", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "NEGATIVE P2DEFMUL FOR SUPERPAUSE: P2DefMulに0未満", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "SET ILLEGAL ENDCMDBUFTIME: EndCmdBufTimeに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-
-	"parameter": [
-		{
-			"parameter": "Time",
-			"value": ["停止時間"],
-			"type": ["int"],
-			"description": "<p>止める時間をフレーム単位の整数で指定。Timeは必ずMoveTimeより大きい値にしてください。</p><p>※1秒=60フレーム</p>",
-			"min_value": ["0"],
-			"max_value": ["2147483647"],
-			"parameter_type": "optional",
-			"default_value": ["30"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "MoveTime",
-			"value": ["停止無視時間"],
-			"type": ["int"],
-			"description": "<p>停止時間中に動ける時間をフレーム単位で指定。時間内は全てのステートが通常通り動きます。<!--by vesperさん--></p><p>※1秒=60フレーム</p>",
-			"min_value": ["0"],
-			"max_value": ["2147483647"],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "PauseBG",
-			"value": ["背景停止フラグ"],
-			"type": ["boolean"],
-			"description": "<p>もし、1が設定されていた場合、pauseで停止している間は背景もストップします。0の場合、停止中でも背景は動き続けます。<!--pauseコピペ--></p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["3"]
-		},
-		{
-			"parameter": "EndCmdBufTime",
-			"value": ["bt"],
-			"type": ["int"],
-			"description": "<p>相手がPause中にコマンドを入力した場合,tフレーム経過後、btフレームの間コマンドが成功している状態を維持する。Pause中動けないキャラのみ有効。<!--pauseコピペ--></p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["4"]
-		},
-		{
-			"parameter": "Darken",
-			"value": ["暗転フラグ"],
-			"type": ["boolean"],
-			"description": "<p>1で、時間停止中は画面が暗くなります。暗くしたくない場合、0を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["5"]
-		},
-		{
-			"parameter": "Anim",
-			"value": ["超必殺演出アニメ番号"],
-			"type": ["int"],
-			"description": "<p>演出用のアニメを指定。fightfx.airの30番が再生されます。自分のairから選ぶ場合は、\"anim = S10\"のように、最初にSを記述。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["30"],
-			"load_priority": ["6"]
-		},
-		{
-			"parameter": "Pos",
-			"value": ["x表示位置", "y表示位置"],
-			"type": ["float", "float"],
-			"description": "<p>アニメの表示位置を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0", "0"],
-			"load_priority": ["7", "8"]
-		},
-		{
-			"parameter": "P2DefMul",
-			"value": ["p2防御力"],
-			"type": ["float"],
-			"description": "<p>ターゲット(自分の攻撃でヒット/ガード状態になった相手)の防御力を倍数で指定。1だと、生でぶち当てた場合と同じダメージになります。</p><p>0で、この場合は、mugen.cfgの[Rules]セクションで設定したSuper.TargetDefenceMul?の値が適用されます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["9"]
-		},
-		{
-			"parameter": "PowerAdd",
-			"value": ["パワーゲージ増減量"],
-			"type": ["int"],
-			"description": "<p>パワーゲージを増減します。通常、-3000～-1000を指定することになるでしょう。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["20"]
-		},
-		{
-			"parameter": "UnHitTable",
-			"value": ["無敵フラグ"],
-			"type": ["boolean"],
-			"description": "<p>0を指定すると、時間停止中も相手の攻撃を受けるようになります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["11"]
-
-		},
-		{
-			"parameter": "Sound",
-			"value": ["サウンド番号", "グループ番号"],
-			"type": ["int", "int"],
-			"description": "<p>演出用のサウンドを指定。-1で音なし。標準ではcommon.sndから再生されますので、自分のsndから選ぶ場合は、\"sound = S10,0\"のように、最初にSを記述。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["-1"],
-			"load_priority": ["12", "13"]
-		}
-	],
-
-	"quote": [
-		{"title": "SuperPause - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SuperPause"},
-		{"title": "SuperPause - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#superpause"},
-		{"title": "SuperPause - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#superpause"},
-		{"title": "SuperPause - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SuperPause"},
-		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-		{"title": "SuperPause - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?SuperPause&protocol=http"},
-		{"title": "SuperPause - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#SuperPause"},
-		{"title": "SuperPause - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "SuperPause",
+    "target": "時間",
+    "category": [
+      "時間の操作",
+      "演出付きの時間停止（暗転など）"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "SuperPause",
+  "description": "<p>必殺技演出用に時間を止めます。画面の暗転、超必殺技エフェクトも指定可能。</p><p>時間が止まっている間は、ステート時間も経過しませんが、設定によっては行動可能。設定されていないステートは全て停止しているので注意。<!--by vesperさん--></p><p>Pauseコントローラ実行中にSuperPauseが実行されると、Pauseは中断されます。SuperPauseの効果が終了すると、Pauseの効果が再開されます。</p>",
+  "images": [
+    {
+      "src": "SuperPause.gif",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN SuperPause"
+    }
+  ],
+  "category": "state",
+  "associated_state": [
+    "Pause"
+  ],
+  "version": [
+    {
+      "no": "-",
+      "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。"
+    },
+    {
+      "no": "警告文",
+      "content": "SET ILLEGAL PAUSETIME: Timeに0以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "NEGATIVE SPARK ANIMENO IGNORE: Animeに-2以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "SET ILLEGAL PAUSEMOVETIME: MoveTimeに -1以下またはパラメータのTime+1以上",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "NEGATIVE P2DEFMUL FOR SUPERPAUSE: P2DefMulに0未満",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "SET ILLEGAL ENDCMDBUFTIME: EndCmdBufTimeに-1以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "Time",
+      "value": [
+        "停止時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>止める時間をフレーム単位の整数で指定。Timeは必ずMoveTimeより大きい値にしてください。</p><p>※1秒=60フレーム</p>",
+      "min_value": [
+        "0"
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "30"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "30",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1",
+              "superpause-pause-2002",
+              "superpause-pause-1.0",
+              "superpause-pause-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>停止する時間をフレーム単位の整数で指定します。省略時は <code>30</code> で、標準速度では0.5秒です。<code>MoveTime</code> と <code>EndCmdBufTime</code> はこの値以下にします。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1",
+            "superpause-pause-2002",
+            "superpause-pause-1.0",
+            "superpause-pause-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "max_value"
+        ]
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "MoveTime",
+      "value": [
+        "停止無視時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>停止時間中に動ける時間をフレーム単位で指定。時間内は全てのステートが通常通り動きます。<!--by vesperさん--></p><p>※1秒=60フレーム</p>",
+      "min_value": [
+        "0"
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1",
+              "superpause-pause-2002",
+              "superpause-pause-1.0",
+              "superpause-pause-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>停止開始から実行者が動ける時間をフレーム単位で指定します。この間は当たり判定も行われます。指定範囲は <code>0</code> から <code>Time</code> までで、省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1",
+            "superpause-pause-2002",
+            "superpause-pause-1.0",
+            "superpause-pause-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "max_value"
+        ]
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "PauseBG",
+      "value": [
+        "背景停止フラグ"
+      ],
+      "type": [
+        "boolean"
+      ],
+      "description": "<p>もし、1が設定されていた場合、pauseで停止している間は背景もストップします。0の場合、停止中でも背景は動き続けます。<!--pauseコピペ--></p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "3"
+      ],
+      "default": [
+        {
+          "kind": "literal",
+          "value": "1",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1",
+              "superpause-pause-2002",
+              "superpause-pause-1.0",
+              "superpause-pause-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>1</code> なら一時停止中に背景の更新も止めます。<code>0</code> なら背景は更新を続けます。省略時は <code>1</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1",
+            "superpause-pause-2002",
+            "superpause-pause-1.0",
+            "superpause-pause-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "EndCmdBufTime",
+      "value": [
+        "bt"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>相手がPause中にコマンドを入力した場合,tフレーム経過後、btフレームの間コマンドが成功している状態を維持する。Pause中動けないキャラのみ有効。<!--pauseコピペ--></p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "4"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1",
+              "superpause-pause-2002",
+              "superpause-pause-1.0",
+              "superpause-pause-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>停止終了直前に、動けないプレイヤーのコマンド入力を保持する時間をフレーム単位で指定します。停止終了直後に <code>command</code> トリガーで検出できます。指定範囲は <code>0</code> から <code>Time</code> までで、省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1",
+            "superpause-pause-2002",
+            "superpause-pause-1.0",
+            "superpause-pause-1.1"
+          ]
+        },
+        "value": [
+          "停止終了直前のコマンド入力保持時間"
+        ]
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "Darken",
+      "value": [
+        "暗転フラグ"
+      ],
+      "type": [
+        "boolean"
+      ],
+      "description": "<p>1で、時間停止中は画面が暗くなります。暗くしたくない場合、0を指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "5"
+      ],
+      "default": [
+        {
+          "kind": "literal",
+          "value": "1",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>1</code> なら SuperPause 中に画面を暗くします。<code>0</code> なら暗転しません。省略時は <code>1</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "Anim",
+      "value": [
+        "超必殺演出アニメ番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>演出用のアニメを指定。fightfx.airの30番が再生されます。自分のairから選ぶ場合は、\"anim = S10\"のように、最初にSを記述。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "30"
+      ],
+      "load_priority": [
+        "6"
+      ],
+      "expression_policy": "special_syntax",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "30",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>停止中に再生する <code>fightfx.air</code> のアニメーション番号です。省略時は <code>30</code>、<code>-1</code> なら再生しません。番号の前に <code>S</code> を付けると実行者の AIR ファイルを使います。例: <code>Anim = S10</code>。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "Pos",
+      "value": [
+        "x表示位置",
+        "y表示位置"
+      ],
+      "type": [
+        "float",
+        "float"
+      ],
+      "description": "<p>アニメの表示位置を指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0",
+        "0"
+      ],
+      "load_priority": [
+        "7",
+        "8"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1"
+            ]
+          }
+        },
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>演出アニメーションの表示位置を、実行者の軸位置からの X・Y オフセットで指定します。省略時は <code>0, 0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1"
+          ]
+        },
+        "value": [
+          "実行者の軸からのXオフセット",
+          "実行者の軸からのYオフセット"
+        ]
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "P2DefMul",
+      "value": [
+        "p2防御力"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>ターゲット(自分の攻撃でヒット/ガード状態になった相手)の防御力を倍数で指定。1だと、生でぶち当てた場合と同じダメージになります。</p><p>0で、この場合は、mugen.cfgの[Rules]セクションで設定したSuper.TargetDefenceMul?の値が適用されます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "9"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>実行者が持つターゲットの防御力に一時的に掛ける倍率です。<code>1</code> なら変更せず、<code>0</code> なら <code>mugen.cfg</code> の <code>[Rules]</code> にある <code>Super.TargetDefenceMul</code> を使います。指定可能な値は0以上で、省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1"
+          ]
+        },
+        "value": [
+          "ターゲットの防御力倍率"
+        ]
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "PowerAdd",
+      "value": [
+        "パワーゲージ増減量"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>パワーゲージを増減します。通常、-3000～-1000を指定することになるでしょう。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "20"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>実行者のパワーゲージに加える量です。負の値では減少します。省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "UnHitTable",
+      "value": [
+        "無敵フラグ"
+      ],
+      "type": [
+        "boolean"
+      ],
+      "description": "<p>0を指定すると、時間停止中も相手の攻撃を受けるようになります。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "11"
+      ],
+      "default": [
+        {
+          "kind": "literal",
+          "value": "1",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p><code>1</code> なら SuperPause 中に実行者が攻撃を受けなくなります。<code>0</code> ならこの効果を無効にします。省略時は <code>1</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    },
+    {
+      "parameter": "Sound",
+      "value": [
+        "サウンド番号",
+        "グループ番号"
+      ],
+      "type": [
+        "int",
+        "int"
+      ],
+      "description": "<p>演出用のサウンドを指定。-1で音なし。標準ではcommon.sndから再生されますので、自分のsndから選ぶ場合は、\"sound = S10,0\"のように、最初にSを記述。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "-1"
+      ],
+      "load_priority": [
+        "12",
+        "13"
+      ],
+      "expression_policy": "special_syntax",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "-1",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "superpause-local-2002",
+              "superpause-local-1.0",
+              "superpause-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "description": "<p>停止中に再生するサウンドを、グループ番号・サウンド番号の順に指定します。通常は <code>common.snd</code> を使い、省略時の <code>-1</code> では再生しません。グループ番号の前に <code>S</code> を付けると実行者の SND ファイルを使います。例: <code>Sound = S10,0</code>。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "superpause-local-2002",
+            "superpause-local-1.0",
+            "superpause-local-1.1"
+          ]
+        },
+        "value": [
+          "グループ番号",
+          "サウンド番号"
+        ]
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。既存のPowerAdd=20を含め原位置で保持する。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "SuperPause - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SuperPause"
+    },
+    {
+      "title": "SuperPause - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#superpause"
+    },
+    {
+      "title": "SuperPause - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#superpause"
+    },
+    {
+      "title": "SuperPause - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SuperPause"
+    },
+    {
+      "title": "不具合・対策まとめ - MUGENの便覧",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "visibility": "internal"
+    },
+    {
+      "title": "SuperPause - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?SuperPause&protocol=http"
+    },
+    {
+      "title": "SuperPause - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#SuperPause"
+    },
+    {
+      "title": "SuperPause - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"
+    },
+    {
+      "id": "superpause-local-2002",
+      "title": "SuperPause — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#SuperPause",
+      "source_type": "official_document"
+    },
+    {
+      "id": "superpause-pause-2002",
+      "title": "Pause の任意パラメーター — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Pause",
+      "source_type": "official_document"
+    },
+    {
+      "id": "superpause-local-1.0",
+      "title": "SuperPause — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#superpause",
+      "source_type": "official_document"
+    },
+    {
+      "id": "superpause-pause-1.0",
+      "title": "Pause の任意パラメーター — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#pause",
+      "source_type": "official_document"
+    },
+    {
+      "id": "superpause-local-1.1",
+      "title": "SuperPause — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#superpause",
+      "source_type": "official_document"
+    },
+    {
+      "id": "superpause-pause-1.1",
+      "title": "Pause の任意パラメーター — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#pause",
+      "source_type": "official_document"
+    },
+    {
+      "id": "superpause-warning-binran",
+      "title": "SuperPause — MUGEN警告メッセージ集",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "superpause-legacy-data",
+      "title": "SuperPause — 移行前の説明・警告原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/8c4da480e6ffd0f53d2b6839f8af9f8b3a33b1e7/src/content/state-controllers/SuperPause.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>超必殺技などの演出用にゲームを一時停止します。停止中はプレイヤーの時間が進まず、画面の暗転、アニメーション、サウンドを指定できます。実行者が動ける時間と背景の更新は、<code>MoveTime</code> と <code>PauseBG</code> で制御します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "superpause-local-2002",
+        "superpause-local-1.0",
+        "superpause-local-1.1",
+        "superpause-pause-2002",
+        "superpause-pause-1.0",
+        "superpause-pause-1.1"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "legacy_index": 0,
+      "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "superpause-legacy-data"
+        ],
+        "comment": "2026-10-03: RoundStateによるパワー増減とパラメーター評価の差は対象ビルドで未確認。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 1,
+      "content": "SET ILLEGAL PAUSETIME: Timeに0以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "superpause-warning-binran",
+          "superpause-legacy-data"
+        ],
+        "comment": "2026-10-03: 警告文と発生条件の実行ログは未確認。原文を保持し公開しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 2,
+      "content": "NEGATIVE SPARK ANIMENO IGNORE: Animeに-2以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "superpause-warning-binran",
+          "superpause-legacy-data"
+        ],
+        "comment": "2026-10-03: 警告文と発生条件の実行ログは未確認。原文を保持し公開しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 3,
+      "content": "SET ILLEGAL PAUSEMOVETIME: MoveTimeに -1以下またはパラメータのTime+1以上",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "superpause-warning-binran",
+          "superpause-legacy-data"
+        ],
+        "comment": "2026-10-03: 警告文と発生条件の実行ログは未確認。原文を保持し公開しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 4,
+      "content": "NEGATIVE P2DEFMUL FOR SUPERPAUSE: P2DefMulに0未満",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "superpause-warning-binran",
+          "superpause-legacy-data"
+        ],
+        "comment": "2026-10-03: 警告文と発生条件の実行ログは未確認。原文を保持し公開しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 5,
+      "content": "SET ILLEGAL ENDCMDBUFTIME: EndCmdBufTimeに-1以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "superpause-warning-binran",
+          "superpause-legacy-data"
+        ],
+        "comment": "2026-10-03: 警告文と発生条件の実行ログは未確認。原文を保持し公開しない。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>Pause の停止中に SuperPause を実行すると、Pause の効果を中断します。SuperPause 中は Pause の残り時間が減らず、SuperPause の終了後に Pause が再開します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "superpause-local-2002",
+          "superpause-local-1.0",
+          "superpause-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧概要の「設定されていないステートは全て停止」、MoveTimeの「全てのステートが通常通り」、TimeとMoveTimeの厳密な大小関係、固定最大値は原文に保持する。更新・評価の詳細と固定値域は実機未確認。公開説明は公式の停止、移動・当たり判定、0..Timeの範囲へ対応させる。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "superpause-local-2002",
+          "superpause-local-1.0",
+          "superpause-local-1.1",
+          "superpause-pause-2002",
+          "superpause-pause-1.0",
+          "superpause-pause-1.1",
+          "superpause-legacy-data"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "superpause-local-2002",
+      "superpause-local-1.0",
+      "superpause-local-1.1",
+      "superpause-pause-2002",
+      "superpause-pause-1.0",
+      "superpause-pause-1.1"
+    ],
+    "comment": "2026-10-03: 11項目の任意指定と既定値、Sound引数順、Posの基準、P2DefMul=0とPause中断を保存済み公式3世代資料で照合。旧警告・RoundState条件・詳細な更新停止は実機未確認。UnHitTableは大文字小文字を除けば公式unhittableと同じ綴り。"
+  }
 }

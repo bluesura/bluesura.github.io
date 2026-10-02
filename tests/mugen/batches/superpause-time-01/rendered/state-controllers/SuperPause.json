@@ -1,0 +1,149 @@
+{
+  "text": "Type = SuperPause 時間の操作 > 演出付きの時間停止（暗転など） | 実装されたバージョン: 2002.04.14 | 対象: 時間 パラメーター 仕様・注意点 コピペ用 読み込み順 引用記事 必殺技演出用に時間を止めます。画面の暗転、超必殺技エフェクトも指定可能。時間が止まっている間は、ステート時間も経過しませんが、設定によっては行動可能。設定されていないステートは全て停止しているので注意。Pauseコントローラ実行中にSuperPauseが実行されると、Pauseは中断されます。SuperPauseの効果が終了すると、Pauseの効果が再開されます。 関連するステートコントローラー： Pause パラメーター パラメーター一覧 13項目 TimeMoveTimePauseBGEndCmdBufTimeDarkenAnimPosP2DefMulPowerAddUnHitTableSoundIgnoreHitPausePersistent Time = 停止時間 型整数 省略時30 最小値0 最大値2147483647 止める時間をフレーム単位の整数で指定。Timeは必ずMoveTimeより大きい値にしてください。※1秒=60フレーム MoveTime = 停止無視時間 型整数 省略時0 最小値0 最大値2147483647 停止時間中に動ける時間をフレーム単位で指定。時間内は全てのステートが通常通り動きます。※1秒=60フレーム PauseBG = 背景停止フラグ 型0か1 省略時1 もし、1が設定されていた場合、pauseで停止している間は背景もストップします。0の場合、停止中でも背景は動き続けます。 EndCmdBufTime = bt 型整数 省略時0 相手がPause中にコマンドを入力した場合,tフレーム経過後、btフレームの間コマンドが成功している状態を維持する。Pause中動けないキャラのみ有効。 Darken = 暗転フラグ 型0か1 省略時1 1で、時間停止中は画面が暗くなります。暗くしたくない場合、0を指定。 Anim = 超必殺演出アニメ番号 型整数 省略時30 演出用のアニメを指定。fightfx.airの30番が再生されます。自分のairから選ぶ場合は、\"anim = S10\"のように、最初にSを記述。 Pos = x表示位置, y表示位置 型浮動小数点数, 浮動小数点数 省略時0, 0 アニメの表示位置を指定。 P2DefMul = p2防御力 型浮動小数点数 省略時0 ターゲット(自分の攻撃でヒット/ガード状態になった相手)の防御力を倍数で指定。1だと、生でぶち当てた場合と同じダメージになります。0で、この場合は、mugen.cfgの[Rules]セクションで設定したSuper.TargetDefenceMul?の値が適用されます。 PowerAdd = パワーゲージ増減量 型整数 省略時0 パワーゲージを増減します。通常、-3000～-1000を指定することになるでしょう。 UnHitTable = 無敵フラグ 型0か1 省略時1 0を指定すると、時間停止中も相手の攻撃を受けるようになります。 Sound = サウンド番号, グループ番号 型整数, 整数 省略時-1 演出用のサウンドを指定。-1で音なし。標準ではcommon.sndから再生されますので、自分のsndから選ぶ場合は、\"sound = S10,0\"のように、最初にSを記述。 IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 仕様・バグ・エラー・変更点-RoundState=3,RoundState=4ではパワーゲージが増減されません。※ただし、パラメーターは読み込まれます。警告文SET ILLEGAL PAUSETIME: Timeに0以下警告文NEGATIVE SPARK ANIMENO IGNORE: Animeに-2以下警告文SET ILLEGAL PAUSEMOVETIME: MoveTimeに -1以下またはパラメータのTime+1以上警告文NEGATIVE P2DEFMUL FOR SUPERPAUSE: P2DefMulに0未満警告文SET ILLEGAL ENDCMDBUFTIME: EndCmdBufTimeに-1以下 コピペ用パラメーター一覧（省略時の挙動） [State 0, SuperPause]Type = SuperPauseTrigger1 = 1Time = 30MoveTime = 0PauseBG = 1EndCmdBufTime = 0Darken = 1Anim = 30Pos = 0, 0P2DefMul = 0PowerAdd = 0UnHitTable = 1Sound = -1IgnoreHitPause = 0Persistent = 1 パラメーターの読み込み順 パラメーター読み込み順 Time 1 MoveTime 2 PauseBG 3 EndCmdBufTime 4 Darken 5 Anim 6 Pos 7, 8 P2DefMul 9 PowerAdd 20 UnHitTable 11 Sound 12, 13 IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事SuperPause - State Controller Reference(version 2002.04.14)SuperPause - State Controller Reference(version 1.0)SuperPause - State Controller Reference(version 1.1)SuperPause - M.U.G.E.N wiki不具合・対策まとめ - MUGENの便覧SuperPause - State ControllerSuperPause - 東方夢幻館SuperPause - 地球の応接間 公開日:2008.06.05 最終更新日:2017.08.06 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Pause",
+      "href": "./../State/Pause.html"
+    },
+    {
+      "text": "Time",
+      "href": "#parameter-Time-0"
+    },
+    {
+      "text": "MoveTime",
+      "href": "#parameter-MoveTime-1"
+    },
+    {
+      "text": "PauseBG",
+      "href": "#parameter-PauseBG-2"
+    },
+    {
+      "text": "EndCmdBufTime",
+      "href": "#parameter-EndCmdBufTime-3"
+    },
+    {
+      "text": "Darken",
+      "href": "#parameter-Darken-4"
+    },
+    {
+      "text": "Anim",
+      "href": "#parameter-Anim-5"
+    },
+    {
+      "text": "Pos",
+      "href": "#parameter-Pos-6"
+    },
+    {
+      "text": "P2DefMul",
+      "href": "#parameter-P2DefMul-7"
+    },
+    {
+      "text": "PowerAdd",
+      "href": "#parameter-PowerAdd-8"
+    },
+    {
+      "text": "UnHitTable",
+      "href": "#parameter-UnHitTable-9"
+    },
+    {
+      "text": "Sound",
+      "href": "#parameter-Sound-10"
+    },
+    {
+      "text": "IgnoreHitPause",
+      "href": "#parameter-IgnoreHitPause-11"
+    },
+    {
+      "text": "Persistent",
+      "href": "#parameter-Persistent-12"
+    },
+    {
+      "text": "SuperPause - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#SuperPause"
+    },
+    {
+      "text": "SuperPause - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#superpause"
+    },
+    {
+      "text": "SuperPause - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#superpause"
+    },
+    {
+      "text": "SuperPause - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/SuperPause"
+    },
+    {
+      "text": "不具合・対策まとめ - MUGENの便覧",
+      "href": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "text": "SuperPause - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?SuperPause&protocol=http"
+    },
+    {
+      "text": "SuperPause - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#SuperPause"
+    },
+    {
+      "text": "SuperPause - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state3.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/State/SuperPause.gif"
+  ],
+  "code": [
+    "[State 0, SuperPause]",
+    "Type                       = SuperPause",
+    "Trigger1                   = 1",
+    "Time                       = 30",
+    "MoveTime                   = 0",
+    "PauseBG                    = 1",
+    "EndCmdBufTime              = 0",
+    "Darken                     = 1",
+    "Anim                       = 30",
+    "Pos                        = 0, 0",
+    "P2DefMul                   = 0",
+    "PowerAdd                   = 0",
+    "UnHitTable                 = 1",
+    "Sound                      = -1",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

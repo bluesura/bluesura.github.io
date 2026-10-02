@@ -1,0 +1,36 @@
+{
+  "id": "parameterless-controllers-01",
+  "reviewed_on": "2026-10-02",
+  "description": "Turn と Null のパラメーター不要の挙動を公式3世代資料と照合する。Null のトリガー評価は記載がある1.1の注記として扱い、原文・画像・旧出典を保持する。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "Turn",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>実行者の向きを即座に反転します。振り向きアニメーションは再生されません。固有の必須・任意パラメーターはありません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["turn-local-2002", "turn-local-1.0", "turn-local-1.1"] } } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["turn-local-2002", "turn-local-1.0", "turn-local-1.1"], "comment": "2026-10-02: 即座の向き反転、振り向きアニメーションなし、固有パラメーターなしを資料で確認。実機テストではない。" } },
+        { "path": ["quote", "-"], "value": { "id": "turn-local-2002", "title": "Turn — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Turn", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "turn-local-1.0", "title": "Turn — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#turn", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "turn-local-1.1", "title": "Turn — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#turn", "source_type": "official_document" } }
+      ],
+      "remaining": [{ "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "Null",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>何も実行しません。他のステートコントローラーの <code>Type</code> を <code>Null</code> に変えると、その処理を一時的に無効にできます。固有の必須・任意パラメーターはありません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["null-local-2002", "null-local-1.0", "null-local-1.1"] } } },
+        { "path": ["notes"], "value": [{ "kind": "behavior", "content": "<p>MUGEN 1.1 の資料では、<code>Null</code> に設定したコントローラーのトリガーも評価されると明記されています。</p>", "environment": { "engine": "mugen", "runtime": ["mugen-1.1"] }, "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["null-local-1.1"] } }] },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["null-local-2002", "null-local-1.0", "null-local-1.1"], "comment": "2026-10-02: 無処理、Type差し替えによる一時無効化、固有パラメーターなしを資料で確認。トリガー評価は1.1資料の記載に限定する。実機テストではない。" } },
+        { "path": ["quote", "-"], "value": { "id": "null-local-2002", "title": "Null — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Null", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "null-local-1.0", "title": "Null — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#null", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "null-local-1.1", "title": "Null — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#null", "source_type": "official_document" } }
+      ],
+      "remaining": [{ "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }]
+    }
+  ]
+}

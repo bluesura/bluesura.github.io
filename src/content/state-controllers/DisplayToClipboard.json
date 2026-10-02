@@ -1,107 +1,464 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "DisplayToClipboard",
-		"target": "クリップボード",
-		"category": ["デバッグ","デバッグ情報のクリップボードへの上書き表示"],
-		"version": "2002.04.14",
-    	"update": "2016.07.19",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "DisplayToClipboard",
-	"description": "<p>デバッグモード(Ctrl+D)でのみ有効なステートコントローラ。 </p><p>クリップボードの内容を消去し、デバッグ用のメッセージを表示します。</p><p>直前の値と見比べたい場合は、AppendToClipboardを使用します(併用も可)。</p>",
-	"images": [{"src": "AppendToClipboard.gif", "width": "640", "height": "480", "alt": "MUGEN AppendToClipboard"}],
-	"category": "state",
-	"associated_state": ["AppendToClipboard"],
-
-	"version": [
-		{"no": "Version1.0以上", "content": "%o,%x,%u,%c,%p,%nが使用不可能になりました。"},
-		{"no": "Version1.0以上", "content": "%sを記載しているとフリーズします。"},
-		{"no": "Version1.0より前", "content": "Paramsは5つまでしか指定できません。"},
-		{"no": "Version1.0以上", "content": "Paramsを6つまで指定できるようになりました。"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "Text",
-			"value": ["\"所定の文字列\""],
-			"type": ["string"],
-			"description": "<p>画面に出力したい文字列を、定められた書式に従って指定します。</p><p>基本的には\"\"で括った文字列がそのまま出力されます。引数の値を表示させたり、特殊な文字を表示させる場合は下記のような記述をます。</p>",
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["?"],
-			"possible_value": [
-				["書式", "内容"],
-				["\\n", "改行します。"],
-				["\\t", "タブを表示します。"],
-				["%%", "%を表示します。"],
-				["%d", "引数の値をint値で表示します。"],
-				["%f", "引数の値をfloat値で表示します。"],
-				["%o", "引数の値を8進数で表示します。(Version1.0より前で使用可能)"],
-				["%x", "引数の値を16進数で表示します。(Version1.0より前で使用可能)"],
-				["%u", "引数の値を負の補数表現で表示します。(Version1.0より前で使用可能)"],
-				["%c", "引数の値を文字で表示します。(Version1.0より前で使用可能)"],
-				["%p", "引数の値をポインタで表示します。(Version1.0より前で使用可能)"],
-				["%n", "引数の値のメモリアドレスに、そこまでに出力した文字数(4byte)を書き込みます。パソコンを破損させる危険性があるバグです。わからない人は絶対に使用してはいけません。(Version1.0より前で使用可能)"],
-				["%s", "引数の値を文字列で表示します。(Version1.0より前で使用可能)"]
-			]
-		},
-		{
-			"parameter": "Params",
-			"value": ["引数1", "引数2", "引数3", "引数4", "引数5", "引数6"],
-			"type": [""],
-			"description": "<p>ここで指定した値が、指定順に、textで記述した%d、%fと置き換わります。6つまで指定可能。</p><p>text中の%d、%fの数と、paramsの数は、一致させる必要があります。データ型は、一致しなくてもエラーとはなりませんが、正しい値が返されません。</p>",
-			"parameter_type": "optional",
-			"default_value": [";なし"],
-			"load_priority": ["1", "2", "3", "4", "5", "6"]
-		}
-	],
-
-	"code_sample": [
-		{
-			"title": "IDの確認",
-			"code": [
-				"[StateDef -2]",
-				"[State ]",
-				"Type     = DisplayToClipboard",
-				"Trigger1 = 1",
-				"Text     = \"MyID:%d, EnemyID:%d\"",
-				"Params   = ID, EnemyNear,ID"
-			]
-		},
-		{
-			"title": "変数の確認",
-			"code": [
-				"[StateDef -2]",
-				"[State ]",
-				"Type     = DisplayToClipboard",
-				"Trigger1 = 1",
-				"Text     = \"v0:%d fv0:%f\"",
-				"Params   = var(0), fvar(0)"
-			]
-		},
-		{
-			"title": "コンボの確認",
-			"code": [
-				"[StateDef -2]",
-				"[State ]",
-				"Type     = DisplayToClipboard",
-				"Trigger1 = 1",
-				"Text     = \"HC:%d UHC:%d GHVHC:%d EGHVHC:%d vC:%d\"",
-				"Params   = HitCount, UniqHitCount, GetHitVar(HitCount), enemy,GetHitVar(HitCount), var(0)"
-			]
-		}
-	],
-
-	"quote": [
-		{"title": "DisplayToClipboard - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#DisplayToClipboard"},
-		{"title": "DisplayToClipboard - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#displaytoclipboard"},
-		{"title": "DisplayToClipboard - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#displaytoclipboard"},
-		{"title": "DisplayToClipboard - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/DisplayToClipboard"},
-		{"title": "DisplayToClipboard - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?DisplayToClipboard&protocol=http"},
-		{"title": "DisplayToClipboard - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#DisplayToClipboard"},
-		{"title": "%nの説明", "url": "http://drabs.blog40.fc2.com/blog-entry-101.html"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "DisplayToClipboard",
+    "target": "クリップボード",
+    "category": [
+      "デバッグ",
+      "デバッグ情報のクリップボードへの上書き表示"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.07.19",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "DisplayToClipboard",
+  "description": "<p>デバッグモード(Ctrl+D)でのみ有効なステートコントローラ。 </p><p>クリップボードの内容を消去し、デバッグ用のメッセージを表示します。</p><p>直前の値と見比べたい場合は、AppendToClipboardを使用します(併用も可)。</p>",
+  "images": [
+    {
+      "src": "AppendToClipboard.gif",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN AppendToClipboard",
+      "visibility": "internal"
+    }
+  ],
+  "category": "state",
+  "associated_state": [
+    "AppendToClipboard"
+  ],
+  "version": [
+    {
+      "no": "Version1.0以上",
+      "content": "%o,%x,%u,%c,%p,%nが使用不可能になりました。"
+    },
+    {
+      "no": "Version1.0以上",
+      "content": "%sを記載しているとフリーズします。"
+    },
+    {
+      "no": "Version1.0より前",
+      "content": "Paramsは5つまでしか指定できません。"
+    },
+    {
+      "no": "Version1.0以上",
+      "content": "Paramsを6つまで指定できるようになりました。"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "Text",
+      "value": [
+        "\"所定の文字列\""
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>画面に出力したい文字列を、定められた書式に従って指定します。</p><p>基本的には\"\"で括った文字列がそのまま出力されます。引数の値を表示させたり、特殊な文字を表示させる場合は下記のような記述をます。</p>",
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "possible_value": [
+        [
+          "書式",
+          "内容"
+        ],
+        [
+          "\\n",
+          "改行します。"
+        ],
+        [
+          "\\t",
+          "タブを表示します。"
+        ],
+        [
+          "%%",
+          "%を表示します。"
+        ],
+        [
+          "%d",
+          "引数の値をint値で表示します。"
+        ],
+        [
+          "%f",
+          "引数の値をfloat値で表示します。"
+        ],
+        [
+          "%o",
+          "引数の値を8進数で表示します。(Version1.0より前で使用可能)"
+        ],
+        [
+          "%x",
+          "引数の値を16進数で表示します。(Version1.0より前で使用可能)"
+        ],
+        [
+          "%u",
+          "引数の値を負の補数表現で表示します。(Version1.0より前で使用可能)"
+        ],
+        [
+          "%c",
+          "引数の値を文字で表示します。(Version1.0より前で使用可能)"
+        ],
+        [
+          "%p",
+          "引数の値をポインタで表示します。(Version1.0より前で使用可能)"
+        ],
+        [
+          "%n",
+          "引数の値のメモリアドレスに、そこまでに出力した文字数(4byte)を書き込みます。パソコンを破損させる危険性があるバグです。わからない人は絶対に使用してはいけません。(Version1.0より前で使用可能)"
+        ],
+        [
+          "%s",
+          "引数の値を文字列で表示します。(Version1.0より前で使用可能)"
+        ]
+      ],
+      "expression_policy": "string_literal",
+      "default": [
+        {
+          "kind": "required",
+          "display": "ダブルクォートで囲んだ表示文字列を指定",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "displayclipboard-local-2002",
+              "displayclipboard-local-1.0",
+              "displayclipboard-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "value": [
+          "表示する書式文字列"
+        ],
+        "description": "<p>表示する文字列をダブルクォートで囲んで指定します。<code>%d</code> は整数、<code>%f</code> は浮動小数点数を <code>Params</code> から差し込み、<code>%%</code> は % 自体を表示します。改行には <code>&#92;n</code>、タブには <code>&#92;t</code> を使えます。MUGEN 1.0 / 1.1 では数値の書式指定として <code>%d</code>、<code>%i</code>、<code>%f</code>、<code>%F</code>、<code>%e</code>、<code>%E</code>、<code>%g</code>、<code>%G</code> が記載されています。</p>",
+        "hide_legacy": [
+          "default_value",
+          "possible_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "displayclipboard-local-2002",
+            "displayclipboard-local-1.0",
+            "displayclipboard-local-1.1"
+          ]
+        }
+      }
+    },
+    {
+      "parameter": "Params",
+      "value": [
+        "引数1",
+        "引数2",
+        "引数3",
+        "引数4",
+        "引数5",
+        "引数6"
+      ],
+      "type": [
+        ""
+      ],
+      "description": "<p>ここで指定した値が、指定順に、textで記述した%d、%fと置き換わります。6つまで指定可能。</p><p>text中の%d、%fの数と、paramsの数は、一致させる必要があります。データ型は、一致しなくてもエラーとはなりませんが、正しい値が返されません。</p>",
+      "parameter_type": "optional",
+      "default_value": [
+        ";なし"
+      ],
+      "load_priority": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "none",
+          "display": "書式指定で値を差し込まない場合は省略",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "displayclipboard-local-2002",
+              "displayclipboard-local-1.0",
+              "displayclipboard-local-1.1"
+            ]
+          }
+        }
+      ],
+      "documentation": {
+        "value": [
+          "書式指定へ渡す数値式"
+        ],
+        "description": "<p><code>Text</code> 内の数値書式指定に対応する式を、指定順に並べます。書式指定の個数と式の個数を一致させてください。保存済み2002資料では最大5個、MUGEN 1.0 / 1.1資料では最大6個です。</p>",
+        "hide_legacy": [
+          "default_value"
+        ],
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "displayclipboard-local-2002",
+            "displayclipboard-local-1.0",
+            "displayclipboard-local-1.1"
+          ]
+        }
+      },
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。6番目は旧2002資料の最大5個を越えるため、適用バージョンを区別する。"
+      }
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "IDの確認",
+      "code": [
+        "[StateDef -2]",
+        "[State ]",
+        "Type     = DisplayToClipboard",
+        "Trigger1 = 1",
+        "Text     = \"MyID:%d, EnemyID:%d\"",
+        "Params   = ID, EnemyNear,ID"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "変数の確認",
+      "code": [
+        "[StateDef -2]",
+        "[State ]",
+        "Type     = DisplayToClipboard",
+        "Trigger1 = 1",
+        "Text     = \"v0:%d fv0:%f\"",
+        "Params   = var(0), fvar(0)"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "コンボの確認",
+      "code": [
+        "[StateDef -2]",
+        "[State ]",
+        "Type     = DisplayToClipboard",
+        "Trigger1 = 1",
+        "Text     = \"HC:%d UHC:%d GHVHC:%d EGHVHC:%d vC:%d\"",
+        "Params   = HitCount, UniqHitCount, GetHitVar(HitCount), enemy,GetHitVar(HitCount), var(0)"
+      ],
+      "visibility": "internal"
+    }
+  ],
+  "quote": [
+    {
+      "title": "DisplayToClipboard - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#DisplayToClipboard"
+    },
+    {
+      "title": "DisplayToClipboard - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#displaytoclipboard"
+    },
+    {
+      "title": "DisplayToClipboard - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#displaytoclipboard"
+    },
+    {
+      "title": "DisplayToClipboard - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/DisplayToClipboard"
+    },
+    {
+      "title": "DisplayToClipboard - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?DisplayToClipboard&protocol=http"
+    },
+    {
+      "title": "DisplayToClipboard - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#DisplayToClipboard"
+    },
+    {
+      "title": "%nの説明",
+      "url": "http://drabs.blog40.fc2.com/blog-entry-101.html",
+      "visibility": "internal"
+    },
+    {
+      "id": "displayclipboard-local-2002",
+      "title": "DisplayToClipboard — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#DisplayToClipboard",
+      "source_type": "official_document"
+    },
+    {
+      "id": "displayclipboard-local-1.0",
+      "title": "DisplayToClipboard — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#displaytoclipboard",
+      "source_type": "official_document"
+    },
+    {
+      "id": "displayclipboard-local-1.1",
+      "title": "DisplayToClipboard — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#displaytoclipboard",
+      "source_type": "official_document"
+    },
+    {
+      "id": "displayclipboard-legacy-data",
+      "title": "DisplayToClipboard — 移行前の書式候補・例・画像原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/707007f0c70a1c62e3de421a2f2553c5300e0ae2/src/content/state-controllers/DisplayToClipboard.json",
+      "source_type": "source_code"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者のクリップボードの内容を消去し、指定したデバッグ用メッセージに置き換えます。クリップボードはデバッグ表示（Ctrl+D）で確認できます。追記したい場合は AppendToClipboard を使用します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "displayclipboard-local-2002",
+        "displayclipboard-local-1.0",
+        "displayclipboard-local-1.1"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "legacy_index": 0,
+      "content": "<p>MUGEN 1.0 / 1.1 の公式資料は、数値の書式指定として <code>%d</code>、<code>%i</code>、<code>%f</code>、<code>%F</code>、<code>%e</code>、<code>%E</code>、<code>%g</code>、<code>%G</code> のみを挙げています。長さ修飾子付きの書式はサポートされません。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "displayclipboard-local-1.0",
+          "displayclipboard-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "legacy_index": 1,
+      "content": "%sを記載しているとフリーズします。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "displayclipboard-legacy-data"
+        ],
+        "comment": "2026-10-02: 旧記録を原文保持。1.0 / 1.1 公式資料に%sは対応書式として記載されないが、フリーズの実機記録はない。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "legacy_index": 2,
+      "content": "<p>保存済み2002資料では <code>Params</code> に指定できる数値式は最大5個です。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-linux-2002.04.14"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "displayclipboard-local-2002"
+        ]
+      }
+    },
+    {
+      "kind": "behavior",
+      "legacy_index": 3,
+      "content": "<p>MUGEN 1.0 / 1.1 の公式資料では <code>Params</code> に指定できる数値式は最大6個です。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "displayclipboard-local-1.0",
+          "displayclipboard-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧Textの候補表は2002資料・1.0資料のどちらにも対応が明記されない書式や、%nによるメモリ書き込み・危険性を記録する。実機再現と対象ビルドの特定がないため原文に保持して非公開にする。旧Params説明の型不一致時の結果も公式1.0資料の記載と異なるため公開説明へ引き継がない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "displayclipboard-local-2002",
+          "displayclipboard-local-1.0",
+          "displayclipboard-local-1.1",
+          "displayclipboard-legacy-data"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧画像は DisplayToClipboard ページにありながら AppendToClipboard とラベル付けされている。旧コード例3件は対象ビルドでの再現が未記録のため、画像・コードともJSONに保持して公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "displayclipboard-legacy-data"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "displayclipboard-local-2002",
+      "displayclipboard-local-1.0",
+      "displayclipboard-local-1.1"
+    ],
+    "comment": "2026-10-02: 上書き表示、Text書式、2002の最大5個と1.0/1.1の最大6個を資料で確認。%sフリーズ、旧候補表、画像・例は未検証。"
+  }
 }

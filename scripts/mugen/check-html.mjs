@@ -85,6 +85,7 @@ for (const { collection, name, base } of cases) {
     ...internalQandAIndices.flatMap(i => oldQandANodes[i] ? [oldQandANodes[i]] : []),
   ];
   const hiddenLinks = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'href')).map(node => ({ href: attr(node, 'href'), text: compactText(node) })));
+  hiddenLinks.push(...(source.quote ?? []).filter(item => item.visibility === 'internal').map(item => ({ href: item.url, text: item.title })));
   const hiddenMedia = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'src')).map(node => attr(node, 'src')).filter(Boolean));
   hiddenMedia.push(...(source.images ?? []).filter(image => image.visibility === 'internal').map(image => `/images/${collections[collection]}/${image.src}`));
   for (const id of before.sections) assert.ok(
@@ -106,7 +107,8 @@ for (const { collection, name, base } of cases) {
   assert.ok(rendered.text.includes(text), `${name}: lost effective description`);
   for (const [index, entry] of (legacy.version ?? []).entries()) {
     const mapped = source.notes?.find(note => note.legacy_index === index);
-    if (!mapped || isPublicNote(mapped)) assert.ok(rendered.text.includes(compactText(parseFragment(entry.content))), `${name}: lost public legacy history`);
+    const publicContent = mapped ? (isPublicNote(mapped) ? mapped.content : undefined) : entry.content;
+    if (publicContent) assert.ok(rendered.text.includes(compactText(parseFragment(publicContent))), `${name}: lost public history`);
   }
   // Lifebars use their own schema and renderer; compare their complete article text.
   if (collection === 'lifebars') assert.equal(rendered.text, before.text, `${name}: lifebar changed`);

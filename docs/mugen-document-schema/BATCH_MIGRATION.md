@@ -585,3 +585,19 @@ npm run mugen:batch -- --batch clipboard-clear-01 --target ClearClipboard --appl
 ```
 
 このバッチは適用済みです。次は DisplayToClipboard / AppendToClipboard の書式とバージョン差を照合します。
+
+## clipboard-display-01：クリップボード上書き表示の1件
+
+2026-10-02、DisplayToClipboard を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/clipboard-display-01/` に保存しています。
+
+- 保存済み公式資料で、デバッグ用クリップボードの上書き、ダブルクォートで囲む `Text`、数値式の `Params`、2002資料の最大5個と1.0 / 1.1資料の最大6個を確認しました。1.0 / 1.1の数値書式指定は公式に列挙されたものだけを公開しています。
+- 旧 `%s` フリーズ、`%n` の危険性、書式候補表、型不一致の旧説明は資料や実機結果と照合できないため、旧フィールド・内部 `research` に保持しました。旧コード3例と AppendToClipboard とラベル付けされた画像も内部に残しました。
+- `%n` の旧調査リンクは JSON に残す一方、引用記事一覧から外しました。このため `quote[].visibility: internal` を追加し、生成HTML比較で内部出典リンクを追跡します。公開履歴の比較検査は、旧文を原本に保持した上で、書き直した公開用本文を照合するよう修正しました。
+
+```sh
+npm run mugen:batch-baseline -- --batch clipboard-display-01
+npm run mugen:batch -- --batch clipboard-display-01 --target DisplayToClipboard
+npm run mugen:batch -- --batch clipboard-display-01 --target DisplayToClipboard --apply
+```
+
+このバッチは適用済みです。次は AppendToClipboard を照合します。

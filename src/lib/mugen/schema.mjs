@@ -103,6 +103,7 @@ export const parameterSchema = z.object({
 const quoteSchema = z.object({
   id: id.optional(), title: z.string(), url: z.string(),
   source_type: z.enum(['official_document', 'official_history', 'community_documentation', 'forum_or_log', 'personal_research', 'source_code', 'archive', 'other']).optional(),
+  visibility: z.enum(['public', 'internal']).optional(),
 }).passthrough();
 
 export function createDocumentSchema(collection, registry) {

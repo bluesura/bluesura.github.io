@@ -8,6 +8,7 @@ export const effectivePageCategory = content => content.documentation?.page_cate
 export const publicImages = content => (content.images ?? []).filter(image => image.visibility !== 'internal');
 export const publicCodeSamples = content => (content.code_sample ?? []).filter(sample => sample.visibility !== 'internal');
 export const publicQandA = content => (content.qanda ?? []).filter(item => item.visibility !== 'internal');
+export const publicQuotes = content => (content.quote ?? []).filter(item => item.visibility !== 'internal');
 
 export function effectiveNotes(content) {
   const notes = content.notes ?? [];
@@ -31,6 +32,7 @@ export function normalizeDocument(content, common = []) {
     ...(content.images !== undefined ? { images: publicImages(content) } : {}),
     ...(content.code_sample !== undefined ? { code_sample: publicCodeSamples(content) } : {}),
     ...(content.qanda !== undefined ? { qanda: publicQandA(content) } : {}),
+    ...(content.quote !== undefined ? { quote: publicQuotes(content) } : {}),
     parameter: content.category === 'trigger' ? effectiveArguments(content) : effectiveParameters(content, common),
     resolvedNotes: effectiveNotes(content),
   };

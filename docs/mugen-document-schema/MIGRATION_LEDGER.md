@@ -188,3 +188,7 @@ AfterImageTime を追加し、累計94件・残り140件です。Time必須とVa
 ## 2026-10-02：clipboard-clear-01
 
 ClearClipboard を追加し、累計95件・残り139件です。実行者のクリップボードのテキスト消去と固有パラメーターなしを保存済み公式3世代資料へ対応させました。次の DisplayToClipboard / AppendToClipboard は書式指定・引数数・旧バージョンの危険な書式指定の記録を個別に精査します。AfterImage 本体の旧 `Alpha` / `Trans=AddAlpha` は公式3世代の AfterImage 欄に見当たらず、根拠と公開範囲が決まるまで推測で移行しません。
+
+## 2026-10-02：clipboard-display-01
+
+DisplayToClipboard を追加し、累計96件・残り138件です。`Text` の必須書式、`Params` の数値式と5個／6個のバージョン差を保存済み公式資料へ対応させました。旧 `%s` フリーズ、`%n` の危険性、型不一致の詳細、コード例、誤ラベルの画像は原本を保持して非公開です。内部調査だけで使う旧出典を引用一覧から除外できる `quote[].visibility` を採用しました。次は AppendToClipboard です。

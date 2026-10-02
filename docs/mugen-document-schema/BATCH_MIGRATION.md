@@ -633,3 +633,19 @@ npm run mugen:batch -- --batch parameterless-controllers-01 --target Turn --targ
 ```
 
 このバッチは適用済みです。次は Pause など時間停止関連ページを照合します。
+
+## pause-time-01：通常時間停止の1件
+
+2026-10-02、Pause を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/pause-time-01/` に保存しています。
+
+- 保存済み公式3世代資料で、Time 必須・0以上、MoveTime / EndCmdBufTime の0からTimeまで、MoveTime=0、PauseBG=1、EndCmdBufTime=0の既定値を確認しました。旧説明の「Timeは必ずMoveTimeより大きい」は両者が等しい場合を除外するため、公開文を訂正しました。
+- 停止中に別のPauseを実行すると前の効果を取り消し、SuperPause中のPauseはその終了後に有効になることを公開注記へ記録しました。旧警告文、全スプライトと-1/-2/-3ステートの停止、Helper / Explodの詳細は原文・内部注記に保持しています。特に旧「Timeに0以下で警告」は公式の0許容と衝突するため公開しません。
+- 旧警告の参照リンクもJSON内に残して引用一覧から外しました。CNS欄はTimeを必須のコメント行とし、確認できた任意3項目の既定値を有効行にします。
+
+```sh
+npm run mugen:batch-baseline -- --batch pause-time-01
+npm run mugen:batch -- --batch pause-time-01 --target Pause
+npm run mugen:batch -- --batch pause-time-01 --target Pause --apply
+```
+
+このバッチは適用済みです。次は SuperPause を照合します。

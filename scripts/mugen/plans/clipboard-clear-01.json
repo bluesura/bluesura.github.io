@@ -1,0 +1,23 @@
+{
+  "id": "clipboard-clear-01",
+  "reviewed_on": "2026-10-02",
+  "description": "ClearClipboard の実行者自身のクリップボード消去と固有パラメーターなしを保存済み公式3世代資料で照合する。旧文・出典を残し、固有パラメーターを生成しない。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "ClearClipboard",
+      "additions": [
+        { "path": ["page", "engine"], "value": "mugen" },
+        { "path": ["page", "introduced_in"], "value": null },
+        { "path": ["documentation"], "value": { "description": "<p>実行者のクリップボードに現在表示されているテキストを消去します。固有の必須・任意パラメーターはありません。</p>", "evidence": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["clearclipboard-local-2002", "clearclipboard-local-1.0", "clearclipboard-local-1.1"] } } },
+        { "path": ["evidence"], "value": { "status": "confirmed", "basis": ["official_document"], "source_refs": ["clearclipboard-local-2002", "clearclipboard-local-1.0", "clearclipboard-local-1.1"], "comment": "2026-10-02: プレイヤー自身のクリップボードのテキスト消去と固有パラメーターなしを保存済み資料で確認。実機テストではない。" } },
+        { "path": ["quote", "-"], "value": { "id": "clearclipboard-local-2002", "title": "ClearClipboard — 保存済み Elecbyte 2002.04.14 公式資料", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ClearClipboard", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "clearclipboard-local-1.0", "title": "ClearClipboard — 保存済み Elecbyte 1.0 公式資料", "url": "/MUGEN/document/Official/1.0/sctrls.html#clearclipboard", "source_type": "official_document" } },
+        { "path": ["quote", "-"], "value": { "id": "clearclipboard-local-1.1", "title": "ClearClipboard — 保存済み Elecbyte 1.1 公式資料", "url": "/MUGEN/document/Official/1.1b1/sctrls.html#clearclipboard", "source_type": "official_document" } }
+      ],
+      "remaining": [
+        { "path": "page.introduced_in", "reason": "初導入ビルドは不明を保持する。" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "text": "Type = AfterImage 演出 > キャラクターの残像生成 | 実装されたバージョン: 2002.04.14 | 対象: ステート実行者自身 パラメーター 仕様・注意点 コピペ用 使用例 読み込み順 引用記事 キャラクターやノーマルヘルパーに残像を付けます。パラメータはすべて省略可能。全てのパラメータを省略すると残像は青くなります。AfterImageを実行した後に別のAfterImageを実行すると、設定が上書きされ、表示していた残像は消えます。表示する残像の数を増やしたい場合は、mugen.cfgファイルのAfterImageMaxで設定します。初期値は8、最小値は0、最大値は100。 関連するステートコントローラー： AfterImageTime パラメーター パラメーター一覧 15項目 TimeLengthTimegapFramegapPalColorPalInvertallPalBrightPalContrastPalPostBrightPalAddPalMulTransAlphaIgnoreHitPausePersistent Time = 持続時間 型整数 省略時1 ;1フレームだけ表示 最小値-1 最大値2147483627 残像が指定された時間だけ表示されます。0または1を指定すると残像が非表示に、-1を指定すると残像が永続化します。Timeが残っている間はステートが変わっても、攻撃を受けても、残像は表示され続けます。残像が表示され続ける時間はステートコントローラのAfterImageTimeでも調整できます。※60フレーム=1秒 Length = 残像用情報の保存枚数 型整数 省略時20 ;20個の履歴を保存 最小値1 最大値60 TimeGapで指定した数値の間隔でフレームを選ばれ、Lengthで指定した数だけそのフレームの時の残像情報(自キャラの画像と場所)が履歴に保存されます。 Length = 20 Length = 60 Timegap = 残像画像の保存間隔 型整数 省略時1 ;1フレーム毎に残像を保存 指定した数値の間隔で、キャラクターの行動が履歴として保存されます。値を小さくすると残像が連続して表示され、値が大きくすると残像の間隔が長くなります。 Timegap = 1 Timegap = 4 Framegap = 残像の表示間隔 型整数 省略時4 ;4番目に保存された残像 Lengthの時に保存された履歴から、FrameGapで指定された数値の間隔で履歴が選ばれ残像として表示されます。値を大きくすると、履歴が選ばれる間隔が大きくなるので、表示される残像の間隔も大きくなります。また、設定する値は必ずLengthより小さい値を設定しないと何も表示されません。 Framegap = 1 Framegap = 4 TimeGap,FrameGap,Lengthの流れ PalColor = 彩度 型整数 省略時256 ;変化なし 最小値0 ;グレースケール 最大値256 ;変化なし パレットの彩度を下げます。0未満と257以上は256になります。例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。 0← →256 PalInvertall = 色反転フラグ 型0か1 省略時0 ;変化なし 最小値0 ;色が反転しない 最大値1 ;色が反転する 色を反転するか・しないかのフラグです。例: (0,0,0)→ (256,256,256), (0,252,0)→ (256,4,256), (256,0,0)→ (0,256,256) PalBright = 加算する赤, 加算する緑, 加算する青 型整数, 整数, 整数 省略時30, 30, 30 ;少し白っぽくなる。 最小値0, 0, 0 最大値256, 256, 256 残像のパレットに指定の色要素を加算します。例えば、PalBright=0,0,256とすれば、青っぽくなりますが、同時に白っぽくもなります。もともと白い部分は白いままです。 PalContrast = 乗算する赤, 乗算する緑, 乗算する青 型整数, 整数, 整数 省略時120, 120, 220 ;青黒っぽく 残像のパレットに指定の色要素を乗算します。例えば、128,128,256とすれば、青っぽくなりますが、同時に黒っぽくもなります。もともと黒い部分は黒いまま。また、省略した場合、青っぽい状態で表示されます。 PalPostBright = add2_赤, add2_緑, add2_青 型整数, 整数, 整数 省略時0, 0, 0 最小値-256, -256, -256 最大値256, 256, 256 2つ目以降の残像について、指定の色要素を加算します。 PalAdd = 加算する赤色, 加算する緑色, 加算する青色 型整数, 整数, 整数 省略時10, 10, 25 最小値-256, -256, -256 ;黒 最大値256, 256, 256 ;白 指定した色を1,2,3,…,N番目の残像に累積して色要素が加算されます。暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。例: Add=256,0,0の場合、 黒(0,0,0)は 赤(256,0,0)になりますが、 白(256,256,256)は 白(256,256,256)のままです。 PalMul = 合成する赤色, 合成する緑色, 合成する青色 型整数, 整数, 整数 省略時.65, .65, .75 最小値1, 1, 1 最大値256, 256, 256 ;変化なし 1,2,3,…,N番目の残像の基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256の累積した色要素を乗算します。合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。例: Add=64,256,64,Mul=1,256,1の場合、 白(256,256,256)は 緑(1,256,1)になりますが、 黒(0,0,0)は 黒(0,0,0)のままです。 Trans = 透過の種類 型文字列 省略時None 残像の透過の種類を指定。存在しない透過の種類を指定した場合、残像は表示されません。(ただし、AfterImageは実行されているためAfterImageTimeは実行可能) 透過の種類効果 Default何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。None透過処理無し。Airで透過処理している時無効にできる。Add画像を半透明にする。アルファ値256,256の加算透過。Add1Addより暗い感じの半透明にする。アルファ値256,128の加算透過。Sub>画像を影のように半透明にする。減算透過。AddAlphaAlphaとセットで使用します。 Alpha = ソースアルファ, デスティネーションアルファ 型整数, 整数 省略時256, 0<!--????--> 透過型が\"AddAlpha\"の場合に指定します。有効範囲は0(低)から256(高)です。ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。 IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 仕様・バグ・エラー・変更点win版 version.1.0より前PalBrightの赤要素が機能しない。警告文ILLEGAL TIME FOR AFTERIMAGE:TIMEに-2以下警告文ILLEGAL FRAMEGAP FOR AFTERIMAGE:FrameGapに0以下警告文ILLEGAL TIMEGAP FOR AFTERIMAGE:TimeGapに0以下警告文ILLEGAL LENGTH FOR AFTERIMAGE:Lengthに0以下 コピペ用パラメーター一覧（省略時の挙動） [State 0, AfterImage]Type = AfterImageTrigger1 = 1; Time = ; 省略時: 1 ;1フレームだけ表示; Length = ; 省略時: 20 ;20個の履歴を保存; Timegap = ; 省略時: 1 ;1フレーム毎に残像を保存; Framegap = ; 省略時: 4 ;4番目に保存された残像; PalColor = ; 省略時: 256 ;変化なし; PalInvertall = ; 省略時: 0 ;変化なし; PalBright = ; 省略時: 30, 30, 30 ;少し白っぽくなる。; PalContrast = ; 省略時: 120, 120, 220 ;青黒っぽくPalPostBright = 0, 0, 0PalAdd = 10, 10, 25PalMul = .65, .65, .75Trans = None; Alpha = ; 省略時: 256, 0<!--????-->IgnoreHitPause = 0Persistent = 1 Q＆A(よくある質問)他のキャラクターの残像が表示されない。表示できる残像の数は、全プレイヤーで共有しているので表示しすぎると他のプレイヤーが表示できなくなります。mugen.cfgのAfterImageMaxの数値を増やす、もしくは原因のあるキャラのAfterImageを変更する。キャラクター自身の残像が表示されない。AfterImageが常時監視（Trigger1=1）になっている可能性があります。Trigger1=GameTime%2にするなどAfterImageが常に実行されていない状態にしましょう。キャラクター自身の残像が表示されない。AfterImageのパラメータが正しい型で書かれていない可能性があります。Transの値が\"\"で囲まれていない」か確認してみましょう。処理が重い。残像の表示数が多いか、Length,FrameGapの値が原因で処理が重くなっています。Lengthの値を小さくする、FrameGapの値を大きくする、Trans=Noneにするなどの調整をしてみましょう。AfterImageがすぐに切り替わらない・消去したい。残像はAfterImageのTime・Lengthで指定しただけ残像が残ります。AfterImageTimeでTime=0を指定してもLengthがリセットできないため、残像はすぐに消えません。なので、新しくAfterImageをTime=0で1フレームだけ実行することで、完全に消去できます。AfterImageについてのメモ履歴は0からlength-1までのlength個保存されている。AfterImageの実行時間はTimeが-1でなければTimeGap*Length+Time。（この時間内ならAfterImageTimeが動作する）（実行時のフレームを含めているので、終了はTimeGap*Length+Time-1フレーム後） コードサンプル基本的な使い方[State 100]Type = AfterimageTrigger1 = Time = 0Trans = AddTimeGap = 2FrameGap = 3Time = 20PalBright = 0, 0, 0PalContrast = 70, 70, 70PalAdd = 0, 0, 160PalMul = 1, 1, 1Trans = NoneTrans = AddTrans = Add1Trans = Sub 喰らい状態の時に残像を消す。[StateDef -2]で喰らい状態を常に監視して、ステートが自動で移行しても消去されます。[State -2, 喰らい状態で残像を消去]Type = AfterImageTrigger1 = MoveType = HTime = 0 常時AfterImageとInvisibleで、本体が透けてるように見える。[State -2]Type = AfterImageTrigger1 = 1Time = 2Trans = AddFrameGap = 1[State -2]Type = AssertSpecialTrigger1 = 1Flag = Invisible 本体よりでかい残像はヘルパーとかExplod[State -2]Type = ExplodTrigger1 = (Root,Vel x != 0 || Root,Vel y != 0) && (Time%8=0)Facing = Root,FacingPosType = P1Pos = 0, 0Scale = 1.1, 1.1SprPriority = -5RemoveTime = 15RemoveOnGetHit = 1Trans = AddAlphaAlpha = 256,200Anim = 0 + var(0);残像によってキャラのアニメーションを切り替えるためのvarIgnoreHitPause = 1 パラメーターの読み込み順 パラメーター読み込み順 Time 1 Length 2 Timegap 3 Framegap 4 PalColor 5 PalInvertall 6 PalBright ?, 7, 8 PalContrast 9, 10, 11 PalPostBright 12, 13, 14 PalAdd 15, 16, 17 PalMul 18, 19, 20 Trans ? Alpha 21, 22 IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事AfterImage - State Controller Reference(version 2002.04.14)AfterImage - State Controller Reference(version 1.0)AfterImage - State Controller Reference(version 1.1)AfterImage - M.U.G.E.N wikiAfterImage - 2500loopsAfterImage - MUGEN CNS WIKI CHAOS@予定不具合・対策まとめ - MUGENの便覧AfterImage - State ControllerAfterImage - 東方夢幻館AfterImage - 地球の応接間本体Explod化AfterImageを研究するためのキャラafterimageの消去についてafterimageの試合中切り替えエラー - 凶悪MUGEN_IRC_ログ倉庫常時監視でAfterImage毎フレーム実行したafterimageが無効化される理由 公開日:2008.06.05 最終更新日:2017.08.06 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "QandA",
+    "CodeSample",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "AfterImageTime",
+      "href": "./../State/AfterImageTime.html"
+    },
+    {
+      "text": "Time",
+      "href": "#parameter-Time-0"
+    },
+    {
+      "text": "Length",
+      "href": "#parameter-Length-1"
+    },
+    {
+      "text": "Timegap",
+      "href": "#parameter-Timegap-2"
+    },
+    {
+      "text": "Framegap",
+      "href": "#parameter-Framegap-3"
+    },
+    {
+      "text": "PalColor",
+      "href": "#parameter-PalColor-4"
+    },
+    {
+      "text": "PalInvertall",
+      "href": "#parameter-PalInvertall-5"
+    },
+    {
+      "text": "PalBright",
+      "href": "#parameter-PalBright-6"
+    },
+    {
+      "text": "PalContrast",
+      "href": "#parameter-PalContrast-7"
+    },
+    {
+      "text": "PalPostBright",
+      "href": "#parameter-PalPostBright-8"
+    },
+    {
+      "text": "PalAdd",
+      "href": "#parameter-PalAdd-9"
+    },
+    {
+      "text": "PalMul",
+      "href": "#parameter-PalMul-10"
+    },
+    {
+      "text": "Trans",
+      "href": "#parameter-Trans-11"
+    },
+    {
+      "text": "Alpha",
+      "href": "#parameter-Alpha-12"
+    },
+    {
+      "text": "IgnoreHitPause",
+      "href": "#parameter-IgnoreHitPause-13"
+    },
+    {
+      "text": "Persistent",
+      "href": "#parameter-Persistent-14"
+    },
+    {
+      "text": "AfterImage - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#AfterImage"
+    },
+    {
+      "text": "AfterImage - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#afterimage"
+    },
+    {
+      "text": "AfterImage - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#afterimage"
+    },
+    {
+      "text": "AfterImage - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AfterImage"
+    },
+    {
+      "text": "AfterImage - 2500loops",
+      "href": "http://www.2500loops.com/lec-process.html#afterimage"
+    },
+    {
+      "text": "AfterImage - MUGEN CNS WIKI CHAOS@予定",
+      "href": "http://www49.atwiki.jp/mugencns/pages/60.html"
+    },
+    {
+      "text": "不具合・対策まとめ - MUGENの便覧",
+      "href": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "text": "AfterImage - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AfterImage&protocol=http"
+    },
+    {
+      "text": "AfterImage - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AfterImage"
+    },
+    {
+      "text": "AfterImage - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/1.htm"
+    },
+    {
+      "text": "本体Explod化",
+      "href": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1986.html"
+    },
+    {
+      "text": "AfterImageを研究するためのキャラ",
+      "href": "http://www.2500loops.com/char.html#after-image"
+    },
+    {
+      "text": "afterimageの消去について",
+      "href": "http://cj2.pv.land.to/4/8.htm"
+    },
+    {
+      "text": "afterimageの試合中切り替え",
+      "href": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1231.html"
+    },
+    {
+      "text": "エラー - 凶悪MUGEN_IRC_ログ倉庫",
+      "href": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-325.html"
+    },
+    {
+      "text": "常時監視でAfterImage",
+      "href": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1961.html"
+    },
+    {
+      "text": "毎フレーム実行したafterimageが無効化される理由",
+      "href": "http://lunatic284.blog90.fc2.com/blog-entry-2933.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/State/AfterImage.gif",
+    "https://www.youtube.com/embed/nxzpDh2aFoM",
+    "https://www.youtube.com/embed/0W8OcohJOSE",
+    "https://www.youtube.com/embed/v4UHsgrEN5I",
+    "https://www.youtube.com/embed/R1ObQavC_fg",
+    "https://www.youtube.com/embed/lJQW_RXYd7M",
+    "https://www.youtube.com/embed/wP588EIanOY",
+    "/images/State/AfterImage_description.gif",
+    "/images/State/InvertAll.png",
+    "/images/State/AfterImage_Trans_None.png",
+    "/images/State/AfterImage_Trans_Add.png",
+    "/images/State/AfterImage_Trans_Add1.png",
+    "/images/State/AfterImage_Trans_Sub.png",
+    "/images/State/AfterImage_Invisible.png",
+    "/images/State/AfterImageOnExplod.png"
+  ],
+  "code": [
+    "[State 0, AfterImage]",
+    "Type                       = AfterImage",
+    "Trigger1                   = 1",
+    "; Time                     =        ; 省略時: 1 ;1フレームだけ表示",
+    "; Length                   =        ; 省略時: 20 ;20個の履歴を保存",
+    "; Timegap                  =        ; 省略時: 1 ;1フレーム毎に残像を保存",
+    "; Framegap                 =        ; 省略時: 4 ;4番目に保存された残像",
+    "; PalColor                 =        ; 省略時: 256 ;変化なし",
+    "; PalInvertall             =        ; 省略時: 0 ;変化なし",
+    "; PalBright                =        ; 省略時: 30, 30, 30 ;少し白っぽくなる。",
+    "; PalContrast              =        ; 省略時: 120, 120, 220 ;青黒っぽく",
+    "PalPostBright              = 0, 0, 0",
+    "PalAdd                     = 10, 10, 25",
+    "PalMul                     = .65, .65, .75",
+    "Trans                      = None",
+    "; Alpha                    =        ; 省略時: 256, 0<!--????-->",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

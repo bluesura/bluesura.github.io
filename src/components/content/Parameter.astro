@@ -2,7 +2,7 @@
 import Specification from './Specification.astro';
 import registry from '../../data/engine-versions.json';
 import { environmentLabel } from '../../lib/mugen/versions.mjs';
-import { describeDefault } from '../../lib/mugen/defaults.mjs';
+import { describeDefault, hasRequirementVariants } from '../../lib/mugen/defaults.mjs';
 export interface Props { parameter?: any[]; collection: string; }
 const { parameter = [], collection } = Astro.props;
 const parameters = parameter.filter(param => param.parameter);
@@ -26,8 +26,10 @@ const anchor = (param, index) => 'parameter-' + param.parameter.replace(/[^a-zA-
             <h3 id={anchor(param, index)}>
               <code>{param.parameter}</code>{param.value?.filter(Boolean).length > 0 && <span class="parameter-purpose">{' = ' + param.value.join(', ')}</span>}
             </h3>
-            {param.parameter_type === 'required' && <span class="parameter-requirement">省略不可</span>}
-            {param.parameter_type === 'instead' && <span class="parameter-requirement">代替書式</span>}
+            {hasRequirementVariants(param) ? <span class="parameter-requirement">省略可否はバージョンによる</span> : <>
+              {param.parameter_type === 'required' && <span class="parameter-requirement">省略不可</span>}
+              {param.parameter_type === 'instead' && <span class="parameter-requirement">代替書式</span>}
+            </>}
           </div>
           <table class="parameter-meta" aria-labelledby={anchor(param, index)}>
             <tbody>

@@ -8,6 +8,7 @@ const { value, parameterNotes = false, showPolicy = true } = Astro.props;
 const policies = { expression: '式を指定可能', constant_only: '定数のみ', string_literal: '文字列・属性のリテラル', special_syntax: '専用構文' };
 const constraints = { one_of: 'いずれか一つ以上が必要', mutually_exclusive: '同時指定不可', requires: '依存関係', effective_when: '有効になる条件', alias: '同義・代替書式' };
 const kinds = { nullary: '引数なし', function: '関数形式', old_style: '旧式構文', special_form: '特殊な評価形式' };
+const requirements = { required: '省略不可', optional: '省略可', instead: '代替書式' };
 ---
 {(value.environment || (showPolicy && policies[value.expression_policy]) || value.return_type || value.syntax_kind) && <div class="specification-summary">
   {value.environment && <div><span class="meta-label">対象</span> {environmentLabel(value.environment, registry)}</div>}
@@ -25,6 +26,7 @@ const kinds = { nullary: '引数なし', function: '関数形式', old_style: '�
   <ul>{value.variants.map(variant => <li>
     <div class="variant-environment">{environmentLabel(variant.environment, registry)}</div>
     <div class="variant-body">
+      {variant.parameter_type && <div><span class="meta-label">指定</span> {requirements[variant.parameter_type]}</div>}
       {variant.type && <div><span class="meta-label">型</span> <code>{variant.type.join(', ')}</code></div>}
       {variant.return_type && <div><span class="meta-label">戻り値</span> <code>{variant.return_type.join(', ')}</code></div>}
       {policies[variant.expression_policy] && <div>{policies[variant.expression_policy]}</div>}

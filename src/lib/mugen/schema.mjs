@@ -62,6 +62,7 @@ const argumentSchema = z.object({
 const variantSchema = z.object({
   environment: environmentSchema,
   evidence: evidenceSchema.optional(),
+  parameter_type: z.enum(['required', 'optional', 'instead']).optional(),
   type: strings.optional(), return_type: strings.optional(),
   default: defaultSchema.optional(), description: z.string().optional(),
   possible_value: z.array(z.union([z.string(), strings])).optional(),

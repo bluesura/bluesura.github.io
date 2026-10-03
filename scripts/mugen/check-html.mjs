@@ -163,6 +163,20 @@ for (const { collection, name, base } of cases) {
   }
   const parameterEntries = findAll(document, node => attr(node, 'class') === 'parameter-entry');
   for (const [index, parameter] of current.parameter.filter(parameter => parameter.parameter).entries()) {
+    const requirementVariants = parameter.variants?.filter(variant => variant.parameter_type !== undefined) ?? [];
+    if (requirementVariants.length) {
+      const entry = parameterEntries[index];
+      assert.ok(entry, `${name}: missing variant parameter ${parameter.parameter}`);
+      const badge = findAll(entry, node => attr(node, 'class') === 'parameter-requirement')[0];
+      if (requirementVariants.some(variant => variant.parameter_type !== parameter.parameter_type)) {
+        assert.equal(compactText(badge), '省略可否はバージョンによる', `${name}: unconditional requirement badge`);
+      }
+      const variants = findAll(entry, node => attr(node, 'class') === 'variant-body');
+      const requirements = { required: '省略不可', optional: '省略可', instead: '代替書式' };
+      for (const [variantIndex, variant] of parameter.variants.entries()) {
+        if (variant.parameter_type) assert.ok(compactText(variants[variantIndex]).replace(/\s+/g, '').includes(`指定${requirements[variant.parameter_type]}`), `${name}: missing scoped requirement`);
+      }
+    }
     const editorial = source.parameter?.find(item => item.parameter === parameter.parameter)?.documentation;
     if (!editorial) continue;
     const entry = parameterEntries[index];

@@ -14,6 +14,8 @@
 
 > 2026-10-02: `parameter[].documentation.type` で公開する型を訂正できます。旧 `type` は原位置に保持します。`AppendToClipboard.Params` の旧 `string` を数値式へ訂正する用途です。
 
+> 2026-10-03: `parameter[].variants[].parameter_type` で環境別の必須・任意・代替指定を記録できます。RemapPal の1.0必須 / 1.1任意が使用例です。異なる指定条件を持つ項目は見出しで世代依存を示し、CNS欄は環境確認付きのコメント行にします。
+
 このドキュメントは、`mugen-template-all.json` の各フィールドに入力すべき情報を定義した仕様書です。
 LLM（大規模言語モデル）への指示や、ドキュメントデータベース構築時のリファレンスとして利用してください。
 

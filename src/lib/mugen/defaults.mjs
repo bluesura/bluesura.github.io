@@ -11,19 +11,23 @@ export function isCnsLiteral(value) {
 function singleLine(value) {
   return String(value).replace(/[\r\n]+/g, ' ');
 }
+export function hasRequirementVariants(parameter) {
+  return parameter.variants?.some(variant => variant.parameter_type !== undefined && variant.parameter_type !== parameter.parameter_type) ?? false;
+}
 export function parameterLine(parameter, content = {}) {
   const name = singleLine(parameter.parameter ?? '');
   const label = describeDefault(parameter);
   const conditional = (content.constraints ?? []).some(c => c.parameters.includes(name)) || parameter.constraints?.length;
   const variantDefault = parameter.variants?.some(v => v.default !== undefined);
+  const variantRequirement = hasRequirementVariants(parameter);
   const scopedDefault = parameter.environment || parameter.default?.some(d => d.environment);
   const inactive = name.trimStart().startsWith(';') || parameter.parameter_type === 'instead' || conditional;
   const canonical = parameter.default;
   let value = canonical?.every(item => item.kind === 'literal') ? canonical.map(item => String(item.value)).join(', ') : undefined;
   if (canonical === undefined) value = parameter.default_value?.join(', ');
-  const active = !inactive && !variantDefault && !scopedDefault && parameter.parameter_type !== 'required' && value !== undefined && isCnsLiteral(value);
+  const active = !inactive && !variantDefault && !variantRequirement && !scopedDefault && parameter.parameter_type !== 'required' && value !== undefined && isCnsLiteral(value);
   if (active) return `${name.padEnd(27)}= ${singleLine(value)}`;
-  const reason = variantDefault || scopedDefault ? '適用環境を確認' : conditional || inactive ? '代替書式・条件を確認' : parameter.parameter_type === 'required' ? '必須: 値を指定してください' : '省略時';
+  const reason = variantDefault || variantRequirement || scopedDefault ? '適用環境を確認' : conditional || inactive ? '代替書式・条件を確認' : parameter.parameter_type === 'required' ? '必須: 値を指定してください' : '省略時';
   // Keep original annotations visible, but never leave an empty/derived assignment active.
   return `; ${name.replace(/^\s*;\s*/, '').padEnd(25)}=        ; ${reason}${label ? `: ${singleLine(label)}` : ': 未確認'}`;
 }

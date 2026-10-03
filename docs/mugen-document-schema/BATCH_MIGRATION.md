@@ -698,3 +698,19 @@ npm run mugen:batch -- --batch palette-effects-01 --target PalFX --target AllPal
 ```
 
 このバッチは適用済みです。次は RemapPal などパレット関連ページを照合します。
+
+## palette-remap-01：パレット割り当ての1件
+
+2026-10-03、RemapPal を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/palette-remap-01/` に保存しています。
+
+- 保存済み公式1.0資料ではSource / Destが必須、1.1では任意で両方の省略値が-1,0です。`variants[].parameter_type` を採用して各環境の分類を表示し、見出しも世代依存を示します。CNS欄ではSource / Destを環境確認付きのコメント行にして、1.1値を1.0向けへ無条件に出力しません。
+- 割り当てが非推移的である既存の番号例を保持し、1.1のSourceグループ=-1による全対象変更・既存割り当て解除、Destグループ=-1と同番号指定による解除、同時8件制限と未登録Sourceの失敗条件を公開しました。旧必須分類・?・読み込み順のカンマ表記は保持しています。
+- OwnPal=1のHelper / Explodに作用しない不具合の修正は1.0 RC4へ対応させました。初導入RC、1.1の任意指定・特殊値対応の正確な変更ビルドは未確定の内部researchです。「New in 1.1」の記述をAlpha 4等の特定ビルドへ推定で割り当てません。
+
+```sh
+npm run mugen:batch-baseline -- --batch palette-remap-01
+npm run mugen:batch -- --batch palette-remap-01 --target RemapPal
+npm run mugen:batch -- --batch palette-remap-01 --target RemapPal --apply
+```
+
+このバッチは適用済みです。次は AfterImage 本体の旧透過指定の根拠と公開範囲を整理します。

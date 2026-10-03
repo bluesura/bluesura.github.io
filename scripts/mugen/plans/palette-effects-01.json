@@ -1,0 +1,2916 @@
+{
+  "id": "palette-effects-01",
+  "reviewed_on": "2026-10-03",
+  "description": "PalFX / AllPalFX / BGPalFX の適用対象・共通6項目・色変換順を照合。旧Q&A・警告・細かな効果消失条件は原文を残して内部保存し、AllPalFXの公式修正履歴を構造化する。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "PalFX",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者のパレットに一時的な色効果を適用します。パレットを共有する Explod・Helper にも影響し、<code>OwnPal = 1</code> で独立したパレットを使うものは除外されます。画面全体には <code>AllPalFX</code>、背景とライフバーには <code>BGPalFX</code> を使います。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "palfx-local-2002",
+                "palfx-local-1.0",
+                "palfx-local-1.1"
+              ]
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>効果の持続時間をフレーム単位で指定します。<code>-1</code> で無期限に継続し、<code>0</code> で現在の効果を停止します。省略時は <code>0</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "palfx-local-2002",
+                "palfx-local-1.0",
+                "palfx-local-1.1",
+                "palfx-chaos-palfx"
+              ]
+            },
+            "hide_legacy": [
+              "max_value"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1",
+                  "palfx-chaos-palfx"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>彩度を0〜256の整数で指定します。<code>0</code> でグレースケール、<code>256</code> で元の彩度のままです。中間の値で彩度を段階的に変えます。<code>InvertAll</code> と加算・乗算より先に適用され、省略時は <code>256</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "palfx-local-2002",
+                "palfx-local-1.0",
+                "palfx-local-1.1"
+              ]
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>赤・緑・青の各成分へ加える整数です。加算した結果に <code>Mul / 256</code> を掛けます。省略時は <code>0, 0, 0</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "palfx-local-2002",
+                "palfx-local-1.0",
+                "palfx-local-1.1"
+              ]
+            },
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>赤・緑・青の各成分へ掛ける倍率を、256を基準に指定します。各値は0以上です。<code>256</code> で変更せず、<code>128</code> で1/2倍になります。省略時は <code>256, 256, 256</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "palfx-local-2002",
+                "palfx-local-1.0",
+                "palfx-local-1.1"
+              ]
+            },
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ],
+            "value": [
+              "赤の乗算係数",
+              "緑の乗算係数",
+              "青の乗算係数"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>赤・緑・青の加算量の振幅と、正弦波の周期を指定します。周期の単位はフレームで、経過時間はこのコントローラーによる効果の開始時点から数えます。各成分では <code>Add + 振幅 * Sin(2 * Pi * 経過時間 / 周期)</code> を加えてから、<code>Mul / 256</code> を掛けます。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "palfx-local-2002",
+                "palfx-local-1.0",
+                "palfx-local-1.1"
+              ]
+            },
+            "value": [
+              "赤の振幅",
+              "緑の振幅",
+              "青の振幅",
+              "周期"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1",
+                  "palfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 旧既定値0,0,0,0を原位置に保持。保存済み公式3世代のPalFX欄はSinAddの省略値を記載しておらず、独立した確認資料・実機結果は得られていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>非0を指定すると色を反転し、ネガフィルムのような効果を作ります。反転は <code>Color</code> の後、<code>Add</code> と <code>Mul</code> の前に適用されます。省略時は <code>0</code> で反転しません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "palfx-local-2002",
+                "palfx-local-1.0",
+                "palfx-local-1.1"
+              ]
+            },
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ],
+            "type": [
+              "整数フラグ"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            5,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-legacy-data",
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "INVALID PALFX TIME:Timeに-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "palfx-legacy-data",
+                  "palfx-warning-binran"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "INVALID PALFX COLOR:Colorに-1以下、257以上",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "palfx-legacy-data",
+                  "palfx-warning-binran"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 2
+            },
+            {
+              "kind": "research",
+              "content": "INVALID PALFX MUL VALUE:MULに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "palfx-legacy-data",
+                  "palfx-warning-binran"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 3
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>色の変換では <code>Color</code> を先に適用し、続いて <code>InvertAll</code>、加算・乗算を行います。色反転は加算・乗算の後ではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Q&Aは加算・乗算の後にInvertAllを適用し、反転を256からの減算で説明する。公式3世代はColorの後、加算・乗算の前に反転するとしている。旧Q&Aを内部に保持し、RGB端点・丸め・飽和処理や既存図の数値の実機検証は今回行っていない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1",
+                  "palfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Time説明のステート移行後の持続、Time=1の再実行とSinAdd、AllPalFXでの上書き、他プレイヤーとの競合は原文を残す。PalFXではCHAOSに持続の記録があるが、3コントローラーすべての実行条件を同一視しない。Timeの固定最大値、Addの±256、Mulの1..256という固定範囲も未確認。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1",
+                  "palfx-chaos-palfx",
+                  "palfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧SinAddの省略値0,0,0,0は未確認のため原位置で保持する。公式資料に省略値の明記はなく、今回の検索で同じ運営サイトの旧ページを確認資料として循環参照しない。CNSの有効行には変換しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "palfx-local-2002",
+                  "palfx-local-1.0",
+                  "palfx-local-1.1",
+                  "palfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            },
+            {
+              "kind": "compatibility",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>MUGEN 1.1では、<code>OwnPal</code> が非0の Explod・Helper は、このコントローラーの効果から除外されます。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palfx-local-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSにはWin版でProjectileへも効果が及ぶこと、OwnPal=0のHelper自身が実行するPalFXは無効という記録がある。具体的ビルドと共有条件の実機確認は未実施。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "palfx-chaos-palfx",
+                  "palfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "palfx-local-2002",
+              "palfx-local-1.0",
+              "palfx-local-1.1"
+            ],
+            "comment": "2026-10-03: 適用対象、Color・InvertAll・加算/乗算の順、Time=0で停止/-1で無期限、Mulの0以上を照合。Time省略値はCHAOS、SinAdd省略値は旧記録を保持して未確認。旧不具合・警告・詳細な評価条件は実機検証していない。"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palfx-local-2002",
+            "title": "PalFX — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PalFX",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palfx-local-1.0",
+            "title": "PalFX — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#palfx",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palfx-local-1.1",
+            "title": "PalFX — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#palfx",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palfx-chaos-palfx",
+            "title": "PalFX — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/64.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palfx-warning-binran",
+            "title": "PalFX — MUGEN警告メッセージ集",
+            "url": "http://mugenbinran.web.fc2.com/error.html#12",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palfx-legacy-data",
+            "title": "PalFX — 移行前の説明・Q&A・警告原本",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/edf58559d5f21114427bb4034bd3e8e9567c1f69/src/content/state-controllers/PalFX.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        },
+        {
+          "path": "parameter[4].default / version / qanda",
+          "reason": "SinAdd省略値・RGB端点・丸め・飽和、旧不具合/警告/共有条件の実機挙動は未確認。"
+        }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "AllPalFX",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>全キャラクター・Explod に加え、背景とライフバーのパレットにも色効果を適用します。<code>OwnPal</code> の設定にかかわらず対象に含まれます。パラメーターは <code>PalFX</code> と共通です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "allpalfx-local-2002",
+                "allpalfx-local-1.0",
+                "allpalfx-local-1.1",
+                "allpalfx-palfx-2002",
+                "allpalfx-palfx-1.0",
+                "allpalfx-palfx-1.1"
+              ]
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>効果の持続時間をフレーム単位で指定します。<code>-1</code> で無期限に継続し、<code>0</code> で現在の効果を停止します。省略時は <code>0</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "allpalfx-local-2002",
+                "allpalfx-local-1.0",
+                "allpalfx-local-1.1",
+                "allpalfx-palfx-2002",
+                "allpalfx-palfx-1.0",
+                "allpalfx-palfx-1.1",
+                "allpalfx-chaos-palfx"
+              ]
+            },
+            "hide_legacy": [
+              "max_value"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-chaos-palfx"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>彩度を0〜256の整数で指定します。<code>0</code> でグレースケール、<code>256</code> で元の彩度のままです。中間の値で彩度を段階的に変えます。<code>InvertAll</code> と加算・乗算より先に適用され、省略時は <code>256</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "allpalfx-local-2002",
+                "allpalfx-local-1.0",
+                "allpalfx-local-1.1",
+                "allpalfx-palfx-2002",
+                "allpalfx-palfx-1.0",
+                "allpalfx-palfx-1.1"
+              ]
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>赤・緑・青の各成分へ加える整数です。加算した結果に <code>Mul / 256</code> を掛けます。省略時は <code>0, 0, 0</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "allpalfx-local-2002",
+                "allpalfx-local-1.0",
+                "allpalfx-local-1.1",
+                "allpalfx-palfx-2002",
+                "allpalfx-palfx-1.0",
+                "allpalfx-palfx-1.1"
+              ]
+            },
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>赤・緑・青の各成分へ掛ける倍率を、256を基準に指定します。各値は0以上です。<code>256</code> で変更せず、<code>128</code> で1/2倍になります。省略時は <code>256, 256, 256</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "allpalfx-local-2002",
+                "allpalfx-local-1.0",
+                "allpalfx-local-1.1",
+                "allpalfx-palfx-2002",
+                "allpalfx-palfx-1.0",
+                "allpalfx-palfx-1.1"
+              ]
+            },
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ],
+            "value": [
+              "赤の乗算係数",
+              "緑の乗算係数",
+              "青の乗算係数"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>赤・緑・青の加算量の振幅と、正弦波の周期を指定します。周期の単位はフレームで、経過時間はこのコントローラーによる効果の開始時点から数えます。各成分では <code>Add + 振幅 * Sin(2 * Pi * 経過時間 / 周期)</code> を加えてから、<code>Mul / 256</code> を掛けます。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "allpalfx-local-2002",
+                "allpalfx-local-1.0",
+                "allpalfx-local-1.1",
+                "allpalfx-palfx-2002",
+                "allpalfx-palfx-1.0",
+                "allpalfx-palfx-1.1"
+              ]
+            },
+            "value": [
+              "赤の振幅",
+              "緑の振幅",
+              "青の振幅",
+              "周期"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 旧既定値0,0,0,0を原位置に保持。保存済み公式3世代のPalFX欄はSinAddの省略値を記載しておらず、独立した確認資料・実機結果は得られていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>非0を指定すると色を反転し、ネガフィルムのような効果を作ります。反転は <code>Color</code> の後、<code>Add</code> と <code>Mul</code> の前に適用されます。省略時は <code>0</code> で反転しません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "allpalfx-local-2002",
+                "allpalfx-local-1.0",
+                "allpalfx-local-1.1",
+                "allpalfx-palfx-2002",
+                "allpalfx-palfx-1.0",
+                "allpalfx-palfx-1.1"
+              ]
+            },
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ],
+            "type": [
+              "整数フラグ"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            5,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<code>Add</code>の値をマイナスに設定すると画面の色は変更されずにデバッグテキストの文字色が変化。文字色は、マイナスで指定した値の補色に変わります。ただし、赤の値をマイナスに指定した場合、文字色は変更されますが画面が暗くなってしまいます。",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "official_history"
+                ],
+                "source_refs": [
+                  "allpalfx-legacy-data",
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-history-1.1"
+                ],
+                "comment": "2026-10-03: 旧説明・コード例は1.0以降で使えないとするが、デバッグ文字への影響を修正した公式履歴は1.1 Beta 1。負数Addの各成分と画面の挙動をこの履歴だけで断定しない。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<code>AllPalFX</code>の持続時間中に、呼び出された<code>OwnPal=1</code>の<code>Explod</code>などに効果はおよびません。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "allpalfx-legacy-data",
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-chaos"
+                ],
+                "comment": "2026-10-03: CHAOSにも持続中の効果消失・同じAdd/Mulでは回避できない記録がある。公式の適用対象説明とは分けて保持し、具体的ビルド・実機条件は未確認。"
+              },
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "<code>PalFX</code>を実行したキャラは効果の影響を受けません。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "allpalfx-legacy-data",
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-chaos"
+                ],
+                "comment": "2026-10-03: CHAOSにも持続中の効果消失・同じAdd/Mulでは回避できない記録がある。公式の適用対象説明とは分けて保持し、具体的ビルド・実機条件は未確認。"
+              },
+              "legacy_index": 2
+            },
+            {
+              "kind": "research",
+              "content": "<code>SuperPause</code>による暗転を行うと背景や相手への効果がなくなります。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "allpalfx-legacy-data",
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-chaos"
+                ],
+                "comment": "2026-10-03: CHAOSにも持続中の効果消失・同じAdd/Mulでは回避できない記録がある。公式の適用対象説明とは分けて保持し、具体的ビルド・実機条件は未確認。"
+              },
+              "legacy_index": 3
+            },
+            {
+              "kind": "research",
+              "content": "全く同じ数値の<code>Add</code>、<code>Mul</code>を設定した<code>AllPalFX</code>を実行した場合、持続扱いとなり上記の効果が消える不具合を回避できません。違う値に設定した場合回避可能。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "allpalfx-legacy-data",
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-chaos"
+                ],
+                "comment": "2026-10-03: CHAOSにも持続中の効果消失・同じAdd/Mulでは回避できない記録がある。公式の適用対象説明とは分けて保持し、具体的ビルド・実機条件は未確認。"
+              },
+              "legacy_index": 4
+            },
+            {
+              "kind": "research",
+              "content": "<code>Color</code>で0以下の値が設定可能ですが、警告文が表示され色の表示がおかしくなります。",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-legacy-data",
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 5
+            },
+            {
+              "kind": "research",
+              "content": "<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-legacy-data",
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 6
+            },
+            {
+              "kind": "research",
+              "content": "INVALID PALFX TIME:Timeに-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "allpalfx-legacy-data",
+                  "allpalfx-warning-binran"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 7
+            },
+            {
+              "kind": "research",
+              "content": "INVALID PALFX COLOR:Colorに-1以下、257以上",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "allpalfx-legacy-data",
+                  "allpalfx-warning-binran"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 8
+            },
+            {
+              "kind": "research",
+              "content": "INVALID PALFX MUL VALUE:MULに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "allpalfx-legacy-data",
+                  "allpalfx-warning-binran"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 9
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>色の変換では <code>Color</code> を先に適用し、続いて <code>InvertAll</code>、加算・乗算を行います。色反転は加算・乗算の後ではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Q&Aは加算・乗算の後にInvertAllを適用し、反転を256からの減算で説明する。公式3世代はColorの後、加算・乗算の前に反転するとしている。旧Q&Aを内部に保持し、RGB端点・丸め・飽和処理や既存図の数値の実機検証は今回行っていない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Time説明のステート移行後の持続、Time=1の再実行とSinAdd、AllPalFXでの上書き、他プレイヤーとの競合は原文を残す。PalFXではCHAOSに持続の記録があるが、3コントローラーすべての実行条件を同一視しない。Timeの固定最大値、Addの±256、Mulの1..256という固定範囲も未確認。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-chaos-palfx",
+                  "allpalfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧SinAddの省略値0,0,0,0は未確認のため原位置で保持する。公式資料に省略値の明記はなく、今回の検索で同じ運営サイトの旧ページを確認資料として循環参照しない。CNSの有効行には変換しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            },
+            {
+              "kind": "version_change",
+              "change": "fixed",
+              "at": "mugen-1.0-rc8",
+              "content": "<p>MUGEN 1.0 RC8で、AllPalFXの緑・青の設定が無視される不具合が修正されました。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "allpalfx-history-1.0"
+                ]
+              }
+            },
+            {
+              "kind": "version_change",
+              "change": "fixed",
+              "at": "mugen-1.1-b1",
+              "content": "<p>MUGEN 1.1 Beta 1で、AllPalFXがデバッグ表示の文字へ影響する不具合が修正されました。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "allpalfx-history-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧概要のAfterImage、ライフバーのアニメーション、影などの例外と、旧デバッグ文字用コード例の動作対象・色の変化を原位置に保持する。公式の適用対象一覧を各例外の実機否定とは扱わない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "allpalfx-local-2002",
+                  "allpalfx-local-1.0",
+                  "allpalfx-local-1.1",
+                  "allpalfx-palfx-2002",
+                  "allpalfx-palfx-1.0",
+                  "allpalfx-palfx-1.1",
+                  "allpalfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "allpalfx-local-2002",
+              "allpalfx-local-1.0",
+              "allpalfx-local-1.1",
+              "allpalfx-palfx-2002",
+              "allpalfx-palfx-1.0",
+              "allpalfx-palfx-1.1"
+            ],
+            "comment": "2026-10-03: 適用対象、Color・InvertAll・加算/乗算の順、Time=0で停止/-1で無期限、Mulの0以上を照合。Time省略値はCHAOS、SinAdd省略値は旧記録を保持して未確認。旧不具合・警告・詳細な評価条件は実機検証していない。"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-local-2002",
+            "title": "AllPalFX — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AllPalFX",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-palfx-2002",
+            "title": "PalFX の共通パラメーター — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PalFX",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-local-1.0",
+            "title": "AllPalFX — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#allpalfx",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-palfx-1.0",
+            "title": "PalFX の共通パラメーター — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#palfx",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-local-1.1",
+            "title": "AllPalFX — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#allpalfx",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-palfx-1.1",
+            "title": "PalFX の共通パラメーター — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#palfx",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-chaos-palfx",
+            "title": "PalFX — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/64.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-chaos",
+            "title": "AllPalFX — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/63.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-history-1.0",
+            "title": "AllPalFX — 保存済み Elecbyte 1.0 更新履歴",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc8",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-history-1.1",
+            "title": "AllPalFX — 保存済み Elecbyte 1.1b1 更新履歴",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-1-beta-1",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-warning-binran",
+            "title": "AllPalFX — MUGEN警告メッセージ集",
+            "url": "http://mugenbinran.web.fc2.com/error.html#12",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "allpalfx-legacy-data",
+            "title": "AllPalFX — 移行前の説明・Q&A・警告原本",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/edf58559d5f21114427bb4034bd3e8e9567c1f69/src/content/state-controllers/AllPalFX.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        },
+        {
+          "path": "parameter[4].default / version / qanda",
+          "reason": "SinAdd省略値・RGB端点・丸め・飽和、旧不具合/警告/共有条件の実機挙動は未確認。"
+        }
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "BGPalFX",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>背景とライフバーのパレットに色効果を適用します。キャラクターのパレットには作用しません。パラメーターは <code>PalFX</code> と共通です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "bgpalfx-local-2002",
+                "bgpalfx-local-1.0",
+                "bgpalfx-local-1.1",
+                "bgpalfx-palfx-2002",
+                "bgpalfx-palfx-1.0",
+                "bgpalfx-palfx-1.1"
+              ]
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>効果の持続時間をフレーム単位で指定します。<code>-1</code> で無期限に継続し、<code>0</code> で現在の効果を停止します。省略時は <code>0</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "bgpalfx-local-2002",
+                "bgpalfx-local-1.0",
+                "bgpalfx-local-1.1",
+                "bgpalfx-palfx-2002",
+                "bgpalfx-palfx-1.0",
+                "bgpalfx-palfx-1.1",
+                "bgpalfx-chaos-palfx"
+              ]
+            },
+            "hide_legacy": [
+              "max_value"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1",
+                  "bgpalfx-chaos-palfx"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>彩度を0〜256の整数で指定します。<code>0</code> でグレースケール、<code>256</code> で元の彩度のままです。中間の値で彩度を段階的に変えます。<code>InvertAll</code> と加算・乗算より先に適用され、省略時は <code>256</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "bgpalfx-local-2002",
+                "bgpalfx-local-1.0",
+                "bgpalfx-local-1.1",
+                "bgpalfx-palfx-2002",
+                "bgpalfx-palfx-1.0",
+                "bgpalfx-palfx-1.1"
+              ]
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>赤・緑・青の各成分へ加える整数です。加算した結果に <code>Mul / 256</code> を掛けます。省略時は <code>0, 0, 0</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "bgpalfx-local-2002",
+                "bgpalfx-local-1.0",
+                "bgpalfx-local-1.1",
+                "bgpalfx-palfx-2002",
+                "bgpalfx-palfx-1.0",
+                "bgpalfx-palfx-1.1"
+              ]
+            },
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>赤・緑・青の各成分へ掛ける倍率を、256を基準に指定します。各値は0以上です。<code>256</code> で変更せず、<code>128</code> で1/2倍になります。省略時は <code>256, 256, 256</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "bgpalfx-local-2002",
+                "bgpalfx-local-1.0",
+                "bgpalfx-local-1.1",
+                "bgpalfx-palfx-2002",
+                "bgpalfx-palfx-1.0",
+                "bgpalfx-palfx-1.1"
+              ]
+            },
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ],
+            "value": [
+              "赤の乗算係数",
+              "緑の乗算係数",
+              "青の乗算係数"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "literal",
+              "value": "256",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>赤・緑・青の加算量の振幅と、正弦波の周期を指定します。周期の単位はフレームで、経過時間はこのコントローラーによる効果の開始時点から数えます。各成分では <code>Add + 振幅 * Sin(2 * Pi * 経過時間 / 周期)</code> を加えてから、<code>Mul / 256</code> を掛けます。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "bgpalfx-local-2002",
+                "bgpalfx-local-1.0",
+                "bgpalfx-local-1.1",
+                "bgpalfx-palfx-2002",
+                "bgpalfx-palfx-1.0",
+                "bgpalfx-palfx-1.1"
+              ]
+            },
+            "value": [
+              "赤の振幅",
+              "緑の振幅",
+              "青の振幅",
+              "周期"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1",
+                  "bgpalfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 旧既定値0,0,0,0を原位置に保持。保存済み公式3世代のPalFX欄はSinAddの省略値を記載しておらず、独立した確認資料・実機結果は得られていない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>非0を指定すると色を反転し、ネガフィルムのような効果を作ります。反転は <code>Color</code> の後、<code>Add</code> と <code>Mul</code> の前に適用されます。省略時は <code>0</code> で反転しません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "bgpalfx-local-2002",
+                "bgpalfx-local-1.0",
+                "bgpalfx-local-1.1",
+                "bgpalfx-palfx-2002",
+                "bgpalfx-palfx-1.0",
+                "bgpalfx-palfx-1.1"
+              ]
+            },
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ],
+            "type": [
+              "整数フラグ"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            5,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bgpalfx-legacy-data",
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "INVALID PALFX TIME:Timeに-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "bgpalfx-legacy-data",
+                  "bgpalfx-warning-binran"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "INVALID PALFX COLOR:Colorに-1以下、257以上",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "bgpalfx-legacy-data",
+                  "bgpalfx-warning-binran"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 2
+            },
+            {
+              "kind": "research",
+              "content": "INVALID PALFX MUL VALUE:MULに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "bgpalfx-legacy-data",
+                  "bgpalfx-warning-binran"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              },
+              "legacy_index": 3
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>色の変換では <code>Color</code> を先に適用し、続いて <code>InvertAll</code>、加算・乗算を行います。色反転は加算・乗算の後ではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Q&Aは加算・乗算の後にInvertAllを適用し、反転を256からの減算で説明する。公式3世代はColorの後、加算・乗算の前に反転するとしている。旧Q&Aを内部に保持し、RGB端点・丸め・飽和処理や既存図の数値の実機検証は今回行っていない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1",
+                  "bgpalfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Time説明のステート移行後の持続、Time=1の再実行とSinAdd、AllPalFXでの上書き、他プレイヤーとの競合は原文を残す。PalFXではCHAOSに持続の記録があるが、3コントローラーすべての実行条件を同一視しない。Timeの固定最大値、Addの±256、Mulの1..256という固定範囲も未確認。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1",
+                  "bgpalfx-chaos-palfx",
+                  "bgpalfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧SinAddの省略値0,0,0,0は未確認のため原位置で保持する。公式資料に省略値の明記はなく、今回の検索で同じ運営サイトの旧ページを確認資料として循環参照しない。CNSの有効行には変換しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1",
+                  "bgpalfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>2026-10-03: CHAOSのBGPalFX個別記事（pages/65.html）は取得できなかった。公開仕様は保存済み公式のBGPalFX欄と参照先のPalFX欄へ対応させ、未取得のコミュニティ本文を推測して補わない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "bgpalfx-local-2002",
+                  "bgpalfx-local-1.0",
+                  "bgpalfx-local-1.1",
+                  "bgpalfx-palfx-2002",
+                  "bgpalfx-palfx-1.0",
+                  "bgpalfx-palfx-1.1",
+                  "bgpalfx-legacy-data"
+                ],
+                "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1"
+            ],
+            "comment": "2026-10-03: 適用対象、Color・InvertAll・加算/乗算の順、Time=0で停止/-1で無期限、Mulの0以上を照合。Time省略値はCHAOS、SinAdd省略値は旧記録を保持して未確認。旧不具合・警告・詳細な評価条件は実機検証していない。"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bgpalfx-local-2002",
+            "title": "BGPalFX — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#BGPalFX",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bgpalfx-palfx-2002",
+            "title": "PalFX の共通パラメーター — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PalFX",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bgpalfx-local-1.0",
+            "title": "BGPalFX — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#bgpalfx",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bgpalfx-palfx-1.0",
+            "title": "PalFX の共通パラメーター — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#palfx",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bgpalfx-local-1.1",
+            "title": "BGPalFX — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#bgpalfx",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bgpalfx-palfx-1.1",
+            "title": "PalFX の共通パラメーター — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#palfx",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bgpalfx-chaos-palfx",
+            "title": "PalFX — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/64.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bgpalfx-warning-binran",
+            "title": "BGPalFX — MUGEN警告メッセージ集",
+            "url": "http://mugenbinran.web.fc2.com/error.html#12",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bgpalfx-legacy-data",
+            "title": "BGPalFX — 移行前の説明・Q&A・警告原本",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/edf58559d5f21114427bb4034bd3e8e9567c1f69/src/content/state-controllers/BGPalFX.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "page.introduced_in",
+          "reason": "初導入ビルドは不明を保持する。"
+        },
+        {
+          "path": "parameter[4].default / version / qanda",
+          "reason": "SinAdd省略値・RGB端点・丸め・飽和、旧不具合/警告/共有条件の実機挙動は未確認。"
+        }
+      ]
+    }
+  ]
+}

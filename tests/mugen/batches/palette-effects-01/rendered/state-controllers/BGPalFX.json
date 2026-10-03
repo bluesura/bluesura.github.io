@@ -1,0 +1,138 @@
+{
+  "text": "Type = BGPalFX 色の操作 > カラーパレット変更による視覚効果 | 実装されたバージョン: 2002.04.14 | 対象: 背景 パラメーター 仕様・注意点 コピペ用 読み込み順 引用記事 背景のパレットに指定色を加算・乗算します。全画面に加算する場合はAllPalFX,キャラクターのみに加算する場合はPalFX,指定色で塗りつぶしたい場合はEnvColor。 関連するステートコントローラー： PalFX , AllPalFX , EnvColor パラメーター パラメーター一覧 8項目 TimeColorAddMulSinAddInvertAllIgnoreHitPausePersistent Time = 持続時間 型整数 省略時0 最小値-1 最大値2147483647 効果の持続時間をフレーム単位で指定します。ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、Time=1にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXでTime=1をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。※60フレーム=1秒 Color = 彩度 型整数 省略時256 最小値0 ;グレースケール 最大値256 ;変化なし パレットの彩度を下げます。例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。 0← →256 Add = 加算する赤色, 加算する緑色, 加算する青色 型整数, 整数, 整数 省略時0, 0, 0 最小値-256, -256, -256 ;黒 最大値256, 256, 256 ;白 指定した色をパレットに加算します。暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。例: Add=256,0,0の場合、 黒(0,0,0)は 赤(256,0,0)になりますが、 白(256,256,256)は 白(256,256,256)のままです。 Mul = 合成する赤色, 合成する緑色, 合成する青色 型整数, 整数, 整数 省略時256, 256, 256 最小値1, 1, 1 最大値256, 256, 256 ;変化なし 基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。例: Add=64,256,64,Mul=1,256,1の場合、 白(256,256,256)は 緑(1,256,1)になりますが、 黒(0,0,0)は 黒(0,0,0)のままです。 SinAdd = 周期する赤色, 周期する緑色, 周期する青色, 周期 型整数, 整数, 整数, 整数 省略時0, 0, 0, 0 指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。周期が大きいほどゆるやかに色が変化します。例: SinAdd=0,0,256,20, Add=0,0,0,Mul=256,256,256の場合、 (128,128,128)は、5F後 (128,128,256)になり、10F後 (128,128,128)に戻り、15F後 (128,128,0)、20F後 (128,128,128)に戻る、という周期を繰り返します。 InvertAll = 色反転フラグ 型0か1 省略時0 最小値0 ;色が反転しない 最大値1 ;色が反転する 色を反転するか・しないかのフラグです。例: (0,0,0)→ (256,256,256), (0,252,0)→ (256,4,256), (256,0,0)→ (0,256,256) IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 仕様・バグ・エラー・変更点-InvertAllはAdd,Sub,Mulなどで処理をしていると正しく機能しません。警告文INVALID PALFX TIME:Timeに-2以下警告文INVALID PALFX COLOR:Colorに-1以下、257以上警告文INVALID PALFX MUL VALUE:MULに-1以下 コピペ用パラメーター一覧（省略時の挙動） [State 0, BGPalFX]Type = BGPalFXTrigger1 = 1Time = 0Color = 256Add = 0, 0, 0Mul = 256, 256, 256SinAdd = 0, 0, 0, 0InvertAll = 0IgnoreHitPause = 0Persistent = 1 Q＆A(よくある質問)表示される色の処理順各条件を以下のように定義する。Add = Add_赤色(AR), Add_緑色(AG), Add_青色(AB)SinAdd = Sin_赤色(SR), Sin_緑色(SG), Sin_青色(SB), 周期(P)Mul = Mul_赤色(MR), Mul_緑色(MG), Mul_青色(MB)経過時間:(T) ※単位はフレーム、1秒=60フレーム円周率:(Pi)変更する色:Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)==========処理の流れ==========処理する色 = Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)↓彩度(Color)彩度を調整した色 = Color_赤色(CR), Color_緑色(CG), Color_青色(CB)↓経過時間(T)に表示される色は赤要素(RR) = (CR + AR + SR * Sin(2*Pi*T/P)) * MR/256緑要素(RG) = (CG + AG + SG * Sin(2*Pi*T/P)) * MG/256青要素(RB) = (CB + AB + SB * Sin(2*Pi*T/P)) * MB/256↓色反転(InvertAll)反転した赤要素(IR) = 256-RR反転した緑要素(IG) = 256-RG反転した青要素(IB) = 256-RB↓結果色(IR, IG, IB)が表示されます。 パラメーターの読み込み順 パラメーター読み込み順 Time 1 Color 2 Add 3, 4, 5 Mul 6, 7, 8 SinAdd 9, 10, 11, 12 InvertAll 13 IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事BGPalFX - State Controller Reference(version 2002.04.14)BGPalFX - State Controller Reference(version 1.0)BGPalFX - State Controller Reference(version 1.1)BGPalFX - M.U.G.E.N wikiBGPalFX - MUGEN CNS WIKI CHAOS@予定不具合・対策まとめ - MUGENの便覧BGPalFX - State ControllerBGPalFX - 東方夢幻館BGPalFX - 地球の応接間 公開日:2008.06.05 最終更新日:2017.08.06 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "QandA",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "PalFX",
+      "href": "./../State/PalFX.html"
+    },
+    {
+      "text": "AllPalFX",
+      "href": "./../State/AllPalFX.html"
+    },
+    {
+      "text": "EnvColor",
+      "href": "./../State/EnvColor.html"
+    },
+    {
+      "text": "Time",
+      "href": "#parameter-Time-0"
+    },
+    {
+      "text": "Color",
+      "href": "#parameter-Color-1"
+    },
+    {
+      "text": "Add",
+      "href": "#parameter-Add-2"
+    },
+    {
+      "text": "Mul",
+      "href": "#parameter-Mul-3"
+    },
+    {
+      "text": "SinAdd",
+      "href": "#parameter-SinAdd-4"
+    },
+    {
+      "text": "InvertAll",
+      "href": "#parameter-InvertAll-5"
+    },
+    {
+      "text": "IgnoreHitPause",
+      "href": "#parameter-IgnoreHitPause-6"
+    },
+    {
+      "text": "Persistent",
+      "href": "#parameter-Persistent-7"
+    },
+    {
+      "text": "BGPalFX - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#BGPalFX"
+    },
+    {
+      "text": "BGPalFX - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#bgpalfx"
+    },
+    {
+      "text": "BGPalFX - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#bgpalfx"
+    },
+    {
+      "text": "BGPalFX - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/BGPalFX"
+    },
+    {
+      "text": "BGPalFX - MUGEN CNS WIKI CHAOS@予定",
+      "href": "http://www49.atwiki.jp/mugencns/pages/65.html"
+    },
+    {
+      "text": "不具合・対策まとめ - MUGENの便覧",
+      "href": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "text": "BGPalFX - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BGPalFX&protocol=http"
+    },
+    {
+      "text": "BGPalFX - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#BGPalFX"
+    },
+    {
+      "text": "BGPalFX - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/State/SinAdd.png",
+    "/images/State/InvertAll.png"
+  ],
+  "code": [
+    "[State 0, BGPalFX]",
+    "Type                       = BGPalFX",
+    "Trigger1                   = 1",
+    "Time                       = 0",
+    "Color                      = 256",
+    "Add                        = 0, 0, 0",
+    "Mul                        = 256, 256, 256",
+    "SinAdd                     = 0, 0, 0, 0",
+    "InvertAll                  = 0",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

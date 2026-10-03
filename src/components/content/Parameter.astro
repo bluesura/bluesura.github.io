@@ -10,7 +10,7 @@ const policies = { expression: '式を指定可能', constant_only: '定数の�
 const types = { boolean: '0か1', int: '整数', float: '浮動小数点数', string: '文字列' };
 const formatType = type => types[type.toLowerCase()] ?? type;
 // Keep separate anchors even for legacy alternative forms with the same spelling.
-const anchor = (param, index) => 'parameter-' + param.parameter.replace(/[^a-zA-Z0-9_.-]+/g, '-') + '-' + index;
+const anchor = (param, index) => 'parameter-' + param.parameter.replace(/[^a-zA-Z0-9_.-]+/g, '-') + '-' + (param.anchor_index ?? index);
 ---
 <section id="Parameter">
   <div class="section">

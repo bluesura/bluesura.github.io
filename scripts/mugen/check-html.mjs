@@ -52,6 +52,9 @@ for (const { collection, name, base } of cases) {
         const section = findAll(tree, node => node.tagName === 'div' && attr(node, 'class') === 'section' && findAll(node, child => child.tagName === 'h2' && findAll(child, link => attr(link, 'href') === entry.url).length).length)[0];
         assert.ok(section, `Missing index section: ${entry.url}`);
         const lines = findAll(section, node => node.tagName === 'li').map(textContent);
+        for (const hidden of (entry.data.parameter ?? []).filter(parameter => parameter.visibility === 'internal')) {
+          assert.ok(!lines.some(line => line.trim().startsWith(hidden.parameter + ' ')), `${entry.url}: internal index parameter leaked`);
+        }
         for (const parameter of effectiveParameters(entry.data, common)) {
           const label = parameter.value?.join(', ');
           if (entry.data.parameter?.some(item => item.parameter === parameter.parameter && item.documentation?.value)) {
@@ -72,9 +75,11 @@ for (const { collection, name, base } of cases) {
   const hasOnlyInternalNotes = sourceNotes.length > 0 && sourceNotes.every(note => !isPublicNote(note));
   const internalSampleIndices = (source.code_sample ?? []).flatMap((sample, i) => sample.visibility === 'internal' ? [i] : []);
   const internalQandAIndices = (source.qanda ?? []).flatMap((item, i) => item.visibility === 'internal' ? [i] : []);
-  const oldDocument = internalSampleIndices.length || internalQandAIndices.length ? parse(readFileSync(pathFromRoot(`${base}/html/${collection}/${name}.html`), 'utf8')) : undefined;
+  const internalParameterIndices = (source.parameter ?? []).flatMap((item, i) => item.visibility === 'internal' ? [i] : []);
+  const oldDocument = internalSampleIndices.length || internalQandAIndices.length || internalParameterIndices.length ? parse(readFileSync(pathFromRoot(`${base}/html/${collection}/${name}.html`), 'utf8')) : undefined;
   const oldSampleNodes = internalSampleIndices.length ? sampleNodes(oldDocument) : [];
   const oldQandANodes = internalQandAIndices.length ? qandaNodes(oldDocument) : [];
+  const oldParameterNodes = internalParameterIndices.length ? findAll(oldDocument, node => attr(node, 'class') === 'parameter-entry') : [];
   const hiddenLegacyFragments = (source.parameter ?? []).flatMap(parameter =>
     (parameter.documentation?.hide_legacy ?? []).flatMap(field => stringLeaves(parameter[field]).map(parseFragment))
   );
@@ -83,9 +88,15 @@ for (const { collection, name, base } of cases) {
     ...hiddenLegacyFragments,
     ...internalSampleIndices.flatMap(i => oldSampleNodes[i] ? [oldSampleNodes[i]] : []),
     ...internalQandAIndices.flatMap(i => oldQandANodes[i] ? [oldQandANodes[i]] : []),
+    ...internalParameterIndices.flatMap(i => oldParameterNodes[i] ? [oldParameterNodes[i]] : []),
   ];
   const hiddenLinks = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'href')).map(node => ({ href: attr(node, 'href'), text: compactText(node) })));
   hiddenLinks.push(...(source.quote ?? []).filter(item => item.visibility === 'internal').map(item => ({ href: item.url, text: item.title })));
+  for (const i of internalParameterIndices) {
+    const heading = oldParameterNodes[i] && findAll(oldParameterNodes[i], node => node.tagName === 'h3')[0];
+    const href = heading && '#' + attr(heading, 'id');
+    hiddenLinks.push(...before.links.filter(link => link.href === href));
+  }
   const hiddenMedia = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'src')).map(node => attr(node, 'src')).filter(Boolean));
   hiddenMedia.push(...(source.images ?? []).filter(image => image.visibility === 'internal').map(image => `/images/${collections[collection]}/${image.src}`));
   for (const id of before.sections) assert.ok(
@@ -162,6 +173,14 @@ for (const { collection, name, base } of cases) {
     if (source.documentation.evidence?.comment) assert.ok(!html.includes(source.documentation.evidence.comment), `${name}: description evidence leaked`);
   }
   const parameterEntries = findAll(document, node => attr(node, 'class') === 'parameter-entry');
+  for (const i of internalParameterIndices) {
+    const key = source.parameter[i].parameter;
+    if (current.parameter.some(parameter => parameter.parameter === key)) continue;
+    assert.ok(!parameterEntries.some(entry => compactText(findAll(entry, node => node.tagName === 'h3')[0]).startsWith(`${key} =`)), `${name}: internal parameter heading leaked`);
+    assert.ok(!rendered.code.some(line => line.replace(/^;\s*/, '').split('=')[0].trim() === key), `${name}: internal parameter copy line leaked`);
+    const loading = findAll(document, node => attr(node, 'id') === 'LoadParameter')[0];
+    assert.ok(!findAll(loading, node => node.tagName === 'th').some(node => compactText(node) === key), `${name}: internal parameter loading row leaked`);
+  }
   for (const [index, parameter] of current.parameter.filter(parameter => parameter.parameter).entries()) {
     const requirementVariants = parameter.variants?.filter(variant => variant.parameter_type !== undefined) ?? [];
     if (requirementVariants.length) {
@@ -191,8 +210,9 @@ for (const { collection, name, base } of cases) {
   }
   assert.equal(findAll(document, node => attr(node, 'class')?.split(' ').includes('evidence')).length, 0, `${name}: evidence leaked into HTML`);
   const renderedNotes = findAll(document, node => attr(node, 'class') === 'specification-note');
-  assert.equal(renderedNotes.length, [source, ...(source.parameter ?? [])].flatMap(value => effectiveNotes(value).filter(isPublicNote)).length, `${name}: wrong public note count`);
-  for (const note of [source, ...(source.parameter ?? [])].flatMap(value => effectiveNotes(value).filter(isPublicNote))) {
+  const publicNoteParents = [source, ...(source.parameter ?? []).filter(parameter => parameter.visibility !== 'internal')];
+  assert.equal(renderedNotes.length, publicNoteParents.flatMap(value => effectiveNotes(value).filter(isPublicNote)).length, `${name}: wrong public note count`);
+  for (const note of publicNoteParents.flatMap(value => effectiveNotes(value).filter(isPublicNote))) {
     assert.ok(renderedNotes.some(node => compactText(node).includes(compactText(parseFragment(note.content)))), `${name}: public note content missing`);
   }
   for (const note of hidden) assert.ok(!renderedNotes.some(node => compactText(node).includes(compactText(parseFragment(note.content)))), `${name}: internal note leaked`);

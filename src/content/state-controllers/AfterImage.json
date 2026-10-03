@@ -1,333 +1,1494 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "AfterImage",
-		"target": "ステート実行者自身",
-		"category": ["演出","キャラクターの残像生成"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "AfterImage",
-	"description": "<p>キャラクターやノーマルヘルパーに残像を付けます。</p><p>パラメータはすべて省略可能。全てのパラメータを省略すると残像は青くなります。</p><p><code>AfterImage</code>を実行した後に別のAfterImageを実行すると、設定が上書きされ、表示していた残像は消えます。</p><p>表示する残像の数を増やしたい場合は、mugen.cfgファイルのAfterImageMaxで設定します。初期値は8、最小値は0、最大値は100。</p>",
-	"images": [{"src": "AfterImage.gif", "width": "640", "height": "480", "alt": "MUGEN AfterImage"}],
-	"category": "state",
-	"associated_state": ["AfterImageTime"],
-
-	"version": [
-		{"no":"win版 version.1.0より前", "content": "PalBrightの赤要素が機能しない。"},
-		{"no": "警告文", "content": "ILLEGAL TIME FOR AFTERIMAGE:TIMEに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "ILLEGAL FRAMEGAP FOR AFTERIMAGE:FrameGapに0以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "ILLEGAL TIMEGAP FOR AFTERIMAGE:TimeGapに0以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "ILLEGAL LENGTH FOR AFTERIMAGE:Lengthに0以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "Time",
-			"value": ["持続時間"],
-			"type": ["int"],
-			"description": "<p>残像が指定された時間だけ表示されます。0または1を指定すると残像が非表示に、-1を指定すると残像が永続化します。</p><p>Timeが残っている間はステートが変わっても、攻撃を受けても、残像は表示され続けます。</p><p>残像が表示され続ける時間はステートコントローラのAfterImageTimeでも調整できます。</p><p>※60フレーム=1秒</p>",
-			"min_value": ["-1"],
-			"max_value": ["2147483627"],
-			"parameter_type": "optional",
-			"default_value": ["1 ;1フレームだけ表示"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Length",
-			"value": ["残像用情報の保存枚数"],
-			"type": ["int"],
-			"description": "<p>TimeGapで指定した数値の間隔でフレームを選ばれ、Lengthで指定した数だけそのフレームの時の残像情報(自キャラの画像と場所)が履歴に保存されます。</p>",
-			"media": {
-				"youtube": [
-					{"title": "Length = 20", "file": "nxzpDh2aFoM"},
-					{"title": "Length = 60", "file": "0W8OcohJOSE"}
-				]
-			},
-			"min_value": ["1"],
-			"max_value": ["60"],
-			"parameter_type": "optional",
-			"default_value": ["20 ;20個の履歴を保存"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "Timegap",
-			"value": ["残像画像の保存間隔"],
-			"type": ["int"],
-			"description": "<p>指定した数値の間隔で、キャラクターの行動が履歴として保存されます。</p><p>値を小さくすると残像が連続して表示され、値が大きくすると残像の間隔が長くなります。</p>",
-			"media": {
-				"youtube": [
-					{"title": "Timegap = 1", "file": "v4UHsgrEN5I"},
-					{"title": "Timegap = 4", "file": "R1ObQavC_fg"}
-				]
-			},
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1 ;1フレーム毎に残像を保存"],
-			"load_priority": ["3"]
-		},
-		{
-			"parameter": "Framegap",
-			"value": ["残像の表示間隔"],
-			"type": ["int"],
-			"description": "<p>Lengthの時に保存された履歴から、FrameGapで指定された数値の間隔で履歴が選ばれ残像として表示されます。値を大きくすると、履歴が選ばれる間隔が大きくなるので、表示される残像の間隔も大きくなります。また、設定する値は必ずLengthより小さい値を設定しないと何も表示されません。</p>",
-			"media": {
-				"youtube": [
-					{"title": "Framegap = 1", "file": "lJQW_RXYd7M"},
-					{"title": "Framegap = 4", "file": "wP588EIanOY"}
-				],
-				"image": [
-					{"title": "TimeGap,FrameGap,Lengthの流れ", "file": "AfterImage_description.gif", "width": "420", "height": "420"}
-				]
-			},
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["4 ;4番目に保存された残像"],
-			"load_priority": ["4"]
-		},
-		{
-			"parameter": "PalColor",
-			"value": ["彩度"],
-			"type": ["int"],
-			"description": "<p>パレットの彩度を下げます。</p><p>0未満と257以上は256になります。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style=\"background-color: hsl(0, 0%, 100%);border: 1px solid #000;\">　</span><br><span style=\"background-color: hsl(0, 0%, 80%);\">　</span><span style=\"background-color: hsl(0, 10%, 80%);\">　</span><span style=\"background-color: hsl(0, 20%, 80%);\">　</span><span style=\"background-color: hsl(0, 30%, 80%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 60%);\">　</span><span style=\"background-color: hsl(0, 10%, 60%);\">　</span><span style=\"background-color: hsl(0, 20%, 60%);\">　</span><span style=\"background-color: hsl(0, 30%, 60%);\">　</span><span style=\"background-color: hsl(0, 40%, 60%);\">　</span><span style=\"background-color: hsl(0, 50%, 60%);\">　</span><span style=\"background-color: hsl(0, 60%, 60%);\">　</span><span style=\"background-color: hsl(0, 70%, 60%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 50%);\">　</span><span style=\"background-color: hsl(0, 10%, 50%);\">　</span><span style=\"background-color: hsl(0, 20%, 50%);\">　</span><span style=\"background-color: hsl(0, 30%, 50%);\">　</span><span style=\"background-color: hsl(0, 40%, 50%);\">　</span><span style=\"background-color: hsl(0, 50%, 50%);\">　</span><span style=\"background-color: hsl(0, 60%, 50%);\">　</span><span style=\"background-color: hsl(0, 70%, 50%);\">　</span><span style=\"background-color: hsl(0, 80%, 50%);\">　</span><span style=\"background-color: hsl(0, 90%, 50%);\">　</span><span style=\"background-color: hsl(0, 100%, 50%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 40%);\">　</span><span style=\"background-color: hsl(0, 10%, 40%);\">　</span><span style=\"background-color: hsl(0, 20%, 40%);\">　</span><span style=\"background-color: hsl(0, 30%, 40%);\">　</span><span style=\"background-color: hsl(0, 40%, 40%);\">　</span><span style=\"background-color: hsl(0, 50%, 40%);\">　</span><span style=\"background-color: hsl(0, 60%, 40%);\">　</span><span style=\"background-color: hsl(0, 70%, 40%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 20%);\">　</span><span style=\"background-color: hsl(0, 10%, 20%);\">　</span><span style=\"background-color: hsl(0, 20%, 20%);\">　</span><span style=\"background-color: hsl(0, 30%, 20%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 0%);\">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p>",
-			"min_value": ["0 ;グレースケール"],
-			"max_value": ["256 ;変化なし"],
-			"parameter_type": "optional",
-			"default_value": ["256 ;変化なし"],
-			"load_priority": ["5"]
-		},
-		{
-			"parameter": "PalInvertall",
-			"value": ["色反転フラグ"],
-			"type": ["boolean"],
-			"description": "<p>色を反転するか・しないかのフラグです。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>(0,0,0)→<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>(256,256,256),<span style=\"border: 1px solid #000;background: rgb(0,252,0);\">　</span>(0,252,0)→<span style=\"border: 1px solid #000;background: rgb(256,4,256);\">　</span>(256,4,256),<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>(256,0,0)→<span style=\"border: 1px solid #000;background: rgb(0,256,256);\">　</span>(0,256,256)</p>",
-			"min_value": ["0 ;色が反転しない"],
-			"max_value": ["1 ;色が反転する"],
-			"parameter_type": "optional",
-			"default_value": ["0 ;変化なし"],
-			"load_priority": ["6"],
-			"media": {
-				"image": [
-					{"title": "", "file": "InvertAll.png", "width": "167", "height": "167"}
-				]
-			}
-		},
-		{
-			"parameter": "PalBright",
-			"value": ["加算する赤", "加算する緑", "加算する青"],
-			"type": ["int", "int", "int"],
-			"description": "<p>残像のパレットに指定の色要素を加算します。例えば、<code>PalBright=0,0,256</code>とすれば、青っぽくなりますが、同時に白っぽくもなります。もともと白い部分は白いままです。</p>",
-			"min_value": ["0", "0", "0"],
-			"max_value": ["256", "256", "256"],
-			"parameter_type": "optional",
-			"default_value": ["30", "30", "30 ;少し白っぽくなる。"],
-			"load_priority": ["?", "7", "8"]
-		},
-		{
-			"parameter": "PalContrast",
-			"value": ["乗算する赤", "乗算する緑", "乗算する青"],
-			"type": ["int", "int", "int"],
-			"description": "<p>残像のパレットに指定の色要素を乗算します。例えば、128,128,256とすれば、青っぽくなりますが、同時に黒っぽくもなります。もともと黒い部分は黒いまま。また、省略した場合、青っぽい状態で表示されます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["120", "120", "220 ;青黒っぽく"],
-			"load_priority": ["9", "10", "11"]
-		},
-		{
-			"parameter": "PalPostBright",
-			"value": ["add2_赤, add2_緑, add2_青"],
-			"type": ["int", "int", "int"],
-			"description": "<p>2つ目以降の残像について、指定の色要素を加算します。</p>",
-			"min_value": ["-256", "-256", "-256"],
-			"max_value": ["256", "256", "256"],
-			"parameter_type": "optional",
-			"default_value": ["0", "0", "0"],
-			"load_priority": ["12", "13", "14"]
-		},
-		{
-			"parameter": "PalAdd",
-			"value": ["加算する赤色", "加算する緑色", "加算する青色"],
-			"type": ["int", "int", "int"],
-			"description": "<p>指定した色を1,2,3,…,N番目の残像に累積して色要素が加算されます。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span><code>Add=256,0,0</code>の場合、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>赤(256,0,0)になりますが、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)のままです。</p>",
-			"min_value": ["-256", "-256", "-256 ;黒"],
-			"max_value": ["256", "256", "256 ;白"],
-			"parameter_type": "optional",
-			"default_value": ["10", "10", "25"],
-			"load_priority": ["15", "16", "17"]
-		},
-		{
-			"parameter": "PalMul",
-			"value": ["合成する赤色", "合成する緑色", "合成する青色"],
-			"type": ["int", "int", "int"],
-			"description": "<p>1,2,3,…,N番目の残像の基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256の累積した色要素を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(64,256,64);\">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(1,256,1);\">　</span>緑(1,256,1)になりますが、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)のままです。</p>",
-			"min_value": ["1", "1", "1"],
-			"max_value": ["256", "256", "256 ;変化なし"],
-			"parameter_type": "optional",
-			"default_value": [".65", ".65", ".75"],
-			"load_priority": ["18", "19", "20"]
-		},
-		{
-			"parameter": "Trans",
-			"value": ["透過の種類"],
-			"type": ["string"],
-			"description": "<p>残像の透過の種類を指定。存在しない透過の種類を指定した場合、残像は表示されません。(ただし、AfterImageは実行されているためAfterImageTimeは実行可能)</p>",
-			"possible_value": [
-				["透過の種類", "効果"],
-				["Default", "何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。"],
-				["None", "透過処理無し。Airで透過処理している時無効にできる。"],
-				["Add", "画像を半透明にする。アルファ値256,256の加算透過。"],
-				["Add1", "Addより暗い感じの半透明にする。アルファ値256,128の加算透過。"],
-				["Sub", ">画像を影のように半透明にする。減算透過。"],
-				["AddAlpha", "Alphaとセットで使用します。"]
-			],
-			"parameter_type": "optional",
-			"default_value": ["None"],
-			"load_priority": ["?"]
-		},
-		{
-			"parameter": "Alpha",
-			"value": ["ソースアルファ, デスティネーションアルファ"],
-			"type": ["int", "int"],
-			"description": "<p>透過型が\"AddAlpha\"の場合に指定します。有効範囲は0(低)から256(高)です。<br>ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["256", "0<!--????-->"],
-			"load_priority": ["21", "22"]
-		}
-	],
-
-	"qanda": [
-		{
-			"q": "他のキャラクターの残像が表示されない。",
-			"a": "<p>表示できる残像の数は、全プレイヤーで共有しているので表示しすぎると他のプレイヤーが表示できなくなります。mugen.cfgのAfterImageMaxの数値を増やす、もしくは原因のあるキャラのAfterImageを変更する。</p>"
-		},
-		{
-			"q": "キャラクター自身の残像が表示されない。",
-			"a": "<p>AfterImageが常時監視（Trigger1=1）になっている可能性があります。</p><p>Trigger1=GameTime%2にするなどAfterImageが常に実行されていない状態にしましょう。</p>"
-		},
-		{
-			"q": "キャラクター自身の残像が表示されない。",
-			"a": "<p>AfterImageのパラメータが正しい型で書かれていない可能性があります。</p><p>Transの値が\"\"で囲まれていない」か確認してみましょう。</p>"
-		},
-		{
-			"q": "処理が重い。",
-			"a": "<p>残像の表示数が多いか、Length,FrameGapの値が原因で処理が重くなっています。</p><p>Lengthの値を小さくする、FrameGapの値を大きくする、Trans=Noneにするなどの調整をしてみましょう。</p>"
-		},
-		{
-			"q": "AfterImageがすぐに切り替わらない・消去したい。",
-			"a": "<p>残像はAfterImageのTime・Lengthで指定しただけ残像が残ります。AfterImageTimeでTime=0を指定してもLengthがリセットできないため、残像はすぐに消えません。なので、新しくAfterImageをTime=0で1フレームだけ実行することで、完全に消去できます。</p>"
-		},
-		{
-			"q": "AfterImageについてのメモ",
-			"a": "<ul><li>履歴は0からlength-1までのlength個保存されている。</li><li>AfterImageの実行時間はTimeが-1でなければTimeGap*Length+Time。</li><li>（この時間内ならAfterImageTimeが動作する）</li><li>（実行時のフレームを含めているので、終了はTimeGap*Length+Time-1フレーム後）</li></ul>"
-		}
-	],
-
-	"code_sample": [
-		{
-			"title": "基本的な使い方",
-			"code": [
-				"[State 100]",
-				"Type           = Afterimage",
-				"Trigger1       = Time = 0",
-				"Trans          = Add",
-				"TimeGap        = 2",
-				"FrameGap       = 3",
-				"Time           = 20",
-				"PalBright      = 0, 0, 0",
-				"PalContrast    = 70, 70, 70",
-				"PalAdd         = 0, 0, 160",
-				"PalMul         = 1, 1, 1"
-			],
-			"media": {
-				"image": [
-					{"title": "Trans = None", "file": "AfterImage_Trans_None.png", "width": "321", "height": "253"},
-					{"title": "Trans = Add", "file": "AfterImage_Trans_Add.png", "width": "323", "height": "253"},
-					{"title": "Trans = Add1", "file": "AfterImage_Trans_Add1.png", "width": "322", "height": "254"},
-					{"title": "Trans = Sub", "file": "AfterImage_Trans_Sub.png", "width": "321", "height": "252"}
-				]
-			}
-		},
-		{
-			"title": "喰らい状態の時に残像を消す。",
-			"description": "[StateDef -2]で喰らい状態を常に監視して、ステートが自動で移行しても消去されます。",
-			"code": [
-				"[State -2, 喰らい状態で残像を消去]",
-				"Type           = AfterImage",
-				"Trigger1       = MoveType = H",
-				"Time           = 0"
-			]
-		},
-		{
-			"title": "常時AfterImageとInvisibleで、本体が透けてるように見える。",
-			"code": [
-				"[State -2]",
-				"Type           = AfterImage",
-				"Trigger1       = 1",
-				"Time           = 2",
-				"Trans          = Add",
-				"FrameGap       = 1",
-				"[State -2]",
-				"Type = AssertSpecial",
-				"Trigger1 = 1",
-				"Flag = Invisible"
-			],
-			"media": {
-				"image": [
-					{"title": "", "file": "AfterImage_Invisible.png", "width": "323", "height": "254"}
-				]
-			}
-		},
-		{
-			"title": "本体よりでかい残像はヘルパーとかExplod",
-			"code": [
-				"[State -2]",
-				"Type = Explod",
-				"Trigger1 = (Root,Vel x != 0 || Root,Vel y != 0) &amp;&amp; (Time%8=0)",
-				"Facing = Root,Facing",
-				"PosType = P1",
-				"Pos = 0, 0",
-				"Scale = 1.1, 1.1",
-				"SprPriority = -5",
-				"RemoveTime = 15",
-				"RemoveOnGetHit = 1",
-				"Trans = AddAlpha",
-				"Alpha = 256,200",
-				"Anim = 0 + var(0);残像によってキャラのアニメーションを切り替えるためのvar",
-				"IgnoreHitPause = 1"
-			],
-			"media": {
-				"image": [
-					{"title": "", "file": "AfterImageOnExplod.png", "width": "322", "height": "253"}
-				]
-			}
-		}
-	],
-
-	"quote": [
-		{"title": "AfterImage - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AfterImage"},
-		{"title": "AfterImage - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#afterimage"},
-		{"title": "AfterImage - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#afterimage"},
-		{"title": "AfterImage - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AfterImage"},
-		{"title": "AfterImage - 2500loops", "url": "http://www.2500loops.com/lec-process.html#afterimage"},
-		{"title": "AfterImage - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/60.html"},
-		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-		{"title": "AfterImage - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AfterImage&protocol=http"},
-		{"title": "AfterImage - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AfterImage"},
-		{"title": "AfterImage - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/1.htm"},
-		{"title": "本体Explod化", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1986.html"},
-		{"title": "AfterImageを研究するためのキャラ", "url": "http://www.2500loops.com/char.html#after-image"},
-		{"title": "afterimageの消去について", "url": "http://cj2.pv.land.to/4/8.htm"},
-		{"title": "afterimageの試合中切り替え", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1231.html"},
-		{"title": "エラー - 凶悪MUGEN_IRC_ログ倉庫", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-325.html"},
-		{"title": "常時監視でAfterImage", "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1961.html"},
-		{"title": "毎フレーム実行したafterimageが無効化される理由", "url": "http://lunatic284.blog90.fc2.com/blog-entry-2933.html"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "AfterImage",
+    "target": "ステート実行者自身",
+    "category": [
+      "演出",
+      "キャラクターの残像生成"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "AfterImage",
+  "description": "<p>キャラクターやノーマルヘルパーに残像を付けます。</p><p>パラメータはすべて省略可能。全てのパラメータを省略すると残像は青くなります。</p><p><code>AfterImage</code>を実行した後に別のAfterImageを実行すると、設定が上書きされ、表示していた残像は消えます。</p><p>表示する残像の数を増やしたい場合は、mugen.cfgファイルのAfterImageMaxで設定します。初期値は8、最小値は0、最大値は100。</p>",
+  "images": [
+    {
+      "src": "AfterImage.gif",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN AfterImage"
+    }
+  ],
+  "category": "state",
+  "associated_state": [
+    "AfterImageTime"
+  ],
+  "version": [
+    {
+      "no": "win版 version.1.0より前",
+      "content": "PalBrightの赤要素が機能しない。"
+    },
+    {
+      "no": "警告文",
+      "content": "ILLEGAL TIME FOR AFTERIMAGE:TIMEに-2以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "ILLEGAL FRAMEGAP FOR AFTERIMAGE:FrameGapに0以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "ILLEGAL TIMEGAP FOR AFTERIMAGE:TimeGapに0以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "ILLEGAL LENGTH FOR AFTERIMAGE:Lengthに0以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "Time",
+      "value": [
+        "持続時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>残像が指定された時間だけ表示されます。0または1を指定すると残像が非表示に、-1を指定すると残像が永続化します。</p><p>Timeが残っている間はステートが変わっても、攻撃を受けても、残像は表示され続けます。</p><p>残像が表示され続ける時間はステートコントローラのAfterImageTimeでも調整できます。</p><p>※60フレーム=1秒</p>",
+      "min_value": [
+        "-1"
+      ],
+      "max_value": [
+        "2147483627"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1 ;1フレームだけ表示"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "description": "<p>残像の持続時間をフレーム単位で指定します。省略時は <code>1</code>、<code>-1</code> で無期限です。持続時間の変更には <code>AfterImageTime</code> を使います。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "1",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    },
+    {
+      "parameter": "Length",
+      "value": [
+        "残像用情報の保存枚数"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>TimeGapで指定した数値の間隔でフレームを選ばれ、Lengthで指定した数だけそのフレームの時の残像情報(自キャラの画像と場所)が履歴に保存されます。</p>",
+      "media": {
+        "youtube": [
+          {
+            "title": "Length = 20",
+            "file": "nxzpDh2aFoM"
+          },
+          {
+            "title": "Length = 60",
+            "file": "0W8OcohJOSE"
+          }
+        ]
+      },
+      "min_value": [
+        "1"
+      ],
+      "max_value": [
+        "60"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "20 ;20個の履歴を保存"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "documentation": {
+        "description": "<p>最近のスプライトと位置を保存する履歴の容量です。省略時は <code>20</code>、公式資料が示す上限は <code>60</code> です。TimeGapとFrameGapが一定なら、容量を増やすことで表示できる残像の数や古さが増えます。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "20",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    },
+    {
+      "parameter": "Timegap",
+      "value": [
+        "残像画像の保存間隔"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>指定した数値の間隔で、キャラクターの行動が履歴として保存されます。</p><p>値を小さくすると残像が連続して表示され、値が大きくすると残像の間隔が長くなります。</p>",
+      "media": {
+        "youtube": [
+          {
+            "title": "Timegap = 1",
+            "file": "v4UHsgrEN5I"
+          },
+          {
+            "title": "Timegap = 4",
+            "file": "R1ObQavC_fg"
+          }
+        ]
+      },
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1 ;1フレーム毎に残像を保存"
+      ],
+      "load_priority": [
+        "3"
+      ],
+      "documentation": {
+        "description": "<p>履歴へ保存するフレームの間隔です。省略時の <code>1</code> では毎フレーム保存し、<code>3</code> なら3フレームごとに保存します。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "1",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    },
+    {
+      "parameter": "Framegap",
+      "value": [
+        "残像の表示間隔"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>Lengthの時に保存された履歴から、FrameGapで指定された数値の間隔で履歴が選ばれ残像として表示されます。値を大きくすると、履歴が選ばれる間隔が大きくなるので、表示される残像の間隔も大きくなります。また、設定する値は必ずLengthより小さい値を設定しないと何も表示されません。</p>",
+      "media": {
+        "youtube": [
+          {
+            "title": "Framegap = 1",
+            "file": "lJQW_RXYd7M"
+          },
+          {
+            "title": "Framegap = 4",
+            "file": "wP588EIanOY"
+          }
+        ],
+        "image": [
+          {
+            "title": "TimeGap,FrameGap,Lengthの流れ",
+            "file": "AfterImage_description.gif",
+            "width": "420",
+            "height": "420"
+          }
+        ]
+      },
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "4 ;4番目に保存された残像"
+      ],
+      "load_priority": [
+        "4"
+      ],
+      "documentation": {
+        "description": "<p>保存した履歴から残像として表示する間隔です。省略時の <code>4</code> では、履歴の1番目・5番目・9番目…を表示します。TimeGapの保存間隔と組み合わせて残像の密度を調整します。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "4",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    },
+    {
+      "parameter": "PalColor",
+      "value": [
+        "彩度"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>パレットの彩度を下げます。</p><p>0未満と257以上は256になります。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style=\"background-color: hsl(0, 0%, 100%);border: 1px solid #000;\">　</span><br><span style=\"background-color: hsl(0, 0%, 80%);\">　</span><span style=\"background-color: hsl(0, 10%, 80%);\">　</span><span style=\"background-color: hsl(0, 20%, 80%);\">　</span><span style=\"background-color: hsl(0, 30%, 80%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 60%);\">　</span><span style=\"background-color: hsl(0, 10%, 60%);\">　</span><span style=\"background-color: hsl(0, 20%, 60%);\">　</span><span style=\"background-color: hsl(0, 30%, 60%);\">　</span><span style=\"background-color: hsl(0, 40%, 60%);\">　</span><span style=\"background-color: hsl(0, 50%, 60%);\">　</span><span style=\"background-color: hsl(0, 60%, 60%);\">　</span><span style=\"background-color: hsl(0, 70%, 60%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 50%);\">　</span><span style=\"background-color: hsl(0, 10%, 50%);\">　</span><span style=\"background-color: hsl(0, 20%, 50%);\">　</span><span style=\"background-color: hsl(0, 30%, 50%);\">　</span><span style=\"background-color: hsl(0, 40%, 50%);\">　</span><span style=\"background-color: hsl(0, 50%, 50%);\">　</span><span style=\"background-color: hsl(0, 60%, 50%);\">　</span><span style=\"background-color: hsl(0, 70%, 50%);\">　</span><span style=\"background-color: hsl(0, 80%, 50%);\">　</span><span style=\"background-color: hsl(0, 90%, 50%);\">　</span><span style=\"background-color: hsl(0, 100%, 50%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 40%);\">　</span><span style=\"background-color: hsl(0, 10%, 40%);\">　</span><span style=\"background-color: hsl(0, 20%, 40%);\">　</span><span style=\"background-color: hsl(0, 30%, 40%);\">　</span><span style=\"background-color: hsl(0, 40%, 40%);\">　</span><span style=\"background-color: hsl(0, 50%, 40%);\">　</span><span style=\"background-color: hsl(0, 60%, 40%);\">　</span><span style=\"background-color: hsl(0, 70%, 40%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 20%);\">　</span><span style=\"background-color: hsl(0, 10%, 20%);\">　</span><span style=\"background-color: hsl(0, 20%, 20%);\">　</span><span style=\"background-color: hsl(0, 30%, 20%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 0%);\">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p>",
+      "min_value": [
+        "0 ;グレースケール"
+      ],
+      "max_value": [
+        "256 ;変化なし"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "256 ;変化なし"
+      ],
+      "load_priority": [
+        "5"
+      ],
+      "documentation": {
+        "description": "<p>残像の彩度を0〜256の整数で指定します。<code>0</code> でグレースケール、<code>256</code> で元の彩度のままです。省略時は <code>256</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "256",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    },
+    {
+      "parameter": "PalInvertall",
+      "value": [
+        "色反転フラグ"
+      ],
+      "type": [
+        "boolean"
+      ],
+      "description": "<p>色を反転するか・しないかのフラグです。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>(0,0,0)→<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>(256,256,256),<span style=\"border: 1px solid #000;background: rgb(0,252,0);\">　</span>(0,252,0)→<span style=\"border: 1px solid #000;background: rgb(256,4,256);\">　</span>(256,4,256),<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>(256,0,0)→<span style=\"border: 1px solid #000;background: rgb(0,256,256);\">　</span>(0,256,256)</p>",
+      "min_value": [
+        "0 ;色が反転しない"
+      ],
+      "max_value": [
+        "1 ;色が反転する"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0 ;変化なし"
+      ],
+      "load_priority": [
+        "6"
+      ],
+      "media": {
+        "image": [
+          {
+            "title": "",
+            "file": "InvertAll.png",
+            "width": "167",
+            "height": "167"
+          }
+        ]
+      },
+      "documentation": {
+        "description": "<p>残像の色を反転する整数フラグです。<code>0</code> で反転せず、非0で反転します。彩度調整の後、PalBrightによる加算の前に適用します。省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "type": [
+          "整数フラグ"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    },
+    {
+      "parameter": "PalBright",
+      "value": [
+        "加算する赤",
+        "加算する緑",
+        "加算する青"
+      ],
+      "type": [
+        "int",
+        "int",
+        "int"
+      ],
+      "description": "<p>残像のパレットに指定の色要素を加算します。例えば、<code>PalBright=0,0,256</code>とすれば、青っぽくなりますが、同時に白っぽくもなります。もともと白い部分は白いままです。</p>",
+      "min_value": [
+        "0",
+        "0",
+        "0"
+      ],
+      "max_value": [
+        "256",
+        "256",
+        "256"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "30",
+        "30",
+        "30 ;少し白っぽくなる。"
+      ],
+      "load_priority": [
+        "?",
+        "7",
+        "8"
+      ],
+      "documentation": {
+        "description": "<p>残像すべてに使うパレットへ、赤・緑・青の成分を加算します。色反転の後、PalContrastによる乗算の前に適用します。公式資料の通常範囲は各成分0〜255、省略時は <code>30, 30, 30</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "30, 30, 30",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "comment": "既存の?は未確定のまま保持し、既知の成分順序を推測で埋めない。"
+      }
+    },
+    {
+      "parameter": "PalContrast",
+      "value": [
+        "乗算する赤",
+        "乗算する緑",
+        "乗算する青"
+      ],
+      "type": [
+        "int",
+        "int",
+        "int"
+      ],
+      "description": "<p>残像のパレットに指定の色要素を乗算します。例えば、128,128,256とすれば、青っぽくなりますが、同時に黒っぽくもなります。もともと黒い部分は黒いまま。また、省略した場合、青っぽい状態で表示されます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "120",
+        "120",
+        "220 ;青黒っぽく"
+      ],
+      "load_priority": [
+        "9",
+        "10",
+        "11"
+      ],
+      "documentation": {
+        "description": "<p>残像すべてに使うパレットの赤・緑・青を、各指定値を256で割った倍率で乗算します。各値は0以上の整数で、<code>256</code> が等倍です。PalBrightの後、PalPostBrightの前に適用し、省略時は <code>120, 120, 220</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "120, 120, 220",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    },
+    {
+      "parameter": "PalPostBright",
+      "value": [
+        "add2_赤, add2_緑, add2_青"
+      ],
+      "type": [
+        "int",
+        "int",
+        "int"
+      ],
+      "description": "<p>2つ目以降の残像について、指定の色要素を加算します。</p>",
+      "min_value": [
+        "-256",
+        "-256",
+        "-256"
+      ],
+      "max_value": [
+        "256",
+        "256",
+        "256"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0",
+        "0",
+        "0"
+      ],
+      "load_priority": [
+        "12",
+        "13",
+        "14"
+      ],
+      "documentation": {
+        "description": "<p>PalContrastによる乗算の後、残像すべてのパレットへ赤・緑・青を加算します。公式資料の通常範囲は各成分0〜255、省略時は <code>0, 0, 0</code> です。2枚目以降だけに適用するパラメーターではありません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "value": [
+          "乗算後に加える赤",
+          "乗算後に加える緑",
+          "乗算後に加える青"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0, 0, 0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    },
+    {
+      "parameter": "PalAdd",
+      "value": [
+        "加算する赤色",
+        "加算する緑色",
+        "加算する青色"
+      ],
+      "type": [
+        "int",
+        "int",
+        "int"
+      ],
+      "description": "<p>指定した色を1,2,3,…,N番目の残像に累積して色要素が加算されます。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span><code>Add=256,0,0</code>の場合、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>赤(256,0,0)になりますが、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)のままです。</p>",
+      "min_value": [
+        "-256",
+        "-256",
+        "-256 ;黒"
+      ],
+      "max_value": [
+        "256",
+        "256",
+        "256 ;白"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "10",
+        "10",
+        "25"
+      ],
+      "load_priority": [
+        "15",
+        "16",
+        "17"
+      ],
+      "documentation": {
+        "description": "<p>古い残像ほど、赤・緑・青の加算を繰り返します。最新の履歴には0回、その次に新しい履歴には1回、さらに前の履歴には2回…と適用します。各回の加算後にPalMulを乗算します。公式資料の通常範囲は各成分0〜255、省略時は <code>10, 10, 25</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "10, 10, 25",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    },
+    {
+      "parameter": "PalMul",
+      "value": [
+        "合成する赤色",
+        "合成する緑色",
+        "合成する青色"
+      ],
+      "type": [
+        "int",
+        "int",
+        "int"
+      ],
+      "description": "<p>1,2,3,…,N番目の残像の基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256の累積した色要素を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(64,256,64);\">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(1,256,1);\">　</span>緑(1,256,1)になりますが、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)のままです。</p>",
+      "min_value": [
+        "1",
+        "1",
+        "1"
+      ],
+      "max_value": [
+        "256",
+        "256",
+        "256 ;変化なし"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ".65",
+        ".65",
+        ".75"
+      ],
+      "load_priority": [
+        "18",
+        "19",
+        "20"
+      ],
+      "documentation": {
+        "description": "<p>PalAddによる加算の後に、赤・緑・青を指定した倍率で乗算します。各値は0以上の浮動小数で、<code>1</code> が等倍です。256で割る指定ではありません。最新の履歴には0回、古い履歴ほど1回・2回…と繰り返し、省略時は <code>.65, .65, .75</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-2002",
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "type": [
+          "float",
+          "float",
+          "float"
+        ],
+        "value": [
+          "赤の乗算倍率",
+          "緑の乗算倍率",
+          "青の乗算倍率"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": ".65, .65, .75",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    },
+    {
+      "parameter": "Trans",
+      "value": [
+        "透過の種類"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>残像の透過の種類を指定。存在しない透過の種類を指定した場合、残像は表示されません。(ただし、AfterImageは実行されているためAfterImageTimeは実行可能)</p>",
+      "possible_value": [
+        [
+          "透過の種類",
+          "効果"
+        ],
+        [
+          "Default",
+          "何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。"
+        ],
+        [
+          "None",
+          "透過処理無し。Airで透過処理している時無効にできる。"
+        ],
+        [
+          "Add",
+          "画像を半透明にする。アルファ値256,256の加算透過。"
+        ],
+        [
+          "Add1",
+          "Addより暗い感じの半透明にする。アルファ値256,128の加算透過。"
+        ],
+        [
+          "Sub",
+          ">画像を影のように半透明にする。減算透過。"
+        ],
+        [
+          "AddAlpha",
+          "Alphaとセットで使用します。"
+        ]
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "None"
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "documentation": {
+        "description": "<p>残像の透過方式を指定します。標準指定は <code>None</code>（不透明）、<code>Add</code>（加算）、<code>Add1</code>（加算＋背景を暗くする）、<code>Sub</code>（減算）です。1.0 / 1.1資料の省略値は <code>None</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "afterimage-local-1.0",
+            "afterimage-local-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "possible_value"
+        ]
+      },
+      "expression_policy": "string_literal",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "None",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "afterimage-local-1.0",
+              "afterimage-local-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "comment": "既存の?は未確定のまま保持し、既知の成分順序を推測で埋めない。"
+      }
+    },
+    {
+      "parameter": "Alpha",
+      "value": [
+        "ソースアルファ, デスティネーションアルファ"
+      ],
+      "type": [
+        "int",
+        "int"
+      ],
+      "description": "<p>透過型が\"AddAlpha\"の場合に指定します。有効範囲は0(低)から256(高)です。<br>ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "256",
+        "0<!--????-->"
+      ],
+      "load_priority": [
+        "21",
+        "22"
+      ],
+      "visibility": "internal",
+      "expression_policy": "unknown",
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "適用世代・省略値は未確定",
+          "evidence": {
+            "status": "unverified",
+            "basis": [
+              "source_code"
+            ],
+            "source_refs": [
+              "afterimage-legacy-data"
+            ]
+          }
+        }
+      ],
+      "notes": [
+        {
+          "kind": "research",
+          "content": "<p>旧Alphaの説明・256,0省略値・読み込み順21,22を保持する。公式3世代のAfterImage欄にはAlpha / AddAlphaの記載がない。一方、ニコニコMUGENwikiには新MUGENでAddAlphaに対応しWinMUGENではAddとして扱われるという報告がある。対応ビルド・Alpha省略値の根拠が確定するまで、公式にないという理由だけで非実在と断定せず、公開パラメーターとCNSテンプレートから外す。</p>",
+          "evidence": {
+            "status": "unverified",
+            "basis": [
+              "source_code"
+            ],
+            "source_refs": [
+              "afterimage-legacy-data",
+              "afterimage-local-2002",
+              "afterimage-local-1.0",
+              "afterimage-local-1.1",
+              "afterimage-version-report"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持する。"
+      }
+    }
+  ],
+  "qanda": [
+    {
+      "q": "他のキャラクターの残像が表示されない。",
+      "a": "<p>表示できる残像の数は、全プレイヤーで共有しているので表示しすぎると他のプレイヤーが表示できなくなります。mugen.cfgのAfterImageMaxの数値を増やす、もしくは原因のあるキャラのAfterImageを変更する。</p>",
+      "visibility": "internal"
+    },
+    {
+      "q": "キャラクター自身の残像が表示されない。",
+      "a": "<p>AfterImageが常時監視（Trigger1=1）になっている可能性があります。</p><p>Trigger1=GameTime%2にするなどAfterImageが常に実行されていない状態にしましょう。</p>",
+      "visibility": "internal"
+    },
+    {
+      "q": "キャラクター自身の残像が表示されない。",
+      "a": "<p>AfterImageのパラメータが正しい型で書かれていない可能性があります。</p><p>Transの値が\"\"で囲まれていない」か確認してみましょう。</p>",
+      "visibility": "internal"
+    },
+    {
+      "q": "処理が重い。",
+      "a": "<p>残像の表示数が多いか、Length,FrameGapの値が原因で処理が重くなっています。</p><p>Lengthの値を小さくする、FrameGapの値を大きくする、Trans=Noneにするなどの調整をしてみましょう。</p>",
+      "visibility": "internal"
+    },
+    {
+      "q": "AfterImageがすぐに切り替わらない・消去したい。",
+      "a": "<p>残像はAfterImageのTime・Lengthで指定しただけ残像が残ります。AfterImageTimeでTime=0を指定してもLengthがリセットできないため、残像はすぐに消えません。なので、新しくAfterImageをTime=0で1フレームだけ実行することで、完全に消去できます。</p>",
+      "visibility": "internal"
+    },
+    {
+      "q": "AfterImageについてのメモ",
+      "a": "<ul><li>履歴は0からlength-1までのlength個保存されている。</li><li>AfterImageの実行時間はTimeが-1でなければTimeGap*Length+Time。</li><li>（この時間内ならAfterImageTimeが動作する）</li><li>（実行時のフレームを含めているので、終了はTimeGap*Length+Time-1フレーム後）</li></ul>",
+      "visibility": "internal"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "基本的な使い方",
+      "code": [
+        "[State 100]",
+        "Type           = Afterimage",
+        "Trigger1       = Time = 0",
+        "Trans          = Add",
+        "TimeGap        = 2",
+        "FrameGap       = 3",
+        "Time           = 20",
+        "PalBright      = 0, 0, 0",
+        "PalContrast    = 70, 70, 70",
+        "PalAdd         = 0, 0, 160",
+        "PalMul         = 1, 1, 1"
+      ],
+      "media": {
+        "image": [
+          {
+            "title": "Trans = None",
+            "file": "AfterImage_Trans_None.png",
+            "width": "321",
+            "height": "253"
+          },
+          {
+            "title": "Trans = Add",
+            "file": "AfterImage_Trans_Add.png",
+            "width": "323",
+            "height": "253"
+          },
+          {
+            "title": "Trans = Add1",
+            "file": "AfterImage_Trans_Add1.png",
+            "width": "322",
+            "height": "254"
+          },
+          {
+            "title": "Trans = Sub",
+            "file": "AfterImage_Trans_Sub.png",
+            "width": "321",
+            "height": "252"
+          }
+        ]
+      }
+    },
+    {
+      "title": "喰らい状態の時に残像を消す。",
+      "description": "[StateDef -2]で喰らい状態を常に監視して、ステートが自動で移行しても消去されます。",
+      "code": [
+        "[State -2, 喰らい状態で残像を消去]",
+        "Type           = AfterImage",
+        "Trigger1       = MoveType = H",
+        "Time           = 0"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "常時AfterImageとInvisibleで、本体が透けてるように見える。",
+      "code": [
+        "[State -2]",
+        "Type           = AfterImage",
+        "Trigger1       = 1",
+        "Time           = 2",
+        "Trans          = Add",
+        "FrameGap       = 1",
+        "[State -2]",
+        "Type = AssertSpecial",
+        "Trigger1 = 1",
+        "Flag = Invisible"
+      ],
+      "media": {
+        "image": [
+          {
+            "title": "",
+            "file": "AfterImage_Invisible.png",
+            "width": "323",
+            "height": "254"
+          }
+        ]
+      },
+      "visibility": "internal"
+    },
+    {
+      "title": "本体よりでかい残像はヘルパーとかExplod",
+      "code": [
+        "[State -2]",
+        "Type = Explod",
+        "Trigger1 = (Root,Vel x != 0 || Root,Vel y != 0) &amp;&amp; (Time%8=0)",
+        "Facing = Root,Facing",
+        "PosType = P1",
+        "Pos = 0, 0",
+        "Scale = 1.1, 1.1",
+        "SprPriority = -5",
+        "RemoveTime = 15",
+        "RemoveOnGetHit = 1",
+        "Trans = AddAlpha",
+        "Alpha = 256,200",
+        "Anim = 0 + var(0);残像によってキャラのアニメーションを切り替えるためのvar",
+        "IgnoreHitPause = 1"
+      ],
+      "media": {
+        "image": [
+          {
+            "title": "",
+            "file": "AfterImageOnExplod.png",
+            "width": "322",
+            "height": "253"
+          }
+        ]
+      },
+      "visibility": "internal"
+    }
+  ],
+  "quote": [
+    {
+      "title": "AfterImage - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AfterImage"
+    },
+    {
+      "title": "AfterImage - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#afterimage"
+    },
+    {
+      "title": "AfterImage - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#afterimage"
+    },
+    {
+      "title": "AfterImage - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AfterImage"
+    },
+    {
+      "title": "AfterImage - 2500loops",
+      "url": "http://www.2500loops.com/lec-process.html#afterimage"
+    },
+    {
+      "title": "AfterImage - MUGEN CNS WIKI CHAOS@予定",
+      "url": "http://www49.atwiki.jp/mugencns/pages/60.html"
+    },
+    {
+      "title": "不具合・対策まとめ - MUGENの便覧",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "visibility": "internal"
+    },
+    {
+      "title": "AfterImage - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AfterImage&protocol=http"
+    },
+    {
+      "title": "AfterImage - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AfterImage"
+    },
+    {
+      "title": "AfterImage - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/1.htm"
+    },
+    {
+      "title": "本体Explod化",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1986.html"
+    },
+    {
+      "title": "AfterImageを研究するためのキャラ",
+      "url": "http://www.2500loops.com/char.html#after-image"
+    },
+    {
+      "title": "afterimageの消去について",
+      "url": "http://cj2.pv.land.to/4/8.htm"
+    },
+    {
+      "title": "afterimageの試合中切り替え",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1231.html"
+    },
+    {
+      "title": "エラー - 凶悪MUGEN_IRC_ログ倉庫",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-325.html"
+    },
+    {
+      "title": "常時監視でAfterImage",
+      "url": "http://kyoakumugenirc.blog61.fc2.com/blog-entry-1961.html"
+    },
+    {
+      "title": "毎フレーム実行したafterimageが無効化される理由",
+      "url": "http://lunatic284.blog90.fc2.com/blog-entry-2933.html"
+    },
+    {
+      "id": "afterimage-local-2002",
+      "title": "AfterImage — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AfterImage",
+      "source_type": "official_document"
+    },
+    {
+      "id": "afterimage-local-1.0",
+      "title": "AfterImage — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#afterimage",
+      "source_type": "official_document"
+    },
+    {
+      "id": "afterimage-local-1.1",
+      "title": "AfterImage — 保存済み Elecbyte 1.1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#afterimage",
+      "source_type": "official_document"
+    },
+    {
+      "id": "afterimage-chaos",
+      "title": "AfterImage — MUGEN CNS WIKI CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/60.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "afterimage-legacy-data",
+      "title": "AfterImage — 移行前の説明・Q&A・画像・例原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/90fba1e862922326e723ea9eb7f079002ee06ebb/src/content/state-controllers/AfterImage.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "afterimage-version-report",
+      "title": "新MUGENのAfterImage透過の報告 — ニコニコMUGENwiki",
+      "url": "https://w.atwiki.jp/niconicomugen/pages/3627.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "afterimage-research-1.0",
+      "title": "braindump 1 — MUGEN Room（1.0解析）",
+      "url": "https://ziddia.blog.fc2.com/blog-entry-42.html",
+      "source_type": "personal_research",
+      "visibility": "internal"
+    },
+    {
+      "id": "afterimage-history-1.1",
+      "title": "AfterImage — Elecbyte 1.1 Alpha 3 履歴",
+      "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-1-alpha-3",
+      "source_type": "official_history",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者のスプライトと位置を履歴へ保存し、過去の姿を残像として表示します。固有パラメーターはすべて省略可能で、標準の色設定では青みのある残像になります。保存間隔は <code>TimeGap</code>、表示する履歴の間隔は <code>FrameGap</code>、履歴の容量は <code>Length</code> で調整します。</p><p>再実行すると設定が上書きされ、表示中の残像が消えます。持続中はステート変更や被弾でも有効で、持続時間の変更には <code>AfterImageTime</code> を使えます。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document",
+        "community_documentation"
+      ],
+      "source_refs": [
+        "afterimage-local-2002",
+        "afterimage-local-1.0",
+        "afterimage-local-1.1",
+        "afterimage-chaos"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "PalBrightの赤要素が機能しない。",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "afterimage-legacy-data",
+          "afterimage-chaos",
+          "afterimage-research-1.0"
+        ]
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "content": "ILLEGAL TIME FOR AFTERIMAGE:TIMEに-2以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "afterimage-legacy-data"
+        ]
+      },
+      "legacy_index": 1
+    },
+    {
+      "kind": "research",
+      "content": "ILLEGAL FRAMEGAP FOR AFTERIMAGE:FrameGapに0以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "afterimage-legacy-data"
+        ]
+      },
+      "legacy_index": 2
+    },
+    {
+      "kind": "research",
+      "content": "ILLEGAL TIMEGAP FOR AFTERIMAGE:TimeGapに0以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "afterimage-legacy-data"
+        ]
+      },
+      "legacy_index": 3
+    },
+    {
+      "kind": "research",
+      "content": "ILLEGAL LENGTH FOR AFTERIMAGE:Lengthに0以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "afterimage-legacy-data"
+        ]
+      },
+      "legacy_index": 4
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>残像すべての色は、PalColor → PalInvertAll → PalBrightによる加算 → PalContrastによる乗算（指定値/256）→ PalPostBrightによる加算の順に調整します。その後、古い履歴ほどPalAddによる加算とPalMulの倍率を繰り返します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "afterimage-local-2002",
+          "afterimage-local-1.0",
+          "afterimage-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧概要のAfterImageMax=8・0..100・全プレイヤー共有という記録、Time=0/1の非表示、持続時間の細かな終了計算、常時再実行・Invisible併用・完全消去の例、Transの引用符必須というQ&Aを原本へ保持する。公開は検証環境と再現条件の整理後に判断する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "afterimage-legacy-data"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧PalBrightの赤成分は1.0より前で機能しないという区切りを確定しない。CHAOSはWin版の赤が適用されないと記し、MUGEN Roomの1.0解析記事もAfterImageの色成分が0x30に固定される不具合を報告する。この記事のpalcolor[0]という表記と構造体のPalBrightを同一視せず、正確な対象と修正ビルドを実測で切り分ける。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "afterimage-legacy-data",
+          "afterimage-chaos",
+          "afterimage-research-1.0"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧PalColorの範囲外補正、各Pal項目の負数・256の扱い、乗算/加算の極端値で色が反転・0になるCHAOSの報告、反転図の256基準や丸め・飽和を保持する。公式の通常範囲0..255を実装の完全な許容範囲として断定しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "afterimage-legacy-data",
+          "afterimage-chaos",
+          "afterimage-local-2002",
+          "afterimage-local-1.0",
+          "afterimage-local-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>保存済み公式履歴の1.1 Alpha 3に、Alpha 2で残像が補間を無視する不具合の修正が記録されている。正確な表示条件の整理は未着手で、今回は公開しない。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "afterimage-history-1.1"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "afterimage-local-2002",
+      "afterimage-local-1.0",
+      "afterimage-local-1.1"
+    ],
+    "comment": "2026-10-03: 標準12項目の型・省略値、履歴間隔、全残像共通と古い履歴への累積色効果を照合。Alpha / AddAlphaは非実在と断定せず内部で追跡。実機検証ではない。"
+  }
 }

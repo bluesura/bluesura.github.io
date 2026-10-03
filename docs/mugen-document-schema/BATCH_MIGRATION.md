@@ -714,3 +714,20 @@ npm run mugen:batch -- --batch palette-remap-01 --target RemapPal --apply
 ```
 
 このバッチは適用済みです。次は AfterImage 本体の旧透過指定の根拠と公開範囲を整理します。
+
+## afterimage-effects-01：残像生成の1件
+
+2026-10-03、AfterImage を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/afterimage-effects-01/` に保存しています。
+
+- 保存済み公式3世代の標準12項目を照合しました。PalPostBrightは全残像共通の乗算後加算です。PalAdd / PalMulは最新の履歴へ0回、古い履歴へ1回・2回…と繰り返します。PalMulの旧整数・256で割る説明は原位置へ残し、公開型を浮動小数の倍率へ訂正しました。FrameGap=4の表示例も1番目・5番目・9番目へ対応させています。
+- `parameter[].visibility` / `arguments[].visibility` を採用しました。旧Alphaの説明・256,0?・読み込み順21,22は内部へ保持し、詳細・一覧・CNS欄・読み込み順表から外します。非公開項目の後にある共通項目は元のアンカー番号を保ちます。通常の12省略値と共通2項目はCNS欄の有効行です。
+- 公式AfterImage欄にはAlpha / AddAlphaがありませんが、[新MUGENの報告](https://w.atwiki.jp/niconicomugen/pages/3627.html)には対応の世代差が記録されています。非実在と断定せず、対応ビルドと省略値を内部で追跡します。PalBrightの赤が「1.0より前だけ機能しない」という旧区切りも確定せず、[CHAOS](https://w.atwiki.jp/mugencns/pages/60.html)と[1.0解析記事](https://ziddia.blog.fc2.com/blog-entry-42.html)の表記差を残しました。
+- 旧不具合・警告の履歴5件、範囲外の値・丸め、終了時間計算、AfterImageMaxの値、Q&A6件、応用例3件は原文を保持して内部で追跡します。基本例とその透過比較画像、パラメーター動画・画像・トップ画像は公開のままです。取得できなかった旧IRC・2500loops記事の本文を推測で補っていません。
+
+```sh
+npm run mugen:batch-baseline -- --batch afterimage-effects-01
+npm run mugen:batch -- --batch afterimage-effects-01 --target AfterImage
+npm run mugen:batch -- --batch afterimage-effects-01 --target AfterImage --apply
+```
+
+このバッチは適用済みです。次は AngleDraw など描画変換のページを照合します。

@@ -54,6 +54,7 @@ export const noteSchema = z.object(noteShape).strict().superRefine((value, ctx) 
 const notes = z.array(noteSchema);
 const argumentSchema = z.object({
   name: id, type: strings, description: z.string().optional(),
+  visibility: z.enum(['public', 'internal']).optional(),
   expression_policy: expressionPolicySchema.optional(),
   // For an incremental migration, retain legacy argument detail in the original parameter entry.
   legacy_index: z.number().int().nonnegative().optional(),
@@ -96,6 +97,7 @@ const documentDocumentationSchema = z.object({
 }).strict();
 export const parameterSchema = z.object({
   parameter: z.string(), type: strings.optional(), value: strings.optional(),
+  visibility: z.enum(['public', 'internal']).optional(),
   parameter_type: z.string().optional(), default_value: strings.optional(),
   load_priority: strings.optional(),
   default: defaultSchema.optional(), load_priority_evidence: evidenceSchema.optional(),

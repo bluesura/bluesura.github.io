@@ -16,6 +16,8 @@
 
 > 2026-10-03: `parameter[].variants[].parameter_type` で環境別の必須・任意・代替指定を記録できます。RemapPal の1.0必須 / 1.1任意が使用例です。異なる指定条件を持つ項目は見出しで世代依存を示し、CNS欄は環境確認付きのコメント行にします。
 
+> 2026-10-03: `parameter[].visibility` / `arguments[].visibility` は `public` / `internal`。省略時は公開です。内部項目は詳細・一覧・CNS欄・読み込み順表へ出力せず、説明・省略値・読み込み順・検証記録をJSONへ保持します。AfterImage.Alphaが使用例です。
+
 このドキュメントは、`mugen-template-all.json` の各フィールドに入力すべき情報を定義した仕様書です。
 LLM（大規模言語モデル）への指示や、ドキュメントデータベース構築時のリファレンスとして利用してください。
 

@@ -1,122 +1,933 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "BGPalFX",
-		"target": "背景",
-		"category": ["色の操作","カラーパレット変更による視覚効果"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "BGPalFX",
-	"description": "<p>背景のパレットに指定色を加算・乗算します。</p><p>全画面に加算する場合は<code>AllPalFX</code>,キャラクターのみに加算する場合は<code>PalFX</code>,指定色で塗りつぶしたい場合は<code>EnvColor</code>。</p>",
-	"category": "state",
-	"associated_state": ["PalFX","AllPalFX","EnvColor"],
-
-	"version": [
-		{"no": "-", "content": "<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。"},
-		{"no": "警告文", "content": "INVALID PALFX TIME:Timeに-2以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "INVALID PALFX COLOR:Colorに-1以下、257以上", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"},
-		{"no": "警告文", "content": "INVALID PALFX MUL VALUE:MULに-1以下", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "Time",
-			"value": ["持続時間"],
-			"type": ["int"],
-			"description": "<p>効果の持続時間をフレーム単位で指定します。</p><p>ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、<code>Time=1</code>にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXで<code>Time=1</code>をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>※60フレーム=1秒</p>",
-			"min_value": ["-1"],
-			"max_value": ["2147483647"],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Color",
-			"value": ["彩度"],
-			"type": ["int"],
-			"description": "<p>パレットの彩度を下げます。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style=\"background-color: hsl(0, 0%, 100%);border: 1px solid #000;\">　</span><br><span style=\"background-color: hsl(0, 0%, 80%);\">　</span><span style=\"background-color: hsl(0, 10%, 80%);\">　</span><span style=\"background-color: hsl(0, 20%, 80%);\">　</span><span style=\"background-color: hsl(0, 30%, 80%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 60%);\">　</span><span style=\"background-color: hsl(0, 10%, 60%);\">　</span><span style=\"background-color: hsl(0, 20%, 60%);\">　</span><span style=\"background-color: hsl(0, 30%, 60%);\">　</span><span style=\"background-color: hsl(0, 40%, 60%);\">　</span><span style=\"background-color: hsl(0, 50%, 60%);\">　</span><span style=\"background-color: hsl(0, 60%, 60%);\">　</span><span style=\"background-color: hsl(0, 70%, 60%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 50%);\">　</span><span style=\"background-color: hsl(0, 10%, 50%);\">　</span><span style=\"background-color: hsl(0, 20%, 50%);\">　</span><span style=\"background-color: hsl(0, 30%, 50%);\">　</span><span style=\"background-color: hsl(0, 40%, 50%);\">　</span><span style=\"background-color: hsl(0, 50%, 50%);\">　</span><span style=\"background-color: hsl(0, 60%, 50%);\">　</span><span style=\"background-color: hsl(0, 70%, 50%);\">　</span><span style=\"background-color: hsl(0, 80%, 50%);\">　</span><span style=\"background-color: hsl(0, 90%, 50%);\">　</span><span style=\"background-color: hsl(0, 100%, 50%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 40%);\">　</span><span style=\"background-color: hsl(0, 10%, 40%);\">　</span><span style=\"background-color: hsl(0, 20%, 40%);\">　</span><span style=\"background-color: hsl(0, 30%, 40%);\">　</span><span style=\"background-color: hsl(0, 40%, 40%);\">　</span><span style=\"background-color: hsl(0, 50%, 40%);\">　</span><span style=\"background-color: hsl(0, 60%, 40%);\">　</span><span style=\"background-color: hsl(0, 70%, 40%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 20%);\">　</span><span style=\"background-color: hsl(0, 10%, 20%);\">　</span><span style=\"background-color: hsl(0, 20%, 20%);\">　</span><span style=\"background-color: hsl(0, 30%, 20%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 0%);\">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p>",
-			"min_value": ["0 ;グレースケール"],
-			"max_value": ["256 ;変化なし"],
-			"parameter_type": "optional",
-			"default_value": ["256"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "Add",
-			"value": ["加算する赤色", "加算する緑色", "加算する青色"],
-			"type": ["int", "int", "int"],
-			"description": "<p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span><code>Add=256,0,0</code>の場合、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>赤(256,0,0)になりますが、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)のままです。</p>",
-			"min_value": ["-256", "-256", "-256 ;黒"],
-			"max_value": ["256", "256", "256 ;白"],
-			"parameter_type": "optional",
-			"default_value": ["0", "0", "0"],
-			"load_priority": ["3", "4", "5"]
-		},
-		{
-			"parameter": "Mul",
-			"value": ["合成する赤色", "合成する緑色", "合成する青色"],
-			"type": ["int", "int", "int"],
-			"description": "<p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(64,256,64);\">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(1,256,1);\">　</span>緑(1,256,1)になりますが、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)のままです。</p>",
-			"min_value": ["1", "1", "1"],
-			"max_value": ["256", "256", "256 ;変化なし"],
-			"parameter_type": "optional",
-			"default_value": ["256", "256", "256"],
-			"load_priority": ["6", "7", "8"]
-		},
-		{
-			"parameter": "SinAdd",
-			"value": ["周期する赤色", "周期する緑色", "周期する青色", "周期"],
-			"type": ["int", "int", "int", "int"],
-			"description": "<p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,256);\">　</span><code>SinAdd=0,0,256,20</code>,<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)は、5F後<span style=\"border: 1px solid #000;background: rgb(128,128,256);\">　</span>(128,128,256)になり、10F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻り、15F後<span style=\"border: 1px solid #000;background: rgb(128,128,0);\">　</span>(128,128,0)、20F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻る、という周期を繰り返します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0", "0", "0", "0"],
-			"load_priority": ["9", "10", "11", "12"],
-			"media": {
-				"image": [
-					{"title": "", "file": "SinAdd.png", "width": "600", "height": "242"}
-				]
-			}
-		},
-		{
-			"parameter": "InvertAll",
-			"value": ["色反転フラグ"],
-			"type": ["boolean"],
-			"description": "<p>色を反転するか・しないかのフラグです。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>(0,0,0)→<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>(256,256,256),<span style=\"border: 1px solid #000;background: rgb(0,252,0);\">　</span>(0,252,0)→<span style=\"border: 1px solid #000;background: rgb(256,4,256);\">　</span>(256,4,256),<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>(256,0,0)→<span style=\"border: 1px solid #000;background: rgb(0,256,256);\">　</span>(0,256,256)</p>",
-			"min_value": ["0 ;色が反転しない"],
-			"max_value": ["1 ;色が反転する"],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["13"],
-			"media": {
-				"image": [
-					{"title": "", "file": "InvertAll.png", "width": "167", "height": "167"}
-				]
-			}
-		}
-	],
-
-	"qanda": [
-		{
-			"q": "表示される色の処理順",
-			"a": "<p>各条件を以下のように定義する。</p><ul><li>Add    = Add_赤色(AR), Add_緑色(AG), Add_青色(AB)</li><li>SinAdd = Sin_赤色(SR), Sin_緑色(SG), Sin_青色(SB), 周期(P)</li><li>Mul    = Mul_赤色(MR), Mul_緑色(MG), Mul_青色(MB)</li></ul><br><br><br><br>経過時間:(T) ※単位はフレーム、1秒=60フレーム<br>円周率:(Pi)<br><br>変更する色:<br>Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br><br>==========処理の流れ==========<br>処理する色 = Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br>↓<br>彩度(Color)<br>彩度を調整した色 = Color_赤色(CR), Color_緑色(CG), Color_青色(CB)<br>↓<br>経過時間(T)に表示される色は<br>赤要素(RR) = (CR + AR + SR * Sin(2*Pi*T/P))  *  MR/256<br>緑要素(RG) = (CG + AG + SG * Sin(2*Pi*T/P))  *  MG/256<br>青要素(RB) = (CB + AB + SB * Sin(2*Pi*T/P))  *  MB/256<br>↓<br>色反転(InvertAll)<br>反転した赤要素(IR) = 256-RR<br>反転した緑要素(IG) = 256-RG<br>反転した青要素(IB) = 256-RB<br>↓<br>結果色(IR, IG, IB)が表示されます。</p>"
-		}
-	],
-
-	"quote": [
-		{"title": "BGPalFX - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#BGPalFX"},
-		{"title": "BGPalFX - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#bgpalfx"},
-		{"title": "BGPalFX - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#bgpalfx"},
-		{"title": "BGPalFX - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/BGPalFX"},
-		{"title": "BGPalFX - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/65.html"},
-		{"title": "不具合・対策まとめ - MUGENの便覧", "url": "http://mugenbinran.web.fc2.com/error.html#12"},
-		{"title": "BGPalFX - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BGPalFX&protocol=http"},
-		{"title": "BGPalFX - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#BGPalFX"},
-		{"title": "BGPalFX - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "BGPalFX",
+    "target": "背景",
+    "category": [
+      "色の操作",
+      "カラーパレット変更による視覚効果"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "BGPalFX",
+  "description": "<p>背景のパレットに指定色を加算・乗算します。</p><p>全画面に加算する場合は<code>AllPalFX</code>,キャラクターのみに加算する場合は<code>PalFX</code>,指定色で塗りつぶしたい場合は<code>EnvColor</code>。</p>",
+  "category": "state",
+  "associated_state": [
+    "PalFX",
+    "AllPalFX",
+    "EnvColor"
+  ],
+  "version": [
+    {
+      "no": "-",
+      "content": "<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。"
+    },
+    {
+      "no": "警告文",
+      "content": "INVALID PALFX TIME:Timeに-2以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "INVALID PALFX COLOR:Colorに-1以下、257以上",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    },
+    {
+      "no": "警告文",
+      "content": "INVALID PALFX MUL VALUE:MULに-1以下",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "Time",
+      "value": [
+        "持続時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>効果の持続時間をフレーム単位で指定します。</p><p>ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、<code>Time=1</code>にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXで<code>Time=1</code>をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。</p><p>-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。</p><p>※60フレーム=1秒</p>",
+      "min_value": [
+        "-1"
+      ],
+      "max_value": [
+        "2147483647"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "description": "<p>効果の持続時間をフレーム単位で指定します。<code>-1</code> で無期限に継続し、<code>0</code> で現在の効果を停止します。省略時は <code>0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document",
+            "community_documentation"
+          ],
+          "source_refs": [
+            "bgpalfx-local-2002",
+            "bgpalfx-local-1.0",
+            "bgpalfx-local-1.1",
+            "bgpalfx-palfx-2002",
+            "bgpalfx-palfx-1.0",
+            "bgpalfx-palfx-1.1",
+            "bgpalfx-chaos-palfx"
+          ]
+        },
+        "hide_legacy": [
+          "max_value"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document",
+              "community_documentation"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1",
+              "bgpalfx-chaos-palfx"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+      }
+    },
+    {
+      "parameter": "Color",
+      "value": [
+        "彩度"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>パレットの彩度を下げます。</p><p><div>例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。</div><span style=\"background-color: hsl(0, 0%, 100%);border: 1px solid #000;\">　</span><br><span style=\"background-color: hsl(0, 0%, 80%);\">　</span><span style=\"background-color: hsl(0, 10%, 80%);\">　</span><span style=\"background-color: hsl(0, 20%, 80%);\">　</span><span style=\"background-color: hsl(0, 30%, 80%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 60%);\">　</span><span style=\"background-color: hsl(0, 10%, 60%);\">　</span><span style=\"background-color: hsl(0, 20%, 60%);\">　</span><span style=\"background-color: hsl(0, 30%, 60%);\">　</span><span style=\"background-color: hsl(0, 40%, 60%);\">　</span><span style=\"background-color: hsl(0, 50%, 60%);\">　</span><span style=\"background-color: hsl(0, 60%, 60%);\">　</span><span style=\"background-color: hsl(0, 70%, 60%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 50%);\">　</span><span style=\"background-color: hsl(0, 10%, 50%);\">　</span><span style=\"background-color: hsl(0, 20%, 50%);\">　</span><span style=\"background-color: hsl(0, 30%, 50%);\">　</span><span style=\"background-color: hsl(0, 40%, 50%);\">　</span><span style=\"background-color: hsl(0, 50%, 50%);\">　</span><span style=\"background-color: hsl(0, 60%, 50%);\">　</span><span style=\"background-color: hsl(0, 70%, 50%);\">　</span><span style=\"background-color: hsl(0, 80%, 50%);\">　</span><span style=\"background-color: hsl(0, 90%, 50%);\">　</span><span style=\"background-color: hsl(0, 100%, 50%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 40%);\">　</span><span style=\"background-color: hsl(0, 10%, 40%);\">　</span><span style=\"background-color: hsl(0, 20%, 40%);\">　</span><span style=\"background-color: hsl(0, 30%, 40%);\">　</span><span style=\"background-color: hsl(0, 40%, 40%);\">　</span><span style=\"background-color: hsl(0, 50%, 40%);\">　</span><span style=\"background-color: hsl(0, 60%, 40%);\">　</span><span style=\"background-color: hsl(0, 70%, 40%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 20%);\">　</span><span style=\"background-color: hsl(0, 10%, 20%);\">　</span><span style=\"background-color: hsl(0, 20%, 20%);\">　</span><span style=\"background-color: hsl(0, 30%, 20%);\">　</span><br><span style=\"background-color: hsl(0, 0%, 0%);\">　</span><br><span>0</span>←　　　　　　　　→<span>256</span></p>",
+      "min_value": [
+        "0 ;グレースケール"
+      ],
+      "max_value": [
+        "256 ;変化なし"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "256"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "documentation": {
+        "description": "<p>彩度を0〜256の整数で指定します。<code>0</code> でグレースケール、<code>256</code> で元の彩度のままです。中間の値で彩度を段階的に変えます。<code>InvertAll</code> と加算・乗算より先に適用され、省略時は <code>256</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "bgpalfx-local-2002",
+            "bgpalfx-local-1.0",
+            "bgpalfx-local-1.1",
+            "bgpalfx-palfx-2002",
+            "bgpalfx-palfx-1.0",
+            "bgpalfx-palfx-1.1"
+          ]
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "256",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+      }
+    },
+    {
+      "parameter": "Add",
+      "value": [
+        "加算する赤色",
+        "加算する緑色",
+        "加算する青色"
+      ],
+      "type": [
+        "int",
+        "int",
+        "int"
+      ],
+      "description": "<p>指定した色をパレットに加算します。</p><p>暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span><code>Add=256,0,0</code>の場合、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>赤(256,0,0)になりますが、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)のままです。</p>",
+      "min_value": [
+        "-256",
+        "-256",
+        "-256 ;黒"
+      ],
+      "max_value": [
+        "256",
+        "256",
+        "256 ;白"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0",
+        "0",
+        "0"
+      ],
+      "load_priority": [
+        "3",
+        "4",
+        "5"
+      ],
+      "documentation": {
+        "description": "<p>赤・緑・青の各成分へ加える整数です。加算した結果に <code>Mul / 256</code> を掛けます。省略時は <code>0, 0, 0</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "bgpalfx-local-2002",
+            "bgpalfx-local-1.0",
+            "bgpalfx-local-1.1",
+            "bgpalfx-palfx-2002",
+            "bgpalfx-palfx-1.0",
+            "bgpalfx-palfx-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1"
+            ]
+          }
+        },
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1"
+            ]
+          }
+        },
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+      }
+    },
+    {
+      "parameter": "Mul",
+      "value": [
+        "合成する赤色",
+        "合成する緑色",
+        "合成する青色"
+      ],
+      "type": [
+        "int",
+        "int",
+        "int"
+      ],
+      "description": "<p>基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。</p><p>合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(64,256,64);\">　</span><code>Add=64,256,64</code>,<code>Mul=1,256,1</code>の場合、<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>白(256,256,256)は<span style=\"border: 1px solid #000;background: rgb(1,256,1);\">　</span>緑(1,256,1)になりますが、<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)は<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>黒(0,0,0)のままです。</p>",
+      "min_value": [
+        "1",
+        "1",
+        "1"
+      ],
+      "max_value": [
+        "256",
+        "256",
+        "256 ;変化なし"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "256",
+        "256",
+        "256"
+      ],
+      "load_priority": [
+        "6",
+        "7",
+        "8"
+      ],
+      "documentation": {
+        "description": "<p>赤・緑・青の各成分へ掛ける倍率を、256を基準に指定します。各値は0以上です。<code>256</code> で変更せず、<code>128</code> で1/2倍になります。省略時は <code>256, 256, 256</code> です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "bgpalfx-local-2002",
+            "bgpalfx-local-1.0",
+            "bgpalfx-local-1.1",
+            "bgpalfx-palfx-2002",
+            "bgpalfx-palfx-1.0",
+            "bgpalfx-palfx-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "value": [
+          "赤の乗算係数",
+          "緑の乗算係数",
+          "青の乗算係数"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "256",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1"
+            ]
+          }
+        },
+        {
+          "kind": "literal",
+          "value": "256",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1"
+            ]
+          }
+        },
+        {
+          "kind": "literal",
+          "value": "256",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+      }
+    },
+    {
+      "parameter": "SinAdd",
+      "value": [
+        "周期する赤色",
+        "周期する緑色",
+        "周期する青色",
+        "周期"
+      ],
+      "type": [
+        "int",
+        "int",
+        "int",
+        "int"
+      ],
+      "description": "<p>指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。</p><p>周期が大きいほどゆるやかに色が変化します。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,256);\">　</span><code>SinAdd=0,0,256,20</code>,<span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span><code>Add=0,0,0</code>,<code>Mul=256,256,256</code>の場合、<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)は、5F後<span style=\"border: 1px solid #000;background: rgb(128,128,256);\">　</span>(128,128,256)になり、10F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻り、15F後<span style=\"border: 1px solid #000;background: rgb(128,128,0);\">　</span>(128,128,0)、20F後<span style=\"border: 1px solid #000;background: rgb(128,128,128);\">　</span>(128,128,128)に戻る、という周期を繰り返します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "load_priority": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "media": {
+        "image": [
+          {
+            "title": "",
+            "file": "SinAdd.png",
+            "width": "600",
+            "height": "242"
+          }
+        ]
+      },
+      "documentation": {
+        "description": "<p>赤・緑・青の加算量の振幅と、正弦波の周期を指定します。周期の単位はフレームで、経過時間はこのコントローラーによる効果の開始時点から数えます。各成分では <code>Add + 振幅 * Sin(2 * Pi * 経過時間 / 周期)</code> を加えてから、<code>Mul / 256</code> を掛けます。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "bgpalfx-local-2002",
+            "bgpalfx-local-1.0",
+            "bgpalfx-local-1.1",
+            "bgpalfx-palfx-2002",
+            "bgpalfx-palfx-1.0",
+            "bgpalfx-palfx-1.1"
+          ]
+        },
+        "value": [
+          "赤の振幅",
+          "緑の振幅",
+          "青の振幅",
+          "周期"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "未確認",
+          "evidence": {
+            "status": "unverified",
+            "basis": [
+              "official_document",
+              "source_code"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1",
+              "bgpalfx-legacy-data"
+            ],
+            "comment": "2026-10-03: 旧既定値0,0,0,0を原位置に保持。保存済み公式3世代のPalFX欄はSinAddの省略値を記載しておらず、独立した確認資料・実機結果は得られていない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+      }
+    },
+    {
+      "parameter": "InvertAll",
+      "value": [
+        "色反転フラグ"
+      ],
+      "type": [
+        "boolean"
+      ],
+      "description": "<p>色を反転するか・しないかのフラグです。</p><p>例: <span style=\"border: 1px solid #000;background: rgb(0,0,0);\">　</span>(0,0,0)→<span style=\"border: 1px solid #000;background: rgb(256,256,256);\">　</span>(256,256,256),<span style=\"border: 1px solid #000;background: rgb(0,252,0);\">　</span>(0,252,0)→<span style=\"border: 1px solid #000;background: rgb(256,4,256);\">　</span>(256,4,256),<span style=\"border: 1px solid #000;background: rgb(256,0,0);\">　</span>(256,0,0)→<span style=\"border: 1px solid #000;background: rgb(0,256,256);\">　</span>(0,256,256)</p>",
+      "min_value": [
+        "0 ;色が反転しない"
+      ],
+      "max_value": [
+        "1 ;色が反転する"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "13"
+      ],
+      "media": {
+        "image": [
+          {
+            "title": "",
+            "file": "InvertAll.png",
+            "width": "167",
+            "height": "167"
+          }
+        ]
+      },
+      "documentation": {
+        "description": "<p>非0を指定すると色を反転し、ネガフィルムのような効果を作ります。反転は <code>Color</code> の後、<code>Add</code> と <code>Mul</code> の前に適用されます。省略時は <code>0</code> で反転しません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "bgpalfx-local-2002",
+            "bgpalfx-local-1.0",
+            "bgpalfx-local-1.1",
+            "bgpalfx-palfx-2002",
+            "bgpalfx-palfx-1.0",
+            "bgpalfx-palfx-1.1"
+          ]
+        },
+        "hide_legacy": [
+          "min_value",
+          "max_value"
+        ],
+        "type": [
+          "整数フラグ"
+        ]
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bgpalfx-local-2002",
+              "bgpalfx-local-1.0",
+              "bgpalfx-local-1.1",
+              "bgpalfx-palfx-2002",
+              "bgpalfx-palfx-1.0",
+              "bgpalfx-palfx-1.1"
+            ]
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。配列内のカンマを含む旧表記も原位置で保持する。色の変換順序とは別の情報。"
+      }
+    }
+  ],
+  "qanda": [
+    {
+      "q": "表示される色の処理順",
+      "a": "<p>各条件を以下のように定義する。</p><ul><li>Add    = Add_赤色(AR), Add_緑色(AG), Add_青色(AB)</li><li>SinAdd = Sin_赤色(SR), Sin_緑色(SG), Sin_青色(SB), 周期(P)</li><li>Mul    = Mul_赤色(MR), Mul_緑色(MG), Mul_青色(MB)</li></ul><br><br><br><br>経過時間:(T) ※単位はフレーム、1秒=60フレーム<br>円周率:(Pi)<br><br>変更する色:<br>Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br><br>==========処理の流れ==========<br>処理する色 = Palette_赤色(PR), Palette_緑色(PG), Palette_青色(PB)<br>↓<br>彩度(Color)<br>彩度を調整した色 = Color_赤色(CR), Color_緑色(CG), Color_青色(CB)<br>↓<br>経過時間(T)に表示される色は<br>赤要素(RR) = (CR + AR + SR * Sin(2*Pi*T/P))  *  MR/256<br>緑要素(RG) = (CG + AG + SG * Sin(2*Pi*T/P))  *  MG/256<br>青要素(RB) = (CB + AB + SB * Sin(2*Pi*T/P))  *  MB/256<br>↓<br>色反転(InvertAll)<br>反転した赤要素(IR) = 256-RR<br>反転した緑要素(IG) = 256-RG<br>反転した青要素(IB) = 256-RB<br>↓<br>結果色(IR, IG, IB)が表示されます。</p>",
+      "visibility": "internal"
+    }
+  ],
+  "quote": [
+    {
+      "title": "BGPalFX - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#BGPalFX"
+    },
+    {
+      "title": "BGPalFX - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#bgpalfx"
+    },
+    {
+      "title": "BGPalFX - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#bgpalfx"
+    },
+    {
+      "title": "BGPalFX - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/BGPalFX"
+    },
+    {
+      "title": "BGPalFX - MUGEN CNS WIKI CHAOS@予定",
+      "url": "http://www49.atwiki.jp/mugencns/pages/65.html"
+    },
+    {
+      "title": "不具合・対策まとめ - MUGENの便覧",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "visibility": "internal"
+    },
+    {
+      "title": "BGPalFX - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?BGPalFX&protocol=http"
+    },
+    {
+      "title": "BGPalFX - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#BGPalFX"
+    },
+    {
+      "title": "BGPalFX - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "id": "bgpalfx-local-2002",
+      "title": "BGPalFX — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#BGPalFX",
+      "source_type": "official_document"
+    },
+    {
+      "id": "bgpalfx-palfx-2002",
+      "title": "PalFX の共通パラメーター — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#PalFX",
+      "source_type": "official_document"
+    },
+    {
+      "id": "bgpalfx-local-1.0",
+      "title": "BGPalFX — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#bgpalfx",
+      "source_type": "official_document"
+    },
+    {
+      "id": "bgpalfx-palfx-1.0",
+      "title": "PalFX の共通パラメーター — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#palfx",
+      "source_type": "official_document"
+    },
+    {
+      "id": "bgpalfx-local-1.1",
+      "title": "BGPalFX — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#bgpalfx",
+      "source_type": "official_document"
+    },
+    {
+      "id": "bgpalfx-palfx-1.1",
+      "title": "PalFX の共通パラメーター — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#palfx",
+      "source_type": "official_document"
+    },
+    {
+      "id": "bgpalfx-chaos-palfx",
+      "title": "PalFX — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/64.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "bgpalfx-warning-binran",
+      "title": "BGPalFX — MUGEN警告メッセージ集",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "bgpalfx-legacy-data",
+      "title": "BGPalFX — 移行前の説明・Q&A・警告原本",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/edf58559d5f21114427bb4034bd3e8e9567c1f69/src/content/state-controllers/BGPalFX.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>背景とライフバーのパレットに色効果を適用します。キャラクターのパレットには作用しません。パラメーターは <code>PalFX</code> と共通です。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "bgpalfx-local-2002",
+        "bgpalfx-local-1.0",
+        "bgpalfx-local-1.1",
+        "bgpalfx-palfx-2002",
+        "bgpalfx-palfx-1.0",
+        "bgpalfx-palfx-1.1"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<code>InvertAll</code>は<code>Add,Sub,Mul</code>などで処理をしていると正しく機能しません。",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "bgpalfx-legacy-data",
+          "bgpalfx-local-2002",
+          "bgpalfx-local-1.0",
+          "bgpalfx-local-1.1",
+          "bgpalfx-palfx-2002",
+          "bgpalfx-palfx-1.0",
+          "bgpalfx-palfx-1.1"
+        ],
+        "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "content": "INVALID PALFX TIME:Timeに-2以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "bgpalfx-legacy-data",
+          "bgpalfx-warning-binran"
+        ],
+        "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+      },
+      "legacy_index": 1
+    },
+    {
+      "kind": "research",
+      "content": "INVALID PALFX COLOR:Colorに-1以下、257以上",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "bgpalfx-legacy-data",
+          "bgpalfx-warning-binran"
+        ],
+        "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+      },
+      "legacy_index": 2
+    },
+    {
+      "kind": "research",
+      "content": "INVALID PALFX MUL VALUE:MULに-1以下",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "bgpalfx-legacy-data",
+          "bgpalfx-warning-binran"
+        ],
+        "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+      },
+      "legacy_index": 3
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>色の変換では <code>Color</code> を先に適用し、続いて <code>InvertAll</code>、加算・乗算を行います。色反転は加算・乗算の後ではありません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "bgpalfx-local-2002",
+          "bgpalfx-local-1.0",
+          "bgpalfx-local-1.1",
+          "bgpalfx-palfx-2002",
+          "bgpalfx-palfx-1.0",
+          "bgpalfx-palfx-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧Q&Aは加算・乗算の後にInvertAllを適用し、反転を256からの減算で説明する。公式3世代はColorの後、加算・乗算の前に反転するとしている。旧Q&Aを内部に保持し、RGB端点・丸め・飽和処理や既存図の数値の実機検証は今回行っていない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "bgpalfx-local-2002",
+          "bgpalfx-local-1.0",
+          "bgpalfx-local-1.1",
+          "bgpalfx-palfx-2002",
+          "bgpalfx-palfx-1.0",
+          "bgpalfx-palfx-1.1",
+          "bgpalfx-legacy-data"
+        ],
+        "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧Time説明のステート移行後の持続、Time=1の再実行とSinAdd、AllPalFXでの上書き、他プレイヤーとの競合は原文を残す。PalFXではCHAOSに持続の記録があるが、3コントローラーすべての実行条件を同一視しない。Timeの固定最大値、Addの±256、Mulの1..256という固定範囲も未確認。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "bgpalfx-local-2002",
+          "bgpalfx-local-1.0",
+          "bgpalfx-local-1.1",
+          "bgpalfx-palfx-2002",
+          "bgpalfx-palfx-1.0",
+          "bgpalfx-palfx-1.1",
+          "bgpalfx-chaos-palfx",
+          "bgpalfx-legacy-data"
+        ],
+        "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧SinAddの省略値0,0,0,0は未確認のため原位置で保持する。公式資料に省略値の明記はなく、今回の検索で同じ運営サイトの旧ページを確認資料として循環参照しない。CNSの有効行には変換しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "bgpalfx-local-2002",
+          "bgpalfx-local-1.0",
+          "bgpalfx-local-1.1",
+          "bgpalfx-palfx-2002",
+          "bgpalfx-palfx-1.0",
+          "bgpalfx-palfx-1.1",
+          "bgpalfx-legacy-data"
+        ],
+        "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>2026-10-03: CHAOSのBGPalFX個別記事（pages/65.html）は取得できなかった。公開仕様は保存済み公式のBGPalFX欄と参照先のPalFX欄へ対応させ、未取得のコミュニティ本文を推測して補わない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "bgpalfx-local-2002",
+          "bgpalfx-local-1.0",
+          "bgpalfx-local-1.1",
+          "bgpalfx-palfx-2002",
+          "bgpalfx-palfx-1.0",
+          "bgpalfx-palfx-1.1",
+          "bgpalfx-legacy-data"
+        ],
+        "comment": "2026-10-03: 今回の実機検証ではない。原本と内部記録を保持し、公開用の結論とは区別する。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "bgpalfx-local-2002",
+      "bgpalfx-local-1.0",
+      "bgpalfx-local-1.1",
+      "bgpalfx-palfx-2002",
+      "bgpalfx-palfx-1.0",
+      "bgpalfx-palfx-1.1"
+    ],
+    "comment": "2026-10-03: 適用対象、Color・InvertAll・加算/乗算の順、Time=0で停止/-1で無期限、Mulの0以上を照合。Time省略値はCHAOS、SinAdd省略値は旧記録を保持して未確認。旧不具合・警告・詳細な評価条件は実機検証していない。"
+  }
 }

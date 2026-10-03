@@ -681,3 +681,20 @@ npm run mugen:batch -- --batch sound-control-01 --target PlaySnd --target StopSn
 ```
 
 このバッチは適用済みです。次は PalFX / AllPalFX / BGPalFX など色調関連ページを照合します。
+
+## palette-effects-01：パレットの色効果の3件
+
+2026-10-03、PalFX / AllPalFX / BGPalFX を移行しました。移行前の JSON・記事・ハッシュは `tests/mugen/batches/palette-effects-01/` に保存しています。
+
+- 保存済み公式3世代資料の適用対象と共通6項目を照合しました。BGPalFXの対象には背景に加えてライフバーも含まれます。Color、InvertAll、加算・乗算の順を公開し、反転を最後に行う旧Q&Aは原文を保持して内部へ移しました。Mulの固定1..256範囲を外し、0以上という指定条件を公開しています。
+- Time=0は進行中の効果停止、-1は無期限継続です。Timeの省略値0は[CHAOSのPalFX記録](https://w.atwiki.jp/mugencns/pages/64.html)へ対応させました。SinAddの旧省略値0,0,0,0は公式欄に明記がなく、独立した根拠が得られないためunknownへ分類し、CNS欄ではコメントにしています。旧値、パラメーター画像、カンマを含む読み込み順の表記は保持しました。
+- AllPalFXの緑・青が無視される修正は1.0 RC8、デバッグ文字への影響の修正は1.1 Beta 1の公式履歴へ対応させました。旧「1.0以降で使えない」というデバッグ文字用コード例と18件の旧履歴・警告は内部へ残しています。フラッシュ例と動画は保持しました。
+- [CHAOSのAllPalFX記録](https://w.atwiki.jp/mugencns/pages/63.html)にある持続中の効果消失と同じAdd/Mulによる再実行の問題も保持しました。BGPalFXのCHAOS個別記事は取得できず、その本文を推測して補っていません。新たなスキーマ・表示機能は追加していません。
+
+```sh
+npm run mugen:batch-baseline -- --batch palette-effects-01
+npm run mugen:batch -- --batch palette-effects-01 --target PalFX --target AllPalFX --target BGPalFX
+npm run mugen:batch -- --batch palette-effects-01 --target PalFX --target AllPalFX --target BGPalFX --apply
+```
+
+このバッチは適用済みです。次は RemapPal などパレット関連ページを照合します。

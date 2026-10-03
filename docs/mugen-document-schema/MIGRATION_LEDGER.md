@@ -212,3 +212,7 @@ SuperPause を追加し、累計101件・残り133件です。11任意項目の�
 ## 2026-10-03：sound-control-01
 
 PlaySnd / StopSnd / SndPan を追加し、累計104件・残り130件です。SND識別子、再生・停止チャンネル、定位の排他指定とSndPanでの代替必須、VolumeScaleのRC8切り替えを保存済み公式3世代資料へ対応させました。RC8のビルドIDを追加し、旧VolumeとLowPriorityの省略値は[CHAOSの記録](https://w.atwiki.jp/mugencns/pages/251.html)へ対応させています。旧警告・音量の推定範囲・素材表・詳細な評価条件は原本と内部researchへ保持しました。旧チャンネル上限とコミュニティの大きい番号でも機能する記録はconflictingとし、対象ビルドの実測で未解決です。
+
+## 2026-10-03：palette-effects-01
+
+PalFX / AllPalFX / BGPalFX を追加し、累計107件・残り127件です。適用対象、Color→InvertAll→加算・乗算、Time=0で停止、Mulの0以上を保存済み公式3世代資料へ対応させました。AllPalFXのRC8と1.1 Beta 1の修正履歴も追加しています。反転を最後に行う旧Q&A、旧警告と効果消失条件、デバッグ文字用例は原本と内部researchに保持しました。SinAddの旧0,0,0,0は独立した根拠を確認できずunknownに保ち、CNS欄で有効にしません。丸め・飽和・画像の数値と、BGPalFXの未取得コミュニティ本文は調査が残っています。

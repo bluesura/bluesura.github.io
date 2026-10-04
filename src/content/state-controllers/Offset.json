@@ -1,50 +1,340 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "Offset",
-		"target": "",
-		"category": ["表示位置の変更","スプライト表示位置のオフセット"],
-		"version": "2002.04.14",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "Offset",
-	"description": "<p>プレイヤースプライトの表示位置を変更します。Clns枠もしっかり移動します。1フレームのみ有効。</p><p>　見た目のみキャラを移動させる場合に使えます。</p>",
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "X",
-			"value": ["x位置"],
-			"type": ["float"],
-			"description": "<p>プレイヤーを基準として指定の表示位置にスプライトをずらして表示させます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [""],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Y",
-			"value": ["y位置"],
-			"type": ["float"],
-			"description": "<p>プレイヤーを基準として指定の表示位置にスプライトをずらして表示させます。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [""],
-			"load_priority": ["2"]
-		}
-	],
-
-	"quote": [
-		{"title": "Offset - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Offset"},
-		{"title": "Offset - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#offset"},
-		{"title": "Offset - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#offset"},
-		{"title": "Offset - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Offset"},
-		{"title": "Offset - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Offset&protocol=http"},
-		{"title": "Offset - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Offset"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "Offset",
+    "target": "",
+    "category": [
+      "表示位置の変更",
+      "スプライト表示位置のオフセット"
+    ],
+    "version": "2002.04.14",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "Offset",
+  "description": "<p>プレイヤースプライトの表示位置を変更します。Clns枠もしっかり移動します。1フレームのみ有効。</p><p>　見た目のみキャラを移動させる場合に使えます。</p>",
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "X",
+      "value": [
+        "x位置"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>プレイヤーを基準として指定の表示位置にスプライトをずらして表示させます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "value": [
+          "横方向の表示ずらし量"
+        ],
+        "description": "<p>実行者の軸からの横方向のずらし量を指定します。正の値で画面の右、負の値で左へずれます。キャラクターの向きによって正負の意味は変わりません。小数や式も指定できます。</p><p>X・Yはそれぞれ任意です。省略時の数値は未確認です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document",
+            "community_documentation"
+          ],
+          "source_refs": [
+            "offset-local-2002",
+            "offset-local-1.0",
+            "offset-local-1.1",
+            "offset-chaos"
+          ],
+          "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "省略可能（省略時の数値は未確認）",
+          "evidence": {
+            "status": "unverified",
+            "basis": [
+              "official_document",
+              "community_documentation"
+            ],
+            "source_refs": [
+              "offset-local-2002",
+              "offset-local-1.0",
+              "offset-local-1.1",
+              "offset-chaos"
+            ],
+            "comment": "2026-10-04: 公式3世代とCHAOSは任意指定を記すが省略値を明記しない。旧空文字を0または変更なしへ推定変換しない。"
+          }
+        }
+      ],
+      "expression_policy": "expression",
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Y",
+      "value": [
+        "y位置"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>プレイヤーを基準として指定の表示位置にスプライトをずらして表示させます。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "documentation": {
+        "value": [
+          "縦方向の表示ずらし量"
+        ],
+        "description": "<p>実行者の軸からの縦方向のずらし量を指定します。正の値で下、負の値で上へずれます。キャラクターの向きによって正負の意味は変わりません。小数や式も指定できます。</p><p>X・Yはそれぞれ任意です。省略時の数値は未確認です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document",
+            "community_documentation"
+          ],
+          "source_refs": [
+            "offset-local-2002",
+            "offset-local-1.0",
+            "offset-local-1.1",
+            "offset-chaos"
+          ],
+          "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "省略可能（省略時の数値は未確認）",
+          "evidence": {
+            "status": "unverified",
+            "basis": [
+              "official_document",
+              "community_documentation"
+            ],
+            "source_refs": [
+              "offset-local-2002",
+              "offset-local-1.0",
+              "offset-local-1.1",
+              "offset-chaos"
+            ],
+            "comment": "2026-10-04: 公式3世代とCHAOSは任意指定を記すが省略値を明記しない。旧空文字を0または変更なしへ推定変換しない。"
+          }
+        }
+      ],
+      "expression_policy": "expression",
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "Offset - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Offset"
+    },
+    {
+      "title": "Offset - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#offset"
+    },
+    {
+      "title": "Offset - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#offset"
+    },
+    {
+      "title": "Offset - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Offset"
+    },
+    {
+      "title": "Offset - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Offset&protocol=http"
+    },
+    {
+      "title": "Offset - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Offset"
+    },
+    {
+      "id": "offset-local-2002",
+      "title": "Offset — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Offset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "offset-local-1.0",
+      "title": "Offset — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#offset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "offset-local-1.1",
+      "title": "Offset — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#offset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "offset-chaos",
+      "title": "Offset — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/241.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "offset-history-rc6",
+      "title": "Offset — Elecbyte 1.0 RC6 修正・互換対応履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc6",
+      "source_type": "official_history"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者の軸を基準として、スプライトの表示位置をずらします。通常は実行した1フレームだけ有効で、X・Yの一方だけでも、両方でも指定できます。</p><p>攻撃判定・食らい判定の枠も表示と一緒にずれますが、<code>Pos X</code>・<code>Pos Y</code> が返す位置や、プレイヤー同士の押し合い判定は変わりません。実際の位置を移動させる操作とは区別して使います。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document",
+        "community_documentation"
+      ],
+      "source_refs": [
+        "offset-local-2002",
+        "offset-local-1.0",
+        "offset-local-1.1",
+        "offset-chaos"
+      ],
+      "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "version_change",
+      "change": "fixed",
+      "at": "mugen-1.0-rc6",
+      "content": "<p>1.0 RC6で、キャラクターの座標系に合わせて <code>Offset</code> のずらし量が適切に拡縮されない不具合が修正されました。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "offset-history-rc6"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "version_change",
+      "change": "added",
+      "at": "mugen-1.0-rc6",
+      "environment": {
+        "engine": "mugen",
+        "compatibility_profile": [
+          "mugen-compat-2002"
+        ]
+      },
+      "content": "<p>1.0 RC6の2002互換対応では、<code>Offset</code> の効果がHitPause中にリセットされない旧挙動が再現されます。HitPause中の扱いは、実行バージョンに加えてキャラクターの互換設定にも依存します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "offset-history-rc6"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSのPhysics=Aによる自動着地でOffsetが取り消されるという記録を保持する。TargetState等による特殊なステート変更との関係は資料にも検証不足とある。対応ビルド・適用順・再現条件は未確定で公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "offset-chaos"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSのExplodの射出固定がずれた場所を基準とするという記録を保持する。PosType・BindTime・実行順・HitPauseとの関係は今回検証しておらず、Offsetの一般説明には公開しない。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "offset-chaos"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧X/Yのdefault_valueは空文字のまま保持する。今回の公式3世代・CHAOSの照合でも省略値は確定できない。同フレームの複数Offsetで一方を省略した場合の保持・リセット・合成を含めて実機確認が必要。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "offset-local-2002",
+          "offset-local-1.0",
+          "offset-local-1.1",
+          "offset-chaos"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document",
+      "community_documentation"
+    ],
+    "source_refs": [
+      "offset-local-2002",
+      "offset-local-1.0",
+      "offset-local-1.1",
+      "offset-chaos"
+    ],
+    "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+  }
 }

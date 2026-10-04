@@ -747,3 +747,19 @@ npm run mugen:batch -- --batch angle-draw-01 --target AngleDraw --apply
 ```
 
 このバッチは適用済みです。次はOffsetの描画位置、判定枠への影響、省略時の値、RC6の互換対応を照合します。
+
+## display-offset-01：表示位置のずらしの1件
+
+2026-10-04、Offsetを移行しました。移行前のJSON・記事・ハッシュは `tests/mugen/batches/display-offset-01/` に保存しています。
+
+- 保存済み公式3世代と[CHAOS](https://w.atwiki.jp/mugencns/pages/241.html)を照合しました。表示と攻撃・食らい判定枠はずれますが、Pos X/Yと押し合い判定は変わらない点を整理しています。Xは画面右が正、Yは下が正で、Facingに依存しない方向を明記しました。
+- X/Yはそれぞれ任意ですが、省略時の数値は資料に明記されていません。旧default_valueの空文字は原位置に残し、defaultをunknownにしてCNS欄はコメントのままにしています。読み込み順1・2は維持しました。
+- 1.0 RC6の座標系に対する拡縮の修正と、2002互換でHitPause中に効果がリセットされない挙動の再現を別の履歴として公開しました。自動着地・TargetStateによる取消、Explod射出基準、同フレーム重複時の合成は内部researchへ保存し、実機検証は行っていません。
+
+```sh
+npm run mugen:batch-baseline -- --batch display-offset-01
+npm run mugen:batch -- --batch display-offset-01 --target Offset
+npm run mugen:batch -- --batch display-offset-01 --target Offset --apply
+```
+
+このバッチは適用済みです。次はAssertSpecialのフラグ、世代差、1フレーム効果と互換挙動を照合します。

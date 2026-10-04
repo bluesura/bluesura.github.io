@@ -892,3 +892,25 @@ npm run mugen:check-html
 ~~~
 
 213テスト・263ページビルド・261 URL/141比較対象ページのHTML検査を通過しました。ブラウザでPrevStateNo/Ctrl/Aliveを通常幅、StateNoの範囲例を幅390pxで確認し、検査後に表示幅をリセットしました。既存のPagefind/保存HTMLの警告は継続しています。スキーマ・表示コンポーネント・CSSの変更はありません。次はStateType・MoveType・Facingです。
+
+## 2026-10-04：state-attributes-01
+
+StateType / MoveType / Facingを追加しました。累計133件（主要・補助16件＋50バッチ117件）、残り101件です。比較基準は tests/mugen/batches/state-attributes-01/ に保存しました。保存済み2002.04.14・1.0・1.1b1のTrigger/CNS資料とCHAOSの [StateType](https://w.atwiki.jp/mugencns/pages/162.html)、[MoveType](https://w.atwiki.jp/mugencns/pages/160.html)、[Facing](https://w.atwiki.jp/mugencns/pages/119.html)を照合しました。
+
+- StateType/MoveTypeは[oper]と引用符なしのchar指定を持つ旧式比較構文として整理。= / !=のみ、成立1・不成立0を返すことを明記し、通常の数値参照Facingと分けました。CNS用の共通パラメーターは追加しません。
+- StateTypeはS/C/A/Lと関連Lページを保持。2002/1.0のTrigger ReferenceのL列挙漏れとCNS/1.1/CHAOSの差をconflictingとして内部へ残しました。1.1での追加とは推測せず、導入ビルドはnullです。UはStateDefの継承指定であり、Physicsは別設定であることを公開しています。
+- MoveType=Iは攻撃でもくらいでもない行動状態で、立ち姿勢や無動作の保証ではありません。公開構文には具体的なA/I/Hの比較を表示。旧movetype != H例を保持し、Iの短い条件例を追加しました。
+- Facingは右1/左-1で、単独のFacing条件は左右とも0以外です。旧Trigger = Facing = -1と公式例の表記差は原位置へ残して内部にし、Trigger1を使う左右の例を追加しました。MoveTypeの2002公式出典は実在するMoveType(*,***)アンカーへ新しい参照を付けています。
+- StateTypeの幅/被弾移行、MoveTypeのHitDef/ガード/発生1F目、自動振り向き・相手向きの特殊条件・導入境界は内部researchです。今回の資料確認を実機検証へ昇格していません。スキーマ・表示コンポーネント・CSSは変更していません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch state-attributes-01
+npm run mugen:batch -- --batch state-attributes-01 --target StateType --target MoveType --target Facing
+npm run mugen:batch -- --batch state-attributes-01 --target StateType --target MoveType --target Facing --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+218テスト・263ページビルド・261 URL/144比較対象ページのHTML検査を通過。ブラウザでStateTypeの引数表を通常幅、MoveType/Facingを幅390pxで確認しました。既存タブの接続タイムアウトは新しい検査用タブで復旧し、幅設定と検査用タブは終了時に戻しました。既存のPagefind/保存HTMLの警告は継続しています。次はP2StateNo・P2StateType・P2MoveTypeです。

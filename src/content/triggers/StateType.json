@@ -1,65 +1,296 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "StateType",
-        "target": "",
-        "category": [
-            "ステータス",
-            "キャラクターはどんな体勢でいますか？"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "StateType",
+    "target": "",
+    "category": [
+      "ステータス",
+      "キャラクターはどんな体勢でいますか？"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "associated_trigger": [
+    "P2StateType"
+  ],
+  "associated_state": [
+    "S",
+    "C",
+    "A",
+    "U",
+    "StateTypeSet"
+  ],
+  "trigger": "StateType",
+  "summary": "<p>現在のStateTypeを判定し、真偽を返します。</p>",
+  "syntax": [
+    "StateType = S",
+    "StateType = C",
+    "StateType = A",
+    "StateType = L",
+    "StateType != S",
+    "StateType != C",
+    "StateType != A",
+    "StateType != L"
+  ],
+  "description": "現在のStateTypeを判定し、真偽を返します。<br>cmdファイルでの条件指定に有効です。<br>state_typeには、S, C, A(順に立ち、しゃがみ、空中を表す)の文字のうち、いずれかを指定します。<br>戻り値の型: boolean int (1 or 0)",
+  "code_sample": [
+    {
+      "title": "StateTypeがA（空中）でない場合のトリガー",
+      "code": [
+        "Trigger1 = StateType != A"
+      ]
     },
-    "category": "trigger",
-    "associated_trigger": [
-        "P2StateType"
-    ],
+    {
+      "title": "倒れ状態か調べる",
+      "description": "<p>体勢Lとの一致を判定します。</p>",
+      "code": [
+        "Trigger1 = StateType = L"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "StateType - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#StateType"
+    },
+    {
+      "title": "StateType - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#statetype"
+    },
+    {
+      "title": "StateType - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#statetype"
+    },
+    {
+      "title": "StateType - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StateType"
+    },
+    {
+      "id": "statetype-local-2002",
+      "title": "StateType — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#StateType",
+      "source_type": "official_document"
+    },
+    {
+      "id": "statetype-local-1.0",
+      "title": "StateType — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#statetype",
+      "source_type": "official_document"
+    },
+    {
+      "id": "statetype-local-1.1",
+      "title": "StateType — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#statetype",
+      "source_type": "official_document"
+    },
+    {
+      "id": "statetype-legacy",
+      "title": "StateType — 移行前の説明・構文・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/8c5f9e6a1ca6f3a06a891d68d8407bf3c7306188/src/content/triggers/StateType.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "statetype-chaos",
+      "title": "StateType — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/162.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "statetype-statedef-1.1",
+      "title": "StateDefのtype — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#type",
+      "source_type": "official_document"
+    },
+    {
+      "id": "statetype-set-1.1",
+      "title": "StateTypeSet — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#statetypeset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "statetype-physics-1.1",
+      "title": "Physics — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#physics",
+      "source_type": "official_document"
+    },
+    {
+      "id": "statetype-statedef-1.0",
+      "title": "StateDefのtype — Elecbyte 1.0 CNS",
+      "url": "/MUGEN/document/Official/1.0/cns.html#type",
+      "source_type": "official_document",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーの体勢を指定した文字と比較し、成立なら1、不成立なら0を整数で返します。<code>StateType = S</code>や<code>StateType != A</code>の形で使います。</p><p><code>S</code>は立ち、<code>C</code>はしゃがみ、<code>A</code>は空中、<code>L</code>は倒れ状態です。文字自体を通常の数値トリガーのように取得する構文ではありません。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "statetype-local-2002",
+        "statetype-local-1.0",
+        "statetype-local-1.1",
+        "statetype-statedef-1.1"
+      ],
+      "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+    },
+    "page_category": "現在の体勢の判定",
     "associated_state": [
-        "S",
-        "C",
-        "A",
-        "U",
-        "StateTypeSet"
-    ],
-    "trigger": "StateType",
-    "summary": "<p>現在のStateTypeを判定し、真偽を返します。</p>",
-    "syntax": [
-        "StateType = S",
-        "StateType = C",
-        "StateType = A",
-        "StateType = L",
-        "StateType != S",
-        "StateType != C",
-        "StateType != A",
-        "StateType != L"
-    ],
-    "description": "現在のStateTypeを判定し、真偽を返します。<br>cmdファイルでの条件指定に有効です。<br>state_typeには、S, C, A(順に立ち、しゃがみ、空中を表す)の文字のうち、いずれかを指定します。<br>戻り値の型: boolean int (1 or 0)",
-    "code_sample": [
-        {
-            "title": "StateTypeがA（空中）でない場合のトリガー",
-            "code": [
-                "Trigger1 = StateType != A"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "StateType - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#StateType"
-        },
-        {
-            "title": "StateType - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#statetype"
-        },
-        {
-            "title": "StateType - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#statetype"
-        },
-        {
-            "title": "StateType - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StateType"
-        }
+      "S",
+      "C",
+      "A",
+      "L",
+      "U",
+      "StateTypeSet"
     ]
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "old_style",
+  "arguments": [
+    {
+      "name": "[oper]",
+      "type": [
+        "演算子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。他の比較演算子は使えません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "statetype-local-2002",
+          "statetype-local-1.0",
+          "statetype-local-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "name": "state_type",
+      "type": [
+        "char"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>引用符を付けずに体勢の文字を指定します。<code>S</code>＝立ち、<code>C</code>＝しゃがみ、<code>A</code>＝空中、<code>L</code>＝倒れ状態です。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "statetype-local-1.1",
+          "statetype-chaos"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>体勢はStateDefのtypeやStateTypeSetで設定します。StateDefの<code>type = U</code>は前の体勢を維持する指定です。判定するS/C/A/Lとは区別してください。重力・摩擦などのPhysicsは別の設定で、StateTypeを参照するだけでは体勢やPhysicsは変化しません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "statetype-statedef-1.1",
+          "statetype-set-1.1",
+          "statetype-physics-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>2002.04.14と1.0のStateType Trigger ReferenceはS/C/Aのみを列挙するが、旧公開構文にはLがあり、2002/1.0のCNS StateDef説明には倒れ状態Lが記載される。1.1b1 Trigger ReferenceとCHAOSもLを明記する。古い列挙漏れから1.1で追加されたと推測せず、Lと旧構文を保持する。トリガーL比較の最初の実装ビルドは今回実機未確認。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "statetype-local-2002",
+          "statetype-local-1.0",
+          "statetype-local-1.1",
+          "statetype-statedef-1.0",
+          "statetype-chaos",
+          "statetype-legacy"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはStateTypeごとの押し合い幅・Height・被弾移行・ガード・Ctrl=1の基本行動を記載する。体勢とPhysicsを分ける基礎説明は公開するが、個別の自動行動/特殊な幅・カスタムステートの判定条件は今回実機未検証。文字値を直接取得するという意味へ変換しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "statetype-chaos",
+          "statetype-local-2002",
+          "statetype-local-1.0",
+          "statetype-local-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別である。導入日付・ビルドの実機確認は未実施で、introduced_inはnullに保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "statetype-legacy",
+          "statetype-local-2002",
+          "statetype-local-1.0",
+          "statetype-local-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    }
+  ]
 }

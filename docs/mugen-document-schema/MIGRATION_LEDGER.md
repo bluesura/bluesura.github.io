@@ -260,3 +260,7 @@ Life / LifeMax / Power / PowerMaxを追加し、累計126件・残り108件で�
 ## 2026-10-04：state-status-01
 
 Alive / Ctrl / StateNo / PrevStateNoを追加し、累計130件・残り104件です。引数なし・整数戻り値、Ctrlのキャンセル例外と参照/設定の分離、StateNoの両端を含む範囲と650未満の比較、PrevStateNoの構文・精度非保証を整理しました。旧関連IDと比較式は保持して公開側だけ訂正。AliveのKOタイミング・NoKO・復活/タッグ、Ctrlの自動遷移、PrevStateNoの中間くらいステート/履歴更新と公式Format誤記、前提不足の複合例/生存敵検索はJSON内部へ残しました。今回内部注記13件を追加し累計283件、未対応旧履歴は163項目です。実機検証は未実施で、次はStateType・MoveType・Facingです。
+
+## 2026-10-04：state-attributes-01
+
+StateType / MoveType / Facingを追加し、累計133件・残り101件です。文字指定の旧式比較と0/1の結果、Facingの1/-1と単独条件の真偽、Uの継承指定・Physicsの別設定を整理しました。StateTypeのLと旧構文・説明・関連ID、Facingの旧Trigger =例は保持。2002/1.0のL列挙差と公式Facing例の番号省略、未検証の幅・HitDef/ガード・自動振り向き・相手向きの条件はJSON内部へ残しました。内部注記8件を追加し累計291件、未対応旧履歴は163項目です。実機検証は未実施で、次はP2StateNo・P2StateType・P2MoveTypeです。

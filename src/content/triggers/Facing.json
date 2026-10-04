@@ -1,48 +1,220 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Facing",
-        "target": "",
-        "category": [
-            "ステータス",
-            "キャラクターの向き判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Facing",
+    "target": "",
+    "category": [
+      "ステータス",
+      "キャラクターの向き判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "Facing",
+  "summary": "<p>プレイヤーの向きを返します。</p>",
+  "syntax": [
+    "Facing"
+  ],
+  "description": "プレイヤーの向きを返します。<br>プレイヤーが右向きのときに1、左向きのときに-1を返します。<br>戻り値の型: int",
+  "code_sample": [
+    {
+      "title": "プレイヤーが左向きのときのトリガー。",
+      "code": [
+        "Trigger = Facing = -1"
+      ],
+      "visibility": "internal"
     },
-    "category": "trigger",
-    "trigger": "Facing",
-    "summary": "<p>プレイヤーの向きを返します。</p>",
-    "syntax": [
-        "Facing"
-    ],
-    "description": "プレイヤーの向きを返します。<br>プレイヤーが右向きのときに1、左向きのときに-1を返します。<br>戻り値の型: int",
-    "code_sample": [
-        {
-            "title": "プレイヤーが左向きのときのトリガー。",
-            "code": [
-                "Trigger = Facing = -1"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Facing - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Facing"
-        },
-        {
-            "title": "Facing - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#facing"
-        },
-        {
-            "title": "Facing - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#facing"
-        },
-        {
-            "title": "Facing - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Facing"
-        }
-    ]
+    {
+      "title": "画面の左を向いているか調べる",
+      "code": [
+        "Trigger1 = Facing = -1"
+      ]
+    },
+    {
+      "title": "画面の右を向いているか調べる",
+      "code": [
+        "Trigger1 = Facing = 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Facing - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Facing"
+    },
+    {
+      "title": "Facing - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#facing"
+    },
+    {
+      "title": "Facing - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#facing"
+    },
+    {
+      "title": "Facing - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Facing"
+    },
+    {
+      "id": "facing-local-2002",
+      "title": "Facing — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Facing",
+      "source_type": "official_document"
+    },
+    {
+      "id": "facing-local-1.0",
+      "title": "Facing — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#facing",
+      "source_type": "official_document"
+    },
+    {
+      "id": "facing-local-1.1",
+      "title": "Facing — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#facing",
+      "source_type": "official_document"
+    },
+    {
+      "id": "facing-legacy",
+      "title": "Facing — 移行前の説明・構文・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/8c5f9e6a1ca6f3a06a891d68d8407bf3c7306188/src/content/triggers/Facing.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "facing-chaos",
+      "title": "Facing — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/119.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "facing-trigger-logic-1.0",
+      "title": "トリガー条件の真偽 — Elecbyte 1.0 CNS",
+      "url": "/MUGEN/document/Official/1.0/cns.html#condition-and-function-type-triggers",
+      "source_type": "official_document"
+    },
+    {
+      "id": "facing-trigger-number-1.0",
+      "title": "トリガー番号 — Elecbyte 1.0 CNS",
+      "url": "/MUGEN/document/Official/1.0/cns.html#trigger-logic",
+      "source_type": "official_document",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーの向きを整数で返します。画面の右向きなら1、左向きなら-1です。引数はありません。</p><p>左向きかを調べるには<code>Facing = -1</code>、右向きかなら<code>Facing = 1</code>と比較します。自分から見た前後や、相手の方向を向いているかの判定とは区別してください。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "facing-local-2002",
+        "facing-local-1.0",
+        "facing-local-1.1"
+      ],
+      "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+    }
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>Facingは0/1の真偽フラグではありません。左向きの-1も0以外なので、<code>Trigger1 = Facing</code>は左右どちらでも成立します。向きを条件にする場合は1または-1との比較を使ってください。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "facing-local-2002",
+          "facing-local-1.0",
+          "facing-local-1.1",
+          "facing-trigger-logic-1.0"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧例のTrigger = Facing = -1は保存済み公式3世代のFacing例にもあるが、CNSのトリガー記述はtrigger1から始める番号付き条件である。旧例と資料の表記差を原位置へ保持し、公開にはTrigger1を使う条件行を示す。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "facing-legacy",
+          "facing-local-2002",
+          "facing-local-1.0",
+          "facing-local-1.1",
+          "facing-trigger-number-1.0"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSは座標差とFacingのXORによる相手向き判定、タッグやHelperType=Player下のP2Distの不確定性を記載する。敵不在・同座標・リダイレクト対象・自動振り向きやバインドのCommand方向への影響は今回実機未検証。画面の左右という基本値と、相手を向く判定を混同せず内部研究を保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "facing-chaos",
+          "facing-local-2002",
+          "facing-local-1.0",
+          "facing-local-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別である。導入日付・ビルドの実機確認は未実施で、introduced_inはnullに保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "facing-legacy",
+          "facing-local-2002",
+          "facing-local-1.0",
+          "facing-local-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    }
+  ]
 }

@@ -1,49 +1,241 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "MoveType",
-        "target": "",
-        "category": [
-            "ステータス",
-            "現在の行動タイプの判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "MoveType",
+    "target": "",
+    "category": [
+      "ステータス",
+      "現在の行動タイプの判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "MoveType",
+  "summary": "<p>現在のMoveTypeを判定し、真偽を返します。</p>",
+  "syntax": [
+    "MoveType = 動作型",
+    "MoveType != 動作型"
+  ],
+  "description": "現在のMoveTypeを判定し、真偽を返します。<br>動作型には、A, I, Hのいずれかを指定します。順に、攻撃、待機、くらいを意味します。<br>戻り値の型: boolean int (1 or 0)",
+  "code_sample": [
+    {
+      "title": "プレイヤーが攻撃を受けている状態でないときのトリガー。",
+      "code": [
+        "Trigger1 = movetype != H"
+      ]
     },
-    "category": "trigger",
-    "trigger": "MoveType",
-    "summary": "<p>現在のMoveTypeを判定し、真偽を返します。</p>",
+    {
+      "title": "攻撃でもくらいでもない行動状態か調べる",
+      "description": "<p>Iとの一致を判定します。立ち・しゃがみ・空中の体勢はこの条件だけでは限定しません。</p>",
+      "code": [
+        "Trigger1 = MoveType = I"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "MoveType - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveType"
+    },
+    {
+      "title": "MoveType - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#movetype"
+    },
+    {
+      "title": "MoveType - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#movetype"
+    },
+    {
+      "title": "MoveType - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveType"
+    },
+    {
+      "id": "movetype-local-2002",
+      "title": "MoveType — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveType(*,***)",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movetype-local-1.0",
+      "title": "MoveType — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#movetype",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movetype-local-1.1",
+      "title": "MoveType — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#movetype",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movetype-legacy",
+      "title": "MoveType — 移行前の説明・構文・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/8c5f9e6a1ca6f3a06a891d68d8407bf3c7306188/src/content/triggers/MoveType.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "movetype-chaos",
+      "title": "MoveType — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/160.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "movetype-statedef-1.1",
+      "title": "StateDefのmovetype — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#movetype",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movetype-set-1.1",
+      "title": "StateTypeSet — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#statetypeset",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーの行動状態を指定した文字と比較し、成立なら1、不成立なら0を整数で返します。<code>MoveType = A</code>や<code>MoveType != H</code>の形で使います。</p><p><code>A</code>は攻撃、<code>I</code>は攻撃でもくらいでもない状態、<code>H</code>はくらい状態です。<code>I</code>は立ち姿勢だけを意味する値ではありません。体勢の判定にはStateTypeを使います。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "movetype-local-2002",
+        "movetype-local-1.0",
+        "movetype-local-1.1",
+        "movetype-statedef-1.1"
+      ],
+      "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+    },
     "syntax": [
-        "MoveType = 動作型",
-        "MoveType != 動作型"
-    ],
-    "description": "現在のMoveTypeを判定し、真偽を返します。<br>動作型には、A, I, Hのいずれかを指定します。順に、攻撃、待機、くらいを意味します。<br>戻り値の型: boolean int (1 or 0)",
-    "code_sample": [
-        {
-            "title": "プレイヤーが攻撃を受けている状態でないときのトリガー。",
-            "code": [
-                "Trigger1 = movetype != H"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "MoveType - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveType"
-        },
-        {
-            "title": "MoveType - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#movetype"
-        },
-        {
-            "title": "MoveType - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#movetype"
-        },
-        {
-            "title": "MoveType - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/MoveType"
-        }
+      "MoveType = A",
+      "MoveType = I",
+      "MoveType = H",
+      "MoveType != A",
+      "MoveType != I",
+      "MoveType != H"
     ]
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "old_style",
+  "arguments": [
+    {
+      "name": "[oper]",
+      "type": [
+        "演算子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。他の比較演算子は使えません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "movetype-local-2002",
+          "movetype-local-1.0",
+          "movetype-local-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "name": "move_type",
+      "type": [
+        "char"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>引用符を付けずに行動状態の文字を指定します。<code>A</code>＝攻撃、<code>I</code>＝攻撃でもくらいでもない状態、<code>H</code>＝くらい状態です。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "movetype-local-2002",
+          "movetype-local-1.0",
+          "movetype-local-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>行動状態はStateDefのmovetypeやStateTypeSetで設定します。StateDefの<code>movetype = U</code>は前の行動状態を維持する指定です。判定するA/I/Hとは区別してください。MoveTypeを参照するだけでは行動状態は変化しません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "movetype-statedef-1.1",
+          "movetype-set-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはMoveType=I/A/HによるHitDefの有効性、HitFlag、Ctrlやガード処理への影響を記載し、攻撃発生1F目への注意も挙げる。これらは対応ビルド・フレーム処理順・HitDef/Projectileの条件を今回実機確認していない。Aの比較結果を攻撃命中の保証や、Iを無動作の保証へ変換しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "movetype-chaos",
+          "movetype-local-2002",
+          "movetype-local-1.0",
+          "movetype-local-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別である。導入日付・ビルドの実機確認は未実施で、introduced_inはnullに保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "movetype-legacy",
+          "movetype-local-2002",
+          "movetype-local-1.0",
+          "movetype-local-1.1"
+        ],
+        "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    }
+  ]
 }

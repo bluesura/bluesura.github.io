@@ -252,3 +252,7 @@ VarRandom / VarRangeSetを追加し、累計118件・残り116件です。VarRan
 ## 2026-10-04：variable-read-01
 
 Var / FVar / SysVar / SysFVarを追加し、累計122件・残り112件です。必須整数式N、戻り値のint/float、2002資料のSFalse・1.0/1.1のbottomと特殊形式の例外、通常変数への:=代入と型変換を照合しました。documentation.syntax/associated_stateで旧構文と関連IDを保持して公開訂正し、詳細・一覧の構文も共通化しています。SysVar/SysFVarの旧:=・未定義関連ID、2002/1.0公式Format表記差、旧共通図・更新/キャッシュ例・一部Q&A、WinMUGENビルドへの旧対応付けは内部に残しました。ParentVar系のBeta 1解析クラッシュ修正は対応追加ではありません。番号型変換・警告・持ち越し・式全体のリダイレクト代入条件は実機未検証です。次はLife/LifeMax・Power/PowerMaxです。
+
+## 2026-10-04：resource-read-01
+
+Life / LifeMax / Power / PowerMaxを追加し、累計126件・残り108件です。引数なし・整数戻り値、現在値と最大値の分離、LifeMaxのチームモード等での補正、整数除算と小数割合の比較を整理しました。旧図、Persistent式と減少量の丸め、キャラ固有の応用例、IKEMEN GOの旧1履歴と出典は原位置に保持して内部へ保存。Powerの共有・PowerMaxの基準キャラ・具体的補正率・導入ビルド・KO処理順は実機未検証です。今回内部注記17件を追加し累計270件、未対応旧履歴は163項目です。次はAlive・Ctrl・StateNo・PrevStateNoの状態参照です。

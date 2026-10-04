@@ -848,3 +848,25 @@ npm run mugen:batch -- --batch variable-read-01 --target Var --target FVar --tar
 ```
 
 このバッチは適用済みです。次はLife・LifeMax・Power・PowerMaxです。
+
+## 2026-10-04：resource-read-01
+
+Life / LifeMax / Power / PowerMaxの4件を追加しました。累計126件（主要・補助16件＋48バッチ110件）、残り108件です。型と引数なしは保存済み2002.04.14・1.0・1.1b1のTrigger Referenceを照合し、導入ビルドはnullに保持しました。
+
+- Lifeは現在ライフ、LifeMaxはチーム等で補正され得る最大ライフ、Powerは現在量、PowerMaxは最大量として公開概要を整理。整数除算とfloatの割合比較を分け、短い例を追加しました。既存の正しい短い例はそのまま表示します。
+- Life / LifeMaxの旧図はKO・RoundState=3・監視ステートの未検証断定とIKEMEN GO差を含むため内部へ、Power / PowerMaxの旧図はPowerSetが最大値を設定するような矢印を含むため内部へ保存しました。画像ファイル・寸法・代替文は変更していません。
+- LifeMaxのPersistent式、整数除算にCeilを重ねた減少量、敵変数/回復変数の未提示の前提、行を分割したfvar代入は旧コード・説明を保持して内部へ移しました。Powerの上限未満という説明と固定3000条件の差、キャラ固有Command/変数/ステートの応用例も保持して内部へ移しました。
+- LifeMaxの旧IKEMEN GO issue #2957は別エンジンのresearchへ対応付け。mutable nightlyの報告を固定ビルドでの検証済み情報とせず、MUGENの仕様として公開しません。Powerの共有、PowerMaxのタッグ先頭基準、補正率や導入境界は実機未検証です。Const(Data.Power)は保存済みConst一覧にないため公開構文に追加していません。
+- CHAOSの[LifeMax](https://w.atwiki.jp/mugencns/pages/144.html)、[Power](https://w.atwiki.jp/mugencns/pages/187.html)、[PowerMax](https://w.atwiki.jp/mugencns/pages/188.html)、[CNS設定](https://w.atwiki.jp/mugencns/pages/45.html)と[IKEMEN GO報告](https://github.com/ikemen-engine/Ikemen-GO/issues/2957)を照合・内部参照として保持。CHAOSのLifeページ本文は取得できませんでした。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch resource-read-01
+npm run mugen:batch -- --batch resource-read-01 --target Life --target LifeMax --target Power --target PowerMax
+npm run mugen:batch -- --batch resource-read-01 --target Life --target LifeMax --target Power --target PowerMax --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+208テスト・263ページビルド・261 URL/137比較対象ページのHTML検査を通過。ブラウザでLife（幅1280px）、LifeMax（通常幅）、Power / PowerMax（幅390px）を確認しました。Astroのテレメトリー設定ディレクトリ作成がローカル権限で失敗したため、正式な環境変数ASTRO_TELEMETRY_DISABLED=1を使ってビルドを完了しています。既存のPagefind/保存HTMLの警告は継続しています。スキーマ・表示コンポーネントの変更はありません。次はAlive・Ctrl・StateNo・PrevStateNoです。

@@ -1,68 +1,181 @@
-  {
-    "page": {
-      "title": "MUGEN Trigger",
-      "subtitle": "Life",
-      "target": "ステート実行者",
-      "category": [
-        "ライフ",
-        "現在ライフの取得"
-      ],
-      "version": "2002.04.14",
-      "update": "2026.01.04",
-      "type": "document",
-      "level": "3"
+{
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Life",
+    "target": "ステート実行者",
+    "category": [
+      "ライフ",
+      "現在ライフの取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2026.01.04",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "title": "Life",
+  "category": "trigger",
+  "trigger": "Life",
+  "description": "<p>ステート実行者の現在ライフ値を整数で返します。</p><p>リダイレクト（例: <code>Enemy,Life</code>）を付けた場合は、その評価対象の現在ライフを返します。</p>",
+  "syntax": [
+    "Life"
+  ],
+  "images": [
+    {
+      "src": "mugen_life_trigger_system_diagram.png",
+      "width": "640",
+      "height": "480",
+      "alt": "Life/LifeMax と LifeAdd/LifeSet/TargetLifeAdd の関係、およびステート -3〜通常ステートの処理順序を示す図。",
+      "visibility": "internal"
+    }
+  ],
+  "associated_trigger": [
+    "LifeMax"
+  ],
+  "associated_state": [
+    "LifeAdd",
+    "LifeSet",
+    "TargetLifeAdd"
+  ],
+  "code_sample": [
+    {
+      "title": "現在ライフが10以下のときの判定",
+      "code": [
+        "Trigger1 = Life <= 10"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Life - Trigger Reference (MUGEN Beta docs: 2002-03-02 更新)",
+      "url": "https://mugenarchive.com/docs/beta/trigger.html#life"
     },
-    "title": "Life",
-    "category": "trigger",
-    "trigger": "Life",
-    "description": "<p>ステート実行者の現在ライフ値を整数で返します。</p><p>リダイレクト（例: <code>Enemy,Life</code>）を付けた場合は、その評価対象の現在ライフを返します。</p>",
-    "syntax": [
-      "Life"
-    ],
-    "images": [
-      {
-        "src": "mugen_life_trigger_system_diagram.png",
-        "width": "640",
-        "height": "480",
-        "alt": "Life/LifeMax と LifeAdd/LifeSet/TargetLifeAdd の関係、およびステート -3〜通常ステートの処理順序を示す図。"
+    {
+      "title": "Life - Trigger Reference (MUGEN 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#life"
+    },
+    {
+      "title": "Life - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#life"
+    },
+    {
+      "title": "Life - Trigger Reference (Elecbyte mirror)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#life"
+    },
+    {
+      "title": "Life - M.U.G.E.N wiki (archive)",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Life"
+    },
+    {
+      "id": "life-local-2002",
+      "title": "Life — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Life",
+      "source_type": "official_document"
+    },
+    {
+      "id": "life-local-1.0",
+      "title": "Life — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#life",
+      "source_type": "official_document"
+    },
+    {
+      "id": "life-local-1.1",
+      "title": "Life — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#life",
+      "source_type": "official_document"
+    },
+    {
+      "id": "life-legacy-data",
+      "title": "Life — 移行前の概要・図・使用例・出典",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/444f530c1ce6408b3d349ac8482f4d905536d58d/src/content/triggers/Life.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "life-lifeset-1.1",
+      "title": "LifeSet — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#lifeset",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーの現在ライフを整数で返します。引数はありません。</p><p>通常はステート実行者自身を参照します。<code>Enemy,Life</code>などのトリガーリダイレクトを使うと、対象を切り替えて参照できます。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "life-local-2002",
+        "life-local-1.0",
+        "life-local-1.1"
+      ],
+      "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+    }
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "notes": [
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み2002.04.14・1.0・1.1b1のTrigger Referenceに掲載されているが、最初に実装された実行ファイルと日付の実機確認は未実施。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "life-legacy-data",
+          "life-local-2002",
+          "life-local-1.0",
+          "life-local-1.1"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
       }
-    ],
-    "associated_trigger": [
-      "LifeMax"
-    ],
-    "associated_state": [
-      "LifeAdd",
-      "LifeSet",
-      "TargetLifeAdd"
-    ],
-    "code_sample": [
-      {
-        "title": "現在ライフが10以下のときの判定",
-        "code": [
-          "Trigger1 = Life <= 10"
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧図はLife/LifeMaxの関係に加えて、-3の不安定・-2への集約推奨、RoundState=3でライフ固定化、IKEMEN GOとの同フレーム競合を一枚で断定している。対象ビルド、ステート所有者、KO判定・通常ダメージとの処理順の再現条件がないため、画像・代替文・寸法は原位置に保持して公開から外す。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "life-legacy-data"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>Lifeは値を読み取るトリガーです。ライフの設定にはLifeSet、増減にはLifeAddやTargetLifeAddを使います。トリガーの参照だけでライフは変化しません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "life-local-2002",
+          "life-local-1.0",
+          "life-local-1.1",
+          "life-lifeset-1.1"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
         ]
       }
-    ],
-    "quote": [
-      {
-        "title": "Life - Trigger Reference (MUGEN Beta docs: 2002-03-02 更新)",
-        "url": "https://mugenarchive.com/docs/beta/trigger.html#life"
-      },
-      {
-        "title": "Life - Trigger Reference (MUGEN 1.0)",
-        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#life"
-      },
-      {
-        "title": "Life - Trigger Reference (MUGEN 1.1 Beta 1)",
-        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#life"
-      },
-      {
-        "title": "Life - Trigger Reference (Elecbyte mirror)",
-        "url": "https://www.elecbyte.com/mugendocs/trigger.html#life"
-      },
-      {
-        "title": "Life - M.U.G.E.N wiki (archive)",
-        "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Life"
-      }
-    ]
-  }
+    }
+  ]
+}

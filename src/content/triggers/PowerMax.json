@@ -10,20 +10,23 @@
     "version": "2002.04.14",
     "update": "2026.01.11",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "PowerMax",
   "category": "trigger",
   "trigger": "PowerMax",
   "description": "<p>実行者の標準パワーゲージ（Power）の最大量を整数で返します。</p><p>通常はキャラクター定義の <code>[Data]</code> にある <code>power</code> 定数（例: 3000）で設定されます。</p><p>戻り値: <code>int</code></p>",
-    "images": [
-        {
-        "src": "mugen-power-gauge-mechanism.png",
-        "width": "640",
-        "height": "480",
-        "alt": "MUGENにおけるパワーゲージの処理構造図。キャラクターがTriggerで現在のパワー量と最大値を取得し、State（PowerAdd/PowerSet）によってゲージの値を加算・減算・設定する仕組みの解説。"
-        }
-    ],
+  "images": [
+    {
+      "src": "mugen-power-gauge-mechanism.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENにおけるパワーゲージの処理構造図。キャラクターがTriggerで現在のパワー量と最大値を取得し、State（PowerAdd/PowerSet）によってゲージの値を加算・減算・設定する仕組みの解説。",
+      "visibility": "internal"
+    }
+  ],
   "syntax": [
     "PowerMax"
   ],
@@ -42,12 +45,19 @@
       "code": [
         "Trigger1 = Power < PowerMax / 2"
       ]
+    },
+    {
+      "title": "小数を含む最大値の半分と比較する",
+      "description": "<p>1.0/1.1の条件例です。最大値が奇数の場合も、比較基準を整数除算で切り捨てずに計算します。</p>",
+      "code": [
+        "Trigger1 = Power < PowerMax * 0.5"
+      ]
     }
   ],
   "quote": [
     {
-        "title": "PowerMax - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PowerMax"
+      "title": "PowerMax - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PowerMax"
     },
     {
       "title": "PowerMax - M.U.G.E.N 1.0 Trigger Reference (Elecbyte)",
@@ -63,7 +73,190 @@
     },
     {
       "title": "Ikemen GO Wiki (legacy features are documented via Elecbyte 1.1 docs)",
-      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki"
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki",
+      "visibility": "internal"
+    },
+    {
+      "id": "powermax-local-2002",
+      "title": "PowerMax — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PowerMax",
+      "source_type": "official_document"
+    },
+    {
+      "id": "powermax-local-1.0",
+      "title": "PowerMax — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#powermax",
+      "source_type": "official_document"
+    },
+    {
+      "id": "powermax-local-1.1",
+      "title": "PowerMax — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#powermax",
+      "source_type": "official_document"
+    },
+    {
+      "id": "powermax-legacy-data",
+      "title": "PowerMax — 移行前の概要・図・使用例・出典",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/444f530c1ce6408b3d349ac8482f4d905536d58d/src/content/triggers/PowerMax.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "powermax-powerset-1.1",
+      "title": "PowerSet — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#powerset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "powermax-chaos-power",
+      "title": "Power — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/187.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "powermax-chaos-powermax",
+      "title": "PowerMax — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/188.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "powermax-arithmetic-1.0",
+      "title": "整数除算・型昇格 — Elecbyte 1.0 CNS",
+      "url": "/MUGEN/document/Official/1.0/cns.html#arithmetic-operators",
+      "source_type": "official_document"
+    },
+    {
+      "id": "powermax-chaos-cns",
+      "title": "CNSのData.Power設定 — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/45.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "powermax-const-1.1",
+      "title": "Const — Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#const",
+      "source_type": "official_document",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーが持てる最大パワーゲージ量を整数で返します。引数はありません。</p><p>公式資料では通常3000（3ゲージ相当）と説明されています。実際の上限を判定に使う場合は、固定値3000とせず<code>PowerMax</code>を参照してください。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "powermax-local-2002",
+        "powermax-local-1.0",
+        "powermax-local-1.1"
+      ],
+      "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+    }
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "notes": [
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み2002.04.14・1.0・1.1b1のTrigger Referenceに掲載されているが、最初に実装された実行ファイルと日付の実機確認は未実施。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "powermax-legacy-data",
+          "powermax-local-2002",
+          "powermax-local-1.0",
+          "powermax-local-1.1"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧図のPowerSetの矢印がPowerMaxの位置に向かい、最大量を設定するように読める。公式資料ではPowerSetは現在量を設定するステコンである。図の画像・代替文・寸法を保持し、誤読を防ぐため公開から外す。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "powermax-legacy-data",
+          "powermax-powerset-1.1"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはPowerをTeamSideごとの管理でパートナー・Helperと基本同一、PowerMaxはタッグ先頭のData.Powerが基準と記載する。世代、チーム設定、Helper側の指定、評価途中の増減による差を今回実機検証していない。全MUGEN共通の共有規則や常に同値という公開断定へ変換しない。旧IKEMEN GO Wikiの出典も別エンジンの参照としてJSONに保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "powermax-chaos-power",
+          "powermax-chaos-powermax",
+          "powermax-legacy-data"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧概要のData.Power設定自体はCHAOSのCNSファイル説明にあるが、PowerMaxが常に実行者自身の設定値と一致するかは共有設定も含め未検証。CHAOS PowerMaxページのConst(Data.Power)表記は保存済みElecbyte Const一覧にないため、実在が確認できたMUGEN構文として追加しない。旧概要・コミュニティ記録は保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "powermax-chaos-cns",
+          "powermax-const-1.1",
+          "powermax-chaos-powermax",
+          "powermax-legacy-data"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>PowerMax / 2は整数除算です。奇数の最大値でも半分の小数を比較基準に含めるならPowerMax * 0.5やPowerMax / 2.0を使います。最大値を読み取るだけで現在量や上限の設定は変化しません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "powermax-arithmetic-1.0",
+          "powermax-local-2002",
+          "powermax-local-1.0",
+          "powermax-local-1.1"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      }
     }
   ]
 }

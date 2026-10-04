@@ -10,20 +10,23 @@
     "version": "2002.04.14",
     "update": "2026.01.11",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "Power",
   "category": "trigger",
   "trigger": "Power",
   "description": "<p>実行者の標準パワーゲージ（Power）の現在量を整数で返します。</p><p>通常は <code>0</code>〜<code>PowerMax</code> の範囲で運用され、比較や分岐では上限を固定値にせず <code>PowerMax</code> 側も参照するのが安全です。</p><p>戻り値: <code>int</code></p>",
-    "images": [
-        {
-        "src": "mugen-power-gauge-mechanism.png",
-        "width": "640",
-        "height": "480",
-        "alt": "MUGENにおけるパワーゲージの処理構造図。キャラクターがTriggerで現在のパワー量と最大値を取得し、State（PowerAdd/PowerSet）によってゲージの値を加算・減算・設定する仕組みの解説。"
-        }
-    ],
+  "images": [
+    {
+      "src": "mugen-power-gauge-mechanism.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENにおけるパワーゲージの処理構造図。キャラクターがTriggerで現在のパワー量と最大値を取得し、State（PowerAdd/PowerSet）によってゲージの値を加算・減算・設定する仕組みの解説。",
+      "visibility": "internal"
+    }
+  ],
   "syntax": [
     "Power"
   ],
@@ -68,7 +71,8 @@
         "TriggerAll = StateType = S",
         "TriggerAll = Power < 3000",
         "Trigger1   = Ctrl"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "必要ゲージ量を条件分岐する（PalNoで閾値を切り替える例）",
@@ -81,7 +85,8 @@
         "TriggerAll = Command = \"baem_ex\"",
         "TriggerAll = Power >= IfElse(PalNo > 6, 300, 500)",
         "Trigger1   = StateType != A && (Ctrl || var(41) = 1)"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "ガードリカバリーをゲージ条件で発動（HitPause中も拾う例）",
@@ -94,7 +99,8 @@
         "Trigger1       = Power >= 500 && (StateNo = [150, 153])",
         "Value          = IfElse(Command = \"HoldBack\", 161, 166)",
         "IgnoreHitPause = 1"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "AI行動条件にPowerを組み込む（複合条件の例）",
@@ -120,7 +126,8 @@
         "Trigger3   = StateNo = 240 && MoveHit && P2BodyDist X > 30 && Power >= 340",
         "Trigger4   = StateNo = 410 && MoveHit && P2BodyDist X > 30 && Power >= 340 && AnimElemTime(4) > 0 && AnimTime <= 0",
         "Value      = 1020"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "必殺技の発動条件にする（ゲージ2,000以上など）",
@@ -139,13 +146,21 @@
         "Trigger1   = Ctrl",
         "Trigger2   = HitDefAttr = SC, NA, SA, HA",
         "Trigger3   = MoveContact = 1"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "ゲージが最大値未満か調べる",
+      "description": "<p>実際の最大量をPowerMaxで参照し、固定値3000を上限とする前提を避ける条件例です。</p>",
+      "code": [
+        "Trigger1 = Power < PowerMax"
       ]
     }
   ],
   "quote": [
     {
-        "title": "Power - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Power"
+      "title": "Power - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Power"
     },
     {
       "title": "Power - M.U.G.E.N 1.0 Trigger Reference (Elecbyte)",
@@ -161,7 +176,176 @@
     },
     {
       "title": "Ikemen GO Wiki (legacy features are documented via Elecbyte 1.1 docs)",
-      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki"
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki",
+      "visibility": "internal"
+    },
+    {
+      "id": "power-local-2002",
+      "title": "Power — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Power",
+      "source_type": "official_document"
+    },
+    {
+      "id": "power-local-1.0",
+      "title": "Power — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#power",
+      "source_type": "official_document"
+    },
+    {
+      "id": "power-local-1.1",
+      "title": "Power — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#power",
+      "source_type": "official_document"
+    },
+    {
+      "id": "power-legacy-data",
+      "title": "Power — 移行前の概要・図・使用例・出典",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/444f530c1ce6408b3d349ac8482f4d905536d58d/src/content/triggers/Power.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "power-powerset-1.1",
+      "title": "PowerSet — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#powerset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "power-chaos-power",
+      "title": "Power — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/187.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "power-chaos-powermax",
+      "title": "PowerMax — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/188.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "power-powerset-1.0",
+      "title": "PowerSet — Elecbyte 1.0 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#powerset",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーの現在パワーゲージ量を整数で返します。引数はありません。</p><p>必要量が固定の技なら<code>Power &gt;= 1000</code>のように比較します。満タンかどうかや最大値に対する割合を判定する場合は、<code>PowerMax</code>も参照してください。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "power-local-2002",
+        "power-local-1.0",
+        "power-local-1.1"
+      ],
+      "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+    }
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "notes": [
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み2002.04.14・1.0・1.1b1のTrigger Referenceに掲載されているが、最初に実装された実行ファイルと日付の実機確認は未実施。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "power-legacy-data",
+          "power-local-2002",
+          "power-local-1.0",
+          "power-local-1.1"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧図のPowerSetの矢印がPowerMaxの位置に向かい、最大量を設定するように読める。公式資料ではPowerSetは現在量を設定するステコンである。図の画像・代替文・寸法を保持し、誤読を防ぐため公開から外す。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "power-legacy-data",
+          "power-powerset-1.1"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはPowerをTeamSideごとの管理でパートナー・Helperと基本同一、PowerMaxはタッグ先頭のData.Powerが基準と記載する。世代、チーム設定、Helper側の指定、評価途中の増減による差を今回実機検証していない。全MUGEN共通の共有規則や常に同値という公開断定へ変換しない。旧IKEMEN GO Wikiの出典も別エンジンの参照としてJSONに保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "power-chaos-power",
+          "power-chaos-powermax",
+          "power-legacy-data"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>Powerは現在量、PowerMaxは最大量を読み取ります。PowerSetが設定するのは現在量です。Powerを参照するだけではゲージを消費しないため、技の消費量はステート側で別途設定します。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "power-local-2002",
+          "power-local-1.0",
+          "power-local-1.1",
+          "power-powerset-1.0"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧コード例1は最大値未満と説明するが実際にはPower &lt; 3000という固定値条件。旧例2～5はCommand名、var(59)/var(41)、特殊なHelperや移行先ステート番号など特定キャラの構成を前提とする。これらは一般的なPowerの使い方として今回検証できないためJSONに保持し、公開には固定必要量の比較とPowerMaxを参照する短い条件例を使用する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "power-legacy-data",
+          "power-local-2002",
+          "power-local-1.0",
+          "power-local-1.1"
+        ],
+        "comment": "2026-10-04: 資料の記載と原文を照合。今回の実機検証ではない。"
+      }
     }
   ]
 }

@@ -957,3 +957,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・228テスト・263ページビルド・261 URL/150比較対象ページのHTML検査を通過しました。ブラウザでNumPartner（通常幅）、NumEnemy/P2Life（幅390px）を確認し、表示幅をリセット・検査用タブを終了しました。内部注記10件追加の314件、未対応旧履歴162項目。初導入はnullに保持し、実機検証は未実施です。次はRoundState・RoundNo・RoundsExistedです。
+
+## 2026-10-05：round-progress-01
+
+RoundState / RoundNo / RoundsExistedの3件を追加しました。累計142件（主要・補助16件＋53バッチ126件）、残り92件です。移行前のJSON・HTML・抽出結果は tests/mugen/batches/round-progress-01/ に保存しています。
+
+- 公式3世代の引数なし・整数戻り値を構造化。RoundStateは0〜4の進行状態、RoundNoは試合全体の番号、RoundsExistedはプレイヤーごとの存在ラウンド数で最初は0、と分けています。RoundState = 2とCtrlは別の条件で、RoundsExisted = 0は単独で最初の1フレームを意味しません。
+- RoundStateの旧処理ループ図・監視変数のsample_code・開始フラグ例・Q&Aは原位置へ保持して内部へ。CNSの-3のカスタムステート例外・Helperの-3/-2/-1条件をJSONに残し、Pause/HitPause・正確なフレーム境界・変数初期化・全プレイヤーの同フレーム観測は実機未確認としています。公開例は進行状態とCtrlを調べる短い条件行です。
+- [CHAOSのRoundState](https://w.atwiki.jp/mugencns/pages/191.html)と[IKEMEN GOの変更資料](https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(changed)#roundstate)を照合。旧nightly日付の導入境界は未確定で、legacy_index: 0の内部研究を別エンジンへ対応付けました。関連する旧IKEMEN出典も内部へ移しています。[common1.cnsの参照先](https://gist.github.com/Jesuszilla/0aff36b31ff0f732d24f9de3648b6247)は修正版であり全ビルドの配布原本とは扱いません。
+- RoundNoの旧ゲージ初期化例は、説明の1試合目1ラウンド目以外でもOR条件で成立し得るため内部へ。3ラウンド目の短い旧例は維持しています。RoundsExistedのTurns/5900の旧例は維持し、最初の出場ラウンドの短い例を追加。非Turnsで常にRoundNo - 1という旧推測・旧単数名・公式RoundNo > 0とafter the first roundという説明差を内部へ保持しました。
+- スキーマ・レンダラー・CSSは変更していません。初導入ビルドはnull。RoundNo/RoundsExistedのCHAOS本文は取得できず、新しい確認済み根拠には使っていません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch round-progress-01
+npm run mugen:batch -- --batch round-progress-01 --target RoundState --target RoundNo --target RoundsExisted
+npm run mugen:batch -- --batch round-progress-01 --target RoundState --target RoundNo --target RoundsExisted --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・233テスト・263ページビルド・261 URL/153比較対象ページのHTML検査を通過。ブラウザでRoundState（通常幅）、RoundNo/RoundsExisted（幅390px）を確認し、表示幅をリセット・検査用タブを終了しました。内部注記10件追加の324件、未対応旧履歴161項目。実機検証は未実施です。次はID・IsHelper・PlayerIDExistです。

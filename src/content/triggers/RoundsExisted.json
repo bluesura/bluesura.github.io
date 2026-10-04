@@ -1,51 +1,193 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "RoundsExisted",
-        "target": "",
-        "category": [
-            "試合情報",
-            "キャラクターの試合内存在ラウンド数取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "RoundsExisted",
+    "target": "",
+    "category": [
+      "試合情報",
+      "キャラクターの試合内存在ラウンド数取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "RoundsExisted",
+  "summary": "<p>試合中、プレイヤーが存在していたラウンドの数を返します。</p>",
+  "syntax": [
+    "RoundsExisted"
+  ],
+  "description": "試合中、プレイヤーが存在していたラウンドの数を返します。<br>ターンバトル(KOF等のアレ)一本目で一人目が負けた場合、二本目のRoundNoは2ですが、二人目にとっては初ラウンドなので、RoundsExistedは0になります。<br>一方、勝った方はRound1でも存在していたので、RoundExistedは1となります。<br>ターンバトル以外では、常にRoundNoから1を引いた値を返すことになると思います。<br>戻り値の型: int",
+  "code_sample": [
+    {
+      "title": "ターンバトル時、ラウンド番号にかかわらず、そのプレイヤーにとっての最初のラウンドのときのトリガー",
+      "description": "<p>初期化ステート(StateDef 5900)に書き込むことにより、イントロを変更するときなどに使用できます。</p>",
+      "code": [
+        "Trigger1 = RoundsExisted = 0",
+        "Trigger1 = TeamMode = Turns",
+        "Trigger1 = RoundNo > 0"
+      ]
     },
-    "category": "trigger",
-    "trigger": "RoundsExisted",
-    "summary": "<p>試合中、プレイヤーが存在していたラウンドの数を返します。</p>",
-    "syntax": [
-        "RoundsExisted"
-    ],
-    "description": "試合中、プレイヤーが存在していたラウンドの数を返します。<br>ターンバトル(KOF等のアレ)一本目で一人目が負けた場合、二本目のRoundNoは2ですが、二人目にとっては初ラウンドなので、RoundsExistedは0になります。<br>一方、勝った方はRound1でも存在していたので、RoundExistedは1となります。<br>ターンバトル以外では、常にRoundNoから1を引いた値を返すことになると思います。<br>戻り値の型: int",
-    "code_sample": [
-        {
-            "title": "ターンバトル時、ラウンド番号にかかわらず、そのプレイヤーにとっての最初のラウンドのときのトリガー",
-            "description": "<p>初期化ステート(StateDef 5900)に書き込むことにより、イントロを変更するときなどに使用できます。</p>",
-            "code": [
-                "Trigger1 = RoundsExisted = 0",
-                "Trigger1 = TeamMode = Turns",
-                "Trigger1 = RoundNo > 0"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "RoundsExisted - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundsExisted"
-        },
-        {
-            "title": "RoundsExisted - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#roundsexisted"
-        },
-        {
-            "title": "RoundsExisted - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#roundsexisted"
-        },
-        {
-            "title": "RoundsExisted - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/RoundsExisted"
-        }
-    ]
+    {
+      "title": "プレイヤーにとって最初のラウンドか調べる",
+      "description": "<p>試合全体のラウンド番号やチームモードによらず、評価対象の出場履歴を調べる条件です。</p>",
+      "code": [
+        "Trigger1 = RoundsExisted = 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "RoundsExisted - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundsExisted"
+    },
+    {
+      "title": "RoundsExisted - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#roundsexisted"
+    },
+    {
+      "title": "RoundsExisted - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#roundsexisted"
+    },
+    {
+      "title": "RoundsExisted - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/RoundsExisted"
+    },
+    {
+      "id": "roundsexisted-local-2002",
+      "title": "RoundsExisted — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundsExisted",
+      "source_type": "official_document"
+    },
+    {
+      "id": "roundsexisted-local-1.0",
+      "title": "RoundsExisted — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#roundsexisted",
+      "source_type": "official_document"
+    },
+    {
+      "id": "roundsexisted-local-1.1",
+      "title": "RoundsExisted — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundsexisted",
+      "source_type": "official_document"
+    },
+    {
+      "id": "roundsexisted-legacy",
+      "title": "RoundsExisted — 移行前の説明・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/dbef14d16307d3b743c81d7b543bf35fae72688b/src/content/triggers/RoundsExisted.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーが、それまで存在していたラウンド数を整数で返します。そのプレイヤーにとって最初のラウンドでは0です。引数はありません。</p><p>交代制チーム戦（Turns）では、試合途中に登場したプレイヤーも最初の出場ラウンドは0になります。試合全体のラウンド番号RoundNoとは区別してください。</p>",
+    "page_category": "プレイヤーの存在ラウンド数の取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "roundsexisted-local-2002",
+        "roundsexisted-local-1.0",
+        "roundsexisted-local-1.1"
+      ],
+      "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>Turnsで途中登場したプレイヤーのイントロ判定に使えます。公式例は初期化ステート5900を上書きし、ChangeStateでイントロへ切り替える用途を示します。RoundsExisted = 0はそのプレイヤーの最初のラウンドを表す条件で、単独ではそのラウンドの最初の1フレームだけという意味にはなりません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "roundsexisted-local-2002",
+          "roundsexisted-local-1.0",
+          "roundsexisted-local-1.1"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧本文の「ターン以外では常にRoundNo - 1になると思う」という推測、Helper・再試合・引き分け・Survival時のリセット範囲は今回実機未確認。旧RoundExistedという単数表記も原位置に保持し、公開は実際のトリガー名RoundsExistedを使う。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "roundsexisted-legacy",
+          "roundsexisted-local-2002",
+          "roundsexisted-local-1.0",
+          "roundsexisted-local-1.1"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>公式3世代の例はRoundNo > 0を使いながらafter the first roundと説明する。旧例の題名は「ラウンド番号にかかわらず、そのプレイヤーにとって最初のラウンド」であり条件行と矛盾しないため維持する。RoundNo > 0だけで1ラウンド目を除外したと解釈しない。導入・全環境の番号境界を今回実測していない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "roundsexisted-local-2002",
+          "roundsexisted-local-1.0",
+          "roundsexisted-local-1.1",
+          "roundsexisted-legacy"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別であり、introduced_inはnullに保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "roundsexisted-local-2002",
+          "roundsexisted-local-1.0",
+          "roundsexisted-local-1.1",
+          "roundsexisted-legacy"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    }
+  ]
 }

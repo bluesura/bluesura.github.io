@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2025.12.26",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "RoundState",
   "category": "trigger",
@@ -21,7 +23,8 @@
       "src": "character-state-processing-loop.png",
       "width": "640",
       "height": "480",
-      "alt": "格闘ゲームのシステム図。上段に「RoundState（試合進行フェーズ）」の0から4までの遷移（Pre-intro, Intro, Fight, Pre-over, Over）が描かれ、下段に1フレームごとの「ステート処理順序（キャラクターロジックループ）」の詳細が示されています。ロジックループ内では、-3（準常時監視：例外チェック）、-2（真常時監視：特殊システム管理）、-1（準常時監視：コマンド決定）、および現在のステートアクションが順に処理され、他のキャラクターとの同期を経て次のフレームへ移行する流れを説明しています。"
+      "alt": "格闘ゲームのシステム図。上段に「RoundState（試合進行フェーズ）」の0から4までの遷移（Pre-intro, Intro, Fight, Pre-over, Over）が描かれ、下段に1フレームごとの「ステート処理順序（キャラクターロジックループ）」の詳細が示されています。ロジックループ内では、-3（準常時監視：例外チェック）、-2（真常時監視：特殊システム管理）、-1（準常時監視：コマンド決定）、および現在のステートアクションが順に処理され、他のキャラクターとの同期を経て次のフレームへ移行する流れを説明しています。",
+      "visibility": "internal"
     }
   ],
   "syntax": [
@@ -57,7 +60,8 @@
           "title": "Ikemen GO: RoundStateの挙動差分（Triggers changed）",
           "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
         }
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "q": "ラウンド開始（RoundStateが2に入った瞬間）を1フレームだけ検出したい",
@@ -67,7 +71,8 @@
           "title": "The CNS format（特殊ステート -3/-2/-1 の処理順）",
           "url": "https://www.elecbyte.com/mugendocs/cns.html"
         }
-      ]
+      ],
+      "visibility": "internal"
     }
   ],
   "sample_code": {
@@ -116,21 +121,36 @@
         "triggerall = Ctrl",
         "trigger1 = command = \"x\"",
         "value = 1000"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "戦闘区間か調べる",
+      "code": [
+        "Trigger1 = RoundState = 2"
+      ]
+    },
+    {
+      "title": "戦闘区間で通常行動可能か調べる",
+      "description": "<p>ラウンドの進行状態とCtrlを別々の条件で調べます。特定の入力・技の許可条件はキャラクター側で追加してください。</p>",
+      "code": [
+        "Trigger1 = RoundState = 2",
+        "Trigger1 = Ctrl"
       ]
     }
   ],
   "quote": [
     {
-        "title": "RoundState - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundState"
+      "title": "RoundState - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundState"
     },
     {
       "title": "RoundState - Trigger Reference (MUGEN 1.0)",
       "url": "https://www.elecbyte.com/mugendocs/trigger.html#roundstate"
     },
     {
-        "title": "RoundState - Trigger Reference(version 1.1)",
-        "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#roundstate"
+      "title": "RoundState - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#roundstate"
     },
     {
       "title": "The CNS format（特殊ステート -3/-2/-1 の処理順）",
@@ -146,11 +166,218 @@
     },
     {
       "title": "Ikemen GO: Triggers (changed) - RoundStateの挙動差分",
-      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29",
+      "visibility": "internal"
     },
     {
       "title": "Ikemen GO: Triggers (new) - IntroState（イントロ詳細の補助トリガー）",
-      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29"
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29",
+      "visibility": "internal"
+    },
+    {
+      "id": "roundstate-local-2002",
+      "title": "RoundState — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundState",
+      "source_type": "official_document"
+    },
+    {
+      "id": "roundstate-local-1.0",
+      "title": "RoundState — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#roundstate",
+      "source_type": "official_document"
+    },
+    {
+      "id": "roundstate-local-1.1",
+      "title": "RoundState — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundstate",
+      "source_type": "official_document"
+    },
+    {
+      "id": "roundstate-legacy",
+      "title": "RoundState — 移行前の説明・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/dbef14d16307d3b743c81d7b543bf35fae72688b/src/content/triggers/RoundState.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "roundstate-ctrl-1.1",
+      "title": "Ctrl — Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#ctrl",
+      "source_type": "official_document"
+    },
+    {
+      "id": "roundstate-states-1.1",
+      "title": "特殊ステートの実行とHelperの例外 — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#states",
+      "source_type": "official_document",
+      "visibility": "internal"
+    },
+    {
+      "id": "roundstate-chaos",
+      "title": "RoundState — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/191.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "roundstate-common-fix",
+      "title": "修正版common1.cnsの5900 — Jesuszilla",
+      "url": "https://gist.github.com/Jesuszilla/0aff36b31ff0f732d24f9de3648b6247",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "roundstate-ikemen-changed",
+      "title": "IKEMEN GO — Triggers (changed), RoundState",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(changed)#roundstate",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "documentation": {
+    "description": "<p>現在のラウンド進行状態を整数で返します。キャラクターのステート番号StateNoや、ラウンド番号RoundNoとは別の値です。引数はありません。</p><ul><li><code>0</code>：Pre-intro — 画面のフェードイン</li><li><code>1</code>：Intro — イントロ</li><li><code>2</code>：Fight — 戦闘区間</li><li><code>3</code>：Pre-over — 決着直後</li><li><code>4</code>：Over — 勝利ポーズなどの終了演出</li></ul>",
+    "page_category": "現在のラウンド進行状態の取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "roundstate-local-2002",
+        "roundstate-local-1.0",
+        "roundstate-local-1.1"
+      ],
+      "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>ラウンドの進行状態と、プレイヤーが通常行動できるかを示すCtrlは別です。RoundState = 2だけでCtrl = 1を保証する条件にはなりません。通常行動できる戦闘中を条件にしたい場合は、それぞれを調べます。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "roundstate-local-1.1",
+          "roundstate-ctrl-1.1"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧画像・概要はラウンド進行と-3/-2/-1/現在ステートの実行を一緒に説明する。CNSはカスタムステート中の-3の例外、Helperに-3/-2がなく-1はKeyCtrl依存であることを記載する。処理順やHelperの例外自体を消さず、図・alt・寸法・旧説明を保持する。Pause/HitPause、監視変数の初期化、カスタムステート、同一フレームの全プレイヤー観測タイミングは今回実機未確認。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "roundstate-legacy",
+          "roundstate-states-1.1"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧「標準common1.cns」の参照先はJesuszillaによる修正版であり、全ビルドの配布原本ではない。掲載された5900はRoundNo = 1なら190、それ以外は0へ移るが、キャラが上書きできる初期化ステートの例とエンジン自体の不変条件を混同しない。190/191/5900の旧説明とURLを保持する。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "roundstate-legacy",
+          "roundstate-common-fix",
+          "roundstate-states-1.1"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSは2への移行とCtrl.Time経過後のStateNo=0/Ctrl=1を分け、イントロスキップ時の消去・座標復帰・Command受付停止・RoundNotOver等も記載する。旧Q&AのFight表示、監視キャッシュと開始フラグ例を原位置へ保持し、開始フレームの正確な境界や変数の持ち越し・自前コマンド名/ステート1000の前提は今回実機未確認。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "roundstate-legacy",
+          "roundstate-chaos",
+          "roundstate-ctrl-1.1"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧履歴はIKEMEN GO nightlyの2025-08-09以降の差としてFight表示中の返り値変更を記録する。公式プロジェクトWikiもRoundStateが操作解禁前のFight表示中に2ではなく1になる変更を記載するが、今回固定コミット・導入日・実行ビルドは照合していない。MUGENの変更履歴に混ぜず、元の表記・参照URLを保存する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "roundstate-legacy",
+          "roundstate-ikemen-changed"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+      },
+      "environment": {
+        "engine": "ikemen-go"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別であり、introduced_inはnullに保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "roundstate-local-2002",
+          "roundstate-local-1.0",
+          "roundstate-local-1.1",
+          "roundstate-legacy"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
     }
   ]
 }

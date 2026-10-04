@@ -1,0 +1,89 @@
+{
+  "text": "NumProjID 飛び道具 > 指定IDの飛び道具数の取得 | 実装されたバージョン: 2002.04.14 | 対象: 飛び道具 引数 使用例 引用記事 プレイヤーの特定IDのProjectile数を返します。コマンド条件で飛び道具の数を制限したい場合などに使用します。引数には、数えたいProjectileのIDを、intで指定します。引数に負数を指定した場合、IDは0とみなされます。戻り値の型: int 関連するステートコントローラー： Projectile 関連するトリガー： NumProj , NumProjID , ProjCancelTime , ProjContact , ProjContactTime , ProjGuarded , ProjGuardedTime , ProjHit , ProjHitTime 構文 NumProjID(ProjectileのID) 引数 なし コードサンプルプレイヤーが放出したID1234の飛び道具が1つだけ存在している場合のトリガーTrigger1 = NumProjID(1234) = 1 引用記事NumProjID - Trigger Reference(version 2002.04.14)NumProjID - Trigger Reference(version 1.0)NumProjID - Trigger Reference(version 1.1)NumProjID - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.12.21 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Projectile",
+      "href": "./../State/Projectile.html"
+    },
+    {
+      "text": "NumProj",
+      "href": "./../Trigger/NumProj.html"
+    },
+    {
+      "text": "NumProjID",
+      "href": "./../Trigger/NumProjID.html"
+    },
+    {
+      "text": "ProjCancelTime",
+      "href": "./../Trigger/ProjCancelTime.html"
+    },
+    {
+      "text": "ProjContact",
+      "href": "./../Trigger/ProjContact.html"
+    },
+    {
+      "text": "ProjContactTime",
+      "href": "./../Trigger/ProjContactTime.html"
+    },
+    {
+      "text": "ProjGuarded",
+      "href": "./../Trigger/ProjGuarded.html"
+    },
+    {
+      "text": "ProjGuardedTime",
+      "href": "./../Trigger/ProjGuardedTime.html"
+    },
+    {
+      "text": "ProjHit",
+      "href": "./../Trigger/ProjHit.html"
+    },
+    {
+      "text": "ProjHitTime",
+      "href": "./../Trigger/ProjHitTime.html"
+    },
+    {
+      "text": "NumProjID - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#NumProjID"
+    },
+    {
+      "text": "NumProjID - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numprojid"
+    },
+    {
+      "text": "NumProjID - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numprojid"
+    },
+    {
+      "text": "NumProjID - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumProjID"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

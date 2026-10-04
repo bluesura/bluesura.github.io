@@ -1,0 +1,53 @@
+{
+  "text": "NumProj 飛び道具 > 自身の飛び道具数の取得 | 実装されたバージョン: 2002.04.14 | 対象: 飛び道具 引数 使用例 引用記事 プレイヤーが出現させているProjectileの数を返します。飛び道具の数を制限したい場合に使用します。ID指定したい場合は、NumProjIDを使いましょう。戻り値の型: int 関連するステートコントローラー： Projectile 構文 NumProj 引数 なし コードサンプルプレイヤーの飛び道具が出現していない場合のトリガーTrigger1 = NumProj = 0 引用記事NumProj - Trigger Reference(version 2002.04.14)NumProj - Trigger Reference(version 1.0)NumProj - Trigger Reference(version 1.1)NumProj - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.12.21 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Projectile",
+      "href": "./../State/Projectile.html"
+    },
+    {
+      "text": "NumProj - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#NumProj"
+    },
+    {
+      "text": "NumProj - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numproj"
+    },
+    {
+      "text": "NumProj - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numproj"
+    },
+    {
+      "text": "NumProj - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumProj"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

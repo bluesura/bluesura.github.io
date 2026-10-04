@@ -1,55 +1,277 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "NumTarget",
-        "target": "実行者自身",
-        "category": [
-            "ターゲット",
-            "ターゲット数の取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.12.21",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "NumTarget",
+    "target": "実行者自身",
+    "category": [
+      "ターゲット",
+      "ターゲット数の取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.12.21",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "NumTarget",
+  "summary": "<p>プレイヤーのターゲットの数を返します。</p>",
+  "syntax": [
+    "NumTarget",
+    "NumTarget(ID)"
+  ],
+  "description": "プレイヤーのターゲットの数を返します。<br>引数にID番号を指定した場合、そのID番号のターゲット数を返します。<br>IDに-1以下を指定した場合、省略時と同様に扱われます。引数には、数えたいターゲットのヒットIDを指定します。<br>戻り値の型: int",
+  "code_sample": [
+    {
+      "title": "ターゲットが2体以上のときのトリガー",
+      "code": [
+        "Trigger1 = NumTarget >= 2"
+      ]
     },
-    "category": "trigger",
-    "trigger": "NumTarget",
-    "summary": "<p>プレイヤーのターゲットの数を返します。</p>",
+    {
+      "title": "ID1234のターゲットが2体以上のときのトリガー",
+      "code": [
+        "Trigger1 = NumTarget(1234) >= 2"
+      ]
+    },
+    {
+      "title": "指定TargetIDのTargetが存在するときだけ参照する",
+      "description": "<p>1234はHitDefのIDです。PlayerIDではありません。同じ番号の条件行をこの順に置きます。</p>",
+      "code": [
+        "Trigger1 = NumTarget(1234) > 0",
+        "Trigger1 = Target(1234), Life > 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "NumTarget - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumTarget"
+    },
+    {
+      "title": "NumTarget - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numtarget"
+    },
+    {
+      "title": "NumTarget - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numtarget"
+    },
+    {
+      "title": "NumTarget - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumTarget"
+    },
+    {
+      "id": "numtarget-local-2002",
+      "title": "NumTarget — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumTarget",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numtarget-local-1.0",
+      "title": "NumTarget — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#numtarget",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numtarget-local-1.1",
+      "title": "NumTarget — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#numtarget",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numtarget-legacy",
+      "title": "移行前の説明・構文・コード例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/047bdba3a9bbdd9abc8b75671647a7549eb0b179/src/content/triggers/NumTarget.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "numtarget-chaos",
+      "title": "NumTarget — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/170.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "numtarget-redirect-1.1",
+      "title": "TargetIDを使う参照対象の変更 — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#id1",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numtarget-condition-order-1.1",
+      "title": "条件トリガーの評価順 — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#organizing-for-efficiency",
+      "source_type": "official_document"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "function",
+  "documentation": {
+    "description": "<p>参照しているプレイヤーの現在のTargetの数を整数で返します。引数なしの<code>NumTarget</code>は総数です。</p><p><code>NumTarget(exprn)</code>の引数は任意の整数式です。0以上のIDを指定すると、そのIDのTargetだけを数えます。-1以下のIDは全Targetを数えます。</p><p>指定するのはHitDefのID（TargetID）です。IDトリガーで取得するプレイヤーの一意IDとは別の識別番号です。</p>",
     "syntax": [
-        "NumTarget",
-        "NumTarget(ID)"
+      "NumTarget",
+      "NumTarget(exprn)"
     ],
-    "description": "プレイヤーのターゲットの数を返します。<br>引数にID番号を指定した場合、そのID番号のターゲット数を返します。<br>IDに-1以下を指定した場合、省略時と同様に扱われます。引数には、数えたいターゲットのヒットIDを指定します。<br>戻り値の型: int",
-    "code_sample": [
-        {
-            "title": "ターゲットが2体以上のときのトリガー",
-            "code": [
-                "Trigger1 = NumTarget >= 2"
-            ]
-        },
-        {
-            "title": "ID1234のターゲットが2体以上のときのトリガー",
-            "code": [
-                "Trigger1 = NumTarget(1234) >= 2"
-            ]
-        }
+    "page_category": "所有Targetの総数・指定IDの数の取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "numtarget-local-2002",
+        "numtarget-local-1.0",
+        "numtarget-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+    }
+  },
+  "arguments": [
+    {
+      "name": "exprn",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "optional",
+      "expression_policy": "expression",
+      "description": "<p>数える対象のHitDefのID（TargetID）を返す整数式です。省略時はIDを限定せず総数を返します。0以上のIDを指定すると、そのIDのTargetだけを数えます。-1以下のIDは全Targetを数えます。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "numtarget-local-2002",
+          "numtarget-local-1.0",
+          "numtarget-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>戻り値は個数であり、1だけを真とするフラグではありません。<code>NumTarget(1234) &gt; 0</code>で指定IDの存在を、<code>NumTarget(1234) = 0</code>で不在を調べます。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "numtarget-local-2002",
+          "numtarget-local-1.0",
+          "numtarget-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "error",
+      "content": "<p>MUGEN 1.0 / 1.1では、exprnの評価結果がbottomなら戻り値もbottomです。正常に数えた結果の0とは区別します。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "numtarget-local-1.0",
+          "numtarget-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧page.versionの2002.04.14は資料世代として保持し、初導入ビルドはnullです。2002資料のSFalseと1.0/1.1資料のbottomは記載を区別して保存します。整数型以外の変換・警告、範囲外と消滅/射出の同フレーム評価境界は今回実機未確認です。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "numtarget-legacy",
+          "numtarget-local-2002",
+          "numtarget-local-1.0",
+          "numtarget-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式3世代のNumTargetのExamples欄はNumExplod &gt;= 4 / NumExplod(1234) &gt;= 4とExplodの説明になっています。公式表記差を内部へ保存し、既存JSONのNumTarget &gt;= 2 / NumTarget(1234) &gt;= 2という有効なTarget数の例をそのまま公開します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "numtarget-legacy",
+          "numtarget-local-2002",
+          "numtarget-local-1.0",
+          "numtarget-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSは他のHelperが取得したTargetを数えず、Projectileによる取得は本体管理、Helper相手も対象、Target上限8、TargetIDの相手側管理と別IDへの上書きを報告しています。所有範囲・上限時の非命中・ID更新の正確な条件や対応ビルドは実機未確認で、報告を内部へ保存します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "numtarget-chaos",
+          "numtarget-local-2002",
+          "numtarget-local-1.0",
+          "numtarget-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "quote": [
-        {
-            "title": "NumTarget - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumTarget"
-        },
-        {
-            "title": "NumTarget - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numtarget"
-        },
-        {
-            "title": "NumTarget - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numtarget"
-        },
-        {
-            "title": "NumTarget - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumTarget"
-        }
-    ]
+    "source_refs": [
+      "numtarget-local-2002",
+      "numtarget-local-1.0",
+      "numtarget-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+  }
 }

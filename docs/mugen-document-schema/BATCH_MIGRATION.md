@@ -1001,3 +1001,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・238テスト・263ページビルド・261 URL/156比較対象ページのHTML検査を通過。ブラウザはIsHelper（通常幅）、PlayerIDExist/ID（幅390px）で確認し、接続復旧後に設定と検査用タブを片付けました。既存のPagefind/保存HTMLの警告は継続。内部注記10件追加の334件、未対応旧履歴161項目。次はNumHelper・NumTarget・NumExplodです。
+
+## 2026-10-05：owned-counts-01
+
+NumHelper / NumTarget / NumExplodの3件を追加しました。累計148件（主要・補助16件＋55バッチ132件）、残り86件です。移行前JSON・HTML・抽出結果は tests/mugen/batches/owned-counts-01/ に保存しています。
+
+- 3件の任意整数式exprn・引数省略の総数・個数としての戻り値を構造化しました。指定するIDはそれぞれHelperコントローラー、HitDefのTargetID、ExplodコントローラーのIDです。一意PlayerIDと区別し、実在しない共通パラメーターを加えていません。
+- NumHelperは正のIDで絞り込み、0以下で全数。NumTarget/NumExplodは0以上で絞り込み、-1以下で全数です。旧NumHelperの0以上と0以下の重なり、NumExplodの-1のみを説明する旧文を原位置に保持し、公開説明を整理しました。省略を特定の整数に置き換えていません。
+- 旧2例は3件とも維持。Helper/Targetの参照は先に同IDの個数 > 0を別条件行で確認する短い例を追加しました。NumExplodは同IDの個数 = 0を追加しています。
+- 保存済み公式3世代のNumTarget ExamplesがNumExplodの例になっている表記差を内部へ保存。既存JSONの正しいNumTarget比較は変更していません。[CHAOSのNumHelper](https://w.atwiki.jp/mugencns/pages/166.html)のRoot共有・子孫を含む範囲とParent不在の報告、[NumTarget](https://w.atwiki.jp/mugencns/pages/170.html)のHelper/Projectileによる所有・8体上限とTargetID上書きは内部研究です。NumExplodのCHAOS本文は取得できず、新しい確認済み根拠にはしていません。
+- 1.0/1.1の引数bottomと正常な個数0を分離し、2002資料のSFalse・初導入不明・型変換/射出消去の境界は内部へ。スキーマ・レンダラー・CSSの変更はありません。実機検証は未実施です。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch owned-counts-01
+npm run mugen:batch -- --batch owned-counts-01 --target NumHelper --target NumTarget --target NumExplod
+npm run mugen:batch -- --batch owned-counts-01 --target NumHelper --target NumTarget --target NumExplod --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・243テスト・263ページビルド・261 URL/159比較対象ページのHTML検査を通過。ブラウザはNumHelper（通常幅）、NumTarget/NumExplod（幅390px）で確認し、表示幅と検査用タブを復元しました。内部注記8件追加の342件、未対応旧履歴161項目。次はNumProj・NumProjIDです。

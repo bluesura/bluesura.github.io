@@ -280,3 +280,7 @@ RoundState / RoundNo / RoundsExistedを追加し、累計142件（53バッチ126
 ### 2026-10-05：player-identity-01
 
 ID / IsHelper / PlayerIDExistを追加し、累計145件（54バッチ129件＋主要・補助16件）、残り89件です。一意ID・Helperの指定ID・TargetIDを分離し、任意/必須の整数式を構造化しました。公式value抜粋とIsHelper旧例は保持。保存済み一意IDの存在確認からリダイレクトへ進む別条件行を公開しています。旧PlayerExist誤記・ID順によるHelper推定/代入例・DestroySelf後の召喚フリーズ対策・NumTarget列挙・公式PlayerExistID表記差は内部へ。割当詳細・特殊引数・消滅境界・回避策の再現条件は実機未確認です。旧フィールドの保存と内部非表示を検証し、238テスト・263ページビルド・261 URL/156比較対象ページのHTML検査を通過。初導入はnull、内部注記10件追加の334件、未対応旧履歴161項目。次はNumHelper・NumTarget・NumExplodです。
+
+### 2026-10-05：owned-counts-01
+
+NumHelper / NumTarget / NumExplodを追加し、累計148件（55バッチ132件＋主要・補助16件）、残り86件です。各所有数と任意IDを構造化し、Helperの0以下とTarget/Explodの-1以下の全数扱いを分離。旧説明・2例ずつを原位置に保持し、存在確認から参照する例を追加しました。公式NumTargetのNumExplod例という表記差、CHAOSのRoot共有と所有・Target上限8/ID上書きは内部へ残しました。導入ビルド・特殊型・射出/消滅境界・所有の細部は実機未検証です。243テスト・263ページビルド・261 URL/159比較対象ページのHTML検査を通過。内部注記8件追加の342件、未対応旧履歴161項目。次はNumProj・NumProjIDです。

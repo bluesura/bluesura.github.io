@@ -1,58 +1,237 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "NumExplod",
-        "target": "アニメーション",
-        "category": [
-            "演出",
-            "指定IDのExplod数の取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.12.21",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "NumExplod",
+    "target": "アニメーション",
+    "category": [
+      "演出",
+      "指定IDのExplod数の取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.12.21",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "NumExplod",
+  "summary": "<p>出現しているExplodの数を返します。</p>",
+  "syntax": [
+    "NumExplod",
+    "NumExplod(ExplodのID)"
+  ],
+  "description": "出現しているExplodの数を返します。<br>引数にID番号を指定した場合、そのID番号のExplodの数を返します。<br>IDには、-1以上の整数を指定します。-1の場合、省略時と同じ扱いになります。<br>戻り値の型: int",
+  "associated_state": [
+    "Explod"
+  ],
+  "code_sample": [
+    {
+      "title": "プレイヤーのexplodが4つ以上出現している場合のトリガー",
+      "code": [
+        "Trigger1 = NumExplod >= 4"
+      ]
     },
-    "category": "trigger",
-    "trigger": "NumExplod",
-    "summary": "<p>出現しているExplodの数を返します。</p>",
+    {
+      "title": "プレイヤーのID1234のexplodが4つ以上出現している場合のトリガー",
+      "code": [
+        "Trigger1 = NumExplod(1234) >= 4"
+      ]
+    },
+    {
+      "title": "指定IDのExplodがないことを確認する",
+      "code": [
+        "Trigger1 = NumExplod(1234) = 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "NumExplod - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumExplod"
+    },
+    {
+      "title": "NumExplod - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numexplod"
+    },
+    {
+      "title": "NumExplod - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numexplod"
+    },
+    {
+      "title": "NumExplod - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumExplod"
+    },
+    {
+      "id": "numexplod-local-2002",
+      "title": "NumExplod — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumExplod",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numexplod-local-1.0",
+      "title": "NumExplod — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#numexplod",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numexplod-local-1.1",
+      "title": "NumExplod — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#numexplod",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numexplod-legacy",
+      "title": "移行前の説明・構文・コード例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/047bdba3a9bbdd9abc8b75671647a7549eb0b179/src/content/triggers/NumExplod.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "function",
+  "documentation": {
+    "description": "<p>参照しているプレイヤーが所有しているExplodの数を整数で返します。引数なしの<code>NumExplod</code>は総数です。</p><p><code>NumExplod(exprn)</code>の引数は任意の整数式です。0以上のIDを指定すると、そのIDのExplodだけを数えます。-1以下のIDは全Explodを数えます。</p><p>指定するのはExplodコントローラーのIDです。IDトリガーで取得するプレイヤーの一意IDとは別の識別番号です。</p>",
     "syntax": [
-        "NumExplod",
-        "NumExplod(ExplodのID)"
+      "NumExplod",
+      "NumExplod(exprn)"
     ],
-    "description": "出現しているExplodの数を返します。<br>引数にID番号を指定した場合、そのID番号のExplodの数を返します。<br>IDには、-1以上の整数を指定します。-1の場合、省略時と同じ扱いになります。<br>戻り値の型: int",
-    "associated_state": [
-        "Explod"
+    "page_category": "所有Explodの総数・指定IDの数の取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "numexplod-local-2002",
+        "numexplod-local-1.0",
+        "numexplod-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+    }
+  },
+  "arguments": [
+    {
+      "name": "exprn",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "optional",
+      "expression_policy": "expression",
+      "description": "<p>数える対象のExplodコントローラーのIDを返す整数式です。省略時はIDを限定せず総数を返します。0以上のIDを指定すると、そのIDのExplodだけを数えます。-1以下のIDは全Explodを数えます。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "numexplod-local-2002",
+          "numexplod-local-1.0",
+          "numexplod-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>戻り値は個数であり、1だけを真とするフラグではありません。<code>NumExplod(1234) &gt; 0</code>で指定IDの存在を、<code>NumExplod(1234) = 0</code>で不在を調べます。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "numexplod-local-2002",
+          "numexplod-local-1.0",
+          "numexplod-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "error",
+      "content": "<p>MUGEN 1.0 / 1.1では、exprnの評価結果がbottomなら戻り値もbottomです。正常に数えた結果の0とは区別します。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "numexplod-local-1.0",
+          "numexplod-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧page.versionの2002.04.14は資料世代として保持し、初導入ビルドはnullです。2002資料のSFalseと1.0/1.1資料のbottomは記載を区別して保存します。整数型以外の変換・警告、範囲外と消滅/射出の同フレーム評価境界は今回実機未確認です。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "numexplod-legacy",
+          "numexplod-local-2002",
+          "numexplod-local-1.0",
+          "numexplod-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧説明はIDを-1以上とし、全数指定を-1だけ説明していました。公式3世代は-1以下のすべてを省略時と同じ全数扱いと記載します。旧原文は保持し、公開説明はこの境界を示します。NumExplodのCHAOS本文は今回取得できず、Helper/Root間の所有・Explod移管、RemoveExplodと消去境界の細部は実機未確認です。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "numexplod-legacy",
+          "numexplod-local-2002",
+          "numexplod-local-1.0",
+          "numexplod-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "code_sample": [
-        {
-            "title": "プレイヤーのexplodが4つ以上出現している場合のトリガー",
-            "code": [
-                "Trigger1 = NumExplod >= 4"
-            ]
-        },
-        {
-            "title": "プレイヤーのID1234のexplodが4つ以上出現している場合のトリガー",
-            "code": [
-                "Trigger1 = NumExplod(1234) >= 4"
-            ]
-        }
+    "source_refs": [
+      "numexplod-local-2002",
+      "numexplod-local-1.0",
+      "numexplod-local-1.1"
     ],
-    "quote": [
-        {
-            "title": "NumExplod - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumExplod"
-        },
-        {
-            "title": "NumExplod - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numexplod"
-        },
-        {
-            "title": "NumExplod - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numexplod"
-        },
-        {
-            "title": "NumExplod - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumExplod"
-        }
-    ]
+    "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+  }
 }

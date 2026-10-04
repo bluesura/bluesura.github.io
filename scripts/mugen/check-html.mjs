@@ -47,6 +47,10 @@ for (const { collection, name, base } of cases) {
         const description = section?.childNodes.find(node => node.tagName === 'div');
         assert.ok(description, `${entry.url}: missing index description`);
         assert.equal(compactText(description), compactText(parseFragment(effectiveDescription(entry.data))), `${entry.url}: edited index description`);
+        if (entry.data.documentation.syntax) {
+          const code = findAll(section, node => attr(node, 'class') === 'code')[0];
+          assert.deepEqual(findAll(code, node => node.tagName === 'li').map(compactText), entry.data.documentation.syntax.map(line => compactText(parseFragment(line))), `${entry.url}: edited index syntax`);
+        }
       }
       if (collection === 'state-controllers') {
         const section = findAll(tree, node => node.tagName === 'div' && attr(node, 'class') === 'section' && findAll(node, child => child.tagName === 'h2' && findAll(child, link => attr(link, 'href') === entry.url).length).length)[0];
@@ -92,6 +96,11 @@ for (const { collection, name, base } of cases) {
   ];
   const hiddenLinks = hiddenFragments.flatMap(tree => findAll(tree, node => attr(node, 'href')).map(node => ({ href: attr(node, 'href'), text: compactText(node) })));
   hiddenLinks.push(...(source.quote ?? []).filter(item => item.visibility === 'internal').map(item => ({ href: item.url, text: item.title })));
+  if (source.documentation?.associated_state !== undefined) {
+    for (const state of legacy.associated_state ?? []) {
+      if (!source.documentation.associated_state.includes(state)) hiddenLinks.push({ href: `./../State/${state}.html`, text: state });
+    }
+  }
   for (const i of internalParameterIndices) {
     const heading = oldParameterNodes[i] && findAll(oldParameterNodes[i], node => node.tagName === 'h3')[0];
     const href = heading && '#' + attr(heading, 'id');
@@ -160,6 +169,15 @@ for (const { collection, name, base } of cases) {
     }
   }
   if (source.documentation) {
+    if (source.documentation.syntax) {
+      const syntax = findAll(document, node => attr(node, 'id') === 'syntax')[0];
+      assert.deepEqual(findAll(syntax, node => node.tagName === 'li').map(compactText), source.documentation.syntax.map(line => compactText(parseFragment(line))), `${name}: edited article syntax`);
+    }
+    if (source.documentation.associated_state !== undefined) {
+      const associated = findAll(document, node => attr(node, 'class') === 'associated-trigger');
+      const stateLinks = associated.flatMap(node => findAll(node, child => child.tagName === 'a' && attr(child, 'href')?.startsWith('./../State/')));
+      assert.deepEqual(stateLinks.map(compactText), source.documentation.associated_state, `${name}: edited associated states`);
+    }
     const description = findAll(document, node => attr(node, 'class') === 'description' && attr(node, 'itemprop') === 'articleBody')[0];
     assert.ok(description, `${name}: missing article description`);
     // Associated links are rendered separately in the same container.

@@ -3,7 +3,7 @@
 
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { effectiveDescription } from '../../../../lib/mugen/normalize.mjs';
+import { effectiveDescription, effectiveSyntax } from '../../../../lib/mugen/normalize.mjs';
 
 // 1. Triggerの全データを取得
 const allTriggers = await getCollection('triggers');
@@ -31,14 +31,15 @@ const description = "MUGENのTrigger（トリガー）の一覧です。";
       <div class="entry-content">
         {allTriggers.map(entry => {
           const content = entry.data;
+          const syntax = effectiveSyntax(content);
           return (
             <div class="section">
               <h2><a href={`/MUGEN/document/Trigger/${entry.id}.html`}>{content.trigger}</a></h2>
               <div set:html={effectiveDescription(content)}></div>
-              {content.syntax && (
+              {syntax && (
                 <div class="code" contenteditable="true">
                   <ul>
-                    {content.syntax.map((line: string) => <li set:html={line} />)}
+                    {syntax.map((line: string) => <li set:html={line} />)}
                   </ul>
                 </div>
               )}

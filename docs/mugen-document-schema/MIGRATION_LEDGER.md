@@ -248,3 +248,7 @@ VarAdd / ParentVarSet / ParentVarAddを追加し、累計116件・残り118件�
 ## 2026-10-04：variable-ranges-01
 
 VarRandom / VarRangeSetを追加し、累計118件・残り116件です。VarRandomの指定範囲・両端・単一引数・0,1000省略値と、VarRangeSetの連続範囲・1回評価・First=0・型別Last=59/39を公式3世代へ対応させました。旧カテゴリ/説明・空欄/?の代入値・条件文の省略値と読み込み順を原位置に保持しています。旧2警告、乱数の限界/分布と無効範囲・型変換、コミュニティFValueのInt型表記差とラウンド持ち越し/F4、範囲外の部分適用・併記時の優先順位は内部に残しました。旧警告出典は503で本文取得不可、実機再現も未実施です。次は変数読み取りトリガーです。
+
+## 2026-10-04：variable-read-01
+
+Var / FVar / SysVar / SysFVarを追加し、累計122件・残り112件です。必須整数式N、戻り値のint/float、2002資料のSFalse・1.0/1.1のbottomと特殊形式の例外、通常変数への:=代入と型変換を照合しました。documentation.syntax/associated_stateで旧構文と関連IDを保持して公開訂正し、詳細・一覧の構文も共通化しています。SysVar/SysFVarの旧:=・未定義関連ID、2002/1.0公式Format表記差、旧共通図・更新/キャッシュ例・一部Q&A、WinMUGENビルドへの旧対応付けは内部に残しました。ParentVar系のBeta 1解析クラッシュ修正は対応追加ではありません。番号型変換・警告・持ち越し・式全体のリダイレクト代入条件は実機未検証です。次はLife/LifeMax・Power/PowerMaxです。

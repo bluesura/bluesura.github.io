@@ -830,3 +830,21 @@ npm run mugen:batch -- --batch variable-ranges-01 --target VarRandom --target Va
 ```
 
 このバッチは適用済みです。次はVar・FVar・SysVar・SysFVarです。
+
+## variable-read-01：変数参照トリガーの4件
+
+2026-10-04、Var / FVar / SysVar / SysFVarを移行しました。移行前のJSON・記事・ハッシュは `tests/mugen/batches/variable-read-01/` に保存しています。
+
+- 保存済み公式3世代を照合しました。整数戻り値はVar/SysVar、浮動小数戻り値はFVar/SysFVarで、引数の番号はすべて整数式です。必須Nを旧parameterへ対応させ、0～59 / 0～39 / 0～4の範囲と元のメタ情報を保持しています。State用の共通パラメーターをTriggerへ追加しません。
+- 2002資料のSFalseと1.0/1.1のbottomを、実機の変更履歴とは区別して公開しました。旧WinMUGENというビルドへの対応付けは内部に残しました。Cond/IfElseの特殊な評価規則を分け、部分式のbottomが常に式全体へ波及するとは書きません。
+- 1.0/1.1の式中代入はリダイレクトされていないVar/FVarが左辺です。右辺の整数切り詰め・浮動小数への変換・代入後の戻り値を整理しました。[CHAOSの演算子](https://w.atwiki.jp/mugencns/pages/44.html)とも照合し、SysVar/SysFVarの旧:=説明・構文を公開側で訂正しています。関連するSysVarSet/SysVarAdd/SysFVarSet/SysFVarAddは照合したElecbyte仕様とリポジトリ内に対応定義がなく、旧IDを保持してリンクを非表示にしました。
+- ルートdocumentationへsyntax/associated_stateを追加しました。構文は詳細とTrigger一覧で共通解決し、関連IDは未指定時の旧値と明示した空配列を区別します。旧公開リンクの除外は明示した訂正配列に限定し、HTML検査で新しい構文と関連リンクを確認しています。旧データの保存検査は維持しています。
+- 旧共通図のbottom例外・リダイレクト代入の説明、前提不足の更新/キャッシュ例とVarの一部Q&Aは原位置へ保持して内部にしました。Var/FVarの公開例ではNullの式中代入と条件の比較を明示しています。SysVar/SysFVarの公式2002/1.0 Format欄の通常変数名という表記差も内部に保存しました。ParentVar系の1.1 Beta 1解析クラッシュ修正は対応追加と区別して公開しています。番号の型変換・警告・持ち越し・リダイレクトされた式全体の代入条件は実機未検証です。
+
+```sh
+npm run mugen:batch-baseline -- --batch variable-read-01
+npm run mugen:batch -- --batch variable-read-01 --target Var --target FVar --target SysVar --target SysFVar
+npm run mugen:batch -- --batch variable-read-01 --target Var --target FVar --target SysVar --target SysFVar --apply
+```
+
+このバッチは適用済みです。次はLife・LifeMax・Power・PowerMaxです。

@@ -19,6 +19,8 @@ Node.js 20 の CI とブラウザ表示の両方で同じ処理を使うため�
 
 ## 新旧の対応
 
+- 2026-10-04: ルートの `documentation.syntax` / `associated_state` を採用しました。旧 `syntax` / `associated_state` を保持し、構文は詳細・Trigger一覧、関連ステコンは詳細の公開表示へ反映します。未指定なら旧配列を使用します。syntaxは非空文字列の非空配列、associated_stateは非空文字列の配列です。associated_stateの`[]`は関連リンクの非表示を明示し、旧IDはJSONへ残ります。SysVar/SysFVarの誤った式中代入と未定義関連IDの訂正に使用しています。ルートdocumentationのdescriptionは必須のままです。
+
 - ルートの `documentation.description` は公開用の概要です（2026-09-09 採用）。旧 `description` を残し、詳細・一覧・説明用メタ情報へ反映します。任意の `documentation.evidence` は非公開です。パラメーター用とは異なり `value` は指定できません。
 - `parameter[].documentation.value` / `type` / `description` は公開用に訂正したラベル・型・本文です。指定した項目だけを優先し、旧 `value` / `type` / `description` は原位置に保持します。内部の `evidence` は HTML に出力しません。入力規則、共通定義・引数との優先順位、編集手順は [EDITORIAL_GUIDE.md](EDITORIAL_GUIDE.md) を参照してください（`type` は2026-10-02採用）。
 - `parameter[].documentation.parameter_type` は公開表示と CNS コピペ欄で使う必須・任意・代替の分類を訂正します（2026-10-01 採用）。`required` / `optional` / `instead` に限定し、旧 `parameter_type` は原位置に保持します。`Width` の旧「必須」と公式資料の「任意」の差に使用しています。

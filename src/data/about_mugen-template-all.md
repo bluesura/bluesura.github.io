@@ -20,6 +20,8 @@
 
 > 2026-10-04: `parameter[].documentation.possible_value` で公開候補リスト・表を訂正できます。旧候補は原位置に保持します。非空文字列の配列か、非空文字列の行配列を指定し、混在形式は拒否します。`hide_legacy` に旧 `possible_value` を含めても、明示した訂正表は表示します。AssertSpecialが使用例です。
 
+> 2026-10-04: ルートの `documentation.syntax` / `documentation.associated_state` で公開構文・関連ステコンを訂正できます。旧配列は原位置に保持し、詳細・Trigger一覧の構文には訂正値を使います。syntaxは非空文字列の非空配列、associated_stateは非空文字列の配列で、`[]`なら関連ステコンを非表示にします。descriptionは引き続き必須です。SysVar/SysFVarの旧式中代入・未定義関連IDの訂正が使用例です。
+
 このドキュメントは、`mugen-template-all.json` の各フィールドに入力すべき情報を定義した仕様書です。
 LLM（大規模言語モデル）への指示や、ドキュメントデータベース構築時のリファレンスとして利用してください。
 

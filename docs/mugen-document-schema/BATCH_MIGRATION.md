@@ -1109,3 +1109,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・263テスト・263ページビルド・261 URL/171比較対象ページのHTML検査を通過。通常幅のMoveHit、幅390pxのMoveGuarded使用例/MoveReversed継承と判定側、MoveContact図の非表示を確認し、表示幅と検査用タブを復元。内部注記19件追加の393件、未対応旧履歴152項目。次はHitCount・UniqHitCount・HitPauseTimeです。
+
+## 2026-10-05：hit-count-pause-01
+
+HitCount / UniqHitCount / HitPauseTimeの3件を追加し、累計163件（主要・補助16件＋60バッチ147件）、残り71件です。移行前JSON・HTML・抽出結果は tests/mugen/batches/hit-count-pause-01/ に保存しました。
+
+- 引数なし・整数戻り値を構造化。HitCountとUniqHitCountの2体同時命中時の1/2加算、ガード除外、画面コンボ数との違い、遷移先StateDefのHitCountPersistと省略時0を公開しました。UniqHitCountは相手の種類数という意味にしない公開ラベルへ訂正しています。
+- UniqHitCount旧例は6未満というタイトルと6を含む[4,6]が不一致です。原位置に保持して内部へ移し、[4,6)と4/5の説明を追加しました。HitCountの旧9回以上の例、HitPauseTimeのIgnoreHitPauseを含む2例は維持しています。
+- HitPauseTimeのコントローラーが停止中に評価されないことと、式の0を区別。旧説明とQ&Aは保持し、公開FAQを整理しました。攻撃側のPauseTime / guard.pausetimeと被弾側GetHitVar(HitShakeTime)、一般のPause/SuperPauseとの違いを公開しています。
+- 1.0 RC1のP1 PauseTimeが1 tick早く終了する修正と、旧mugenversionによる式評価後の-1補正、1.0形式へ移植する際のP1 +1とmugenversion設定を保存済み公式履歴に照合。旧version[0]は新しい公開変更履歴へ対応付けました。正確な初導入はnullで、旧IKEMEN GOの未掲載からの互換推測は別エンジンの内部記録です。
+- [CHAOS HitCount](https://w.atwiki.jp/mugencns/pages/127.html)と[UniqHitCount](https://w.atwiki.jp/mugencns/pages/128.html)の同時ヒット/ガード・Target依存加算、[HitPauseTime](https://w.atwiki.jp/mugencns/pages/133.html)の表記差/疑問符、停止開始終了の評価順は内部へ保持。今回実機検証を行った記録にはしていません。スキーマ・レンダラー・CSSの変更はありません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch hit-count-pause-01
+npm run mugen:batch -- --batch hit-count-pause-01 --target HitCount --target UniqHitCount --target HitPauseTime
+npm run mugen:batch -- --batch hit-count-pause-01 --target HitCount --target UniqHitCount --target HitPauseTime --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・268テスト・263ページビルド・261 URL/174比較対象ページのHTML検査を通過。通常幅のHitCount、幅390pxのUniqHitCount使用例とHitPauseTimeの変更履歴/仕様を確認し、表示幅と検査用タブを復元。テスト側の正規化カテゴリの参照先を修正して再検査済み。内部注記9件追加の402件、未対応旧履歴150項目。次はHitShakeOver・HitOver・HitFallです。

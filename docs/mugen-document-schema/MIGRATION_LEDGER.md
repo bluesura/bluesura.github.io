@@ -300,3 +300,7 @@ Projectileの経過時間4件で累計157件（58バッチ141件＋主要・補�
 ### 2026-10-05：move-results-01
 
 MoveHit / MoveGuarded / MoveReversedで累計160件（59バッチ144件＋主要・補助16件）、残り74件です。整数・引数なし、ヒット/ガードと当て身された側、1.0/1.1の停止中カウンター、遷移先StateDefによる保持を分離しました。MoveHitResetのMoveReversedへの影響を推定せず、短い旧例は維持。旧8履歴・IKEMEN GO/CMD例・公式の他3つ0説明・同時処理/DOS/Win境界を内部へ保持しました。共有図はMoveContactも含め4ページで内部へ保存し原画像を維持。2002更新履歴を公開し導入ビルドはnull。実機未検証。263テスト・263ページビルド・261 URL/171比較対象ページHTML検査を通過。内部注記393件、未対応旧履歴152項目。次はHitCount・UniqHitCount・HitPauseTimeです。
+
+### 2026-10-05：hit-count-pause-01
+
+ヒット回数/停止時間3件で累計163件、残り71件。相手ごとの加算と画面コンボ数、StateDef保持を分離し、UniqHitCount旧閉区間例を保持して公開側を半開区間へ訂正。HitPauseTimeの非評価と0、攻撃側と被弾側、RC1修正と互換補正を分けました。旧説明・Q&A・IKEMEN推論・同時処理や停止境界は内部に保持。導入null、実機未検証。268テスト・263ページビルド・261 URL/174比較対象ページのHTML検査と通常/390px表示を確認。内部注記402件、未対応旧履歴150項目。次はHitShakeOver・HitOver・HitFallです。

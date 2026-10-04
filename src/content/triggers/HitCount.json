@@ -1,48 +1,188 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "HitCount",
-        "target": "",
-        "category": [
-            "ヒット情報",
-            "現ステート内のヒット回数取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.28",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "HitCount",
+    "target": "",
+    "category": [
+      "ヒット情報",
+      "現ステート内のヒット回数取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2015.12.28",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "HitCount",
+  "summary": "<p>そのステート内でのヒット数を返します。</p>",
+  "syntax": [
+    "HitCount"
+  ],
+  "description": "そのステート内でのヒット数を返します。<br>ガードは含みません。ステートが変わるとヒット数はリセットされますので、前のステートのヒット数を引き継ぎたい場合は予めStatedefの冒頭にhitcountpersist = 1と記述しておく必要があります。<br>姉妹品にUniqHitCountがあり、チームプレイで複数の敵に同時ヒットした場合の扱いが異なります。HitCountの場合は1ヒット、UniqHitCountの場合は2ヒットとして扱われます。<br>画面に表示されるヒット数とは全くの別物で、同一ステート内、もしくはhitcountpersist = 1であれば連続ヒットしなくてもカウントされます。よってダメージ補正に使うのは難しいです。<br>戻り値の型: int",
+  "code_sample": [
+    {
+      "title": "同一ステート内、もしくはhitcountpersist = 1のステートで攻撃が9回以上ヒットしたときのトリガー",
+      "code": [
+        "Trigger1 = HitCount > 8"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "HitCount - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitCount"
     },
-    "category": "trigger",
-    "trigger": "HitCount",
-    "summary": "<p>そのステート内でのヒット数を返します。</p>",
-    "syntax": [
-        "HitCount"
+    {
+      "title": "HitCount - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitcount"
+    },
+    {
+      "title": "HitCount - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitcount"
+    },
+    {
+      "title": "HitCount - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitCount"
+    },
+    {
+      "id": "hitcount-local-2002",
+      "title": "HitCount — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitCount",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitcount-local-1.0",
+      "title": "HitCount — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#hitcount",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitcount-local-1.1",
+      "title": "HitCount — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitcount",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitcount-legacy",
+      "title": "移行前の説明・書式・例・履歴",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/f9395abae8191c3401a4aba1dd6ef2ec66f134c6/src/content/triggers/HitCount.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitcount-chaos",
+      "title": "HitCount — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/127.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitcount-persist-1.1",
+      "title": "StateDef HitCountPersist — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#hitcountpersist",
+      "source_type": "official_document"
+    }
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [],
+  "documentation": {
+    "description": "<p>実行者自身の現在の攻撃で、1体以上の相手にヒットした回数を整数で返します。引数はありません。ガードは含みません。</p><p>同じ攻撃が2体へ同時にヒットすると、HitCountは1、UniqHitCountは2増えます。UniqHitCountは、これまでに攻撃した相手の種類数を返すトリガーではありません。</p><p>連続ヒットでなくても加算され、画面に表示されるコンボ数とは別の値です。通常はステート遷移で0に戻ります。前の値を持ち越す場合は、遷移先のStateDefに<code>HitCountPersist = 1</code>を指定します。</p>",
+    "page_category": "攻撃のヒット回数取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document",
+        "community_documentation"
+      ],
+      "source_refs": [
+        "hitcount-local-2002",
+        "hitcount-local-1.0",
+        "hitcount-local-1.1",
+        "hitcount-persist-1.1",
+        "hitcount-chaos"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>HitCountPersistはStateDefの設定で、トリガーの引数ではありません。省略時または0のステートへ移るとヒット回数がリセットされます。1のステートへ移ると保持されます。この設定は画面のコンボカウンターには影響しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitcount-persist-1.1",
+          "hitcount-local-2002",
+          "hitcount-local-1.0",
+          "hitcount-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSの同一フレームのヒット/ガード混在とTarget参照相手によるHitCountの加算、UniqHitCountの相手ごとの加算報告を保持します。フレームをずらした複数相手への命中、処理順や特殊攻撃・Projectileとの関係、対象ビルドごとの再現は今回実機未確認です。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "hitcount-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧説明とCHAOSのダメージ補正/正確な処理への向き不向きは内部へ保持します。非連続でも加算されることと画面コンボ数との違いを公開し、用途全体の可否は断定しません。page.versionから導入ビルドを推測せずintroduced_inはnullです。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "hitcount-legacy",
+          "hitcount-chaos",
+          "hitcount-local-2002",
+          "hitcount-local-1.0",
+          "hitcount-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "そのステート内でのヒット数を返します。<br>ガードは含みません。ステートが変わるとヒット数はリセットされますので、前のステートのヒット数を引き継ぎたい場合は予めStatedefの冒頭にhitcountpersist = 1と記述しておく必要があります。<br>姉妹品にUniqHitCountがあり、チームプレイで複数の敵に同時ヒットした場合の扱いが異なります。HitCountの場合は1ヒット、UniqHitCountの場合は2ヒットとして扱われます。<br>画面に表示されるヒット数とは全くの別物で、同一ステート内、もしくはhitcountpersist = 1であれば連続ヒットしなくてもカウントされます。よってダメージ補正に使うのは難しいです。<br>戻り値の型: int",
-    "code_sample": [
-        {
-            "title": "同一ステート内、もしくはhitcountpersist = 1のステートで攻撃が9回以上ヒットしたときのトリガー",
-            "code": [
-                "Trigger1 = HitCount > 8"
-            ]
-        }
+    "source_refs": [
+      "hitcount-local-2002",
+      "hitcount-local-1.0",
+      "hitcount-local-1.1"
     ],
-    "quote": [
-        {
-            "title": "HitCount - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitCount"
-        },
-        {
-            "title": "HitCount - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitcount"
-        },
-        {
-            "title": "HitCount - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitcount"
-        },
-        {
-            "title": "HitCount - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitCount"
-        }
-    ]
+    "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+  }
 }

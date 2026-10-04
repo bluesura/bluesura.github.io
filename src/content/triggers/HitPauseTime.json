@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.05",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "HitPauseTime",
   "category": "trigger",
@@ -52,6 +54,17 @@
           "title": "State Controller Reference - IgnoreHitPause (MUGEN 1.0, Elecbyte)",
           "url": "https://www.elecbyte.com/mugendocs/sctrls.html"
         }
+      ],
+      "visibility": "internal"
+    },
+    {
+      "q": "ヒットストップ中にHitPauseTimeを使うコントローラーが動かない",
+      "a": "<p>そのコントローラーに<code>IgnoreHitPause = 1</code>を指定します。省略時はヒットストップ中のコントローラー評価が行われません。停止していないときにHitPauseTimeが0を返すこととは別です。</p>",
+      "r": [
+        {
+          "title": "Elecbyte CNS — Controller Format",
+          "url": "/MUGEN/document/Official/1.1b1/cns.html#controller-format"
+        }
       ]
     }
   ],
@@ -89,8 +102,8 @@
   ],
   "quote": [
     {
-        "title": "HitPauseTime - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitPauseTime"
+      "title": "HitPauseTime - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitPauseTime"
     },
     {
       "title": "HitPauseTime - Trigger Reference (MUGEN 1.0, Elecbyte)",
@@ -118,11 +131,242 @@
     },
     {
       "title": "Ikemen GO Wiki - Home",
-      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki"
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki",
+      "visibility": "internal"
     },
     {
       "title": "Ikemen GO Wiki - Triggers (Changed)",
-      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(Changed)"
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(Changed)",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitpausetime-local-2002",
+      "title": "HitPauseTime — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitPauseTime",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitpausetime-local-1.0",
+      "title": "HitPauseTime — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#hitpausetime",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitpausetime-local-1.1",
+      "title": "HitPauseTime — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitpausetime",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitpausetime-legacy",
+      "title": "移行前の説明・書式・例・履歴",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/f9395abae8191c3401a4aba1dd6ef2ec66f134c6/src/content/triggers/HitPauseTime.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitpausetime-chaos",
+      "title": "HitPauseTime — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/133.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitpausetime-controller-1.1",
+      "title": "コントローラーの共通IgnoreHitPause — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#controller-format",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitpausetime-history-rc1",
+      "title": "1.0 RC1のP1 PauseTime修正と互換補正 — Elecbyte公式履歴",
+      "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-0-rc1",
+      "source_type": "official_history"
+    },
+    {
+      "id": "hitpausetime-upgrade-1.1",
+      "title": "2002.04.14から1.0への移植 — Elecbyte Upgrade Notes",
+      "url": "/MUGEN/document/Official/1.1b1/upgrading.html",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitpausetime-hitdef-1.1",
+      "title": "HitDef PauseTime — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitpausetime-gethitvar-1.1",
+      "title": "GetHitVar HitShakeTime — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#gethitvar",
+      "source_type": "official_document"
     }
-  ]
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [],
+  "documentation": {
+    "description": "<p>実行者自身の攻撃が相手に接触して発生するヒットストップの残り時間を、整数で返します。引数はありません。0なら、この攻撃側ヒットストップは終了しています。</p><p>停止中に参照するコントローラーには<code>IgnoreHitPause = 1</code>を指定します。省略時は、そのコントローラーがヒットストップ中に評価されません。評価されないことと、式を評価して0を返すことは区別してください。</p>",
+    "syntax": [
+      "HitPauseTime"
+    ],
+    "page_category": "攻撃側ヒットストップの残り時間取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "hitpausetime-local-2002",
+        "hitpausetime-local-1.0",
+        "hitpausetime-local-1.1",
+        "hitpausetime-controller-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>HitPauseTimeは攻撃側の停止時間です。HitDefの<code>PauseTime</code>の1つ目が自分側、2つ目が相手側で、同じ値とは限りません。ガード時は<code>guard.pausetime</code>を使い、省略時はPauseTimeと同じ設定です。被弾側の揺れ時間は<code>GetHitVar(HitShakeTime)</code>を使います。一般のPause / SuperPauseの残り時間を返すトリガーではありません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitpausetime-local-2002",
+          "hitpausetime-local-1.0",
+          "hitpausetime-local-1.1",
+          "hitpausetime-hitdef-1.1",
+          "hitpausetime-gethitvar-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "version_change",
+      "content": "<p>1.0 RC1の公式履歴では、HitDefのP1 PauseTimeが指定より1 tick早く終了する不具合を修正しています。2002.04.14以前のキャラは、式を評価した後のP1 PauseTimeから1を引く互換補正があります。1.0形式へ移植する手順は、P1 PauseTimeに1を足し、defの<code>mugenversion = 1.0</code>を設定することです。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history",
+          "official_document"
+        ],
+        "source_refs": [
+          "hitpausetime-history-rc1",
+          "hitpausetime-upgrade-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+      },
+      "change": "fixed",
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[0]の初期値が必ず1ずれるという説明は原位置に保持します。公式履歴にはmugenversionによる互換補正があり、エンジン更新だけで無条件にずれるとは断定しません。</p><p>2002.04.14 系から 1.0 へ更新する際、<code>HitDef</code> の <code>PauseTime</code> は挙動修正のため「P1 側（1つ目）」に <code>+1</code> が必要です。古いキャラを移植すると、<code>HitPauseTime</code> の初期値が <code>1</code> フレームずれる原因になります。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code",
+          "official_history"
+        ],
+        "source_refs": [
+          "hitpausetime-legacy",
+          "hitpausetime-history-rc1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>変更一覧に載っていないことから互換仕様を推論した旧IKEMEN GO記録を保持します。今回のMUGEN移行では互換性を確認済みとしません。</p><p>互換仕様の基本は MUGEN 1.1 の公式ドキュメント参照が前提。<code>HitPauseTime</code> は変更トリガー一覧に含まれないため、基本挙動は MUGEN 1.1 相当として扱えます。</p>",
+      "environment": {
+        "engine": "ikemen-go"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "hitpausetime-legacy"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal",
+      "legacy_index": 1
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式3世代のignorehitpause未指定なら常に0という説明と、CNSの停止中はコントローラーをチェックしないという説明を保持します。旧本文の結果として0という因果とQ&Aの多くは指定漏れという頻度は、実測で確認していません。通常のコントローラー評価と、停止していない別プレイヤーからのリダイレクトによる参照を混同しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitpausetime-local-2002",
+          "hitpausetime-local-1.0",
+          "hitpausetime-local-1.1",
+          "hitpausetime-controller-1.1",
+          "hitpausetime-legacy"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSの書式HitPauseという表記と未完成のTime例、IgnoreHitPauseの疑問符、旧Enemyリダイレクト書式は内部へ保持します。ヒット/ガード・HitDef再設定・停止開始/終了フレームの評価順・特殊な相手不在条件での再現は今回未検証です。page.versionから初導入ビルドを推測していません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "hitpausetime-chaos",
+          "hitpausetime-legacy",
+          "hitpausetime-local-2002",
+          "hitpausetime-local-1.0",
+          "hitpausetime-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "hitpausetime-local-2002",
+      "hitpausetime-local-1.0",
+      "hitpausetime-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+  }
 }

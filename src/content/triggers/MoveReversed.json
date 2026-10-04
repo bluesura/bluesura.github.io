@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2025.12.25",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "MoveReversed",
   "category": "trigger",
@@ -18,10 +20,11 @@
   "description": "<p><b>MoveReversed</b> は、P1（実行者）の攻撃が相手（P2）の <code>ReversalDef</code> によって<b>当て身で返された</b>かどうかを返します。</p><p>このトリガーは攻撃ステート（一般に <code>MoveType = A</code>）でのみ有効です。</p><ul><li>当て身で返されていない場合は <code>0</code> を返します。</li><li>当て身で返された更新フレーム（ゲーム更新単位）は <code>1</code> を返します。</li><li>以後、P1がヒットポーズ等で<b>停止していない</b>更新フレームごとに <code>+1</code> されます（停止（<code>PauseTime</code>）中は増加しません）。</li><li>このカウンタ挙動は <code>MoveContact</code> / <code>MoveGuarded</code> / <code>MoveHit</code> / <code>MoveReversed</code> で共通です。</li></ul><p>上記4種の Move* 系トリガーは「最後に成立した結果」で上書きされます。同一攻撃中に別の結果が成立すると、成立したものだけが非0となり、他は <code>0</code> に戻ります。</p><p>また、通常はステート遷移で <code>0</code> にリセットされます。直前ステートの Move* 系情報を次ステートへ持ち越したい場合は、遷移先 <code>StateDef</code> に <code>MoveHitPersist = 1</code> を指定します。</p><p>当て身成功側（<code>ReversalDef</code> 実行者）で「当て身が成立した」ことを検知したい場合は、<code>ReversalDef</code> 側の仕様に従い <code>MoveHit</code> を使うのが基本です。</p>",
   "images": [
     {
-        "src": "mugen-move-contact-triggers-flow.png",
-        "width": "640",
-        "height": "580",
-        "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解"
+      "src": "mugen-move-contact-triggers-flow.png",
+      "width": "640",
+      "height": "580",
+      "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解",
+      "visibility": "internal"
     }
   ],
   "syntax": [
@@ -70,8 +73,8 @@
   ],
   "quote": [
     {
-        "title": "MoveReversed - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveReversed"
+      "title": "MoveReversed - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveReversed"
     },
     {
       "title": "MoveReversed - Trigger Reference (Elecbyte / MUGEN 1.0)",
@@ -99,7 +102,317 @@
     },
     {
       "title": "State controllers (new) - Ikemen GO Wiki（movereversedタイマー操作に関する拡張）",
-      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/State-controllers-%28new%29"
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/State-controllers-%28new%29",
+      "visibility": "internal"
+    },
+    {
+      "id": "movereversed-local-2002",
+      "title": "MoveReversed — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveReversed",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movereversed-local-1.0",
+      "title": "MoveReversed — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#movereversed",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movereversed-local-1.1",
+      "title": "MoveReversed — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#movereversed",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movereversed-contact-1.0",
+      "title": "MoveContact共通Details — Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#movecontact",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movereversed-contact-1.1",
+      "title": "MoveContact共通Details — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#movecontact",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movereversed-persist-1.1",
+      "title": "StateDef MoveHitPersist — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#movehitpersist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movereversed-reset-1.1",
+      "title": "MoveHitReset — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#movehitreset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movereversed-reversal-1.1",
+      "title": "ReversalDefの成立をMoveHitで検出 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#reversaldef",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movereversed-history-1.0",
+      "title": "2002.04.14のMove系変更 — Elecbyte 1.0更新履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html#april-2002",
+      "source_type": "official_history"
+    },
+    {
+      "id": "movereversed-legacy",
+      "title": "移行前の本文・図・履歴・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/b2f00374a3968211bcdc2cf83bedc8fe6046c225/src/content/triggers/MoveReversed.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "movereversed-chaos",
+      "title": "MoveReversed — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/151.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [],
+  "documentation": {
+    "description": "<p>実行者自身の攻撃が、相手のReversalDefに当て身で取られたかを調べます。取られた側の情報です。自分のReversalDefが成立したかを調べる場合はMoveHitを使います。</p><p>引数はありません。攻撃ステート（MoveType = A）で使い、<code>MoveReversed</code>の非0を攻撃を当て身で取られたかの判定、0を不成立の判定に使います。Projectileの判定はProj系トリガーを使います。</p><p>MUGEN 1.0 / 1.1では、成立時の値は1で、その後は実行者が停止していないフレームごとに増加する整数カウンターです。ヒット停止中は増加しないため、<code>MoveReversed = 1</code>は必ずしも1フレームだけの条件ではありません。</p>",
+    "page_category": "攻撃を当て身で取られた側の判定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "movereversed-local-2002",
+        "movereversed-local-1.0",
+        "movereversed-local-1.1",
+        "movereversed-contact-1.0",
+        "movereversed-contact-1.1",
+        "movereversed-reversal-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>ステート遷移でMove系の値は通常0へリセットされます。遷移先のStateDefで<code>MoveHitPersist = 1</code>を指定すると前の情報を持ち越します。MoveHitPersistはトリガーの引数ではありません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "movereversed-contact-1.0",
+          "movereversed-contact-1.1",
+          "movereversed-persist-1.1",
+          "movereversed-reset-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>ReversalDefが成立した側ではMoveHit、攻撃を取られた側ではMoveReversedを参照します。双方のプレイヤーの判定を入れ替えないでください。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "movereversed-reversal-1.1",
+          "movereversed-local-2002",
+          "movereversed-local-1.0",
+          "movereversed-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "version_change",
+      "content": "<p>2002.04.14の公式更新履歴に、MoveReversedの追加が記載されています。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "movereversed-history-1.0"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "change": "added"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[0]のラベル・本文・出典を原位置に保持します。2002.04.14の更新記録とWinMUGEN系の導入ビルドの対応、1.0/1.1の資料、別エンジンの報告を同じ境界として扱いません。</p><p><code>MoveReversed</code> が追加されました。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_history",
+          "official_document"
+        ],
+        "source_refs": [
+          "movereversed-legacy",
+          "movereversed-history-1.0",
+          "movereversed-local-2002",
+          "movereversed-local-1.0",
+          "movereversed-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal",
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[1]のラベル・本文・出典を原位置に保持します。2002.04.14の更新記録とWinMUGEN系の導入ビルドの対応、1.0/1.1の資料、別エンジンの報告を同じ境界として扱いません。</p><p>当て身成立時に <code>1</code>、以後はP1が停止していない更新フレームごとに増加するカウンタを返します（停止中は増加しません）。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_history",
+          "official_document"
+        ],
+        "source_refs": [
+          "movereversed-legacy",
+          "movereversed-history-1.0",
+          "movereversed-local-2002",
+          "movereversed-local-1.0",
+          "movereversed-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal",
+      "legacy_index": 1
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[2]のラベル・本文・出典を原位置に保持します。2002.04.14の更新記録とWinMUGEN系の導入ビルドの対応、1.0/1.1の資料、別エンジンの報告を同じ境界として扱いません。</p><p><code>MoveReversed</code> が存在しないです。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_history",
+          "official_document"
+        ],
+        "source_refs": [
+          "movereversed-legacy",
+          "movereversed-history-1.0",
+          "movereversed-local-2002",
+          "movereversed-local-1.0",
+          "movereversed-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal",
+      "legacy_index": 2
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式MoveContact共通Detailsと旧本文のガード後は他の3トリガーが0という例は、MoveContactのヒットまたはガードという概要と整合しません。共通図もMoveContactからMoveReversedへの包含を描いているため、元画像/alt/寸法を内部へ保持し、公開本文では他の3つが0という断定を省きます。同時ヒット/ガードの処理順を推定しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code",
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "movereversed-legacy",
+          "movereversed-contact-1.0",
+          "movereversed-contact-1.1",
+          "movereversed-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSはP2StateNoによる遷移とStateDef読み込み時のリセット、PauseTime中にはリセットされない条件、遷移先MoveHitPersist=1の保持を報告しています。対象ビルド・処理時点は実機未確認です。MoveHitResetによるMoveReversedリセットも公式では列挙されず、確認済みとはしません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "movereversed-chaos",
+          "movereversed-contact-1.0",
+          "movereversed-contact-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSのDOSとWin以降の真偽値/カウンターの区別と、公式2002のint記載を保持します。旧page.versionや2002更新履歴から正確なWinMUGEN導入ビルドを推測せず、introduced_inはnullです。公式Error conditionsのnoneを全不正リダイレクトや任意ステート条件の保証と扱いません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code",
+          "official_document",
+          "official_history"
+        ],
+        "source_refs": [
+          "movereversed-chaos",
+          "movereversed-legacy",
+          "movereversed-local-2002",
+          "movereversed-local-1.0",
+          "movereversed-local-1.1",
+          "movereversed-history-1.0"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "movereversed-local-2002",
+      "movereversed-local-1.0",
+      "movereversed-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+  }
 }

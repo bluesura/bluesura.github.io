@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2025.12.25",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "MoveGuarded",
   "category": "trigger",
@@ -18,10 +20,11 @@
   "description": "<p><b>MoveGuarded</b> は、P1（実行者）の攻撃がP2（相手）に<b>ガードされた</b>（ガード中、またはガード済み）かを返します。</p><p>このトリガーは<b>攻撃ステート</b>（一般に <code>MoveType = A</code>）でのみ意味を持ちます。ガードされていない場合は <code>0</code> を返します。</p><ul><li>ガード接触した更新フレームは <code>1</code> を返します。</li><li>以後、P1がヒットポーズ等で<b>停止していない</b>更新フレームごとに <code>+1</code> されます（停止（<code>PauseTime</code>）中は増加しません）。</li><li>このカウンタ仕様は、<code>MoveContact</code> / <code>MoveHit</code> / <code>MoveReversed</code> と共通です。</li></ul><p><code>MoveGuarded = 1</code> は「ガード接触直後」を拾う定番条件です。P1が接触で停止している間（例：<code>HitDef</code> の <code>PauseTime</code> による停止）は値が増えないため、その間は <code>= 1</code> のままになり得ます。</p><p><code>MoveContact</code> / <code>MoveGuarded</code> / <code>MoveHit</code> / <code>MoveReversed</code> は同時にセットされます。例えば、あるHitDefがヒットして <code>MoveHit</code> が非0の最中に、同一の技中で後続のHitDefがガードされると <code>MoveGuarded</code> が非0になり、他の3つは <code>0</code> になります。</p><p>これらの Move* 値は通常、ステート遷移で <code>0</code> にリセットされ増加も止まります。直前ステートの結果を次ステートへ持ち越したい場合は、遷移先 <code>StateDef</code> に <code>MoveHitPersist = 1</code> を指定します。ステート中に明示的にリセットしたい場合は <code>MoveHitReset</code> を使用します。</p><p>互換性のため、判定は <code>MoveGuarded</code>（非0）/ <code>!MoveGuarded</code>（0）で書くのが安全です（<code>MoveGuarded = 1</code> の固定比較は、停止の影響で想定より長く成立することがあります）。</p>",
   "images": [
     {
-        "src": "mugen-move-contact-triggers-flow.png",
-        "width": "640",
-        "height": "580",
-        "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解"
+      "src": "mugen-move-contact-triggers-flow.png",
+      "width": "640",
+      "height": "580",
+      "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解",
+      "visibility": "internal"
     }
   ],
   "syntax": [
@@ -87,6 +90,270 @@
     {
       "title": "movehitpersist - The CNS format (Elecbyte)",
       "url": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "id": "moveguarded-local-2002",
+      "title": "MoveGuarded — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveGuarded",
+      "source_type": "official_document"
+    },
+    {
+      "id": "moveguarded-local-1.0",
+      "title": "MoveGuarded — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#moveguarded",
+      "source_type": "official_document"
+    },
+    {
+      "id": "moveguarded-local-1.1",
+      "title": "MoveGuarded — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#moveguarded",
+      "source_type": "official_document"
+    },
+    {
+      "id": "moveguarded-contact-1.0",
+      "title": "MoveContact共通Details — Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#movecontact",
+      "source_type": "official_document"
+    },
+    {
+      "id": "moveguarded-contact-1.1",
+      "title": "MoveContact共通Details — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#movecontact",
+      "source_type": "official_document"
+    },
+    {
+      "id": "moveguarded-persist-1.1",
+      "title": "StateDef MoveHitPersist — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#movehitpersist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "moveguarded-reset-1.1",
+      "title": "MoveHitReset — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#movehitreset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "moveguarded-reversal-1.1",
+      "title": "ReversalDefの成立をMoveHitで検出 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#reversaldef",
+      "source_type": "official_document"
+    },
+    {
+      "id": "moveguarded-history-1.0",
+      "title": "2002.04.14のMove系変更 — Elecbyte 1.0更新履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html#april-2002",
+      "source_type": "official_history"
+    },
+    {
+      "id": "moveguarded-legacy",
+      "title": "移行前の本文・図・履歴・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/b2f00374a3968211bcdc2cf83bedc8fe6046c225/src/content/triggers/MoveGuarded.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "moveguarded-chaos",
+      "title": "MoveGuarded — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/150.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [],
+  "documentation": {
+    "description": "<p>実行者自身の攻撃が相手にガードされたかを調べます。ヒットだけの判定にはMoveHitを使います。</p><p>引数はありません。攻撃ステート（MoveType = A）で使い、<code>MoveGuarded</code>の非0をガードの判定、0を不成立の判定に使います。Projectileの判定はProj系トリガーを使います。</p><p>MUGEN 1.0 / 1.1では、成立時の値は1で、その後は実行者が停止していないフレームごとに増加する整数カウンターです。ヒット停止中は増加しないため、<code>MoveGuarded = 1</code>は必ずしも1フレームだけの条件ではありません。</p>",
+    "page_category": "攻撃のガードと整数カウンター",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "moveguarded-local-2002",
+        "moveguarded-local-1.0",
+        "moveguarded-local-1.1",
+        "moveguarded-contact-1.0",
+        "moveguarded-contact-1.1",
+        "moveguarded-reversal-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>ステート遷移でMove系の値は通常0へリセットされます。遷移先のStateDefで<code>MoveHitPersist = 1</code>を指定すると前の情報を持ち越します。MoveHit / MoveGuarded / MoveContactを明示的に0へ戻す場合はMoveHitResetを使います。MoveHitPersistはトリガーの引数ではありません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "moveguarded-contact-1.0",
+          "moveguarded-contact-1.1",
+          "moveguarded-persist-1.1",
+          "moveguarded-reset-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "version_change",
+      "content": "<p>2002.04.14の公式更新履歴に、MoveContact / MoveGuarded / MoveHitの戻り値をヒット状態の変化からの時間を表す形式へ変更したことが記載されています。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "moveguarded-history-1.0"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "change": "changed"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[0]のラベル・本文・出典を原位置に保持します。2002.04.14の更新記録とWinMUGEN系の導入ビルドの対応、1.0/1.1の資料、別エンジンの報告を同じ境界として扱いません。</p><p>戻り値が「ガード接触からの経過」を表す <code>int</code> として扱われます。ガード接触した更新フレームが <code>1</code>、以後はP1が停止していない更新フレームごとに増加します（停止中は増加しません）。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_history",
+          "official_document"
+        ],
+        "source_refs": [
+          "moveguarded-legacy",
+          "moveguarded-history-1.0",
+          "moveguarded-local-2002",
+          "moveguarded-local-1.0",
+          "moveguarded-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal",
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[1]のラベル・本文・出典を原位置に保持します。2002.04.14の更新記録とWinMUGEN系の導入ビルドの対応、1.0/1.1の資料、別エンジンの報告を同じ境界として扱いません。</p><p><code>MoveContact</code> / <code>MoveGuarded</code> / <code>MoveHit</code> の戻り値仕様が「ヒット状態変化からの経過」を返す形に変更されました。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_history",
+          "official_document"
+        ],
+        "source_refs": [
+          "moveguarded-legacy",
+          "moveguarded-history-1.0",
+          "moveguarded-local-2002",
+          "moveguarded-local-1.0",
+          "moveguarded-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal",
+      "legacy_index": 1
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式MoveContact共通Detailsと旧本文のガード後は他の3トリガーが0という例は、MoveContactのヒットまたはガードという概要と整合しません。共通図もMoveContactからMoveReversedへの包含を描いているため、元画像/alt/寸法を内部へ保持し、公開本文では他の3つが0という断定を省きます。同時ヒット/ガードの処理順を推定しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code",
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "moveguarded-legacy",
+          "moveguarded-contact-1.0",
+          "moveguarded-contact-1.1",
+          "moveguarded-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSは命中フレームでは処理順によりまだ検出できない点、HitOverride成立時のMoveHit、Hit/Guardedの最後の一方と同時処理を報告しています。StateDef読み込み時/停止中のリセット・反対イベントとの上書き・負ステート/CMDの評価時点は実機未確認です。命中フレームとトリガー評価で値を読める時点を同一視しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "moveguarded-chaos",
+          "moveguarded-contact-1.0",
+          "moveguarded-contact-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSのDOSとWin以降の真偽値/カウンターの区別と、公式2002のint記載を保持します。旧page.versionや2002更新履歴から正確なWinMUGEN導入ビルドを推測せず、introduced_inはnullです。公式Error conditionsのnoneを全不正リダイレクトや任意ステート条件の保証と扱いません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code",
+          "official_document",
+          "official_history"
+        ],
+        "source_refs": [
+          "moveguarded-chaos",
+          "moveguarded-legacy",
+          "moveguarded-local-2002",
+          "moveguarded-local-1.0",
+          "moveguarded-local-1.1",
+          "moveguarded-history-1.0"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "moveguarded-local-2002",
+      "moveguarded-local-1.0",
+      "moveguarded-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+  }
 }

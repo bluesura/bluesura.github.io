@@ -23,7 +23,8 @@
       "src": "mugen-move-contact-triggers-flow.png",
       "width": "640",
       "height": "580",
-      "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解"
+      "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解",
+      "visibility": "internal"
     }
   ],
   "syntax": [
@@ -104,6 +105,13 @@
       "title": "MoveContact — 保存済み Elecbyte 1.1b1 公式資料",
       "url": "/MUGEN/document/Official/1.1b1/trigger.html#movecontact",
       "source_type": "official_document"
+    },
+    {
+      "id": "movecontact-diagram-legacy",
+      "title": "移行前のMoveContact共通図と説明",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/b2f00374a3968211bcdc2cf83bedc8fe6046c225/src/content/triggers/MoveContact.json",
+      "source_type": "source_code",
+      "visibility": "internal"
     }
   ],
   "notes": [
@@ -159,6 +167,27 @@
           "mugen-1.0-final",
           "mugen-1.1-b1"
         ]
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>共通図はMoveContactからMoveReversedへの包含を描き、同時にセットされるのは1つのみ・他は0と記載しています。MoveContactのヒットまたはガードという本文とは整合しないため、画像・alt・寸法を原位置に保持し、MoveHit/MoveGuarded/MoveReversedと同じく公開から外しました。公式共通Detailsの他の3つが0という記載も資料差として残します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "movecontact-diagram-legacy",
+          "movecontact-local-1.0",
+          "movecontact-local-1.1b1"
+        ],
+        "comment": "2026-10-05: 共有図の視認と公式概要/Detailsの照合。実機検証ではない。"
       }
     }
   ],

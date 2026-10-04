@@ -1087,3 +1087,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・258テスト・263ページビルド・261 URL/168比較対象ページHTML検査を通過。通常幅でContactTime/HitTime、幅390pxでGuardedTime引数表/CancelTimeのWinMUGEN注記を確認し、表示幅と検査用タブを復元。既存の保存HTML/Pagefind等の警告は継続。内部注記18件追加の374件、未対応旧履歴160項目。次はMoveHit・MoveGuarded・MoveReversedです。
+
+## 2026-10-05：move-results-01
+
+MoveHit / MoveGuarded / MoveReversedの3件を追加し、累計160件（主要・補助16件＋59バッチ144件）、残り74件です。移行前JSON・HTML・抽出結果は tests/mugen/batches/move-results-01/ に保存しました。既移行MoveContactでは共有図の内部化だけを追加し、新規移行数へ重複計上していません。
+
+- 引数なし・整数戻り値を構造化し、ヒット/ガードとReversalDefに取られた側を分離。ReversalDefが成立した側のMoveHitとの違い、ProjectileはProj系という案内を公開しました。1.0/1.1の1始まりのカウンターと停止中の非加算、=1が1フレーム限定ではない説明を整理しています。
+- 遷移先StateDefのMoveHitPersist=1による保持と通常リセットを公開。MoveHitResetは公式に挙がるMoveHit/Guarded/Contactに限定し、MoveReversedへの影響を確認済みとして追加していません。旧短い例は維持し、MoveHitのキャラ固有CMD例は原位置に保持して内部へ。関連リンクも維持しています。
+- 2002.04.14の公式更新履歴のMoveHit/Guardedの戻り値変更とMoveReversed追加を公開。ただしWinMUGENの正確な導入ビルド・DOSからの境界を推定せずintroduced_inはnull。旧8履歴は原位置に保持して内部注記へ対応付け、IKEMEN GOのMoveHitVar報告は別エンジンの内部記録にしました。
+- 公式MoveContact Detailsのガード後は他の3つが0という例は概要と整合しません。旧本文・出典と[CHAOSのMoveHit](https://w.atwiki.jp/mugencns/pages/149.html)、[MoveGuarded](https://w.atwiki.jp/mugencns/pages/150.html)の最後の一方/同時処理を内部へ保存。共通図を視認し、MoveContactからMoveReversedへの包含や1つだけ非0という図示も保持して4ページの公開から外しました。元画像ファイルは変更していません。
+- [MoveReversed](https://w.atwiki.jp/mugencns/pages/151.html)のP2StateNo遷移・PauseTime中のリセット時点、HitOverrideや命中フレームでの読取り、DOS/Win区別は内部研究です。未検証状態を保持し、今回の実機テストとはしていません。スキーマ・レンダラー・CSSの変更はありません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch move-results-01
+npm run mugen:batch -- --batch move-results-01 --target MoveHit --target MoveGuarded --target MoveReversed
+npm run mugen:batch -- --batch move-results-01 --target MoveHit --target MoveGuarded --target MoveReversed --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・263テスト・263ページビルド・261 URL/171比較対象ページのHTML検査を通過。通常幅のMoveHit、幅390pxのMoveGuarded使用例/MoveReversed継承と判定側、MoveContact図の非表示を確認し、表示幅と検査用タブを復元。内部注記19件追加の393件、未対応旧履歴152項目。次はHitCount・UniqHitCount・HitPauseTimeです。

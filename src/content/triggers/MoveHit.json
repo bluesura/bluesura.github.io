@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2025.12.25",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "MoveHit",
   "category": "trigger",
@@ -18,10 +20,11 @@
   "description": "<p><b>MoveHit</b> は、P1（実行者）の攻撃がP2（相手）に<b>ヒット</b>したかを返します（<b>ガードは含みません</b>）。</p><p>このトリガーは攻撃ステート（一般に <code>MoveType = A</code>）でのみ有効です。</p><ul><li>ヒットした更新フレームは <code>1</code> を返します。</li><li>以後、P1がヒットポーズ等で<b>停止していない</b>更新フレームごとに <code>+1</code> されます（停止中は増加しません）。</li><li>ヒットしていない（空振り／ガード）場合は <code>0</code> を返します。</li></ul><p><code>MoveHit</code>（非0）/ <code>MoveHit &gt; 0</code> は「当たった」判定として安全です。<code>MoveHit = 1</code> は「ヒット直後」を拾う定番条件ですが、ヒットポーズ中は値が増えないため、その間も <code>= 1</code> のままになりやすい点に注意してください。</p><p><code>MoveContact</code> / <code>MoveGuarded</code> / <code>MoveHit</code> / <code>MoveReversed</code> の値は同時にセットされます。例えば、同一の攻撃中に最初のHitDefがヒットして <code>MoveHit</code> が非0になった後、次のHitDefがガードされると <code>MoveGuarded</code> が非0になり、他の3つは <code>0</code> になります。</p><p>また、上記4つの Move* トリガーはステート遷移で通常 <code>0</code> にリセットされます。直前ステートの情報を持ち越したい場合は、遷移先 <code>StateDef</code> に <code>MoveHitPersist = 1</code> を指定します。任意のタイミングで値を消したい場合はステートコントローラー <code>MoveHitReset</code> を使用します。</p><p><code>ReversalDef</code> によるリバーサル成功の検出にも <code>MoveHit</code> が利用できます。</p>",
   "images": [
     {
-        "src": "mugen-move-contact-triggers-flow.png",
-        "width": "640",
-        "height": "580",
-        "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解"
+      "src": "mugen-move-contact-triggers-flow.png",
+      "width": "640",
+      "height": "580",
+      "alt": "MUGENの攻撃判定トリガー（MoveContact, MoveHit, MoveGuarded, MoveReversed）の関係性と、ヒットポーズ中もカウンタが保持される仕様を説明するピクトグラム図解",
+      "visibility": "internal"
     }
   ],
   "syntax": [
@@ -91,7 +94,8 @@
         "trigger2 = MoveHit = 1",
         "trigger3 = stateno = 210",
         "trigger3 = MoveHit = 1"
-      ]
+      ],
+      "visibility": "internal"
     }
   ],
   "quote": [
@@ -117,11 +121,340 @@
     },
     {
       "title": "Ikemen GO Wiki - Triggers (new)（MoveHitVar(frame)の注記）",
-      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29"
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29",
+      "visibility": "internal"
     },
     {
       "title": "Making 2 in 1s (Cancelling a normal move with a special move)（CMDでStateNo/Command/MoveHit=1の例）",
-      "url": "https://www.angelfire.com/ego/heavens/mugen_Making2in1.htm"
+      "url": "https://www.angelfire.com/ego/heavens/mugen_Making2in1.htm",
+      "visibility": "internal"
+    },
+    {
+      "id": "movehit-local-2002",
+      "title": "MoveHit — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveHit",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehit-local-1.0",
+      "title": "MoveHit — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#movehit",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehit-local-1.1",
+      "title": "MoveHit — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#movehit",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehit-contact-1.0",
+      "title": "MoveContact共通Details — Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#movecontact",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehit-contact-1.1",
+      "title": "MoveContact共通Details — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#movecontact",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehit-persist-1.1",
+      "title": "StateDef MoveHitPersist — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#movehitpersist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehit-reset-1.1",
+      "title": "MoveHitReset — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#movehitreset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehit-reversal-1.1",
+      "title": "ReversalDefの成立をMoveHitで検出 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#reversaldef",
+      "source_type": "official_document"
+    },
+    {
+      "id": "movehit-history-1.0",
+      "title": "2002.04.14のMove系変更 — Elecbyte 1.0更新履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html#april-2002",
+      "source_type": "official_history"
+    },
+    {
+      "id": "movehit-legacy",
+      "title": "移行前の本文・図・履歴・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/b2f00374a3968211bcdc2cf83bedc8fe6046c225/src/content/triggers/MoveHit.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "movehit-chaos",
+      "title": "MoveHit — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/149.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [],
+  "documentation": {
+    "description": "<p>実行者自身の攻撃が相手にヒットしたかを調べます。ガードは含みません。</p><p>引数はありません。攻撃ステート（MoveType = A）で使い、<code>MoveHit</code>の非0をヒットの判定、0を不成立の判定に使います。Projectileの判定はProj系トリガーを使います。</p><p>MUGEN 1.0 / 1.1では、成立時の値は1で、その後は実行者が停止していないフレームごとに増加する整数カウンターです。ヒット停止中は増加しないため、<code>MoveHit = 1</code>は必ずしも1フレームだけの条件ではありません。</p>",
+    "page_category": "攻撃のヒットと整数カウンター",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "movehit-local-2002",
+        "movehit-local-1.0",
+        "movehit-local-1.1",
+        "movehit-contact-1.0",
+        "movehit-contact-1.1",
+        "movehit-reversal-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>ステート遷移でMove系の値は通常0へリセットされます。遷移先のStateDefで<code>MoveHitPersist = 1</code>を指定すると前の情報を持ち越します。MoveHit / MoveGuarded / MoveContactを明示的に0へ戻す場合はMoveHitResetを使います。MoveHitPersistはトリガーの引数ではありません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "movehit-contact-1.0",
+          "movehit-contact-1.1",
+          "movehit-persist-1.1",
+          "movehit-reset-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>ReversalDefが成立した側ではMoveHit、攻撃を取られた側ではMoveReversedを参照します。双方のプレイヤーの判定を入れ替えないでください。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "movehit-reversal-1.1",
+          "movehit-local-2002",
+          "movehit-local-1.0",
+          "movehit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "version_change",
+      "content": "<p>2002.04.14の公式更新履歴に、MoveContact / MoveGuarded / MoveHitの戻り値をヒット状態の変化からの時間を表す形式へ変更したことが記載されています。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "movehit-history-1.0"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "change": "changed"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[0]のラベル・本文・出典を原位置に保持します。2002.04.14の更新記録とWinMUGEN系の導入ビルドの対応、1.0/1.1の資料、別エンジンの報告を同じ境界として扱いません。</p><p><code>MoveContact</code>/<code>MoveGuarded</code>/<code>MoveHit</code> の戻り値が、命中状態が変化してからの経過を表すカウンタ（int）として扱われるように変更されました。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_history",
+          "official_document"
+        ],
+        "source_refs": [
+          "movehit-legacy",
+          "movehit-history-1.0",
+          "movehit-local-2002",
+          "movehit-local-1.0",
+          "movehit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal",
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[1]のラベル・本文・出典を原位置に保持します。2002.04.14の更新記録とWinMUGEN系の導入ビルドの対応、1.0/1.1の資料、別エンジンの報告を同じ境界として扱いません。</p><p>戻り値の型は <code>int</code>。詳細仕様（Move*同時セット／ステート遷移でリセット／<code>MoveHitPersist</code>）は <code>MoveContact</code> の Details と共通です。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_history",
+          "official_document"
+        ],
+        "source_refs": [
+          "movehit-legacy",
+          "movehit-history-1.0",
+          "movehit-local-2002",
+          "movehit-local-1.0",
+          "movehit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal",
+      "legacy_index": 1
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[2]のラベル・本文・出典を原位置に保持します。2002.04.14の更新記録とWinMUGEN系の導入ビルドの対応、1.0/1.1の資料、別エンジンの報告を同じ境界として扱いません。</p><p><code>MoveHit</code> 自体は概ねMUGEN互換（ヒットポーズ中は値が増えない）です。Ikemen GO では補助トリガー <code>MoveHitVar(frame)</code> が追加され、こちらはヒットポーズ中も更新されます。</p>",
+      "environment": {
+        "engine": "ikemen-go"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_history",
+          "official_document"
+        ],
+        "source_refs": [
+          "movehit-legacy",
+          "movehit-history-1.0",
+          "movehit-local-2002",
+          "movehit-local-1.0",
+          "movehit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal",
+      "legacy_index": 2
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式MoveContact共通Detailsと旧本文のガード後は他の3トリガーが0という例は、MoveContactのヒットまたはガードという概要と整合しません。共通図もMoveContactからMoveReversedへの包含を描いているため、元画像/alt/寸法を内部へ保持し、公開本文では他の3つが0という断定を省きます。同時ヒット/ガードの処理順を推定しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code",
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "movehit-legacy",
+          "movehit-contact-1.0",
+          "movehit-contact-1.1",
+          "movehit-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSは命中フレームでは処理順によりまだ検出できない点、HitOverride成立時のMoveHit、Hit/Guardedの最後の一方と同時処理を報告しています。StateDef読み込み時/停止中のリセット・反対イベントとの上書き・負ステート/CMDの評価時点は実機未確認です。命中フレームとトリガー評価で値を読める時点を同一視しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "movehit-chaos",
+          "movehit-contact-1.0",
+          "movehit-contact-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSのDOSとWin以降の真偽値/カウンターの区別と、公式2002のint記載を保持します。旧page.versionや2002更新履歴から正確なWinMUGEN導入ビルドを推測せず、introduced_inはnullです。公式Error conditionsのnoneを全不正リダイレクトや任意ステート条件の保証と扱いません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code",
+          "official_document",
+          "official_history"
+        ],
+        "source_refs": [
+          "movehit-chaos",
+          "movehit-legacy",
+          "movehit-local-2002",
+          "movehit-local-1.0",
+          "movehit-local-1.1",
+          "movehit-history-1.0"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧CMDのdp_x/StateNo 200・210から1200へ移る例はキャラ固有のCommand/ステート定義が前提で、今回は出典本文と再現を確認していません。原例・説明を内部へ保存し、公開例はMoveHitそのものの短い判定を維持します。別エンジンMoveHitVarの報告もMUGEN機能へ混入させません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "movehit-legacy"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "movehit-local-2002",
+      "movehit-local-1.0",
+      "movehit-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式3世代、更新履歴/CNSとCHAOSを照合。今回の実機検証ではない。"
+  }
 }

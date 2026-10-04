@@ -479,7 +479,7 @@
       ],
       "remaining": [
         "DOS/Winの正確な導入と同時処理/停止中リセット、評価時点は実機未確認。",
-        "共通図と公式の他3つ0説明は原本へ保持。MoveContact fixtureの同じ図の編集確認は別途必要。"
+        "共通図と公式の他3つ0説明は原本へ保持。共有するMoveContact fixtureも画像を内部へ保存。"
       ]
     },
     {
@@ -871,7 +871,7 @@
       ],
       "remaining": [
         "DOS/Winの正確な導入と同時処理/停止中リセット、評価時点は実機未確認。",
-        "共通図と公式の他3つ0説明は原本へ保持。MoveContact fixtureの同じ図の編集確認は別途必要。"
+        "共通図と公式の他3つ0説明は原本へ保持。共有するMoveContact fixtureも画像を内部へ保存。"
       ]
     },
     {
@@ -1051,7 +1051,7 @@
             "documentation"
           ],
           "value": {
-            "description": "<p>実行者自身の攻撃が、相手のReversalDefに当て身で取られたかを調べます。取られた側の情報です。自分のReversalDefが成立したかを調べる場合はMoveHitを使います。</p><p>引数はありません。攻撃ステート（MoveType = A）で使い、<code>MoveReversed</code>の非0を相手のReversalDefに当て身で取られたの判定、0を不成立の判定に使います。Projectileの判定はProj系トリガーを使います。</p><p>MUGEN 1.0 / 1.1では、成立時の値は1で、その後は実行者が停止していないフレームごとに増加する整数カウンターです。ヒット停止中は増加しないため、<code>MoveReversed = 1</code>は必ずしも1フレームだけの条件ではありません。</p>",
+            "description": "<p>実行者自身の攻撃が、相手のReversalDefに当て身で取られたかを調べます。取られた側の情報です。自分のReversalDefが成立したかを調べる場合はMoveHitを使います。</p><p>引数はありません。攻撃ステート（MoveType = A）で使い、<code>MoveReversed</code>の非0を攻撃を当て身で取られたかの判定、0を不成立の判定に使います。Projectileの判定はProj系トリガーを使います。</p><p>MUGEN 1.0 / 1.1では、成立時の値は1で、その後は実行者が停止していないフレームごとに増加する整数カウンターです。ヒット停止中は増加しないため、<code>MoveReversed = 1</code>は必ずしも1フレームだけの条件ではありません。</p>",
             "page_category": "攻撃を当て身で取られた側の判定",
             "evidence": {
               "status": "confirmed",
@@ -1316,7 +1316,7 @@
       ],
       "remaining": [
         "DOS/Winの正確な導入と同時処理/停止中リセット、評価時点は実機未確認。",
-        "共通図と公式の他3つ0説明は原本へ保持。MoveContact fixtureの同じ図の編集確認は別途必要。"
+        "共通図と公式の他3つ0説明は原本へ保持。共有するMoveContact fixtureも画像を内部へ保存。"
       ]
     }
   ]

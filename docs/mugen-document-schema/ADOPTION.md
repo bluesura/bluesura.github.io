@@ -22,6 +22,7 @@ Node.js 20 の CI とブラウザ表示の両方で同じ処理を使うため�
 - ルートの `documentation.description` は公開用の概要です（2026-09-09 採用）。旧 `description` を残し、詳細・一覧・説明用メタ情報へ反映します。任意の `documentation.evidence` は非公開です。パラメーター用とは異なり `value` は指定できません。
 - `parameter[].documentation.value` / `type` / `description` は公開用に訂正したラベル・型・本文です。指定した項目だけを優先し、旧 `value` / `type` / `description` は原位置に保持します。内部の `evidence` は HTML に出力しません。入力規則、共通定義・引数との優先順位、編集手順は [EDITORIAL_GUIDE.md](EDITORIAL_GUIDE.md) を参照してください（`type` は2026-10-02採用）。
 - `parameter[].documentation.parameter_type` は公開表示と CNS コピペ欄で使う必須・任意・代替の分類を訂正します（2026-10-01 採用）。`required` / `optional` / `instead` に限定し、旧 `parameter_type` は原位置に保持します。`Width` の旧「必須」と公式資料の「任意」の差に使用しています。
+- `parameter[].documentation.possible_value` は公開候補リスト・表を訂正します（2026-10-04採用）。非空文字列の配列、または非空文字列の行配列を指定でき、両形式の混在は拒否します。旧 `possible_value` は原位置に保持します。`hide_legacy: ["possible_value"]` で旧表を非公開にしても、明示した訂正表は表示します。AssertSpecialのフラグ・対象・効果の表が使用例です。
 - `default` を記述した項目は、それを表示に使います。未指定なら `default_value` を読みます。`default: []` は無効です。
 - `notes[].legacy_index` は同じオブジェクトの `version` 配列の0始まりインデックスです。対応する旧履歴を置き換えて表示し、旧見出し・引用先は維持します。対応していない旧履歴は引き続き表示します。
 - 新旧の履歴本文が異なる場合は、公開用の新本文を表示し、旧本文は JSON に保持します。管理用の差分説明を本文へ自動併記しません。
@@ -31,6 +32,7 @@ Node.js 20 の CI とブラウザ表示の両方で同じ処理を使うため�
 ## バージョン・検証状態
 
 - `mugen-1.0` は系列、`mugen-1.0-final` は正式版の実行ビルドです。
+- 2026-10-04: `mugen-1.0-rc5` を追加しました。保存済み公式履歴の2009-10-28を記録し、公開・配布日はnullのままです。DestroySelfの後続ステート評価中断の修正を1.0全体へ広げずRC5に対応させます。
 - 2026-10-03: `mugen-1.0-rc8` を追加しました。保存済み公式履歴の2010-06-29を記録し、公開・配布日は引き続き null です。PlaySnd の Volume / VolumeScale 切り替えを、1.0系列全体へ広げずRC8の変更点として記録します。
 - `page.introduced_in` と変更履歴の `at` はビルド ID を参照します。系列を初導入ビルドとして指定できません。初導入が分からなければ `null` / 未指定とします。
 - `environment.runtime` はビルドまたは系列、`compatibility_profile` は互換プロファイルを参照します。別エンジンの ID 混入は検証エラーにします。

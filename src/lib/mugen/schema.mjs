@@ -85,10 +85,11 @@ const parameterDocumentationSchema = z.object({
   type: z.array(z.string().min(1)).min(1).optional(),
   description: z.string().min(1).optional(),
   parameter_type: z.enum(['required', 'optional', 'instead']).optional(),
+  possible_value: z.union([z.array(z.string().min(1)).min(1), z.array(z.array(z.string().min(1)).min(1)).min(1)]).optional(),
   hide_legacy: z.array(legacyParameterDisplayField).min(1).optional(),
   evidence: evidenceSchema.optional(),
-}).strict().refine(value => value.value !== undefined || value.type !== undefined || value.description !== undefined || value.parameter_type !== undefined || value.hide_legacy !== undefined, {
-  message: 'Parameter documentation requires a value label, description, requirement or legacy display field to hide.',
+}).strict().refine(value => value.value !== undefined || value.type !== undefined || value.description !== undefined || value.parameter_type !== undefined || value.possible_value !== undefined || value.hide_legacy !== undefined, {
+  message: 'Parameter documentation requires a public label, type, description, requirement, candidate list or legacy display field to hide.',
 });
 const documentDocumentationSchema = z.object({
   description: z.string().min(1),

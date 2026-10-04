@@ -18,6 +18,8 @@
 
 > 2026-10-03: `parameter[].visibility` / `arguments[].visibility` は `public` / `internal`。省略時は公開です。内部項目は詳細・一覧・CNS欄・読み込み順表へ出力せず、説明・省略値・読み込み順・検証記録をJSONへ保持します。AfterImage.Alphaが使用例です。
 
+> 2026-10-04: `parameter[].documentation.possible_value` で公開候補リスト・表を訂正できます。旧候補は原位置に保持します。非空文字列の配列か、非空文字列の行配列を指定し、混在形式は拒否します。`hide_legacy` に旧 `possible_value` を含めても、明示した訂正表は表示します。AssertSpecialが使用例です。
+
 このドキュメントは、`mugen-template-all.json` の各フィールドに入力すべき情報を定義した仕様書です。
 LLM（大規模言語モデル）への指示や、ドキュメントデータベース構築時のリファレンスとして利用してください。
 

@@ -93,6 +93,21 @@ test('editorial publication can hide unverified legacy metadata without deleting
   assert.equal(schema.safeParse({ state: 'Example', page: {}, parameter: [{ parameter: 'X', documentation: { hide_legacy: ['load_priority'] } }] }).success, false);
 });
 
+test('editorial candidate tables replace the public view while keeping source, common and trigger precedence', () => {
+  const legacy = [['フラグ', '旧説明'], ['NoMusic', '停止・再生位置リセット']];
+  const corrected = [['フラグ', '対象', '効果'], ['NoMusic', '音楽', '一時停止']];
+  const source = { state: 'Example', page: {}, category: 'state', parameter: [{ parameter: 'Flag', possible_value: legacy, documentation: { possible_value: corrected, hide_legacy: ['possible_value'] } }] };
+  const snapshot = structuredClone(source);
+  assert.equal(schema.safeParse(source).success, true);
+  assert.deepEqual(effectiveParameters(source)[0].possible_value, corrected);
+  assert.deepEqual(source, snapshot);
+  const shared = [{ parameter: 'Flag', possible_value: legacy, documentation: { possible_value: corrected } }];
+  assert.deepEqual(effectiveParameters({ category: 'state', parameter: [{ parameter: 'Flag', possible_value: ['Local'] }] }, shared)[0].possible_value, ['Local']);
+  assert.deepEqual(effectiveArguments({ parameter: source.parameter, arguments: [{ name: 'flag', legacy_index: 0 }] })[0].possible_value, corrected);
+  assert.deepEqual(effectiveParameters({ parameter: [{ parameter: 'X', documentation: { possible_value: ['A', 'B'] } }] })[0].possible_value, ['A', 'B']);
+  for (const possible_value of [[], [''], [[]], [['Flag', 1]], [['Flag'], 'Mixed'], ['Mixed', ['Flag']]]) assert.equal(schema.safeParse(withDocumentation({ possible_value })).success, false);
+});
+
 test('VelAdd and VelSet correct public text while retaining the entire prior migration and CNS output', () => {
   const plan = readJSON('scripts/mugen/plans/axis-motion-01.json');
   for (const name of ['VelAdd', 'VelSet']) {

@@ -10,6 +10,8 @@ function documentedParameter(parameter) {
     ...(documentation.parameter_type !== undefined ? { parameter_type: documentation.parameter_type } : {}),
   };
   for (const field of documentation.hide_legacy ?? []) delete resolved[field];
+  // Hiding a legacy table must not erase an explicitly supplied public replacement.
+  if (documentation.possible_value !== undefined) resolved.possible_value = documentation.possible_value;
   return resolved;
 }
 

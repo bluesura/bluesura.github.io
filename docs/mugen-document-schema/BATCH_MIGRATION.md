@@ -763,3 +763,36 @@ npm run mugen:batch -- --batch display-offset-01 --target Offset --apply
 ```
 
 このバッチは適用済みです。次はAssertSpecialのフラグ、世代差、1フレーム効果と互換挙動を照合します。
+
+## special-flags-01：特殊フラグの1件
+
+2026-10-04、AssertSpecialを移行しました。移行前のJSON・記事・ハッシュは `tests/mugen/batches/special-flags-01/` に保存しています。
+
+- 保存済み公式3世代の19フラグを、フラグ・対象・効果の公開表へ整理しました。`documentation.possible_value` を採用し、旧20フラグ表を原位置に保持して訂正表を表示します。NoMusicは一時停止、GlobalNoShadowはplayer/helper/explod、UnGuardableは実行者のHitDef、ガード制限は実行者自身に対応させています。NoKOSndの11,0とエコー抑制50フレーム以上も保持しました。
+- Flag必須・Flag2/3省略時は追加指定なしを構造化しました。CNS欄は3項目ともコメントで、Flag1など非実在のパラメーターを出力しません。読み込み順の?は未確認のまま保持しました。
+- RC6のInvisibleのHitPause修正と2002互換設定での9フラグ非解除を別履歴へ対応させました。旧NoMusicプラグイン・RoundNotOverの配点なし移行、NoKOのビルド/判定条件、負ステート/所有物への作用、背景描画、Time/GameTime/Juggle更新は内部に保持しています。[CHAOS](https://w.atwiki.jp/mugencns/pages/199.html)の記録も内部で対応させ、未取得の旧ブログ本文は補っていません。
+- 旧ガード不能例は実行者へのガード制限であり、説明とPrevStateNo条件にもずれがあります。原文を内部に保持し、表示と影を消す基本例を公開しました。スキーマ・公開値の解決・HTML検査を変更し、候補表の保存と訂正、混在形式の拒否、共通定義とTrigger引数の優先順位を検査しています。CSSやページのブランドは変更していません。
+
+```sh
+npm run mugen:batch-baseline -- --batch special-flags-01
+npm run mugen:batch -- --batch special-flags-01 --target AssertSpecial
+npm run mugen:batch -- --batch special-flags-01 --target AssertSpecial --apply
+```
+
+このバッチは適用済みです。
+
+## helper-destruction-01：Helper消去の1件
+
+2026-10-04、DestroySelfを移行しました。移行前のJSON・記事・ハッシュは `tests/mugen/batches/helper-destruction-01/` に保存しています。
+
+- Helper専用の消去と、2002/1.0の固有項目なし、1.1のRecursive/RemoveExplodsを照合しました。Recursiveは子・孫以降の再帰消去、RemoveExplodsは所有Explodの消去です。両方1なら子孫のExplodも消去します。旧「画像全般」のラベルは原位置へ残して訂正しました。
+- 両省略値0は1.1環境へ対応させ、CNS欄は環境確認付きコメントです。1.1の強制バインド解除と未消去Explodの所有元喪失を公開しました。1.0 RC5のステート評価中断修正へ対応させ、レジストリにRC5と公式履歴の日付2009-10-28を追加しています。
+- 1.1履歴のRecursive追加・不安定動作修正はNew in 1.1で、特定Alphaを推定していません。旧Explod残存の世代境界、Helper生成後クラッシュ、[CHAOS](https://w.atwiki.jp/mugencns/pages/212.html)の消去タイミング・Draw.offset位置ずれは内部に保持しました。旧分身対策例は適用条件の整理待ちで内部に残し、アニメ終了時の基本例を公開しています。実機検証は未実施です。
+
+```sh
+npm run mugen:batch-baseline -- --batch helper-destruction-01
+npm run mugen:batch -- --batch helper-destruction-01 --target DestroySelf
+npm run mugen:batch -- --batch helper-destruction-01 --target DestroySelf --apply
+```
+
+このバッチは適用済みです。次はVarAdd・ParentVarSet・ParentVarAddの変数番号・値・代替書式を照合します。

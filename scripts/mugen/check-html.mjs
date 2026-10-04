@@ -205,6 +205,16 @@ for (const { collection, name, base } of cases) {
     assert.equal(compactText(heading), `${parameter.parameter}${purpose}`, `${name}: edited assignment heading`);
     const description = findAll(entry, node => attr(node, 'class') === 'parameter-description')[0];
     assert.equal(compactText(description), compactText(parseFragment(parameter.description)), `${name}: edited description`);
+    if (editorial.possible_value !== undefined) {
+      const candidates = findAll(entry, node => attr(node, 'class') === 'possible-value')[0];
+      assert.ok(candidates, `${name}: edited candidates missing`);
+      if (Array.isArray(editorial.possible_value[0])) {
+        const rows = findAll(candidates, node => node.tagName === 'tr');
+        assert.deepEqual(rows.map(row => findAll(row, node => ['td', 'th'].includes(node.tagName)).map(compactText)), editorial.possible_value.map(row => row.map(cell => compactText(parseFragment(cell)))), `${name}: edited candidate table`);
+      } else {
+        for (const value of editorial.possible_value) assert.ok(compactText(candidates).includes(value), `${name}: edited candidate missing`);
+      }
+    }
     if (editorial.evidence?.comment) assert.ok(!html.includes(editorial.evidence.comment), `${name}: editorial evidence leaked`);
     if (['VelAdd', 'VelSet'].includes(name)) assert.ok(!compactText(entry).includes('乗算速度') && !compactText(entry).includes('ターゲット'), `${name}: old error is still public`);
   }

@@ -1,53 +1,279 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "P2MoveType",
-        "target": "",
-        "category": [
-            "ステータス",
-            "近接敵の行動タイプ判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "P2MoveType",
+    "target": "",
+    "category": [
+      "ステータス",
+      "近接敵の行動タイプ判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "P2MoveType",
+  "summary": "<p>最も近い相手のMoveTypeを判定し、真偽を返します。</p>",
+  "syntax": [
+    "P2MoveType = I",
+    "P2MoveType = A",
+    "P2MoveType = H",
+    "P2MoveType != I",
+    "P2MoveType != A",
+    "P2MoveType != H"
+  ],
+  "description": "最も近い相手のMoveTypeを判定し、真偽を返します。",
+  "code_sample": [
+    {
+      "title": "",
+      "code": [
+        ""
+      ],
+      "visibility": "internal"
     },
-    "category": "trigger",
-    "trigger": "P2MoveType",
-    "summary": "<p>最も近い相手のMoveTypeを判定し、真偽を返します。</p>",
-    "syntax": [
-        "P2MoveType = I",
-        "P2MoveType = A",
-        "P2MoveType = H",
-        "P2MoveType != I",
-        "P2MoveType != A",
-        "P2MoveType != H"
-    ],
-    "description": "最も近い相手のMoveTypeを判定し、真偽を返します。",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "P2MoveType - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2MoveType"
-        },
-        {
-            "title": "P2MoveType - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#p2movetype"
-        },
-        {
-            "title": "P2MoveType - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#p2movetype"
-        },
-        {
-            "title": "P2MoveType - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/P2MoveType"
-        }
-    ]
+    {
+      "title": "相手が攻撃状態か調べる",
+      "code": [
+        "Trigger1 = P2MoveType = A"
+      ]
+    },
+    {
+      "title": "相手がくらい状態か調べる",
+      "code": [
+        "Trigger1 = P2MoveType = H"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "P2MoveType - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2MoveType"
+    },
+    {
+      "title": "P2MoveType - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#p2movetype"
+    },
+    {
+      "title": "P2MoveType - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#p2movetype"
+    },
+    {
+      "title": "P2MoveType - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/P2MoveType"
+    },
+    {
+      "id": "p2movetype-local-2002",
+      "title": "P2MoveType — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2MoveType",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2movetype-base-2002",
+      "title": "MoveType — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveType(*,***)",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2movetype-local-1.0",
+      "title": "P2MoveType — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#p2movetype",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2movetype-base-1.0",
+      "title": "MoveType — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#movetype",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2movetype-local-1.1",
+      "title": "P2MoveType — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2movetype",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2movetype-base-1.1",
+      "title": "MoveType — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#movetype",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2movetype-legacy",
+      "title": "P2MoveType — 移行前の説明・構文・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/2713f9bba70a05e6ba1c55ba441fb261fe877025/src/content/triggers/P2MoveType.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "p2movetype-chaos",
+      "title": "P2MoveType — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/161.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "p2movetype-p2-selection",
+      "title": "P2とEnemyの対象選択 — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/43.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>P2として選択される相手の行動タイプを指定した文字と比較し、成立なら1、不成立なら0を整数で返します。<code>P2MoveType = A</code>などの比較構文を使います。</p><p><code>A</code>は攻撃、<code>H</code>はくらい、<code>I</code>は攻撃でもくらいでもない状態です。Iは立ち姿勢だけを意味する値ではありません。</p>",
+    "page_category": "相手の現在の行動タイプの判定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "p2movetype-local-2002",
+        "p2movetype-local-1.0",
+        "p2movetype-local-1.1",
+        "p2movetype-base-1.1"
+      ],
+      "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+    }
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "old_style",
+  "arguments": [
+    {
+      "name": "[oper]",
+      "type": [
+        "演算子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。他の比較演算子は使えません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "p2movetype-base-1.1",
+          "p2movetype-local-2002",
+          "p2movetype-local-1.0",
+          "p2movetype-local-1.1"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "name": "move_type",
+      "type": [
+        "char"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>引用符を付けずに行動状態の文字を指定します。<code>A</code>＝攻撃、<code>I</code>＝攻撃でもくらいでもない状態、<code>H</code>＝くらい状態です。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "p2movetype-base-1.1",
+          "p2movetype-local-2002",
+          "p2movetype-local-1.0",
+          "p2movetype-local-1.1"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはP2をX軸上で最も近い相手とし、HelperType=Playerのヘルパーを対象に含め、StateNo=5150を除外すると記載する。Enemyは通常プレイヤーを対象とし、EnemyNearもP2と同一とは限らない。旧P2MoveTypeの「最も近い相手」という説明を含め、対象選択・同距離・タッグ・カスタムステート・不在になるタイミングは今回実機未検証。資料の具体的な条件を保持し、単純なEnemyNearへの置換は行わない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "p2movetype-p2-selection",
+          "p2movetype-chaos",
+          "p2movetype-local-2002",
+          "p2movetype-local-1.0",
+          "p2movetype-local-1.1",
+          "p2movetype-legacy"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式資料への掲載と最初の実装は別であり、introduced_inはnullに保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "p2movetype-local-2002",
+          "p2movetype-local-1.0",
+          "p2movetype-local-1.1",
+          "p2movetype-legacy"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>保存済み公式3世代のP2MoveType項目には、P2StateNo/P2StateTypeと同じ不在時エラー条件の記載がない。相手不在で0・bottom・その他のどれを返すか、および否定比較の結果は今回実機未検証。他のP2トリガーから類推して確認済み仕様を追加しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "p2movetype-local-2002",
+          "p2movetype-local-1.0",
+          "p2movetype-local-1.1"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧コード例は空欄のため原位置に保持して内部へ置き、公開にはトリガーを使う短い条件行を示す。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "p2movetype-legacy"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    }
+  ]
 }

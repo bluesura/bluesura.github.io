@@ -264,3 +264,7 @@ Alive / Ctrl / StateNo / PrevStateNoを追加し、累計130件・残り104件�
 ## 2026-10-04：state-attributes-01
 
 StateType / MoveType / Facingを追加し、累計133件・残り101件です。文字指定の旧式比較と0/1の結果、Facingの1/-1と単独条件の真偽、Uの継承指定・Physicsの別設定を整理しました。StateTypeのLと旧構文・説明・関連ID、Facingの旧Trigger =例は保持。2002/1.0のL列挙差と公式Facing例の番号省略、未検証の幅・HitDef/ガード・自動振り向き・相手向きの条件はJSON内部へ残しました。内部注記8件を追加し累計291件、未対応旧履歴は163項目です。実機検証は未実施で、次はP2StateNo・P2StateType・P2MoveTypeです。
+
+### 2026-10-05：opponent-state-01
+
+P2StateNo / P2StateType / P2MoveTypeを追加し、累計136件（51バッチ120件＋主要・補助16件）、対象内の残り98件になりました。旧フィールド・説明・構文・例・出典は保持。P2StateNoの整数参照とP2StateType/P2MoveTypeの文字比較を分け、LとU/Iの意味、HitOverRideの公開リンクを整理しました。P2StateNo/P2StateTypeの1.0/1.1不在時bottomと通常の0を区別し、旧SFalse・旧0説明・不在タイミング・L列挙差を内部へ保存。P2MoveTypeの不在時の返り値は資料に記載がないため未確認のままです。CHAOSのP2対象選択（X距離・Playerヘルパー・5150除外・EnemyNearとの差）と空欄/無関係な旧例を内部へ保持しました。実機検証は未実施で、内部注記は13件追加の304件、未対応旧履歴は162項目です。223テスト・263ページビルド・261 URL/147比較対象ページのHTML検査を通過。次はP2Life・NumEnemy・NumPartnerです。

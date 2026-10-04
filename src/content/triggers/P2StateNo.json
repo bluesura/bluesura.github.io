@@ -1,64 +1,285 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "P2StateNo",
-        "target": "",
-        "category": [
-            "ステータス",
-            "現在ステート番号の取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "P2StateNo",
+    "target": "",
+    "category": [
+      "ステータス",
+      "現在ステート番号の取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2015.12.24",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "P2StateNo",
+  "summary": "<p>P2のステート番号を返します。</p>",
+  "syntax": [
+    "P2StateNo"
+  ],
+  "description": "P2のステート番号を返します。",
+  "associated_trigger": [
+    "StateNo",
+    "PrevStateNo"
+  ],
+  "associated_state": [
+    "ChangeState",
+    "SelfState",
+    "HitOverride",
+    "TargetState"
+  ],
+  "version": [
+    {
+      "no": "エラー",
+      "content": "ゲームクリア、ゲームオーバー画面など、P2が存在しない場合、SFalseを返します。"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "",
+      "code": [
+        ""
+      ],
+      "visibility": "internal"
     },
-    "category": "trigger",
-    "trigger": "P2StateNo",
-    "summary": "<p>P2のステート番号を返します。</p>",
-    "syntax": [
-        "P2StateNo"
-    ],
-    "description": "P2のステート番号を返します。",
-    "associated_trigger": [
-        "StateNo",
-        "PrevStateNo"
-    ],
+    {
+      "title": "相手がステート200にいるか調べる",
+      "description": "<p>番号200との一致を調べる条件行です。ステート番号の意味は相手のキャラクター定義に依存します。</p>",
+      "code": [
+        "Trigger1 = P2StateNo = 200"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "P2StateNo - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2StateNo"
+    },
+    {
+      "title": "P2StateNo - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#p2stateno"
+    },
+    {
+      "title": "P2StateNo - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#p2stateno"
+    },
+    {
+      "title": "P2StateNo - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/P2StateNo"
+    },
+    {
+      "id": "p2stateno-local-2002",
+      "title": "P2StateNo — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2StateNo",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2stateno-base-2002",
+      "title": "StateNo — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#StateNo",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2stateno-local-1.0",
+      "title": "P2StateNo — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#p2stateno",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2stateno-base-1.0",
+      "title": "StateNo — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#stateno",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2stateno-local-1.1",
+      "title": "P2StateNo — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2stateno",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2stateno-base-1.1",
+      "title": "StateNo — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#stateno",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2stateno-legacy",
+      "title": "P2StateNo — 移行前の説明・構文・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/2713f9bba70a05e6ba1c55ba441fb261fe877025/src/content/triggers/P2StateNo.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "p2stateno-chaos",
+      "title": "P2StateNo — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/180.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "p2stateno-p2-selection",
+      "title": "P2とEnemyの対象選択 — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/43.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "p2stateno-bottom-1.0",
+      "title": "評価不能値bottom — Elecbyte 1.0 CNS",
+      "url": "/MUGEN/document/Official/1.0/cns.html#bottom",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p2stateno-bottom-1.1",
+      "title": "評価不能値bottom — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#bottom",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>P2として選択される相手の現在のステート番号を整数で返します。自分のステート番号を調べるStateNoとは、参照するプレイヤーが異なります。</p>",
+    "page_category": "相手の現在ステート番号の取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "p2stateno-local-2002",
+        "p2stateno-local-1.0",
+        "p2stateno-local-1.1",
+        "p2stateno-base-1.1"
+      ],
+      "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+    },
     "associated_state": [
-        "ChangeState",
-        "SelfState",
-        "HitOverride",
-        "TargetState"
-    ],
-    "version": [
-        {
-            "no": "エラー",
-            "content": "ゲームクリア、ゲームオーバー画面など、P2が存在しない場合、SFalseを返します。"
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "P2StateNo - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2StateNo"
-        },
-        {
-            "title": "P2StateNo - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#p2stateno"
-        },
-        {
-            "title": "P2StateNo - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#p2stateno"
-        },
-        {
-            "title": "P2StateNo - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/P2StateNo"
-        }
+      "ChangeState",
+      "SelfState",
+      "HitOverRide",
+      "TargetState"
     ]
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "notes": [
+    {
+      "kind": "error",
+      "content": "<p>1.0/1.1では、P2が存在しない場合の戻り値は<code>bottom</code>です。通常の整数0とは区別してください。条件式全体の評価結果がbottomなら、その条件は偽として扱われます。部分式のbottomにはCond/IfElseなどの特殊な評価規則があります。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "p2stateno-local-1.0",
+          "p2stateno-local-1.1",
+          "p2stateno-bottom-1.0",
+          "p2stateno-bottom-1.1"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはP2をX軸上で最も近い相手とし、HelperType=Playerのヘルパーを対象に含め、StateNo=5150を除外すると記載する。Enemyは通常プレイヤーを対象とし、EnemyNearもP2と同一とは限らない。旧P2MoveTypeの「最も近い相手」という説明を含め、対象選択・同距離・タッグ・カスタムステート・不在になるタイミングは今回実機未検証。資料の具体的な条件を保持し、単純なEnemyNearへの置換は行わない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "p2stateno-p2-selection",
+          "p2stateno-chaos",
+          "p2stateno-local-2002",
+          "p2stateno-local-1.0",
+          "p2stateno-local-1.1",
+          "p2stateno-legacy"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式資料への掲載と最初の実装は別であり、introduced_inはnullに保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "p2stateno-local-2002",
+          "p2stateno-local-1.0",
+          "p2stateno-local-1.1",
+          "p2stateno-legacy"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧履歴と2002.04.14資料はP2不在時の返り値をSFalseと記載する。1.0/1.1資料はbottomと記載する。表記差を実機の変更履歴や旧WinMUGENのビルド差に変換しない。「ラウンドに勝った」等は資料中の例であり、勝利・ゲームクリア・ゲームオーバーで常にP2不在になるという断定には使わない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "p2stateno-local-2002",
+          "p2stateno-local-1.0",
+          "p2stateno-local-1.1",
+          "p2stateno-legacy"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧コード例は空欄のため原位置に保持して内部へ置き、公開にはトリガーを使う短い条件行を示す。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "p2stateno-legacy"
+        ],
+        "comment": "2026-10-05: 旧原文・保存済み公式3世代・CHAOSを照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    }
+  ]
 }

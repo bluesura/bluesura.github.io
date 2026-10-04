@@ -914,3 +914,24 @@ npm run mugen:check-html
 ~~~
 
 218テスト・263ページビルド・261 URL/144比較対象ページのHTML検査を通過。ブラウザでStateTypeの引数表を通常幅、MoveType/Facingを幅390pxで確認しました。既存タブの接続タイムアウトは新しい検査用タブで復旧し、幅設定と検査用タブは終了時に戻しました。既存のPagefind/保存HTMLの警告は継続しています。次はP2StateNo・P2StateType・P2MoveTypeです。
+
+## 2026-10-05：opponent-state-01
+
+P2StateNo / P2StateType / P2MoveTypeの3件を追加しました。累計136件（主要・補助16件＋51バッチ120件）、残り98件です。移行前のJSON・HTML・抽出結果とハッシュは tests/mugen/batches/opponent-state-01/ に保存しています。
+
+- P2StateNoは引数なしの整数参照、P2StateType/P2MoveTypeは = / != と文字を使う比較として構造化。S/C/A/LとA/I/Hを区別し、L、Uの継承指定、Iの意味を保持しました。P2StateNoのHitOverrideという旧関連IDを残し、公開リンクはリポジトリのHitOverRideへ訂正しました。
+- P2StateNo/P2StateTypeの1.0/1.1資料は相手不在時をbottomと記載します。通常の整数0と分離し、最終条件の偽扱い・特殊形式の例外を公開しました。旧SFalse・旧P2StateTypeの0説明・勝利や終了画面での不在タイミング・Lの列挙差は内部に保持しています。P2MoveTypeには同じエラー条件の記載がないため、不在時の値を推測で追加していません。
+- CHAOSの[P2StateNo](https://w.atwiki.jp/mugencns/pages/180.html)、[P2StateType](https://w.atwiki.jp/mugencns/pages/163.html)、[P2MoveType](https://w.atwiki.jp/mugencns/pages/161.html)、[対象選択](https://w.atwiki.jp/mugencns/pages/43.html)を照合。P2のX距離・HelperType=Player・StateNo=5150除外・Enemy/EnemyNearとの差は内部研究に記録しました。今回の実機検証ではありません。
+- 空欄例とP2StateTypeを使わないDestroySelf/IsHelperの旧例は原位置を保持して内部へ。公開には各トリガーを使う短い条件行を追加しました。スキーマ・レンダラー・CSSは変更していません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch opponent-state-01
+npm run mugen:batch -- --batch opponent-state-01 --target P2StateNo --target P2StateType --target P2MoveType
+npm run mugen:batch -- --batch opponent-state-01 --target P2StateNo --target P2StateType --target P2MoveType --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・223テスト・263ページビルド・261 URL/147比較対象ページのHTML検査を通過しました。出典検査で見つかった2002 MoveTypeのアンカー表記を修正しています。ブラウザでP2StateType（通常幅）、P2StateNo/P2MoveType（幅390px）を確認し、表示幅をリセット・検査用タブを終了しました。内部注記は304件、未対応旧履歴は162項目です。導入ビルドはnullに保持。次はP2Life・NumEnemy・NumPartnerです。

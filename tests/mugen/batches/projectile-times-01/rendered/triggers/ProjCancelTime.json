@@ -1,0 +1,54 @@
+{
+  "text": "ProjCancelTime 飛び道具 > 飛び道具相殺後の経過時間取得 | 実装されたバージョン: 2002.04.14 引数 仕様・注意点 使用例 引用記事 プレイヤーが最後に放出したProjectile（飛び道具）が指定したID番号の場合、そのProjectileが相手のProjectileに消されてからの時間を返します。引数として、正の整数をID番号として指定することを必要とします。IDに0を指定した場合、チェックされません。これらの条件に該当しない場合、-1を返します。引数には、調べたいProjectileのID番号を、0または正のintで指定します。省略不可。戻り値の型: intまた、IDに負数を指定した場合、0を返します。 構文 ProjCancelTimeProjCancelTime(ProjectileのID) 引数 なし 仕様・バグ・エラー・変更点バグ直前に命中したProjectileのIDを基準とするため、相殺されたProjectileのIDを使用しても意味が無い。 コードサンプルID1234のProjectileが消された瞬間のトリガーTrigger1 = ProjCancelTime(1234) = 1 プレイヤーのProjectileが消されてから15フレーム未満のときのトリガーTrigger1 = ProjCancelTime(0) != -1 && ProjCancelTime(0) < 15 引用記事ProjCancelTime - Trigger Reference(version 2002.04.14)ProjCancelTime - Trigger Reference(version 1.0)ProjCancelTime - Trigger Reference(version 1.1)ProjCancelTime - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.17 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ProjCancelTime - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjCancelTime"
+    },
+    {
+      "text": "ProjCancelTime - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#projcanceltime"
+    },
+    {
+      "text": "ProjCancelTime - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#projcanceltime"
+    },
+    {
+      "text": "ProjCancelTime - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ProjCancelTime"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

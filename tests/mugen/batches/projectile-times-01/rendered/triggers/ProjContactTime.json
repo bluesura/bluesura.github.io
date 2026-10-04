@@ -1,0 +1,49 @@
+{
+  "text": "ProjContactTime 飛び道具 > 飛び道具接触後の経過時間取得 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 プレイヤーが最後に放出したProjectile（飛び道具）が指定したID番号の場合、そのProjectileが相手にヒット、またはガードされてからの(以下「接触」という)時間を返します。引数として、正の整数をID番号として指定することを必要とします。IDに0を指定した場合、チェックされません。これらの条件に該当しない場合、-1を返します。引数には、調べたいProjectileのID番号を、0または正のintで指定します。省略不可。戻り値の型: intまた、IDに負数を指定した場合、0を返します。 構文 ProjContactTime(ProjectileのID) 引数 なし コードサンプルID1234のProjectileが相手に接触した瞬間のトリガー。Trigger1 = ProjContactTime(1234) = 1 プレイヤーのProjectileが相手に接触してから15フレーム未満のときのトリガー。Trigger1 = ProjContactTime(0) != -1 && ProjContactTime(0) < 15 引用記事ProjContactTime - Trigger Reference(version 2002.04.14)ProjContactTime - Trigger Reference(version 1.0)ProjContactTime - Trigger Reference(version 1.1)ProjContactTime - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.17 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ProjContactTime - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjContactTime"
+    },
+    {
+      "text": "ProjContactTime - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#projcontacttime"
+    },
+    {
+      "text": "ProjContactTime - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#projcontacttime"
+    },
+    {
+      "text": "ProjContactTime - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ProjContactTime"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

@@ -1,0 +1,1519 @@
+{
+  "id": "projectile-times-01",
+  "reviewed_on": "2026-10-05",
+  "description": "Projectileの接触・ヒット・ガード・相殺からの整数経過時間、最後の接触記録とID照合、0始まり/公式例の差、WinMUGEN相殺ID報告を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "ProjContactTime",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcontacttime-local-2002",
+            "title": "ProjContactTime — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjContactTime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcontacttime-local-1.0",
+            "title": "ProjContactTime — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#projcontacttime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcontacttime-local-1.1",
+            "title": "ProjContactTime — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#projcontacttime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcontacttime-legacy",
+            "title": "移行前の本文・書式・使用例・バグ記録",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/1be0a42cde0a84d3b96f04f275cf8ed165caa97e/src/content/triggers/ProjContactTime.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcontacttime-chaos",
+            "title": "ProjContactTime — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/155.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcontacttime-projectile-1.1",
+            "title": "ProjectileのRoot所有 — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#projectile",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>プレイヤーが所有するProjectileのヒットまたはガードからの経過フレーム数を整数で返します。ヒットとガードの両方が接触に含まれます。</p><p>最後に接触したProjectileの記録を調べます。最後に生成した弾を調べる機能ではありません。正のProjIDでは、その記録のIDと指定IDが一致し、ヒットまたはガードの条件を満たすときに経過時間を返します。条件に該当する記録がないときは-1です。</p><p>exprnは必須の整数式で、ProjectileコントローラーのProjIDを指定します。ID 0はID照合を行わない指定で、ProjID 0だけに限定するNumProjID(0)とは異なります。負のIDは0として扱います。戻り値を固定で0にする指定ではありません。</p><p>経過時間は0から数えます。直後は<code>ProjContactTime(1234) = 0</code>、0〜14フレームは<code>ProjContactTime(1234) &gt;= 0 &amp;&amp; ProjContactTime(1234) &lt; 15</code>で調べます。&lt; 15だけでは未発生を表す-1も条件を満たすため、0以上かどうかも確認してください。</p><p><code>ProjContact1234 = 1</code>の旧式条件は真偽判定です。このトリガーが返す整数の経過時間とは区別します。</p>",
+            "syntax": [
+              "ProjContactTime(exprn)"
+            ],
+            "page_category": "Projectileのヒットまたはガードからの経過時間",
+            "evidence": {
+              "status": "conflicting",
+              "basis": [
+                "official_document",
+                "community_documentation",
+                "source_code"
+              ],
+              "source_refs": [
+                "projcontacttime-local-2002",
+                "projcontacttime-local-1.0",
+                "projcontacttime-local-1.1",
+                "projcontacttime-chaos",
+                "projcontacttime-legacy"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "exprn",
+              "type": [
+                "int"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>ProjectileコントローラーのProjIDを指定する整数式です。省略できません。正の値は最後の接触記録のIDと照合します。0はIDを限定せず、負数は0扱いです。一意PlayerIDやHitDefのTargetIDとは別の番号です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projcontacttime-local-2002",
+                  "projcontacttime-local-1.0",
+                  "projcontacttime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "ProjID 1234のヒットまたはガード直後（経過0フレーム）を調べる",
+            "code": [
+              "Trigger1 = ProjContactTime(1234) = 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "ProjID 1234のヒットまたはガードから経過0〜14フレームか調べる",
+            "code": [
+              "Trigger1 = ProjContactTime(1234) >= 0 && ProjContactTime(1234) < 15"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1では、exprnがbottomを返す式なら結果もbottomです。正常な整数値の-1（該当記録なし）や0（発生直後）とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projcontacttime-local-1.0",
+                  "projcontacttime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>Helperが生成したProjectileはRootの所有になります。Helper内から本体の記録を調べるときは、<code>Root, ProjContactTime(1234)</code>のように参照を変更します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projcontacttime-projectile-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧summary/descriptionは最後に放出したProjectileと説明しますが、公式は最後に接触したProjectileの記録です。旧本文の負数で0を返すという記載と、公式の負IDを0にするという記載も区別して保持しました。ID 0は照合しない指定です。初導入ビルドは不明のためnull、旧page.versionは資料世代として保存します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projcontacttime-legacy",
+                  "projcontacttime-local-2002",
+                  "projcontacttime-local-1.0",
+                  "projcontacttime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式3世代と旧code_sample[0]は直後の例をProjContactTime(1234) = 1としていますが、CHAOSは0始まりの時間を記録しています。原文・コード・タイトルは保持し、旧第1例は内部へ保存。公開例を0始まりへ分離しました。各実行ビルド、ヒット停止・Pause/SuperPause・同フレーム処理での評価時点は今回実機未確認で、資料の差を解消した記録とはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "projcontacttime-local-2002",
+                  "projcontacttime-local-1.0",
+                  "projcontacttime-local-1.1",
+                  "projcontacttime-chaos",
+                  "projcontacttime-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>2002資料では引数SFalseならSFalse、1.0/1.1資料では引数bottomならbottomと記載します。資料世代を実行ビルドの導入境界と同一視しません。型変換・不正型/範囲・対象不在・同じProjIDの複数弾の選択・記録寿命や次の接触による上書きの詳細は今回実機未確認です。各ProjIDの独立した過去履歴を検索できるとは記述しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "projcontacttime-local-2002",
+                  "projcontacttime-local-1.0",
+                  "projcontacttime-local-1.1",
+                  "projcontacttime-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSは未接触時-1、Projectile同士の相殺で-1へリセット、相手本体の攻撃での消滅ではリセットされないと記録し、それ以外のリセットには疑問符を付けています。継続条件・消去後の記録寿命・異なるIDの次イベントと停止中の加算は実機未確認です。誤記ProjCotnactImeを含む掲載例は出典に保持し、公開コードへ複製しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projcontacttime-chaos",
+                  "projcontacttime-chaos",
+                  "projcontacttime-local-2002",
+                  "projcontacttime-local-1.0",
+                  "projcontacttime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "projcontacttime-local-2002",
+              "projcontacttime-local-1.0",
+              "projcontacttime-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "公式の直後=1例とCHAOSの0始まりの差、実行ビルド/停止中の境界は今回実機未確認。",
+        "同時イベントや複数同ID、記録更新/消去後の寿命は内部に保存。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "ProjHitTime",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projhittime-local-2002",
+            "title": "ProjHitTime — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjHitTime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projhittime-local-1.0",
+            "title": "ProjHitTime — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#projhittime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projhittime-local-1.1",
+            "title": "ProjHitTime — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#projhittime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projhittime-legacy",
+            "title": "移行前の本文・書式・使用例・バグ記録",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/1be0a42cde0a84d3b96f04f275cf8ed165caa97e/src/content/triggers/ProjHitTime.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projhittime-chaos",
+            "title": "ProjHitTime — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/156.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projhittime-chaos-contact",
+            "title": "ProjContactTime — 0始まりの計測と共通事項",
+            "url": "https://w.atwiki.jp/mugencns/pages/155.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projhittime-projectile-1.1",
+            "title": "ProjectileのRoot所有 — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#projectile",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>プレイヤーが所有するProjectileのヒットからの経過フレーム数を整数で返します。ガードの経過時間はProjGuardedTimeを使います。</p><p>最後に接触したProjectileの記録を調べます。最後に生成した弾を調べる機能ではありません。正のProjIDでは、その記録のIDと指定IDが一致し、ヒットの条件を満たすときに経過時間を返します。条件に該当する記録がないときは-1です。</p><p>exprnは必須の整数式で、ProjectileコントローラーのProjIDを指定します。ID 0はID照合を行わない指定で、ProjID 0だけに限定するNumProjID(0)とは異なります。負のIDは0として扱います。戻り値を固定で0にする指定ではありません。</p><p>経過時間は0から数えます。直後は<code>ProjHitTime(1234) = 0</code>、0〜14フレームは<code>ProjHitTime(1234) &gt;= 0 &amp;&amp; ProjHitTime(1234) &lt; 15</code>で調べます。&lt; 15だけでは未発生を表す-1も条件を満たすため、0以上かどうかも確認してください。</p><p><code>ProjHit1234 = 1</code>の旧式条件は真偽判定です。このトリガーが返す整数の経過時間とは区別します。</p>",
+            "syntax": [
+              "ProjHitTime(exprn)"
+            ],
+            "page_category": "Projectileのヒットからの経過時間",
+            "evidence": {
+              "status": "conflicting",
+              "basis": [
+                "official_document",
+                "community_documentation",
+                "source_code"
+              ],
+              "source_refs": [
+                "projhittime-local-2002",
+                "projhittime-local-1.0",
+                "projhittime-local-1.1",
+                "projhittime-chaos-contact",
+                "projhittime-legacy"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "exprn",
+              "type": [
+                "int"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>ProjectileコントローラーのProjIDを指定する整数式です。省略できません。正の値は最後の接触記録のIDと照合します。0はIDを限定せず、負数は0扱いです。一意PlayerIDやHitDefのTargetIDとは別の番号です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projhittime-local-2002",
+                  "projhittime-local-1.0",
+                  "projhittime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "ProjID 1234のヒット直後（経過0フレーム）を調べる",
+            "code": [
+              "Trigger1 = ProjHitTime(1234) = 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "ProjID 1234のヒットから経過0〜14フレームか調べる",
+            "code": [
+              "Trigger1 = ProjHitTime(1234) >= 0 && ProjHitTime(1234) < 15"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1では、exprnがbottomを返す式なら結果もbottomです。正常な整数値の-1（該当記録なし）や0（発生直後）とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projhittime-local-1.0",
+                  "projhittime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>Helperが生成したProjectileはRootの所有になります。Helper内から本体の記録を調べるときは、<code>Root, ProjHitTime(1234)</code>のように参照を変更します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projhittime-projectile-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧summary/descriptionは最後に放出したProjectileと説明しますが、公式は最後に接触したProjectileの記録です。旧本文の負数で0を返すという記載と、公式の負IDを0にするという記載も区別して保持しました。ID 0は照合しない指定です。初導入ビルドは不明のためnull、旧page.versionは資料世代として保存します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projhittime-legacy",
+                  "projhittime-local-2002",
+                  "projhittime-local-1.0",
+                  "projhittime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式3世代と旧code_sample[0]は直後の例をProjHitTime(1234) = 1としていますが、CHAOSは0始まりの時間を記録しています。原文・コード・タイトルは保持し、旧第1例は内部へ保存。公開例を0始まりへ分離しました。各実行ビルド、ヒット停止・Pause/SuperPause・同フレーム処理での評価時点は今回実機未確認で、資料の差を解消した記録とはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "projhittime-local-2002",
+                  "projhittime-local-1.0",
+                  "projhittime-local-1.1",
+                  "projhittime-chaos-contact",
+                  "projhittime-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>2002資料では引数SFalseならSFalse、1.0/1.1資料では引数bottomならbottomと記載します。資料世代を実行ビルドの導入境界と同一視しません。型変換・不正型/範囲・対象不在・同じProjIDの複数弾の選択・記録寿命や次の接触による上書きの詳細は今回実機未確認です。各ProjIDの独立した過去履歴を検索できるとは記述しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "projhittime-local-2002",
+                  "projhittime-local-1.0",
+                  "projhittime-local-1.1",
+                  "projhittime-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSはガードとProjectile同士の相殺でProjHitTimeを-1へリセットすると記録しています。HitTime/GuardedTimeは反対側が未命中状態で、同時ヒットの扱いは推測と明記しています。検証不足の注記を維持し、複数同ID・同時処理順・消去後の記録寿命と停止中の加算は実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projhittime-chaos",
+                  "projhittime-chaos-contact",
+                  "projhittime-local-2002",
+                  "projhittime-local-1.0",
+                  "projhittime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式3世代の本文に経過時間を返す名前としてProjHitと記載する箇所があります。節名・Format・例・未該当-1の文はProjHitTimeです。旧式のProjHitへ戻り値の意味を移さず資料差を保持しました。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projhittime-local-2002",
+                  "projhittime-local-1.0",
+                  "projhittime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "projhittime-local-2002",
+              "projhittime-local-1.0",
+              "projhittime-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "公式の直後=1例とCHAOSの0始まりの差、実行ビルド/停止中の境界は今回実機未確認。",
+        "同時イベントや複数同ID、記録更新/消去後の寿命は内部に保存。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "ProjGuardedTime",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projguardedtime-local-2002",
+            "title": "ProjGuardedTime — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjGuardedTime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projguardedtime-local-1.0",
+            "title": "ProjGuardedTime — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#projguardedtime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projguardedtime-local-1.1",
+            "title": "ProjGuardedTime — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#projguardedtime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projguardedtime-legacy",
+            "title": "移行前の本文・書式・使用例・バグ記録",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/1be0a42cde0a84d3b96f04f275cf8ed165caa97e/src/content/triggers/ProjGuardedTime.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projguardedtime-chaos",
+            "title": "ProjGuardedTime — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/157.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projguardedtime-chaos-contact",
+            "title": "ProjContactTime — 0始まりの計測と共通事項",
+            "url": "https://w.atwiki.jp/mugencns/pages/155.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projguardedtime-projectile-1.1",
+            "title": "ProjectileのRoot所有 — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#projectile",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>プレイヤーが所有するProjectileのガードからの経過フレーム数を整数で返します。ヒットの経過時間はProjHitTimeを使います。</p><p>最後に接触したProjectileの記録を調べます。最後に生成した弾を調べる機能ではありません。正のProjIDでは、その記録のIDと指定IDが一致し、ガードの条件を満たすときに経過時間を返します。条件に該当する記録がないときは-1です。</p><p>exprnは必須の整数式で、ProjectileコントローラーのProjIDを指定します。ID 0はID照合を行わない指定で、ProjID 0だけに限定するNumProjID(0)とは異なります。負のIDは0として扱います。戻り値を固定で0にする指定ではありません。</p><p>経過時間は0から数えます。直後は<code>ProjGuardedTime(1234) = 0</code>、0〜14フレームは<code>ProjGuardedTime(1234) &gt;= 0 &amp;&amp; ProjGuardedTime(1234) &lt; 15</code>で調べます。&lt; 15だけでは未発生を表す-1も条件を満たすため、0以上かどうかも確認してください。</p><p><code>ProjGuarded1234 = 1</code>の旧式条件は真偽判定です。このトリガーが返す整数の経過時間とは区別します。</p>",
+            "syntax": [
+              "ProjGuardedTime(exprn)"
+            ],
+            "page_category": "Projectileのガードからの経過時間",
+            "evidence": {
+              "status": "conflicting",
+              "basis": [
+                "official_document",
+                "community_documentation",
+                "source_code"
+              ],
+              "source_refs": [
+                "projguardedtime-local-2002",
+                "projguardedtime-local-1.0",
+                "projguardedtime-local-1.1",
+                "projguardedtime-chaos-contact",
+                "projguardedtime-legacy"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "exprn",
+              "type": [
+                "int"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>ProjectileコントローラーのProjIDを指定する整数式です。省略できません。正の値は最後の接触記録のIDと照合します。0はIDを限定せず、負数は0扱いです。一意PlayerIDやHitDefのTargetIDとは別の番号です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projguardedtime-local-2002",
+                  "projguardedtime-local-1.0",
+                  "projguardedtime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "ProjID 1234のガード直後（経過0フレーム）を調べる",
+            "code": [
+              "Trigger1 = ProjGuardedTime(1234) = 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "ProjID 1234のガードから経過0〜14フレームか調べる",
+            "code": [
+              "Trigger1 = ProjGuardedTime(1234) >= 0 && ProjGuardedTime(1234) < 15"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1では、exprnがbottomを返す式なら結果もbottomです。正常な整数値の-1（該当記録なし）や0（発生直後）とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projguardedtime-local-1.0",
+                  "projguardedtime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>Helperが生成したProjectileはRootの所有になります。Helper内から本体の記録を調べるときは、<code>Root, ProjGuardedTime(1234)</code>のように参照を変更します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projguardedtime-projectile-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧summary/descriptionは最後に放出したProjectileと説明しますが、公式は最後に接触したProjectileの記録です。旧本文の負数で0を返すという記載と、公式の負IDを0にするという記載も区別して保持しました。ID 0は照合しない指定です。初導入ビルドは不明のためnull、旧page.versionは資料世代として保存します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projguardedtime-legacy",
+                  "projguardedtime-local-2002",
+                  "projguardedtime-local-1.0",
+                  "projguardedtime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式3世代と旧code_sample[0]は直後の例をProjGuardedTime(1234) = 1としていますが、CHAOSは0始まりの時間を記録しています。原文・コード・タイトルは保持し、旧第1例は内部へ保存。公開例を0始まりへ分離しました。各実行ビルド、ヒット停止・Pause/SuperPause・同フレーム処理での評価時点は今回実機未確認で、資料の差を解消した記録とはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "projguardedtime-local-2002",
+                  "projguardedtime-local-1.0",
+                  "projguardedtime-local-1.1",
+                  "projguardedtime-chaos-contact",
+                  "projguardedtime-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>2002資料では引数SFalseならSFalse、1.0/1.1資料では引数bottomならbottomと記載します。資料世代を実行ビルドの導入境界と同一視しません。型変換・不正型/範囲・対象不在・同じProjIDの複数弾の選択・記録寿命や次の接触による上書きの詳細は今回実機未確認です。各ProjIDの独立した過去履歴を検索できるとは記述しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "projguardedtime-local-2002",
+                  "projguardedtime-local-1.0",
+                  "projguardedtime-local-1.1",
+                  "projguardedtime-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSはヒットとProjectile同士の相殺でProjGuardedTimeを-1へリセットすると記録しています。HitTime/GuardedTimeは反対側が未命中状態で、同時ヒットの扱いは推測と明記しています。検証不足の注記を維持し、複数同ID・同時処理順・消去後の記録寿命と停止中の加算は実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projguardedtime-chaos",
+                  "projguardedtime-chaos-contact",
+                  "projguardedtime-local-2002",
+                  "projguardedtime-local-1.0",
+                  "projguardedtime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式3世代のProjGuardedTime Format欄がProjCancelTime(exprn)です。同じ節の題名・本文・両例はProjGuardedTimeであるため、公開構文をProjGuardedTime(exprn)とし、元の資料差を内部へ保存します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projguardedtime-local-2002",
+                  "projguardedtime-local-1.0",
+                  "projguardedtime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "projguardedtime-local-2002",
+              "projguardedtime-local-1.0",
+              "projguardedtime-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "公式の直後=1例とCHAOSの0始まりの差、実行ビルド/停止中の境界は今回実機未確認。",
+        "同時イベントや複数同ID、記録更新/消去後の寿命は内部に保存。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "ProjCancelTime",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcanceltime-local-2002",
+            "title": "ProjCancelTime — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjCancelTime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcanceltime-local-1.0",
+            "title": "ProjCancelTime — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#projcanceltime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcanceltime-local-1.1",
+            "title": "ProjCancelTime — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#projcanceltime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcanceltime-legacy",
+            "title": "移行前の本文・書式・使用例・バグ記録",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/1be0a42cde0a84d3b96f04f275cf8ed165caa97e/src/content/triggers/ProjCancelTime.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcanceltime-chaos",
+            "title": "ProjCancelTime — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/158.html",
+            "source_type": "community_documentation"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcanceltime-chaos-contact",
+            "title": "ProjContactTime — 0始まりの計測と共通事項",
+            "url": "https://w.atwiki.jp/mugencns/pages/155.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "projcanceltime-projectile-1.1",
+            "title": "ProjectileのRoot所有 — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#projectile",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>プレイヤーのProjectileが相手のProjectileに相殺されてからの経過フレーム数を整数で返します。相殺の記録がないときは-1です。IDを限定しない参照には<code>ProjCancelTime(0)</code>を使います。個別IDの照合にはWinMUGEN固有のバグ報告があるため、下の注意点を参照してください。</p><p>exprnは必須の整数式で、ProjectileコントローラーのProjIDを指定します。ID 0はID照合を行わない指定で、ProjID 0だけに限定するNumProjID(0)とは異なります。負のIDは0として扱います。戻り値を固定で0にする指定ではありません。</p><p>経過時間は0から数えます。直後は<code>ProjCancelTime(0) = 0</code>、0〜14フレームは<code>ProjCancelTime(0) &gt;= 0 &amp;&amp; ProjCancelTime(0) &lt; 15</code>で調べます。&lt; 15だけでは未発生を表す-1も条件を満たすため、0以上かどうかも確認してください。</p>",
+            "syntax": [
+              "ProjCancelTime(exprn)"
+            ],
+            "page_category": "Projectileの相手のProjectileによる相殺からの経過時間",
+            "evidence": {
+              "status": "conflicting",
+              "basis": [
+                "official_document",
+                "community_documentation",
+                "source_code"
+              ],
+              "source_refs": [
+                "projcanceltime-local-2002",
+                "projcanceltime-local-1.0",
+                "projcanceltime-local-1.1",
+                "projcanceltime-chaos",
+                "projcanceltime-legacy"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "exprn",
+              "type": [
+                "int"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>ProjectileコントローラーのProjIDを指定する整数式です。省略できません。0でIDを限定しない参照、負数は0扱いです。WinMUGENでは相殺された弾のIDとの照合にならないバグ報告があります。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "projcanceltime-local-2002",
+                  "projcanceltime-local-1.0",
+                  "projcanceltime-local-1.1",
+                  "projcanceltime-chaos"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "IDを限定せず相手のProjectileによる相殺直後（経過0フレーム）を調べる",
+            "code": [
+              "Trigger1 = ProjCancelTime(0) = 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1では、exprnがbottomを返す式なら結果もbottomです。正常な整数値の-1（該当記録なし）や0（発生直後）とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projcanceltime-local-1.0",
+                  "projcanceltime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>Helperが生成したProjectileはRootの所有になります。Helper内から本体の記録を調べるときは、<code>Root, ProjCancelTime(0)</code>のように参照を変更します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projcanceltime-projectile-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧summary/descriptionは最後に放出したProjectileと説明しますが、公式は最後に接触したProjectileの記録です。旧本文の負数で0を返すという記載と、公式の負IDを0にするという記載も区別して保持しました。ID 0は照合しない指定です。初導入ビルドは不明のためnull、旧page.versionは資料世代として保存します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projcanceltime-legacy",
+                  "projcanceltime-local-2002",
+                  "projcanceltime-local-1.0",
+                  "projcanceltime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式3世代と旧code_sample[0]は直後の例をProjCancelTime(1234) = 1としていますが、CHAOSは0始まりの時間を記録しています。原文・コード・タイトルは保持し、旧第1例は内部へ保存。公開例を0始まりへ分離しました。各実行ビルド、ヒット停止・Pause/SuperPause・同フレーム処理での評価時点は今回実機未確認で、資料の差を解消した記録とはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "projcanceltime-local-2002",
+                  "projcanceltime-local-1.0",
+                  "projcanceltime-local-1.1",
+                  "projcanceltime-chaos",
+                  "projcanceltime-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>2002資料では引数SFalseならSFalse、1.0/1.1資料では引数bottomならbottomと記載します。資料世代を実行ビルドの導入境界と同一視しません。型変換・不正型/範囲・対象不在・同じProjIDの複数弾の選択・記録寿命や次の接触による上書きの詳細は今回実機未確認です。各ProjIDの独立した過去履歴を検索できるとは記述しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "projcanceltime-local-2002",
+                  "projcanceltime-local-1.0",
+                  "projcanceltime-local-1.1",
+                  "projcanceltime-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "bug",
+              "content": "<p>WinMUGENの検証報告では、相殺されたProjectileのIDではなく、直前に命中したProjectileのProjIDを基準に照合します。相殺された弾のIDを指定して個別の相殺を判定する用途には注意してください。IDを限定しない用途では<code>ProjCancelTime(0)</code>を使います。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "winmugen"
+                ]
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "community_documentation",
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projcanceltime-chaos",
+                  "projcanceltime-legacy",
+                  "projcanceltime-local-2002",
+                  "projcanceltime-local-1.0",
+                  "projcanceltime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSはWin版の検証として直前に命中したProjIDを照合する問題を報告し、0指定なら全対象、相殺後0始まり、命中で-1へリセットとも記録します。対象の正確なWinMUGENビルド・互換設定・再現素材は不明で、1.0/1.1で修正済み/同じバグとは断定しません。公式の相殺ID照合と旧バグを両方保存し、指定IDの旧第1例は内部に残しました。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "projcanceltime-chaos",
+                  "projcanceltime-legacy",
+                  "projcanceltime-local-2002",
+                  "projcanceltime-local-1.0",
+                  "projcanceltime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "projcanceltime-local-2002",
+              "projcanceltime-local-1.0",
+              "projcanceltime-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代とCHAOSの記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "公式の直後=1例とCHAOSの0始まりの差、実行ビルド/停止中の境界は今回実機未確認。",
+        "WinMUGENの相殺IDバグは正確なビルド不明。1.0/1.1へ適用・修正を推定しない。"
+      ]
+    }
+  ]
+}

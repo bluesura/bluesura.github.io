@@ -1,0 +1,92 @@
+{
+  "text": "MoveHit ヒット情報 > 攻撃のヒット判定 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 MoveHit は、P1（実行者）の攻撃がP2（相手）にヒットしたかを返します（ガードは含みません）。このトリガーは攻撃ステート（一般に MoveType = A）でのみ有効です。ヒットした更新フレームは 1 を返します。以後、P1がヒットポーズ等で停止していない更新フレームごとに +1 されます（停止中は増加しません）。ヒットしていない（空振り／ガード）場合は 0 を返します。MoveHit（非0）/ MoveHit > 0 は「当たった」判定として安全です。MoveHit = 1 は「ヒット直後」を拾う定番条件ですが、ヒットポーズ中は値が増えないため、その間も = 1 のままになりやすい点に注意してください。MoveContact / MoveGuarded / MoveHit / MoveReversed の値は同時にセットされます。例えば、同一の攻撃中に最初のHitDefがヒットして MoveHit が非0になった後、次のHitDefがガードされると MoveGuarded が非0になり、他の3つは 0 になります。また、上記4つの Move* トリガーはステート遷移で通常 0 にリセットされます。直前ステートの情報を持ち越したい場合は、遷移先 StateDef に MoveHitPersist = 1 を指定します。任意のタイミングで値を消したい場合はステートコントローラー MoveHitReset を使用します。ReversalDef によるリバーサル成功の検出にも MoveHit が利用できます。 関連するステートコントローラー： HitDef , ReversalDef , MoveHitReset 関連するトリガー： MoveContact , MoveGuarded , MoveReversed 構文 MoveHit 引数 なし 仕様・バグ・エラー・変更点MUGEN 2002.04.14MoveContact/MoveGuarded/MoveHit の戻り値が、命中状態が変化してからの経過を表すカウンタ（int）として扱われるように変更されました。MUGEN 1.0 / 1.1戻り値の型は int。詳細仕様（Move*同時セット／ステート遷移でリセット／MoveHitPersist）は MoveContact の Details と共通です。Ikemen GOMoveHit 自体は概ねMUGEN互換（ヒットポーズ中は値が増えない）です。Ikemen GO では補助トリガー MoveHitVar(frame) が追加され、こちらはヒットポーズ中も更新されます。 コードサンプル攻撃がヒットしていれば成立（値が0以外）Trigger1 = MoveHit ヒット直後（値が1の間）を拾うMoveHit = 1 はヒットした瞬間から、P1のヒットポーズ（PauseTime）が終わるまで成立します。ヒットポーズ中は値が増えないため、その間も = 1 のままになります。Trigger1 = MoveHit = 1 非0判定の書き方（MoveHit / MoveHit > 0）MoveHit は int を返すため、MoveHit（非0）と MoveHit > 0 は同じ意図で使えます。Trigger1 = MoveHit; 明示的に書くならTrigger1 = MoveHit > 0 CMDでのキャンセル例（Command + StateNo + MoveHit）必殺技の ChangeState を、特定の通常技ステートから「ヒット後」に限って出せるようにする例です（いわゆる2-in-1/チェーンの基本形）。同じ番号の trigger2 行はAND条件になります。[State -1, Special Cancel]type = ChangeStatevalue = 1200triggerall = command = \"dp_x\"trigger1 = statetype != Atrigger1 = ctrltrigger2 = stateno = 200trigger2 = MoveHit = 1trigger3 = stateno = 210trigger3 = MoveHit = 1 引用記事MoveHit - Trigger Reference(version 2002.04.14)MoveHit - Trigger Reference (Elecbyte / MUGEN 1.0)MoveHit - Trigger Reference (Elecbyte / MUGEN 1.1b1)movehitpersist - The CNS format (Elecbyte)MoveHitReset / ReversalDef Notes - State Controller Reference (Elecbyte)Ikemen GO Wiki - Triggers (new)（MoveHitVar(frame)の注記）Making 2 in 1s (Cancelling a normal move with a special move)（CMDでStateNo/Command/MoveHit=1の例） 公開日:2008.06.05 最終更新日:2025.12.25 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "HitDef",
+      "href": "./../State/HitDef.html"
+    },
+    {
+      "text": "ReversalDef",
+      "href": "./../State/ReversalDef.html"
+    },
+    {
+      "text": "MoveHitReset",
+      "href": "./../State/MoveHitReset.html"
+    },
+    {
+      "text": "MoveContact",
+      "href": "./../Trigger/MoveContact.html"
+    },
+    {
+      "text": "MoveGuarded",
+      "href": "./../Trigger/MoveGuarded.html"
+    },
+    {
+      "text": "MoveReversed",
+      "href": "./../Trigger/MoveReversed.html"
+    },
+    {
+      "text": "MoveHit - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveHit"
+    },
+    {
+      "text": "MoveHit - Trigger Reference (Elecbyte / MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#movehit"
+    },
+    {
+      "text": "MoveHit - Trigger Reference (Elecbyte / MUGEN 1.1b1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#movehit"
+    },
+    {
+      "text": "movehitpersist - The CNS format (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "text": "MoveHitReset / ReversalDef Notes - State Controller Reference (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html"
+    },
+    {
+      "text": "Ikemen GO Wiki - Triggers (new)（MoveHitVar(frame)の注記）",
+      "href": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28new%29"
+    },
+    {
+      "text": "Making 2 in 1s (Cancelling a normal move with a special move)（CMDでStateNo/Command/MoveHit=1の例）",
+      "href": "https://www.angelfire.com/ego/heavens/mugen_Making2in1.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-move-contact-triggers-flow.png"
+  ],
+  "code": []
+}

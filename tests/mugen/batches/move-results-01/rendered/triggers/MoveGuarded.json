@@ -1,0 +1,84 @@
+{
+  "text": "MoveGuarded ヒット情報 > 攻撃のガード判定 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 MoveGuarded は、P1（実行者）の攻撃がP2（相手）にガードされた（ガード中、またはガード済み）かを返します。このトリガーは攻撃ステート（一般に MoveType = A）でのみ意味を持ちます。ガードされていない場合は 0 を返します。ガード接触した更新フレームは 1 を返します。以後、P1がヒットポーズ等で停止していない更新フレームごとに +1 されます（停止（PauseTime）中は増加しません）。このカウンタ仕様は、MoveContact / MoveHit / MoveReversed と共通です。MoveGuarded = 1 は「ガード接触直後」を拾う定番条件です。P1が接触で停止している間（例：HitDef の PauseTime による停止）は値が増えないため、その間は = 1 のままになり得ます。MoveContact / MoveGuarded / MoveHit / MoveReversed は同時にセットされます。例えば、あるHitDefがヒットして MoveHit が非0の最中に、同一の技中で後続のHitDefがガードされると MoveGuarded が非0になり、他の3つは 0 になります。これらの Move* 値は通常、ステート遷移で 0 にリセットされ増加も止まります。直前ステートの結果を次ステートへ持ち越したい場合は、遷移先 StateDef に MoveHitPersist = 1 を指定します。ステート中に明示的にリセットしたい場合は MoveHitReset を使用します。互換性のため、判定は MoveGuarded（非0）/ !MoveGuarded（0）で書くのが安全です（MoveGuarded = 1 の固定比較は、停止の影響で想定より長く成立することがあります）。 関連するステートコントローラー： HitDef , MoveHitReset 関連するトリガー： MoveContact , MoveHit , MoveReversed 構文 MoveGuarded 引数 なし 仕様・バグ・エラー・変更点2002.04.14（WinMUGEN系）以降戻り値が「ガード接触からの経過」を表す int として扱われます。ガード接触した更新フレームが 1、以後はP1が停止していない更新フレームごとに増加します（停止中は増加しません）。2002.04.14MoveContact / MoveGuarded / MoveHit の戻り値仕様が「ヒット状態変化からの経過」を返す形に変更されました。 コードサンプル攻撃がガードされた（ガード中/ガード済み）なら成立Trigger1 = MoveGuarded ガード接触直後（値が1の間）を拾うMoveGuarded = 1 は「ガード接触直後」を拾う用途でよく使われます。P1が停止している間は値が増えないため、その間は = 1 のままになり得ます。Trigger1 = MoveGuarded = 1 引用記事MoveGuarded - Trigger Reference (Elecbyte / MUGEN 1.0)MoveGuarded - Trigger Reference (Elecbyte / MUGEN 1.1b1)MoveContact Details (Move* 共通仕様) - Trigger Reference (Elecbyte)M.U.G.E.N Update History (2002.04.14: MoveContact/MoveGuarded/MoveHit の変更)MoveHitReset - State Controller Reference (Elecbyte)movehitpersist - The CNS format (Elecbyte) 公開日:2008.06.05 最終更新日:2025.12.25 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "HitDef",
+      "href": "./../State/HitDef.html"
+    },
+    {
+      "text": "MoveHitReset",
+      "href": "./../State/MoveHitReset.html"
+    },
+    {
+      "text": "MoveContact",
+      "href": "./../Trigger/MoveContact.html"
+    },
+    {
+      "text": "MoveHit",
+      "href": "./../Trigger/MoveHit.html"
+    },
+    {
+      "text": "MoveReversed",
+      "href": "./../Trigger/MoveReversed.html"
+    },
+    {
+      "text": "MoveGuarded - Trigger Reference (Elecbyte / MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#moveguarded"
+    },
+    {
+      "text": "MoveGuarded - Trigger Reference (Elecbyte / MUGEN 1.1b1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#moveguarded"
+    },
+    {
+      "text": "MoveContact Details (Move* 共通仕様) - Trigger Reference (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#movecontact"
+    },
+    {
+      "text": "M.U.G.E.N Update History (2002.04.14: MoveContact/MoveGuarded/MoveHit の変更)",
+      "href": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "text": "MoveHitReset - State Controller Reference (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/sctrls.html#movehitreset"
+    },
+    {
+      "text": "movehitpersist - The CNS format (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-move-contact-triggers-flow.png"
+  ],
+  "code": []
+}

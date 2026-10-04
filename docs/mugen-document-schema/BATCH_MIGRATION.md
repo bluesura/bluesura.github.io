@@ -1065,3 +1065,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・252テスト・263ページビルド・261 URL/164比較対象ページのHTML検査を通過。ProjContact（通常幅）、ProjHitの引数表/ProjGuardedのコード例（幅390px）を確認し表示幅と検査用タブを復元。既存の保存HTML/Pagefind等の警告は継続。内部注記11件追加の356件、未対応旧履歴161項目。次はProjContactTime・ProjHitTime・ProjGuardedTime・ProjCancelTimeです。
+
+## 2026-10-05：projectile-times-01
+
+ProjContactTime / ProjHitTime / ProjGuardedTime / ProjCancelTimeの4件を追加し、累計157件（主要・補助16件＋58バッチ141件）、残り77件です。移行前JSON・HTML・抽出結果は tests/mugen/batches/projectile-times-01/ に保存しました。
+
+- 必須整数式exprn・関数形式・整数戻り値と未該当-1を構造化。最後に放出した弾という旧文を保持し、公開本文では最後の接触記録を調べる説明へ。ID 0は照合なし、負IDは0扱いで、戻り値を0に固定する指定ではありません。NumProjID(0)の意味とも区別しました。
+- [CHAOSのProjContactTime](https://w.atwiki.jp/mugencns/pages/155.html)と[ProjCancelTime](https://w.atwiki.jp/mugencns/pages/158.html)の0始まりの記録を反映し、直後=0と未発生-1を除外する時間範囲例を公開。公式3世代/旧第1例の直後=1は原文とタイトルのまま内部に保持しています。旧第2例4件は公開を維持。実行ビルドや停止中の評価時点の差は解消した扱いにしません。
+- ProjCancelTimeの旧バグをlegacy_index: 0へ対応。[CHAOSのWin版検証報告](https://w.atwiki.jp/mugencns/pages/158.html)として直前の命中ProjIDを基準にする問題をWinMUGENに限定して公開し、非限定の0指定を例にしています。公式の相殺ID照合・旧指定ID例も内部に保持。正確なWinビルド、1.0/1.1での再現/修正は推測していません。
+- [ProjHitTime](https://w.atwiki.jp/mugencns/pages/156.html)・[ProjGuardedTime](https://w.atwiki.jp/mugencns/pages/157.html)の検証不足/反対イベントや相殺でのリセット・同時処理の推測、ContactTimeのリセットと誤記例は内部研究です。公式GuardedTime FormatのCancelTime表記、HitTime本文のProjHit表記差も保存しました。
+- 1.0/1.1のbottomと正常な-1/0、Helper生成のRoot所有を公開。2002 SFalse・初導入・型変換・同ID複数弾/記録寿命は内部へ。初導入null、スキーマ/レンダラー/CSS変更なし。今回の実機検証は未実施です。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch projectile-times-01
+npm run mugen:batch -- --batch projectile-times-01 --target ProjContactTime --target ProjHitTime --target ProjGuardedTime --target ProjCancelTime
+npm run mugen:batch -- --batch projectile-times-01 --target ProjContactTime --target ProjHitTime --target ProjGuardedTime --target ProjCancelTime --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・258テスト・263ページビルド・261 URL/168比較対象ページHTML検査を通過。通常幅でContactTime/HitTime、幅390pxでGuardedTime引数表/CancelTimeのWinMUGEN注記を確認し、表示幅と検査用タブを復元。既存の保存HTML/Pagefind等の警告は継続。内部注記18件追加の374件、未対応旧履歴160項目。次はMoveHit・MoveGuarded・MoveReversedです。

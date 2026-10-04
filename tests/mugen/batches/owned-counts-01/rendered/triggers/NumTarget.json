@@ -1,0 +1,49 @@
+{
+  "text": "NumTarget ターゲット > ターゲット数の取得 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 使用例 引用記事 プレイヤーのターゲットの数を返します。引数にID番号を指定した場合、そのID番号のターゲット数を返します。IDに-1以下を指定した場合、省略時と同様に扱われます。引数には、数えたいターゲットのヒットIDを指定します。戻り値の型: int 構文 NumTargetNumTarget(ID) 引数 なし コードサンプルターゲットが2体以上のときのトリガーTrigger1 = NumTarget >= 2 ID1234のターゲットが2体以上のときのトリガーTrigger1 = NumTarget(1234) >= 2 引用記事NumTarget - Trigger Reference(version 2002.04.14)NumTarget - Trigger Reference(version 1.0)NumTarget - Trigger Reference(version 1.1)NumTarget - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.12.21 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "NumTarget - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#NumTarget"
+    },
+    {
+      "text": "NumTarget - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numtarget"
+    },
+    {
+      "text": "NumTarget - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numtarget"
+    },
+    {
+      "text": "NumTarget - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumTarget"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

@@ -1,0 +1,53 @@
+{
+  "text": "NumHelper ヘルパー > 指定IDのヘルパー数の取得 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 使用例 引用記事 プレイヤーが出現させているhelperの数を返します。引数にID番号を指定した場合、そのID番号のhelperの数を返します。IDには、0以上の整数を指定します。0以下の数を指定した場合、省略時と同じ扱いになります。戻り値の型: int 関連するステートコントローラー： Helper 構文 NumHelperNumHelper(HelperのID) 引数 なし コードサンプルプレイヤーのヘルパー数が2つ未満の場合のトリガーTrigger1 = NumHelper < 2 プレイヤーのID1234のヘルパー数が2つ未満の場合のトリガーTrigger1 = NumHelper(1234) < 2 引用記事NumHelper - Trigger Reference(version 2002.04.14)NumHelper - Trigger Reference(version 1.0)NumHelper - Trigger Reference(version 1.1)NumHelper - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.12.21 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Helper",
+      "href": "./../State/Helper.html"
+    },
+    {
+      "text": "NumHelper - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#NumHelper"
+    },
+    {
+      "text": "NumHelper - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numhelper"
+    },
+    {
+      "text": "NumHelper - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numhelper"
+    },
+    {
+      "text": "NumHelper - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumHelper"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

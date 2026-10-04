@@ -1,0 +1,900 @@
+{
+  "id": "owned-counts-01",
+  "reviewed_on": "2026-10-05",
+  "description": "Helper・Target・Explodの所有数、任意IDと全件を数える境界を区別。旧値・例・公式誤記と所有範囲研究を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "NumHelper",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numhelper-local-2002",
+            "title": "NumHelper — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumHelper",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numhelper-local-1.0",
+            "title": "NumHelper — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#numhelper",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numhelper-local-1.1",
+            "title": "NumHelper — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#numhelper",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numhelper-legacy",
+            "title": "移行前の説明・構文・コード例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/047bdba3a9bbdd9abc8b75671647a7549eb0b179/src/content/triggers/NumHelper.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>参照しているプレイヤーが所有しているHelperの数を整数で返します。引数なしの<code>NumHelper</code>は総数です。</p><p><code>NumHelper(exprn)</code>の引数は任意の整数式です。正のIDを指定すると、そのIDのHelperだけを数えます。0以下のIDは全Helperを数えます。</p><p>指定するのはHelperコントローラーのIDです。IDトリガーで取得するプレイヤーの一意IDとは別の識別番号です。</p>",
+            "syntax": [
+              "NumHelper",
+              "NumHelper(exprn)"
+            ],
+            "page_category": "所有Helperの総数・指定IDの数の取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "numhelper-local-2002",
+                "numhelper-local-1.0",
+                "numhelper-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "exprn",
+              "type": [
+                "int"
+              ],
+              "parameter_type": "optional",
+              "expression_policy": "expression",
+              "description": "<p>数える対象のHelperコントローラーのIDを返す整数式です。省略時はIDを限定せず総数を返します。正のIDを指定すると、そのIDのHelperだけを数えます。0以下のIDは全Helperを数えます。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numhelper-local-2002",
+                  "numhelper-local-1.0",
+                  "numhelper-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numhelper-chaos",
+            "title": "NumHelper — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/166.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numhelper-warnings-1.1",
+            "title": "存在確認によるリダイレクト警告の回避 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#avoiding-warnings",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "指定IDのHelperが存在するときだけ参照する",
+            "description": "<p>最初の行で存在を確認し、同じ番号の次の条件行でHelperのTimeを調べます。</p>",
+            "code": [
+              "Trigger1 = NumHelper(1234) > 0",
+              "Trigger1 = Helper(1234), Time > 20"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>戻り値は個数であり、1だけを真とするフラグではありません。<code>NumHelper(1234) &gt; 0</code>で指定IDの存在を、<code>NumHelper(1234) = 0</code>で不在を調べます。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numhelper-local-2002",
+                  "numhelper-local-1.0",
+                  "numhelper-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1では、exprnの評価結果がbottomなら戻り値もbottomです。正常に数えた結果の0とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numhelper-local-1.0",
+                  "numhelper-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.versionの2002.04.14は資料世代として保持し、初導入ビルドはnullです。2002資料のSFalseと1.0/1.1資料のbottomは記載を区別して保存します。整数型以外の変換・警告、範囲外と消滅/射出の同フレーム評価境界は今回実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numhelper-legacy",
+                  "numhelper-local-2002",
+                  "numhelper-local-1.0",
+                  "numhelper-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧本文はIDに0以上の整数を指定すると記載しながら、0以下は全数とも記載しています。公式3世代は特定IDの絞り込みを正の整数、0以下を全数とするため、旧本文を原位置に保持して公開説明を整理しました。ID=0のHelperだけをNumHelper(0)で数える意味にはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numhelper-legacy",
+                  "numhelper-local-2002",
+                  "numhelper-local-1.0",
+                  "numhelper-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSでは本体基準で同じRootを持つ全Helper（Helperが出す子孫も含む）を数え、本体→A→B→Cと本体→D→E,Fは途中で射出/消滅がなければ全員6と報告しています。NumExplodとの範囲差、Parent不在の検出にParent,ID&gt;0を使えるらしいという記述、AI用途でHelperが飛び道具とは限らない点も記録します。今回実機確認しておらず、親子階層と消滅時の範囲・警告は内部へ保持します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numhelper-chaos",
+                  "numhelper-local-2002",
+                  "numhelper-local-1.0",
+                  "numhelper-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "numhelper-local-2002",
+              "numhelper-local-1.0",
+              "numhelper-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・特殊型・所有範囲の細部と消滅境界は実機未確認。",
+        "旧フィールドとコード例を保持。CHAOSの報告と公式表記差は内部JSONに保存。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "NumTarget",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numtarget-local-2002",
+            "title": "NumTarget — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumTarget",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numtarget-local-1.0",
+            "title": "NumTarget — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#numtarget",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numtarget-local-1.1",
+            "title": "NumTarget — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#numtarget",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numtarget-legacy",
+            "title": "移行前の説明・構文・コード例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/047bdba3a9bbdd9abc8b75671647a7549eb0b179/src/content/triggers/NumTarget.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>参照しているプレイヤーの現在のTargetの数を整数で返します。引数なしの<code>NumTarget</code>は総数です。</p><p><code>NumTarget(exprn)</code>の引数は任意の整数式です。0以上のIDを指定すると、そのIDのTargetだけを数えます。-1以下のIDは全Targetを数えます。</p><p>指定するのはHitDefのID（TargetID）です。IDトリガーで取得するプレイヤーの一意IDとは別の識別番号です。</p>",
+            "syntax": [
+              "NumTarget",
+              "NumTarget(exprn)"
+            ],
+            "page_category": "所有Targetの総数・指定IDの数の取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "numtarget-local-2002",
+                "numtarget-local-1.0",
+                "numtarget-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "exprn",
+              "type": [
+                "int"
+              ],
+              "parameter_type": "optional",
+              "expression_policy": "expression",
+              "description": "<p>数える対象のHitDefのID（TargetID）を返す整数式です。省略時はIDを限定せず総数を返します。0以上のIDを指定すると、そのIDのTargetだけを数えます。-1以下のIDは全Targetを数えます。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numtarget-local-2002",
+                  "numtarget-local-1.0",
+                  "numtarget-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numtarget-chaos",
+            "title": "NumTarget — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/170.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numtarget-redirect-1.1",
+            "title": "TargetIDを使う参照対象の変更 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#id1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numtarget-condition-order-1.1",
+            "title": "条件トリガーの評価順 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#organizing-for-efficiency",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "指定TargetIDのTargetが存在するときだけ参照する",
+            "description": "<p>1234はHitDefのIDです。PlayerIDではありません。同じ番号の条件行をこの順に置きます。</p>",
+            "code": [
+              "Trigger1 = NumTarget(1234) > 0",
+              "Trigger1 = Target(1234), Life > 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>戻り値は個数であり、1だけを真とするフラグではありません。<code>NumTarget(1234) &gt; 0</code>で指定IDの存在を、<code>NumTarget(1234) = 0</code>で不在を調べます。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numtarget-local-2002",
+                  "numtarget-local-1.0",
+                  "numtarget-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1では、exprnの評価結果がbottomなら戻り値もbottomです。正常に数えた結果の0とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numtarget-local-1.0",
+                  "numtarget-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.versionの2002.04.14は資料世代として保持し、初導入ビルドはnullです。2002資料のSFalseと1.0/1.1資料のbottomは記載を区別して保存します。整数型以外の変換・警告、範囲外と消滅/射出の同フレーム評価境界は今回実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numtarget-legacy",
+                  "numtarget-local-2002",
+                  "numtarget-local-1.0",
+                  "numtarget-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式3世代のNumTargetのExamples欄はNumExplod &gt;= 4 / NumExplod(1234) &gt;= 4とExplodの説明になっています。公式表記差を内部へ保存し、既存JSONのNumTarget &gt;= 2 / NumTarget(1234) &gt;= 2という有効なTarget数の例をそのまま公開します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numtarget-legacy",
+                  "numtarget-local-2002",
+                  "numtarget-local-1.0",
+                  "numtarget-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSは他のHelperが取得したTargetを数えず、Projectileによる取得は本体管理、Helper相手も対象、Target上限8、TargetIDの相手側管理と別IDへの上書きを報告しています。所有範囲・上限時の非命中・ID更新の正確な条件や対応ビルドは実機未確認で、報告を内部へ保存します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numtarget-chaos",
+                  "numtarget-local-2002",
+                  "numtarget-local-1.0",
+                  "numtarget-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "numtarget-local-2002",
+              "numtarget-local-1.0",
+              "numtarget-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・特殊型・所有範囲の細部と消滅境界は実機未確認。",
+        "旧フィールドとコード例を保持。CHAOSの報告と公式表記差は内部JSONに保存。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "NumExplod",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numexplod-local-2002",
+            "title": "NumExplod — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumExplod",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numexplod-local-1.0",
+            "title": "NumExplod — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#numexplod",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numexplod-local-1.1",
+            "title": "NumExplod — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#numexplod",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numexplod-legacy",
+            "title": "移行前の説明・構文・コード例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/047bdba3a9bbdd9abc8b75671647a7549eb0b179/src/content/triggers/NumExplod.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>参照しているプレイヤーが所有しているExplodの数を整数で返します。引数なしの<code>NumExplod</code>は総数です。</p><p><code>NumExplod(exprn)</code>の引数は任意の整数式です。0以上のIDを指定すると、そのIDのExplodだけを数えます。-1以下のIDは全Explodを数えます。</p><p>指定するのはExplodコントローラーのIDです。IDトリガーで取得するプレイヤーの一意IDとは別の識別番号です。</p>",
+            "syntax": [
+              "NumExplod",
+              "NumExplod(exprn)"
+            ],
+            "page_category": "所有Explodの総数・指定IDの数の取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "numexplod-local-2002",
+                "numexplod-local-1.0",
+                "numexplod-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "exprn",
+              "type": [
+                "int"
+              ],
+              "parameter_type": "optional",
+              "expression_policy": "expression",
+              "description": "<p>数える対象のExplodコントローラーのIDを返す整数式です。省略時はIDを限定せず総数を返します。0以上のIDを指定すると、そのIDのExplodだけを数えます。-1以下のIDは全Explodを数えます。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numexplod-local-2002",
+                  "numexplod-local-1.0",
+                  "numexplod-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "指定IDのExplodがないことを確認する",
+            "code": [
+              "Trigger1 = NumExplod(1234) = 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>戻り値は個数であり、1だけを真とするフラグではありません。<code>NumExplod(1234) &gt; 0</code>で指定IDの存在を、<code>NumExplod(1234) = 0</code>で不在を調べます。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numexplod-local-2002",
+                  "numexplod-local-1.0",
+                  "numexplod-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1では、exprnの評価結果がbottomなら戻り値もbottomです。正常に数えた結果の0とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numexplod-local-1.0",
+                  "numexplod-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.versionの2002.04.14は資料世代として保持し、初導入ビルドはnullです。2002資料のSFalseと1.0/1.1資料のbottomは記載を区別して保存します。整数型以外の変換・警告、範囲外と消滅/射出の同フレーム評価境界は今回実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numexplod-legacy",
+                  "numexplod-local-2002",
+                  "numexplod-local-1.0",
+                  "numexplod-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧説明はIDを-1以上とし、全数指定を-1だけ説明していました。公式3世代は-1以下のすべてを省略時と同じ全数扱いと記載します。旧原文は保持し、公開説明はこの境界を示します。NumExplodのCHAOS本文は今回取得できず、Helper/Root間の所有・Explod移管、RemoveExplodと消去境界の細部は実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numexplod-legacy",
+                  "numexplod-local-2002",
+                  "numexplod-local-1.0",
+                  "numexplod-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "numexplod-local-2002",
+              "numexplod-local-1.0",
+              "numexplod-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。NumHelper/NumTargetはCHAOS本文も確認。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・特殊型・所有範囲の細部と消滅境界は実機未確認。",
+        "旧フィールドとコード例を保持。CHAOSの報告と公式表記差は内部JSONに保存。"
+      ]
+    }
+  ]
+}

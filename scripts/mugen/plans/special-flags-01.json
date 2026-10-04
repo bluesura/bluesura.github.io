@@ -1,0 +1,666 @@
+{
+  "id": "special-flags-01",
+  "reviewed_on": "2026-10-04",
+  "description": "AssertSpecialのフラグ作用対象・必須任意・RC6履歴を照合し、旧表・未確定フラグ・不具合・誤ったガード不能例を保持して公開表を訂正。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "AssertSpecial",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>フラグ名を指定して、描画・ガード・ラウンド進行などの特殊処理を行います。通常、フラグは毎フレーム解除されるので、効果を継続するには毎フレーム実行します。</p><p>1つのコントローラーで <code>Flag</code>・<code>Flag2</code>・<code>Flag3</code> の最大3個を指定できます。4個以上を使う場合は、複数の <code>AssertSpecial</code> に分けます。実行者に作用するフラグと、画面全体やラウンドへ作用するフラグがあります。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "assertspecial-local-2002",
+                "assertspecial-local-1.0",
+                "assertspecial-local-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "string_literal"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "required",
+              "display": "フラグ名の指定が必須",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "assertspecial-local-2002",
+                  "assertspecial-local-1.0",
+                  "assertspecial-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "comment": "旧読み込み順は?。一般的に検証済みという管理者確認から、未知の個別順序を補完しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>有効にするフラグ名を指定します。必須パラメーターの名前は <code>Flag</code> です。<code>Flag1</code> ではありません。</p><p>下表から1つ選びます。<code>UnGuardable</code> は実行者の攻撃をガード不能にし、<code>NoStandGuard</code> などは実行者自身のガードを制限します。</p>",
+            "possible_value": [
+              [
+                "フラグ",
+                "対象",
+                "効果"
+              ],
+              [
+                "Intro",
+                "イントロ進行",
+                "登場演出中であることを通知します。演出が終わるまで毎フレーム指定します。"
+              ],
+              [
+                "RoundNotOver",
+                "ラウンド終了後の進行",
+                "勝利演出中であることを通知し、次のラウンドへの進行を待たせます。演出終了時は指定をやめます。"
+              ],
+              [
+                "Invisible",
+                "実行者",
+                "スプライトを非表示にします。AfterImageの表示は消えません。"
+              ],
+              [
+                "GlobalNoShadow",
+                "全体",
+                "全プレイヤー・Helper・Explodの影を非表示にします。"
+              ],
+              [
+                "NoShadow",
+                "実行者",
+                "影を非表示にします。"
+              ],
+              [
+                "NoBarDisplay",
+                "画面全体",
+                "ライフバー・パワーバーなどの表示を消します。"
+              ],
+              [
+                "NoBG",
+                "ステージ背景",
+                "背景を非表示にし、画面を黒でクリアします。"
+              ],
+              [
+                "NoFG",
+                "ステージ前景",
+                "LayerNo=1の表示を消します。"
+              ],
+              [
+                "NoKOSnd",
+                "KOしたプレイヤーの音声",
+                "KO音声11,0の再生を抑制します。エコーも抑制するには、KO後50フレーム以上指定を続けます。"
+              ],
+              [
+                "NoKOSlow",
+                "ラウンド終了時",
+                "KO時のスローモーションを抑制します。"
+              ],
+              [
+                "NoMusic",
+                "BGM",
+                "指定中はBGMの再生を一時停止します。"
+              ],
+              [
+                "NoStandGuard",
+                "実行者",
+                "立ちガードを制限します。相手のガードを無効にするフラグではありません。"
+              ],
+              [
+                "NoCrouchGuard",
+                "実行者",
+                "しゃがみガードを制限します。"
+              ],
+              [
+                "NoAirGuard",
+                "実行者",
+                "空中ガードを制限します。"
+              ],
+              [
+                "NoWalk",
+                "実行者",
+                "Ctrlがあっても歩行ステートへ入るのを制限します。"
+              ],
+              [
+                "NoAutoTurn",
+                "実行者",
+                "相手へ自動的に振り向く処理を抑制します。"
+              ],
+              [
+                "NoJuggleCheck",
+                "実行者の攻撃",
+                "ジャグルポイントに関係なく空中の相手へ攻撃できるように、ジャグルの可否確認を無効にします。"
+              ],
+              [
+                "TimerFreeze",
+                "ラウンドタイマー",
+                "制限時間のカウントダウンを停止します。"
+              ],
+              [
+                "UnGuardable",
+                "実行者のHitDef",
+                "GuardFlagを無視して攻撃をガード不能にします。相手が使うフラグの指定ではありません。"
+              ]
+            ],
+            "hide_legacy": [
+              "possible_value"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "assertspecial-local-2002",
+                "assertspecial-local-1.0",
+                "assertspecial-local-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "string_literal"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "追加フラグを指定しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "assertspecial-local-2002",
+                  "assertspecial-local-1.0",
+                  "assertspecial-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "comment": "旧読み込み順は?。一般的に検証済みという管理者確認から、未知の個別順序を補完しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>追加で有効にするフラグ名を1つ指定します。候補と作用対象は <code>Flag</code> の表と同じです。省略すると追加フラグは指定されません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "assertspecial-local-2002",
+                "assertspecial-local-1.0",
+                "assertspecial-local-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "expression_policy"
+          ],
+          "value": "string_literal"
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "追加フラグを指定しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "assertspecial-local-2002",
+                  "assertspecial-local-1.0",
+                  "assertspecial-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "comment": "旧読み込み順は?。一般的に検証済みという管理者確認から、未知の個別順序を補完しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>追加で有効にするフラグ名を1つ指定します。候補と作用対象は <code>Flag</code> の表と同じです。省略すると追加フラグは指定されません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "assertspecial-local-2002",
+                "assertspecial-local-1.0",
+                "assertspecial-local-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "legacy_index": 0,
+              "content": "<p>旧履歴0のNoMusicと旧プラグインの不具合を原位置に保持する。プラグイン名・バージョン・MUGENビルド・再現条件は不明で、「1.0より前」全体の確定仕様として公開しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "assertspecial-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "legacy_index": 1,
+              "content": "<p>旧履歴1のRoundState=3、RoundNotOver、長いSuperPause/ChangeStateによる配点なしのラウンド移行を原位置に保持する。実行ビルドと再現条件は今回確認できず公開しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "assertspecial-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "version_change",
+              "change": "fixed",
+              "at": "mugen-1.0-rc6",
+              "content": "<p>1.0 RC6で、<code>Invisible</code> がHitPause中に機能しない不具合が修正されました。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "assertspecial-history-rc6"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "version_change",
+              "change": "added",
+              "at": "mugen-1.0-rc6",
+              "environment": {
+                "engine": "mugen",
+                "compatibility_profile": [
+                  "mugen-compat-2002"
+                ]
+              },
+              "content": "<p>1.0 RC6の2002互換対応では、実行者に作用するフラグがHitPause中に解除されない旧挙動を再現します。対象は <code>NoStandGuard</code>・<code>NoCrouchGuard</code>・<code>NoAirGuard</code>・<code>NoAutoTurn</code>・<code>NoShadow</code>・<code>NoJuggleCheck</code>・<code>NoWalk</code>・<code>UnGuardable</code>・<code>Invisible</code> です。全フラグに適用される履歴ではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "assertspecial-history-rc6"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧候補NoKOは削除せずpossible_valueの原位置に保持する。CHAOSにも生死判定を制限するフラグとして記録がある一方、今回の公式3世代の列挙にはない。旧RoundState=2と生死判定後の実行条件、およびCHAOSの全体作用・判定後の効果に関する疑問は、実行ビルド別に検証が残るため公開候補には含めない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "assertspecial-local-2002",
+                  "assertspecial-local-1.0",
+                  "assertspecial-local-1.1",
+                  "assertspecial-chaos",
+                  "assertspecial-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧Invisible/NoShadowの負ステート-1/-2/-3で所有Helper・Projectile全体も消えるという記録、およびNoShadowの床反射・AfterImageへの作用は保持する。コントローラーの実行者と所有物の適用条件は実機確認が残る。GlobalNoShadowの公式対象は全player/helper/explodで、旧Projectile表記との差も保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "assertspecial-local-2002",
+                  "assertspecial-local-1.0",
+                  "assertspecial-local-1.1",
+                  "assertspecial-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧NoBGは描画が更新されない背景と記録するが、公式3世代は画面を黒でクリアすると記す。原文は削除せず、ビルド・描画方式による差を未解決のまま保持する。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "assertspecial-local-2002",
+                  "assertspecial-local-1.0",
+                  "assertspecial-local-1.1",
+                  "assertspecial-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧TimerFreezeのTime/GameTimeが停止しないという説明と、NoJuggleCheckでジャグルポイントが減らなくなるという説明を保持する。公式はラウンドタイマー停止・ジャグル可否確認の無効化までを明記する。各カウンターやポイント更新の実際の停止は今回検証していない。旧TimerFreeze記事とフラグ一覧記事の本文は取得できなかった。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "assertspecial-local-2002",
+                  "assertspecial-local-1.0",
+                  "assertspecial-local-1.1",
+                  "assertspecial-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧ガード不能コード例はNoStandGuard/NoCrouchGuard/NoAirGuardを実行者へ指定しているため、相手がその攻撃をガードできない例とは異なる。PrevStateNo条件と説明の現在ステート範囲も一致しない。原コード・説明を保持し、visibility=internalとして公開しない。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "assertspecial-local-2002",
+                  "assertspecial-local-1.0",
+                  "assertspecial-local-1.1",
+                  "assertspecial-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧表とCHAOSにはガード制限・NoWalkの作用が次フレームになる記録がある。フラグ解除と実際の行動処理の順序、Ctrlやガード中の状態による制限範囲、NoKOSlowの発動前条件、イントロコール中断・再開の詳細は独立した再現確認が残るため内部に保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "assertspecial-chaos",
+                  "assertspecial-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "実行者の表示と影を消す",
+            "description": "<p>このコントローラーが実行される間、実行者のスプライトと影を非表示にします。<code>AfterImage</code> の表示は別です。</p>",
+            "code": [
+              "[State 200, Hide sprite and shadow]",
+              "Type = AssertSpecial",
+              "Trigger1 = 1",
+              "Flag = Invisible",
+              "Flag2 = NoShadow"
+            ]
+          }
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "assertspecial-local-2002",
+              "assertspecial-local-1.0",
+              "assertspecial-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "assertspecial-local-2002",
+            "title": "AssertSpecial — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AssertSpecial",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "assertspecial-local-1.0",
+            "title": "AssertSpecial — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#assertspecial",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "assertspecial-local-1.1",
+            "title": "AssertSpecial — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#assertspecial",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "assertspecial-history-rc6",
+            "title": "AssertSpecial — Elecbyte 1.0 RC6 修正・2002互換履歴",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc6",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "assertspecial-chaos",
+            "title": "AssertSpecial — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/199.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "assertspecial-legacy-data",
+            "title": "AssertSpecial — 移行前のフラグ表・履歴・コード例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/ca4dfabff55b0c01e80accc0752653e0e68706b3/src/content/state-controllers/AssertSpecial.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "parameter/0/possible_value / version / code_sample/0",
+          "reason": "NoKOの作用環境、負ステート・所有物・描画方式の差、旧プラグインと配点なし移行、行動処理順の実機再現は未確定。"
+        }
+      ]
+    }
+  ]
+}

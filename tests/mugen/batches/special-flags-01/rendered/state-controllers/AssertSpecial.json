@@ -1,0 +1,96 @@
+{
+  "text": "Type = AssertSpecial 特殊処理 > 透明化やガード不能などの特殊状態の付与 | 実装されたバージョン: 2002.04.14 パラメーター 仕様・注意点 コピペ用 使用例 読み込み順 引用記事 実行したフレームあるいは実行直後に、特殊処理を行います。1フレームのみ有効。1つのAssertSpecialで指定できるフラグは３種類だけです。※4つ以上のフラグを指定したい場合は複数のAssertSpecialを記述します。 パラメーター Flag = フラグ名 省略不可 型文字列 省略時? 指定できるフラグ名は、下記詳細にあるうちのいずれかです。Flag1じゃないよ！ フラグ効果 Introイントロ（試合開始前の登場演出アクション,RoundState=1）状態を継続させます。ラウンドコール中にフラグが立つと、コールが中断され、フラグが消えてから、再度コールされます。長いイントロ(ステート190)を演出し切るためのフラグです。RoundNotOverこのフラグが立っている間は、試合が終わっても次のラウンドが始まりません。試合後(RoundState=4)に、勝利ポーズ(ステート180)を演出し切るために使用します。Invisibleこのステートの実行者自身の姿を消す。しかし、残像（AfterImage）や判定は消せません。また、-1,-2,-3ステートでは自分のHeplper・Projectile全ての姿が消えます。GlobalNoShadow画面中に存在する全てのプレイヤー（ヘルパーとProjectileも含む）の影を消します。しかし、残像（AfterImage）や判定は消せません。NoShadow自分の影・床の反射を消します。しかし、残像（AfterImage）や判定は消せません。また、-1,-2,-3ステートでは自分のHeplper・Projectile全ての姿が消えます。NoBarDisplayライフ・パワーゲージバー・勝利アイコン・ポートレート・キャラクター名・タイムカウントを非表示にします。NoBGステージ奥(LayerNo=0)の画像を非表示にし、真っ黒な(正確には描画が更新されない)背景にします。NoFGステージ手前(LayerNo=1)の画像を非表示にします。NoKOSndKO時の音声（11,0）を鳴らさないようにします。画面中に存在する全員に有効なので注意。NoKOSlowKO時のスローモーションを無効にします。（KO直前に有効にしないといけない）NoMusic演奏しているBGMを止めます。NoStandGuard次のフレームから、立ちガード始動・処理が出来なくなります。NoCrouchGuard次のフレームから、しゃがみガード始動・処理が出来なくなります。NoAirGuard次のフレームから、空中ガード始動・処理が出来なくなります。NoWalk次のフレームから、歩けなくなります。（コントロール可能時に、前か後ろのキーを入力で[Statedef 20]にならない）NoAutoTurn自動で相手に振り向かなくなります。NoJuggleCheckジャグルをチェックしない。（ジャグルポイントが減らなくなる）NoKO試合中(RoundState=2)中のKOを無効にします。生死判定後(RoundState=3以上)に実行しても生死は覆りません。公式パラメータではないようなので、使用は自己責任で。TimerFreezeタイムカウント（制限時間）を停止します。ですが、あくまで表示されているタイムカウントのみでTime,GameTimeトリガーの値は停止しません。UnGuardAble自分の全ての攻撃がガード不能になります。 Flag2 = フラグ名 型文字列 省略時;なし 指定できるフラグ名は、Flagと同じ。 Flag3 = フラグ名 型文字列 省略時;なし 指定できるフラグ名は、Flagと同じ。 IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 仕様・バグ・エラー・変更点1.0より前プラグインを導入した状態で、NoMusicを実行した場合バグる恐れあり。-RoundState=3にAssertSpecialのRoundNotOverと、長時間のSuperPauseまたは同時間にChangeStateを利用することで、八百長(配点がされないまま次ラウンドへ移行する)バグが発生します。 コピペ用パラメーター一覧（省略時の挙動） [State 0, AssertSpecial]Type = AssertSpecialTrigger1 = 1; Flag = ; 必須: 値を指定してください: ?; Flag2 = ; 省略時: ;なし; Flag3 = ; 省略時: ;なしIgnoreHitPause = 0Persistent = 1 コードサンプル200以上300以下または400以上500以下のステートはガード不能になります。[State , ガード不能]Type = AssertSpecialTrigger1 = !Ctrl && ((PrevStateNo = [200,300]) || (PrevStateNo = [400,500]))Trigger1 = AnimTime < 0Flag = NoStandGuardFlag2 = NoCrouchGuardFlag3 = NoAirGuard パラメーターの読み込み順 パラメーター読み込み順 Flag ? Flag2 ? Flag3 ? IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事AssertSpecial - State Controller Reference(version 2002.04.14)AssertSpecial - State Controller Reference(version 1.0)AssertSpecial - State Controller Reference(version 1.1)AssertSpecial - M.U.G.E.N wikiAssertSpecial - State ControllerAssertSpecial - MUGEN CNS WIKI CHAOS@予定AssertSpecial - 東方夢幻館AssertSpecial - 地球の応接間TimerFreezeとgamtime - EINZBERNの何もないMUGEN帳AssertSpecial一覧 - lunaの倉庫 公開日:2008.06.05 最終更新日:2015.11.13 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "CodeSample",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "AssertSpecial - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#AssertSpecial"
+    },
+    {
+      "text": "AssertSpecial - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#assertspecial"
+    },
+    {
+      "text": "AssertSpecial - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#assertspecial"
+    },
+    {
+      "text": "AssertSpecial - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AssertSpecial"
+    },
+    {
+      "text": "AssertSpecial - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AssertSpecial&protocol=http"
+    },
+    {
+      "text": "AssertSpecial - MUGEN CNS WIKI CHAOS@予定",
+      "href": "http://www49.atwiki.jp/mugencns/pages/199.html"
+    },
+    {
+      "text": "AssertSpecial - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AssertSpecial"
+    },
+    {
+      "text": "AssertSpecial - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state1.htm"
+    },
+    {
+      "text": "TimerFreezeとgamtime - EINZBERNの何もないMUGEN帳",
+      "href": "http://mugeneinzbern.blog.fc2.com/blog-entry-54.html"
+    },
+    {
+      "text": "AssertSpecial一覧 - lunaの倉庫",
+      "href": "http://lunatic284.blog90.fc2.com/blog-entry-9825.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": [
+    "[State 0, AssertSpecial]",
+    "Type                       = AssertSpecial",
+    "Trigger1                   = 1",
+    "; Flag                     =        ; 必須: 値を指定してください: ?",
+    "; Flag2                    =        ; 省略時: ;なし",
+    "; Flag3                    =        ; 省略時: ;なし",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

@@ -935,3 +935,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・223テスト・263ページビルド・261 URL/147比較対象ページのHTML検査を通過しました。出典検査で見つかった2002 MoveTypeのアンカー表記を修正しています。ブラウザでP2StateType（通常幅）、P2StateNo/P2MoveType（幅390px）を確認し、表示幅をリセット・検査用タブを終了しました。内部注記は304件、未対応旧履歴は162項目です。導入ビルドはnullに保持。次はP2Life・NumEnemy・NumPartnerです。
+
+## 2026-10-05：opponent-counts-01
+
+P2Life / NumEnemy / NumPartnerの3件を追加しました。累計139件（主要・補助16件＋52バッチ123件）、残り95件です。移行前原本とHTMLは tests/mugen/batches/opponent-counts-01/ に保存しています。
+
+- 3件は引数なし・整数戻り値です。P2LifeはP2の現在ライフであり、最大値の割合や生存判定とは分離。相手不在時の値は公式3世代の項目に記載がないため推測しません。P2の対象選択や空欄の旧例を内部に保持しました。
+- NumEnemy/NumPartnerは現在存在する敵/パートナー数として公開。公式3世代が明記する通常ヘルパー・中立プレイヤーの除外へ説明を限定し、全ヘルパー除外という旧説明と特殊ヘルパー・KO/消滅/改造環境の差を内部に残しています。人数は真偽フラグやモード名とは区別しています。
+- NumPartnerの旧「チーム戦は1」と[CHAOS](https://w.atwiki.jp/mugencns/pages/167.html)の交代制チーム0という差を保持。モード別の固定値を公開文で断定せず、人数を取得する仕様とTeamModeを分けました。Helperでの本体基準、デバッグ消滅、死亡時の人数と改造人数は実機未確認です。
+- NumEnemyの公式Squash例とNumPartnerの人数/Partner,Life例は維持しました。追加例は先にNumEnemy >= 2を確認してEnemyNear(1),Lifeを参照し、NumPartner > 0で存在を確認します。旧ID大小によるプレイヤー番号推定・式中代入/フォールバックの例は原文とコメントを保持して内部へ移しました。スキーマ・レンダラー・CSSは変更していません。
+- [対象選択](https://w.atwiki.jp/mugencns/pages/43.html)とNumPartnerのCHAOS本文を照合しました。P2Life/NumEnemyのCHAOS本文は取得できなかったため、その内容を新たな確認済み根拠にはしていません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch opponent-counts-01
+npm run mugen:batch -- --batch opponent-counts-01 --target P2Life --target NumEnemy --target NumPartner
+npm run mugen:batch -- --batch opponent-counts-01 --target P2Life --target NumEnemy --target NumPartner --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・228テスト・263ページビルド・261 URL/150比較対象ページのHTML検査を通過しました。ブラウザでNumPartner（通常幅）、NumEnemy/P2Life（幅390px）を確認し、表示幅をリセット・検査用タブを終了しました。内部注記10件追加の314件、未対応旧履歴162項目。初導入はnullに保持し、実機検証は未実施です。次はRoundState・RoundNo・RoundsExistedです。

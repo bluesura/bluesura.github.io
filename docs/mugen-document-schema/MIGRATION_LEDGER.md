@@ -268,3 +268,7 @@ StateType / MoveType / Facingを追加し、累計133件・残り101件です。
 ### 2026-10-05：opponent-state-01
 
 P2StateNo / P2StateType / P2MoveTypeを追加し、累計136件（51バッチ120件＋主要・補助16件）、対象内の残り98件になりました。旧フィールド・説明・構文・例・出典は保持。P2StateNoの整数参照とP2StateType/P2MoveTypeの文字比較を分け、LとU/Iの意味、HitOverRideの公開リンクを整理しました。P2StateNo/P2StateTypeの1.0/1.1不在時bottomと通常の0を区別し、旧SFalse・旧0説明・不在タイミング・L列挙差を内部へ保存。P2MoveTypeの不在時の返り値は資料に記載がないため未確認のままです。CHAOSのP2対象選択（X距離・Playerヘルパー・5150除外・EnemyNearとの差）と空欄/無関係な旧例を内部へ保持しました。実機検証は未実施で、内部注記は13件追加の304件、未対応旧履歴は162項目です。223テスト・263ページビルド・261 URL/147比較対象ページのHTML検査を通過。次はP2Life・NumEnemy・NumPartnerです。
+
+### 2026-10-05：opponent-counts-01
+
+P2Life / NumEnemy / NumPartnerを追加し累計139件（52バッチ123件＋主要・補助16件）、対象内の残り95件です。P2Lifeの整数参照とライフ割合・生存判定を区別し、NumEnemy/NumPartnerは通常ヘルパー・中立プレイヤーを除く現在人数として公開。人数とTeamModeを分け、旧全ヘルパー除外、旧チーム戦1とCHAOSの交代制チーム0との差、特殊ヘルパー・死亡/消滅/改造時・旧ID順の番号推定を内部へ保持しました。P2Life不在時の値と導入ビルドは推測していません。旧公式の人数確認→リダイレクト例は維持。実機検証は未実施で、内部注記は10件追加の314件、未対応旧履歴162項目です。228テスト・263ページビルド・261 URL/150比較対象ページHTML検査を通過。次はRoundState・RoundNo・RoundsExistedです。

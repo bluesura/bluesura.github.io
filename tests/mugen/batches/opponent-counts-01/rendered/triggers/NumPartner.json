@@ -1,0 +1,53 @@
+{
+  "text": "NumPartner 試合情報 > パートナー数の取得 | 実装されたバージョン: 2002.04.14 | 対象: 味方 引数 使用例 引用記事 現在のパートナー数を返します。実行者のパートナーの数を返します。シングルは0、タッグは1、チーム戦は1です。ヘルパーはパートナーとしてカウントされません。改造でパートナーの数を増やした場合でも正しいパートナーの数を返してきます。戻り値の型: int 構文 NumPartner 引数 なし コードサンプルプレイヤー番号をvar(1)に代入[State , タッグ戦の場合]Type = Null;シングル戦だったときのWARNINGメッセージ回避策TriggerAll = NumPartner;プレイヤー1Trigger1 = TeamSide = 1 && ID > partner,IDTrigger1 = var(1) := 1;プレイヤー2Trigger2 = TeamSide = 2 && ID > partner,IDTrigger2 = var(1) := 2;プレイヤー3Trigger3 = TeamSide = 1 && ID < partner,IDTrigger3 = var(1) := 3;プレイヤー4Trigger4 = TeamSide = 2 && ID < partner,IDTrigger4 = var(1) := 4;不明Trigger5 = var(1) := -1[State , シングル・チーム戦の場合]Type = Null;タッグ戦だった場合に読み込まれないようにするためTriggerAll = !NumPartner;プレイヤー1Trigger1 = TeamSide = 1Trigger1 = var(1) := 1;プレイヤー2Trigger2 = TeamSide = 2Trigger2 = var(1) := 2;不明Trigger3 = var(1) := -1 プレイヤーのパートナーが1人で、そのパートナーの体力が200未満の場合のトリガー[State ]Type = NullTrigger1 = NumPartner = 1Trigger1 = Partner,Life < 200 引用記事NumPartner - Trigger Reference(version 2002.04.14)NumPartner - Trigger Reference(version 1.0)NumPartner - Trigger Reference(version 1.1)NumPartner - M.U.G.E.N wikiNumPartner - MUGEN CNS WIKI CHAOS@予定 公開日:2008.06.05 最終更新日:2016.12.21 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "NumPartner - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#NumPartner"
+    },
+    {
+      "text": "NumPartner - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numpartner"
+    },
+    {
+      "text": "NumPartner - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numpartner"
+    },
+    {
+      "text": "NumPartner - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumPartner"
+    },
+    {
+      "text": "NumPartner - MUGEN CNS WIKI CHAOS@予定",
+      "href": "https://www49.atwiki.jp/mugencns/pages/167.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

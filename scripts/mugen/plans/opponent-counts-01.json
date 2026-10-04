@@ -1,0 +1,824 @@
+{
+  "id": "opponent-counts-01",
+  "reviewed_on": "2026-10-05",
+  "description": "P2Lifeの整数参照、NumEnemy/NumPartnerの人数とリダイレクトを整理。旧モード断定・全ヘルパー除外・ID順の例を内部に保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "P2Life",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "相手のライフが200以下か調べる",
+            "description": "<p>現在ライフの値を200と比較します。最大ライフに対する割合や、相手の生存判定とは区別してください。</p>",
+            "code": [
+              "Trigger1 = P2Life <= 200"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>P2として選択される相手の現在ライフを整数で返します。引数はありません。自分のライフを参照するLifeとは、参照するプレイヤーが異なります。</p>",
+            "page_category": "相手の現在ライフの取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "p2life-local-2002",
+                "p2life-local-1.0",
+                "p2life-local-1.1",
+                "p2life-life-2002",
+                "p2life-life-1.0",
+                "p2life-life-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>公式3世代のP2Life項目はLifeとの参照対象の違いのみを説明し、P2StateNo/P2StateTypeと同じ不在時エラー条件を記載していない。相手不在時の返り値や警告を他のP2トリガーから推測して確定しない。導出したKO判定やライフ割合の分母と対象同一性も実機未確認。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2life-local-2002",
+                  "p2life-local-1.0",
+                  "p2life-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧概要は「最も近い相手」と記載する。CHAOSの対象選択記事はP2をX距離基準とし、HelperType=Playerの対象化やStateNo=5150除外を説明する。P2LifeとEnemy/EnemyNear,Lifeを常に同一とせず、同距離・タッグ・カスタムステート・対象消滅条件は実機未検証として保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "p2life-selection",
+                  "p2life-legacy",
+                  "p2life-local-2002",
+                  "p2life-local-1.0",
+                  "p2life-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧例は空欄のため原位置を保持して内部へ置く。公開には相手の現在量を固定値と比較する条件行を追加する。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "p2life-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別であり、introduced_inはnullに保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "p2life-local-2002",
+                  "p2life-local-1.0",
+                  "p2life-local-1.1",
+                  "p2life-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2life-local-2002",
+            "title": "P2Life — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2Life",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2life-local-1.0",
+            "title": "P2Life — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#p2life",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2life-local-1.1",
+            "title": "P2Life — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2life",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2life-legacy",
+            "title": "P2Life — 移行前の説明・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/2a1c5c60a90bb05f99d76ee65e54b0f06d8ea6de/src/content/triggers/P2Life.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2life-selection",
+            "title": "相手・パートナーの対象選択 — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/43.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2life-life-2002",
+            "title": "Life — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Life",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2life-life-1.0",
+            "title": "Life — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#life",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2life-life-1.1",
+            "title": "Life — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#life",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド、特殊ヘルパー・死亡と消滅・改造環境の挙動は実機未検証。",
+        "P2Lifeの相手不在時の値は未確認。旧原文・例・出典を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "NumEnemy",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "2番目に近い敵のライフを調べる",
+            "description": "<p>先の人数条件を満たしたときだけ、2番目の敵を参照します。</p>",
+            "code": [
+              "Trigger1 = NumEnemy >= 2",
+              "Trigger1 = EnemyNear(1),Life < 200"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーに対して、現在存在する敵の人数を整数で返します。通常のヘルパーと中立プレイヤーは数に含みません。引数はありません。</p>",
+            "page_category": "現在の敵人数の取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "numenemy-local-2002",
+                "numenemy-local-1.0",
+                "numenemy-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>相手の情報をリダイレクトで参照する例では、人数を調べる条件を先に置きます。<code>EnemyNear(1)</code>は2番目に近い敵を指すので、参照前に敵が2人以上いることを確認します。これは敵人数とEnemyNearの確認であり、P2が参照する相手と常に同じという意味ではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numenemy-local-2002",
+                  "numenemy-local-1.0",
+                  "numenemy-local-1.1",
+                  "numenemy-redirect-1.1",
+                  "numenemy-condition-order-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧本文はヘルパー全般を数えないように説明するが、公式3世代が明記する除外対象はnormal helpersとneutral playersである。HelperType=Playerなどの特殊なヘルパー、死亡・KOと消滅、デバッグキー、改造環境での人数は今回実機未検証。旧説明を原位置に保持し、公開文の除外対象は資料の記載範囲に限定する。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "numenemy-local-2002",
+                  "numenemy-local-1.0",
+                  "numenemy-local-1.1",
+                  "numenemy-legacy",
+                  "numenemy-selection"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別であり、introduced_inはnullに保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "numenemy-local-2002",
+                  "numenemy-local-1.0",
+                  "numenemy-local-1.1",
+                  "numenemy-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numenemy-local-2002",
+            "title": "NumEnemy — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumEnemy",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numenemy-local-1.0",
+            "title": "NumEnemy — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#numenemy",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numenemy-local-1.1",
+            "title": "NumEnemy — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#numenemy",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numenemy-legacy",
+            "title": "NumEnemy — 移行前の説明・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/2a1c5c60a90bb05f99d76ee65e54b0f06d8ea6de/src/content/triggers/NumEnemy.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numenemy-selection",
+            "title": "相手・パートナーの対象選択 — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/43.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numenemy-redirect-1.1",
+            "title": "トリガーの参照対象 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#id1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numenemy-condition-order-1.1",
+            "title": "条件トリガーの評価順 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#organizing-for-efficiency",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド、特殊ヘルパー・死亡と消滅・改造環境の挙動は実機未検証。",
+        "P2Lifeの相手不在時の値は未確認。旧原文・例・出典を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "NumPartner",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "パートナーが存在するか調べる",
+            "code": [
+              "Trigger1 = NumPartner > 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーに対して、現在存在するパートナーの人数を整数で返します。自分自身の人数ではなく、味方のパートナー数です。通常のヘルパーと中立プレイヤーは数に含みません。引数はありません。</p><p>パートナーの存在はこの人数で確認します。チームモードの判定はTeamModeと区別してください。</p>",
+            "page_category": "現在のパートナー人数の取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "numpartner-local-2002",
+                "numpartner-local-1.0",
+                "numpartner-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p><code>Partner,Life</code>などを参照する例では、NumPartnerを調べる条件を先に置きます。同じ番号のTrigger行は上から評価され、先の条件が偽なら後の行は評価されません。人数の確認と、パートナーのライフなどの条件を分けて記述できます。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "numpartner-local-2002",
+                  "numpartner-local-1.0",
+                  "numpartner-local-1.1",
+                  "numpartner-redirect-1.1",
+                  "numpartner-condition-order-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧本文はヘルパー全般を数えないように説明するが、公式3世代が明記する除外対象はnormal helpersとneutral playersである。HelperType=Playerなどの特殊なヘルパー、死亡・KOと消滅、デバッグキー、改造環境での人数は今回実機未検証。旧説明を原位置に保持し、公開文の除外対象は資料の記載範囲に限定する。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "numpartner-local-2002",
+                  "numpartner-local-1.0",
+                  "numpartner-local-1.1",
+                  "numpartner-legacy",
+                  "numpartner-selection"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧本文の「シングルは0、タッグは1、チーム戦は1」と、CHAOSの通常シングル/交代制チームは0・同時出場タッグは1という説明に差がある。公式NumPartnerは現在存在するパートナー数を定義する。チーム戦という曖昧な呼称で値を固定せず、モードと人数を分離する。改造で増やした数が常に正しいという旧断定、Helperからの本体基準、死亡では減らずデバッグ消滅で減るというCHAOSの報告は実機未確認。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "numpartner-legacy",
+                  "numpartner-chaos",
+                  "numpartner-local-2002",
+                  "numpartner-local-1.0",
+                  "numpartner-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧プレイヤー番号推定例はIDとPartner,IDの大小から1〜4を割り当て、Nullの式中代入とフォールバックを使う。生成順とプレイヤー番号の対応、リダイレクト式の評価範囲、カスタムステートやヘルパー時の書き込み先は未提示・未検証。コード・コメントを原位置に保持して内部へ置き、パートナー存在を示す短い例を公開する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "numpartner-legacy",
+                  "numpartner-redirect-1.1",
+                  "numpartner-condition-order-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別であり、introduced_inはnullに保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "numpartner-local-2002",
+                  "numpartner-local-1.0",
+                  "numpartner-local-1.1",
+                  "numpartner-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料と旧原文を照合。NumPartnerと対象選択はCHAOSも照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numpartner-local-2002",
+            "title": "NumPartner — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumPartner",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numpartner-local-1.0",
+            "title": "NumPartner — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#numpartner",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numpartner-local-1.1",
+            "title": "NumPartner — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#numpartner",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numpartner-legacy",
+            "title": "NumPartner — 移行前の説明・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/2a1c5c60a90bb05f99d76ee65e54b0f06d8ea6de/src/content/triggers/NumPartner.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numpartner-selection",
+            "title": "相手・パートナーの対象選択 — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/43.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numpartner-redirect-1.1",
+            "title": "トリガーの参照対象 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#id1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numpartner-condition-order-1.1",
+            "title": "条件トリガーの評価順 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#organizing-for-efficiency",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "numpartner-chaos",
+            "title": "NumPartner — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/167.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド、特殊ヘルパー・死亡と消滅・改造環境の挙動は実機未検証。",
+        "P2Lifeの相手不在時の値は未確認。旧原文・例・出典を保持。"
+      ]
+    }
+  ]
+}

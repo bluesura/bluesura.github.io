@@ -1,0 +1,49 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "NumEnemy",
+        "target": "敵",
+        "category": [
+            "試合情報",
+            "敵キャラクター数の取得"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.12.21",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "NumEnemy",
+    "summary": "<p>現在の敵の数を返します。</p>",
+    "syntax": [
+        "NumEnemy"
+    ],
+    "description": "現在の敵の数を返します。<br>ヘルパーは数に含まれません。<br>戻り値の型: int",
+    "code_sample": [
+        {
+            "title": "敵が2人いて、2番目に近い敵の名前がSquashだったときのトリガー",
+            "code": [
+                "Trigger1 = NumEnemy = 2",
+                "Trigger1 = EnemyNear(1),Name = \"Squash\""
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "NumEnemy - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumEnemy"
+        },
+        {
+            "title": "NumEnemy - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numenemy"
+        },
+        {
+            "title": "NumEnemy - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numenemy"
+        },
+        {
+            "title": "NumEnemy - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumEnemy"
+        }
+    ]
+}

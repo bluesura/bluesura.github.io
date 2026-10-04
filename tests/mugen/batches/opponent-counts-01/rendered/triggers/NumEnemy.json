@@ -1,0 +1,49 @@
+{
+  "text": "NumEnemy 試合情報 > 敵キャラクター数の取得 | 実装されたバージョン: 2002.04.14 | 対象: 敵 引数 使用例 引用記事 現在の敵の数を返します。ヘルパーは数に含まれません。戻り値の型: int 構文 NumEnemy 引数 なし コードサンプル敵が2人いて、2番目に近い敵の名前がSquashだったときのトリガーTrigger1 = NumEnemy = 2Trigger1 = EnemyNear(1),Name = \"Squash\" 引用記事NumEnemy - Trigger Reference(version 2002.04.14)NumEnemy - Trigger Reference(version 1.0)NumEnemy - Trigger Reference(version 1.1)NumEnemy - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.12.21 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "NumEnemy - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#NumEnemy"
+    },
+    {
+      "text": "NumEnemy - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numenemy"
+    },
+    {
+      "text": "NumEnemy - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numenemy"
+    },
+    {
+      "text": "NumEnemy - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumEnemy"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

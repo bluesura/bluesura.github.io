@@ -1,0 +1,49 @@
+{
+  "text": "ProjHit 飛び道具 > 飛び道具のヒット判定 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 プレイヤーのProjectile(飛び道具)がヒットしたか、していないかを判定し、真偽を返します。また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjHitTimeの方を使った方がよいでしょう。もちろん、単体ではファンクショントリガーとして使用できません。[ProjectileのID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、ヒットを調べる場合1を、非ヒットを調べる場合0を指定します。値2には、比較する時間を指定します。戻り値の型: boolean int詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveHitとは異なり、ヒット後1フレームしか値を返しません。様式2は、正の整数nが条件式\"n [符号] 値2\"を満たす場合、ヒットしてからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。 構文 ProjHit[ProjectileのID] = 値ProjHit[ProjectileのID] 値 = 値2ProjHit[ProjectileのID] 値 != 値2ProjHit[ProjectileのID] 値 < 値2ProjHit[ProjectileのID] 値 > 値2ProjHit[ProjectileのID] 値 <= 値2ProjHit[ProjectileのID] 値 >= 値2ProjHit[ProjectileのID,ProjectileのID] = 値ProjHit[ProjectileのID,ProjectileのID] 値 = 値2ProjHit[ProjectileのID,ProjectileのID] 値 != 値2ProjHit[ProjectileのID,ProjectileのID] 値 < 値2ProjHit[ProjectileのID,ProjectileのID] 値 > 値2ProjHit[ProjectileのID,ProjectileのID] 値 <= 値2ProjHit[ProjectileのID,ProjectileのID] 値 >= 値2 引数 なし コードサンプルID1234のProjectileがヒットした瞬間のトリガー。Trigger1 = ProjHit1234 = 1 プレイヤーのProjectileがヒットしてから15フレーム未満のときのトリガー。Trigger1 = ProjHit = 1, < 15 引用記事ProjHit - Trigger Reference(version 2002.04.14)ProjHit - Trigger Reference(version 1.0)ProjHit - Trigger Reference(version 1.1)ProjHit - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.17 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ProjHit - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjHit"
+    },
+    {
+      "text": "ProjHit - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#projhit"
+    },
+    {
+      "text": "ProjHit - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#projhit"
+    },
+    {
+      "text": "ProjHit - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ProjHit"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

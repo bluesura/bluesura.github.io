@@ -1,0 +1,49 @@
+{
+  "text": "ProjGuarded 飛び道具 > 飛び道具のガード判定 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 プレイヤーのProjectile(飛び道具)がガードされたか、されていないかを判定し、真偽を返します。また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。省略した場合は、プレイヤーの全てのProjectileが対象となります。使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjGuardedTimeの方を使った方がよいでしょう。もちろん、単体ではファンクショントリガーとして使用できません。[ProjectileのID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。値1には、ガードされたかを調べる場合1を、ガードされていないかを調べる場合0を指定します。値2には、比較する時間を指定します。戻り値の型: boolean int (1 or 0)詳細: 複数ヒットする場合、1ヒットごとに判定します。様式1は、MoveGuardedとは異なり、ガード後1フレームしか値を返しません。様式2は、正の整数nが条件式\"n [符号] 値2\"を満たす場合、ガードされてからnフレームの間、真を返します。ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。 構文 ProjGuarded[ProjectileのID] = 値ProjGuarded[ProjectileのID] 値 = 値2ProjGuarded[ProjectileのID] 値 != 値2ProjGuarded[ProjectileのID] 値 < 値2ProjGuarded[ProjectileのID] 値 > 値2ProjGuarded[ProjectileのID] 値 <= 値2ProjGuarded[ProjectileのID] 値 >= 値2ProjGuarded[ProjectileのID,ProjectileのID] = 値ProjGuarded[ProjectileのID,ProjectileのID] 値 = 値2ProjGuarded[ProjectileのID,ProjectileのID] 値 != 値2ProjGuarded[ProjectileのID,ProjectileのID] 値 < 値2ProjGuarded[ProjectileのID,ProjectileのID] 値 > 値2ProjGuarded[ProjectileのID,ProjectileのID] 値 <= 値2ProjGuarded[ProjectileのID,ProjectileのID] 値 >= 値2 引数 なし コードサンプルID1234のProjectileがガードされた瞬間のトリガー。Trigger1 = ProjGuarded1234 = 1 プレイヤーのProjectileがガードされてから15フレーム未満のときのトリガー。Trigger1 = ProjGuarded = 1, < 15 引用記事ProjGuarded - Trigger Reference(version 2002.04.14)ProjGuarded - Trigger Reference(version 1.0)ProjGuarded - Trigger Reference(version 1.1)ProjGuarded - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.17 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ProjGuarded - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjGuarded"
+    },
+    {
+      "text": "ProjGuarded - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#projguarded"
+    },
+    {
+      "text": "ProjGuarded - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#projguarded"
+    },
+    {
+      "text": "ProjGuarded - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ProjGuarded"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

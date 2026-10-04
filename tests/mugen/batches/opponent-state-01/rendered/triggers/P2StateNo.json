@@ -1,0 +1,78 @@
+{
+  "text": "P2StateNo ステータス > 現在ステート番号の取得 | 実装されたバージョン: 2002.04.14 引数 仕様・注意点 使用例 引用記事 P2のステート番号を返します。 関連するステートコントローラー： ChangeState , SelfState , HitOverride , TargetState 関連するトリガー： StateNo , PrevStateNo 構文 P2StateNo 引数 なし 仕様・バグ・エラー・変更点エラーゲームクリア、ゲームオーバー画面など、P2が存在しない場合、SFalseを返します。 コードサンプル 引用記事P2StateNo - Trigger Reference(version 2002.04.14)P2StateNo - Trigger Reference(version 1.0)P2StateNo - Trigger Reference(version 1.1)P2StateNo - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2015.12.24 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ChangeState",
+      "href": "./../State/ChangeState.html"
+    },
+    {
+      "text": "SelfState",
+      "href": "./../State/SelfState.html"
+    },
+    {
+      "text": "HitOverride",
+      "href": "./../State/HitOverride.html"
+    },
+    {
+      "text": "TargetState",
+      "href": "./../State/TargetState.html"
+    },
+    {
+      "text": "StateNo",
+      "href": "./../Trigger/StateNo.html"
+    },
+    {
+      "text": "PrevStateNo",
+      "href": "./../Trigger/PrevStateNo.html"
+    },
+    {
+      "text": "P2StateNo - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#P2StateNo"
+    },
+    {
+      "text": "P2StateNo - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#p2stateno"
+    },
+    {
+      "text": "P2StateNo - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#p2stateno"
+    },
+    {
+      "text": "P2StateNo - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/P2StateNo"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

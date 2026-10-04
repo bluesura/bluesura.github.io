@@ -1,0 +1,73 @@
+{
+  "text": "P2StateType ステータス > 現在ステートタイプの判定 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 P2のStateTypeを判定し、真偽を返します。ゲームクリア、ゲームオーバー画面など、P2が存在しない場合は0を返します。 関連するステートコントローラー： S , C , A , U , StateTypeSet 関連するトリガー： StateType 構文 P2StateType = SP2StateType = CP2StateType = AP2StateType = LP2StateType != SP2StateType != CP2StateType != AP2StateType != L 引数 なし コードサンプル分身バグ対策ヘルパーがキャラに分身することを防ぎます。[StateDef 0]内に記述して下さい。[State 0]Type = DestroySelfTrigger1 = IsHelper 引用記事P2StateType - Trigger Reference(version 2002.04.14)P2StateType - Trigger Reference(version 1.0)P2StateType - Trigger Reference(version 1.1)P2StateType - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2015.12.24 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "S",
+      "href": "./../State/S.html"
+    },
+    {
+      "text": "C",
+      "href": "./../State/C.html"
+    },
+    {
+      "text": "A",
+      "href": "./../State/A.html"
+    },
+    {
+      "text": "U",
+      "href": "./../State/U.html"
+    },
+    {
+      "text": "StateTypeSet",
+      "href": "./../State/StateTypeSet.html"
+    },
+    {
+      "text": "StateType",
+      "href": "./../Trigger/StateType.html"
+    },
+    {
+      "text": "P2StateType - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#P2StateType"
+    },
+    {
+      "text": "P2StateType - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#p2statetype"
+    },
+    {
+      "text": "P2StateType - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#p2statetype"
+    },
+    {
+      "text": "P2StateType - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/P2StateType"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

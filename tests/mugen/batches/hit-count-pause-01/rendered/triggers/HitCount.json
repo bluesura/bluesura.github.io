@@ -1,0 +1,49 @@
+{
+  "text": "HitCount ヒット情報 > 現ステート内のヒット回数取得 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 そのステート内でのヒット数を返します。ガードは含みません。ステートが変わるとヒット数はリセットされますので、前のステートのヒット数を引き継ぎたい場合は予めStatedefの冒頭にhitcountpersist = 1と記述しておく必要があります。姉妹品にUniqHitCountがあり、チームプレイで複数の敵に同時ヒットした場合の扱いが異なります。HitCountの場合は1ヒット、UniqHitCountの場合は2ヒットとして扱われます。画面に表示されるヒット数とは全くの別物で、同一ステート内、もしくはhitcountpersist = 1であれば連続ヒットしなくてもカウントされます。よってダメージ補正に使うのは難しいです。戻り値の型: int 構文 HitCount 引数 なし コードサンプル同一ステート内、もしくはhitcountpersist = 1のステートで攻撃が9回以上ヒットしたときのトリガーTrigger1 = HitCount > 8 引用記事HitCount - Trigger Reference(version 2002.04.14)HitCount - Trigger Reference(version 1.0)HitCount - Trigger Reference(version 1.1)HitCount - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2015.12.28 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "HitCount - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#HitCount"
+    },
+    {
+      "text": "HitCount - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitcount"
+    },
+    {
+      "text": "HitCount - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitcount"
+    },
+    {
+      "text": "HitCount - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitCount"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

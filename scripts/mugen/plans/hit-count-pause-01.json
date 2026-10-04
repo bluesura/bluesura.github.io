@@ -1,0 +1,899 @@
+{
+  "id": "hit-count-pause-01",
+  "reviewed_on": "2026-10-05",
+  "description": "ヒット回数と画面コンボ数、同時命中の数え方、攻撃側ヒット停止とコントローラー評価を分離。旧例・説明・履歴を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "HitCount",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitcount-local-2002",
+            "title": "HitCount — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitCount",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitcount-local-1.0",
+            "title": "HitCount — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#hitcount",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitcount-local-1.1",
+            "title": "HitCount — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitcount",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitcount-legacy",
+            "title": "移行前の説明・書式・例・履歴",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/f9395abae8191c3401a4aba1dd6ef2ec66f134c6/src/content/triggers/HitCount.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitcount-chaos",
+            "title": "HitCount — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/127.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitcount-persist-1.1",
+            "title": "StateDef HitCountPersist — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#hitcountpersist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身の現在の攻撃で、1体以上の相手にヒットした回数を整数で返します。引数はありません。ガードは含みません。</p><p>同じ攻撃が2体へ同時にヒットすると、HitCountは1、UniqHitCountは2増えます。UniqHitCountは、これまでに攻撃した相手の種類数を返すトリガーではありません。</p><p>連続ヒットでなくても加算され、画面に表示されるコンボ数とは別の値です。通常はステート遷移で0に戻ります。前の値を持ち越す場合は、遷移先のStateDefに<code>HitCountPersist = 1</code>を指定します。</p>",
+            "page_category": "攻撃のヒット回数取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "hitcount-local-2002",
+                "hitcount-local-1.0",
+                "hitcount-local-1.1",
+                "hitcount-persist-1.1",
+                "hitcount-chaos"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>HitCountPersistはStateDefの設定で、トリガーの引数ではありません。省略時または0のステートへ移るとヒット回数がリセットされます。1のステートへ移ると保持されます。この設定は画面のコンボカウンターには影響しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitcount-persist-1.1",
+                  "hitcount-local-2002",
+                  "hitcount-local-1.0",
+                  "hitcount-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSの同一フレームのヒット/ガード混在とTarget参照相手によるHitCountの加算、UniqHitCountの相手ごとの加算報告を保持します。フレームをずらした複数相手への命中、処理順や特殊攻撃・Projectileとの関係、対象ビルドごとの再現は今回実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "hitcount-chaos"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧説明とCHAOSのダメージ補正/正確な処理への向き不向きは内部へ保持します。非連続でも加算されることと画面コンボ数との違いを公開し、用途全体の可否は断定しません。page.versionから導入ビルドを推測せずintroduced_inはnullです。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitcount-legacy",
+                  "hitcount-chaos",
+                  "hitcount-local-2002",
+                  "hitcount-local-1.0",
+                  "hitcount-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitcount-local-2002",
+              "hitcount-local-1.0",
+              "hitcount-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルド、同時処理/停止の開始終了/特殊条件は実機未確認。原本・未確認研究・資料差はJSON内部に保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "UniqHitCount",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "uniqhitcount-local-2002",
+            "title": "UniqHitCount — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#UniqHitCount",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "uniqhitcount-local-1.0",
+            "title": "UniqHitCount — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#uniqhitcount",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "uniqhitcount-local-1.1",
+            "title": "UniqHitCount — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#uniqhitcount",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "uniqhitcount-legacy",
+            "title": "移行前の説明・書式・例・履歴",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/f9395abae8191c3401a4aba1dd6ef2ec66f134c6/src/content/triggers/UniqHitCount.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "uniqhitcount-chaos",
+            "title": "UniqHitCount — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/128.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "uniqhitcount-persist-1.1",
+            "title": "StateDef HitCountPersist — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#hitcountpersist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身の現在の攻撃で、相手ごとのヒットを合計した数を整数で返します。引数はありません。ガードは含みません。</p><p>同じ攻撃が2体へ同時にヒットすると、HitCountは1、UniqHitCountは2増えます。UniqHitCountは、これまでに攻撃した相手の種類数を返すトリガーではありません。</p><p>連続ヒットでなくても加算され、画面に表示されるコンボ数とは別の値です。通常はステート遷移で0に戻ります。前の値を持ち越す場合は、遷移先のStateDefに<code>HitCountPersist = 1</code>を指定します。</p>",
+            "page_category": "相手ごとに合計したヒット数取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "uniqhitcount-local-2002",
+                "uniqhitcount-local-1.0",
+                "uniqhitcount-local-1.1",
+                "uniqhitcount-persist-1.1",
+                "uniqhitcount-chaos"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "uniqhitcount-interval-1.1",
+            "title": "区間演算子 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#arithmetic-operators",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "ヒット数が4以上6未満の判定",
+            "description": "<p>4または5で成立します。上端を含まない<code>[4,6)</code>を使います。HitCountPersistで持ち越したヒットも数えます。</p>",
+            "code": [
+              "Trigger1 = UniqHitCount = [4,6)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>HitCountPersistはStateDefの設定で、トリガーの引数ではありません。省略時または0のステートへ移るとヒット回数がリセットされます。1のステートへ移ると保持されます。この設定は画面のコンボカウンターには影響しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "uniqhitcount-persist-1.1",
+                  "uniqhitcount-local-2002",
+                  "uniqhitcount-local-1.0",
+                  "uniqhitcount-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSの同一フレームのヒット/ガード混在とTarget参照相手によるHitCountの加算、UniqHitCountの相手ごとの加算報告を保持します。フレームをずらした複数相手への命中、処理順や特殊攻撃・Projectileとの関係、対象ビルドごとの再現は今回実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "uniqhitcount-chaos"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧説明とCHAOSのダメージ補正/正確な処理への向き不向きは内部へ保持します。非連続でも加算されることと画面コンボ数との違いを公開し、用途全体の可否は断定しません。page.versionから導入ビルドを推測せずintroduced_inはnullです。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "uniqhitcount-legacy",
+                  "uniqhitcount-chaos",
+                  "uniqhitcount-local-2002",
+                  "uniqhitcount-local-1.0",
+                  "uniqhitcount-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧例のタイトルは6未満ですが、コードの[4,6]は6を含み、公式の原例も4・5・6と説明しています。タイトル/コードは原位置に保持して内部へ。公開例は[4,6)へ訂正しました。旧カテゴリの異なる相手は相手の種類数と誤読され得るため公開ラベルを訂正しています。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "uniqhitcount-legacy",
+                  "uniqhitcount-interval-1.1",
+                  "uniqhitcount-local-2002",
+                  "uniqhitcount-local-1.0",
+                  "uniqhitcount-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "uniqhitcount-local-2002",
+              "uniqhitcount-local-1.0",
+              "uniqhitcount-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルド、同時処理/停止の開始終了/特殊条件は実機未確認。原本・未確認研究・資料差はJSON内部に保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "HitPauseTime",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitpausetime-local-2002",
+            "title": "HitPauseTime — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitPauseTime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitpausetime-local-1.0",
+            "title": "HitPauseTime — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#hitpausetime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitpausetime-local-1.1",
+            "title": "HitPauseTime — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitpausetime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitpausetime-legacy",
+            "title": "移行前の説明・書式・例・履歴",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/f9395abae8191c3401a4aba1dd6ef2ec66f134c6/src/content/triggers/HitPauseTime.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitpausetime-chaos",
+            "title": "HitPauseTime — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/133.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitpausetime-controller-1.1",
+            "title": "コントローラーの共通IgnoreHitPause — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#controller-format",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitpausetime-history-rc1",
+            "title": "1.0 RC1のP1 PauseTime修正と互換補正 — Elecbyte公式履歴",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-0-rc1",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitpausetime-upgrade-1.1",
+            "title": "2002.04.14から1.0への移植 — Elecbyte Upgrade Notes",
+            "url": "/MUGEN/document/Official/1.1b1/upgrading.html",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身の攻撃が相手に接触して発生するヒットストップの残り時間を、整数で返します。引数はありません。0なら、この攻撃側ヒットストップは終了しています。</p><p>停止中に参照するコントローラーには<code>IgnoreHitPause = 1</code>を指定します。省略時は、そのコントローラーがヒットストップ中に評価されません。評価されないことと、式を評価して0を返すことは区別してください。</p>",
+            "syntax": [
+              "HitPauseTime"
+            ],
+            "page_category": "攻撃側ヒットストップの残り時間取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "hitpausetime-local-2002",
+                "hitpausetime-local-1.0",
+                "hitpausetime-local-1.1",
+                "hitpausetime-controller-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitpausetime-hitdef-1.1",
+            "title": "HitDef PauseTime — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitpausetime-gethitvar-1.1",
+            "title": "GetHitVar HitShakeTime — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gethitvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            7,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            8,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "ヒットストップ中にHitPauseTimeを使うコントローラーが動かない",
+            "a": "<p>そのコントローラーに<code>IgnoreHitPause = 1</code>を指定します。省略時はヒットストップ中のコントローラー評価が行われません。停止していないときにHitPauseTimeが0を返すこととは別です。</p>",
+            "r": [
+              {
+                "title": "Elecbyte CNS — Controller Format",
+                "url": "/MUGEN/document/Official/1.1b1/cns.html#controller-format"
+              }
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>HitPauseTimeは攻撃側の停止時間です。HitDefの<code>PauseTime</code>の1つ目が自分側、2つ目が相手側で、同じ値とは限りません。ガード時は<code>guard.pausetime</code>を使い、省略時はPauseTimeと同じ設定です。被弾側の揺れ時間は<code>GetHitVar(HitShakeTime)</code>を使います。一般のPause / SuperPauseの残り時間を返すトリガーではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitpausetime-local-2002",
+                  "hitpausetime-local-1.0",
+                  "hitpausetime-local-1.1",
+                  "hitpausetime-hitdef-1.1",
+                  "hitpausetime-gethitvar-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "version_change",
+              "content": "<p>1.0 RC1の公式履歴では、HitDefのP1 PauseTimeが指定より1 tick早く終了する不具合を修正しています。2002.04.14以前のキャラは、式を評価した後のP1 PauseTimeから1を引く互換補正があります。1.0形式へ移植する手順は、P1 PauseTimeに1を足し、defの<code>mugenversion = 1.0</code>を設定することです。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitpausetime-history-rc1",
+                  "hitpausetime-upgrade-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              },
+              "change": "fixed",
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧version[0]の初期値が必ず1ずれるという説明は原位置に保持します。公式履歴にはmugenversionによる互換補正があり、エンジン更新だけで無条件にずれるとは断定しません。</p><p>2002.04.14 系から 1.0 へ更新する際、<code>HitDef</code> の <code>PauseTime</code> は挙動修正のため「P1 側（1つ目）」に <code>+1</code> が必要です。古いキャラを移植すると、<code>HitPauseTime</code> の初期値が <code>1</code> フレームずれる原因になります。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_history"
+                ],
+                "source_refs": [
+                  "hitpausetime-legacy",
+                  "hitpausetime-history-rc1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>変更一覧に載っていないことから互換仕様を推論した旧IKEMEN GO記録を保持します。今回のMUGEN移行では互換性を確認済みとしません。</p><p>互換仕様の基本は MUGEN 1.1 の公式ドキュメント参照が前提。<code>HitPauseTime</code> は変更トリガー一覧に含まれないため、基本挙動は MUGEN 1.1 相当として扱えます。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "hitpausetime-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal",
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式3世代のignorehitpause未指定なら常に0という説明と、CNSの停止中はコントローラーをチェックしないという説明を保持します。旧本文の結果として0という因果とQ&Aの多くは指定漏れという頻度は、実測で確認していません。通常のコントローラー評価と、停止していない別プレイヤーからのリダイレクトによる参照を混同しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "hitpausetime-local-2002",
+                  "hitpausetime-local-1.0",
+                  "hitpausetime-local-1.1",
+                  "hitpausetime-controller-1.1",
+                  "hitpausetime-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSの書式HitPauseという表記と未完成のTime例、IgnoreHitPauseの疑問符、旧Enemyリダイレクト書式は内部へ保持します。ヒット/ガード・HitDef再設定・停止開始/終了フレームの評価順・特殊な相手不在条件での再現は今回未検証です。page.versionから初導入ビルドを推測していません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitpausetime-chaos",
+                  "hitpausetime-legacy",
+                  "hitpausetime-local-2002",
+                  "hitpausetime-local-1.0",
+                  "hitpausetime-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitpausetime-local-2002",
+              "hitpausetime-local-1.0",
+              "hitpausetime-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代・CNS・更新履歴とCHAOSを照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルド、同時処理/停止の開始終了/特殊条件は実機未確認。原本・未確認研究・資料差はJSON内部に保持。"
+      ]
+    }
+  ]
+}

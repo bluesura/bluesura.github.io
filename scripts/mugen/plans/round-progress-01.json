@@ -1,0 +1,778 @@
+{
+  "id": "round-progress-01",
+  "reviewed_on": "2026-10-05",
+  "description": "ラウンド進行状態・番号・プレイヤーの存在ラウンド数を分離。旧監視設計・別エンジン報告・条件式の前提を内部に保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "RoundState",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            6,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            7,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "戦闘区間か調べる",
+            "code": [
+              "Trigger1 = RoundState = 2"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "戦闘区間で通常行動可能か調べる",
+            "description": "<p>ラウンドの進行状態とCtrlを別々の条件で調べます。特定の入力・技の許可条件はキャラクター側で追加してください。</p>",
+            "code": [
+              "Trigger1 = RoundState = 2",
+              "Trigger1 = Ctrl"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>現在のラウンド進行状態を整数で返します。キャラクターのステート番号StateNoや、ラウンド番号RoundNoとは別の値です。引数はありません。</p><ul><li><code>0</code>：Pre-intro — 画面のフェードイン</li><li><code>1</code>：Intro — イントロ</li><li><code>2</code>：Fight — 戦闘区間</li><li><code>3</code>：Pre-over — 決着直後</li><li><code>4</code>：Over — 勝利ポーズなどの終了演出</li></ul>",
+            "page_category": "現在のラウンド進行状態の取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "roundstate-local-2002",
+                "roundstate-local-1.0",
+                "roundstate-local-1.1"
+              ],
+              "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>ラウンドの進行状態と、プレイヤーが通常行動できるかを示すCtrlは別です。RoundState = 2だけでCtrl = 1を保証する条件にはなりません。通常行動できる戦闘中を条件にしたい場合は、それぞれを調べます。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "roundstate-local-1.1",
+                  "roundstate-ctrl-1.1"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧画像・概要はラウンド進行と-3/-2/-1/現在ステートの実行を一緒に説明する。CNSはカスタムステート中の-3の例外、Helperに-3/-2がなく-1はKeyCtrl依存であることを記載する。処理順やHelperの例外自体を消さず、図・alt・寸法・旧説明を保持する。Pause/HitPause、監視変数の初期化、カスタムステート、同一フレームの全プレイヤー観測タイミングは今回実機未確認。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "roundstate-legacy",
+                  "roundstate-states-1.1"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧「標準common1.cns」の参照先はJesuszillaによる修正版であり、全ビルドの配布原本ではない。掲載された5900はRoundNo = 1なら190、それ以外は0へ移るが、キャラが上書きできる初期化ステートの例とエンジン自体の不変条件を混同しない。190/191/5900の旧説明とURLを保持する。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "roundstate-legacy",
+                  "roundstate-common-fix",
+                  "roundstate-states-1.1"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSは2への移行とCtrl.Time経過後のStateNo=0/Ctrl=1を分け、イントロスキップ時の消去・座標復帰・Command受付停止・RoundNotOver等も記載する。旧Q&AのFight表示、監視キャッシュと開始フラグ例を原位置へ保持し、開始フレームの正確な境界や変数の持ち越し・自前コマンド名/ステート1000の前提は今回実機未確認。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "roundstate-legacy",
+                  "roundstate-chaos",
+                  "roundstate-ctrl-1.1"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧履歴はIKEMEN GO nightlyの2025-08-09以降の差としてFight表示中の返り値変更を記録する。公式プロジェクトWikiもRoundStateが操作解禁前のFight表示中に2ではなく1になる変更を記載するが、今回固定コミット・導入日・実行ビルドは照合していない。MUGENの変更履歴に混ぜず、元の表記・参照URLを保存する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "roundstate-legacy",
+                  "roundstate-ikemen-changed"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別であり、introduced_inはnullに保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "roundstate-local-2002",
+                  "roundstate-local-1.0",
+                  "roundstate-local-1.1",
+                  "roundstate-legacy"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundstate-local-2002",
+            "title": "RoundState — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundState",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundstate-local-1.0",
+            "title": "RoundState — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#roundstate",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundstate-local-1.1",
+            "title": "RoundState — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundstate",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundstate-legacy",
+            "title": "RoundState — 移行前の説明・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/dbef14d16307d3b743c81d7b543bf35fae72688b/src/content/triggers/RoundState.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundstate-ctrl-1.1",
+            "title": "Ctrl — Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#ctrl",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundstate-states-1.1",
+            "title": "特殊ステートの実行とHelperの例外 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#states",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundstate-chaos",
+            "title": "RoundState — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/191.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundstate-common-fix",
+            "title": "修正版common1.cnsの5900 — Jesuszilla",
+            "url": "https://gist.github.com/Jesuszilla/0aff36b31ff0f732d24f9de3648b6247",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundstate-ikemen-changed",
+            "title": "IKEMEN GO — Triggers (changed), RoundState",
+            "url": "https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(changed)#roundstate",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・ラウンド境界の正確なフレーム・監視設計・特殊モードは実機未検証。",
+        "旧説明・画像・例・Q&A・別エンジン履歴は保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "RoundNo",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>現在の試合のラウンド番号を整数で返します。たとえば3ラウンド目では3です。引数はありません。</p><p>ラウンド内の進行状態はRoundState、各プレイヤーがそれまで存在したラウンド数はRoundsExistedで参照します。</p>",
+            "page_category": "現在のラウンド番号の取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "roundno-local-2002",
+                "roundno-local-1.0",
+                "roundno-local-1.1"
+              ],
+              "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧特殊ゲージ初期化例は「1試合目の1ラウンド目だけ」と説明するが、条件式はvar(51) != 10というOR条件だけでも成立する。var(51)/var(52)の設定・持ち越し・用途が提示されず、NumPartner条件は人数の条件である。元コードと説明を保持して内部へ置き、ラウンド番号の短い比較例はそのまま公開する。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "roundno-legacy"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別であり、introduced_inはnullに保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "roundno-local-2002",
+                  "roundno-local-1.0",
+                  "roundno-local-1.1",
+                  "roundno-legacy"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundno-local-2002",
+            "title": "RoundNo — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundNo",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundno-local-1.0",
+            "title": "RoundNo — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#roundno",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundno-local-1.1",
+            "title": "RoundNo — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundno",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundno-legacy",
+            "title": "RoundNo — 移行前の説明・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/dbef14d16307d3b743c81d7b543bf35fae72688b/src/content/triggers/RoundNo.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・ラウンド境界の正確なフレーム・監視設計・特殊モードは実機未検証。",
+        "旧説明・画像・例・Q&A・別エンジン履歴は保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "RoundsExisted",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "プレイヤーにとって最初のラウンドか調べる",
+            "description": "<p>試合全体のラウンド番号やチームモードによらず、評価対象の出場履歴を調べる条件です。</p>",
+            "code": [
+              "Trigger1 = RoundsExisted = 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーが、それまで存在していたラウンド数を整数で返します。そのプレイヤーにとって最初のラウンドでは0です。引数はありません。</p><p>交代制チーム戦（Turns）では、試合途中に登場したプレイヤーも最初の出場ラウンドは0になります。試合全体のラウンド番号RoundNoとは区別してください。</p>",
+            "page_category": "プレイヤーの存在ラウンド数の取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "roundsexisted-local-2002",
+                "roundsexisted-local-1.0",
+                "roundsexisted-local-1.1"
+              ],
+              "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>Turnsで途中登場したプレイヤーのイントロ判定に使えます。公式例は初期化ステート5900を上書きし、ChangeStateでイントロへ切り替える用途を示します。RoundsExisted = 0はそのプレイヤーの最初のラウンドを表す条件で、単独ではそのラウンドの最初の1フレームだけという意味にはなりません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "roundsexisted-local-2002",
+                  "roundsexisted-local-1.0",
+                  "roundsexisted-local-1.1"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧本文の「ターン以外では常にRoundNo - 1になると思う」という推測、Helper・再試合・引き分け・Survival時のリセット範囲は今回実機未確認。旧RoundExistedという単数表記も原位置に保持し、公開は実際のトリガー名RoundsExistedを使う。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "roundsexisted-legacy",
+                  "roundsexisted-local-2002",
+                  "roundsexisted-local-1.0",
+                  "roundsexisted-local-1.1"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>公式3世代の例はRoundNo > 0を使いながらafter the first roundと説明する。旧例の題名は「ラウンド番号にかかわらず、そのプレイヤーにとって最初のラウンド」であり条件行と矛盾しないため維持する。RoundNo > 0だけで1ラウンド目を除外したと解釈しない。導入・全環境の番号境界を今回実測していない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "roundsexisted-local-2002",
+                  "roundsexisted-local-1.0",
+                  "roundsexisted-local-1.1",
+                  "roundsexisted-legacy"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別であり、introduced_inはnullに保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "roundsexisted-local-2002",
+                  "roundsexisted-local-1.0",
+                  "roundsexisted-local-1.1",
+                  "roundsexisted-legacy"
+                ],
+                "comment": "2026-10-05: 旧原文・保存済み公式3世代を照合。RoundStateはCHAOSと別エンジンの一次資料も区別して確認。実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundsexisted-local-2002",
+            "title": "RoundsExisted — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundsExisted",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundsexisted-local-1.0",
+            "title": "RoundsExisted — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#roundsexisted",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundsexisted-local-1.1",
+            "title": "RoundsExisted — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundsexisted",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "roundsexisted-legacy",
+            "title": "RoundsExisted — 移行前の説明・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/dbef14d16307d3b743c81d7b543bf35fae72688b/src/content/triggers/RoundsExisted.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・ラウンド境界の正確なフレーム・監視設計・特殊モードは実機未検証。",
+        "旧説明・画像・例・Q&A・別エンジン履歴は保持。"
+      ]
+    }
+  ]
+}

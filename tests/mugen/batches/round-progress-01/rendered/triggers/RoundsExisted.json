@@ -1,0 +1,49 @@
+{
+  "text": "RoundsExisted 試合情報 > キャラクターの試合内存在ラウンド数取得 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 試合中、プレイヤーが存在していたラウンドの数を返します。ターンバトル(KOF等のアレ)一本目で一人目が負けた場合、二本目のRoundNoは2ですが、二人目にとっては初ラウンドなので、RoundsExistedは0になります。一方、勝った方はRound1でも存在していたので、RoundExistedは1となります。ターンバトル以外では、常にRoundNoから1を引いた値を返すことになると思います。戻り値の型: int 構文 RoundsExisted 引数 なし コードサンプルターンバトル時、ラウンド番号にかかわらず、そのプレイヤーにとっての最初のラウンドのときのトリガー初期化ステート(StateDef 5900)に書き込むことにより、イントロを変更するときなどに使用できます。Trigger1 = RoundsExisted = 0Trigger1 = TeamMode = TurnsTrigger1 = RoundNo > 0 引用記事RoundsExisted - Trigger Reference(version 2002.04.14)RoundsExisted - Trigger Reference(version 1.0)RoundsExisted - Trigger Reference(version 1.1)RoundsExisted - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.17 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "RoundsExisted - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#RoundsExisted"
+    },
+    {
+      "text": "RoundsExisted - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#roundsexisted"
+    },
+    {
+      "text": "RoundsExisted - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#roundsexisted"
+    },
+    {
+      "text": "RoundsExisted - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/RoundsExisted"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

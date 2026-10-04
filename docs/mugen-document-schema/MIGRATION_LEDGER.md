@@ -276,3 +276,7 @@ P2Life / NumEnemy / NumPartnerを追加し累計139件（52バッチ123件＋主
 ### 2026-10-05：round-progress-01
 
 RoundState / RoundNo / RoundsExistedを追加し、累計142件（53バッチ126件＋主要・補助16件）、対象内の残り92件です。進行状態0〜4・試合全体の番号・プレイヤーごとの存在ラウンド数を分離。RoundStateとCtrl、RoundsExisted=0と最初の1フレームを区別し、短い条件行を公開しました。旧監視図・変数/フラグ例・Q&Aは保持して内部へ。IKEMEN GOの旧nightly報告は別エンジンの内部研究（legacy_index: 0）に対応付け、固定ビルドや導入日を推測していません。RoundNoの前提不明/適用範囲が広い初期化例、RoundsExistedの旧RoundNo - 1推測・単数表記・公式例の説明差を内部へ残しています。導入はnullで実機未検証。内部注記10件追加の324件、未対応旧履歴161項目。233テスト・263ページビルド・261 URL/153比較対象ページのHTML検査を通過。次はID・IsHelper・PlayerIDExistです。
+
+### 2026-10-05：player-identity-01
+
+ID / IsHelper / PlayerIDExistを追加し、累計145件（54バッチ129件＋主要・補助16件）、残り89件です。一意ID・Helperの指定ID・TargetIDを分離し、任意/必須の整数式を構造化しました。公式value抜粋とIsHelper旧例は保持。保存済み一意IDの存在確認からリダイレクトへ進む別条件行を公開しています。旧PlayerExist誤記・ID順によるHelper推定/代入例・DestroySelf後の召喚フリーズ対策・NumTarget列挙・公式PlayerExistID表記差は内部へ。割当詳細・特殊引数・消滅境界・回避策の再現条件は実機未確認です。旧フィールドの保存と内部非表示を検証し、238テスト・263ページビルド・261 URL/156比較対象ページのHTML検査を通過。初導入はnull、内部注記10件追加の334件、未対応旧履歴161項目。次はNumHelper・NumTarget・NumExplodです。

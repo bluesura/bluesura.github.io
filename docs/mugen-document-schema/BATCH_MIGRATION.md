@@ -979,3 +979,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・233テスト・263ページビルド・261 URL/153比較対象ページのHTML検査を通過。ブラウザでRoundState（通常幅）、RoundNo/RoundsExisted（幅390px）を確認し、表示幅をリセット・検査用タブを終了しました。内部注記10件追加の324件、未対応旧履歴161項目。実機検証は未実施です。次はID・IsHelper・PlayerIDExistです。
+
+## 2026-10-05：player-identity-01
+
+ID / IsHelper / PlayerIDExistの3件を追加しました。累計145件（主要・補助16件＋54バッチ129件）、残り89件です。移行前JSON・HTML・抽出結果は tests/mugen/batches/player-identity-01/ に保存しています。
+
+- IDの一意番号、Helperコントローラーの指定ID、HitDefのTargetIDを分離しました。IDは引数なしの整数参照、IsHelperは任意整数引数、PlayerIDExistは必須整数式で、判定は通常1/0です。IsHelperの公式Arguments欄のnoneと本文の任意引数という差はJSON内部へ残しています。省略を0や-1に置き換えません。
+- IDの公式value抜粋2件とIsHelperの旧2例を保持。IDにNumEnemy > 0を先に確認するVarSet例を追加し、var(0)を保存先として明示しています。PlayerIDExistは保存済み一意IDの存在確認とPlayerIDによるライフ参照を同番号の別条件行で公開しました。
+- [CHAOSのID](https://w.atwiki.jp/mugencns/pages/49.html)の割当開始値・順序・増加・Turns/スロットIDの報告を内部へ保持。[CHAOSのPlayerIDExist](https://w.atwiki.jp/mugencns/pages/184.html)にも存在するPlayerExist誤記と旧推定/代入例は原位置へ保持して内部へ。NumTargetをリダイレクトとして列挙する旧本文と、公式CNSのPlayerExistID表記差も保存しています。
+- DestroySelf後のHelper・Explod召喚フリーズ回避策は消去せず、旧コードと説明を内部に保存。対象ビルド・再現条件が未確認で、東方夢幻館の本文も取得できなかったため公開必須条件にはしていません。CHAOSのIsHelper本文も取得できず、今回の確認済み根拠にはしていません。
+- 1.0/1.1で引数がbottomなら結果もbottomというエラーを通常の不一致/不在0から分離。2002資料のSFalseと導入ビルド不明は内部に保持。スキーマ・レンダラー・CSSの変更はありません。実機検証は未実施です。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch player-identity-01
+npm run mugen:batch -- --batch player-identity-01 --target ID --target IsHelper --target PlayerIDExist
+npm run mugen:batch -- --batch player-identity-01 --target ID --target IsHelper --target PlayerIDExist --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・238テスト・263ページビルド・261 URL/156比較対象ページのHTML検査を通過。ブラウザはIsHelper（通常幅）、PlayerIDExist/ID（幅390px）で確認し、接続復旧後に設定と検査用タブを片付けました。既存のPagefind/保存HTMLの警告は継続。内部注記10件追加の334件、未対応旧履歴161項目。次はNumHelper・NumTarget・NumExplodです。

@@ -1,55 +1,235 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "IsHelper",
-        "target": "",
-        "category": [
-            "キャラクター情報",
-            "ヘルパーかどうかの判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "IsHelper",
+    "target": "",
+    "category": [
+      "キャラクター情報",
+      "ヘルパーかどうかの判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "IsHelper",
+  "summary": "<p>ヘルパーかどうかを返します。</p>",
+  "syntax": [
+    "IsHelper",
+    "IsHelper(HelperのID)"
+  ],
+  "description": "ヘルパーかどうかを返します。<br>プレイヤーがヘルパーなら1を、それ以外なら0を返します。<br>ヘルパーのIDを引数に指定することができ、その場合はプレイヤーが指定されたIDのヘルパーのとき1を返します。<br>戻り値の型: boolean int (1 or 0)",
+  "code_sample": [
+    {
+      "title": "プレイヤーがヘルパーでないときのトリガー。",
+      "code": [
+        "Trigger1 = !IsHelper"
+      ]
     },
-    "category": "trigger",
-    "trigger": "IsHelper",
-    "summary": "<p>ヘルパーかどうかを返します。</p>",
+    {
+      "title": "プレイヤーがID1234のヘルパーの場合のトリガー。",
+      "code": [
+        "Trigger1 = IsHelper(1234)"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "IsHelper - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IsHelper"
+    },
+    {
+      "title": "IsHelper - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ishelper"
+    },
+    {
+      "title": "IsHelper - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ishelper"
+    },
+    {
+      "title": "IsHelper - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IsHelper"
+    },
+    {
+      "id": "ishelper-local-2002",
+      "title": "IsHelper — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IsHelper",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ishelper-local-1.0",
+      "title": "IsHelper — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#ishelper",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ishelper-local-1.1",
+      "title": "IsHelper — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#ishelper",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ishelper-legacy",
+      "title": "移行前の原文・コード例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/04306be87e8f24441f702eebab953908b0830cc4/src/content/triggers/IsHelper.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "ishelper-helper-1.1",
+      "title": "Helperの指定ID — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#helper",
+      "source_type": "official_document"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "function",
+  "arguments": [
+    {
+      "name": "exprn",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "optional",
+      "expression_policy": "expression",
+      "description": "<p>照合するHelperコントローラーのIDを返す整数式です。省略時はIDを限定せず、Helperかどうかを調べます。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ishelper-local-2002",
+          "ishelper-local-1.0",
+          "ishelper-local-1.1",
+          "ishelper-helper-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "documentation": {
+    "description": "<p>参照しているプレイヤーがHelperかどうかを整数の<code>1</code>または<code>0</code>で返します。引数なしの<code>IsHelper</code>は、Helperなら1、それ以外なら0です。</p><p><code>IsHelper(exprn)</code>は、Helperであり、HelperコントローラーのIDが指定値と一致するときだけ1を返します。引数は省略できます。このIDは、IDトリガーで取得するプレイヤーの一意IDとは別の値です。</p>",
     "syntax": [
-        "IsHelper",
-        "IsHelper(HelperのID)"
+      "IsHelper",
+      "IsHelper(exprn)"
     ],
-    "description": "ヘルパーかどうかを返します。<br>プレイヤーがヘルパーなら1を、それ以外なら0を返します。<br>ヘルパーのIDを引数に指定することができ、その場合はプレイヤーが指定されたIDのヘルパーのとき1を返します。<br>戻り値の型: boolean int (1 or 0)",
-    "code_sample": [
-        {
-            "title": "プレイヤーがヘルパーでないときのトリガー。",
-            "code": [
-                "Trigger1 = !IsHelper"
-            ]
-        },
-        {
-            "title": "プレイヤーがID1234のヘルパーの場合のトリガー。",
-            "code": [
-                "Trigger1 = IsHelper(1234)"
-            ]
-        }
+    "page_category": "Helperの判定・指定IDとの照合",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "ishelper-local-2002",
+        "ishelper-local-1.0",
+        "ishelper-local-1.1",
+        "ishelper-helper-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧page.versionの2002.04.14は資料世代の表示として保持します。初導入ビルドを確認した記録ではないため、introduced_inはnullです。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "ishelper-legacy",
+          "ishelper-local-2002",
+          "ishelper-local-1.0",
+          "ishelper-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式3世代の本文・Formatは任意のID引数を記載しますが、Arguments欄はnoneです。原文の表記差を保持し、公開引数表は本文に合わせてoptionalとします。CHAOSのIsHelper本文は今回取得できませんでした。0・負のIDや範囲外・小数の変換と警告は実機未確認で、省略を特定の整数へ置き換えません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ishelper-local-2002",
+          "ishelper-local-1.0",
+          "ishelper-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "error",
+      "content": "<p>MUGEN 1.0 / 1.1では、exprnの評価結果がbottomなら、戻り値もbottomです。通常の不一致・不在で返す0とは区別します。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ishelper-local-1.0",
+          "ishelper-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>2002.04.14資料のエラー欄は引数がSFalseならSFalseを返すと記載し、1.0/1.1資料はbottomと記載します。通常の不一致・不在0とエラー値を同一視せず、特殊形式によるbottom処理と最終条件の偽判定も分けます。資料世代の記述差を保持し、正確な導入境界は推測しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ishelper-local-2002",
+          "ishelper-local-1.0",
+          "ishelper-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "quote": [
-        {
-            "title": "IsHelper - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IsHelper"
-        },
-        {
-            "title": "IsHelper - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ishelper"
-        },
-        {
-            "title": "IsHelper - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ishelper"
-        },
-        {
-            "title": "IsHelper - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/IsHelper"
-        }
-    ]
+    "source_refs": [
+      "ishelper-local-2002",
+      "ishelper-local-1.0",
+      "ishelper-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+  }
 }

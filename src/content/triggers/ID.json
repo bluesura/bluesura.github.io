@@ -1,54 +1,214 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "ID",
-        "target": "",
-        "category": [
-            "キャラクター情報",
-            "プレイヤー/ヘルパーの一意ID取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "ID",
+    "target": "",
+    "category": [
+      "キャラクター情報",
+      "プレイヤー/ヘルパーの一意ID取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "ID",
+  "summary": "<p>プレイヤーのIDを返します。</p>",
+  "syntax": [
+    "ID"
+  ],
+  "description": "プレイヤーのIDを返します。<br>このIDは、helperを含むプレイヤーが発生すると、自動で割り付けられ、その試合中は変更できません。自分で指定することもできません。<br>\"playerID\"リダイレクトキーワードに使用するため、敵のIDを取得するのが主な使用方法です。<br>戻り値の型: int",
+  "code_sample": [
+    {
+      "title": "プレイヤーのID番号をvalueに代入します。",
+      "code": [
+        "value = ID"
+      ]
     },
-    "category": "trigger",
-    "trigger": "ID",
-    "summary": "<p>プレイヤーのIDを返します。</p>",
+    {
+      "title": "プレイヤーに最も近い敵のID番号をvalueに代入します。",
+      "code": [
+        "value = EnemyNear, ID"
+      ]
+    },
+    {
+      "title": "最も近い敵の一意IDをvar(0)へ保存する",
+      "description": "<p>var(0)はこの例の保存先です。キャラクターの既存用途に合わせて番号を選び、存在確認にも同じ変数を使ってください。</p>",
+      "code": [
+        "[State 0, Save opponent ID]",
+        "Type = VarSet",
+        "Trigger1 = NumEnemy > 0",
+        "v = 0",
+        "value = EnemyNear, ID"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "ID - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ID"
+    },
+    {
+      "title": "ID - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#id"
+    },
+    {
+      "title": "ID - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#id"
+    },
+    {
+      "title": "ID - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ID"
+    },
+    {
+      "id": "id-local-2002",
+      "title": "ID — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ID",
+      "source_type": "official_document"
+    },
+    {
+      "id": "id-local-1.0",
+      "title": "ID — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#id",
+      "source_type": "official_document"
+    },
+    {
+      "id": "id-local-1.1",
+      "title": "ID — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#id",
+      "source_type": "official_document"
+    },
+    {
+      "id": "id-legacy",
+      "title": "移行前の原文・コード例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/04306be87e8f24441f702eebab953908b0830cc4/src/content/triggers/ID.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "id-helper-1.1",
+      "title": "Helperの指定ID — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#helper",
+      "source_type": "official_document"
+    },
+    {
+      "id": "id-chaos",
+      "title": "ID — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/49.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "id-redirect-1.1",
+      "title": "参照対象の変更 — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#id1",
+      "source_type": "official_document"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "documentation": {
+    "description": "<p>現在参照しているプレイヤーの一意IDを整数で返します。引数はありません。Helperにも個別の一意IDが割り当てられ、同じ試合の別のプレイヤーとは重複しません。</p><p>この値は<code>PlayerID(ID_number)</code>リダイレクトや<code>PlayerIDExist(ID_number)</code>で使います。Helperコントローラーに指定するIDや、HitDefのID（TargetID）とは別の識別番号です。</p>",
     "syntax": [
-        "ID"
+      "ID"
     ],
-    "description": "プレイヤーのIDを返します。<br>このIDは、helperを含むプレイヤーが発生すると、自動で割り付けられ、その試合中は変更できません。自分で指定することもできません。<br>\"playerID\"リダイレクトキーワードに使用するため、敵のIDを取得するのが主な使用方法です。<br>戻り値の型: int",
-    "code_sample": [
-        {
-            "title": "プレイヤーのID番号をvalueに代入します。",
-            "code": [
-                "value = ID"
-            ]
-        },
-        {
-            "title": "プレイヤーに最も近い敵のID番号をvalueに代入します。",
-            "code": [
-                "value = EnemyNear, ID"
-            ]
-        }
+    "page_category": "プレイヤー／Helperの一意ID取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "id-local-2002",
+        "id-local-1.0",
+        "id-local-1.1",
+        "id-helper-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧page.versionの2002.04.14は資料世代の表示として保持します。初導入ビルドを確認した記録ではないため、introduced_inはnullです。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "id-legacy",
+          "id-local-2002",
+          "id-local-1.0",
+          "id-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>使用例の<code>value = ID</code>と<code>value = EnemyNear, ID</code>は、値を設定するパラメーターの抜粋です。敵を参照するときは、コントローラーの条件で先に<code>NumEnemy &gt; 0</code>を確認します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "id-local-2002",
+          "id-local-1.0",
+          "id-local-1.1",
+          "id-redirect-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSにはHelperMaxに基づく割当開始値、タッグの割当順、Helper射出・消滅によるID増加、Turnsでのキャラクター交代とID変更、処理順のスロットIDとの区別が記されています。資料の報告を保持しますが、開始値・順序・上限や桁あふれ・全ビルドの寿命を今回実機確認していません。固定のIDから1P/2P番号を推測する公開例にはしません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "id-chaos",
+          "id-local-2002",
+          "id-local-1.0",
+          "id-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "quote": [
-        {
-            "title": "ID - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ID"
-        },
-        {
-            "title": "ID - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#id"
-        },
-        {
-            "title": "ID - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#id"
-        },
-        {
-            "title": "ID - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ID"
-        }
-    ]
+    "source_refs": [
+      "id-local-2002",
+      "id-local-1.0",
+      "id-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+  }
 }

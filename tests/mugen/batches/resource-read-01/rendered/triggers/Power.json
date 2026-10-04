@@ -1,0 +1,72 @@
+{
+  "text": "Power パワーゲージ > 現在パワーゲージ量の取得 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 使用例 引用記事 実行者の標準パワーゲージ（Power）の現在量を整数で返します。通常は 0〜PowerMax の範囲で運用され、比較や分岐では上限を固定値にせず PowerMax 側も参照するのが安全です。戻り値: int 関連するステートコントローラー： PowerAdd , PowerSet 関連するトリガー： PowerMax , Const 構文 Power 引数 なし Q＆A(よくある質問)最大値を固定値（例: 3000）で扱ってよい？上限は PowerMax（通常は [Data] の power 定数）で取得できるため、固定値比較ではなく PowerMax を併用して条件を書くのが安全です。 コードサンプルゲージ残量が1,000（Lv1相当の例）以上のときの条件ゲージを「1000刻み」で運用している想定の単純な比較例です。Trigger1 = Power >= 1000 技の発動条件にする（ゲージが上限未満のときのみ）コマンド入力と状態条件に加えて、ゲージ量で分岐する例です。[State -1, Power Gathering]Type = ChangeStateValue = 300TriggerAll = Command = \"A\"TriggerAll = Command != \"HoldDown\"TriggerAll = StateType = STriggerAll = Power < 3000Trigger1 = Ctrl 必要ゲージ量を条件分岐する（PalNoで閾値を切り替える例）パレット番号等で必要ゲージ量（消費条件）を変える例です。[State -1, Kung Fu Whip_Ex]Type = ChangeStateValue = 1440TriggerAll = var(59) = 0 || var(59) <= -2TriggerAll = Command = \"baem_ex\"TriggerAll = Power >= IfElse(PalNo > 6, 300, 500)Trigger1 = StateType != A && (Ctrl || var(41) = 1) ガードリカバリーをゲージ条件で発動（HitPause中も拾う例）IgnoreHitPause = 1 を併用し、HitPause中でも成立させたい入力を拾う構成例です。[State -1, Guard Recovery]Type = ChangeStateTriggerAll = var(59) = 0 || var(59) <= -2TriggerAll = Command = \"Recovery\"Trigger1 = Power >= 500 && (StateNo = [150, 153])Value = IfElse(Command = \"HoldBack\", 161, 166)IgnoreHitPause = 1 AI行動条件にPowerを組み込む（複合条件の例）距離・相手状態・乱数・ゲージ量などを併用してAI行動を分岐する例です。[State -3]Type = ChangeStateTriggerAll = var(59)TriggerAll = RoundState = 2TriggerAll = StateType != ATriggerAll = P2Life > 0TriggerAll = (P2StateType = S) || (P2StateType = C)TriggerAll = Random <= var(59) * 5 * 80TriggerAll = P2BodyDist X >= 0TriggerAll = IsHelper(1111)Trigger1 = P2MoveType != ATrigger1 = Power >= 1333Trigger1 = Random <= var(59) * 8Trigger1 = P2BodyDist X = [55, 75]Trigger1 = P2StateNo != 130 && P2StateNo != 131Trigger1 = CtrlTrigger2 = StateNo = 210 && MoveHit && P2BodyDist X > 30 && Power >= 340Trigger3 = StateNo = 240 && MoveHit && P2BodyDist X > 30 && Power >= 340Trigger4 = StateNo = 410 && MoveHit && P2BodyDist X > 30 && Power >= 340 && AnimElemTime(4) > 0 && AnimTime <= 0Value = 1020 必殺技の発動条件にする（ゲージ2,000以上など）ゲージ条件と複数の成立条件（Ctrl / 被弾属性 / 接触）を併用する例です。[State -1]Type = ChangeStateValue = 6060TriggerAll = var(59) = [0, 1]TriggerAll = Command = \"ulu\"TriggerAll = Power >= 2000TriggerAll = StateType != ATriggerAll = StateNo != 6470TriggerAll = StateNo != 6471TriggerAll = StateNo != 6600Trigger1 = CtrlTrigger2 = HitDefAttr = SC, NA, SA, HATrigger3 = MoveContact = 1 引用記事Power - Trigger Reference(version 2002.04.14)Power - M.U.G.E.N 1.0 Trigger Reference (Elecbyte)Power - M.U.G.E.N 1.1b1 Trigger Reference (Elecbyte / Web Archive)Power - Elecbyte Wiki (Web Archive)Ikemen GO Wiki (legacy features are documented via Elecbyte 1.1 docs) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "PowerAdd",
+      "href": "./../State/PowerAdd.html"
+    },
+    {
+      "text": "PowerSet",
+      "href": "./../State/PowerSet.html"
+    },
+    {
+      "text": "PowerMax",
+      "href": "./../Trigger/PowerMax.html"
+    },
+    {
+      "text": "Const",
+      "href": "./../Trigger/Const.html"
+    },
+    {
+      "text": "Power - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Power"
+    },
+    {
+      "text": "Power - M.U.G.E.N 1.0 Trigger Reference (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#power"
+    },
+    {
+      "text": "Power - M.U.G.E.N 1.1b1 Trigger Reference (Elecbyte / Web Archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#power"
+    },
+    {
+      "text": "Power - Elecbyte Wiki (Web Archive)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Power"
+    },
+    {
+      "text": "Ikemen GO Wiki (legacy features are documented via Elecbyte 1.1 docs)",
+      "href": "https://github.com/ikemen-engine/Ikemen-GO/wiki"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-power-gauge-mechanism.png"
+  ],
+  "code": []
+}

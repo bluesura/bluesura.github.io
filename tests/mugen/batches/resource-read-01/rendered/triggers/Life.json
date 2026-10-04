@@ -1,0 +1,71 @@
+{
+  "text": "Life ライフ > 現在ライフの取得 | 実装されたバージョン: 2002.04.14 | 対象: ステート実行者 引数 使用例 引用記事 ステート実行者の現在ライフ値を整数で返します。リダイレクト（例: Enemy,Life）を付けた場合は、その評価対象の現在ライフを返します。 関連するステートコントローラー： LifeAdd , LifeSet , TargetLifeAdd 関連するトリガー： LifeMax 構文 Life 引数 なし コードサンプル現在ライフが10以下のときの判定Trigger1 = Life <= 10 引用記事Life - Trigger Reference (MUGEN Beta docs: 2002-03-02 更新)Life - Trigger Reference (MUGEN 1.0)Life - Trigger Reference (MUGEN 1.1 Beta 1)Life - Trigger Reference (Elecbyte mirror)Life - M.U.G.E.N wiki (archive) 公開日:2008.06.05 最終更新日:2026.01.04 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "LifeAdd",
+      "href": "./../State/LifeAdd.html"
+    },
+    {
+      "text": "LifeSet",
+      "href": "./../State/LifeSet.html"
+    },
+    {
+      "text": "TargetLifeAdd",
+      "href": "./../State/TargetLifeAdd.html"
+    },
+    {
+      "text": "LifeMax",
+      "href": "./../Trigger/LifeMax.html"
+    },
+    {
+      "text": "Life - Trigger Reference (MUGEN Beta docs: 2002-03-02 更新)",
+      "href": "https://mugenarchive.com/docs/beta/trigger.html#life"
+    },
+    {
+      "text": "Life - Trigger Reference (MUGEN 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#life"
+    },
+    {
+      "text": "Life - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#life"
+    },
+    {
+      "text": "Life - Trigger Reference (Elecbyte mirror)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#life"
+    },
+    {
+      "text": "Life - M.U.G.E.N wiki (archive)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Life"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen_life_trigger_system_diagram.png"
+  ],
+  "code": []
+}

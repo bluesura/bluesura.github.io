@@ -1,0 +1,84 @@
+{
+  "text": "LifeMax ライフ > 最大ライフの取得 | 実装されたバージョン: 2002.04.14 | 対象: ステート実行者 引数 仕様・注意点 使用例 引用記事 ステート実行者が持てる最大ライフ値を整数で返します。通常はキャラクター定義の [Data] / life（Const(Data.Life)）に基づきますが、チームモードなど状況によっては補正されることがあります。リダイレクト（例: Enemy,LifeMax）を付けた場合は、その評価対象の最大ライフを返します。 関連するステートコントローラー： LifeAdd , LifeSet , TargetLifeAdd 関連するトリガー： Life , Const 構文 LifeMax 引数 なし 仕様・バグ・エラー・変更点Ikemen GO (Nightly, 2025-12-12 報告)LifeSet/LifeAdd と TargetLifeAdd の実行優先度が、MUGEN 1.1 と異なる可能性が報告されています。LifeMax を用いたライフ固定・復帰（例: LifeSet value = LifeMax）を行う設計では、互換性確認を推奨します。 コードサンプル現在ライフが最大値の1/4未満のときの判定Trigger1 = Life < LifeMax / 4 メディスン・メランコリー（相手側変数参照）を用いた周期ダメージ例相手の変数を参照し、最大ライフ比率で周期的にダメージ量を組み立てる例です。最大ライフに連動させることで、ライフ設定が異なる環境でもスケールします。[State -2]Type = LifeAddTriggerAll = Enemy,Name=\"Medicine Melancholy\"Trigger1 = GameTime%8 =0value = -Ceil(LifeMax/1000)*(Enemy,var(55))-Ceil(LifeMax/1000)*(Enemy,var(57))Kill = 0Absolute = 1 コンボ連携数の条件として使う（処理頻度を変化）最大ライフと現在ライフの差分を用い、処理頻度（Persistent）の値を変化させる例です。[State 000];中弾ばらまき（奥Type = ExplodTrigger1 = fvar(0) = 0.7Trigger1 = Time >= 80Anim = 13047PosType = P1Pos = -40+(Random%60),90-(Random%240)Scale = 0.6,0.6Ownpal = 1Vel = 0.1*(20+(Random%30))*Cos((-60+Random%120)*PI/180),0.1*(-40+(Random%80))*Sin((-60+Random%120)*PI/180)SprPriority = 0IgnoreHitPause = 1Persistent = 45 - Floor((Root,LifeMax-Root,Life)/50) 青回復（回復量を最大ライフ比率で制限）削りダメージを変数に記録し、一定間隔で最大ライフ比率の上限付き回復（青回復）を行う例です。;削りダメージ記憶[State -2]Type = VarAddTrigger1 = var(1)>=0 && (StateNo=150||StateNo=152||StateNo=154)Trigger1 = GetHitVar(Damage)>0var(1) = GetHitVar(Damage)+Floor( GetHitVar(Damage)*(fvar(17) - 1.0) )IgnoreHitPause = 1;削りダメージ発生時回復不能時間出現[State -2]Type = VarSetTrigger1 = var(1)>=0 && (StateNo=150||StateNo=152||StateNo=154)Trigger1 = GetHitVar(Damage)>0var(2) = 300;削りダメージ発生時回復不能時間減算[State -2]Type = VarAddTrigger1 = var(2)>0 && (StateNo!=[150,155])var(2) = -1;時間切れ[State -2]Type = LifeAddTrigger1 = RoundState=3 && (WinTime||EnemyNear,WinTime)value = var(1)IgnoreHitPause = 1[State -2];青回復Type = LifeAddTrigger1 = var(1)>0 && (StateNo!=[150,155])&&(StateNo!=[500,501])&&GameTime%20=0&&var(2)=0Trigger1 = !(StateNo=3100&&(Time=[1,40]))Trigger1 = !(StateNo=3101&&(Time=[1,50]))Trigger1 = !(StateNo=3200&&(Time=[8,58]))Trigger1 = !(StateNo=3201&&(Time=[8,49]))Trigger1 = !(StateNo=3300&&(Time=[4,47]))Trigger1 = !(StateNo=3301&&(Time=[4,47]))Trigger1 = !(StateNo=3302&&(Time=[18,61]))Trigger1 = !(StateNo=3303&&(Time=[25,68]))Trigger1 = !(StateNo=3500&&(Time=[10,62]))value = IfElse(var(1)<5*((LifeMax)/1000.0),var(1),Ceil(5*((LifeMax)/1000.0)))Absolute = 1IgnoreHitPause = 1[State -2];青回復分減少Type = VarAddTrigger1 = var(1)>0 && (StateNo!=[150,155])&&(StateNo!=[500,501])&&GameTime%20=0&&var(2)=0Trigger1 = !(StateNo=3100&&(Time=[1,40]))Trigger1 = !(StateNo=3101&&(Time=[1,50]))Trigger1 = !(StateNo=3200&&(Time=[8,58]))Trigger1 = !(StateNo=3201&&(Time=[8,49]))Trigger1 = !(StateNo=3300&&(Time=[4,47]))Trigger1 = !(StateNo=3301&&(Time=[4,47]))Trigger1 = !(StateNo=3302&&(Time=[18,61]))Trigger1 = !(StateNo=3303&&(Time=[25,68]))Trigger1 = !(StateNo=3500&&(Time=[10,62]))var(1) = -IfElse(var(1)<5*((LifeMax)/1000.0),var(1),Ceil(5*((LifeMax)/1000.0)))IgnoreHitPause = 1[State -2];回復値リセットType = VarSetTrigger1 = var(1)>0 && MoveType=H && (StateNo!=[150,155]) && (StateNo!=[0,190])Trigger2 = RoundState=3 && (WinTime||EnemyNear,WinTime)Trigger3 = var(1) < 0var(1) = 0IgnoreHitPause = 1[State -2];回復不能時間リセットType = VarSetTrigger1 = var(1)=0var(2) = 0IgnoreHitPause = 1 ライフを最大ライフ比率で固定減少させる最大ライフの 1/1000 を、2フレームに1回減算する例です（最大ライフが大きいほど減少量も増えます）。[StateDef -2][State ];ライフ自動減少Type = LifeAdd ;ライフ増減value = -Ceil(LifeMax/1000) ;最大の1000分の1Trigger1 = GameTime % 2 = 0 ;2フレームに1回（最大ライフ1000で約2000フレーム）Trigger1 = RoundState = 2 ;試合中IgnoreHitPause = 1 ;ヒットポーズ無視 ライフを半分にする（ラウンド開始前）ラウンド開始前（試合前・暗転中）に現在ライフを最大値の半分へ設定する例です。[StateDef -2][State ];ライフセットType = LifeSet ;ライフ指定Value = Floor(LifeMax/2) ;体力半分Trigger1 = RoundState = 0 ;試合前・暗転中 体力を8割にする（ラウンド開始前）ラウンド開始前に現在ライフを最大値の8割へ設定する例です。[StateDef -2][State ];ライフセットType = LifeSet ;ライフ指定Value = Floor(LifeMax*0.8) ;体力八割Trigger1 = RoundState = 0 ;試合前・暗転中;*1=100% *0.5=50% のように指定可能。Valueを特定数値にしても可。;※最大値より増やすことはできません。 根性補正の条件分岐（最大ライフ比率で分岐）現在ライフ/最大ライフ比率を用いて補正値を分岐する例です。[State ];根性補正 敷居40最大補正35Type = VarSetTrigger1 = !IsHelperfvar(19) =IfElse((Life*1000/(LifeMax)<=400),IfElse(Helper(60000),var(19)=0,(1-0.35)+(0.35*Life/(LifeMax*0.40)),1),1)IgnoreHitPause = 1Persistent = 1 引用記事LifeMax - Trigger Reference (MUGEN Beta docs: 2002-03-02 更新)LifeMax - Trigger Reference (MUGEN 1.0)LifeMax - Trigger Reference (MUGEN 1.1 Beta 1)LifeMax - Trigger Reference (Elecbyte mirror)LifeMax - M.U.G.E.N wiki (archive)ADIのMUGENメモ 公開日:2008.06.05 最終更新日:2026.01.04 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "LifeAdd",
+      "href": "./../State/LifeAdd.html"
+    },
+    {
+      "text": "LifeSet",
+      "href": "./../State/LifeSet.html"
+    },
+    {
+      "text": "TargetLifeAdd",
+      "href": "./../State/TargetLifeAdd.html"
+    },
+    {
+      "text": "Life",
+      "href": "./../Trigger/Life.html"
+    },
+    {
+      "text": "Const",
+      "href": "./../Trigger/Const.html"
+    },
+    {
+      "text": "LifeMax - Trigger Reference (MUGEN Beta docs: 2002-03-02 更新)",
+      "href": "https://mugenarchive.com/docs/beta/trigger.html#lifemax"
+    },
+    {
+      "text": "LifeMax - Trigger Reference (MUGEN 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#lifemax"
+    },
+    {
+      "text": "LifeMax - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#lifemax"
+    },
+    {
+      "text": "LifeMax - Trigger Reference (Elecbyte mirror)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#lifemax"
+    },
+    {
+      "text": "LifeMax - M.U.G.E.N wiki (archive)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/LifeMax"
+    },
+    {
+      "text": "ADIのMUGENメモ",
+      "href": "http://mugen.niza.nobody.jp"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen_life_trigger_system_diagram.png"
+  ],
+  "code": []
+}

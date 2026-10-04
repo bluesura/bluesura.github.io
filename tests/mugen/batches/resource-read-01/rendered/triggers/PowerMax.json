@@ -1,0 +1,71 @@
+{
+  "text": "PowerMax パワーゲージ > 最大パワーゲージ量の取得 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 使用例 引用記事 実行者の標準パワーゲージ（Power）の最大量を整数で返します。通常はキャラクター定義の [Data] にある power 定数（例: 3000）で設定されます。戻り値: int 関連するステートコントローラー： PowerAdd , PowerSet 関連するトリガー： Power , Const 構文 PowerMax 引数 なし コードサンプルゲージ量が最大値の半分未満のときの条件最大値側を PowerMax で参照し、上限変更にも追従できる形にします。Trigger1 = Power < PowerMax / 2 引用記事PowerMax - Trigger Reference(version 2002.04.14)PowerMax - M.U.G.E.N 1.0 Trigger Reference (Elecbyte)PowerMax - M.U.G.E.N 1.1b1 Trigger Reference (Elecbyte / Web Archive)PowerMax - Elecbyte Wiki (Web Archive)Ikemen GO Wiki (legacy features are documented via Elecbyte 1.1 docs) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "PowerAdd",
+      "href": "./../State/PowerAdd.html"
+    },
+    {
+      "text": "PowerSet",
+      "href": "./../State/PowerSet.html"
+    },
+    {
+      "text": "Power",
+      "href": "./../Trigger/Power.html"
+    },
+    {
+      "text": "Const",
+      "href": "./../Trigger/Const.html"
+    },
+    {
+      "text": "PowerMax - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#PowerMax"
+    },
+    {
+      "text": "PowerMax - M.U.G.E.N 1.0 Trigger Reference (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#powermax"
+    },
+    {
+      "text": "PowerMax - M.U.G.E.N 1.1b1 Trigger Reference (Elecbyte / Web Archive)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#powermax"
+    },
+    {
+      "text": "PowerMax - Elecbyte Wiki (Web Archive)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PowerMax"
+    },
+    {
+      "text": "Ikemen GO Wiki (legacy features are documented via Elecbyte 1.1 docs)",
+      "href": "https://github.com/ikemen-engine/Ikemen-GO/wiki"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-power-gauge-mechanism.png"
+  ],
+  "code": []
+}

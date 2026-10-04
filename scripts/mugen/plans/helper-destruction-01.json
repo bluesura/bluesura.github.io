@@ -1,0 +1,523 @@
+{
+  "id": "helper-destruction-01",
+  "reviewed_on": "2026-10-04",
+  "description": "DestroySelfのHelper専用効果、1.1任意項目と子孫/Explod消去、RC5のステート評価中断修正を整理。旧不具合と対策例は保持。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "DestroySelf",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "page_category": "Helper自身の消去",
+            "description": "<p>実行者がHelperの場合、そのHelper自身を消去します。通常のプレイヤー本体には使用できません。</p><p>2002.04.14 / 1.0には固有パラメーターがありません。1.1では、子孫Helperも消す <code>Recursive</code> と、所有するExplodも消す <code>RemoveExplods</code> を任意指定できます。どちらも省略時は <code>0</code> です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "destroyself-local-2002",
+                "destroyself-local-1.0",
+                "destroyself-local-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "destroyself-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "子孫Helperも消去するフラグ"
+            ],
+            "description": "<p>1.1の任意項目です。<code>1</code> を指定すると、実行者Helperだけでなく、その子・孫以降のHelperも再帰的に消去します。省略時は <code>0</code> です。</p><p>子孫が所有するExplodも消す場合は、<code>RemoveExplods = 1</code> を併せて指定します。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "destroyself-local-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "comment": "旧読み込み順?を保持。一般的に検証済みという管理者確認から個別の未知順序を補完しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "destroyself-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "所有Explodも消去するフラグ"
+            ],
+            "description": "<p>1.1の任意項目です。<code>1</code> を指定すると、実行者Helperが所有するExplodも消去します。<code>Recursive = 1</code> も指定した場合、子孫Helperが所有するExplodも消去します。省略時は <code>0</code> です。</p><p>スプライトや飛び道具全般を消去する項目ではありません。対象はExplodです。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "destroyself-local-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "comment": "旧読み込み順?を保持。一般的に検証済みという管理者確認から個別の未知順序を補完しない。"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "compatibility",
+              "legacy_index": 0,
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>1.1の資料には <code>Recursive</code>・<code>RemoveExplods</code> が記載されています。2002.04.14 / 1.0の資料では固有パラメーターはありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "destroyself-local-2002",
+                  "destroyself-local-1.0",
+                  "destroyself-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "legacy_index": 1,
+              "content": "<p>旧履歴1の「1.0より前」のExplod残存を原位置に保持する。1.1公式資料にも消去されなかったExplodは所有元を失うとあるので、残存自体を旧世代限定と断定しない。1.1の履歴にはExplodを消さずにDestroySelfした場合の不安定動作修正があるが、特定の修正ビルドは明記されない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "official_history",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "destroyself-local-1.1",
+                  "destroyself-history-1.1",
+                  "destroyself-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "legacy_index": 2,
+              "content": "<p>旧履歴2のDestroySelf直後のHelper生成によるクラッシュを原位置に保持する。RC5では残りのステート評価を中断しなかった不具合が修正されたが、旧報告の対象ビルド・具体的な再現条件が不明なため、同じ不具合と確定せず内部で追跡する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_history",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "destroyself-history-rc5",
+                  "destroyself-chaos",
+                  "destroyself-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "version_change",
+              "change": "fixed",
+              "at": "mugen-1.0-rc5",
+              "content": "<p>1.0 RC5で、<code>DestroySelf</code> が残りのステート評価を中断しない不具合が修正されました。修正前は、後続のコントローラーによってクラッシュや不定の動作が起こる場合がありました。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "destroyself-history-rc5"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>1.1では、消去されるHelperへバインドされているプレイヤー・Explodのバインドが強制的に解除されます。消去されなかった所有Explodは所有元を失います。残したくないExplodは <code>RemoveExplods</code> で一緒に消すよう指定します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "destroyself-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>1.1履歴のNew in 1.1にはRecursive追加があるが、RemoveExplodsの独立した追加項目や正確な初対応Alphaは明記されない。Beta 1のコントローラー資料に両項目があることと、Alpha 1等への初導入推定を区別する。両項目の初対応ビルドは未確定のまま保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "official_history"
+                ],
+                "source_refs": [
+                  "destroyself-local-1.1",
+                  "destroyself-history-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSの消去タイミング、スロット再利用、Target/ヒットカウント問題、Helper/Explod生成との順序依存、1.1 Beta 1のDraw.offsetによるExplod位置ずれ報告を保持する。自動着地や140番への移動の前後は資料でも検証不足で、今回実機再現していない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "destroyself-chaos"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧「分身バグ対策」の0番ステートのIsHelper/DestroySelf例は原位置に保存する。0番へ来るHelperを消す条件であり、Helperのすべての分身・ステート奪取を防ぐ保証ではない。適用対象の説明と再現ケースが未整理のため公開しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "destroyself-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧概要のラウンド終了時のHelper自動消去と同時存在数上限に関する説明を原位置に保持する。今回のDestroySelf公式欄は上限値やラウンド終了時処理を明記しないため、消去の仕様へ推定の詳細を加えない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "destroyself-local-2002",
+                  "destroyself-local-1.0",
+                  "destroyself-local-1.1",
+                  "destroyself-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "アニメーション終了時にHelperを消す",
+            "description": "<p>Helperのステートに記述します。アニメーションの終了時に自身を消去します。</p>",
+            "code": [
+              "[State 200, Remove helper]",
+              "Type = DestroySelf",
+              "Trigger1 = AnimTime = 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "destroyself-local-2002",
+              "destroyself-local-1.0",
+              "destroyself-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "destroyself-local-2002",
+            "title": "DestroySelf — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#DestroySelf",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "destroyself-local-1.0",
+            "title": "DestroySelf — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#destroyself",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "destroyself-local-1.1",
+            "title": "DestroySelf — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#destroyself",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "destroyself-history-rc5",
+            "title": "DestroySelf — Elecbyte 1.0 RC5 修正履歴",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc5",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "destroyself-history-1.1",
+            "title": "DestroySelf — Elecbyte New in 1.1 履歴",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+            "source_type": "official_history",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "destroyself-chaos",
+            "title": "DestroySelf — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/212.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "destroyself-legacy-data",
+            "title": "DestroySelf — 移行前の概要・旧履歴・分身対策例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/ca4dfabff55b0c01e80accc0752653e0e68706b3/src/content/state-controllers/DestroySelf.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "version / notes / code_sample/0",
+          "reason": "1.1の個別追加/安定化ビルド、旧生成後クラッシュ・Explod位置ずれ・消去タイミング・分身対策例の再現条件は未確定。"
+        }
+      ]
+    }
+  ]
+}

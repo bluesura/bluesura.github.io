@@ -1,101 +1,783 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "ParentVarAdd",
-		"target": "実行者の親",
-		"category": ["変数の操作","変数への値の加算"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "ParentVarAdd",
-	"description": "<p>Helperのステート内で記述。Helperの親の変数を増減します。Helper以外のステートで書いても意味なし。</p><p>Helperは固有の変数を持ちますので、VarAddだとHelper自身の変数を増減することになります。</p>",
-	"category": "state",
-	"associated_state": ["ParentVarSet"],
-
-	"version": [
-		{"no": "エラー", "content": "var(番号),fvar(番号)で大文字を使用するとエラーが発生します。"},
-		{"no": "警告文", "content": "SET PARENTVAR OUT OF RANGE:varなら-1以下または60以上、fvarなら-1以下または40以上に値を代入（対象がfvarであっても警告文にはVARと表示される。）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "v",
-			"value": ["整数変数番号"],
-			"type": ["int"],
-			"description": "<p>変更する親の整数変数の番号を0～59から指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "value",
-			"value": ["整数増加量"],
-			"type": ["int"],
-			"description": "<p>代入値を整数で指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "; fv",
-			"value": ["浮動小数変数番号"],
-			"type": ["int"],
-			"description": "<p>変更する親の浮動小数変数の番号を0～39から指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "; value",
-			"value": ["浮動小数変数増加量"],
-			"type": ["float"],
-			"description": "<p>代入値を浮動小数で指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["2"]
-		},
-		{
-			"parameter": "; var(番号)",
-			"value": ["整数増減量"],
-			"type": ["int", "int"],
-			"description": "<p>vとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "instead",
-			"default_value": [""],
-			"load_priority": ["2 ;先に()内がロードされます。"]
-		},
-		{
-			"parameter": "; fvar(番号)",
-			"value": ["小数増減量"],
-			"type": ["int", "float"],
-			"description": "<p>fvとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "instead",
-			"default_value": [""],
-			"load_priority": ["2 ;先に()内がロードされます。"]
-		}
-	],
-
-	"quote": [
-		{"title": "ParentVarAdd - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ParentVarAdd"},
-		{"title": "ParentVarAdd - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#parentvaradd"},
-		{"title": "ParentVarAdd - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#parentvaradd"},
-		{"title": "ParentVarAdd - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ParentVarAdd"},
-		{"title": "ParentVarAdd - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ParentVarAdd&protocol=http"},
-		{"title": "ParentVarAdd - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ParentVarAdd"},
-		{"title": "ParentVarAdd - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "ParentVarAdd",
+    "target": "実行者の親",
+    "category": [
+      "変数の操作",
+      "変数への値の加算"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "ParentVarAdd",
+  "description": "<p>Helperのステート内で記述。Helperの親の変数を増減します。Helper以外のステートで書いても意味なし。</p><p>Helperは固有の変数を持ちますので、VarAddだとHelper自身の変数を増減することになります。</p>",
+  "category": "state",
+  "associated_state": [
+    "ParentVarSet"
+  ],
+  "version": [
+    {
+      "no": "エラー",
+      "content": "var(番号),fvar(番号)で大文字を使用するとエラーが発生します。"
+    },
+    {
+      "no": "警告文",
+      "content": "SET PARENTVAR OUT OF RANGE:varなら-1以下または60以上、fvarなら-1以下または40以上に値を代入（対象がfvarであっても警告文にはVARと表示される。）",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "v",
+      "value": [
+        "整数変数番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>変更する親の整数変数の番号を0～59から指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "value": [
+          "整数変数番号"
+        ],
+        "description": "<p>直近の親の整数変数の番号を、0～59の整数へ評価される式で指定します。<code>v</code>形式を選ぶ場合、整数用の<code>value</code>とセットで必須です。</p>",
+        "parameter_type": "required",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "parentvaradd-local-2002",
+            "parentvaradd-local-1.0",
+            "parentvaradd-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "v形式では必須（0～59の整数式）",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "parentvaradd-local-2002",
+              "parentvaradd-local-1.0",
+              "parentvaradd-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "value",
+      "value": [
+        "整数増加量"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>代入値を整数で指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "documentation": {
+        "value": [
+          "整数加算量"
+        ],
+        "description": "<p><code>v</code>で指定した整数変数へ加算する量を整数式で指定します。負の値ならその分だけ減少します。</p>",
+        "parameter_type": "required",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "parentvaradd-local-2002",
+            "parentvaradd-local-1.0",
+            "parentvaradd-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "v形式では必須（整数加算量）",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "parentvaradd-local-2002",
+              "parentvaradd-local-1.0",
+              "parentvaradd-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "; fv",
+      "value": [
+        "浮動小数変数番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>変更する親の浮動小数変数の番号を0～39から指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "value": [
+          "浮動小数変数番号"
+        ],
+        "description": "<p>直近の親の浮動小数変数の番号を、0～39の整数へ評価される式で指定します。<code>fv</code>形式を選ぶ場合、浮動小数用の<code>value</code>とセットで必須です。番号自体は整数です。</p>",
+        "parameter_type": "required",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "parentvaradd-local-2002",
+            "parentvaradd-local-1.0",
+            "parentvaradd-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "fv形式では必須（0～39の整数式）",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "parentvaradd-local-2002",
+              "parentvaradd-local-1.0",
+              "parentvaradd-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "; value",
+      "value": [
+        "浮動小数変数増加量"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>代入値を浮動小数で指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "documentation": {
+        "value": [
+          "浮動小数加算量"
+        ],
+        "description": "<p><code>fv</code>で指定した浮動小数変数へ加算する量を浮動小数式で指定します。負の値ならその分だけ減少します。</p>",
+        "parameter_type": "required",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "parentvaradd-local-2002",
+            "parentvaradd-local-1.0",
+            "parentvaradd-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "fv形式では必須（浮動小数加算量）",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "parentvaradd-local-2002",
+              "parentvaradd-local-1.0",
+              "parentvaradd-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "; var(番号)",
+      "value": [
+        "整数増減量"
+      ],
+      "type": [
+        "int",
+        "int"
+      ],
+      "description": "<p>vとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "instead",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "2 ;先に()内がロードされます。"
+      ],
+      "documentation": {
+        "value": [
+          "整数加算量"
+        ],
+        "description": "<p><code>v</code>と整数用<code>value</code>を1行で記述する代替書式です。括弧内は0～59の整数式、右辺は整数加算量です。<code>var(0) = 1</code>は直近の親のvar(0)へ1を加算します。式中の変数代入とは別の書式です。</p>",
+        "parameter_type": "instead",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "parentvaradd-local-2002",
+            "parentvaradd-local-1.0",
+            "parentvaradd-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "special_syntax",
+      "default": [
+        {
+          "kind": "required",
+          "display": "この代替書式では必須（番号と整数加算量を指定）",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "parentvaradd-local-2002",
+              "parentvaradd-local-1.0",
+              "parentvaradd-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "; fvar(番号)",
+      "value": [
+        "小数増減量"
+      ],
+      "type": [
+        "int",
+        "float"
+      ],
+      "description": "<p>fvとvalueの代替書式。コードを読んだ時の理解のしやすさは、こちらが良いのでオススメです。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "instead",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "2 ;先に()内がロードされます。"
+      ],
+      "documentation": {
+        "value": [
+          "浮動小数加算量"
+        ],
+        "description": "<p><code>fv</code>と浮動小数用<code>value</code>を1行で記述する代替書式です。括弧内は0～39の整数式、右辺は浮動小数加算量です。<code>fvar(0) = 0.5</code>は直近の親のfvar(0)へ0.5を加算します。</p>",
+        "parameter_type": "instead",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "parentvaradd-local-2002",
+            "parentvaradd-local-1.0",
+            "parentvaradd-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "special_syntax",
+      "default": [
+        {
+          "kind": "required",
+          "display": "この代替書式では必須（番号と浮動小数加算量を指定）",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "parentvaradd-local-2002",
+              "parentvaradd-local-1.0",
+              "parentvaradd-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "ParentVarAdd - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ParentVarAdd"
+    },
+    {
+      "title": "ParentVarAdd - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#parentvaradd"
+    },
+    {
+      "title": "ParentVarAdd - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#parentvaradd"
+    },
+    {
+      "title": "ParentVarAdd - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ParentVarAdd"
+    },
+    {
+      "title": "ParentVarAdd - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ParentVarAdd&protocol=http"
+    },
+    {
+      "title": "ParentVarAdd - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ParentVarAdd"
+    },
+    {
+      "title": "ParentVarAdd - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "id": "parentvaradd-local-2002",
+      "title": "ParentVarAdd — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ParentVarAdd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "parentvaradd-local-1.0",
+      "title": "ParentVarAdd — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#parentvaradd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "parentvaradd-local-1.1",
+      "title": "ParentVarAdd — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#parentvaradd",
+      "source_type": "official_document"
+    },
+    {
+      "id": "parentvaradd-parent-chaos",
+      "title": "ParentVarSet — MUGEN CNS WIKI CHAOS@予定（直近の親への作用）",
+      "url": "https://w.atwiki.jp/mugencns/pages/244.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "parentvaradd-history-b1",
+      "title": "ParentVarAdd — Elecbyte 1.1 Beta 1 修正履歴",
+      "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-1-beta-1",
+      "source_type": "official_history"
+    },
+    {
+      "id": "parentvaradd-legacy-warning",
+      "title": "旧警告文の出典（今回本文取得不可）",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "personal_research",
+      "visibility": "internal"
+    },
+    {
+      "id": "parentvaradd-legacy-data",
+      "title": "ParentVarAdd — 移行前の値・履歴・読み込み順",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/f8a61ef5e2839127c6f1afc155bbf82a81edd724/src/content/state-controllers/ParentVarAdd.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "page_category": "直近の親の整数・浮動小数変数への加算",
+    "description": "<p>実行者がHelperの場合、直近の親の整数変数または浮動小数変数の1つへ、指定した値を加算します。正の値で増加、負の値で減少します。</p><p>親は必ずしも本体（Root）ではありません。Helperから生成したHelperでは、その生成元のHelperが対象です。実行者がHelperでなければ何もしません。<code>VarAdd</code>を使うとHelper自身の変数を変更します。</p><p>整数用の <code>v</code> と <code>value</code>、浮動小数用の <code>fv</code> と <code>value</code>、または各代替書式から1つを選びます。1つのコントローラーで整数変数と浮動小数変数を同時には変更しません。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document",
+        "community_documentation"
+      ],
+      "source_refs": [
+        "parentvaradd-local-2002",
+        "parentvaradd-local-1.0",
+        "parentvaradd-local-1.1",
+        "parentvaradd-parent-chaos"
+      ],
+      "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+    }
+  },
+  "constraints": [
+    {
+      "kind": "one_of",
+      "parameters": [
+        "v",
+        "; fv",
+        "; var(番号)",
+        "; fvar(番号)"
+      ],
+      "description": "整数版・浮動小数版・各代替書式から、使用する書式を1つ選びます。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "parentvaradd-local-2002",
+          "parentvaradd-local-1.0",
+          "parentvaradd-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "mutually_exclusive",
+      "parameters": [
+        "v",
+        "; fv",
+        "; var(番号)",
+        "; fvar(番号)"
+      ],
+      "description": "1つのコントローラーでは選択した書式だけを記述します。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "parentvaradd-local-2002",
+          "parentvaradd-local-1.0",
+          "parentvaradd-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "requires",
+      "parameters": [
+        "v",
+        "value"
+      ],
+      "description": "v形式では整数用valueも必須です。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "parentvaradd-local-2002",
+          "parentvaradd-local-1.0",
+          "parentvaradd-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "requires",
+      "parameters": [
+        "; fv",
+        "; value"
+      ],
+      "description": "fv形式では浮動小数用valueも必須です。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "parentvaradd-local-2002",
+          "parentvaradd-local-1.0",
+          "parentvaradd-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "var(番号),fvar(番号)で大文字を使用するとエラーが発生します。<p>大文字の受理条件と対応ビルド境界は再現未確認。公開例は小文字のvar/fvarで記述します。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "parentvaradd-legacy-data"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "SET PARENTVAR OUT OF RANGE:varなら-1以下または60以上、fvarなら-1以下または40以上に値を代入（対象がfvarであっても警告文にはVARと表示される。）<p>警告文・表示番号・発生条件の実機再現は未確認。旧出典本文は今回取得できませんでした。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "parentvaradd-legacy-data",
+          "parentvaradd-legacy-warning"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      },
+      "legacy_index": 1
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>代替書式の<code>var(番号) = 値</code> / <code>fvar(番号) = 値</code>も加算です。<code>=</code>があっても指定値への置き換えにはなりません。式中の変数代入・加算の書式とは異なります。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "parentvaradd-local-2002",
+          "parentvaradd-local-1.0",
+          "parentvaradd-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "warning",
+      "content": "<p>相手をカスタムステートへ移した場合、処理を実行するのはその相手です。このコントローラーは相手がHelperなら、その直近の親の変数を変更します。ステート記述者の変数を変更するつもりで使用しないでください。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "parentvaradd-local-2002",
+          "parentvaradd-local-1.0",
+          "parentvaradd-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>整数式・浮動小数式の仕様は資料へ対応済みですが、型を混在させた場合の変換・丸め、複数書式併記時の優先順位、範囲外番号の実行条件は実測していません。既存の読み込み順とは別に検証が必要です。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "parentvaradd-local-2002",
+          "parentvaradd-local-1.0",
+          "parentvaradd-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "limitation",
+      "content": "<p>1.1の公式資料では、<code>sysvar</code> / <code>sysfvar</code>はこのコントローラーで使用できません。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "parentvaradd-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "version_change",
+      "change": "fixed",
+      "at": "mugen-1.1-b1",
+      "content": "<p>ParentVarAdd / ParentVarSetで<code>sysvar</code> / <code>sysfvar</code>を記述した際の解析時クラッシュが修正されました。システム変数への対応追加を意味する履歴ではありません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "parentvaradd-history-b1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "親の整数変数を1増やす",
+      "description": "<p>Helperのステートに記述します。var(0)へ1を加算します。標準書式を使う例です。代替書式を使う場合はv/valueの2行を削除し、コメントに示す1行へ置き換えます。</p>",
+      "code": [
+        "[State 200, ParentVarAdd integer]",
+        "Type = ParentVarAdd",
+        "Trigger1 = Time = 0",
+        "v = 0",
+        "value = 1",
+        "; Alternate syntax: var(0) = 1"
+      ]
+    },
+    {
+      "title": "親の浮動小数変数を0.5減らす",
+      "description": "<p>Helperのステートに記述します。fvar(0)へ-0.5を加算し、0.5減少させます。代替書式を使う例です。fv/valueの標準書式を使う場合はfvarの行を削除し、コメントの2行を有効にします。</p>",
+      "code": [
+        "[State 200, ParentVarAdd float]",
+        "Type = ParentVarAdd",
+        "Trigger1 = Time = 0",
+        "fvar(0) = -0.5",
+        "; Alternate standard syntax:",
+        "; fv = 0",
+        "; value = -0.5"
+      ]
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "parentvaradd-local-2002",
+      "parentvaradd-local-1.0",
+      "parentvaradd-local-1.1"
+    ],
+    "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+  }
 }

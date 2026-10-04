@@ -796,3 +796,20 @@ npm run mugen:batch -- --batch helper-destruction-01 --target DestroySelf --appl
 ```
 
 このバッチは適用済みです。次はVarAdd・ParentVarSet・ParentVarAddの変数番号・値・代替書式を照合します。
+
+## variable-operations-01：変数の加算・親への操作の3件
+
+2026-10-04、VarAdd / ParentVarSet / ParentVarAddを移行しました。移行前のJSON・記事・ハッシュは `tests/mugen/batches/variable-operations-01/` に保存しています。
+
+- 保存済み公式3世代を照合し、整数番号0～59、浮動小数番号0～39、v/value・fv/valueと代替書式を整理しました。VarAdd系の `var(番号) = 値` も加算で、ParentVarSetは置き換えです。旧ラベル・説明・空欄/?の省略値を原位置へ残し、必須値を推測の0で埋めていません。
+- ParentVarSetの旧optionalを保持し、公開表示では選択した書式の必須項目へ訂正しました。1つの書式を選ぶ制約と番号/valueの組を明記し、CNS欄の固有6行はすべてコメントにしています。基本例では整数標準書式と浮動小数代替書式を別々に示しています。
+- ParentVar系は直近の親へ作用し、親がHelperならそのHelperが対象です。[CHAOSのParentVarSet](https://w.atwiki.jp/mugencns/pages/244.html)とも照合しました。カスタムステートの実行者・対象を明記し、1.1のsysvar/sysfvar非対応とBeta 1の解析クラッシュ修正を分けています。修正をシステム変数対応の追加へ変換しません。
+- 旧7履歴、停止中のVarAdd、大文字・警告・型変換・書式併記の優先順位は内部に保持しました。[CHAOSのVarAdd](https://w.atwiki.jp/mugencns/pages/243.html)のsysvar/sysfvar記載も未文書化の対応調査として残しています。ParentVarAddのCHAOS本文と旧警告の出典は今回取得できず、実機検証も未実施です。読み込み順1/2と括弧内先行の注釈は保持しています。
+
+```sh
+npm run mugen:batch-baseline -- --batch variable-operations-01
+npm run mugen:batch -- --batch variable-operations-01 --target VarAdd --target ParentVarSet --target ParentVarAdd
+npm run mugen:batch -- --batch variable-operations-01 --target VarAdd --target ParentVarSet --target ParentVarAdd --apply
+```
+
+このバッチは適用済みです。次はVarRandom・VarRangeSetです。

@@ -284,3 +284,7 @@ ID / IsHelper / PlayerIDExistを追加し、累計145件（54バッチ129件＋�
 ### 2026-10-05：owned-counts-01
 
 NumHelper / NumTarget / NumExplodを追加し、累計148件（55バッチ132件＋主要・補助16件）、残り86件です。各所有数と任意IDを構造化し、Helperの0以下とTarget/Explodの-1以下の全数扱いを分離。旧説明・2例ずつを原位置に保持し、存在確認から参照する例を追加しました。公式NumTargetのNumExplod例という表記差、CHAOSのRoot共有と所有・Target上限8/ID上書きは内部へ残しました。導入ビルド・特殊型・射出/消滅境界・所有の細部は実機未検証です。243テスト・263ページビルド・261 URL/159比較対象ページのHTML検査を通過。内部注記8件追加の342件、未対応旧履歴161項目。次はNumProj・NumProjIDです。
+
+### 2026-10-05：projectile-counts-01
+
+NumProj / NumProjIDの2件で累計150件（56バッチ134件＋主要・補助16件）、残り84件です。引数なし総数と必須ProjIDの個数、負IDの0扱いを区別。Helper生成ProjectileのRoot所有は公式3世代とCHAOSに照合し、Root参照例を追加しました。旧原文/有効な例を保持。SFalse/bottom資料差・初導入・個数更新や所有/無効型の特殊条件は内部へ保存し、実機未検証です。247テスト・263ページビルド・261 URL/161比較対象ページHTML検査を通過。内部注記345件、未対応旧履歴161項目。次はProjContact・ProjHit・ProjGuardedです。

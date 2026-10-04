@@ -1,62 +1,282 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "NumProjID",
-        "target": "飛び道具",
-        "category": [
-            "飛び道具",
-            "指定IDの飛び道具数の取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.12.21",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "NumProjID",
+    "target": "飛び道具",
+    "category": [
+      "飛び道具",
+      "指定IDの飛び道具数の取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.12.21",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "NumProjID",
+  "summary": "<p>プレイヤーの特定IDのProjectile数を返します。</p>",
+  "syntax": [
+    "NumProjID(ProjectileのID)"
+  ],
+  "description": "プレイヤーの特定IDのProjectile数を返します。<br>コマンド条件で飛び道具の数を制限したい場合などに使用します。<br>引数には、数えたいProjectileのIDを、intで指定します。引数に負数を指定した場合、IDは0とみなされます。<br>戻り値の型: int",
+  "associated_state": [
+    "Projectile"
+  ],
+  "code_sample": [
+    {
+      "title": "プレイヤーが放出したID1234の飛び道具が1つだけ存在している場合のトリガー",
+      "code": [
+        "Trigger1 = NumProjID(1234) = 1"
+      ]
     },
-    "category": "trigger",
-    "trigger": "NumProjID",
-    "summary": "<p>プレイヤーの特定IDのProjectile数を返します。</p>",
+    {
+      "title": "ProjID 1234のProjectileが存在しないことを調べる",
+      "code": [
+        "Trigger1 = NumProjID(1234) = 0"
+      ]
+    },
+    {
+      "title": "Helperから本体が所有する指定ProjIDの数を調べる",
+      "description": "<p>Helper内の条件として使う例です。Rootに参照を変更し、ProjID 1234のProjectileが存在するか調べます。</p>",
+      "code": [
+        "Trigger1 = Root, NumProjID(1234) > 0"
+      ]
+    }
+  ],
+  "associated_trigger": [
+    "NumProj",
+    "NumProjID",
+    "ProjCancelTime",
+    "ProjContact",
+    "ProjContactTime",
+    "ProjGuarded",
+    "ProjGuardedTime",
+    "ProjHit",
+    "ProjHitTime"
+  ],
+  "quote": [
+    {
+      "title": "NumProjID - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumProjID"
+    },
+    {
+      "title": "NumProjID - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numprojid"
+    },
+    {
+      "title": "NumProjID - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numprojid"
+    },
+    {
+      "title": "NumProjID - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumProjID"
+    },
+    {
+      "id": "numprojid-local-2002",
+      "title": "NumProjID — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumProjID",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numprojid-projectile-2002",
+      "title": "Projectileの所有者とProjID — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#Projectile",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numprojid-local-1.0",
+      "title": "NumProjID — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#numprojid",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numprojid-projectile-1.0",
+      "title": "Projectileの所有者とProjID — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#projectile",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numprojid-local-1.1",
+      "title": "NumProjID — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#numprojid",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numprojid-projectile-1.1",
+      "title": "Projectileの所有者とProjID — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#projectile",
+      "source_type": "official_document"
+    },
+    {
+      "id": "numprojid-legacy",
+      "title": "移行前の説明・構文・使用例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/660dcf3311a134ee3a8235ac7895959e268d264d/src/content/triggers/NumProjID.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "numprojid-chaos",
+      "title": "NumProjID — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/169.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "function",
+  "arguments": [
+    {
+      "name": "exprn",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "expression",
+      "description": "<p>数えるProjectileのProjIDを返す整数式です。負のIDは0として扱います。引数を省略する書式ではありません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "numprojid-local-2002",
+          "numprojid-local-1.0",
+          "numprojid-local-1.1",
+          "numprojid-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代のTrigger/Projectile資料を照合。CHAOSのNumProjIDも確認。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "documentation": {
+    "description": "<p>参照しているプレイヤーが現在所有するProjectileのうち、指定したProjIDと一致するものの数を整数で返します。</p><p><code>NumProjID(exprn)</code>の引数は必須の整数式です。指定するのはProjectileコントローラーの<code>ProjID</code>で、IDトリガーの一意PlayerIDやHitDefのID（TargetID）とは別の値です。</p><p>負のIDは0として扱います。<code>NumProjID(0)</code>はProjID 0のProjectileの数であり、総数を調べるときは引数なしの<code>NumProj</code>を使います。</p>",
     "syntax": [
-        "NumProjID(ProjectileのID)"
+      "NumProjID(exprn)"
     ],
-    "description": "プレイヤーの特定IDのProjectile数を返します。<br>コマンド条件で飛び道具の数を制限したい場合などに使用します。<br>引数には、数えたいProjectileのIDを、intで指定します。引数に負数を指定した場合、IDは0とみなされます。<br>戻り値の型: int",
-    "associated_state": [
-        "Projectile"
+    "page_category": "所有Projectileの指定ProjIDの数の取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document",
+        "community_documentation"
+      ],
+      "source_refs": [
+        "numprojid-local-2002",
+        "numprojid-local-1.0",
+        "numprojid-local-1.1",
+        "numprojid-projectile-2002",
+        "numprojid-projectile-1.0",
+        "numprojid-projectile-1.1",
+        "numprojid-chaos"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代のTrigger/Projectile資料を照合。CHAOSのNumProjIDも確認。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "error",
+      "content": "<p>MUGEN 1.0 / 1.1では、exprnの評価結果がbottomなら戻り値もbottomです。正常に数えた結果の0とは区別します。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "numprojid-local-1.0",
+          "numprojid-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代のTrigger/Projectile資料を照合。CHAOSのNumProjIDも確認。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>2002.04.14資料は引数がSFalseならSFalse、1.0/1.1資料はbottomならbottomを返すと記載しています。資料世代の差を保持し、具体的な導入境界は推測しません。NumProjID(0)はProjID 0だけを数えるというCHAOSの説明と、負のIDを0にする公式記載は、NumTarget/NumExplodの負数で全数という扱いから区別します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "numprojid-local-2002",
+          "numprojid-local-1.0",
+          "numprojid-local-1.1",
+          "numprojid-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代のTrigger/Projectile資料を照合。CHAOSのNumProjIDも確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>Helperが生成したProjectileは、直ちにRoot（本体）の所有になります。Helperから本体が所有するProjectileを数えるときは、<code>Root, NumProj</code>または<code>Root, NumProjID(exprn)</code>で本体を参照します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "numprojid-projectile-2002",
+          "numprojid-projectile-1.0",
+          "numprojid-projectile-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代のTrigger/Projectile資料を照合。CHAOSのNumProjIDも確認。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧page.versionの2002.04.14は資料世代として保持し、初導入ビルドはnullです。CHAOSのNumProj本文は今回取得できませんでした。所有者不在・カスタムステート/Projectile未定義条件・生成やヒット/相殺/消去アニメーション中に個数が変化する正確なタイミング、整数範囲や型変換・警告は実機未確認です。公開文では所有と現在個数に限定します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "numprojid-legacy",
+          "numprojid-local-2002",
+          "numprojid-local-1.0",
+          "numprojid-local-1.1",
+          "numprojid-projectile-2002",
+          "numprojid-projectile-1.0",
+          "numprojid-projectile-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代のTrigger/Projectile資料を照合。CHAOSのNumProjIDも確認。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "code_sample": [
-        {
-            "title": "プレイヤーが放出したID1234の飛び道具が1つだけ存在している場合のトリガー",
-            "code": [
-                "Trigger1 = NumProjID(1234) = 1"
-            ]
-        }
+    "source_refs": [
+      "numprojid-local-2002",
+      "numprojid-local-1.0",
+      "numprojid-local-1.1"
     ],
-    "associated_trigger": [
-        "NumProj",
-        "NumProjID",
-        "ProjCancelTime",
-        "ProjContact",
-        "ProjContactTime",
-        "ProjGuarded",
-        "ProjGuardedTime",
-        "ProjHit",
-        "ProjHitTime"
-    ],
-    "quote": [
-        {
-            "title": "NumProjID - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#NumProjID"
-        },
-        {
-            "title": "NumProjID - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#numprojid"
-        },
-        {
-            "title": "NumProjID - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#numprojid"
-        },
-        {
-            "title": "NumProjID - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/NumProjID"
-        }
-    ]
+    "comment": "2026-10-05: 保存済み公式3世代のTrigger/Projectile資料を照合。CHAOSのNumProjIDも確認。今回の実機検証ではない。"
+  }
 }

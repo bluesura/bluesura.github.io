@@ -1023,3 +1023,23 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・243テスト・263ページビルド・261 URL/159比較対象ページのHTML検査を通過。ブラウザはNumHelper（通常幅）、NumTarget/NumExplod（幅390px）で確認し、表示幅と検査用タブを復元しました。内部注記8件追加の342件、未対応旧履歴161項目。次はNumProj・NumProjIDです。
+
+## 2026-10-05：projectile-counts-01
+
+NumProj / NumProjIDの2件を追加し、累計150件（主要・補助16件＋56バッチ134件）、残り84件です。移行前のJSON・HTML・抽出結果を tests/mugen/batches/projectile-counts-01/ へ保存しました。
+
+- NumProjは引数なしの総数、NumProjIDは必須整数式exprnによる指定ProjIDの個数として構造化。負のIDは0として扱い、NumProjID(0)は全数指定と区別しました。ProjID・PlayerID・TargetIDも分離しています。旧原文と各1件の有効な例は保持しました。
+- 保存済み公式3世代のProjectile資料で、Helperが生成したProjectileは直ちにRootの所有になる記載を確認。[CHAOSのNumProjID](https://w.atwiki.jp/mugencns/pages/169.html)でもRoot参照と0指定の意味を照合しました。HelperからRootの個数を調べる例を追加。NumProjのCHAOS本文は取得できず、今回の確認済み根拠にしていません。
+- NumProjIDの1.0/1.1 bottomと通常の個数0を分離。2002 SFalse・初導入・消去/相殺/アニメーション中の個数更新境界・無効型や所有の特殊条件は内部JSONへ保持。スキーマ・レンダラー・CSSは変更していません。実機検証は未実施です。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch projectile-counts-01
+npm run mugen:batch -- --batch projectile-counts-01 --target NumProj --target NumProjID
+npm run mugen:batch -- --batch projectile-counts-01 --target NumProj --target NumProjID --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・247テスト・263ページビルド・261 URL/161比較対象ページHTML検査を通過。NumProj（通常幅）とNumProjID（幅390px）をブラウザ確認し設定を復元。内部注記3件追加の345件、未対応旧履歴161項目。次はProjContact・ProjHit・ProjGuardedです。

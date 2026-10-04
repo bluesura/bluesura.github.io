@@ -1,0 +1,1008 @@
+{
+  "id": "state-status-01",
+  "reviewed_on": "2026-10-04",
+  "description": "Alive/Ctrl/StateNo/PrevStateNoの状態参照、真偽値の整数と範囲例を整理。旧データ・精度制限・コミュニティ研究を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "Alive",
+      "additions": [
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "生存中だけ処理する条件",
+            "description": "<p>使用するステートコントローラーに追加する条件行です。生存フラグが1のとき成立します。</p>",
+            "code": [
+              "Trigger1 = Alive"
+            ]
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーが生存しているかを整数で返します。生存中は1、KOされた状態では0です。引数はありません。</p><p><code>Alive</code>は生存フラグを読み取るトリガーです。生存中だけ処理したい条件には<code>Trigger1 = Alive</code>、KOされた状態の条件には<code>Trigger1 = !Alive</code>を使います。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "alive-local-2002",
+                "alive-local-1.0",
+                "alive-local-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSはLifeと別の生存フラグ、NoKO時の生死判定、ライフ復元後の非復活、タッグの終了条件を記載する。Life=0になった時点の自身ステート終端？という疑問符も残す。具体的なKO判定タイミング、NoKOの対応ビルド、デバッグ復活と複数人戦の条件は今回実機未検証。Life=0と!Aliveを常に同値とは説明しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "alive-chaos",
+                  "alive-local-2002",
+                  "alive-local-1.0",
+                  "alive-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧コード例1は特定変数・パレット・SNDの構成を前提とする複数の応用処理をまとめている。PowerAdd部分にはAbsolute=1があるが、保存済み1.1のPowerAddに固有パラメーターとしての記載はない。未知の対応や実機挙動を推定せず原位置に保持し、一般的な生存判定の公開例から外す。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "alive-legacy-data",
+                  "alive-poweradd-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧コード例2の生存敵検索はEnemyNear(0)～(8)でAliveを条件にするが、EnemyNear(9)と最後の代替処理にはAliveの条件がない。最後のEnemyNear,ID参照の敵存在条件も示されていない。常に生存した敵IDを返す例として公開せず、全行をJSONに保持して対象選択・敵不在の条件を検証する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "alive-legacy-data",
+                  "alive-chaos"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代に掲載されているが、最初の実装ビルド・日付は今回実機未検証。page.introduced_inはnullのまま保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "alive-legacy-data",
+                  "alive-local-2002",
+                  "alive-local-1.0",
+                  "alive-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "alive-local-2002",
+            "title": "Alive — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Alive",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "alive-local-1.0",
+            "title": "Alive — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#alive",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "alive-local-1.1",
+            "title": "Alive — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#alive",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "alive-legacy-data",
+            "title": "Alive — 移行前の説明・構文・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/e94eddde038d3114d26e2181d595adc84b7f299e/src/content/triggers/Alive.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "alive-chaos",
+            "title": "Alive — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/66.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "alive-poweradd-1.1",
+            "title": "PowerAdd — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#poweradd",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド・KO/自動遷移/履歴更新の実機境界は未確定。",
+        "旧データと内部コード例・資料の表記差を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Ctrl",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーのコントロールフラグを整数で返します。コントロールありは1、なしは0です。引数はありません。</p><p>歩行・ジャンプなどの基本動作を受け付けられる状態を示すフラグです。技のキャンセルなど、Ctrlを条件に含めずに許可する動作もあるため、すべての入力受付の可否を表す値ではありません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "ctrl-local-2002",
+                "ctrl-local-1.0",
+                "ctrl-local-1.1",
+                "ctrl-control-1.0"
+              ],
+              "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+            },
+            "page_category": "コントロールフラグの取得"
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>コントロールフラグの変更にはCtrlSetやStateDef / ChangeStateのctrl設定を使います。Ctrlを参照するだけではフラグは変化しません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "ctrl-ctrlset-1.1",
+                  "ctrl-statedef-1.0",
+                  "ctrl-changestate-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSはCtrl=1でのMUGEN側の自動ステート移行と、Ctrl=0の通常動作管理の注意を記載する。公式Control節のキャンセル例外と照合したが、自動移行の個別条件・ステート評価順・Pause/SuperPause下の境界は今回再現していない。入力を全面禁止するフラグとは説明しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "ctrl-chaos",
+                  "ctrl-control-1.0"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代に掲載されているが、最初の実装ビルド・日付は今回実機未検証。page.introduced_inはnullのまま保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "ctrl-legacy-data",
+                  "ctrl-local-2002",
+                  "ctrl-local-1.0",
+                  "ctrl-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ctrl-local-2002",
+            "title": "Ctrl — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Ctrl",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ctrl-local-1.0",
+            "title": "Ctrl — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#ctrl",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ctrl-local-1.1",
+            "title": "Ctrl — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#ctrl",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ctrl-legacy-data",
+            "title": "Ctrl — 移行前の説明・構文・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/e94eddde038d3114d26e2181d595adc84b7f299e/src/content/triggers/Ctrl.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ctrl-chaos",
+            "title": "Ctrl — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/107.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ctrl-control-1.0",
+            "title": "Control・キャンセル — Elecbyte 1.0 CNS",
+            "url": "/MUGEN/document/Official/1.0/cns.html#control",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ctrl-ctrlset-1.1",
+            "title": "CtrlSet — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#ctrlset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ctrl-statedef-1.0",
+            "title": "StateDefのctrl — Elecbyte 1.0 CNS",
+            "url": "/MUGEN/document/Official/1.0/cns.html#ctrl",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ctrl-changestate-1.1",
+            "title": "ChangeState — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#changestate",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド・KO/自動遷移/履歴更新の実機境界は未確定。",
+        "旧データと内部コード例・資料の表記差を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "StateNo",
+      "additions": [
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "現在のステート番号が200以上650以下",
+            "description": "<p>角括弧は両端を含みます。200も650も条件を満たします。</p>",
+            "code": [
+              "Trigger1 = StateNo = [200,650]"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "現在のステート番号が200以上650未満",
+            "description": "<p>右端を丸括弧にすると650を含みません。</p>",
+            "code": [
+              "Trigger1 = StateNo = [200,650)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーが現在いるステート番号を整数で返します。引数はありません。</p><p>CMDの技への移行やキャンセル条件などで、現在のステート番号を比較できます。範囲比較の<code>StateNo = [200,650]</code>は200と650の両端を含みます。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "stateno-local-2002",
+                "stateno-local-1.0",
+                "stateno-local-1.1",
+                "stateno-interval-1.0"
+              ],
+              "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+            },
+            "associated_state": [
+              "ChangeState",
+              "SelfState",
+              "HitOverRide",
+              "TargetState"
+            ],
+            "page_category": "現在ステート番号の取得"
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧associated_stateのHitOverrideはこのリポジトリのJSON/公開URL識別子HitOverRideと大小文字が異なる。旧配列を保持し、公開リンクだけ実在するページの識別子へ対応させる。CNSのステートコントローラー名を別物へ改名する変更ではない。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "stateno-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧コード例の題名は200以上650未満だが、StateNo = [200,650]は650を含む閉区間である。原文・コードを保持して内部にし、公開例を200以上650以下と650未満の2種類に分ける。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "stateno-legacy-data",
+                  "stateno-interval-1.0",
+                  "stateno-local-2002",
+                  "stateno-local-1.0",
+                  "stateno-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代に掲載されているが、最初の実装ビルド・日付は今回実機未検証。page.introduced_inはnullのまま保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "stateno-legacy-data",
+                  "stateno-local-2002",
+                  "stateno-local-1.0",
+                  "stateno-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stateno-local-2002",
+            "title": "StateNo — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#StateNo",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stateno-local-1.0",
+            "title": "StateNo — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#stateno",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stateno-local-1.1",
+            "title": "StateNo — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#stateno",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stateno-legacy-data",
+            "title": "StateNo — 移行前の説明・構文・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/e94eddde038d3114d26e2181d595adc84b7f299e/src/content/triggers/StateNo.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stateno-chaos",
+            "title": "StateNo — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/179.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stateno-interval-1.0",
+            "title": "範囲演算子 — Elecbyte 1.0 CNS",
+            "url": "/MUGEN/document/Official/1.0/cns.html#arithmetic-operators",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド・KO/自動遷移/履歴更新の実機境界は未確定。",
+        "旧データと内部コード例・資料の表記差を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "PrevStateNo",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーが直前にいたステート番号を整数で返します。引数はありません。</p><p>構文は<code>PrevStateNo</code>です。<code>PrevStateNo = [200,650]</code>は返された番号に対する比較式であり、トリガーの引数ではありません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "prevstateno-local-2002",
+                "prevstateno-local-1.0",
+                "prevstateno-local-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+            },
+            "associated_state": [
+              "ChangeState",
+              "SelfState",
+              "HitOverRide",
+              "TargetState"
+            ],
+            "syntax": [
+              "PrevStateNo"
+            ]
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧associated_stateのHitOverrideはこのリポジトリのJSON/公開URL識別子HitOverRideと大小文字が異なる。旧配列を保持し、公開リンクだけ実在するページの識別子へ対応させる。CNSのステートコントローラー名を別物へ改名する変更ではない。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "prevstateno-legacy-data"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "limitation",
+              "content": "<p>公式資料では、返される直前のステート番号の正確さは保証されていません。特定の移行元だけを許可する条件に使う場合は、実際のステート遷移も確認してください。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "prevstateno-local-2002",
+                  "prevstateno-local-1.0",
+                  "prevstateno-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>保存済み2002.04.14・1.0・1.1b1のPrevStateNo項目は説明を直前のステート番号としながらFormat欄がStateNoになっている。2002の例もStateNoだが1.0/1.1の例はPrevStateNo。項目名・意味・新しい例・CHAOSの構文を照合し、公開構文をPrevStateNoとする。公式資料の表記差は消さない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "prevstateno-local-2002",
+                  "prevstateno-local-1.0",
+                  "prevstateno-local-1.1",
+                  "prevstateno-chaos"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSはCtrl=1による自動ステート移行で直前技の追跡が変わること、HitOverrideの中間くらいステート、HitDef/ReversalDefのP1StateNo指定への注意を記載する。これらを正確なビルド・Ctrl条件・ステート所有者・処理順で今回再現していない。前フレームのステート番号や最初の攻撃元を必ず返すとは断定せず、コミュニティ研究を内部に保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "prevstateno-chaos",
+                  "prevstateno-local-2002",
+                  "prevstateno-local-1.0",
+                  "prevstateno-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代に掲載されているが、最初の実装ビルド・日付は今回実機未検証。page.introduced_inはnullのまま保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "prevstateno-legacy-data",
+                  "prevstateno-local-2002",
+                  "prevstateno-local-1.0",
+                  "prevstateno-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "prevstateno-local-2002",
+            "title": "PrevStateNo — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PrevStateNo",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "prevstateno-local-1.0",
+            "title": "PrevStateNo — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#prevstateno",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "prevstateno-local-1.1",
+            "title": "PrevStateNo — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#prevstateno",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "prevstateno-legacy-data",
+            "title": "PrevStateNo — 移行前の説明・構文・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/e94eddde038d3114d26e2181d595adc84b7f299e/src/content/triggers/PrevStateNo.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "prevstateno-chaos",
+            "title": "PrevStateNo — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/181.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド・KO/自動遷移/履歴更新の実機境界は未確定。",
+        "旧データと内部コード例・資料の表記差を保持。"
+      ]
+    }
+  ]
+}

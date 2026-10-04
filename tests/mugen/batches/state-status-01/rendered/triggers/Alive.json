@@ -1,0 +1,49 @@
+{
+  "text": "Alive ステータス > 生存判定 | 実装されたバージョン: 2002.04.14 | 対象: 実行者 引数 使用例 引用記事 生きているかの判定結果が返ってきます。プレイヤーが生きていれば1を、死んでいれば0を返します。死亡した場合の処理や死んでいる時に処理したくない・してはいけないステートのトリガーに記載されることが多いです。 構文 Alive 引数 なし コードサンプル死亡ステートへの処理コモンステートの[StateDef 0]に記載されている処理[State ]Type = ChangeStateTrigger1 = !Alivevalue = 5050 死亡している場合に処理しないステートに記述;==============================================================================; 近くの敵を確認;==============================================================================[State -2]Type = VarSetTrigger1 = NumEnemy > 1Trigger1 = !Enemy(1),IsHelpervar(20) = (!Enemy,Alive || (EnemyNear,Alive && EnemyNear,ID != Enemy,ID));==============================================================================; 自動ライフ回復;==============================================================================[State -2]Type = LifeAddTriggerAll = MoveType != HTriggerAll = AliveTriggerAll = RoundState = 2TriggerAll = Life < LifeMax*0.2Trigger1 = Ceil(GameTime%4) = 1value = 1Absolute = 1IgnoreHitPause = 1;==============================================================================; ゴールドカラーの自動ゲージ回復;==============================================================================[State -2]Type = PowerAddTriggerAll = PalNo = 12TriggerAll = AliveTrigger1 = RoundState = 2value = 2Absolute = 1IgnoreHitPause = 1;==============================================================================; ダメージを受けたときのボイス処理;==============================================================================[State -2]Type = PlaySndTriggerAll = AliveTriggerAll = Time = 1Trigger1 = StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070Trigger1 = GetHitVar(AnimType) = 0Trigger1 = Random <= 600value = 4,0Channel = 0 AIの処理で死亡している敵をくわえたくない時;***************************************************************************;一番近い敵のIDを記憶;***************************************************************************[State -3, 変数リセット]Type = VarsetTrigger1 = 1var(36) = 0IgnoreHitPause = 1[State -3, 0番目]Type = VarsetTrigger1 = NumEnemyTrigger1 = EnemyNear(0),AliveTrigger1 = !EnemyNear(0),IsHelperTrigger1 = var(36) = 0var(36) = EnemyNear(0),IDIgnoreHitPause = 1[State -3, 1番目]Type = VarsetTrigger1 = NumEnemy > 1Trigger1 = EnemyNear(1),AliveTrigger1 = !EnemyNear(1),IsHelperTrigger1 = var(36) = 0var(36) = EnemyNear(1),IDIgnoreHitPause = 1[State -3, 2番目]Type = VarsetTrigger1 = NumEnemy > 2Trigger1 = EnemyNear(2),AliveTrigger1 = !EnemyNear(2),IsHelperTrigger1 = var(36) = 0var(36) = EnemyNear(2),IDIgnoreHitPause = 1[State -3, 3番目]Type = VarsetTrigger1 = NumEnemy > 3Trigger1 = EnemyNear(3),AliveTrigger1 = !EnemyNear(3),IsHelperTrigger1 = var(36) = 0var(36) = EnemyNear(3),IDIgnoreHitPause = 1[State -3, 4番目]Type = VarsetTrigger1 = NumEnemy > 4Trigger1 = EnemyNear(4),AliveTrigger1 = !EnemyNear(4),IsHelperTrigger1 = var(36) = 0var(36) = EnemyNear(4),IDIgnoreHitPause = 1[State -3, 5番目]Type = VarsetTrigger1 = NumEnemy > 5Trigger1 = EnemyNear(5),AliveTrigger1 = !EnemyNear(5),IsHelperTrigger1 = var(36) = 0var(36) = EnemyNear(5),IDIgnoreHitPause = 1[State -3, 6番目]Type = VarsetTrigger1 = NumEnemy > 6Trigger1 = EnemyNear(6),AliveTrigger1 = !EnemyNear(6),IsHelperTrigger1 = var(36) = 0var(36) = EnemyNear(6),IDIgnoreHitPause = 1[State -3, 7番目]Type = VarsetTrigger1 = NumEnemy > 7Trigger1 = EnemyNear(7),AliveTrigger1 = !EnemyNear(7),IsHelperTrigger1 = var(36) = 0var(36) = EnemyNear(7),IDIgnoreHitPause = 1[State -3, 8番目]Type = VarsetTrigger1 = NumEnemy > 8Trigger1 = EnemyNear(8),AliveTrigger1 = !EnemyNear(8),IsHelperTrigger1 = var(36) = 0var(36) = EnemyNear(8),IDIgnoreHitPause = 1[State -3, 最後]Type = VarsetTrigger1 = NumEnemy > 9Trigger1 = var(36) = 0var(36) = EnemyNear(9),IDIgnoreHitPause = 1[State -3, とりあえず代入]Type = VarsetTrigger1 = var(36) = 0var(36) = EnemyNear,IDIgnoreHitPause = 1 引用記事Alive - Trigger Reference(version 2002.04.14)Alive - Trigger Reference(version 1.0)Alive - Trigger Reference(version 1.1)Alive - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.17 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Alive - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Alive"
+    },
+    {
+      "text": "Alive - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#alive"
+    },
+    {
+      "text": "Alive - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#alive"
+    },
+    {
+      "text": "Alive - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Alive"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

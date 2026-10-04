@@ -1,0 +1,73 @@
+{
+  "text": "StateNo ステータス > 現在どのステートにいますか？ | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 現在のステート番号を返します。cmdファイルでの条件指定に有効です。戻り値の型: int 関連するステートコントローラー： ChangeState , SelfState , HitOverride , TargetState 関連するトリガー： P2StateNo , PrevStateNo 構文 StateNo 引数 なし コードサンプル現在のステート番号が200以上650未満の場合のトリガー。Trigger1 = StateNo = [200,650] 引用記事StateNo - Trigger Reference(version 2002.04.14)StateNo - Trigger Reference(version 1.0)StateNo - Trigger Reference(version 1.1)StateNo - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.17 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ChangeState",
+      "href": "./../State/ChangeState.html"
+    },
+    {
+      "text": "SelfState",
+      "href": "./../State/SelfState.html"
+    },
+    {
+      "text": "HitOverride",
+      "href": "./../State/HitOverride.html"
+    },
+    {
+      "text": "TargetState",
+      "href": "./../State/TargetState.html"
+    },
+    {
+      "text": "P2StateNo",
+      "href": "./../Trigger/P2StateNo.html"
+    },
+    {
+      "text": "PrevStateNo",
+      "href": "./../Trigger/PrevStateNo.html"
+    },
+    {
+      "text": "StateNo - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#StateNo"
+    },
+    {
+      "text": "StateNo - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#stateno"
+    },
+    {
+      "text": "StateNo - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#stateno"
+    },
+    {
+      "text": "StateNo - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StateNo"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

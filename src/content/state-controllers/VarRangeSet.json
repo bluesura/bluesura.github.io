@@ -1,76 +1,560 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "VarRangeSet",
-		"target": "ステート実行者自身",
-		"category": ["変数の操作","複数変数への一括値代入"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "VarRangeSet",
-	"description": "<p>指定した範囲の番号の変数に、一気に同じ値を代入します。整数変数、小数変数ともに代入可能ですが、両方を同時に扱うことはできません。</p>",
-	"category": "state",
-
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "VarRangeSet",
+    "target": "ステート実行者自身",
+    "category": [
+      "変数の操作",
+      "複数変数への一括値代入"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "VarRangeSet",
+  "description": "<p>指定した範囲の番号の変数に、一気に同じ値を代入します。整数変数、小数変数ともに代入可能ですが、両方を同時に扱うことはできません。</p>",
+  "category": "state",
   "version": [
-    {"no": "警告文", "content": "SET ILLEGAL VAR RANGE (-1-59): First以上Last以下が-1以下または60以上に被る（最後の数値は指定した数値が表示される）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+    {
+      "no": "警告文",
+      "content": "SET ILLEGAL VAR RANGE (-1-59): First以上Last以下が-1以下または60以上に被る（最後の数値は指定した数値が表示される）",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
   ],
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["整数代入値"],
-			"type": ["int"],
-			"description": "<p>代入する整数値を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": [""],
-			"load_priority": ["3"]
-		},
-		{
-			"parameter": "; fvalue",
-			"value": ["小数代入値"],
-			"type": ["float"],
-			"description": "<p>代入する小数値を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": [""],
-			"load_priority": ["3"]
-		},
-		{
-			"parameter": "First",
-			"value": ["最初の変数番号"],
-			"type": ["int"],
-			"description": "<p>値を変更する変数の範囲のうち、最初の変数の番号を指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Last",
-			"value": ["最後の変数番"],
-			"type": ["int"],
-			"description": "<p>値を変更する変数の範囲のうち、最初の変数の番号を指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": [";整数変数に代入する場合は59、小数変数の場合は39になります。"],
-			"load_priority": ["2"]
-		}
-	],
-
-	"quote": [
-		{"title": "VarRangeSet - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#VarRangeSet"},
-		{"title": "VarRangeSet - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#varrangeset"},
-		{"title": "VarRangeSet - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#varrangeset"},
-		{"title": "VarRangeSet - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VarRangeSet"},
-		{"title": "VarRangeSet - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VarRangeSet&protocol=http"},
-		{"title": "VarRangeSet - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#VarRangeSet"}
-	]
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "整数代入値"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>代入する整数値を指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "3"
+      ],
+      "documentation": {
+        "value": [
+          "整数代入値"
+        ],
+        "description": "<p>整数変数へ代入する整数式です。整数版を選ぶ場合は必須です。式は1回だけ評価され、同じ結果が指定範囲のすべての整数変数へ代入されます。加算ではありません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "varrangeset-local-2002",
+            "varrangeset-local-1.0",
+            "varrangeset-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "整数版では必須（整数代入値）",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "varrangeset-local-2002",
+              "varrangeset-local-1.0",
+              "varrangeset-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "; fvalue",
+      "value": [
+        "小数代入値"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>代入する小数値を指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        ""
+      ],
+      "load_priority": [
+        "3"
+      ],
+      "documentation": {
+        "value": [
+          "浮動小数代入値"
+        ],
+        "description": "<p>浮動小数変数へ代入する浮動小数式です。浮動小数版を選ぶ場合は必須です。式は1回だけ評価され、同じ結果が指定範囲のすべての浮動小数変数へ代入されます。整数用valueと同時には指定しません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "varrangeset-local-2002",
+            "varrangeset-local-1.0",
+            "varrangeset-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "浮動小数版では必須（浮動小数代入値）",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "varrangeset-local-2002",
+              "varrangeset-local-1.0",
+              "varrangeset-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "First",
+      "value": [
+        "最初の変数番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>値を変更する変数の範囲のうち、最初の変数の番号を指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "value": [
+          "最初の変数番号"
+        ],
+        "description": "<p>代入対象の連続範囲の開始番号を整数式で指定します。この番号の変数も対象です。整数版は0～59、浮動小数版は0～39の番号を使います。省略時は0です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "varrangeset-local-2002",
+            "varrangeset-local-1.0",
+            "varrangeset-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "varrangeset-local-2002",
+              "varrangeset-local-1.0",
+              "varrangeset-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Last",
+      "value": [
+        "最後の変数番"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>値を変更する変数の範囲のうち、最初の変数の番号を指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        ";整数変数に代入する場合は59、小数変数の場合は39になります。"
+      ],
+      "load_priority": [
+        "2"
+      ],
+      "documentation": {
+        "value": [
+          "最後の変数番号"
+        ],
+        "description": "<p>代入対象の連続範囲の終了番号を整数式で指定します。この番号の変数も対象です。開始番号を指定する項目ではありません。</p><p>省略時は整数用valueなら59、浮動小数用fvalueなら39です。FirstとLastを両方省略すると、整数版では0～59、浮動小数版では0～39が対象になります。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "varrangeset-local-2002",
+            "varrangeset-local-1.0",
+            "varrangeset-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "derived",
+          "display": "整数用valueなら59、浮動小数用fvalueなら39",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "varrangeset-local-2002",
+              "varrangeset-local-1.0",
+              "varrangeset-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "VarRangeSet - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#VarRangeSet"
+    },
+    {
+      "title": "VarRangeSet - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#varrangeset"
+    },
+    {
+      "title": "VarRangeSet - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#varrangeset"
+    },
+    {
+      "title": "VarRangeSet - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VarRangeSet"
+    },
+    {
+      "title": "VarRangeSet - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VarRangeSet&protocol=http"
+    },
+    {
+      "title": "VarRangeSet - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#VarRangeSet"
+    },
+    {
+      "id": "varrangeset-local-2002",
+      "title": "VarRangeSet — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#VarRangeSet",
+      "source_type": "official_document"
+    },
+    {
+      "id": "varrangeset-local-1.0",
+      "title": "VarRangeSet — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#varrangeset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "varrangeset-local-1.1",
+      "title": "VarRangeSet — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#varrangeset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "varrangeset-chaos",
+      "title": "VarRangeSet — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/247.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "varrangeset-legacy-warning",
+      "title": "旧警告文の出典（今回本文取得不可）",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "personal_research",
+      "visibility": "internal"
+    },
+    {
+      "id": "varrangeset-legacy-data",
+      "title": "VarRangeSet — 移行前の説明・省略値・警告・読み込み順",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/260cb1a76703c05590f01f2d3bc072b9b535a4eb/src/content/state-controllers/VarRangeSet.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "page_category": "連続する変数番号への一括代入",
+    "description": "<p>実行者自身の連続する番号の変数へ、同じ値を一括で代入します。整数用の<code>value</code>か、浮動小数用の<code>fvalue</code>のどちらか1つを指定します。両方を同時には扱いません。</p><p>代入値の式は1回だけ評価され、その結果が<code>First</code>から<code>Last</code>までのすべての変数に入ります。範囲を省略すると、選んだ型の変数すべてが対象です。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "varrangeset-local-2002",
+        "varrangeset-local-1.0",
+        "varrangeset-local-1.1"
+      ],
+      "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+    }
+  },
+  "constraints": [
+    {
+      "kind": "one_of",
+      "parameters": [
+        "value",
+        "; fvalue"
+      ],
+      "description": "整数用valueと浮動小数用fvalueから1つを指定します。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varrangeset-local-2002",
+          "varrangeset-local-1.0",
+          "varrangeset-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "mutually_exclusive",
+      "parameters": [
+        "value",
+        "; fvalue"
+      ],
+      "description": "整数変数と浮動小数変数を同じコントローラーで同時に変更しません。",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varrangeset-local-2002",
+          "varrangeset-local-1.0",
+          "varrangeset-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "SET ILLEGAL VAR RANGE (-1-59): First以上Last以下が-1以下または60以上に被る（最後の数値は指定した数値が表示される）<p>警告文・表示番号・発生条件の実機再現は未確認。旧出典本文は今回取得できませんでした。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "varrangeset-legacy-data",
+          "varrangeset-legacy-warning"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "warning",
+      "content": "<p>相手をカスタムステートへ移した場合、処理を実行するのはその相手です。このコントローラーは相手自身の変数を変更します。ステート記述者の変数を変更するつもりで使用しないでください。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varrangeset-local-2002",
+          "varrangeset-local-1.0",
+          "varrangeset-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>代入値の式は1回だけ評価されます。たとえば<code>value = Random</code>を指定しても、変数ごとに乱数を取り直す処理にはなりません。指定した連続範囲へ同じ評価結果が代入されます。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varrangeset-local-2002",
+          "varrangeset-local-1.0",
+          "varrangeset-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSの必須記述にはFValueをInt型とする表記があります。一方、保存済み公式3世代はfloat_expr (float)、旧JSONもfloatです。この資料差を保持し、公開のFValueは公式の浮動小数式に対応させます。整数式を渡した場合の変換・丸めは今回実測していません。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "varrangeset-local-2002",
+          "varrangeset-local-1.0",
+          "varrangeset-local-1.1",
+          "varrangeset-chaos",
+          "varrangeset-legacy-data"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSは5900の変数リセット例、チームでキャラクターが変わった際の持ち越し、F4によるラウンドリセットとの関係も記録しています。適用ステートと試合モード・世代・持ち越し設定の条件は今回未検証で、汎用のリセット規則として公開しません。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "varrangeset-chaos"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>FirstがLastを超える指定、範囲外番号での部分適用、value/fvalueの併記時の優先順位、型変換とsysvar/sysfvarへの作用は未確認です。既存の読み込み順First→Last→代入値は保持し、1回評価という資料記載と実行時の細部を区別します。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varrangeset-local-2002",
+          "varrangeset-local-1.0",
+          "varrangeset-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "連続する整数変数へ同じ乱数を代入",
+      "description": "<p>var(10)～var(14)へ同じ整数を代入します。Randomは1回だけ評価されるため、この5つの変数には同じ値が入ります。</p>",
+      "code": [
+        "[State 200, Shared random value]",
+        "Type = VarRangeSet",
+        "Trigger1 = Time = 0",
+        "First = 10",
+        "Last = 14",
+        "value = Random"
+      ]
+    },
+    {
+      "title": "すべての浮動小数変数へ0.5を代入",
+      "description": "<p>fvalueだけを指定すると、Firstは0、Lastは39になります。fvar(0)～fvar(39)へ同じ浮動小数値0.5を代入します。</p>",
+      "code": [
+        "[State 200, Set all float variables]",
+        "Type = VarRangeSet",
+        "Trigger1 = Time = 0",
+        "fvalue = 0.5"
+      ]
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "varrangeset-local-2002",
+      "varrangeset-local-1.0",
+      "varrangeset-local-1.1"
+    ],
+    "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+  }
 }

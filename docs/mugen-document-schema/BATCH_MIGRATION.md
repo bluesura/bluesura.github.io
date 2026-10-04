@@ -813,3 +813,20 @@ npm run mugen:batch -- --batch variable-operations-01 --target VarAdd --target P
 ```
 
 このバッチは適用済みです。次はVarRandom・VarRangeSetです。
+
+## variable-ranges-01：乱数代入・連続範囲への代入の2件
+
+2026-10-04、VarRandom / VarRangeSetを移行しました。移行前のJSON・記事・ハッシュは `tests/mugen/batches/variable-ranges-01/` に保存しています。
+
+- 保存済み公式3世代を照合しました。VarRandomは実行者の整数変数1つへ指定範囲の乱数を代入し、浮動小数変数は対象外です。Rangeの両端を含む範囲・単一引数の0～最大値・省略値0,1000を明記し、旧カテゴリのRandomトリガーとの混同とvの「増減」を原文非破壊で訂正しました。
+- VarRangeSetは連続範囲へ同じ値を代入します。value/fvalueはどちらか必須で、式は1回だけ評価されます。Firstは0、Lastは整数用valueなら59、浮動小数用fvalueなら39です。Lastの旧「最初」説明を訂正し、具体的な59/39をderivedの表示に保存しました。CNS欄で代入値・Lastを推測の固定値として有効にしません。
+- 基本例はVarRandomの単一引数と負の値を含む範囲、VarRangeSetの同じRandom評価結果を5変数へ代入する例と全40浮動小数変数への0.5代入例を公開しました。相手のカスタムステートでの作用対象も整理しています。CSS・スキーマ・表示コンポーネントは変更していません。
+- [VarRandomのCHAOS](https://w.atwiki.jp/mugencns/pages/246.html)の+32767限界・15bit/分布の推測は内部の未検証記録です。[VarRangeSetのCHAOS](https://w.atwiki.jp/mugencns/pages/247.html)のFValueのInt型表記は公式floatとの差をconflictingとして保持し、5900/F4・チームの持ち越し条件も内部へ残しました。旧2警告・範囲外/逆転/部分適用・型変換も未検証です。旧警告の出典本文は503で取得できませんでした。読み込み順と各成分を保持し、実機検証は未実施です。
+
+```sh
+npm run mugen:batch-baseline -- --batch variable-ranges-01
+npm run mugen:batch -- --batch variable-ranges-01 --target VarRandom --target VarRangeSet
+npm run mugen:batch -- --batch variable-ranges-01 --target VarRandom --target VarRangeSet --apply
+```
+
+このバッチは適用済みです。次はVar・FVar・SysVar・SysFVarです。

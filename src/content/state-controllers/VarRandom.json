@@ -1,55 +1,370 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "VarRandom",
-		"target": "ステート実行者自身",
-		"category": ["数値計算","0～999のランダムな整数取得"],
-		"version": "2002.04.14",
-		"update": "2017.08.06",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "VarRandom",
-	"description": "<p>変数に乱数を代入します。fvarに代入することはできません。用途は様々。</p><p>相手のステートを奪った状態でこのコントローラを実行すると、相手の変数を変更することになってしまいます。失礼な行為に当たりますので、注意。</p>",
-	"category": "state",
-
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "VarRandom",
+    "target": "ステート実行者自身",
+    "category": [
+      "数値計算",
+      "0～999のランダムな整数取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2017.08.06",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "VarRandom",
+  "description": "<p>変数に乱数を代入します。fvarに代入することはできません。用途は様々。</p><p>相手のステートを奪った状態でこのコントローラを実行すると、相手の変数を変更することになってしまいます。失礼な行為に当たりますので、注意。</p>",
+  "category": "state",
   "version": [
-    {"no": "警告文", "content": "RANDOMIZED VAR OUT OF RANGE (-1): vに-1以下、60以上（最後の数値は指定した数値が表示される）", "blockquote":"http://mugenbinran.web.fc2.com/error.html#12"}
+    {
+      "no": "警告文",
+      "content": "RANDOMIZED VAR OUT OF RANGE (-1): vに-1以下、60以上（最後の数値は指定した数値が表示される）",
+      "blockquote": "http://mugenbinran.web.fc2.com/error.html#12"
+    }
   ],
-
-	"parameter": [
-		{
-			"parameter": "v",
-			"value": ["整数変数番号"],
-			"type": ["int"],
-			"description": "<p>増減する整数変数の番号を0～59から指定します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "required",
-			"default_value": ["?"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Range",
-			"value": ["乱数最小値, 乱数最大値"],
-			"type": ["int", "int"],
-			"description": "<p>発生させる乱数の最小値と最大値を指定します。ここで指定した範囲の整数が、無作為に変数に代入されます。</p><p>第1引数が0の場合は、省略可能。例えば、0～10の乱数を代入したい場合は、range = 10と書いても可。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0, 1000"],
-			"load_priority": ["2", "3"]
-		}
-	],
-
-	"quote": [
-		{"title": "VarRandom - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#VarRandom"},
-		{"title": "VarRandom - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#varrandom"},
-		{"title": "VarRandom - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#varrandom"},
-		{"title": "VarRandom - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VarRandom"},
-		{"title": "VarRandom - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VarRandom&protocol=http"},
-		{"title": "VarRandom - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#VarRandom"},
-		{"title": "VarRandom - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"}
-	]
+  "parameter": [
+    {
+      "parameter": "v",
+      "value": [
+        "整数変数番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>増減する整数変数の番号を0～59から指定します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "required",
+      "default_value": [
+        "?"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "value": [
+          "整数変数番号"
+        ],
+        "description": "<p>乱数を代入する実行者自身の整数変数番号です。0～59の整数へ評価される式で指定します。現在の値へ加算する指定ではありません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "varrandom-local-2002",
+            "varrandom-local-1.0",
+            "varrandom-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "required",
+          "display": "必須（0～59の整数式で変数番号を指定）",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "varrandom-local-2002",
+              "varrandom-local-1.0",
+              "varrandom-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Range",
+      "value": [
+        "乱数最小値, 乱数最大値"
+      ],
+      "type": [
+        "int",
+        "int"
+      ],
+      "description": "<p>発生させる乱数の最小値と最大値を指定します。ここで指定した範囲の整数が、無作為に変数に代入されます。</p><p>第1引数が0の場合は、省略可能。例えば、0～10の乱数を代入したい場合は、range = 10と書いても可。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0, 1000"
+      ],
+      "load_priority": [
+        "2",
+        "3"
+      ],
+      "documentation": {
+        "value": [
+          "乱数最小値",
+          "乱数最大値"
+        ],
+        "description": "<p>代入できる最小値と最大値を整数式で指定します。両端を含む範囲から整数が選ばれます。<code>Range = -10,10</code>なら-10～10です。</p><p>引数を1つだけ書くと、それが最大値になり、最小値は0です。<code>Range = 10</code>は<code>Range = 0,10</code>と同じ指定です。Range全体を省略した場合は<code>0,1000</code>になります。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "varrandom-local-2002",
+            "varrandom-local-1.0",
+            "varrandom-local-1.1"
+          ],
+          "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "varrandom-local-2002",
+              "varrandom-local-1.0",
+              "varrandom-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        },
+        {
+          "kind": "literal",
+          "value": "1000",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "varrandom-local-2002",
+              "varrandom-local-1.0",
+              "varrandom-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "VarRandom - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#VarRandom"
+    },
+    {
+      "title": "VarRandom - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#varrandom"
+    },
+    {
+      "title": "VarRandom - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#varrandom"
+    },
+    {
+      "title": "VarRandom - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VarRandom"
+    },
+    {
+      "title": "VarRandom - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VarRandom&protocol=http"
+    },
+    {
+      "title": "VarRandom - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#VarRandom"
+    },
+    {
+      "title": "VarRandom - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "id": "varrandom-local-2002",
+      "title": "VarRandom — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#VarRandom",
+      "source_type": "official_document"
+    },
+    {
+      "id": "varrandom-local-1.0",
+      "title": "VarRandom — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#varrandom",
+      "source_type": "official_document"
+    },
+    {
+      "id": "varrandom-local-1.1",
+      "title": "VarRandom — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#varrandom",
+      "source_type": "official_document"
+    },
+    {
+      "id": "varrandom-chaos",
+      "title": "VarRandom — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/246.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "varrandom-legacy-warning",
+      "title": "旧警告文の出典（今回本文取得不可）",
+      "url": "http://mugenbinran.web.fc2.com/error.html#12",
+      "source_type": "personal_research",
+      "visibility": "internal"
+    },
+    {
+      "id": "varrandom-legacy-data",
+      "title": "VarRandom — 移行前の説明・省略値・警告・読み込み順",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/260cb1a76703c05590f01f2d3bc072b9b535a4eb/src/content/state-controllers/VarRandom.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "page_category": "指定範囲の整数乱数を変数へ代入",
+    "description": "<p>実行者自身の整数変数1つへ、指定範囲の整数乱数を代入します。加算ではなく、変数の値を置き換えます。浮動小数変数には使用できません。</p><p>乱数範囲は<code>Range</code>で指定します。省略時は<code>0,1000</code>です。Randomトリガーの0～999とは異なります。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "varrandom-local-2002",
+        "varrandom-local-1.0",
+        "varrandom-local-1.1"
+      ],
+      "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "RANDOMIZED VAR OUT OF RANGE (-1): vに-1以下、60以上（最後の数値は指定した数値が表示される）<p>警告文・表示番号・発生条件の実機再現は未確認。旧出典本文は今回取得できませんでした。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "varrandom-legacy-data",
+          "varrandom-legacy-warning"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "warning",
+      "content": "<p>相手をカスタムステートへ移した場合、処理を実行するのはその相手です。このコントローラーは相手自身の変数を変更します。ステート記述者の変数を変更するつもりで使用しないでください。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varrandom-local-2002",
+          "varrandom-local-1.0",
+          "varrandom-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSには乱数範囲の限界が最小値から+32767までという記録があります。15bitの乱数生成・範囲幅による偏り・0～32767自体の分布は推測を含み、対象ビルドと再現条件も未記録です。公開のRange上限や一様分布の保証へ変換せず、実測待ちで保持します。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "varrandom-chaos"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>最小値が最大値を超える指定、単一引数が負の場合、型変換と範囲幅のオーバーフロー、乱数系列やシードの更新条件は未確認です。既存の読み込み順1/2/3とは別に実機検証が必要です。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "varrandom-local-2002",
+          "varrandom-local-1.0",
+          "varrandom-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "整数変数へ0～500の乱数を代入",
+      "description": "<p>var(5)に0～500の整数乱数を代入します。Rangeの単一引数は最大値です。</p>",
+      "code": [
+        "[State 200, Random value]",
+        "Type = VarRandom",
+        "Trigger1 = Time = 0",
+        "v = 5",
+        "Range = 500"
+      ]
+    },
+    {
+      "title": "負の値を含む乱数範囲を指定",
+      "description": "<p>var(0)に-10～10の整数乱数を代入します。最小値と最大値を2つの引数で指定します。</p>",
+      "code": [
+        "[State 200, Signed random value]",
+        "Type = VarRandom",
+        "Trigger1 = Time = 0",
+        "v = 0",
+        "Range = -10,10"
+      ]
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "varrandom-local-2002",
+      "varrandom-local-1.0",
+      "varrandom-local-1.1"
+    ],
+    "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+  }
 }

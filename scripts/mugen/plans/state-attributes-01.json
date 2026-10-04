@@ -1,0 +1,912 @@
+{
+  "id": "state-attributes-01",
+  "reviewed_on": "2026-10-04",
+  "description": "StateType/MoveTypeの文字比較とFacingの数値参照を分離。L・U・Physics、旧Trigger表記の資料差を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "StateType",
+      "additions": [
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "倒れ状態か調べる",
+            "description": "<p>体勢Lとの一致を判定します。</p>",
+            "code": [
+              "Trigger1 = StateType = L"
+            ]
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーの体勢を指定した文字と比較し、成立なら1、不成立なら0を整数で返します。<code>StateType = S</code>や<code>StateType != A</code>の形で使います。</p><p><code>S</code>は立ち、<code>C</code>はしゃがみ、<code>A</code>は空中、<code>L</code>は倒れ状態です。文字自体を通常の数値トリガーのように取得する構文ではありません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "statetype-local-2002",
+                "statetype-local-1.0",
+                "statetype-local-1.1",
+                "statetype-statedef-1.1"
+              ],
+              "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+            },
+            "page_category": "現在の体勢の判定",
+            "associated_state": [
+              "S",
+              "C",
+              "A",
+              "L",
+              "U",
+              "StateTypeSet"
+            ]
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "old_style"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[oper]",
+              "type": [
+                "演算子"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。他の比較演算子は使えません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "statetype-local-2002",
+                  "statetype-local-1.0",
+                  "statetype-local-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "name": "state_type",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>引用符を付けずに体勢の文字を指定します。<code>S</code>＝立ち、<code>C</code>＝しゃがみ、<code>A</code>＝空中、<code>L</code>＝倒れ状態です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "statetype-local-1.1",
+                  "statetype-chaos"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>体勢はStateDefのtypeやStateTypeSetで設定します。StateDefの<code>type = U</code>は前の体勢を維持する指定です。判定するS/C/A/Lとは区別してください。重力・摩擦などのPhysicsは別の設定で、StateTypeを参照するだけでは体勢やPhysicsは変化しません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "statetype-statedef-1.1",
+                  "statetype-set-1.1",
+                  "statetype-physics-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>2002.04.14と1.0のStateType Trigger ReferenceはS/C/Aのみを列挙するが、旧公開構文にはLがあり、2002/1.0のCNS StateDef説明には倒れ状態Lが記載される。1.1b1 Trigger ReferenceとCHAOSもLを明記する。古い列挙漏れから1.1で追加されたと推測せず、Lと旧構文を保持する。トリガーL比較の最初の実装ビルドは今回実機未確認。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "statetype-local-2002",
+                  "statetype-local-1.0",
+                  "statetype-local-1.1",
+                  "statetype-statedef-1.0",
+                  "statetype-chaos",
+                  "statetype-legacy"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSはStateTypeごとの押し合い幅・Height・被弾移行・ガード・Ctrl=1の基本行動を記載する。体勢とPhysicsを分ける基礎説明は公開するが、個別の自動行動/特殊な幅・カスタムステートの判定条件は今回実機未検証。文字値を直接取得するという意味へ変換しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "statetype-chaos",
+                  "statetype-local-2002",
+                  "statetype-local-1.0",
+                  "statetype-local-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別である。導入日付・ビルドの実機確認は未実施で、introduced_inはnullに保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "statetype-legacy",
+                  "statetype-local-2002",
+                  "statetype-local-1.0",
+                  "statetype-local-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "statetype-local-2002",
+            "title": "StateType — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#StateType",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "statetype-local-1.0",
+            "title": "StateType — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#statetype",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "statetype-local-1.1",
+            "title": "StateType — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#statetype",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "statetype-legacy",
+            "title": "StateType — 移行前の説明・構文・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/8c5f9e6a1ca6f3a06a891d68d8407bf3c7306188/src/content/triggers/StateType.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "statetype-chaos",
+            "title": "StateType — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/162.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "statetype-statedef-1.1",
+            "title": "StateDefのtype — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#type",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "statetype-set-1.1",
+            "title": "StateTypeSet — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#statetypeset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "statetype-physics-1.1",
+            "title": "Physics — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#physics",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "statetype-statedef-1.0",
+            "title": "StateDefのtype — Elecbyte 1.0 CNS",
+            "url": "/MUGEN/document/Official/1.0/cns.html#type",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・L比較の世代境界・自動処理の詳細は実機未検証。",
+        "旧構文・例・引用と資料の表記差は保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "MoveType",
+      "additions": [
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "攻撃でもくらいでもない行動状態か調べる",
+            "description": "<p>Iとの一致を判定します。立ち・しゃがみ・空中の体勢はこの条件だけでは限定しません。</p>",
+            "code": [
+              "Trigger1 = MoveType = I"
+            ]
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーの行動状態を指定した文字と比較し、成立なら1、不成立なら0を整数で返します。<code>MoveType = A</code>や<code>MoveType != H</code>の形で使います。</p><p><code>A</code>は攻撃、<code>I</code>は攻撃でもくらいでもない状態、<code>H</code>はくらい状態です。<code>I</code>は立ち姿勢だけを意味する値ではありません。体勢の判定にはStateTypeを使います。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "movetype-local-2002",
+                "movetype-local-1.0",
+                "movetype-local-1.1",
+                "movetype-statedef-1.1"
+              ],
+              "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+            },
+            "syntax": [
+              "MoveType = A",
+              "MoveType = I",
+              "MoveType = H",
+              "MoveType != A",
+              "MoveType != I",
+              "MoveType != H"
+            ]
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "old_style"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[oper]",
+              "type": [
+                "演算子"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。他の比較演算子は使えません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "movetype-local-2002",
+                  "movetype-local-1.0",
+                  "movetype-local-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "name": "move_type",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>引用符を付けずに行動状態の文字を指定します。<code>A</code>＝攻撃、<code>I</code>＝攻撃でもくらいでもない状態、<code>H</code>＝くらい状態です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "movetype-local-2002",
+                  "movetype-local-1.0",
+                  "movetype-local-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>行動状態はStateDefのmovetypeやStateTypeSetで設定します。StateDefの<code>movetype = U</code>は前の行動状態を維持する指定です。判定するA/I/Hとは区別してください。MoveTypeを参照するだけでは行動状態は変化しません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "movetype-statedef-1.1",
+                  "movetype-set-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSはMoveType=I/A/HによるHitDefの有効性、HitFlag、Ctrlやガード処理への影響を記載し、攻撃発生1F目への注意も挙げる。これらは対応ビルド・フレーム処理順・HitDef/Projectileの条件を今回実機確認していない。Aの比較結果を攻撃命中の保証や、Iを無動作の保証へ変換しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "movetype-chaos",
+                  "movetype-local-2002",
+                  "movetype-local-1.0",
+                  "movetype-local-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別である。導入日付・ビルドの実機確認は未実施で、introduced_inはnullに保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "movetype-legacy",
+                  "movetype-local-2002",
+                  "movetype-local-1.0",
+                  "movetype-local-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "movetype-local-2002",
+            "title": "MoveType — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MoveType(*,***)",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "movetype-local-1.0",
+            "title": "MoveType — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#movetype",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "movetype-local-1.1",
+            "title": "MoveType — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#movetype",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "movetype-legacy",
+            "title": "MoveType — 移行前の説明・構文・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/8c5f9e6a1ca6f3a06a891d68d8407bf3c7306188/src/content/triggers/MoveType.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "movetype-chaos",
+            "title": "MoveType — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/160.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "movetype-statedef-1.1",
+            "title": "StateDefのmovetype — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#movetype",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "movetype-set-1.1",
+            "title": "StateTypeSet — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#statetypeset",
+            "source_type": "official_document"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・L比較の世代境界・自動処理の詳細は実機未検証。",
+        "旧構文・例・引用と資料の表記差は保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Facing",
+      "additions": [
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "画面の左を向いているか調べる",
+            "code": [
+              "Trigger1 = Facing = -1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "画面の右を向いているか調べる",
+            "code": [
+              "Trigger1 = Facing = 1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーの向きを整数で返します。画面の右向きなら1、左向きなら-1です。引数はありません。</p><p>左向きかを調べるには<code>Facing = -1</code>、右向きかなら<code>Facing = 1</code>と比較します。自分から見た前後や、相手の方向を向いているかの判定とは区別してください。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "facing-local-2002",
+                "facing-local-1.0",
+                "facing-local-1.1"
+              ],
+              "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>Facingは0/1の真偽フラグではありません。左向きの-1も0以外なので、<code>Trigger1 = Facing</code>は左右どちらでも成立します。向きを条件にする場合は1または-1との比較を使ってください。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "facing-local-2002",
+                  "facing-local-1.0",
+                  "facing-local-1.1",
+                  "facing-trigger-logic-1.0"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧例のTrigger = Facing = -1は保存済み公式3世代のFacing例にもあるが、CNSのトリガー記述はtrigger1から始める番号付き条件である。旧例と資料の表記差を原位置へ保持し、公開にはTrigger1を使う条件行を示す。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "facing-legacy",
+                  "facing-local-2002",
+                  "facing-local-1.0",
+                  "facing-local-1.1",
+                  "facing-trigger-number-1.0"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSは座標差とFacingのXORによる相手向き判定、タッグやHelperType=Player下のP2Distの不確定性を記載する。敵不在・同座標・リダイレクト対象・自動振り向きやバインドのCommand方向への影響は今回実機未検証。画面の左右という基本値と、相手を向く判定を混同せず内部研究を保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "facing-chaos",
+                  "facing-local-2002",
+                  "facing-local-1.0",
+                  "facing-local-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代への掲載と最初の実装は別である。導入日付・ビルドの実機確認は未実施で、introduced_inはnullに保持する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "facing-legacy",
+                  "facing-local-2002",
+                  "facing-local-1.0",
+                  "facing-local-1.1"
+                ],
+                "comment": "2026-10-04: 旧原文・保存済み公式資料・CHAOSを照合。今回の実機検証ではない。"
+              },
+              "environment": {
+                "engine": "mugen"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "facing-local-2002",
+            "title": "Facing — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Facing",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "facing-local-1.0",
+            "title": "Facing — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#facing",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "facing-local-1.1",
+            "title": "Facing — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#facing",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "facing-legacy",
+            "title": "Facing — 移行前の説明・構文・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/8c5f9e6a1ca6f3a06a891d68d8407bf3c7306188/src/content/triggers/Facing.json",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "facing-chaos",
+            "title": "Facing — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/119.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "facing-trigger-logic-1.0",
+            "title": "トリガー条件の真偽 — Elecbyte 1.0 CNS",
+            "url": "/MUGEN/document/Official/1.0/cns.html#condition-and-function-type-triggers",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "facing-trigger-number-1.0",
+            "title": "トリガー番号 — Elecbyte 1.0 CNS",
+            "url": "/MUGEN/document/Official/1.0/cns.html#trigger-logic",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・L比較の世代境界・自動処理の詳細は実機未検証。",
+        "旧構文・例・引用と資料の表記差は保持。"
+      ]
+    }
+  ]
+}

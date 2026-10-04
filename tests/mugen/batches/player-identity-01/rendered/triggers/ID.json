@@ -1,0 +1,49 @@
+{
+  "text": "ID キャラクター情報 > プレイヤー/ヘルパーの一意ID取得 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 プレイヤーのIDを返します。このIDは、helperを含むプレイヤーが発生すると、自動で割り付けられ、その試合中は変更できません。自分で指定することもできません。\"playerID\"リダイレクトキーワードに使用するため、敵のIDを取得するのが主な使用方法です。戻り値の型: int 構文 ID 引数 なし コードサンプルプレイヤーのID番号をvalueに代入します。value = ID プレイヤーに最も近い敵のID番号をvalueに代入します。value = EnemyNear, ID 引用記事ID - Trigger Reference(version 2002.04.14)ID - Trigger Reference(version 1.0)ID - Trigger Reference(version 1.1)ID - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.17 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ID - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#ID"
+    },
+    {
+      "text": "ID - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#id"
+    },
+    {
+      "text": "ID - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#id"
+    },
+    {
+      "text": "ID - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ID"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

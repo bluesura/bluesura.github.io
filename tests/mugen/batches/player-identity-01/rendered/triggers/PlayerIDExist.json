@@ -1,0 +1,69 @@
+{
+  "text": "PlayerIDExist キャラクター情報 > 指定IDのプレイヤー/ヘルパー存在判定 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 IDのプレイヤーが存在するかどうかを返します。指定IDのプレイヤーが存在する場合1、しない場合0を返します。IDはIDトリガーで取得できます。ID番号には、調べたいプレイヤーのID番号を整数で指定します。リダイレクト(Parent,Root,Helper,Partner,Enemy,EnemyNear,Target,NumTarget,PlayerID)やHelper消去時のHelper・Explod召喚フリーズ対策として用います。 関連するステートコントローラー： Explod , Helper 関連するトリガー： ID 構文 PlayerIDExist(ID番号) 引数 なし コードサンプルリダイレクトを使用できるか確認変数を間違って相手ヘルパーに代入しないようにするためのトリガー。PlayerExistでHelper自身が存在しているか確認してからリダイレクト(PlayerID)を使用して、自分・相手どちらのヘルパーかTeamSideで確認しています。[State ]Type = NullTrigger1 = var(0) := var(0) + 1 * (var(0)=0)*IDTrigger1 = PlayerExist(var(0))Trigger1 = PlayerID(var(0)),Teamside != TeamSideTrigger1 = var(20) := 999 Helper消去時のHelper・Explod召喚フリーズ対策DestroySelf移行に設置しているExplodへ必ず記述して下さい。[State ]Type = ExplodTriggerAll = PlayerIDExist(ID)Trigger1 = Time = 0Anim = 1103ID = 1103Pos = 0,IfElse(Anim=402,-20,-60)PosType = P1SprPriority = 0OwnPal = 1Shadow = 0,0,0Scale = .8,.8PauseMoveTime = 999999SuperMoveTime = 999999 引用記事PlayerIDExist - Trigger Reference(version 2002.04.14)PlayerIDExist - Trigger Reference(version 1.0)PlayerIDExist - Trigger Reference(version 1.1)PlayerIDExist - M.U.G.E.N wikiPlayerIDExist - 東方夢幻館PlayerIDExist - MUGEN CNS WIKI CHAOS@予定 公開日:2008.06.05 最終更新日:2016.01.25 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Explod",
+      "href": "./../State/Explod.html"
+    },
+    {
+      "text": "Helper",
+      "href": "./../State/Helper.html"
+    },
+    {
+      "text": "ID",
+      "href": "./../Trigger/ID.html"
+    },
+    {
+      "text": "PlayerIDExist - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#PlayerIDExist"
+    },
+    {
+      "text": "PlayerIDExist - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#playeridexist"
+    },
+    {
+      "text": "PlayerIDExist - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#playeridexist"
+    },
+    {
+      "text": "PlayerIDExist - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PlayerIDExist"
+    },
+    {
+      "text": "PlayerIDExist - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/trigger_main.html#PlayerIDExist"
+    },
+    {
+      "text": "PlayerIDExist - MUGEN CNS WIKI CHAOS@予定",
+      "href": "http://www49.atwiki.jp/mugencns/pages/184.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

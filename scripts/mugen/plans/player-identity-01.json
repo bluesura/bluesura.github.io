@@ -1,0 +1,934 @@
+{
+  "id": "player-identity-01",
+  "reviewed_on": "2026-10-05",
+  "description": "プレイヤー一意ID・任意Helper ID照合・一意IDの存在判定を分離。旧誤記とフリーズ対策は原文を保持して内部へ。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "ID",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "id-local-2002",
+            "title": "ID — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ID",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "id-local-1.0",
+            "title": "ID — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#id",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "id-local-1.1",
+            "title": "ID — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#id",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "id-legacy",
+            "title": "移行前の原文・コード例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/04306be87e8f24441f702eebab953908b0830cc4/src/content/triggers/ID.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "id-helper-1.1",
+            "title": "Helperの指定ID — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#helper",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "id-chaos",
+            "title": "ID — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/49.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "id-redirect-1.1",
+            "title": "参照対象の変更 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#id1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "最も近い敵の一意IDをvar(0)へ保存する",
+            "description": "<p>var(0)はこの例の保存先です。キャラクターの既存用途に合わせて番号を選び、存在確認にも同じ変数を使ってください。</p>",
+            "code": [
+              "[State 0, Save opponent ID]",
+              "Type = VarSet",
+              "Trigger1 = NumEnemy > 0",
+              "v = 0",
+              "value = EnemyNear, ID"
+            ]
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>現在参照しているプレイヤーの一意IDを整数で返します。引数はありません。Helperにも個別の一意IDが割り当てられ、同じ試合の別のプレイヤーとは重複しません。</p><p>この値は<code>PlayerID(ID_number)</code>リダイレクトや<code>PlayerIDExist(ID_number)</code>で使います。Helperコントローラーに指定するIDや、HitDefのID（TargetID）とは別の識別番号です。</p>",
+            "syntax": [
+              "ID"
+            ],
+            "page_category": "プレイヤー／Helperの一意ID取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "id-local-2002",
+                "id-local-1.0",
+                "id-local-1.1",
+                "id-helper-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>旧page.versionの2002.04.14は資料世代の表示として保持します。初導入ビルドを確認した記録ではないため、introduced_inはnullです。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "id-legacy",
+                  "id-local-2002",
+                  "id-local-1.0",
+                  "id-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例の<code>value = ID</code>と<code>value = EnemyNear, ID</code>は、値を設定するパラメーターの抜粋です。敵を参照するときは、コントローラーの条件で先に<code>NumEnemy &gt; 0</code>を確認します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "id-local-2002",
+                  "id-local-1.0",
+                  "id-local-1.1",
+                  "id-redirect-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSにはHelperMaxに基づく割当開始値、タッグの割当順、Helper射出・消滅によるID増加、Turnsでのキャラクター交代とID変更、処理順のスロットIDとの区別が記されています。資料の報告を保持しますが、開始値・順序・上限や桁あふれ・全ビルドの寿命を今回実機確認していません。固定のIDから1P/2P番号を推測する公開例にはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "id-chaos",
+                  "id-local-2002",
+                  "id-local-1.0",
+                  "id-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "id-local-2002",
+              "id-local-1.0",
+              "id-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルド・IDの割当詳細と不正引数・消滅境界は実機未検証。",
+        "旧フィールドを保持。PlayerIDExistのフリーズ回避策は対象ビルドと再現条件が未確定。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "IsHelper",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ishelper-local-2002",
+            "title": "IsHelper — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IsHelper",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ishelper-local-1.0",
+            "title": "IsHelper — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#ishelper",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ishelper-local-1.1",
+            "title": "IsHelper — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#ishelper",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ishelper-legacy",
+            "title": "移行前の原文・コード例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/04306be87e8f24441f702eebab953908b0830cc4/src/content/triggers/IsHelper.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ishelper-helper-1.1",
+            "title": "Helperの指定ID — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#helper",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "exprn",
+              "type": [
+                "int"
+              ],
+              "parameter_type": "optional",
+              "expression_policy": "expression",
+              "description": "<p>照合するHelperコントローラーのIDを返す整数式です。省略時はIDを限定せず、Helperかどうかを調べます。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "ishelper-local-2002",
+                  "ishelper-local-1.0",
+                  "ishelper-local-1.1",
+                  "ishelper-helper-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>参照しているプレイヤーがHelperかどうかを整数の<code>1</code>または<code>0</code>で返します。引数なしの<code>IsHelper</code>は、Helperなら1、それ以外なら0です。</p><p><code>IsHelper(exprn)</code>は、Helperであり、HelperコントローラーのIDが指定値と一致するときだけ1を返します。引数は省略できます。このIDは、IDトリガーで取得するプレイヤーの一意IDとは別の値です。</p>",
+            "syntax": [
+              "IsHelper",
+              "IsHelper(exprn)"
+            ],
+            "page_category": "Helperの判定・指定IDとの照合",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "ishelper-local-2002",
+                "ishelper-local-1.0",
+                "ishelper-local-1.1",
+                "ishelper-helper-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>旧page.versionの2002.04.14は資料世代の表示として保持します。初導入ビルドを確認した記録ではないため、introduced_inはnullです。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "ishelper-legacy",
+                  "ishelper-local-2002",
+                  "ishelper-local-1.0",
+                  "ishelper-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式3世代の本文・Formatは任意のID引数を記載しますが、Arguments欄はnoneです。原文の表記差を保持し、公開引数表は本文に合わせてoptionalとします。CHAOSのIsHelper本文は今回取得できませんでした。0・負のIDや範囲外・小数の変換と警告は実機未確認で、省略を特定の整数へ置き換えません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "ishelper-local-2002",
+                  "ishelper-local-1.0",
+                  "ishelper-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1では、exprnの評価結果がbottomなら、戻り値もbottomです。通常の不一致・不在で返す0とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "ishelper-local-1.0",
+                  "ishelper-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>2002.04.14資料のエラー欄は引数がSFalseならSFalseを返すと記載し、1.0/1.1資料はbottomと記載します。通常の不一致・不在0とエラー値を同一視せず、特殊形式によるbottom処理と最終条件の偽判定も分けます。資料世代の記述差を保持し、正確な導入境界は推測しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "ishelper-local-2002",
+                  "ishelper-local-1.0",
+                  "ishelper-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "ishelper-local-2002",
+              "ishelper-local-1.0",
+              "ishelper-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルド・IDの割当詳細と不正引数・消滅境界は実機未検証。",
+        "旧フィールドを保持。PlayerIDExistのフリーズ回避策は対象ビルドと再現条件が未確定。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "PlayerIDExist",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "playeridexist-local-2002",
+            "title": "PlayerIDExist — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PlayerIDExist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "playeridexist-local-1.0",
+            "title": "PlayerIDExist — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#playeridexist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "playeridexist-local-1.1",
+            "title": "PlayerIDExist — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#playeridexist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "playeridexist-legacy",
+            "title": "移行前の原文・コード例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/04306be87e8f24441f702eebab953908b0830cc4/src/content/triggers/PlayerIDExist.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "playeridexist-chaos",
+            "title": "PlayerIDExist — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/184.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "playeridexist-redirect-1.1",
+            "title": "参照対象の変更 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#id1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "playeridexist-condition-order-1.1",
+            "title": "条件トリガーの評価順 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#organizing-for-efficiency",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "playeridexist-bottom-1.1",
+            "title": "bottomと特殊形式 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#bottom",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "保存した一意IDの存在を確認する",
+            "description": "<p>var(0)には、あらかじめIDトリガーで取得した一意IDを保存しておきます。Helperの指定IDは入れません。</p>",
+            "code": [
+              "Trigger1 = PlayerIDExist(var(0))"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "存在を確認してから、そのプレイヤーのライフを調べる",
+            "description": "<p>var(0)は保存済みの一意IDです。同じ番号の条件行をこの順に置き、存在しない場合は次のリダイレクトを評価しません。</p>",
+            "code": [
+              "Trigger1 = PlayerIDExist(var(0))",
+              "Trigger1 = PlayerID(var(0)), Life > 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "ID_number",
+              "type": [
+                "int"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>存在を調べるプレイヤーの一意IDを返す整数式です。IDトリガーの取得値を使います。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "playeridexist-local-2002",
+                  "playeridexist-local-1.0",
+                  "playeridexist-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>指定した一意IDのプレイヤーが存在する場合は整数の<code>1</code>、存在しない場合は<code>0</code>を返します。Helperも対象です。</p><p><code>ID_number</code>は必須の整数式で、IDトリガーで取得したプレイヤーの一意IDを指定します。HelperコントローラーのIDやHitDefのID（TargetID）とは別の値です。<code>PlayerID(ID_number)</code>で参照する前の存在確認に使います。</p>",
+            "syntax": [
+              "PlayerIDExist(ID_number)"
+            ],
+            "page_category": "一意IDによるプレイヤー／Helperの存在判定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "playeridexist-local-2002",
+                "playeridexist-local-1.0",
+                "playeridexist-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>旧page.versionの2002.04.14は資料世代の表示として保持します。初導入ビルドを確認した記録ではないため、introduced_inはnullです。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "playeridexist-legacy",
+                  "playeridexist-local-2002",
+                  "playeridexist-local-1.0",
+                  "playeridexist-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>存在確認はAliveやチーム所属の判定ではありません。必要な情報は、存在を確認した後に対象の<code>Alive</code>や<code>TeamSide</code>などで別に調べます。HelperやTargetの指定IDは、それぞれの<code>NumHelper</code>や<code>NumTarget</code>で確認します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "playeridexist-local-2002",
+                  "playeridexist-local-1.0",
+                  "playeridexist-local-1.1",
+                  "playeridexist-redirect-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧code_sample[0]のPlayerExist(var(0))は、PlayerIDExistの公式構文と一致しません。CHAOSの原例にも同じPlayerExist表記があります。var(0)の更新条件・自分より一つ古いHelperの推定・TeamSide比較の参照範囲・var(20)代入の説明は前提が不足しているため、コード行と説明を原位置に保存して内部にします。公開例では保存済み一意IDの存在確認と参照を分けます。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "playeridexist-legacy",
+                  "playeridexist-chaos",
+                  "playeridexist-local-2002",
+                  "playeridexist-local-1.0",
+                  "playeridexist-local-1.1",
+                  "playeridexist-redirect-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧code_sample[1]はDestroySelf後のHelper・Explod召喚フリーズ対策としてPlayerIDExist(ID)を必須としています。この回避策のコード・説明・東方夢幻館の出典を保存します。対象ビルド、DestroySelf後にステート評価が続く条件、HelperとExplodの差、再現手順は実機未確認です。今回、東方夢幻館の本文を取得できなかったため、全ビルドへの必須条件として公開しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "playeridexist-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧本文のリダイレクト列挙にはNumTargetが含まれますが、これはTarget数を返すトリガーです。公式CNSのPlayerID説明にもPlayerExistIDという参照名の表記差があります。原文を保持し、公開構文はTrigger ReferenceのPlayerIDExistに合わせます。負値・桁あふれ・不正な引数型、消滅と存在判定のフレーム境界は実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "playeridexist-legacy",
+                  "playeridexist-redirect-1.1",
+                  "playeridexist-local-2002",
+                  "playeridexist-local-1.0",
+                  "playeridexist-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "error",
+              "content": "<p>MUGEN 1.0 / 1.1では、ID_numberの評価結果がbottomなら、戻り値もbottomです。通常の不一致・不在で返す0とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "playeridexist-local-1.0",
+                  "playeridexist-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>2002.04.14資料のエラー欄は引数がSFalseならSFalseを返すと記載し、1.0/1.1資料はbottomと記載します。通常の不一致・不在0とエラー値を同一視せず、特殊形式によるbottom処理と最終条件の偽判定も分けます。資料世代の記述差を保持し、正確な導入境界は推測しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "playeridexist-local-2002",
+                  "playeridexist-local-1.0",
+                  "playeridexist-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "playeridexist-local-2002",
+              "playeridexist-local-1.0",
+              "playeridexist-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代と旧原文を照合。IDとPlayerIDExistはCHAOS本文も確認。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルド・IDの割当詳細と不正引数・消滅境界は実機未検証。",
+        "旧フィールドを保持。PlayerIDExistのフリーズ回避策は対象ビルドと再現条件が未確定。"
+      ]
+    }
+  ]
+}

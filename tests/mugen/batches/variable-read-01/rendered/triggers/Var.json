@@ -1,0 +1,93 @@
+{
+  "text": "Var 変数 > 整数変数の参照・代入（Var） | 実装されたバージョン: 2002.04.14 | 対象: 通常は実行者自身。トリガーリダイレクトで変更可能 引数 仕様・注意点 使用例 引用記事 整数変数（Var）を参照します。Var(N) は整数値を返します。:=（代入演算子）を使うと、トリガー式の中で Var(N) に値を代入できます。代入式全体の評価結果は「代入された値」です。無効な変数番号や評価不能な式が入った場合、MUGEN 1.0/1.1 では bottom（評価不能値）になります。条件式では bottom は 0（偽）として扱われるため、エラーは「発火しない」形になります。 関連するステートコントローラー： VarSet , VarAdd , VarRandom , VarRangeSet 関連するトリガー： Cond , IfElse , FVar , SysVar , SysFVar 構文 Var(式)Var(式) := 式 引数 N 省略不可 型整数 最小値0 最大値59 参照/代入する整数変数番号。0〜59。引数は式で指定できますが、結果は整数として扱われます。小数が混ざると警告の原因になりやすいので、必要なら Floor()/Ceil() などで明示的に整数化します。 仕様・バグ・エラー・変更点WinMUGEN 2002.04.14無効な引数（例: 範囲外、SFalse相当の評価）では SFalse を返します。MUGEN 1.0 / 1.1無効な引数や評価不能は bottom。条件式では bottom は 0（偽）として扱われます。Cond は「使う分岐だけを評価」するため、評価不能や警告を避けたい場合に有効です（IfElse は未使用側も評価されます）。MUGEN 1.0 / 1.1:= の左辺は「リダイレクトされていない」Var(N)（または FVar(N)）である必要があります（例: enemy, Var(0) := 1 は不可）。 Q＆A(よくある質問)トリガー式で代入（:=）しても大丈夫？Var(N) := 式 は「代入した値」を返します。毎フレーム評価される場所（例: ステート -2/-3 や、同一条件が頻繁に評価される箇所）で多用すると、意図せず値が上書きされ続けることがあります。「共通条件を一度だけ計算して使い回す」用途では有効ですが、必要最小限に留めるのがおすすめです。無効な番号を参照したとき、なぜ発火しない？MUGEN 1.0/1.1 では、範囲外参照などは bottom（評価不能値）になります。条件式では bottom は 0（偽）なので、結果として「条件が成立しない」挙動になります。存在確認（例: NumHelper など）や Cond で分岐して、評価不能を避けると警告も減らせます。ヘルパーや相手の Var を見たいVar は評価対象（通常はそのステートを実行しているキャラ/ヘルパー）の変数です。相手やヘルパーの値は、トリガーリダイレクト（例: Enemy, Var(0) / Helper(ID), Var(0)）で参照します。 コードサンプル整数変数の参照Var(0) が -34 のときに成立。Trigger1 = Var(0) = -34 毎フレーム更新（:=）Var(0) に「そのステートに入ってからの経過フレーム + 5」を代入します。Trigger1 = 1Trigger1 = (Var(0) := Time + 5) >= 0 重い条件を Var にキャッシュして使い回す同じ部分条件を複数回書く代わりに、Var(0) にキャッシュして読みやすさを上げる例です。Trigger1 = (Var(0) := (Command = \"abc\" && Command != \"holddown\")) && Power >= 1000Trigger2 = Var(0) && Var(5)Trigger3 = !Var(0) && Power >= 2000 引用記事Var - Trigger Reference(version 2002.04.14)Var - Trigger Reference (MUGEN 1.0)Var - Trigger Reference (MUGEN 1.1)CNS format (MUGEN 1.1) - Expressions / bottom / Cond 公開日:2008.06.05 最終更新日:2026.01.10 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "VarSet",
+      "href": "./../State/VarSet.html"
+    },
+    {
+      "text": "VarAdd",
+      "href": "./../State/VarAdd.html"
+    },
+    {
+      "text": "VarRandom",
+      "href": "./../State/VarRandom.html"
+    },
+    {
+      "text": "VarRangeSet",
+      "href": "./../State/VarRangeSet.html"
+    },
+    {
+      "text": "Cond",
+      "href": "./../Trigger/Cond.html"
+    },
+    {
+      "text": "IfElse",
+      "href": "./../Trigger/IfElse.html"
+    },
+    {
+      "text": "FVar",
+      "href": "./../Trigger/FVar.html"
+    },
+    {
+      "text": "SysVar",
+      "href": "./../Trigger/SysVar.html"
+    },
+    {
+      "text": "SysFVar",
+      "href": "./../Trigger/SysFVar.html"
+    },
+    {
+      "text": "Var - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Var"
+    },
+    {
+      "text": "Var - Trigger Reference (MUGEN 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#var"
+    },
+    {
+      "text": "Var - Trigger Reference (MUGEN 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#var"
+    },
+    {
+      "text": "CNS format (MUGEN 1.1) - Expressions / bottom / Cond",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/cns.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-trigger-variable-structure.png"
+  ],
+  "code": []
+}

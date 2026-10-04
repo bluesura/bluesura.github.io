@@ -1,0 +1,1596 @@
+{
+  "id": "variable-read-01",
+  "reviewed_on": "2026-10-04",
+  "description": "Var/FVar/SysVar/SysFVarの引数・戻り値・旧SFalseとbottom、式中代入の対象を整理。旧構文・関連ID・図・例を非破壊で訂正。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "Var",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象の整数変数の値を読み取ります。<code>Var(N)</code>のNは必須の変数番号で、0～59の整数へ評価される式を指定します。戻り値は整数です。</p><p>通常は実行者自身の変数を参照します。別のプレイヤーやHelperの値はトリガーリダイレクトで参照できます。</p><p>1.0/1.1では、式中の<code>Var(N) := 式</code>で代入できます。代入後の値が式の評価結果になります。ステートコントローラーの代替書式<code>var(N) = 値</code>とは異なる構文です。</p>",
+            "page_category": "整数変数の参照・式中代入",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "var-local-2002",
+                "var-local-1.0",
+                "var-local-1.1",
+                "var-cns-1.0",
+                "var-cns-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "N",
+              "type": [
+                "int"
+              ],
+              "legacy_index": 0,
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>参照する整数変数の番号です。0～59の整数へ評価される式を指定します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "var-local-2002",
+                  "var-local-1.0",
+                  "var-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "式中代入と条件の判定を分ける",
+            "description": "<p>1.0/1.1用の記述例です。Var(0)に5を代入し、代入後の値と比較して条件を判定します。Nullのトリガー式で代入の副作用が発生します。</p>",
+            "code": [
+              "[State 200, Assignment expression]",
+              "Type = Null",
+              "Trigger1 = (Var(0) := 5) = 5"
+            ]
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>無効な引数（例: 範囲外、SFalse相当の評価）では <code>SFalse</code> を返します。</p><p>保存済み2002.04.14資料にはSFalseの記載がありますが、旧WinMUGENという実行ビルドへの対応付けは今回実測していません。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "var-legacy-data",
+                  "var-local-2002"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "legacy_index": 1,
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>1.0/1.1では、引数がbottomになる場合や無効な変数番号の場合、戻り値は<code>bottom</code>です。評価結果がbottomになった条件トリガーは0（偽）として扱われます。Cond/IfElseにはbottomを扱う特別な評価規則があるため、部分式のbottomが常に式全体へ波及するとは限りません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "var-local-1.0",
+                  "var-local-1.1",
+                  "var-cns-1.0",
+                  "var-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>保存済み2002.04.14の公式資料では、引数がSFalseになる場合や無効な変数番号の場合に<code>SFalse</code>を返すと記載されています。1.0/1.1の資料では評価不能値を<code>bottom</code>と表記しています。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "var-local-2002",
+                  "var-local-1.0",
+                  "var-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>変数番号に浮動小数を渡した場合の変換と警告、範囲外・評価不能値の詳細、ビルドごとの境界とラウンド持ち越し条件は今回未検証です。引数の整数型・有効番号と、式中代入の右辺の型変換を混同しません。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "var-local-2002",
+                  "var-local-1.0",
+                  "var-local-1.1",
+                  "var-cns-1.0",
+                  "var-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧共通図は「リダイレクト先代入不可」の例と式全体へのbottom波及を包括的に示し、適用範囲や特殊形式の例外を分けていません。図・alt・寸法を保持して内部へ移し、本文の対象制約と評価条件を優先します。ラウンド跨ぎや予約領域の独自方針も今回実測していません。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "var-legacy-data",
+                  "var-cns-1.0",
+                  "var-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p><code>:=</code> の左辺は「リダイレクトされていない」<code>Var(N)</code>（または <code>FVar(N)</code>）である必要があります（例: <code>enemy, Var(0) := 1</code> は不可）。</p><p>代入演算子の左辺の非リダイレクト制約と、式全体の評価対象変更を区別する必要があります。旧具体例を不可能と断定する前に解析・実行条件を確認します。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "var-legacy-data",
+                  "var-cns-1.0",
+                  "var-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              },
+              "legacy_index": 2
+            },
+            {
+              "kind": "behavior",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>式中代入の左辺は、リダイレクトされていないVar(N)またはFVar(N)です。Varへの代入では、右辺を整数へ切り詰めてから代入します。式全体の値は、変換後に変数へ代入された値です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "var-cns-1.0",
+                  "var-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧更新例はコントローラーのType・評価されるステートが省略され、代入結果が負の場合の条件成立やキャッシュの更新前提も明示されていません。コードと説明を保持して内部へ移し、公開例では副作用を含む評価と条件の判定を分けます。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "var-legacy-data",
+                  "var-cns-1.0",
+                  "var-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧「無効な番号が発火しない」Q&Aは、bottomを処理できる特殊形式の例外と、対象の存在確認の条件を分けていません。原文と参照URLを内部に保持し、評価結果がbottomである条件に限定して本文を整理します。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "var-legacy-data",
+                  "var-cns-1.0",
+                  "var-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "var-local-2002",
+              "var-local-1.0",
+              "var-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "var-local-2002",
+            "title": "Var — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Var",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "var-local-1.0",
+            "title": "Var — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#var",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "var-local-1.1",
+            "title": "Var — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#var",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "var-cns-1.0",
+            "title": "Var — 保存済み Elecbyte 1.0 CNS式・代入・bottom",
+            "url": "/MUGEN/document/Official/1.0/cns.html#arithmetic-operators",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "var-cns-1.1",
+            "title": "Var — 保存済み Elecbyte 1.1b1 CNS式・代入・bottom",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#arithmetic-operators",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "var-legacy-data",
+            "title": "Var — 移行前の説明・構文・履歴・図・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/a890467fb2a733f56f3c49a7a1995da38d7604a9/src/content/triggers/Var.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "notes / images / code_sample",
+          "reason": "WinMUGEN実行ビルドへのSFalse対応、番号型変換/警告・リダイレクト全体の代入条件・持ち越し、旧共通図と応用例は実機未検証。資料差・旧構文・関連IDを保持。"
+        }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "FVar",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象の浮動小数変数の値を読み取ります。<code>FVar(N)</code>のNは必須の変数番号で、0～39の整数へ評価される式を指定します。戻り値は浮動小数点数です。</p><p>通常は実行者自身の変数を参照します。別のプレイヤーやHelperの値はトリガーリダイレクトで参照できます。</p><p>1.0/1.1では、式中の<code>FVar(N) := 式</code>で代入できます。代入後の値が式の評価結果になります。ステートコントローラーの代替書式<code>fvar(N) = 値</code>とは異なる構文です。</p>",
+            "page_category": "浮動小数変数の参照・式中代入",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "fvar-local-2002",
+                "fvar-local-1.0",
+                "fvar-local-1.1",
+                "fvar-cns-1.0",
+                "fvar-cns-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "N",
+              "type": [
+                "int"
+              ],
+              "legacy_index": 0,
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>参照する浮動小数変数の番号です。0～39の整数へ評価される式を指定します。戻り値が浮動小数点数でも、番号は整数です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "fvar-local-2002",
+                  "fvar-local-1.0",
+                  "fvar-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "式中代入と条件の判定を分ける",
+            "description": "<p>1.0/1.1用の記述例です。FVar(0)に0.5を代入し、代入後の値と比較して条件を判定します。Nullのトリガー式で代入の副作用が発生します。</p>",
+            "code": [
+              "[State 200, Assignment expression]",
+              "Type = Null",
+              "Trigger1 = (FVar(0) := 0.5) = 0.5"
+            ]
+          }
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>無効な引数では <code>SFalse</code> を返します。</p><p>保存済み2002.04.14資料にはSFalseの記載がありますが、旧WinMUGENという実行ビルドへの対応付けは今回実測していません。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "fvar-legacy-data",
+                  "fvar-local-2002"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "legacy_index": 1,
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>1.0/1.1では、引数がbottomになる場合や無効な変数番号の場合、戻り値は<code>bottom</code>です。評価結果がbottomになった条件トリガーは0（偽）として扱われます。Cond/IfElseにはbottomを扱う特別な評価規則があるため、部分式のbottomが常に式全体へ波及するとは限りません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "fvar-local-1.0",
+                  "fvar-local-1.1",
+                  "fvar-cns-1.0",
+                  "fvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>保存済み2002.04.14の公式資料では、引数がSFalseになる場合や無効な変数番号の場合に<code>SFalse</code>を返すと記載されています。1.0/1.1の資料では評価不能値を<code>bottom</code>と表記しています。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "fvar-local-2002",
+                  "fvar-local-1.0",
+                  "fvar-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>変数番号に浮動小数を渡した場合の変換と警告、範囲外・評価不能値の詳細、ビルドごとの境界とラウンド持ち越し条件は今回未検証です。引数の整数型・有効番号と、式中代入の右辺の型変換を混同しません。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "fvar-local-2002",
+                  "fvar-local-1.0",
+                  "fvar-local-1.1",
+                  "fvar-cns-1.0",
+                  "fvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧共通図は「リダイレクト先代入不可」の例と式全体へのbottom波及を包括的に示し、適用範囲や特殊形式の例外を分けていません。図・alt・寸法を保持して内部へ移し、本文の対象制約と評価条件を優先します。ラウンド跨ぎや予約領域の独自方針も今回実測していません。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "fvar-legacy-data",
+                  "fvar-cns-1.0",
+                  "fvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>式中代入の左辺は、リダイレクトされていないVar(N)またはFVar(N)です。FVarへの代入では、必要に応じて右辺を浮動小数点数へ変換します。式全体の値は、変換後に変数へ代入された値です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "fvar-cns-1.0",
+                  "fvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧更新例はコントローラーのType・評価されるステートが省略され、代入結果が負の場合の条件成立やキャッシュの更新前提も明示されていません。コードと説明を保持して内部へ移し、公開例では副作用を含む評価と条件の判定を分けます。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "fvar-legacy-data",
+                  "fvar-cns-1.0",
+                  "fvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "fvar-local-2002",
+              "fvar-local-1.0",
+              "fvar-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "fvar-local-2002",
+            "title": "FVar — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#FVar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "fvar-local-1.0",
+            "title": "FVar — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#fvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "fvar-local-1.1",
+            "title": "FVar — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#fvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "fvar-cns-1.0",
+            "title": "FVar — 保存済み Elecbyte 1.0 CNS式・代入・bottom",
+            "url": "/MUGEN/document/Official/1.0/cns.html#arithmetic-operators",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "fvar-cns-1.1",
+            "title": "FVar — 保存済み Elecbyte 1.1b1 CNS式・代入・bottom",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#arithmetic-operators",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "fvar-legacy-data",
+            "title": "FVar — 移行前の説明・構文・履歴・図・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/a890467fb2a733f56f3c49a7a1995da38d7604a9/src/content/triggers/FVar.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "notes / images / code_sample",
+          "reason": "WinMUGEN実行ビルドへのSFalse対応、番号型変換/警告・リダイレクト全体の代入条件・持ち越し、旧共通図と応用例は実機未検証。資料差・旧構文・関連IDを保持。"
+        }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "SysVar",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のシステム用整数変数の値を読み取ります。<code>SysVar(N)</code>のNは必須の変数番号で、0～4の整数へ評価される式を指定します。戻り値は整数です。</p><p>通常は実行者自身の変数を参照します。別のプレイヤーやHelperの値はトリガーリダイレクトで参照できます。</p><p>システム変数はcommon1.cnsの管理用に予約されています。独自の一般用途には通常のVar/FVarを使ってください。1.0/1.1の式中代入演算子<code>:=</code>はVar/FVar用で、SysVar/SysFVarには使用できません。</p>",
+            "page_category": "システム用整数変数の参照",
+            "syntax": [
+              "SysVar(式)"
+            ],
+            "associated_state": [],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "sysvar-local-2002",
+                "sysvar-local-1.0",
+                "sysvar-local-1.1",
+                "sysvar-cns-1.0",
+                "sysvar-cns-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "N",
+              "type": [
+                "int"
+              ],
+              "legacy_index": 0,
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>参照するシステム用整数変数の番号です。0～4の整数へ評価される式を指定します。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysvar-local-2002",
+                  "sysvar-local-1.0",
+                  "sysvar-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>無効な引数では <code>SFalse</code> を返します。</p><p>保存済み2002.04.14資料にはSFalseの記載がありますが、旧WinMUGENという実行ビルドへの対応付けは今回実測していません。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysvar-legacy-data",
+                  "sysvar-local-2002"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "legacy_index": 1,
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>1.0/1.1では、引数がbottomになる場合や無効な変数番号の場合、戻り値は<code>bottom</code>です。評価結果がbottomになった条件トリガーは0（偽）として扱われます。Cond/IfElseにはbottomを扱う特別な評価規則があるため、部分式のbottomが常に式全体へ波及するとは限りません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysvar-local-1.0",
+                  "sysvar-local-1.1",
+                  "sysvar-cns-1.0",
+                  "sysvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>保存済み2002.04.14の公式資料では、引数がSFalseになる場合や無効な変数番号の場合に<code>SFalse</code>を返すと記載されています。1.0/1.1の資料では評価不能値を<code>bottom</code>と表記しています。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysvar-local-2002",
+                  "sysvar-local-1.0",
+                  "sysvar-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>変数番号に浮動小数を渡した場合の変換と警告、範囲外・評価不能値の詳細、ビルドごとの境界とラウンド持ち越し条件は今回未検証です。引数の整数型・有効番号と、式中代入の右辺の型変換を混同しません。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysvar-local-2002",
+                  "sysvar-local-1.0",
+                  "sysvar-local-1.1",
+                  "sysvar-cns-1.0",
+                  "sysvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧共通図は「リダイレクト先代入不可」の例と式全体へのbottom波及を包括的に示し、適用範囲や特殊形式の例外を分けていません。図・alt・寸法を保持して内部へ移し、本文の対象制約と評価条件を優先します。ラウンド跨ぎや予約領域の独自方針も今回実測していません。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysvar-legacy-data",
+                  "sysvar-cns-1.0",
+                  "sysvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "version_change",
+              "legacy_index": 2,
+              "change": "fixed",
+              "at": "mugen-1.1-b1",
+              "content": "<p>ParentVarAdd / ParentVarSetでsysvar/sysfvarを記述した際の解析時クラッシュが修正されました。システム変数への対応追加を意味する履歴ではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "sysvar-history-b1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "limitation",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>式中代入演算子<code>:=</code>の左辺は、リダイレクトされていない<code>Var(N)</code>または<code>FVar(N)</code>です。<code>SysVar</code> / <code>SysFVar</code>は対象外です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "sysvar-cns-1.0",
+                  "sysvar-cns-1.1",
+                  "sysvar-chaos-operators"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧概要・構文のSysVar/SysFVarへの:=代入と、関連ステコンのSysVarSet/SysVarAdd/SysFVarSet/SysFVarAddには、照合したElecbyte仕様とこのリポジトリ内の対応定義がありません。旧フィールドを保持し、公開構文は参照のみ、関連IDは非表示へ訂正します。未文書化のVarSet代替書式による操作を否定する記録ではありません。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "sysvar-legacy-data",
+                  "sysvar-cns-1.0",
+                  "sysvar-cns-1.1",
+                  "sysvar-chaos-operators"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>2002.04.14と1.0の公式Format欄はSysVarにVar、SysFVarにFVarと記載しています。一方、同じ節の例はSysVar/SysFVarを使い、1.1のFormat欄もSysVar/SysFVarです。この表記差を保持し、公開構文はシステム変数の名前で示します。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysvar-local-2002",
+                  "sysvar-local-1.0",
+                  "sysvar-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "sysvar-local-2002",
+              "sysvar-local-1.0",
+              "sysvar-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysvar-local-2002",
+            "title": "SysVar — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#SysVar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysvar-local-1.0",
+            "title": "SysVar — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#sysvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysvar-local-1.1",
+            "title": "SysVar — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#sysvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysvar-cns-1.0",
+            "title": "SysVar — 保存済み Elecbyte 1.0 CNS式・代入・bottom",
+            "url": "/MUGEN/document/Official/1.0/cns.html#arithmetic-operators",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysvar-cns-1.1",
+            "title": "SysVar — 保存済み Elecbyte 1.1b1 CNS式・代入・bottom",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#arithmetic-operators",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysvar-history-b1",
+            "title": "ParentVarAdd / ParentVarSet — Elecbyte 1.1 Beta 1 修正履歴",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-1-beta-1",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysvar-chaos-operators",
+            "title": "式中代入 — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/44.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysvar-legacy-data",
+            "title": "SysVar — 移行前の説明・構文・履歴・図・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/a890467fb2a733f56f3c49a7a1995da38d7604a9/src/content/triggers/SysVar.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "notes / images / code_sample",
+          "reason": "WinMUGEN実行ビルドへのSFalse対応、番号型変換/警告・リダイレクト全体の代入条件・持ち越し、旧共通図と応用例は実機未検証。資料差・旧構文・関連IDを保持。"
+        }
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "SysFVar",
+      "additions": [
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のシステム用浮動小数変数の値を読み取ります。<code>SysFVar(N)</code>のNは必須の変数番号で、0～4の整数へ評価される式を指定します。戻り値は浮動小数点数です。</p><p>通常は実行者自身の変数を参照します。別のプレイヤーやHelperの値はトリガーリダイレクトで参照できます。</p><p>システム変数はcommon1.cnsの管理用に予約されています。独自の一般用途には通常のVar/FVarを使ってください。1.0/1.1の式中代入演算子<code>:=</code>はVar/FVar用で、SysVar/SysFVarには使用できません。</p>",
+            "page_category": "システム用浮動小数変数の参照",
+            "syntax": [
+              "SysFVar(式)"
+            ],
+            "associated_state": [],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "sysfvar-local-2002",
+                "sysfvar-local-1.0",
+                "sysfvar-local-1.1",
+                "sysfvar-cns-1.0",
+                "sysfvar-cns-1.1"
+              ],
+              "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "N",
+              "type": [
+                "int"
+              ],
+              "legacy_index": 0,
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>参照するシステム用浮動小数変数の番号です。0～4の整数へ評価される式を指定します。戻り値が浮動小数点数でも、番号は整数です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysfvar-local-2002",
+                  "sysfvar-local-1.0",
+                  "sysfvar-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>無効な引数では <code>SFalse</code> を返します。</p><p>保存済み2002.04.14資料にはSFalseの記載がありますが、旧WinMUGENという実行ビルドへの対応付けは今回実測していません。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysfvar-legacy-data",
+                  "sysfvar-local-2002"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "legacy_index": 1,
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>1.0/1.1では、引数がbottomになる場合や無効な変数番号の場合、戻り値は<code>bottom</code>です。評価結果がbottomになった条件トリガーは0（偽）として扱われます。Cond/IfElseにはbottomを扱う特別な評価規則があるため、部分式のbottomが常に式全体へ波及するとは限りません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysfvar-local-1.0",
+                  "sysfvar-local-1.1",
+                  "sysfvar-cns-1.0",
+                  "sysfvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>保存済み2002.04.14の公式資料では、引数がSFalseになる場合や無効な変数番号の場合に<code>SFalse</code>を返すと記載されています。1.0/1.1の資料では評価不能値を<code>bottom</code>と表記しています。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysfvar-local-2002",
+                  "sysfvar-local-1.0",
+                  "sysfvar-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>変数番号に浮動小数を渡した場合の変換と警告、範囲外・評価不能値の詳細、ビルドごとの境界とラウンド持ち越し条件は今回未検証です。引数の整数型・有効番号と、式中代入の右辺の型変換を混同しません。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysfvar-local-2002",
+                  "sysfvar-local-1.0",
+                  "sysfvar-local-1.1",
+                  "sysfvar-cns-1.0",
+                  "sysfvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧共通図は「リダイレクト先代入不可」の例と式全体へのbottom波及を包括的に示し、適用範囲や特殊形式の例外を分けていません。図・alt・寸法を保持して内部へ移し、本文の対象制約と評価条件を優先します。ラウンド跨ぎや予約領域の独自方針も今回実測していません。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysfvar-legacy-data",
+                  "sysfvar-cns-1.0",
+                  "sysfvar-cns-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "version_change",
+              "legacy_index": 2,
+              "change": "fixed",
+              "at": "mugen-1.1-b1",
+              "content": "<p>ParentVarAdd / ParentVarSetでsysvar/sysfvarを記述した際の解析時クラッシュが修正されました。システム変数への対応追加を意味する履歴ではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "sysfvar-history-b1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "limitation",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "content": "<p>式中代入演算子<code>:=</code>の左辺は、リダイレクトされていない<code>Var(N)</code>または<code>FVar(N)</code>です。<code>SysVar</code> / <code>SysFVar</code>は対象外です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "sysfvar-cns-1.0",
+                  "sysfvar-cns-1.1",
+                  "sysfvar-chaos-operators"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧概要・構文のSysVar/SysFVarへの:=代入と、関連ステコンのSysVarSet/SysVarAdd/SysFVarSet/SysFVarAddには、照合したElecbyte仕様とこのリポジトリ内の対応定義がありません。旧フィールドを保持し、公開構文は参照のみ、関連IDは非表示へ訂正します。未文書化のVarSet代替書式による操作を否定する記録ではありません。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "sysfvar-legacy-data",
+                  "sysfvar-cns-1.0",
+                  "sysfvar-cns-1.1",
+                  "sysfvar-chaos-operators"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>2002.04.14と1.0の公式Format欄はSysVarにVar、SysFVarにFVarと記載しています。一方、同じ節の例はSysVar/SysFVarを使い、1.1のFormat欄もSysVar/SysFVarです。この表記差を保持し、公開構文はシステム変数の名前で示します。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "sysfvar-local-2002",
+                  "sysfvar-local-1.0",
+                  "sysfvar-local-1.1"
+                ],
+                "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "sysfvar-local-2002",
+              "sysfvar-local-1.0",
+              "sysfvar-local-1.1"
+            ],
+            "comment": "2026-10-04: 保存済み資料の記載を照合。今回の実機検証ではない。"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysfvar-local-2002",
+            "title": "SysFVar — 保存済み Elecbyte 2002.04.14 公式資料",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#SysFVar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysfvar-local-1.0",
+            "title": "SysFVar — 保存済み Elecbyte 1.0 公式資料",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#sysfvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysfvar-local-1.1",
+            "title": "SysFVar — 保存済み Elecbyte 1.1b1 公式資料",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#sysfvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysfvar-cns-1.0",
+            "title": "SysFVar — 保存済み Elecbyte 1.0 CNS式・代入・bottom",
+            "url": "/MUGEN/document/Official/1.0/cns.html#arithmetic-operators",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysfvar-cns-1.1",
+            "title": "SysFVar — 保存済み Elecbyte 1.1b1 CNS式・代入・bottom",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#arithmetic-operators",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysfvar-history-b1",
+            "title": "ParentVarAdd / ParentVarSet — Elecbyte 1.1 Beta 1 修正履歴",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-1-beta-1",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysfvar-chaos-operators",
+            "title": "式中代入 — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/44.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "sysfvar-legacy-data",
+            "title": "SysFVar — 移行前の説明・構文・履歴・図・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/a890467fb2a733f56f3c49a7a1995da38d7604a9/src/content/triggers/SysFVar.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        }
+      ],
+      "remaining": [
+        {
+          "path": "notes / images / code_sample",
+          "reason": "WinMUGEN実行ビルドへのSFalse対応、番号型変換/警告・リダイレクト全体の代入条件・持ち越し、旧共通図と応用例は実機未検証。資料差・旧構文・関連IDを保持。"
+        }
+      ]
+    }
+  ]
+}

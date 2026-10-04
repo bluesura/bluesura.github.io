@@ -288,3 +288,7 @@ NumHelper / NumTarget / NumExplodを追加し、累計148件（55バッチ132件
 ### 2026-10-05：projectile-counts-01
 
 NumProj / NumProjIDの2件で累計150件（56バッチ134件＋主要・補助16件）、残り84件です。引数なし総数と必須ProjIDの個数、負IDの0扱いを区別。Helper生成ProjectileのRoot所有は公式3世代とCHAOSに照合し、Root参照例を追加しました。旧原文/有効な例を保持。SFalse/bottom資料差・初導入・個数更新や所有/無効型の特殊条件は内部へ保存し、実機未検証です。247テスト・263ページビルド・261 URL/161比較対象ページHTML検査を通過。内部注記345件、未対応旧履歴161項目。次はProjContact・ProjHit・ProjGuardedです。
+
+### 2026-10-05：projectile-events-01
+
+ProjContact / ProjHit / ProjGuardedの3件で累計153件（57バッチ137件＋主要・補助16件）、残り81件です。接触・ヒット・ガードの旧式真偽条件とID接尾辞、0始まりの時間比較、ID省略/0の全Projectile扱いを構造化しました。原文・旧書式を保持し、括弧付きContact旧例と公式Hit例の説明差、CHAOSのID計算式/相殺や反対イベントのリセット/同時ヒット報告は内部へ保存。公開は具体的な接尾辞例・0〜14フレーム例とRoot参照に整理し、Hit/Guardedの旧公開例も保持しました。初導入はnullで実機未検証。252テスト・263ページビルド・261 URL/164比較対象ページHTML検査を通過。内部注記356件、未対応旧履歴161項目。次はProjContactTime・ProjHitTime・ProjGuardedTime・ProjCancelTimeです。

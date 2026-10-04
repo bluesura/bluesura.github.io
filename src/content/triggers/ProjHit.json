@@ -1,67 +1,384 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "ProjHit",
-        "target": "",
-        "category": [
-            "飛び道具",
-            "飛び道具のヒット判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "ProjHit",
+    "target": "",
+    "category": [
+      "飛び道具",
+      "飛び道具のヒット判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "ProjHit",
+  "summary": "<p>プレイヤーのProjectile(飛び道具)がヒットしたか、していないかを判定し、真偽を返します。</p>",
+  "syntax": [
+    "ProjHit[ProjectileのID] = 値",
+    "ProjHit[ProjectileのID] 値 = 値2",
+    "ProjHit[ProjectileのID] 値 != 値2",
+    "ProjHit[ProjectileのID] 値 < 値2",
+    "ProjHit[ProjectileのID] 値 > 値2",
+    "ProjHit[ProjectileのID] 値 <= 値2",
+    "ProjHit[ProjectileのID] 値 >= 値2",
+    "ProjHit[ProjectileのID,ProjectileのID] = 値",
+    "ProjHit[ProjectileのID,ProjectileのID] 値 = 値2",
+    "ProjHit[ProjectileのID,ProjectileのID] 値 != 値2",
+    "ProjHit[ProjectileのID,ProjectileのID] 値 < 値2",
+    "ProjHit[ProjectileのID,ProjectileのID] 値 > 値2",
+    "ProjHit[ProjectileのID,ProjectileのID] 値 <= 値2",
+    "ProjHit[ProjectileのID,ProjectileのID] 値 >= 値2"
+  ],
+  "description": "プレイヤーのProjectile(飛び道具)がヒットしたか、していないかを判定し、真偽を返します。<br>また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。<br>省略した場合は、プレイヤーの全てのProjectileが対象となります。<br>使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjHitTimeの方を使った方がよいでしょう。<br>もちろん、単体ではファンクショントリガーとして使用できません。<br>[ProjectileのID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。<br>値1には、ヒットを調べる場合1を、非ヒットを調べる場合0を指定します。値2には、比較する時間を指定します。<br>戻り値の型: boolean int<br>詳細: 複数ヒットする場合、1ヒットごとに判定します。<br>様式1は、MoveHitとは異なり、ヒット後1フレームしか値を返しません。<br>様式2は、正の整数nが条件式\"n [符号] 値2\"を満たす場合、ヒットしてからnフレームの間、真を返します。<br>ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。",
+  "code_sample": [
+    {
+      "title": "ID1234のProjectileがヒットした瞬間のトリガー。",
+      "code": [
+        "Trigger1 = ProjHit1234 = 1"
+      ]
     },
-    "category": "trigger",
-    "trigger": "ProjHit",
-    "summary": "<p>プレイヤーのProjectile(飛び道具)がヒットしたか、していないかを判定し、真偽を返します。</p>",
+    {
+      "title": "プレイヤーのProjectileがヒットしてから15フレーム未満のときのトリガー。",
+      "code": [
+        "Trigger1 = ProjHit = 1, < 15"
+      ]
+    },
+    {
+      "title": "ProjID 1234のヒットから経過0〜14フレームか調べる",
+      "code": [
+        "Trigger1 = ProjHit1234 = 1, < 15"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "ProjHit - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjHit"
+    },
+    {
+      "title": "ProjHit - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#projhit"
+    },
+    {
+      "title": "ProjHit - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#projhit"
+    },
+    {
+      "title": "ProjHit - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ProjHit"
+    },
+    {
+      "id": "projhit-local-2002",
+      "title": "ProjHit — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjHit(*,***)",
+      "source_type": "official_document"
+    },
+    {
+      "id": "projhit-local-1.0",
+      "title": "ProjHit — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#projhit",
+      "source_type": "official_document"
+    },
+    {
+      "id": "projhit-local-1.1",
+      "title": "ProjHit — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#projhit",
+      "source_type": "official_document"
+    },
+    {
+      "id": "projhit-legacy",
+      "title": "移行前の書式表・説明・使用例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/1c4509aa9e667f0bca1c5e25654d7733ca4ff011/src/content/triggers/ProjHit.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "projhit-chaos",
+      "title": "ProjHit — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/153.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "projhit-chaos-contact",
+      "title": "接触条件の書式・比較とリセット — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/152.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "projhit-old-style-1.1",
+      "title": "旧式トリガーの式と代替 — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#expressions-in-trigger-arguments",
+      "source_type": "official_document"
+    },
+    {
+      "id": "projhit-projectile-1.1",
+      "title": "ProjectileのRoot所有 — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#projectile",
+      "source_type": "official_document"
+    }
+  ],
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "old_style",
+  "documentation": {
+    "description": "<p>プレイヤーが所有するProjectileのヒットを調べ、比較条件全体として整数の<code>1</code>（真）または<code>0</code>（偽）を返します。ガードの判定はProjGuardedを使います。</p><p>ProjIDは<code>ProjHit1234 = 1</code>のように名前の直後へ数字を付けます。ID省略時とID 0はすべてのProjectileが対象で、ProjID 0だけを数えるNumProjID(0)とは異なります。書式表の数字1234はProjIDの例です。</p><p><code>ProjHit1234 = 1</code>はヒット直後の1フレームを調べます。<code>ProjHit1234 = 1, &lt; 15</code>は、ヒットからの経過フレーム数n（0以上）が<code>n &lt; 15</code>を満たすか調べます。直後はn = 0です。</p><p>valueは1で条件成立、0でその条件の否定を調べます。時間条件はカンマの後に比較演算子と整数値を組にして指定します。単独の経過時間の参照には<code>ProjHitTime(exprn)</code>を使います。</p>",
     "syntax": [
-        "ProjHit[ProjectileのID] = 値",
-        "ProjHit[ProjectileのID] 値 = 値2",
-        "ProjHit[ProjectileのID] 値 != 値2",
-        "ProjHit[ProjectileのID] 値 < 値2",
-        "ProjHit[ProjectileのID] 値 > 値2",
-        "ProjHit[ProjectileのID] 値 <= 値2",
-        "ProjHit[ProjectileのID] 値 >= 値2",
-        "ProjHit[ProjectileのID,ProjectileのID] = 値",
-        "ProjHit[ProjectileのID,ProjectileのID] 値 = 値2",
-        "ProjHit[ProjectileのID,ProjectileのID] 値 != 値2",
-        "ProjHit[ProjectileのID,ProjectileのID] 値 < 値2",
-        "ProjHit[ProjectileのID,ProjectileのID] 値 > 値2",
-        "ProjHit[ProjectileのID,ProjectileのID] 値 <= 値2",
-        "ProjHit[ProjectileのID,ProjectileのID] 値 >= 値2"
+      "ProjHit = 1",
+      "ProjHit1234 = 1",
+      "ProjHit1234 = 1, < 15",
+      "ProjHit1234 = 0, < 15"
     ],
-    "description": "プレイヤーのProjectile(飛び道具)がヒットしたか、していないかを判定し、真偽を返します。<br>また、そのときの時間条件を指定することもできます。IDを指定することもできますが、引数として指定するのではなく、接尾辞として括弧で括らずに記述します。<br>省略した場合は、プレイヤーの全てのProjectileが対象となります。<br>使いにくい旧式トリガーなので、複数のProjectileを扱う場合でなければ、ProjHitTimeの方を使った方がよいでしょう。<br>もちろん、単体ではファンクショントリガーとして使用できません。<br>[ProjectileのID]には、ProjectileをID指定したい場合に、ID番号を整数で指定します。省略可。<br>値1には、ヒットを調べる場合1を、非ヒットを調べる場合0を指定します。値2には、比較する時間を指定します。<br>戻り値の型: boolean int<br>詳細: 複数ヒットする場合、1ヒットごとに判定します。<br>様式1は、MoveHitとは異なり、ヒット後1フレームしか値を返しません。<br>様式2は、正の整数nが条件式\"n [符号] 値2\"を満たす場合、ヒットしてからnフレームの間、真を返します。<br>ID番号に0を指定した場合、省略時と同じく、全てのProjectileが対象となります。",
-    "code_sample": [
-        {
-            "title": "ID1234のProjectileがヒットした瞬間のトリガー。",
-            "code": [
-                "Trigger1 = ProjHit1234 = 1"
-            ]
-        },
-        {
-            "title": "プレイヤーのProjectileがヒットしてから15フレーム未満のときのトリガー。",
-            "code": [
-                "Trigger1 = ProjHit = 1, < 15"
-            ]
-        }
+    "page_category": "Projectileのヒット・経過時間の条件判定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document",
+        "community_documentation"
+      ],
+      "source_refs": [
+        "projhit-local-2002",
+        "projhit-local-1.0",
+        "projhit-local-1.1",
+        "projhit-old-style-1.1",
+        "projhit-chaos-contact"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+    }
+  },
+  "arguments": [
+    {
+      "name": "ProjID（接尾辞）",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "optional",
+      "expression_policy": "special_syntax",
+      "description": "<p>ProjectileコントローラーのProjIDです。例の1234のようにトリガー名へ数字を続けます。省略または0で全Projectileが対象です。角括弧は記述しません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "projhit-local-2002",
+          "projhit-local-1.0",
+          "projhit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "name": "value",
+      "type": [
+        "boolean"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "constant_only",
+      "description": "<p>条件成立を調べるときは1、その否定を調べるときは0を指定します。比較条件全体で真偽を返す旧式書式です。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "projhit-local-2002",
+          "projhit-local-1.0",
+          "projhit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "name": "[oper]",
+      "type": [
+        "string"
+      ],
+      "parameter_type": "optional",
+      "expression_policy": "special_syntax",
+      "description": "<p>時間条件の比較演算子です。=、!=、&lt;、&gt;、&lt;=、&gt;=のいずれかを記述します。引用符で囲む文字列ではありません。value2と組にしてカンマの後へ置きます。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "projhit-local-2002",
+          "projhit-local-1.0",
+          "projhit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "name": "value2",
+      "type": [
+        "int"
+      ],
+      "parameter_type": "optional",
+      "expression_policy": "constant_only",
+      "description": "<p>経過フレーム数nと比較する整数値です。[oper]と組にして指定します。時間条件を省略したvalue = 1の書式は直後の1フレームを調べます。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "projhit-local-2002",
+          "projhit-local-1.0",
+          "projhit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>多段Projectileは、各ヒットに応じて複数回条件が成立し得ます。短い<code>ProjHit = 1</code>を、MoveHitのように成立が持続する値として扱わないでください。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "projhit-local-2002",
+          "projhit-local-1.0",
+          "projhit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>Helperが生成したProjectileはRootの所有になります。Helper内から本体のヒットを調べる例では、<code>Root, ProjHit1234 = 1</code>のように参照を変更します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "projhit-projectile-1.1",
+          "projhit-local-2002",
+          "projhit-local-1.0",
+          "projhit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧構文表には時間条件のカンマ・先行する=の欠落や複数IDに見える角括弧表記があります。旧説明の正の整数nと公式の非負nにも差があるため、すべて原位置に保持して公開書式は実際の接尾辞とカンマ付きの例へ整理しました。複数ID指定・負の接尾辞・式を使うIDやvalue/value2の解析条件は今回実機未確認です。CNSは旧式引数の式非対応を説明する一方、CHAOSはIDに計算式を使う場合の括弧を報告しています。この差を保持し、通常の関数形式へ変換しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code",
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "projhit-legacy",
+          "projhit-local-2002",
+          "projhit-local-1.0",
+          "projhit-local-1.1",
+          "projhit-old-style-1.1",
+          "projhit-chaos-contact"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSはガードでProjHitの記録をリセットし、反対側の判定は未命中時と同じ状態になると報告しています。Projectileによる相殺でもリセットと記載し、同時ヒットはMoveHit/MoveGuardedと同様かという推測です。報告を保持しますが、複数同IDの最新イベント選択・同時処理順・消滅後の記録寿命や停止中の数え方は今回実機未確認です。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "projhit-chaos",
+          "projhit-chaos-contact",
+          "projhit-local-2002",
+          "projhit-local-1.0",
+          "projhit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧page.versionの2002.04.14は資料世代として保持し、初導入ビルドはnullです。公式のError conditions欄はnoneですが、すべての不正な書式や参照先不在を保証する記述とは扱いません。追加した仕様と例は資料照合であり、実機確認した記録ではありません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "projhit-legacy",
+          "projhit-local-2002",
+          "projhit-local-1.0",
+          "projhit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式3世代の第2例はProjHit1234とIDを限定しながら説明はany of the player’s projectilesです。公式表記差を内部に残し、旧JSONのID省略例ProjHit = 1, &lt; 15はそのまま公開します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "projhit-local-2002",
+          "projhit-local-1.0",
+          "projhit-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "quote": [
-        {
-            "title": "ProjHit - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ProjHit"
-        },
-        {
-            "title": "ProjHit - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#projhit"
-        },
-        {
-            "title": "ProjHit - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#projhit"
-        },
-        {
-            "title": "ProjHit - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ProjHit"
-        }
-    ]
+    "source_refs": [
+      "projhit-local-2002",
+      "projhit-local-1.0",
+      "projhit-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式3世代・CNSの旧式書式とCHAOS本文を照合。今回の実機検証ではない。"
+  }
 }

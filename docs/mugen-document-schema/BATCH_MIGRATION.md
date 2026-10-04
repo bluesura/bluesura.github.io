@@ -1043,3 +1043,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・247テスト・263ページビルド・261 URL/161比較対象ページHTML検査を通過。NumProj（通常幅）とNumProjID（幅390px）をブラウザ確認し設定を復元。内部注記3件追加の345件、未対応旧履歴161項目。次はProjContact・ProjHit・ProjGuardedです。
+
+## 2026-10-05：projectile-events-01
+
+ProjContact / ProjHit / ProjGuardedの3件を追加し、累計153件（主要・補助16件＋57バッチ137件）、残り81件です。移行前JSON・HTML・抽出結果は tests/mugen/batches/projectile-events-01/ に保存しました。
+
+- ヒットまたはガード・ヒットのみ・ガードのみの判定を分離。通常の数値関数へ変換せず、ProjID接尾辞・valueの真偽・演算子とvalue2の組を旧式構文として構造化しました。省略/0は全Projectileで、NumProjID(0)の個数対象とは異なります。
+- 保存済み公式3世代とCNSで、短い条件は直後1フレーム、時間比較はnが0以上であることを照合しました。0〜14フレームの具体例を追加。旧説明の正の整数・カンマ等の欠落・複数IDに見える表は原位置に保持しています。
+- ProjContactの括弧付き旧2例は原文のまま内部へ保存し、公開は公式の接尾辞例へ。CHAOSにはID計算式の括弧表記の報告があるため、無効と断定していません。ProjHit/ProjGuardedの旧2例ずつは公開を維持。公式ProjHit第2例の指定IDと全Projectileという説明差も内部に残しました。
+- [CHAOSのProjContact](https://w.atwiki.jp/mugencns/pages/152.html)、[ProjHit](https://w.atwiki.jp/mugencns/pages/153.html)、[ProjGuarded](https://w.atwiki.jp/mugencns/pages/154.html)の相殺/反対イベントによる記録リセット、未接触時・同時ヒット・ID解析の報告は内部研究です。式を使うIDとCNSの旧式引数の制限の差も保持。今回の資料照合を実機確認と扱っていません。
+- 多段イベントとHelperからRootを参照する説明を公開しました。初導入はnullのままで、スキーマ・レンダラー・CSSは変更していません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch projectile-events-01
+npm run mugen:batch -- --batch projectile-events-01 --target ProjContact --target ProjHit --target ProjGuarded
+npm run mugen:batch -- --batch projectile-events-01 --target ProjContact --target ProjHit --target ProjGuarded --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・252テスト・263ページビルド・261 URL/164比較対象ページのHTML検査を通過。ProjContact（通常幅）、ProjHitの引数表/ProjGuardedのコード例（幅390px）を確認し表示幅と検査用タブを復元。既存の保存HTML/Pagefind等の警告は継続。内部注記11件追加の356件、未対応旧履歴161項目。次はProjContactTime・ProjHitTime・ProjGuardedTime・ProjCancelTimeです。

@@ -1,60 +1,429 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "AngleDraw",
-		"target": "実行者自身",
-		"category": ["角度操作","スプライトの回転表示"],
-		"version": "2002.04.14",
-		"update": "2016.02.18",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "AngleDraw",
-	"description": "<p>プレイヤーの軸を中心に回転させて表示します。AngleAdd、AngleMul、AngleSetと併せて使用。角度は、右向き時、反時計回りが正方向になります。</p><p>1フレームしか効果がないので、triggerの指定には注意。</p><p>Helperと組み合わせて、グルグル回転する、飛び道具とか、オプション等に使えるほか、回転やられに使う人もいます。</p><p>ただし、90の倍数角度回転なら問題ありませんが、それ以外の場合はジャギィがでてしまいます。</p><p>このステート実行中は、AIRファイル中の座標指定、反転表示、透過表示は無効になります。回転の中心を変えたい場合は、sffに別なスプライトとして登録しなければなりません。なお、これらの無効化は、AfterImageにも影響を及ぼします。また、判定枠は回転しませんので、判定を持たせる場合は、最初から原点(0,0)を中心とする正方形とするか、回転に合わせてAirを設定する必要があります。</p><p>キャラクターの見た目を大きくしたり、回転させることはできますが、当たり判定食らい判定は大きくなりません。</p>",
-	"images": [{"src": "AngleDraw.gif", "width": "640", "height": "480", "alt": "MUGEN AngleDraw"}],
-	"category": "state",
-
-  "version": [
-    {"no": "Version1.0より前", "content": "<code>HitPause</code>中に<code>IgnoreHitPause=1</code>の<code>AngleDraw</code>が実行されると、<code>HitPause</code>が終わるまで<code>AngleDraw</code>は終了せずに<code>Scale</code>が重ねがけされます。<!--animに関係するようなのは全て継続？-->"},
-    {"no": "Version1.0から", "content": "<code>IgnoreHitPause=1</code>を記述しないと縮尺が固定されません。"}
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "AngleDraw",
+    "target": "実行者自身",
+    "category": [
+      "角度操作",
+      "スプライトの回転表示"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.02.18",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "AngleDraw",
+  "description": "<p>プレイヤーの軸を中心に回転させて表示します。AngleAdd、AngleMul、AngleSetと併せて使用。角度は、右向き時、反時計回りが正方向になります。</p><p>1フレームしか効果がないので、triggerの指定には注意。</p><p>Helperと組み合わせて、グルグル回転する、飛び道具とか、オプション等に使えるほか、回転やられに使う人もいます。</p><p>ただし、90の倍数角度回転なら問題ありませんが、それ以外の場合はジャギィがでてしまいます。</p><p>このステート実行中は、AIRファイル中の座標指定、反転表示、透過表示は無効になります。回転の中心を変えたい場合は、sffに別なスプライトとして登録しなければなりません。なお、これらの無効化は、AfterImageにも影響を及ぼします。また、判定枠は回転しませんので、判定を持たせる場合は、最初から原点(0,0)を中心とする正方形とするか、回転に合わせてAirを設定する必要があります。</p><p>キャラクターの見た目を大きくしたり、回転させることはできますが、当たり判定食らい判定は大きくなりません。</p>",
+  "images": [
+    {
+      "src": "AngleDraw.gif",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN AngleDraw"
+    }
   ],
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["角度"],
-			"type": ["float"],
-			"description": "<p>角度を指定。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["0"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Scale",
-			"value": ["横縮尺, 縦縮尺"],
-			"type": ["float", "float"],
-			"description": "<p>スプライトの縮尺を指定。</p><p>注意 :　 回転・縮尺ともに、判定枠には影響を及ぼしません。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1", "1"],
-			"load_priority": ["2", "3"]
-		}
-	],
-
-	"quote": [
-		{"title": "AngleDraw - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AngleDraw"},
-		{"title": "AngleDraw - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#angledraw"},
-		{"title": "AngleDraw - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#angledraw"},
-		{"title": "AngleDraw - State Controller Reference", "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#angledraw"},
-		{"title": "AngleDraw - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AngleDraw"},
-		{"title": "AngleDraw - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AngleDraw&protocol=http"},
-		{"title": "AngleDraw - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AngleDraw"},
-		{"title": "AngleDraw - 地球の応接間", "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"},
-		{"title": "新Mugenについて - 気まぐれ猫", "url": "http://kneco.web.fc2.com/mugen110-1.html"},
-		{"title": "angledrawのscale - lunaの倉庫", "url": "http://lunatic284.blog90.fc2.com/blog-entry-304.html"}
-	]
+  "category": "state",
+  "version": [
+    {
+      "no": "Version1.0より前",
+      "content": "<code>HitPause</code>中に<code>IgnoreHitPause=1</code>の<code>AngleDraw</code>が実行されると、<code>HitPause</code>が終わるまで<code>AngleDraw</code>は終了せずに<code>Scale</code>が重ねがけされます。<!--animに関係するようなのは全て継続？-->"
+    },
+    {
+      "no": "Version1.0から",
+      "content": "<code>IgnoreHitPause=1</code>を記述しないと縮尺が固定されません。"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "角度"
+      ],
+      "type": [
+        "float"
+      ],
+      "description": "<p>角度を指定。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "0"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "description": "<p>描画する回転角度を度で指定します。1周は <code>360</code> 度で、小数や式も使えます。右向きでは正の値が反時計回りです。</p><p>省略時は角度を変更せず、保持している回転角度を使います。省略することと <code>value = 0</code> を指定することは異なります。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document",
+            "community_documentation"
+          ],
+          "source_refs": [
+            "angledraw-local-2002",
+            "angledraw-local-1.0",
+            "angledraw-local-1.1",
+            "angledraw-chaos"
+          ],
+          "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "default": [
+        {
+          "kind": "derived",
+          "display": "保持している回転角度を使用（0への変更はしない）",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document",
+              "community_documentation"
+            ],
+            "source_refs": [
+              "angledraw-local-2002",
+              "angledraw-local-1.0",
+              "angledraw-local-1.1",
+              "angledraw-chaos"
+            ],
+            "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+          }
+        }
+      ],
+      "expression_policy": "expression",
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    },
+    {
+      "parameter": "Scale",
+      "value": [
+        "横縮尺, 縦縮尺"
+      ],
+      "type": [
+        "float",
+        "float"
+      ],
+      "description": "<p>スプライトの縮尺を指定。</p><p>注意 :　 回転・縮尺ともに、判定枠には影響を及ぼしません。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1",
+        "1"
+      ],
+      "load_priority": [
+        "2",
+        "3"
+      ],
+      "documentation": {
+        "description": "<p>横・縦の描画倍率を指定します。<code>1, 1</code> が等倍、<code>0.5, 0.5</code> が半分、<code>2, 2</code> が2倍です。省略時は倍率を変更しません。判定枠の大きさは変わりません。</p><p>同じフレームで複数回実行すると、それまでの描画倍率へ乗算されます。例えば <code>0.5, 0.5</code> の後に <code>2, 2</code> を指定すると等倍になります。<code>1, 1</code> は、それ以前の拡縮をリセットする指定ではありません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document",
+            "community_documentation"
+          ],
+          "source_refs": [
+            "angledraw-local-2002",
+            "angledraw-local-1.0",
+            "angledraw-local-1.1",
+            "angledraw-chaos"
+          ],
+          "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+        }
+      },
+      "default": [
+        {
+          "kind": "literal",
+          "value": "1",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "community_documentation"
+            ],
+            "source_refs": [
+              "angledraw-chaos"
+            ],
+            "comment": "2026-10-04: CHAOSの省略時変更なし・1,1は等倍・同フレーム乗算という記録を照合。1,1は中立倍率であり、以前の描画倍率のリセット値ではない。公式欄は数値の省略値を明記しない。実機未検証。"
+          }
+        },
+        {
+          "kind": "literal",
+          "value": "1",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "community_documentation"
+            ],
+            "source_refs": [
+              "angledraw-chaos"
+            ],
+            "comment": "2026-10-04: CHAOSの省略時変更なし・1,1は等倍・同フレーム乗算という記録を照合。1,1は中立倍率であり、以前の描画倍率のリセット値ではない。公式欄は数値の省略値を明記しない。実機未検証。"
+          }
+        }
+      ],
+      "expression_policy": "expression",
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。検証ビルド等の詳細は未記録。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "AngleDraw - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AngleDraw"
+    },
+    {
+      "title": "AngleDraw - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#angledraw"
+    },
+    {
+      "title": "AngleDraw - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#angledraw"
+    },
+    {
+      "title": "AngleDraw - State Controller Reference",
+      "url": "http://network.mugenguild.com/justnopoint/1.1docs/sctrls.html#angledraw"
+    },
+    {
+      "title": "AngleDraw - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/AngleDraw"
+    },
+    {
+      "title": "AngleDraw - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?AngleDraw&protocol=http"
+    },
+    {
+      "title": "AngleDraw - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#AngleDraw"
+    },
+    {
+      "title": "AngleDraw - 地球の応接間",
+      "url": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "title": "新Mugenについて - 気まぐれ猫",
+      "url": "http://kneco.web.fc2.com/mugen110-1.html"
+    },
+    {
+      "title": "angledrawのscale - lunaの倉庫",
+      "url": "http://lunatic284.blog90.fc2.com/blog-entry-304.html"
+    },
+    {
+      "id": "angledraw-local-2002",
+      "title": "AngleDraw — 保存済み Elecbyte 2002.04.14 公式資料",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#AngleDraw",
+      "source_type": "official_document"
+    },
+    {
+      "id": "angledraw-local-1.0",
+      "title": "AngleDraw — 保存済み Elecbyte 1.0 公式資料",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#angledraw",
+      "source_type": "official_document"
+    },
+    {
+      "id": "angledraw-local-1.1",
+      "title": "AngleDraw — 保存済み Elecbyte 1.1b1 公式資料",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#angledraw",
+      "source_type": "official_document"
+    },
+    {
+      "id": "angledraw-chaos",
+      "title": "AngleDraw — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/74.html",
+      "source_type": "community_documentation"
+    },
+    {
+      "id": "angledraw-history-rc6",
+      "title": "AngleDraw — Elecbyte 1.0 RC6 互換対応履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc6",
+      "source_type": "official_history"
+    },
+    {
+      "id": "angledraw-legacy-data",
+      "title": "AngleDraw — 移行前の説明・省略値・HitPause記録",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/8afd7d4ccd76e77491870a6209fe0cce1ac8c477/src/content/state-controllers/AngleDraw.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者の軸を中心に、スプライトを回転・拡大縮小して表示します。通常の描画効果は実行した1フレームだけで、継続して表示するには毎フレーム実行します。</p><p><code>AngleSet</code>・<code>AngleAdd</code>・<code>AngleMul</code> で保持している角度を描画へ反映します。<code>value</code> を指定すると、その角度を度で設定できます。右向きでは正の角度が反時計回りです。</p><p>回転・拡大縮小しても、攻撃判定・食らい判定の枠は変わりません。回転に合わせた判定が必要な場合は、AIR側で用意します。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document",
+        "community_documentation"
+      ],
+      "source_refs": [
+        "angledraw-local-2002",
+        "angledraw-local-1.0",
+        "angledraw-local-1.1",
+        "angledraw-chaos"
+      ],
+      "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "version_change",
+      "change": "added",
+      "at": "mugen-1.0-rc6",
+      "environment": {
+        "engine": "mugen",
+        "compatibility_profile": [
+          "mugen-compat-2002"
+        ]
+      },
+      "content": "<p>1.0 RC6の2002互換対応では、<code>AngleDraw</code> の効果がHitPause中にリセットされない旧挙動が再現されます。実行ファイルが1.0であることだけでは、HitPause中の扱いを判断できません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "angledraw-history-rc6"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "legacy_index": 0,
+      "content": "<p>旧履歴0のHitPause継続・Scale重ねがけと未確定HTMLコメントを原位置に保持する。RC6履歴は2002互換時に効果をリセットしないことを明記するが、累積倍率の詳細は明記しない。「1.0より前」だけの区切りに置き換えず、実行ビルド・互換設定・IgnoreHitPause・アニメーション条件を分けて検証する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_history",
+          "source_code"
+        ],
+        "source_refs": [
+          "angledraw-history-rc6",
+          "angledraw-legacy-data"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "legacy_index": 1,
+      "content": "<p>旧履歴1のIgnoreHitPause=1がないと縮尺が固定されないという記録は原位置へ保持する。適用ビルド・互換設定・再実行条件を特定できておらず、1.0全体の確定仕様として公開しない。旧kneco・luna記事は今回本文を取得できなかった。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "angledraw-legacy-data"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧概要のAIR座標・反転・透過の無効化、AfterImageへの波及、中心を変えるための別スプライト登録という記録は保持する。CHAOSもAIR指定無効化を伝聞として記録している。AIR指定ごとの挙動と世代差は実機確認が残る。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "angledraw-legacy-data",
+          "angledraw-chaos"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧概要の90度刻み以外のジャギーに加え、CHAOSの途中Elemの時間=-1に関係する左向きの二重表示、負倍率の反転、Helper生成サイズへの非反映という記録を調査対象に保持する。対象ビルドと再現条件は未記録のため公開しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "angledraw-legacy-data",
+          "angledraw-chaos"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはvalue/scaleをWin版以降限定と記すが、保存済み2002.04.14資料も両項目を掲載している。対応開始ビルド・実行環境の境界は未確定。Win版初導入と決めず、introduced_inはnullに保つ。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "angledraw-local-2002",
+          "angledraw-chaos"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧value.default_valueの0は原位置に保存する。資料のAngleSetで設定した角度を描画する説明と、CHAOSの省略時変更なしという記録に基づき、公開省略値は保持中の角度へ訂正した。旧Scale.default_valueの1,1も保持し、中立倍率とリセット値を区別する。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "angledraw-local-2002",
+          "angledraw-local-1.0",
+          "angledraw-local-1.1",
+          "angledraw-chaos",
+          "angledraw-legacy-data"
+        ],
+        "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document",
+      "community_documentation"
+    ],
+    "source_refs": [
+      "angledraw-local-2002",
+      "angledraw-local-1.0",
+      "angledraw-local-1.1",
+      "angledraw-chaos"
+    ],
+    "comment": "2026-10-04: 資料の記載を照合。今回の実機検証ではない。"
+  }
 }

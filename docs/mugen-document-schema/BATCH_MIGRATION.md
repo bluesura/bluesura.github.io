@@ -731,3 +731,19 @@ npm run mugen:batch -- --batch afterimage-effects-01 --target AfterImage --apply
 ```
 
 このバッチは適用済みです。次は AngleDraw など描画変換のページを照合します。
+
+## angle-draw-01：回転・拡縮描画の1件
+
+2026-10-04、AngleDrawを移行しました。移行前のJSON・記事・ハッシュは `tests/mugen/batches/angle-draw-01/` に保存しています。
+
+- 保存済み公式3世代と[CHAOS](https://w.atwiki.jp/mugencns/pages/74.html)を照合し、valueの省略時は保持している角度を使うと表示します。旧default_valueの0は原位置に残し、CNS欄のvalueは省略条件付きコメントへ変更しました。Scaleの1,1は等倍の中立倍率として保持し、同フレームの複数実行は倍率を乗算すること、既存の拡縮をリセットしないことを説明しました。
+- 1.0 RC6の公式履歴にあるHitPause中の効果非リセットを2002互換設定へ対応させました。旧「1.0より前／以後」2履歴は内部researchへ対応させ、累積倍率やIgnoreHitPauseの詳細を実行バージョンだけで確定しません。
+- AIR座標・反転・透過の無効化とAfterImageへの波及、途中Elem=-1の二重表示、描画品質、対応開始世代の資料差は内部に保存しました。旧画像・読み込み順は保持しています。旧kneco・luna記事の本文は取得できず、実機検証は行っていません。新たなスキーマ・表示機能は追加していません。
+
+```sh
+npm run mugen:batch-baseline -- --batch angle-draw-01
+npm run mugen:batch -- --batch angle-draw-01 --target AngleDraw
+npm run mugen:batch -- --batch angle-draw-01 --target AngleDraw --apply
+```
+
+このバッチは適用済みです。次はOffsetの描画位置、判定枠への影響、省略時の値、RC6の互換対応を照合します。

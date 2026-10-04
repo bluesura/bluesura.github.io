@@ -1,58 +1,229 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "PrevStateNo",
-        "target": "",
-        "category": [
-            "ステータス",
-            "直前ステート番号の取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "PrevStateNo",
+    "target": "",
+    "category": [
+      "ステータス",
+      "直前ステート番号の取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2015.12.24",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "PrevStateNo",
+  "summary": "<p>直前のステート番号を返します。</p>",
+  "syntax": [
+    "PrevStateNo = [ステート番号,ステート番号]"
+  ],
+  "description": "直前のステート番号を返します。<br>戻り値の型: int",
+  "associated_trigger": [
+    "StateNo",
+    "P2StateNo"
+  ],
+  "associated_state": [
+    "ChangeState",
+    "SelfState",
+    "HitOverride",
+    "TargetState"
+  ],
+  "code_sample": [
+    {
+      "title": "直前のステート番号が200以上650以内の場合のトリガー。",
+      "code": [
+        "Trigger1 = PrevStateNo = [200,650] "
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "PrevStateNo - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PrevStateNo"
     },
-    "category": "trigger",
-    "trigger": "PrevStateNo",
-    "summary": "<p>直前のステート番号を返します。</p>",
-    "syntax": [
-        "PrevStateNo = [ステート番号,ステート番号]"
-    ],
-    "description": "直前のステート番号を返します。<br>戻り値の型: int",
-    "associated_trigger": [
-        "StateNo",
-        "P2StateNo"
-    ],
+    {
+      "title": "PrevStateNo - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#prevstateno"
+    },
+    {
+      "title": "PrevStateNo - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#prevstateno"
+    },
+    {
+      "title": "PrevStateNo - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PrevStateNo"
+    },
+    {
+      "id": "prevstateno-local-2002",
+      "title": "PrevStateNo — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PrevStateNo",
+      "source_type": "official_document"
+    },
+    {
+      "id": "prevstateno-local-1.0",
+      "title": "PrevStateNo — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#prevstateno",
+      "source_type": "official_document"
+    },
+    {
+      "id": "prevstateno-local-1.1",
+      "title": "PrevStateNo — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#prevstateno",
+      "source_type": "official_document"
+    },
+    {
+      "id": "prevstateno-legacy-data",
+      "title": "PrevStateNo — 移行前の説明・構文・使用例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/e94eddde038d3114d26e2181d595adc84b7f299e/src/content/triggers/PrevStateNo.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "prevstateno-chaos",
+      "title": "PrevStateNo — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/181.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーが直前にいたステート番号を整数で返します。引数はありません。</p><p>構文は<code>PrevStateNo</code>です。<code>PrevStateNo = [200,650]</code>は返された番号に対する比較式であり、トリガーの引数ではありません。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "prevstateno-local-2002",
+        "prevstateno-local-1.0",
+        "prevstateno-local-1.1"
+      ],
+      "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+    },
     "associated_state": [
-        "ChangeState",
-        "SelfState",
-        "HitOverride",
-        "TargetState"
+      "ChangeState",
+      "SelfState",
+      "HitOverRide",
+      "TargetState"
     ],
-    "code_sample": [
-        {
-            "title": "直前のステート番号が200以上650以内の場合のトリガー。",
-            "code": [
-                "Trigger1 = PrevStateNo = [200,650] "
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "PrevStateNo - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PrevStateNo"
-        },
-        {
-            "title": "PrevStateNo - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#prevstateno"
-        },
-        {
-            "title": "PrevStateNo - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#prevstateno"
-        },
-        {
-            "title": "PrevStateNo - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/PrevStateNo"
-        }
+    "syntax": [
+      "PrevStateNo"
     ]
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "notes": [
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧associated_stateのHitOverrideはこのリポジトリのJSON/公開URL識別子HitOverRideと大小文字が異なる。旧配列を保持し、公開リンクだけ実在するページの識別子へ対応させる。CNSのステートコントローラー名を別物へ改名する変更ではない。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "prevstateno-legacy-data"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "limitation",
+      "content": "<p>公式資料では、返される直前のステート番号の正確さは保証されていません。特定の移行元だけを許可する条件に使う場合は、実際のステート遷移も確認してください。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "prevstateno-local-2002",
+          "prevstateno-local-1.0",
+          "prevstateno-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>保存済み2002.04.14・1.0・1.1b1のPrevStateNo項目は説明を直前のステート番号としながらFormat欄がStateNoになっている。2002の例もStateNoだが1.0/1.1の例はPrevStateNo。項目名・意味・新しい例・CHAOSの構文を照合し、公開構文をPrevStateNoとする。公式資料の表記差は消さない。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "prevstateno-local-2002",
+          "prevstateno-local-1.0",
+          "prevstateno-local-1.1",
+          "prevstateno-chaos"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはCtrl=1による自動ステート移行で直前技の追跡が変わること、HitOverrideの中間くらいステート、HitDef/ReversalDefのP1StateNo指定への注意を記載する。これらを正確なビルド・Ctrl条件・ステート所有者・処理順で今回再現していない。前フレームのステート番号や最初の攻撃元を必ず返すとは断定せず、コミュニティ研究を内部に保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "prevstateno-chaos",
+          "prevstateno-local-2002",
+          "prevstateno-local-1.0",
+          "prevstateno-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代に掲載されているが、最初の実装ビルド・日付は今回実機未検証。page.introduced_inはnullのまま保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "prevstateno-legacy-data",
+          "prevstateno-local-2002",
+          "prevstateno-local-1.0",
+          "prevstateno-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    }
+  ]
 }

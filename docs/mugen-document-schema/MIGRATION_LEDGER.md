@@ -256,3 +256,7 @@ Var / FVar / SysVar / SysFVarを追加し、累計122件・残り112件です。
 ## 2026-10-04：resource-read-01
 
 Life / LifeMax / Power / PowerMaxを追加し、累計126件・残り108件です。引数なし・整数戻り値、現在値と最大値の分離、LifeMaxのチームモード等での補正、整数除算と小数割合の比較を整理しました。旧図、Persistent式と減少量の丸め、キャラ固有の応用例、IKEMEN GOの旧1履歴と出典は原位置に保持して内部へ保存。Powerの共有・PowerMaxの基準キャラ・具体的補正率・導入ビルド・KO処理順は実機未検証です。今回内部注記17件を追加し累計270件、未対応旧履歴は163項目です。次はAlive・Ctrl・StateNo・PrevStateNoの状態参照です。
+
+## 2026-10-04：state-status-01
+
+Alive / Ctrl / StateNo / PrevStateNoを追加し、累計130件・残り104件です。引数なし・整数戻り値、Ctrlのキャンセル例外と参照/設定の分離、StateNoの両端を含む範囲と650未満の比較、PrevStateNoの構文・精度非保証を整理しました。旧関連IDと比較式は保持して公開側だけ訂正。AliveのKOタイミング・NoKO・復活/タッグ、Ctrlの自動遷移、PrevStateNoの中間くらいステート/履歴更新と公式Format誤記、前提不足の複合例/生存敵検索はJSON内部へ残しました。今回内部注記13件を追加し累計283件、未対応旧履歴は163項目です。実機検証は未実施で、次はStateType・MoveType・Facingです。

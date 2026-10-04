@@ -870,3 +870,25 @@ npm run mugen:check-html
 ~~~
 
 208テスト・263ページビルド・261 URL/137比較対象ページのHTML検査を通過。ブラウザでLife（幅1280px）、LifeMax（通常幅）、Power / PowerMax（幅390px）を確認しました。Astroのテレメトリー設定ディレクトリ作成がローカル権限で失敗したため、正式な環境変数ASTRO_TELEMETRY_DISABLED=1を使ってビルドを完了しています。既存のPagefind/保存HTMLの警告は継続しています。スキーマ・表示コンポーネントの変更はありません。次はAlive・Ctrl・StateNo・PrevStateNoです。
+
+## 2026-10-04：state-status-01
+
+Alive / Ctrl / StateNo / PrevStateNoを追加しました。累計130件（主要・補助16件＋49バッチ114件）、残り104件です。比較基準を `tests/mugen/batches/state-status-01/` に保存し、保存済み2002.04.14・1.0・1.1b1とCHAOSの各ページを照合しました。引数なし・整数戻り値を構造化し、Alive/Ctrlの0/1とステート番号を区別しています。
+
+- Ctrlは基本動作のコントロールフラグで、キャンセルなどCtrlを条件に含めない入力受付もあることを公開しました。CtrlSet・StateDef/ChangeStateの設定と参照を区別しています。
+- StateNoの旧例は題名が650未満なのにコードは650を含むため、原文を内部へ保持し、650以下の閉区間と650未満の半開区間の例を公開しました。StateNo/PrevStateNoの旧関連ID HitOverrideを保持し、公開リンクを実在するHitOverRideページへ対応させました。
+- PrevStateNoは比較式から引数なし構文を分離し、詳細と一覧で同じ構文を表示。公式3世代が明記する精度非保証を公開しました。公式Format欄のStateNo表記と旧例の資料差は内部へ保持しています。
+- Aliveの複合応用例と生存敵検索は構成の前提・PowerAdd.Absoluteの未文書化・EnemyNear(9)と代替処理のAlive条件欠落を内部へ記録し、原行を削除していません。正しい既存の死亡処理例を保持し、短い生存条件例を追加しました。
+- [Alive](https://w.atwiki.jp/mugencns/pages/66.html)の生死判定時点の疑問符・NoKO・復活/タッグ、[Ctrl](https://w.atwiki.jp/mugencns/pages/107.html)と[StateNo](https://w.atwiki.jp/mugencns/pages/179.html)の自動遷移、[PrevStateNo](https://w.atwiki.jp/mugencns/pages/181.html)の中間くらいステート・HitDef/ReversalDefの履歴更新は実機未検証の内部researchです。導入ビルドはnullに保持しました。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch state-status-01
+npm run mugen:batch -- --batch state-status-01 --target Alive --target Ctrl --target StateNo --target PrevStateNo
+npm run mugen:batch -- --batch state-status-01 --target Alive --target Ctrl --target StateNo --target PrevStateNo --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+213テスト・263ページビルド・261 URL/141比較対象ページのHTML検査を通過しました。ブラウザでPrevStateNo/Ctrl/Aliveを通常幅、StateNoの範囲例を幅390pxで確認し、検査後に表示幅をリセットしました。既存のPagefind/保存HTMLの警告は継続しています。スキーマ・表示コンポーネント・CSSの変更はありません。次はStateType・MoveType・Facingです。

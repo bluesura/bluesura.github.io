@@ -1,58 +1,205 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "StateNo",
-        "target": "",
-        "category": [
-            "ステータス",
-            "現在どのステートにいますか？"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "StateNo",
+    "target": "",
+    "category": [
+      "ステータス",
+      "現在どのステートにいますか？"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "StateNo",
+  "summary": "<p>現在のステート番号を返します。</p>",
+  "syntax": [
+    "StateNo"
+  ],
+  "description": "現在のステート番号を返します。<br>cmdファイルでの条件指定に有効です。<br>戻り値の型: int",
+  "associated_trigger": [
+    "P2StateNo",
+    "PrevStateNo"
+  ],
+  "associated_state": [
+    "ChangeState",
+    "SelfState",
+    "HitOverride",
+    "TargetState"
+  ],
+  "code_sample": [
+    {
+      "title": "現在のステート番号が200以上650未満の場合のトリガー。",
+      "code": [
+        "Trigger1 = StateNo = [200,650]"
+      ],
+      "visibility": "internal"
     },
-    "category": "trigger",
-    "trigger": "StateNo",
-    "summary": "<p>現在のステート番号を返します。</p>",
-    "syntax": [
-        "StateNo"
-    ],
-    "description": "現在のステート番号を返します。<br>cmdファイルでの条件指定に有効です。<br>戻り値の型: int",
-    "associated_trigger": [
-        "P2StateNo",
-        "PrevStateNo"
-    ],
+    {
+      "title": "現在のステート番号が200以上650以下",
+      "description": "<p>角括弧は両端を含みます。200も650も条件を満たします。</p>",
+      "code": [
+        "Trigger1 = StateNo = [200,650]"
+      ]
+    },
+    {
+      "title": "現在のステート番号が200以上650未満",
+      "description": "<p>右端を丸括弧にすると650を含みません。</p>",
+      "code": [
+        "Trigger1 = StateNo = [200,650)"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "StateNo - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#StateNo"
+    },
+    {
+      "title": "StateNo - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#stateno"
+    },
+    {
+      "title": "StateNo - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#stateno"
+    },
+    {
+      "title": "StateNo - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StateNo"
+    },
+    {
+      "id": "stateno-local-2002",
+      "title": "StateNo — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#StateNo",
+      "source_type": "official_document"
+    },
+    {
+      "id": "stateno-local-1.0",
+      "title": "StateNo — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#stateno",
+      "source_type": "official_document"
+    },
+    {
+      "id": "stateno-local-1.1",
+      "title": "StateNo — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#stateno",
+      "source_type": "official_document"
+    },
+    {
+      "id": "stateno-legacy-data",
+      "title": "StateNo — 移行前の説明・構文・使用例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/e94eddde038d3114d26e2181d595adc84b7f299e/src/content/triggers/StateNo.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "stateno-chaos",
+      "title": "StateNo — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/179.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "stateno-interval-1.0",
+      "title": "範囲演算子 — Elecbyte 1.0 CNS",
+      "url": "/MUGEN/document/Official/1.0/cns.html#arithmetic-operators",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーが現在いるステート番号を整数で返します。引数はありません。</p><p>CMDの技への移行やキャンセル条件などで、現在のステート番号を比較できます。範囲比較の<code>StateNo = [200,650]</code>は200と650の両端を含みます。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "stateno-local-2002",
+        "stateno-local-1.0",
+        "stateno-local-1.1",
+        "stateno-interval-1.0"
+      ],
+      "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+    },
     "associated_state": [
-        "ChangeState",
-        "SelfState",
-        "HitOverride",
-        "TargetState"
+      "ChangeState",
+      "SelfState",
+      "HitOverRide",
+      "TargetState"
     ],
-    "code_sample": [
-        {
-            "title": "現在のステート番号が200以上650未満の場合のトリガー。",
-            "code": [
-                "Trigger1 = StateNo = [200,650]"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "StateNo - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#StateNo"
-        },
-        {
-            "title": "StateNo - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#stateno"
-        },
-        {
-            "title": "StateNo - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#stateno"
-        },
-        {
-            "title": "StateNo - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/StateNo"
-        }
-    ]
+    "page_category": "現在ステート番号の取得"
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "notes": [
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧associated_stateのHitOverrideはこのリポジトリのJSON/公開URL識別子HitOverRideと大小文字が異なる。旧配列を保持し、公開リンクだけ実在するページの識別子へ対応させる。CNSのステートコントローラー名を別物へ改名する変更ではない。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "stateno-legacy-data"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧コード例の題名は200以上650未満だが、StateNo = [200,650]は650を含む閉区間である。原文・コードを保持して内部にし、公開例を200以上650以下と650未満の2種類に分ける。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "stateno-legacy-data",
+          "stateno-interval-1.0",
+          "stateno-local-2002",
+          "stateno-local-1.0",
+          "stateno-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代に掲載されているが、最初の実装ビルド・日付は今回実機未検証。page.introduced_inはnullのまま保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "stateno-legacy-data",
+          "stateno-local-2002",
+          "stateno-local-1.0",
+          "stateno-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    }
+  ]
 }

@@ -1,48 +1,194 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Ctrl",
-        "target": "",
-        "category": [
-            "ステータス",
-            "プレイヤー操作可否の判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Ctrl",
+    "target": "",
+    "category": [
+      "ステータス",
+      "プレイヤー操作可否の判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2015.12.24",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "Ctrl",
+  "summary": "<p>プレイヤーのコントロールフラグを返します。</p>",
+  "syntax": [
+    "Ctrl"
+  ],
+  "description": "プレイヤーのコントロールフラグを返します。<br>戻り値の型: boolean int (1 or 0)",
+  "code_sample": [
+    {
+      "title": "プレイヤーがコントロール可能なときのトリガー",
+      "code": [
+        "Trigger1 = Ctrl"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Ctrl - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Ctrl"
     },
-    "category": "trigger",
-    "trigger": "Ctrl",
-    "summary": "<p>プレイヤーのコントロールフラグを返します。</p>",
-    "syntax": [
-        "Ctrl"
-    ],
-    "description": "プレイヤーのコントロールフラグを返します。<br>戻り値の型: boolean int (1 or 0)",
-    "code_sample": [
-        {
-            "title": "プレイヤーがコントロール可能なときのトリガー",
-            "code": [
-                "Trigger1 = Ctrl"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Ctrl - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Ctrl"
-        },
-        {
-            "title": "Ctrl - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ctrl"
-        },
-        {
-            "title": "Ctrl - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ctrl"
-        },
-        {
-            "title": "Ctrl - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Ctrl"
-        }
-    ]
+    {
+      "title": "Ctrl - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#ctrl"
+    },
+    {
+      "title": "Ctrl - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ctrl"
+    },
+    {
+      "title": "Ctrl - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Ctrl"
+    },
+    {
+      "id": "ctrl-local-2002",
+      "title": "Ctrl — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Ctrl",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ctrl-local-1.0",
+      "title": "Ctrl — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#ctrl",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ctrl-local-1.1",
+      "title": "Ctrl — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#ctrl",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ctrl-legacy-data",
+      "title": "Ctrl — 移行前の説明・構文・使用例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/e94eddde038d3114d26e2181d595adc84b7f299e/src/content/triggers/Ctrl.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "ctrl-chaos",
+      "title": "Ctrl — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/107.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "ctrl-control-1.0",
+      "title": "Control・キャンセル — Elecbyte 1.0 CNS",
+      "url": "/MUGEN/document/Official/1.0/cns.html#control",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ctrl-ctrlset-1.1",
+      "title": "CtrlSet — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#ctrlset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ctrl-statedef-1.0",
+      "title": "StateDefのctrl — Elecbyte 1.0 CNS",
+      "url": "/MUGEN/document/Official/1.0/cns.html#ctrl",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ctrl-changestate-1.1",
+      "title": "ChangeState — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#changestate",
+      "source_type": "official_document"
+    }
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーのコントロールフラグを整数で返します。コントロールありは1、なしは0です。引数はありません。</p><p>歩行・ジャンプなどの基本動作を受け付けられる状態を示すフラグです。技のキャンセルなど、Ctrlを条件に含めずに許可する動作もあるため、すべての入力受付の可否を表す値ではありません。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "ctrl-local-2002",
+        "ctrl-local-1.0",
+        "ctrl-local-1.1",
+        "ctrl-control-1.0"
+      ],
+      "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+    },
+    "page_category": "コントロールフラグの取得"
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>コントロールフラグの変更にはCtrlSetやStateDef / ChangeStateのctrl設定を使います。Ctrlを参照するだけではフラグは変化しません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ctrl-ctrlset-1.1",
+          "ctrl-statedef-1.0",
+          "ctrl-changestate-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはCtrl=1でのMUGEN側の自動ステート移行と、Ctrl=0の通常動作管理の注意を記載する。公式Control節のキャンセル例外と照合したが、自動移行の個別条件・ステート評価順・Pause/SuperPause下の境界は今回再現していない。入力を全面禁止するフラグとは説明しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "ctrl-chaos",
+          "ctrl-control-1.0"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代に掲載されているが、最初の実装ビルド・日付は今回実機未検証。page.introduced_inはnullのまま保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ctrl-legacy-data",
+          "ctrl-local-2002",
+          "ctrl-local-1.0",
+          "ctrl-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    }
+  ]
 }

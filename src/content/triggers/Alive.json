@@ -1,218 +1,372 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Alive",
-        "target": "実行者",
-        "category": [
-            "ステータス",
-            "生存判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Alive",
+    "target": "実行者",
+    "category": [
+      "ステータス",
+      "生存判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "Alive",
+  "summary": "<p>生きているかの判定結果が返ってきます。</p>",
+  "syntax": [
+    "Alive"
+  ],
+  "description": "生きているかの判定結果が返ってきます。<br>プレイヤーが生きていれば1を、死んでいれば0を返します。<br>死亡した場合の処理や死んでいる時に処理したくない・してはいけないステートのトリガーに記載されることが多いです。",
+  "code_sample": [
+    {
+      "title": "死亡ステートへの処理",
+      "description": "コモンステートの<code>[StateDef 0]</code>に記載されている処理",
+      "code": [
+        "[State ]",
+        "Type = ChangeState",
+        "Trigger1 = !Alive",
+        "value = 5050"
+      ]
     },
-    "category": "trigger",
-    "trigger": "Alive",
-    "summary": "<p>生きているかの判定結果が返ってきます。</p>",
-    "syntax": [
-        "Alive"
-    ],
-    "description": "生きているかの判定結果が返ってきます。<br>プレイヤーが生きていれば1を、死んでいれば0を返します。<br>死亡した場合の処理や死んでいる時に処理したくない・してはいけないステートのトリガーに記載されることが多いです。",
-    "code_sample": [
-        {
-            "title": "死亡ステートへの処理",
-            "description": "コモンステートの<code>[StateDef 0]</code>に記載されている処理",
-            "code": [
-                "[State ]",
-                "Type = ChangeState",
-                "Trigger1 = !Alive",
-                "value = 5050"
-            ]
-        },
-        {
-            "title": "死亡している場合に処理しないステートに記述",
-            "code": [
-                ";==============================================================================",
-                "; 近くの敵を確認",
-                ";==============================================================================",
-                "",
-                "[State -2]",
-                "Type = VarSet",
-                "Trigger1 = NumEnemy > 1",
-                "Trigger1 = !Enemy(1),IsHelper",
-                "var(20) = (!Enemy,Alive || (EnemyNear,Alive && EnemyNear,ID != Enemy,ID))",
-                "",
-                "",
-                ";==============================================================================",
-                "; 自動ライフ回復",
-                ";==============================================================================",
-                "",
-                "[State -2]",
-                "Type = LifeAdd",
-                "TriggerAll = MoveType != H",
-                "TriggerAll = Alive",
-                "TriggerAll = RoundState = 2",
-                "TriggerAll = Life < LifeMax*0.2",
-                "Trigger1 = Ceil(GameTime%4) = 1",
-                "value = 1",
-                "Absolute = 1",
-                "IgnoreHitPause = 1",
-                "",
-                "",
-                ";==============================================================================",
-                "; ゴールドカラーの自動ゲージ回復",
-                ";==============================================================================",
-                "",
-                "[State -2]",
-                "Type = PowerAdd",
-                "TriggerAll = PalNo = 12",
-                "TriggerAll = Alive",
-                "Trigger1 = RoundState = 2",
-                "value = 2",
-                "Absolute = 1",
-                "IgnoreHitPause = 1",
-                "",
-                "",
-                ";==============================================================================",
-                "; ダメージを受けたときのボイス処理",
-                ";==============================================================================",
-                "",
-                "[State -2]",
-                "Type = PlaySnd",
-                "TriggerAll = Alive",
-                "TriggerAll = Time = 1",
-                "Trigger1 = StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070",
-                "Trigger1 = GetHitVar(AnimType) = 0",
-                "Trigger1 = Random <= 600",
-                "value = 4,0",
-                "Channel = 0"
-            ]
-        },
-        {
-            "title": "AIの処理で死亡している敵をくわえたくない時",
-            "code": [
-                ";***************************************************************************",
-                ";一番近い敵のIDを記憶",
-                ";***************************************************************************",
-                "[State -3, 変数リセット]",
-                "Type = Varset",
-                "Trigger1 = 1",
-                "var(36) = 0",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 0番目]",
-                "Type = Varset",
-                "Trigger1 = NumEnemy",
-                "Trigger1 = EnemyNear(0),Alive",
-                "Trigger1 = !EnemyNear(0),IsHelper",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear(0),ID",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 1番目]",
-                "Type = Varset",
-                "Trigger1 = NumEnemy > 1",
-                "Trigger1 = EnemyNear(1),Alive",
-                "Trigger1 = !EnemyNear(1),IsHelper",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear(1),ID",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 2番目]",
-                "Type = Varset",
-                "Trigger1 = NumEnemy > 2",
-                "Trigger1 = EnemyNear(2),Alive",
-                "Trigger1 = !EnemyNear(2),IsHelper",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear(2),ID",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 3番目]",
-                "Type = Varset",
-                "Trigger1 = NumEnemy > 3",
-                "Trigger1 = EnemyNear(3),Alive",
-                "Trigger1 = !EnemyNear(3),IsHelper",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear(3),ID",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 4番目]",
-                "Type = Varset",
-                "Trigger1 = NumEnemy > 4",
-                "Trigger1 = EnemyNear(4),Alive",
-                "Trigger1 = !EnemyNear(4),IsHelper",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear(4),ID",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 5番目]",
-                "Type = Varset",
-                "Trigger1 = NumEnemy > 5",
-                "Trigger1 = EnemyNear(5),Alive",
-                "Trigger1 = !EnemyNear(5),IsHelper",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear(5),ID",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 6番目]",
-                "Type = Varset",
-                "Trigger1 = NumEnemy > 6",
-                "Trigger1 = EnemyNear(6),Alive",
-                "Trigger1 = !EnemyNear(6),IsHelper",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear(6),ID",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 7番目]",
-                "Type = Varset",
-                "Trigger1 = NumEnemy > 7",
-                "Trigger1 = EnemyNear(7),Alive",
-                "Trigger1 = !EnemyNear(7),IsHelper",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear(7),ID",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 8番目]",
-                "Type = Varset",
-                "Trigger1 = NumEnemy > 8",
-                "Trigger1 = EnemyNear(8),Alive",
-                "Trigger1 = !EnemyNear(8),IsHelper",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear(8),ID",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, 最後]",
-                "Type = Varset",
-                "Trigger1 = NumEnemy > 9",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear(9),ID",
-                "IgnoreHitPause = 1",
-                "",
-                "[State -3, とりあえず代入]",
-                "Type = Varset",
-                "Trigger1 = var(36) = 0",
-                "var(36) = EnemyNear,ID",
-                "IgnoreHitPause = 1"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Alive - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Alive"
-        },
-        {
-            "title": "Alive - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#alive"
-        },
-        {
-            "title": "Alive - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#alive"
-        },
-        {
-            "title": "Alive - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Alive"
-        }
-    ]
+    {
+      "title": "死亡している場合に処理しないステートに記述",
+      "code": [
+        ";==============================================================================",
+        "; 近くの敵を確認",
+        ";==============================================================================",
+        "",
+        "[State -2]",
+        "Type = VarSet",
+        "Trigger1 = NumEnemy > 1",
+        "Trigger1 = !Enemy(1),IsHelper",
+        "var(20) = (!Enemy,Alive || (EnemyNear,Alive && EnemyNear,ID != Enemy,ID))",
+        "",
+        "",
+        ";==============================================================================",
+        "; 自動ライフ回復",
+        ";==============================================================================",
+        "",
+        "[State -2]",
+        "Type = LifeAdd",
+        "TriggerAll = MoveType != H",
+        "TriggerAll = Alive",
+        "TriggerAll = RoundState = 2",
+        "TriggerAll = Life < LifeMax*0.2",
+        "Trigger1 = Ceil(GameTime%4) = 1",
+        "value = 1",
+        "Absolute = 1",
+        "IgnoreHitPause = 1",
+        "",
+        "",
+        ";==============================================================================",
+        "; ゴールドカラーの自動ゲージ回復",
+        ";==============================================================================",
+        "",
+        "[State -2]",
+        "Type = PowerAdd",
+        "TriggerAll = PalNo = 12",
+        "TriggerAll = Alive",
+        "Trigger1 = RoundState = 2",
+        "value = 2",
+        "Absolute = 1",
+        "IgnoreHitPause = 1",
+        "",
+        "",
+        ";==============================================================================",
+        "; ダメージを受けたときのボイス処理",
+        ";==============================================================================",
+        "",
+        "[State -2]",
+        "Type = PlaySnd",
+        "TriggerAll = Alive",
+        "TriggerAll = Time = 1",
+        "Trigger1 = StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070",
+        "Trigger1 = GetHitVar(AnimType) = 0",
+        "Trigger1 = Random <= 600",
+        "value = 4,0",
+        "Channel = 0"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "AIの処理で死亡している敵をくわえたくない時",
+      "code": [
+        ";***************************************************************************",
+        ";一番近い敵のIDを記憶",
+        ";***************************************************************************",
+        "[State -3, 変数リセット]",
+        "Type = Varset",
+        "Trigger1 = 1",
+        "var(36) = 0",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, 0番目]",
+        "Type = Varset",
+        "Trigger1 = NumEnemy",
+        "Trigger1 = EnemyNear(0),Alive",
+        "Trigger1 = !EnemyNear(0),IsHelper",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear(0),ID",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, 1番目]",
+        "Type = Varset",
+        "Trigger1 = NumEnemy > 1",
+        "Trigger1 = EnemyNear(1),Alive",
+        "Trigger1 = !EnemyNear(1),IsHelper",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear(1),ID",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, 2番目]",
+        "Type = Varset",
+        "Trigger1 = NumEnemy > 2",
+        "Trigger1 = EnemyNear(2),Alive",
+        "Trigger1 = !EnemyNear(2),IsHelper",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear(2),ID",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, 3番目]",
+        "Type = Varset",
+        "Trigger1 = NumEnemy > 3",
+        "Trigger1 = EnemyNear(3),Alive",
+        "Trigger1 = !EnemyNear(3),IsHelper",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear(3),ID",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, 4番目]",
+        "Type = Varset",
+        "Trigger1 = NumEnemy > 4",
+        "Trigger1 = EnemyNear(4),Alive",
+        "Trigger1 = !EnemyNear(4),IsHelper",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear(4),ID",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, 5番目]",
+        "Type = Varset",
+        "Trigger1 = NumEnemy > 5",
+        "Trigger1 = EnemyNear(5),Alive",
+        "Trigger1 = !EnemyNear(5),IsHelper",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear(5),ID",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, 6番目]",
+        "Type = Varset",
+        "Trigger1 = NumEnemy > 6",
+        "Trigger1 = EnemyNear(6),Alive",
+        "Trigger1 = !EnemyNear(6),IsHelper",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear(6),ID",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, 7番目]",
+        "Type = Varset",
+        "Trigger1 = NumEnemy > 7",
+        "Trigger1 = EnemyNear(7),Alive",
+        "Trigger1 = !EnemyNear(7),IsHelper",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear(7),ID",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, 8番目]",
+        "Type = Varset",
+        "Trigger1 = NumEnemy > 8",
+        "Trigger1 = EnemyNear(8),Alive",
+        "Trigger1 = !EnemyNear(8),IsHelper",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear(8),ID",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, 最後]",
+        "Type = Varset",
+        "Trigger1 = NumEnemy > 9",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear(9),ID",
+        "IgnoreHitPause = 1",
+        "",
+        "[State -3, とりあえず代入]",
+        "Type = Varset",
+        "Trigger1 = var(36) = 0",
+        "var(36) = EnemyNear,ID",
+        "IgnoreHitPause = 1"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "生存中だけ処理する条件",
+      "description": "<p>使用するステートコントローラーに追加する条件行です。生存フラグが1のとき成立します。</p>",
+      "code": [
+        "Trigger1 = Alive"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Alive - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Alive"
+    },
+    {
+      "title": "Alive - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#alive"
+    },
+    {
+      "title": "Alive - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#alive"
+    },
+    {
+      "title": "Alive - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Alive"
+    },
+    {
+      "id": "alive-local-2002",
+      "title": "Alive — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Alive",
+      "source_type": "official_document"
+    },
+    {
+      "id": "alive-local-1.0",
+      "title": "Alive — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#alive",
+      "source_type": "official_document"
+    },
+    {
+      "id": "alive-local-1.1",
+      "title": "Alive — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#alive",
+      "source_type": "official_document"
+    },
+    {
+      "id": "alive-legacy-data",
+      "title": "Alive — 移行前の説明・構文・使用例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/e94eddde038d3114d26e2181d595adc84b7f299e/src/content/triggers/Alive.json",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "alive-chaos",
+      "title": "Alive — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/66.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "alive-poweradd-1.1",
+      "title": "PowerAdd — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#poweradd",
+      "source_type": "official_document",
+      "visibility": "internal"
+    }
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーが生存しているかを整数で返します。生存中は1、KOされた状態では0です。引数はありません。</p><p><code>Alive</code>は生存フラグを読み取るトリガーです。生存中だけ処理したい条件には<code>Trigger1 = Alive</code>、KOされた状態の条件には<code>Trigger1 = !Alive</code>を使います。</p>",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "alive-local-2002",
+        "alive-local-1.0",
+        "alive-local-1.1"
+      ],
+      "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+    }
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "notes": [
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはLifeと別の生存フラグ、NoKO時の生死判定、ライフ復元後の非復活、タッグの終了条件を記載する。Life=0になった時点の自身ステート終端？という疑問符も残す。具体的なKO判定タイミング、NoKOの対応ビルド、デバッグ復活と複数人戦の条件は今回実機未検証。Life=0と!Aliveを常に同値とは説明しない。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "alive-chaos",
+          "alive-local-2002",
+          "alive-local-1.0",
+          "alive-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧コード例1は特定変数・パレット・SNDの構成を前提とする複数の応用処理をまとめている。PowerAdd部分にはAbsolute=1があるが、保存済み1.1のPowerAddに固有パラメーターとしての記載はない。未知の対応や実機挙動を推定せず原位置に保持し、一般的な生存判定の公開例から外す。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "alive-legacy-data",
+          "alive-poweradd-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧コード例2の生存敵検索はEnemyNear(0)～(8)でAliveを条件にするが、EnemyNear(9)と最後の代替処理にはAliveの条件がない。最後のEnemyNear,ID参照の敵存在条件も示されていない。常に生存した敵IDを返す例として公開せず、全行をJSONに保持して対象選択・敵不在の条件を検証する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "alive-legacy-data",
+          "alive-chaos"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.versionの2002.04.14は導入ビルドとして確定しない。保存済み公式3世代に掲載されているが、最初の実装ビルド・日付は今回実機未検証。page.introduced_inはnullのまま保持する。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "alive-legacy-data",
+          "alive-local-2002",
+          "alive-local-1.0",
+          "alive-local-1.1"
+        ],
+        "comment": "2026-10-04: 保存済み公式資料・旧原文・コミュニティ資料を照合。今回の実機検証ではない。"
+      },
+      "environment": {
+        "engine": "mugen"
+      }
+    }
+  ]
 }

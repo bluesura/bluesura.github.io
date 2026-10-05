@@ -1,0 +1,44 @@
+{
+  "text": "VelX 速度 > X方向の速度はどれだけか？ | 実装されたバージョン: 2002.04.14 引数 引用記事 プレイヤーのX方向の速度を返します。Vel X は、前方に移動している場合、正の値を返します。(HitVel X の仕様とは逆になります。)戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。 構文 Vel X 引数 なし 引用記事Vel - Trigger Reference(version 2002.04.14)Vel - Trigger Reference(version 1.0)Vel - Trigger Reference(version 1.1)Vel - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.14 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Vel - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Vel"
+    },
+    {
+      "text": "Vel - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#vel"
+    },
+    {
+      "text": "Vel - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#vel"
+    },
+    {
+      "text": "Vel - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Vel"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

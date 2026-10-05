@@ -1,0 +1,51 @@
+{
+  "text": "PosX 距離 > ステージ中心基準の現在X座標取得 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 プレイヤーの位置を返します。Pos X = 0で画面中央を、Pos Y = 0で地面を意味します。戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。詳細: Pos X は、画面中央を0、左方向を正、右方向を負とした、相対距離を返します。Pos Y は、地面を0、下方向を正、上方向を負とした、相対距離を返します。 構文 Pos X 引数 なし コードサンプルプレイヤーが地面より下にいる場合のトリガー。Trigger1 = Pos Y >= 0 引用記事Pos - Trigger Reference(version 2002.04.14)Pos - Trigger Reference(version 1.0)Pos - Trigger Reference(version 1.1)Pos - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.17 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Pos - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Pos"
+    },
+    {
+      "text": "Pos - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#pos"
+    },
+    {
+      "text": "Pos - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#pos"
+    },
+    {
+      "text": "Pos - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Pos"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-stage-coordinates-camera-edge-diagram.png"
+  ],
+  "code": []
+}

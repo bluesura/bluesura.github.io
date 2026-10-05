@@ -1223,3 +1223,28 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・291テスト・263ページビルド・261 URL/189比較対象ページのHTML検査を通過。ScreenPosXの世代別/半開区間例を通常幅、390pxのScreenPosY RC3履歴・CameraPosX軸表とCameraPosY例を確認し、表示幅と検査タブを復元。内部注記13件追加で446件、未対応旧履歴141項目、未表示フィールド29ページ。次はGameWidth/Height・ScreenWidth/Height・CameraZoomです。
+
+## 2026-10-06：size-zoom-01
+
+2026-10-05に資料照合・原本保存・適用、2026-10-06に検証を完了。GameWidth / GameHeight / ScreenWidth / ScreenHeight / CameraZoomの5件で累計183件（主要・補助16件＋65バッチ167件）、対象内の残り51件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/size-zoom-01/ に保存しました。
+
+- 5件の引数なし・floatを構造化。Game/Screen寸法は実行者のローカル座標系の値として整理し、描画ピクセル数と混同しない説明へ訂正しました。原文・履歴・構文・関連リンク・Q&A出典r・例・画像を保持します。
+- GameWidth/Heightの追加は保存済み1.0公式履歴のRC4へ照合し、既存mugen-1.0-rc4を使用。ScreenWidth/Height・CameraZoomは公式New in 1.1にありますが、最初のAlpha/Betaビルドは推定せずintroduced_inをnullとしました。旧2012.08.31も保持しています。
+- Gameの1.1 Beta 1旧履歴は説明追加の記録で、そこで実装が変更されたと断定しません。Game寸法がズームで変わることと、Screen寸法がズームで変わらないことを分離。公式GameWidth/Heightの反比例の説明とCameraZoom * ScreenWidthの積を同一とする公式例は矛盾として内部に保存し、換算式を公開しません。
+- 公式GameWidthのFormatがGameHeightという転記差、ScreenHeightのpos = 0, ScreenHeightを右下とする説明差、CameraZoomの未完成Detailsを内部へ保持。[olt-EDENの一次研究](https://sakisukebekkan.blog.fc2.com/blog-entry-90.html)の逆数による対処・ズームイン確認もJSONに残し、資料確認と自分の実機検証を区別しています。
+- Screenの旧Q&Aに含まれるIKEMEN GO設定と旧Wikiを内部へ保持。[issue #566](https://github.com/ikemen-engine/Ikemen-GO/issues/566)は2022年のエンジン差報告として参照し、全GO版・設定やMUGENの固定ビルドの保証へ一般化しません。MUGEN 1.1だけの公開Q&Aを追加しました。
+- Gameの旧ズーム対応/端付近例は内部へ保持して、公開例を1.0のScreenPos基準位置条件へ限定。GameWidthの>=は中央を含むことを明記しています。
+- 有効なScreenWidth右上・ScreenHeight中央Explod例は維持し、AIR番号と基準位置、screen空間の非バインドを説明。16pxの旧HUD例は内部へ保持し、新たな抜粋はローカル座標の16単位としました。誤ったText行/%dの旧デバッグ例を保存し、新例ではTextの%fと独立したParamsを指定します。CameraZoomの空例も内部へ保持し、係数が1以外という条件行を追加しました。
+- 共通座標図をinternalへ保持。新しいスキーマ・レンダラー・CSS・レジストリ項目は追加していません。LocalCoord・解像度・ズーム・リダイレクトの組合せは実機未検証です。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch size-zoom-01
+npm run mugen:batch -- --batch size-zoom-01 --target GameWidth --target GameHeight --target ScreenWidth --target ScreenHeight --target CameraZoom
+npm run mugen:batch -- --batch size-zoom-01 --target GameWidth --target GameHeight --target ScreenWidth --target ScreenHeight --target CameraZoom --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・297テスト・263ページビルド・261 URL/194比較対象ページHTML検査を通過。GameWidthのRC4履歴を通常幅、ScreenHeightのText/Params例・ScreenWidthの16単位例・CameraZoomの概要・GameHeightの1.0条件例を390pxで確認し、表示幅と検査タブを復元。内部注記17件追加で463件、未対応旧履歴135項目、未表示フィールド29ページ。次はLeftEdge・RightEdge・TopEdge・BottomEdgeです。

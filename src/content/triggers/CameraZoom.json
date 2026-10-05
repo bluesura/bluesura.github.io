@@ -1,44 +1,193 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "CameraZoom",
-        "target": "",
-        "category": [
-            "カメラ",
-            "現在の画面ズーム倍率の取得"
-        ],
-        "version": "2012.08.31",
-        "update": "2015.12.24",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "CameraZoom",
+    "target": "",
+    "category": [
+      "カメラ",
+      "現在の画面ズーム倍率の取得"
+    ],
+    "version": "2012.08.31",
+    "update": "2015.12.24",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "CameraZoom",
+  "summary": "<p>現在の画面の拡大縮小率を計測（実数）を返します。</p>",
+  "syntax": [
+    "CameraZoom"
+  ],
+  "description": "現在の画面の拡大縮小率を計測（実数）して返します。",
+  "code_sample": [
+    {
+      "title": "",
+      "code": [
+        ""
+      ],
+      "visibility": "internal"
     },
-    "category": "trigger",
-    "trigger": "CameraZoom",
-    "summary": "<p>現在の画面の拡大縮小率を計測（実数）を返します。</p>",
-    "syntax": [
-        "CameraZoom"
-    ],
-    "description": "現在の画面の拡大縮小率を計測（実数）して返します。",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "CameraZoom - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#camerazoom"
-        },
-        {
-            "title": "CameraZoom - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/CameraZoom"
-        },
-        {
-            "title": "M.U.G.E.N 1.1 - 君の瞳は紫外線",
-            "url": "http://chottokomaru.sitemix.jp/mugen1.1.html"
-        }
+    {
+      "title": "ズーム係数が1以外のとき（MUGEN 1.1）",
+      "description": "<p>現在値を1と比較する条件行です。GameWidthなどの寸法への換算式を前提にしません。</p>",
+      "code": [
+        "Trigger1 = CameraZoom != 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "CameraZoom - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#camerazoom"
+    },
+    {
+      "title": "CameraZoom - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/CameraZoom"
+    },
+    {
+      "title": "M.U.G.E.N 1.1 - 君の瞳は紫外線",
+      "url": "http://chottokomaru.sitemix.jp/mugen1.1.html",
+      "visibility": "internal"
+    },
+    {
+      "id": "camerazoom-local-1.1",
+      "title": "CameraZoom — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerazoom",
+      "source_type": "official_document"
+    },
+    {
+      "id": "camerazoom-legacy",
+      "title": "移行前の本文・履歴・例・図",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/6787a920c58bc44573afe87a93afe586b4ed7dac/src/content/triggers/CameraZoom.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "camerazoom-history-1.1",
+      "title": "CameraZoomの1.1追加 — 保存済み公式履歴",
+      "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+      "source_type": "official_document"
+    },
+    {
+      "id": "camerazoom-gamewidth-1.1",
+      "title": "GameWidthのズーム説明 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#gamewidth",
+      "source_type": "official_document"
+    },
+    {
+      "id": "camerazoom-community-zoom",
+      "title": "ズーム干渉への対処例 — olt-EDEN（2025-01-21）",
+      "url": "https://sakisukebekkan.blog.fc2.com/blog-entry-90.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "return_type": [
+    "float"
+  ],
+  "environment": {
+    "engine": "mugen",
+    "runtime": [
+      "mugen-1.1"
     ]
+  },
+  "documentation": {
+    "description": "<p>MUGEN 1.1でカメラの現在のズーム係数をfloatで返します。引数はありません。係数を参照するトリガーで、カメラのズームを変更する指定ではありません。</p>",
+    "page_category": "カメラの現在ズーム係数取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "camerazoom-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>公式New in 1.1に追加は記録されていますが、最初の個別ビルドは確認できません。旧page.versionを保持し、introduced_inはnullです。導入日やAlpha番号を推測しません。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "camerazoom-history-1.1",
+          "camerazoom-legacy"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>MUGEN 1.1でCameraZoomが追加されました。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "camerazoom-history-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式Detailsは未完成のThe zoom factor deで、例ではCameraZoom * ScreenWidthがGameWidthと同じと説明しています。一方GameWidth資料はズームに反比例と説明しており、積の同一性を公開しません。olt-EDENの一次研究ではScreenHeight / CameraZoomとAngleDrawの逆数による対処・ズームイン確認が報告されていますが、公式の積説明も引用しています。具体的なGame寸法の同一式や全版の適用は未確認のまま、資料差と研究を内部へ保持します。旧個人記事も今回は取得できていません。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "camerazoom-local-1.1",
+          "camerazoom-gamewidth-1.1",
+          "camerazoom-community-zoom",
+          "camerazoom-legacy"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "camerazoom-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+  }
 }

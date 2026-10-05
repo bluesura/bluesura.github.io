@@ -1,36 +1,36 @@
 # 移行状況
 
-更新日: 2026-10-05
+更新日: 2026-10-06
 
 作業ブランチ: `codex/mugen-schema-v2-migration`
 
-段階0〜4の基盤実装、主要11件・補助5件に加え、小分け移行162件への v2 任意構造の追加が完了しました。累計178件です。旧フィールドは削除していません。全体の移行および MUGEN の実機検証が完了したという意味ではありません。
+段階0〜4の基盤実装、主要11件・補助5件に加え、小分け移行167件への v2 任意構造の追加が完了しました。累計183件です。旧フィールドは削除していません。全体の移行および MUGEN の実機検証が完了したという意味ではありません。
 
 | 段階 | 状態 |
 | --- | --- |
 | 原本保存 | `2e12ca38` に配置済み資料を保存 |
-| 比較基準 | 初回24ページ・共通2項目・261 URL・全258原本のハッシュを固定。追加162ページは別の比較基準へ保存 |
+| 比較基準 | 初回24ページ・共通2項目・261 URL・全258原本のハッシュを固定。追加167ページは別の比較基準へ保存 |
 | 追加型スキーマ・レジストリ | 実装済み。旧258 JSON と新しい任意フィールドを検証 |
 | 共通処理・表示 | 実装済み。research / internal / evidence は JSON のみ。表・見出し・コード配色の表示調整を承認済み |
 | 原文を保持する説明訂正 | `documentation` と `parameter[].documentation` を実装。本文・公開カテゴリ・パラメーター表示を原文非破壊で訂正 |
 | Helper・主要／補助対象 | 全16件に任意構造を追加、旧情報の保存を検証 |
-| 全体展開 | 64バッチ162件を実施。対象指定・dry-run・再実行保護を追加。対象内の残り56件 |
+| 全体展開 | 65バッチ167件を実施。対象指定・dry-run・再実行保護を追加。対象内の残り51件 |
 | statetype・Lifebar | 5件・19件は今回のスキーマ移行対象外 |
 | 旧フィールド廃止 | 対象外 |
 
 ## 実装対象
 
 - State Controller 87件: Helper、HitDef、VarSet、HitBy、Explod、Zoom、TagIn、TagOut、TargetLifeAdd、PosAdd、PosSet、VelAdd、VelSet、VelMul、PosFreeze、Gravity、AngleAdd、AngleMul、AngleSet、ChangeAnim、ChangeAnim2、ChangeState、SelfState、TargetState、CtrlSet、StateTypeSet、SprPriority、AttackMulSet、DefenceMulSet、PowerAdd、PowerSet、LifeAdd、LifeSet、TargetPowerAdd、TargetBind、TargetDrop、TargetFacing、BindToParent、BindToRoot、BindToTarget、TargetVelAdd、TargetVelSet、HitAdd、MoveHitReset、HitVelSet、HitFallSet、HitFallVel、HitFallDamage、HitOverRide、NotHitBy、FallEnvShake、EnvShake、AttackDist、PlayerPush、ScreenBound、Width、MakeDust、EnvColor、GameMakeAnim、Trans、ExplodBindTime、RemoveExplod、AfterImageTime、ClearClipboard、DisplayToClipboard、AppendToClipboard、Turn、Null、Pause、SuperPause、PlaySnd、StopSnd、SndPan、PalFX、AllPalFX、BGPalFX、RemapPal、AfterImage、AngleDraw、Offset、AssertSpecial、DestroySelf、VarAdd、ParentVarSet、ParentVarAdd、VarRandom、VarRangeSet
-- Trigger 91件: MoveContact、AnimElem、IfElse、Cond、AILevel、StandBy、Const、Acos、Asin、Atan、PI、Sin、Cos、Tan、E、Exp、Ln、Log、Abs、Ceil、Floor、Random、GameTime、Time、TimeMod、AnimTime、AnimElemNo、AnimElemTime、Anim、AnimExist、SelfAnimExist、Var、FVar、SysVar、SysFVar、Life、LifeMax、Power、PowerMax、Alive、Ctrl、StateNo、PrevStateNo、StateType、MoveType、Facing、P2StateNo、P2StateType、P2MoveType、P2Life、NumEnemy、NumPartner、RoundState、RoundNo、RoundsExisted、ID、IsHelper、PlayerIDExist、NumHelper、NumTarget、NumExplod、NumProj、NumProjID、ProjContact、ProjHit、ProjGuarded、ProjContactTime、ProjHitTime、ProjGuardedTime、ProjCancelTime、MoveHit、MoveGuarded、MoveReversed、HitCount、UniqHitCount、HitPauseTime、HitShakeOver、HitOver、HitFall、HitVelX、HitVelY、CanRecover、InGuardDist、VelX、VelY、PosX、PosY、ScreenPosX、ScreenPosY、CameraPosX、CameraPosY
+- Trigger 96件: MoveContact、AnimElem、IfElse、Cond、AILevel、StandBy、Const、Acos、Asin、Atan、PI、Sin、Cos、Tan、E、Exp、Ln、Log、Abs、Ceil、Floor、Random、GameTime、Time、TimeMod、AnimTime、AnimElemNo、AnimElemTime、Anim、AnimExist、SelfAnimExist、Var、FVar、SysVar、SysFVar、Life、LifeMax、Power、PowerMax、Alive、Ctrl、StateNo、PrevStateNo、StateType、MoveType、Facing、P2StateNo、P2StateType、P2MoveType、P2Life、NumEnemy、NumPartner、RoundState、RoundNo、RoundsExisted、ID、IsHelper、PlayerIDExist、NumHelper、NumTarget、NumExplod、NumProj、NumProjID、ProjContact、ProjHit、ProjGuarded、ProjContactTime、ProjHitTime、ProjGuardedTime、ProjCancelTime、MoveHit、MoveGuarded、MoveReversed、HitCount、UniqHitCount、HitPauseTime、HitShakeOver、HitOver、HitFall、HitVelX、HitVelY、CanRecover、InGuardDist、VelX、VelY、PosX、PosY、ScreenPosX、ScreenPosY、CameraPosX、CameraPosY、GameWidth、GameHeight、ScreenWidth、ScreenHeight、CameraZoom
 - `src/lib/mugen/` に共有処理を配置。非本番のレジストリ案は `docs/mugen-document-schema/examples/`、採用したレジストリは `src/data/engine-versions.json`
 - 旧形式と v2 を併読し、未対応の履歴・引数も表示。共通2項目は詳細・コピペ欄・読み込み順・State 一覧で同じ有効定義を使用
 
 ## 検証
 
 - `npm run mugen:validate`: 258 JSON、共通パラメーター、バージョン参照を検証
-- `npm run mugen:test`: 291件。モデル、元フィールド保存、対象外原本の不変性、新しい出典のローカルファイル・アンカー、dry-run・一括事前検証・再実行保護を検証。公開文・公開カテゴリ・型・必須／任意分類の優先順位、概要・内部の資料差、旧メタ項目・候補表・画像・内部出典の公開除外、コード例・Q&A の公開制御、CNS 出力、環境別の必須・任意分類、内部パラメーターの非表示とアンカー保存も検証
+- `npm run mugen:test`: 297件。モデル、元フィールド保存、対象外原本の不変性、新しい出典のローカルファイル・アンカー、dry-run・一括事前検証・再実行保護を検証。公開文・公開カテゴリ・型・必須／任意分類の優先順位、概要・内部の資料差、旧メタ項目・候補表・画像・内部出典の公開除外、コード例・Q&A の公開制御、CNS 出力、環境別の必須・任意分類、内部パラメーターの非表示とアンカー保存も検証
 - `npm run build`: 263ページを生成
-- `npm run mugen:check-html`: 261 URL、初回24ページ・追加162ページ・一覧 等3ページ。公開本文・メタ情報・履歴・セクション・出典・画像参照・コード例内 iframe の保存、内部記録・内部メタ項目・内部画像・内部コード例・内部 Q&A・内部出典の非表示、共通項目と CNS コピペ出力を検証
+- `npm run mugen:check-html`: 261 URL、初回24ページ・追加167ページ・一覧 等3ページ。公開本文・メタ情報・履歴・セクション・出典・画像参照・コード例内 iframe の保存、内部記録・内部メタ項目・内部画像・内部コード例・内部 Q&A・内部出典の非表示、共通項目と CNS コピペ出力を検証
 - ブラウザ: デスクトップと幅390pxで Helper／Explod／Cond を確認。Helper のコピー結果28行を確認し、継承項目がコメント、共通2項目が含まれることを確認。履歴のモバイル表示で見つかった重なりを修正
 - 追加バッチのブラウザ: PosAdd / PosSet / VelAdd / VelSet の省略時表示、内部注記の非表示、PosSet の実コピー結果7行、VelSet の幅390pxの表示を確認
 - 2026-09-08 の説明訂正: 生成 HTML の見出し・本文・State 一覧への反映と内部根拠の非表示を検査。前回最後のブラウザ操作が利用上限による自動承認レビューで拒否されたため、今回のブラウザ再確認は未実施
@@ -51,12 +51,13 @@
 - hit-recovery-guard-01 のブラウザ: HitVelXの軸指定表を通常幅、HitVelYの表/例・CanRecoverのCommon例・InGuardDistの仕様を幅390pxで確認。符号研究・旧AI例・未確認Win履歴の非表示と関連リンクを確認し、表示幅をリセット・検査用タブを終了
 - velocity-position-01 のブラウザ: VelXの軸指定表を通常幅、PosXの1.1基準式・PosYの0を含む例・VelYの軸表と境界を390pxで確認。旧丸め助言/座標図/研究の非表示を確認し、表示幅をリセット・検査用タブを終了
 - screen-camera-01 のブラウザ: ScreenPosXの1.0/固定幅例を通常幅、ScreenPosYのRC3履歴・CameraPosXの軸表・CameraPosYの位置例を390pxで確認。内部図/IKEMEN/研究の非表示を確認し、表示幅をリセット・検査用タブを終了
+- size-zoom-01 のブラウザ: GameWidthのRC4履歴を通常幅、ScreenHeightのText/Params例・ScreenWidthのローカル単位の配置例・CameraZoomの概要・GameHeightの1.0条件例を390pxで確認。内部図/研究/別エンジン記録の非表示を確認し、表示幅をリセット・検査用タブを終了
 - GitHub Actions に Node.js 20 / Ubuntu の検証を追加。`master` へのマージや公開用デプロイは行わない構成
 
 ## 残る調査と次の作業
 
-`npm run mugen:inventory` で全件を再集計できます。現在、対象内の旧形式56件に未対応履歴141項目があります。また、29ページに現在の表示コンポーネントが使っていないフィールドがあります。旧項目に加え、今回追加したCanRecoverのQ&A出典rもJSONで保持しています。内部注記は446件です。
+`npm run mugen:inventory` で全件を再集計できます。現在、対象内の旧形式51件に未対応履歴135項目があります。また、29ページに現在の表示コンポーネントが使っていないフィールドがあります。旧項目に加え、今回追加したCanRecoverのQ&A出典rもJSONで保持しています。内部注記は463件です。
 
-小分け移行の記録は [BATCH_MIGRATION.md](BATCH_MIGRATION.md) にあります。StateType・MoveType・Facingまで実施しました。StateType/MoveTypeの文字比較・0/1の結果と、Facingの1/-1の参照を分離しています。Lの列挙漏れと旧Trigger表記は原位置・内部へ保持し、Uの継承指定とPhysics、MoveType=Iの意味を整理しました。P2StateNo・P2StateType・P2MoveTypeまで移行し、相手不在のbottomと通常の不一致0を分け、対象選択の研究と無関係・空欄の旧例を内部へ保存しました。P2Life・NumEnemy・NumPartnerまで移行し、人数とチームモードを分離しました。P2Life不在時の値・特殊ヘルパー・消滅条件・ID順による番号推定はJSONへ保持しています。RoundState・RoundNo・RoundsExistedまで移行し、進行状態・試合全体の番号・プレイヤーの出場履歴を分離しました。旧監視図・初期化例・別エンジンの変更履歴は内部へ保持しています。ID・IsHelper・PlayerIDExistまで移行し、一意IDとHelperの指定IDを分離しました。誤記を含む旧例とフリーズ回避策は内部へ保存し、公開例は存在確認と参照を分けています。NumHelper・NumTarget・NumExplodまで移行し、IDの意味と全数指定の境界を分けました。旧原文と公式NumTargetの例の表記差、所有範囲や上限の研究を内部へ保存しています。NumProj・NumProjIDまで移行し、総数と必須ProjIDの個数、負数の0扱い、Helper生成時のRoot所有を分離しました。ProjContact・ProjHit・ProjGuardedまで移行し、ID接尾辞・旧式の真偽条件と0始まりの時間比較を構造化しました。括弧付き旧例・相殺や反対イベントのリセット報告・資料の差は内部へ残しました。ProjContactTime・ProjHitTime・ProjGuardedTime・ProjCancelTimeまで移行し、最後の接触記録、必須ID式と負数の0扱い、0始まりの計測と-1除外を整理しました。公式の直後=1例や名前の差は内部へ、相殺IDのバグはWinMUGENの報告として分けています。MoveHit・MoveGuarded・MoveReversedまで移行し、ヒット/ガードと当て身された側、停止中のカウンターとStateDef継承を分けました。公式の他3つ0という例の差、DOS/Win境界、別エンジン報告や同時処理は内部に保持し、共有図はMoveContactを含む4件で内部へ保存しました。HitCount・UniqHitCount・HitPauseTimeまで移行し、ステートのヒット回数と画面コンボ数、同時命中の加算を分離しました。6未満の範囲例と停止中に評価されない条件を訂正し、RC1修正と旧キャラの互換補正を整理しています。HitShakeOver・HitOver・HitFallまで移行し、揺れ終了・のけぞり満了・fallフラグを分離しました。HitTime=0という旧説明と資料の負数境界、被弾以外で未定義のHitFall、旧5010移行例と別エンジン履歴は内部へ保持しています。HitVel X/Y・CanRecover・InGuardDistまで移行し、被弾速度と現在速度、受身の許可とCommon遷移条件、ガード認識距離とガード成立を分離しました。HitVelの符号資料差と旧Win/DOS導入記録は内部へ残し、Common例は固定コミットの1.0ファイルと照合しています。Vel X/Y・Pos X/Yまで移行し、向き基準の速度と画面/地面基準の座標、0を含む境界を分離しました。旧左右逆転と一律の整数化助言を原文に残し、座標図と処理順研究は内部へ保持。ScreenPos X/Y・CameraPos X/Yまで移行し、画面左上とカメラの基準位置、位置と移動方向を分離しました。RC2/RC3修正をビルドに対応付け、旧Round案内・別エンジン履歴・座標図を内部へ。次はGameWidth/Height・ScreenWidth/Height・CameraZoomを照合します。
+小分け移行の記録は [BATCH_MIGRATION.md](BATCH_MIGRATION.md) にあります。StateType・MoveType・Facingまで実施しました。StateType/MoveTypeの文字比較・0/1の結果と、Facingの1/-1の参照を分離しています。Lの列挙漏れと旧Trigger表記は原位置・内部へ保持し、Uの継承指定とPhysics、MoveType=Iの意味を整理しました。P2StateNo・P2StateType・P2MoveTypeまで移行し、相手不在のbottomと通常の不一致0を分け、対象選択の研究と無関係・空欄の旧例を内部へ保存しました。P2Life・NumEnemy・NumPartnerまで移行し、人数とチームモードを分離しました。P2Life不在時の値・特殊ヘルパー・消滅条件・ID順による番号推定はJSONへ保持しています。RoundState・RoundNo・RoundsExistedまで移行し、進行状態・試合全体の番号・プレイヤーの出場履歴を分離しました。旧監視図・初期化例・別エンジンの変更履歴は内部へ保持しています。ID・IsHelper・PlayerIDExistまで移行し、一意IDとHelperの指定IDを分離しました。誤記を含む旧例とフリーズ回避策は内部へ保存し、公開例は存在確認と参照を分けています。NumHelper・NumTarget・NumExplodまで移行し、IDの意味と全数指定の境界を分けました。旧原文と公式NumTargetの例の表記差、所有範囲や上限の研究を内部へ保存しています。NumProj・NumProjIDまで移行し、総数と必須ProjIDの個数、負数の0扱い、Helper生成時のRoot所有を分離しました。ProjContact・ProjHit・ProjGuardedまで移行し、ID接尾辞・旧式の真偽条件と0始まりの時間比較を構造化しました。括弧付き旧例・相殺や反対イベントのリセット報告・資料の差は内部へ残しました。ProjContactTime・ProjHitTime・ProjGuardedTime・ProjCancelTimeまで移行し、最後の接触記録、必須ID式と負数の0扱い、0始まりの計測と-1除外を整理しました。公式の直後=1例や名前の差は内部へ、相殺IDのバグはWinMUGENの報告として分けています。MoveHit・MoveGuarded・MoveReversedまで移行し、ヒット/ガードと当て身された側、停止中のカウンターとStateDef継承を分けました。公式の他3つ0という例の差、DOS/Win境界、別エンジン報告や同時処理は内部に保持し、共有図はMoveContactを含む4件で内部へ保存しました。HitCount・UniqHitCount・HitPauseTimeまで移行し、ステートのヒット回数と画面コンボ数、同時命中の加算を分離しました。6未満の範囲例と停止中に評価されない条件を訂正し、RC1修正と旧キャラの互換補正を整理しています。HitShakeOver・HitOver・HitFallまで移行し、揺れ終了・のけぞり満了・fallフラグを分離しました。HitTime=0という旧説明と資料の負数境界、被弾以外で未定義のHitFall、旧5010移行例と別エンジン履歴は内部へ保持しています。HitVel X/Y・CanRecover・InGuardDistまで移行し、被弾速度と現在速度、受身の許可とCommon遷移条件、ガード認識距離とガード成立を分離しました。HitVelの符号資料差と旧Win/DOS導入記録は内部へ残し、Common例は固定コミットの1.0ファイルと照合しています。Vel X/Y・Pos X/Yまで移行し、向き基準の速度と画面/地面基準の座標、0を含む境界を分離しました。旧左右逆転と一律の整数化助言を原文に残し、座標図と処理順研究は内部へ保持。ScreenPos X/Y・CameraPos X/Yまで移行し、画面左上とカメラの基準位置、位置と移動方向を分離しました。RC2/RC3修正をビルドに対応付け、旧Round案内・別エンジン履歴・座標図を内部へ。GameWidth/Height・ScreenWidth/Height・CameraZoomまで移行し、実行者のローカル座標単位と世代、ズームの有無を分離しました。Game寸法のRC4追加を対応付け、旧ピクセル説明・誤ったデバッグ指定・資料内の換算式の矛盾は内部へ保持。次はLeftEdge・RightEdge・TopEdge・BottomEdgeを照合します。
 
 未確認仕様、資料間の相違、既存の表示不具合、およびフィールドの対応表は [MIGRATION_LEDGER.md](MIGRATION_LEDGER.md) を参照してください。入力規則と新旧の優先順位は [ADOPTION.md](ADOPTION.md) に記録しています。

@@ -9,7 +9,9 @@
     "version": "2009.10.25",
     "update": "2026.01.04",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": "mugen-1.0-rc4"
   },
   "title": "GameWidth",
   "category": "trigger",
@@ -23,7 +25,8 @@
       "src": "mugen-stage-coordinates-camera-edge-diagram.png",
       "width": "640",
       "height": "430",
-      "alt": "ステージ座標系とカメラ表示範囲（GameWidth/GameHeight、および各Edge系トリガー）の関係図"
+      "alt": "ステージ座標系とカメラ表示範囲（GameWidth/GameHeight、および各Edge系トリガー）の関係図",
+      "visibility": "internal"
     }
   ],
   "associated_trigger": [
@@ -55,7 +58,8 @@
           "title": "Trigger Reference (v1.1) - GameWidth / ScreenWidth",
           "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#gamewidth"
         }
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "q": "キャラによって戻り値が変わることがある？",
@@ -66,6 +70,10 @@
           "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#gamewidth"
         }
       ]
+    },
+    {
+      "q": "MUGEN 1.1でScreenWidthと何が違う？",
+      "a": "<p>GameWidthはカメラズームに応じて変わるゲーム空間の幅です。ScreenWidthはズームで変化しないスクリーン空間の幅です。どちらも実行者のローカル座標系の値です。</p>"
     }
   ],
   "code_sample": [
@@ -77,7 +85,8 @@
         "Type = VarSet",
         "Trigger1 = 1",
         "Var(0) = (ScreenPos X >= GameWidth / 2)"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "画面左端から一定距離以内にいるか判定（ズーム対応）",
@@ -88,6 +97,14 @@
         "Trigger1 = 1",
         "; 左端から80未満（プレイヤーローカル座標系）",
         "Var(1) = (ScreenPos X < 80)"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "基準位置が画面中央以上のX座標にあるとき（MUGEN 1.0）",
+      "description": "<p>MUGEN 1.0の公式例に基づく条件行です。キャラクターの基準位置を調べ、体全体が画面内にあることやMUGEN 1.1のズーム対応を保証する条件にはしません。</p>",
+      "code": [
+        "Trigger1 = ScreenPos X >= GameWidth / 2"
       ]
     }
   ],
@@ -107,6 +124,195 @@
     {
       "title": "MUGEN History (Elecbyte)",
       "url": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "id": "gamewidth-local-1.1",
+      "title": "GameWidth — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#gamewidth",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gamewidth-legacy",
+      "title": "移行前の本文・履歴・例・図",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/6787a920c58bc44573afe87a93afe586b4ed7dac/src/content/triggers/GameWidth.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "gamewidth-local-1.0",
+      "title": "GameWidth — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#gamewidth",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gamewidth-history-rc4",
+      "title": "GameWidth / GameHeightの追加 — Elecbyte 1.0 History",
+      "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc4",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gamewidth-screen-1.1",
+      "title": "ScreenWidth — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#screenwidth",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gamewidth-zoom-1.1",
+      "title": "CameraZoom — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerazoom",
+      "source_type": "official_document"
     }
-  ]
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "return_type": [
+    "float"
+  ],
+  "documentation": {
+    "description": "<p>ゲーム空間の幅を、実行者のローカル座標系のfloatで返します。引数はありません。ウィンドウの描画ピクセル数ではないため、異なるLocalCoordのキャラクター間で固定値を共有する際は単位を確認してください。</p><p>MUGEN 1.0 RC4で追加されました。MUGEN 1.0ではmugen.cfgのGameWidth / GameHeightで設定したゲーム空間の寸法に対応します。MUGEN 1.1では現在見えているステージ範囲の寸法となり、カメラのズームに応じて値が変わります。</p>",
+    "page_category": "ゲーム空間の幅取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "gamewidth-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>旧共通座標図・altを保持してinternalへ。Y軸の向き、Posの絶対座標表記と画面/ステージ/ローカル座標・ズームの条件を整理するまで公開しません。元の画像ファイルは保持します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "gamewidth-legacy"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "version_change",
+      "content": "<p>MUGEN 1.0 RC4でGameWidth / GameHeightが追加されました。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "gamewidth-history-rc4"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+      },
+      "legacy_index": 0,
+      "change": "added",
+      "at": "mugen-1.0-rc4"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[1]は1.1 Beta 1資料の説明追加を記録しています。ここからそのビルドで実装変更されたとは推定しません。公式GameWidth/Heightはズームに反比例するとし0.5で2倍の例を示す一方、CameraZoomの公式例は積CameraZoom * ScreenWidthがGameWidthに等しいと説明しています。矛盾を保持し、数式の同一性や全条件への適用は実機確認まで公開しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "gamewidth-local-1.1",
+          "gamewidth-zoom-1.1",
+          "gamewidth-legacy"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+      },
+      "visibility": "internal",
+      "legacy_index": 1
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>MUGEN 1.1で画面固定演出の寸法を調べる場合はScreenWidthを使います。ScreenWidthはカメラズームの影響を受けません。GameWidthとScreenWidthを用途に応じて使い分けます。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "gamewidth-local-1.1",
+          "gamewidth-screen-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>1.0/1.1公式GameWidthのFormat欄はGameHeightになっています。実際の項目名・既存構文GameWidthを維持し、書式の転記差を内部へ残します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "gamewidth-local-1.1",
+          "gamewidth-local-1.0"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧ズーム対応の使用例を原位置に保持してinternalへ。1.1のScreenPosとの組合せ・LocalCoord・ズームの条件は未確認です。旧端付近の条件は画面外も含み、中央以上と中央より右、下端から100以内と画面外を混同しないよう、公開例は1.0の基準位置判定へ限定しました。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "gamewidth-legacy",
+          "gamewidth-local-1.0",
+          "gamewidth-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "gamewidth-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式資料・履歴と一次研究を照合。資料確認であり実機検証は未実施。"
+  }
 }

@@ -1,57 +1,210 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "InGuardDist",
-        "target": "",
-        "category": [
-            "距離",
-            "相手攻撃のガード認識範囲内かの判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "InGuardDist",
+    "target": "",
+    "category": [
+      "距離",
+      "相手攻撃のガード認識範囲内かの判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "associated_state": [
+    "HitDef"
+  ],
+  "version": [
+    {
+      "no": "?",
+      "content": "Windows版"
+    }
+  ],
+  "trigger": "InGuardDist",
+  "summary": "<p>敵の攻撃、または敵の飛び道具の攻撃認識範囲内にいるかどうかを返します。</p>",
+  "syntax": [
+    "InGuardDist"
+  ],
+  "description": "敵の攻撃、または敵の飛び道具の攻撃認識範囲内にいるかどうかを返します。<br>敵の攻撃、または敵の飛び道具の攻撃認識範囲内にいる場合に1を、いない場合に0を返します。<br>「攻撃認識範囲」は、相手のHitDefのguard.distパラメータで指定されている値です。",
+  "code_sample": [
+    {
+      "title": "",
+      "code": [
+        ""
+      ],
+      "visibility": "internal"
     },
-    "category": "trigger",
+    {
+      "title": "相手攻撃のガード認識距離内の判定",
+      "description": "<p>ガード認識距離内で処理する条件行です。ガード入力や状態の移行条件は、実装するガード処理に合わせて指定します。</p>",
+      "code": [
+        "Trigger1 = InGuardDist = 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "InGuardDist - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#InGuardDist"
+    },
+    {
+      "title": "InGuardDist - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#inguarddist"
+    },
+    {
+      "title": "InGuardDist - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#inguarddist"
+    },
+    {
+      "title": "InGuardDist - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/InGuardDist"
+    },
+    {
+      "id": "inguarddist-local-2002",
+      "title": "InGuardDist — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#InGuardDist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "inguarddist-local-1.0",
+      "title": "InGuardDist — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#inguarddist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "inguarddist-local-1.1",
+      "title": "InGuardDist — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#inguarddist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "inguarddist-legacy",
+      "title": "移行前の説明・履歴・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/4726082a09a37916a41ddb289477dd253d135f10/src/content/triggers/InGuardDist.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "inguarddist-chaos",
+      "title": "InGuardDist — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/139.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "inguarddist-hitdef-1.1",
+      "title": "HitDef Guard.Dist — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+      "source_type": "official_document"
+    },
+    {
+      "id": "inguarddist-attackdist-1.1",
+      "title": "AttackDist — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#attackdist",
+      "source_type": "official_document"
+    }
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [],
+  "documentation": {
+    "description": "<p>実行者自身が、相手の打撃やProjectileの攻撃のガード認識距離内なら1、範囲外または相手が攻撃していなければ0を整数で返します。引数はありません。</p><p>ガード認識距離には相手のHitDefの<code>guard.dist</code>設定が使われ、AttackDistでも変更できます。InGuardDistは範囲の判定です。攻撃が命中したことや、既にガードが成立したことの判定には使いません。</p>",
+    "page_category": "相手攻撃のガード認識距離内かの判定",
     "associated_state": [
-        "HitDef"
+      "HitDef",
+      "AttackDist"
     ],
-    "version": [
-        {
-            "no": "?",
-            "content": "Windows版"
-        }
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "inguarddist-local-2002",
+        "inguarddist-local-1.0",
+        "inguarddist-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>AttackDistが変更するのは攻撃側の現在のHitDefのguard.distです。公式ではこの距離設定は攻撃側の<code>MoveType = A</code>で有効とされています。距離を判定する側へAttackDistを設定しても、相手の攻撃の範囲を変更する指定にはなりません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "inguarddist-attackdist-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[0]はnoが?でWindows版という記録です。CHAOSはWinから/DOSには存在しないと報告していますが、保存済み2002.04.14公式資料にも項目があります。資料にあることとDOS実行可否/Win導入ビルドを区別し、旧?・本文を保持して初導入はnullです。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code",
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "inguarddist-legacy",
+          "inguarddist-chaos",
+          "inguarddist-local-2002",
+          "inguarddist-local-1.0",
+          "inguarddist-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      },
+      "visibility": "internal",
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSの基準位置1から前方に伸びる距離、P2Distとの1差、指定距離と一致なら範囲外、背面は範囲外/重なりは範囲内という境界報告を保持します。向き・複数の相手/Projectile・評価時点や各ビルドの再現は実機未確認で、単純なP2Dist式へ置き換えません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "inguarddist-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "trigger": "InGuardDist",
-    "summary": "<p>敵の攻撃、または敵の飛び道具の攻撃認識範囲内にいるかどうかを返します。</p>",
-    "syntax": [
-        "InGuardDist"
+    "source_refs": [
+      "inguarddist-local-2002",
+      "inguarddist-local-1.0",
+      "inguarddist-local-1.1"
     ],
-    "description": "敵の攻撃、または敵の飛び道具の攻撃認識範囲内にいるかどうかを返します。<br>敵の攻撃、または敵の飛び道具の攻撃認識範囲内にいる場合に1を、いない場合に0を返します。<br>「攻撃認識範囲」は、相手のHitDefのguard.distパラメータで指定されている値です。",
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "InGuardDist - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#InGuardDist"
-        },
-        {
-            "title": "InGuardDist - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#inguarddist"
-        },
-        {
-            "title": "InGuardDist - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#inguarddist"
-        },
-        {
-            "title": "InGuardDist - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/InGuardDist"
-        }
-    ]
+    "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+  }
 }

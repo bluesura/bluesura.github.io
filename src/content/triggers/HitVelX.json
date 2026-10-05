@@ -1,48 +1,198 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "HitVel X",
-        "target": "",
-        "category": [
-            "速度",
-            "現在の水平速度取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "HitVel X",
+    "target": "",
+    "category": [
+      "速度",
+      "現在の水平速度取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "HitVelX",
+  "summary": "<p>プレイヤーが攻撃を受けたときの速度を取得します。</p>",
+  "syntax": [
+    "HitVel X"
+  ],
+  "description": "プレイヤーが攻撃を受けたときの速度を取得します。<br>HitVel Yは、上方向が、HitVel Xは後方が正の値となります。<br>戻り値の型: float",
+  "code_sample": [
+    {
+      "title": "攻撃を受けたときのX方向の吹き飛び速度が0.5ピクセル毎フレームより大きいときのトリガー",
+      "code": [
+        "Trigger1 = HitVel X > 0.5"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "HitVel - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitVel"
     },
-    "category": "trigger",
-    "trigger": "HitVelX",
-    "summary": "<p>プレイヤーが攻撃を受けたときの速度を取得します。</p>",
-    "syntax": [
-        "HitVel X"
+    {
+      "title": "HitVel - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitvel"
+    },
+    {
+      "title": "HitVel - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitvel"
+    },
+    {
+      "title": "HitVel - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitVel"
+    },
+    {
+      "id": "hitvelx-local-2002",
+      "title": "HitVel — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitVel",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitvelx-local-1.0",
+      "title": "HitVel — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#hitvel",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitvelx-local-1.1",
+      "title": "HitVel — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitvel",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitvelx-legacy",
+      "title": "移行前の説明・履歴・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/4726082a09a37916a41ddb289477dd253d135f10/src/content/triggers/HitVelX.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitvelx-chaos",
+      "title": "HitVel X — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/134.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitvelx-vel-1.1",
+      "title": "現在速度を参照するVel — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#vel",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitvelx-hitvelset-1.1",
+      "title": "HitVelSet — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitvelset",
+      "source_type": "official_document"
+    }
+  ],
+  "syntax_kind": "special_form",
+  "return_type": [
+    "float"
+  ],
+  "arguments": [
+    {
+      "name": "[component]",
+      "type": [
+        "char"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>軸を表す<code>X</code>を空白の後へ指定します。このページは水平成分の<code>HitVel X</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitvelx-local-2002",
+          "hitvelx-local-1.0",
+          "hitvelx-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      }
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者自身が攻撃を受けたときに与えられる水平方向の速度を、floatで返します。<code>HitVel X</code>のように、HitVelと軸指定の間に空白を入れます。</p><p>被弾時の速度情報を調べるトリガーです。現在実際に移動している速度を調べる<code>Vel X</code>とは区別して使います。</p>",
+    "page_category": "被弾で与えられた水平速度の参照",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "hitvelx-local-2002",
+        "hitvelx-local-1.0",
+        "hitvelx-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>公式3世代と旧本文はHitVel Xが後方正/HitVel Yが上方正とし、Velの符号と逆と説明しています。一方CHAOSは少なくともWin版ではHitVelSetでVelへ反映される数値そのままと報告しています。両方を保持し、未検証の方向規則を公開へ断定しません。旧閾値例は方向を付け足さず維持しています。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "hitvelx-local-2002",
+          "hitvelx-local-1.0",
+          "hitvelx-local-1.1",
+          "hitvelx-legacy",
+          "hitvelx-chaos",
+          "hitvelx-vel-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSのGetHitVar(XVel)*Facingとの同義かという疑問符を保持します。符号の適用ビルド、Facing変更/相手側基準、被弾状態外の残存値やHitVelSet後の減速・加速との違いは今回実機未確認です。導入はpage.versionから推定しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "hitvelx-chaos",
+          "hitvelx-local-2002",
+          "hitvelx-local-1.0",
+          "hitvelx-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "プレイヤーが攻撃を受けたときの速度を取得します。<br>HitVel Yは、上方向が、HitVel Xは後方が正の値となります。<br>戻り値の型: float",
-    "code_sample": [
-        {
-            "title": "攻撃を受けたときのX方向の吹き飛び速度が0.5ピクセル毎フレームより大きいときのトリガー",
-            "code": [
-                "Trigger1 = HitVel X > 0.5"
-            ]
-        }
+    "source_refs": [
+      "hitvelx-local-2002",
+      "hitvelx-local-1.0",
+      "hitvelx-local-1.1"
     ],
-    "quote": [
-        {
-            "title": "HitVel - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitVel"
-        },
-        {
-            "title": "HitVel - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitvel"
-        },
-        {
-            "title": "HitVel - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitvel"
-        },
-        {
-            "title": "HitVel - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitVel"
-        }
-    ]
+    "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+  }
 }

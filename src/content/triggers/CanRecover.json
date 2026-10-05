@@ -9,7 +9,9 @@
     "version": "2002.04.14",
     "update": "2025.12.24",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "category": "trigger",
   "trigger": "CanRecover",
@@ -42,11 +44,13 @@
   "qanda": [
     {
       "q": "CanRecover=1なのに受身できないことがある",
-      "a": "<p>よくある原因は「<code>CanRecover</code> 以外の条件が満たせていない」ケースです。<br>デフォルトの <code>common1.cns</code>（<code>StateNo=5050</code>）では、たとえば空中受身は <code>Vel Y</code> が一定値より大きい（＝上昇しきって落下に転じた/落下が緩い）こと等が条件になっています。AI側で受身を仕込む場合も、一般的に <code>StateNo=5050</code> / <code>Vel Y</code> / <code>Alive</code> / <code>Command</code> を併用します。</p>"
+      "a": "<p>よくある原因は「<code>CanRecover</code> 以外の条件が満たせていない」ケースです。<br>デフォルトの <code>common1.cns</code>（<code>StateNo=5050</code>）では、たとえば空中受身は <code>Vel Y</code> が一定値より大きい（＝上昇しきって落下に転じた/落下が緩い）こと等が条件になっています。AI側で受身を仕込む場合も、一般的に <code>StateNo=5050</code> / <code>Vel Y</code> / <code>Alive</code> / <code>Command</code> を併用します。</p>",
+      "visibility": "internal"
     },
     {
       "q": "落下中以外でCanRecoverを使うとどうなる？",
-      "a": "<p>仕様上「未定義」です。トリガーが0/1どちらかに見えても信頼できないので、<code>HitFall</code> や <code>StateNo</code> などで「今が落下喰らいか」を先に絞り込むのが定石です。</p>"
+      "a": "<p>仕様上「未定義」です。トリガーが0/1どちらかに見えても信頼できないので、<code>HitFall</code> や <code>StateNo</code> などで「今が落下喰らいか」を先に絞り込むのが定石です。</p>",
+      "visibility": "internal"
     },
     {
       "q": "Fall.Recover / Fall.RecoverTime と CanRecover の関係は？",
@@ -54,7 +58,18 @@
     },
     {
       "q": "CanRecoverを“コンボ可否判定”に使いたい",
-      "a": "<p>注意点として、<code>CanRecover</code> は相手の状態・次の被弾等で即座に状況が変わります。<br>英語圏の実装例では「相手が受身可能になった瞬間を検出したら、その事実をヘルパー/変数で保持してコンボ中に参照する」方式が紹介されています（<code>CanRecover</code> 単体をそのまま使うと次のヒットで状況が変わり得るため）。</p>"
+      "a": "<p>注意点として、<code>CanRecover</code> は相手の状態・次の被弾等で即座に状況が変わります。<br>英語圏の実装例では「相手が受身可能になった瞬間を検出したら、その事実をヘルパー/変数で保持してコンボ中に参照する」方式が紹介されています（<code>CanRecover</code> 単体をそのまま使うと次のヒットで状況が変わり得るため）。</p>",
+      "visibility": "internal"
+    },
+    {
+      "q": "CanRecover = 1だけでは受身ステートへ移らないのはなぜ？",
+      "a": "<p>CanRecoverは許可の判定です。受身ステートへの移行はコントローラーで行います。MUGEN 1.0のCommonではrecovery入力、Alive、速度や高さの条件も使うため、自作やられでは自分の遷移条件を確認してください。</p>",
+      "r": [
+        {
+          "title": "固定コミットの1.0 common1.cns",
+          "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/common1.cns"
+        }
+      ]
     }
   ],
   "code_sample": [
@@ -94,7 +109,8 @@
         "triggerall = Vel Y > -1",
         "trigger1 = CanRecover",
         "trigger1 = Command = \"recovery\""
-      ]
+      ],
+      "visibility": "internal"
     }
   ],
   "quote": [
@@ -124,15 +140,216 @@
     },
     {
       "title": "Ricepigeon's Coding Tutorial & Code Snippet Repository (CanRecoverの扱いに関する英語圏の実装談) - Mugen Free For All",
-      "url": "https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/"
+      "url": "https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/",
+      "visibility": "internal"
     },
     {
       "title": "追加記述（空中受身の例） - MUGEN初心者用簡易AI講座 Wiki*",
-      "url": "https://wikiwiki.jp/simple-ai/page7/no10"
+      "url": "https://wikiwiki.jp/simple-ai/page7/no10",
+      "visibility": "internal"
     },
     {
       "title": "canrecoverを利用したメモ例 - Optica Laboratory",
-      "url": "https://optica.livedoor.blog/archives/10501535.html"
+      "url": "https://optica.livedoor.blog/archives/10501535.html",
+      "visibility": "internal"
+    },
+    {
+      "id": "canrecover-local-2002",
+      "title": "CanRecover — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#CanRecover",
+      "source_type": "official_document"
+    },
+    {
+      "id": "canrecover-local-1.0",
+      "title": "CanRecover — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#canrecover",
+      "source_type": "official_document"
+    },
+    {
+      "id": "canrecover-local-1.1",
+      "title": "CanRecover — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#canrecover",
+      "source_type": "official_document"
+    },
+    {
+      "id": "canrecover-legacy",
+      "title": "移行前の説明・履歴・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/4726082a09a37916a41ddb289477dd253d135f10/src/content/triggers/CanRecover.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "canrecover-chaos",
+      "title": "CanRecover — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/101.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "canrecover-hitdef-1.1",
+      "title": "HitDef Fall.Recover / Fall.RecoverTime — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+      "source_type": "official_document"
+    },
+    {
+      "id": "canrecover-common-1.0",
+      "title": "MUGEN 1.0 common1.cnsの5050 — 固定コミットの配布ファイルミラー",
+      "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/common1.cns",
+      "source_type": "source_code"
     }
-  ]
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [],
+  "documentation": {
+    "description": "<p>実行者自身がfallのやられ状態にいるとき、現在受身が許可されているなら1、許可されていなければ0を整数で返します。引数はありません。</p><p>fall状態以外での戻り値は公式資料では未定義です。通常のジャンプで下降しているかを判定する値ではありません。CanRecover = 1だけで、受身入力や受身ステートへの移行まで完了したとは判断しません。</p>",
+    "page_category": "fall状態での受身許可判定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "canrecover-local-2002",
+        "canrecover-local-1.0",
+        "canrecover-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>fall状態で使用します。自作のやられステートでは、ステート番号だけでなく実際のMoveTypeやfallの状態を確認してください。5050は標準Commonのやられステートの番号で、CanRecoverの引数やエンジン全体の必須番号ではありません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "canrecover-local-2002",
+          "canrecover-local-1.0",
+          "canrecover-local-1.1",
+          "canrecover-common-1.0"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>MUGEN 1.0のcommon1.cnsでは、5050の受身遷移にCanRecoverのほかAliveとrecoveryコマンド、速度条件を使います。地面近くの受身には高さ条件もあります。キャラがCommonを変更している場合は、その遷移条件を確認してください。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "canrecover-common-1.0"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      },
+      "legacy_index": 1
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>攻撃側HitDefの<code>Fall.Recover = 0</code>はfall状態からの受身を許可しません。<code>Fall.RecoverTime</code>は受身可能になるまでの時間で、被弾側のヒットシェイクで停止する時間を含みません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "canrecover-hitdef-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧Commonの抜粋イメージは、固定コミットのMUGEN 1.0 common1.cnsの速度・高さのConst指定、Alive/CanRecover/recovery、5200/5210の値に一致しました。1.0のファイル例として維持します。旧-1のAI例とFAQの上昇終了/一般的条件という説明、HitFall単独で落下状態を絞る記述は原位置に保持して内部へ。独自Commonや他人のステートでの安全な移行を今回確認していません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "canrecover-legacy",
+          "canrecover-common-1.0"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSのくらい以外でもフラグが保存される報告、MoveType=HかつTimeがある状態の経過フレーム/次の被弾でリセット、立ち・倒れ・ステート奪取中でも立つか、死亡時・攻撃以外でHとなる場合の未検証を保持します。公式のfall外未定義と別に内部で記録し、疑問符を確認済みへ変換しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "canrecover-chaos",
+          "canrecover-local-2002",
+          "canrecover-local-1.0",
+          "canrecover-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧コンボ可否FAQと英語圏実装談・追加AI/メモの外部出典は保存しますが、保持方法や受身抜け対策の適用範囲は今回未確認です。CanRecoverそのものと変数/Helperに過去の事実を保持する仕組みは同一にしません。初導入ビルドも推定しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "canrecover-legacy"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "canrecover-local-2002",
+      "canrecover-local-1.0",
+      "canrecover-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+  }
 }

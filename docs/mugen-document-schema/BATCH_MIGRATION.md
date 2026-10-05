@@ -1153,3 +1153,26 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・273テスト・263ページビルド・261 URL/177比較対象ページのHTML検査を通過。通常幅のHitShakeOverと幅390pxのHitOver仕様/例・HitFallの被弾条件例を確認し、表示幅と検査用タブを復元しました。内部注記11件追加の413件、未対応旧履歴148項目。次はHitVel・CanRecover・InGuardDistです。
+
+## 2026-10-05：hit-recovery-guard-01
+
+HitVelX / HitVelY / CanRecover / InGuardDistの4件で累計170件（主要・補助16件＋62バッチ154件）、対象内の残り64件です。移行前JSON・HTML・抽出結果は tests/mugen/batches/hit-recovery-guard-01/ に保存しました。
+
+- HitVel X/Yはfloatと空白区切りの必須軸指定を構造化し、被弾速度と現在速度Velを分離しました。旧構文・閾値例は維持し、現在の水平速度という旧カテゴリを公開側だけ訂正。公式/旧説明のX後方正・Y上方正と、[CHAOS X](https://w.atwiki.jp/mugencns/pages/134.html)/[Y](https://w.atwiki.jp/mugencns/pages/135.html)のWin版ではVelに反映される値そのままという報告は衝突として内部へ。方向規則やGetHitVarとの同義かという疑問符を断定しません。
+- CanRecoverはfall状態の許可と実際の受身遷移、fall外の公式未定義を分離。旧2履歴を仕様へ対応付け、5050をエンジン全体の必須番号とは扱いません。Fall.Recover/Fall.RecoverTimeと揺れ時間除外を整理しました。
+- [固定コミットb6885c6のMUGEN 1.0 common1.cns](https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/common1.cns)へ、旧5050例の速度/高さConst・Alive/CanRecover/recovery・5200/5210を照合し、公開のまま保持。旧-1 AI例と前提不足/コンボ可否FAQ・外部実装談は内部へ保存しました。既存のFall.Recover FAQは公開に残し、許可と入力/遷移を分けるFAQを追加しています。そのr出典は現在JSONのみで、inventoryの未表示フィールドのページ数は28から29へ増えました。
+- [CHAOS CanRecover](https://w.atwiki.jp/mugencns/pages/101.html)のfall外に残る内部値、MoveType=H/Timeによるフラグ成立や次の被弾でリセット、立ち/倒れ/ステート奪取・死亡時の未検証を内部へ保持。公式の有効な適用前提と内部値の報告を同一にしません。
+- InGuardDistは攻撃していない場合も0と明記し、打撃/Projectileの範囲、HitDef guard.distとAttackDist、ガード成立の違いを公開。関連AttackDistと短い条件行を追加し空欄旧例は保持して内部へ。[CHAOS](https://w.atwiki.jp/mugencns/pages/139.html)のWin/DOSと保存済み2002項目の差、基準位置/P2Distとの1差・一致/背面/重なり境界は内部へ保存し、導入nullと旧?を維持しています。
+- 初導入・符号のビルド境界・受身フラグや距離境界の実機再現は未確認です。スキーマ・レンダラー・CSSの変更はありません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch hit-recovery-guard-01
+npm run mugen:batch -- --batch hit-recovery-guard-01 --target HitVelX --target HitVelY --target CanRecover --target InGuardDist
+npm run mugen:batch -- --batch hit-recovery-guard-01 --target HitVelX --target HitVelY --target CanRecover --target InGuardDist --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・279テスト・263ページビルド・261 URL/181比較対象ページのHTML検査を通過。HitVelX軸指定を通常幅、HitVelYの軸指定/閾値例とCanRecoverの横スクロールするCommon例・InGuardDistの仕様を390pxで確認し、表示幅と検査用タブを復元。内部注記9件追加の422件、未対応旧履歴145項目。次はVel X/Y・Pos X/Yです。

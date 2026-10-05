@@ -1,0 +1,1015 @@
+{
+  "id": "gethit-status-01",
+  "reviewed_on": "2026-10-05",
+  "description": "被弾側のヒットシェイク終了・hittime終了・fallフラグを分離し、原文と未確認境界を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "HitShakeOver",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-local-2002",
+            "title": "HitShakeOver — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitShakeOver",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-local-1.0",
+            "title": "HitShakeOver — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#hitshakeover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-local-1.1",
+            "title": "HitShakeOver — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitshakeover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-legacy",
+            "title": "移行前の説明・履歴・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/a5547e4517ff1fe1ca19e9488eceb977c804379a/src/content/triggers/HitShakeOver.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-chaos",
+            "title": "HitShakeOver — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/132.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-gethitvar-1.1",
+            "title": "GetHitVar — Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gethitvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-hitdef-1.1",
+            "title": "HitDef — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-movetype-1.1",
+            "title": "StateDef MoveType — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#movetype",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-hitpausetime-1.1",
+            "title": "攻撃側のHitPauseTime — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitpausetime",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-common-chaos",
+            "title": "Commonステートの5000/5010と終了遷移 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/17.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitshakeover-history-rc1",
+            "title": "P1 PauseTime修正の適用範囲 — Elecbyte公式履歴",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-0-rc1",
+            "source_type": "official_history",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            5,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "HitPauseTimeとHitShakeOverの違いは？",
+            "a": "<p>HitPauseTimeは自分の攻撃が接触した攻撃側の残り停止時間です。HitShakeOverは被弾側の揺れの終了を0/1で判定します。被弾側の残り時間そのものはGetHitVar(HitShakeTime)を参照してください。</p>",
+            "r": [
+              {
+                "title": "Elecbyte HitShakeOver",
+                "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitshakeover"
+              },
+              {
+                "title": "Elecbyte HitPauseTime",
+                "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitpausetime"
+              }
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "被弾中にヒットシェイクの終了を判定",
+            "description": "<p>被弾状態で揺れが終了した場合に成立します。移行先や速度の設定は、使うやられステートの構成に合わせます。</p>",
+            "code": [
+              "Trigger1 = MoveType = H",
+              "Trigger1 = HitShakeOver = 1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身が被弾状態にいるとき、その場で揺れているヒットシェイクが終了したかを返します。揺れている間は0、終了していれば1です。</p><p>引数はありません。被弾状態（<code>MoveType = H</code>）で使う、0 / 1の整数判定です。</p><p>HitShakeOverは揺れの終了、HitOverはのけぞり時間の終了を調べます。HitShakeOver = 1だけで、被弾状態全体やアニメーションが終了したとは判断しません。</p>",
+            "page_category": "被弾側ヒットシェイクの終了判定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "hitshakeover-local-2002",
+                "hitshakeover-local-1.0",
+                "hitshakeover-local-1.1",
+                "hitshakeover-gethitvar-1.1",
+                "hitshakeover-movetype-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>HitShakeOverは被弾側の判定です。被弾側の残り揺れ時間は<code>GetHitVar(HitShakeTime)</code>、攻撃側の残り停止時間はHitPauseTimeを使います。HitDefのPauseTimeは自分側・相手側を別々に設定し、ガード時はguard.pausetimeを使います。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitshakeover-local-2002",
+                  "hitshakeover-local-1.0",
+                  "hitshakeover-local-1.1",
+                  "hitshakeover-gethitvar-1.1",
+                  "hitshakeover-hitdef-1.1",
+                  "hitshakeover-hitpausetime-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧version[0]の本文と出典を原位置に保持します。P1 PauseTimeのRC1修正を被弾側HitShakeOverの仕様変更とは扱わず、別エンジンのLua関数もMUGENの構文へ混入させません。</p><p>トリガー自体の仕様は1.0でも同様です。<br>なお、1.0では<code>HitDef</code>の<code>PauseTime</code>（P1側）の「1フレーム早く切れる」不具合が修正され、旧版（2002.04.14）互換のための補正が入ります。<code>HitPauseTime</code>等と併用してタイミングを厳密に揃える場合は、旧版との差分に注意してください。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_history",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitshakeover-legacy",
+                  "hitshakeover-history-rc1",
+                  "hitshakeover-local-2002",
+                  "hitshakeover-local-1.0",
+                  "hitshakeover-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal",
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧version[1]の本文と出典を原位置に保持します。P1 PauseTimeのRC1修正を被弾側HitShakeOverの仕様変更とは扱わず、別エンジンのLua関数もMUGENの構文へ混入させません。</p><p>MUGEN互換の判定として扱われ、Luaでは<code>hitshakeover()</code>としても参照できます。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_history",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitshakeover-legacy",
+                  "hitshakeover-history-rc1",
+                  "hitshakeover-local-2002",
+                  "hitshakeover-local-1.0",
+                  "hitshakeover-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal",
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Q&Aの初期値をPauseTimeの1番目とする説明は保持します。ガード設定やmugenversion互換補正まで同じ初期値と推論せず、公開FAQでは対象と戻り値の違いに絞っています。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "official_history"
+                ],
+                "source_refs": [
+                  "hitshakeover-legacy",
+                  "hitshakeover-hitdef-1.1",
+                  "hitshakeover-history-rc1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧5000から5010へChangeStateする例を保持して内部へ。5010は標準Commonでは屈みヒットシェイク用で、終了後の汎用移行先ではありません。自作の5010定義を確認せず独自演出への正しい移行例とはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "hitshakeover-legacy",
+                  "hitshakeover-common-chaos"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSのヒットシェイク中に動けないという説明とIgnoreHitPause=1のみ処理かという疑問符を保持します。攻撃側ヒットポーズと被弾側ヒットシェイクの評価停止を同一と推論せず、開始終了フレーム・独自ステート・共通コントローラーの動作は今回実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "hitshakeover-chaos"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>page.versionは初導入ビルドの根拠にせずintroduced_inはnullです。HitShakeOver/HitOverの被弾状態以外の出力は公式概要の適用前提を外れており、0や1に固定しません。HitFallの明示的な未定義と、他2件の前提を外れた状態の未確認を区別します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitshakeover-legacy",
+                  "hitshakeover-local-2002",
+                  "hitshakeover-local-1.0",
+                  "hitshakeover-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitshakeover-local-2002",
+              "hitshakeover-local-1.0",
+              "hitshakeover-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+          }
+        }
+      ],
+      "remaining": [
+        "被弾状態以外・開始終了フレーム・自作ステート・特殊攻撃の値/評価順は実機未確認。旧記録と疑問符を内部へ保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "HitOver",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitover-local-2002",
+            "title": "HitOver — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitOver",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitover-local-1.0",
+            "title": "HitOver — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#hitover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitover-local-1.1",
+            "title": "HitOver — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitover-legacy",
+            "title": "移行前の説明・履歴・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/a5547e4517ff1fe1ca19e9488eceb977c804379a/src/content/triggers/HitOver.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitover-chaos",
+            "title": "HitOver — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/131.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitover-gethitvar-1.1",
+            "title": "GetHitVar — Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gethitvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitover-hitdef-1.1",
+            "title": "HitDef — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitover-movetype-1.1",
+            "title": "StateDef MoveType — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#movetype",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "被弾状態でのけぞり時間の終了を判定",
+            "code": [
+              "Trigger1 = MoveType = H",
+              "Trigger1 = HitOver = 1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身が被弾状態にいるとき、のけぞり時間（hittime）が終了したかを返します。終了していれば1、終了前は0です。</p><p>引数はありません。被弾状態（<code>MoveType = H</code>）で使う、0 / 1の整数判定です。</p><p>揺れの終了はHitShakeOver、のけぞり時間の終了はHitOverで判定します。HitOverを参照するだけではステート変更やCtrlの付与は行われません。</p>",
+            "page_category": "被弾側のけぞり時間の終了判定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "hitover-local-2002",
+                "hitover-local-1.0",
+                "hitover-local-1.1",
+                "hitover-gethitvar-1.1",
+                "hitover-movetype-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.0 / 1.1のGetHitVar公式資料では、被弾状態で<code>GetHitVar(HitTime) &lt; 0</code>を判定することがHitOverと同等とされています。HitTime = 0だけを終了条件に置き換えないでください。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitover-gethitvar-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧summary/descriptionとCHAOS概要はHitTimeが0という表現ですが、公式GetHitVarは-1で停止しhittime&lt;0がHitOver相当と記載しています。旧本文を原位置に保持し、公開は満了と負数比較を使います。公式hittimeのカウント条件がhitshaketime&gt;0という文も揺れ中/終了後の関係を今回実機確認していないため、公開へ新たに転記しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitover-legacy",
+                  "hitover-chaos",
+                  "hitover-gethitvar-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSはHitOver成立時のCtrl復帰と同フレームでは行動不可を報告しています。標準やられステートの処理とトリガー自体の効果を分離し、独自ステートを含む自動Ctrl復帰やフレーム順の保証にはしません。実機未確認です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "hitover-chaos"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>page.versionは初導入ビルドの根拠にせずintroduced_inはnullです。HitShakeOver/HitOverの被弾状態以外の出力は公式概要の適用前提を外れており、0や1に固定しません。HitFallの明示的な未定義と、他2件の前提を外れた状態の未確認を区別します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitover-legacy",
+                  "hitover-local-2002",
+                  "hitover-local-1.0",
+                  "hitover-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitover-local-2002",
+              "hitover-local-1.0",
+              "hitover-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+          }
+        }
+      ],
+      "remaining": [
+        "被弾状態以外・開始終了フレーム・自作ステート・特殊攻撃の値/評価順は実機未確認。旧記録と疑問符を内部へ保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "HitFall",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitfall-local-2002",
+            "title": "HitFall — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitFall",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitfall-local-1.0",
+            "title": "HitFall — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#hitfall",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitfall-local-1.1",
+            "title": "HitFall — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitfall",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitfall-legacy",
+            "title": "移行前の説明・履歴・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/a5547e4517ff1fe1ca19e9488eceb977c804379a/src/content/triggers/HitFall.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitfall-chaos",
+            "title": "HitFall — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/130.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitfall-gethitvar-1.1",
+            "title": "GetHitVar — Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gethitvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitfall-hitdef-1.1",
+            "title": "HitDef — Elecbyte 1.1b1 State Controller Reference",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitfall-movetype-1.1",
+            "title": "StateDef MoveType — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#movetype",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitfall-fallset-1.1",
+            "title": "HitFallSet — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitfallset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "被弾中でfallが無効な場合の判定",
+            "description": "<p>まずMoveType = Hを条件に置き、被弾状態以外の未定義値を使わない例です。</p>",
+            "code": [
+              "Trigger1 = MoveType = H",
+              "Trigger1 = !HitFall"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身が被弾状態にいるとき、受けた攻撃のfallフラグを返します。fallが有効なら1、無効なら0です。</p><p>引数はありません。被弾状態（<code>MoveType = H</code>）で使う、0 / 1の整数判定です。</p><p>被弾状態以外での戻り値は公式資料では未定義です。通常のジャンプの下降、現在のY速度、地面への着地を判定する値としては使いません。</p>",
+            "page_category": "被弾側のfallフラグ判定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "hitfall-local-2002",
+                "hitfall-local-1.0",
+                "hitfall-local-1.1",
+                "hitfall-gethitvar-1.1",
+                "hitfall-movetype-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>HitDefのfallは、相手を空中で操作可能な状態へ戻さず地面まで倒れるやられにする設定です。空中で受けた攻撃にはair.fallもあります。被弾後のfall変数はHitFallSetで変更できるため、HitFallは攻撃側に最初に書かれた設定だけを固定的に読み出すものではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitfall-hitdef-1.1",
+                  "hitfall-fallset-1.1",
+                  "hitfall-local-2002",
+                  "hitfall-local-1.0",
+                  "hitfall-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧!HitFall単独の例は原位置に保持して内部へ。公式は被弾状態以外の出力を未定義とするため、公開例はMoveType=Hを先に確認します。CHAOSのGetHitVar(Fall)との対応と新たに攻撃を受けるまで持続するかという疑問符を保持し、被弾状態を外れた後の値やHitFallSet/特殊攻撃での更新境界を推測しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitfall-legacy",
+                  "hitfall-chaos",
+                  "hitfall-local-2002",
+                  "hitfall-local-1.0",
+                  "hitfall-local-1.1",
+                  "hitfall-fallset-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>page.versionは初導入ビルドの根拠にせずintroduced_inはnullです。HitShakeOver/HitOverの被弾状態以外の出力は公式概要の適用前提を外れており、0や1に固定しません。HitFallの明示的な未定義と、他2件の前提を外れた状態の未確認を区別します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitfall-legacy",
+                  "hitfall-local-2002",
+                  "hitfall-local-1.0",
+                  "hitfall-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitfall-local-2002",
+              "hitfall-local-1.0",
+              "hitfall-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+          }
+        }
+      ],
+      "remaining": [
+        "被弾状態以外・開始終了フレーム・自作ステート・特殊攻撃の値/評価順は実機未確認。旧記録と疑問符を内部へ保持。"
+      ]
+    }
+  ]
+}

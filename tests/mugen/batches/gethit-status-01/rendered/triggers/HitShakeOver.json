@@ -1,0 +1,79 @@
+{
+  "text": "HitShakeOver ヒット情報 > ヒットシェイクの終了判定 | 実装されたバージョン: 2002.04.14 | 対象: 使用者自身 引数 仕様・注意点 使用例 引用記事 プレイヤーが被弾ステート中に、ヒットシェイク（その場で揺れながら停止する時間）が終了しているかを返します。0: ヒットシェイク中1: ヒットシェイクが終了ヒットシェイクは通常、攻撃側のHitDefで指定するPauseTimeの2番目の値（被弾側を停止させるフレーム数）に対応します。やられステートを自作する場合は、HitShakeOverが1になったタイミングで速度付与（VelSet等）や演出処理を開始し、その後はHitOverで硬直終了（hittime満了）を判定して次のステートへ移行する、という使い分けが一般的です。 関連するトリガー： HitOver , GetHitVar(hitshaketime) , GetHitVar(hittime) , HitPauseTime 構文 HitShakeOver 引数 なし 仕様・バグ・エラー・変更点MUGEN 1.0トリガー自体の仕様は1.0でも同様です。なお、1.0ではHitDefのPauseTime（P1側）の「1フレーム早く切れる」不具合が修正され、旧版（2002.04.14）互換のための補正が入ります。HitPauseTime等と併用してタイミングを厳密に揃える場合は、旧版との差分に注意してください。IKEMEN GOMUGEN互換の判定として扱われ、Luaではhitshakeover()としても参照できます。 Q＆A(よくある質問)HitPauseTime と HitShakeOver の違いは？HitPauseTimeは攻撃側（自分の攻撃が当たった側）のヒットポーズ残り時間を返します。初期値はHitDefのPauseTimeの1番目の値です。HitShakeOverは被弾側のヒットシェイク（その場で揺れる停止）終了判定で、被弾ステート中でのみ意味があります。 コードサンプルヒットシェイク中だけ処理する被弾中で、まだ揺れが終わっていない間だけ発火します。Trigger1 = MoveType = HTrigger1 = HitShakeOver = 0 ヒットシェイク終了後にカスタム処理へ移行する揺れが終わった後から、独自のやられ演出や押し戻し処理を開始する例です。[State 5000, ChangeState]Type = ChangeStateTriggerAll = MoveType = HTrigger1 = HitShakeOverValue = 5010 引用記事HitShakeOver - Trigger Reference(version 2002.04.14)HitShakeOver - Elecbyte Trigger Reference (MUGEN 1.0)HitShakeOver - Elecbyte Trigger Reference (MUGEN 1.1 Beta 1)HitDef pausetime（1番目=攻撃側停止 / 2番目=被弾側停止）- Elecbyte Tutorial 4M.U.G.E.N 1.0 Update History（2002.04.14互換の pausetime 補正に言及）IKEMEN GO Wiki - Lua scripting functions（hitshakeover()） 公開日:2008.06.05 最終更新日:2026.01.05 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "HitOver",
+      "href": "./../Trigger/HitOver.html"
+    },
+    {
+      "text": "GetHitVar(hitshaketime)",
+      "href": "./../Trigger/GetHitVar(hitshaketime).html"
+    },
+    {
+      "text": "GetHitVar(hittime)",
+      "href": "./../Trigger/GetHitVar(hittime).html"
+    },
+    {
+      "text": "HitPauseTime",
+      "href": "./../Trigger/HitPauseTime.html"
+    },
+    {
+      "text": "HitShakeOver - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#HitShakeOver"
+    },
+    {
+      "text": "HitShakeOver - Elecbyte Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#hitshakeover"
+    },
+    {
+      "text": "HitShakeOver - Elecbyte Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#hitshakeover"
+    },
+    {
+      "text": "HitDef pausetime（1番目=攻撃側停止 / 2番目=被弾側停止）- Elecbyte Tutorial 4",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/tutorial4.html"
+    },
+    {
+      "text": "M.U.G.E.N 1.0 Update History（2002.04.14互換の pausetime 補正に言及）",
+      "href": "https://network.mugenguild.com/justnopoint/1.0docs/history.html"
+    },
+    {
+      "text": "IKEMEN GO Wiki - Lua scripting functions（hitshakeover()）",
+      "href": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Lua-scripting-functions"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

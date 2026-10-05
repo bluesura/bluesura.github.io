@@ -1,0 +1,49 @@
+{
+  "text": "HitOver ヒット情報 > のけぞり時間の終了判定 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 攻撃を受けた場合のHitTimeが0になったかどうかを返します。攻撃を受けた場合のHitTimeが0になったとき、1を返します。共通のやられは、このトリガーにより通常ステートに移されています。やられステートをカスタマイズするときなどに使用します。 構文 HitOver 引数 なし コードサンプルプレイヤーのやられ状態が終了したときのトリガーTrigger1 = HitOver = 1 引用記事HitOver - Trigger Reference(version 2002.04.14)HitOver - Trigger Reference(version 1.0)HitOver - Trigger Reference(version 1.1)HitOver - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2016.01.17 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "HitOver - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#HitOver"
+    },
+    {
+      "text": "HitOver - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitover"
+    },
+    {
+      "text": "HitOver - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitover"
+    },
+    {
+      "text": "HitOver - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitOver"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

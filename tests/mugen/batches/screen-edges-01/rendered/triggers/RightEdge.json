@@ -1,0 +1,101 @@
+{
+  "text": "RightEdge 座標 > 画面右端（screen edge）のX座標（ステージ座標系） | 実装されたバージョン: 1.1 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 RightEdge は、画面右端（screen edge）の X座標 を、絶対ステージ座標をfloatとして返します。向き（Facing）には依存しません。右端の画面端座標が必要な場合にそのまま利用できます。 関連するステートコントローラー： ScreenBound 関連するトリガー： LeftEdge , TopEdge , BottomEdge , FrontEdge , BackEdge , CameraPosX , CameraZoom , GameWidth , ScreenWidth 構文 RightEdge 引数 なし 仕様・バグ・エラー・変更点MUGEN 1.1RightEdge は、LeftEdge/TopEdge/BottomEdge と同様に、MUGEN 1.1 系で追加された「画面端座標トリガー」です。注意ここでの「画面端」は現在のカメラ表示範囲の端（screen edge）です。ステージ境界（stage boundary）そのものとは限りません。注意CameraPos / GameWidth と同様に、値は「実行者のローカル座標系（localcoord）」側の単位として扱われます。ズーム（CameraZoom）等で GameWidth が変化すると RightEdge も連動して変化します。 Q＆A(よくある質問)FrontEdge との違いは？RightEdge は常に「画面右端」のX座標を返します。FrontEdge は実行者の向き（Facing）に応じて、前面側の画面端（右向きなら右端、左向きなら左端）のX座標を返します。 コードサンプル等価式：RightEdge の概念式RightEdge は概念的には CameraPos X + GameWidth / 2 と等価です。; RightEdge 等価式CameraPos X + GameWidth / 2 距離の取り方：右端まで何pxか（向き非依存）「右端まで何pxか」を向き非依存で扱うなら、座標差分を距離として使えます（距離トリガーではなく座標の差分）。; 右端までの距離（向き非依存の差分例）FVar(0) = Abs(RightEdge - (Pos X + CameraPos X)) 公式例：画面右端より右にいるか判定する実行者のステージ座標（Pos X + CameraPos X）と、画面右端座標（RightEdge）を直接比較します。; 画面右端より右にいるかTrigger1 = Pos X + CameraPos X > RightEdge RightEdge と LeftEdge から「見えている横幅」を求める画面左右端の差分は、現在のゲーム空間幅（概ね GameWidth 相当）になります。ズーム等で値が変動する挙動の確認にも使えます。FVar(0) = RightEdge - LeftEdge 画面右端から一定距離外に出たら削除する（Helper/Projectile運用例）画面外へ出たオブジェクトを安全に後始末したい場合の例です（余裕を持たせて+60px）。Trigger1 = Pos X + CameraPos X > RightEdge + 60 引用記事RightEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)LeftEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)CameraPos / CameraZoom / GameWidth / ScreenWidth - Trigger Reference (MUGEN 1.1 / Elecbyte)M.U.G.E.N Update History - Added Edge triggers (Elecbyte 1.1)M.U.G.E.N Documentation: Triggers (community mirror) 公開日:2008.06.05 最終更新日:2025.12.26 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ScreenBound",
+      "href": "./../State/ScreenBound.html"
+    },
+    {
+      "text": "LeftEdge",
+      "href": "./../Trigger/LeftEdge.html"
+    },
+    {
+      "text": "TopEdge",
+      "href": "./../Trigger/TopEdge.html"
+    },
+    {
+      "text": "BottomEdge",
+      "href": "./../Trigger/BottomEdge.html"
+    },
+    {
+      "text": "FrontEdge",
+      "href": "./../Trigger/FrontEdge.html"
+    },
+    {
+      "text": "BackEdge",
+      "href": "./../Trigger/BackEdge.html"
+    },
+    {
+      "text": "CameraPosX",
+      "href": "./../Trigger/CameraPosX.html"
+    },
+    {
+      "text": "CameraZoom",
+      "href": "./../Trigger/CameraZoom.html"
+    },
+    {
+      "text": "GameWidth",
+      "href": "./../Trigger/GameWidth.html"
+    },
+    {
+      "text": "ScreenWidth",
+      "href": "./../Trigger/ScreenWidth.html"
+    },
+    {
+      "text": "RightEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#rightedge"
+    },
+    {
+      "text": "LeftEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#leftedge"
+    },
+    {
+      "text": "CameraPos / CameraZoom / GameWidth / ScreenWidth - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#camerapos"
+    },
+    {
+      "text": "M.U.G.E.N Update History - Added Edge triggers (Elecbyte 1.1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    },
+    {
+      "text": "M.U.G.E.N Documentation: Triggers (community mirror)",
+      "href": "https://mugen-net.work/wiki/index.php/M.U.G.E.N_Documentation:Triggers"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-stage-coordinates-camera-edge-diagram.png"
+  ],
+  "code": []
+}

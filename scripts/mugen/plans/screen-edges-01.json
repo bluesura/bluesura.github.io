@@ -1,0 +1,1656 @@
+{
+  "id": "screen-edges-01",
+  "reviewed_on": "2026-10-06",
+  "description": "1.1の画面四端の座標・比較・ローカル単位を整理。境界/距離との違い、旧px/削除例/図と公式転記差を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "LeftEdge",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "leftedge-local-1.1",
+            "title": "LeftEdge — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#leftedge",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "leftedge-history-1.1",
+            "title": "画面端トリガーの1.1追加 — Elecbyte History",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "leftedge-pos-1.1",
+            "title": "Posの基準とステージ座標への変換 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "leftedge-camera-1.1",
+            "title": "CameraPosの実行者の座標単位 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerapos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "leftedge-game-1.1",
+            "title": "GameWidthのローカル座標単位 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gamewidth",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "leftedge-chaos",
+            "title": "ステージ端/画面端・キャラ幅の研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "leftedge-legacy",
+            "title": "移行前の本文・履歴・使用例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/2975a8aa03ecba04dc1b83d22d425ecc3adc6dfe/src/content/triggers/LeftEdge.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "leftedge-facing-edge-1.1",
+            "title": "BackEdgeの向きによる端の選択 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#backedge",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>MUGEN 1.1で、現在の画面左端のX座標をステージ基準のfloatで返します。引数はありません。実行者の向きFacingによって左端が別の端へ切り替わることはありません。</p><p>実行者から端までの距離ではなく、端そのものの位置です。単位は実行者のローカル座標系で、描画ピクセル数ではありません。Pos Xは画面中央基準なので、ステージ基準で比較する場合はPos X + CameraPos Xを使います。</p>",
+            "page_category": "画面左端のX座標取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "leftedge-local-1.1",
+                "leftedge-pos-1.1",
+                "leftedge-camera-1.1",
+                "leftedge-game-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "基準位置が左右の画面端の間にある（両端を含む）",
+            "description": "<p>MUGEN 1.1でX軸だけを調べる条件です。2行のTrigger1は両方を満たす必要があります。端上の基準位置も含み、画像全体の表示範囲やもう一方の軸を判定する例ではありません。</p>",
+            "code": [
+              "Trigger1 = Pos X + CameraPos X >= LeftEdge",
+              "Trigger1 = Pos X + CameraPos X <= RightEdge"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.1でLeftEdge / RightEdge / TopEdge / BottomEdgeが追加されました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "leftedge-history-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>現在のカメラ表示範囲の端を調べる値です。ステージ全体の端や、キャラクターの移動可能範囲の境界とは分けて扱います。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "leftedge-local-1.1",
+                  "leftedge-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧version[2]のローカル座標の単位と、Game寸法が変わるとこの端も必ず連動するという説明を保持します。公式等価式から座標単位を整理しましたが、カメラの位置・ズーム中心の条件を伴う各端の変動を一律には保証しません。LocalCoord・解像度・ズーム・リダイレクト別の測定は未実施です。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "leftedge-local-1.1",
+                  "leftedge-game-1.1",
+                  "leftedge-camera-1.1",
+                  "leftedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal",
+              "legacy_index": 2
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.1の公式資料は<code>CameraPos X - GameWidth / 2</code>を等価な式として記載しています。Pos Xと端を直接比較せず、カメラ位置を加えて同じ基準へそろえます。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "leftedge-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧座標図・長いaltを保持してinternalへ。図のY軸の向き・Posの絶対座標表記、画面/ステージ/ローカル座標の関係とズーム条件を整理するまで公開しません。元画像を削除しません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "leftedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧距離例のpx・FVar(0)の裸の代入行、Game寸法との関係式、Helper/Projectileの安全な削除とする例は原位置に保持してinternalへ。値の単位はローカル座標で、条件行だけでは削除動作を示しません。端間の差とGame寸法の一致、全ズーム/LocalCoord条件、破棄対象やタイミングは実機未確認です。距離のAbsは画面外も正になるため、画面内外の条件とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "leftedge-legacy",
+                  "leftedge-local-1.1",
+                  "leftedge-game-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式New in 1.1の追加記録を参照しますが、最初の個別Alpha/Betaビルドは確認できません。旧page.versionを保持しintroduced_inはnullです。CHAOSのWin/1.0の端・幅・丸め研究は1.1の四端の固定ビルドの実測とは扱わず、系列をまたいで一般化しません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "leftedge-history-1.1",
+                  "leftedge-chaos",
+                  "leftedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "leftedge-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルドとLocalCoord/ズーム/リダイレクト・端差の等価性・破棄運用は実機未確認。旧フィールド・図・条件と裸の式を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "RightEdge",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rightedge-local-1.1",
+            "title": "RightEdge — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#rightedge",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rightedge-history-1.1",
+            "title": "画面端トリガーの1.1追加 — Elecbyte History",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rightedge-pos-1.1",
+            "title": "Posの基準とステージ座標への変換 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rightedge-camera-1.1",
+            "title": "CameraPosの実行者の座標単位 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerapos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rightedge-game-1.1",
+            "title": "GameWidthのローカル座標単位 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gamewidth",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rightedge-chaos",
+            "title": "ステージ端/画面端・キャラ幅の研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rightedge-legacy",
+            "title": "移行前の本文・履歴・使用例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/2975a8aa03ecba04dc1b83d22d425ecc3adc6dfe/src/content/triggers/RightEdge.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rightedge-facing-edge-1.1",
+            "title": "FrontEdgeの向きによる端の選択 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#frontedge",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>MUGEN 1.1で、現在の画面右端のX座標をステージ基準のfloatで返します。引数はありません。実行者の向きFacingによって右端が別の端へ切り替わることはありません。</p><p>実行者から端までの距離ではなく、端そのものの位置です。単位は実行者のローカル座標系で、描画ピクセル数ではありません。Pos Xは画面中央基準なので、ステージ基準で比較する場合はPos X + CameraPos Xを使います。</p>",
+            "page_category": "画面右端のX座標取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "rightedge-local-1.1",
+                "rightedge-pos-1.1",
+                "rightedge-camera-1.1",
+                "rightedge-game-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "基準位置が左右の画面端の間にある（両端を含む）",
+            "description": "<p>MUGEN 1.1でX軸だけを調べる条件です。2行のTrigger1は両方を満たす必要があります。端上の基準位置も含み、画像全体の表示範囲やもう一方の軸を判定する例ではありません。</p>",
+            "code": [
+              "Trigger1 = Pos X + CameraPos X >= LeftEdge",
+              "Trigger1 = Pos X + CameraPos X <= RightEdge"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.1でLeftEdge / RightEdge / TopEdge / BottomEdgeが追加されました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rightedge-history-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>現在のカメラ表示範囲の端を調べる値です。ステージ全体の端や、キャラクターの移動可能範囲の境界とは分けて扱います。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "rightedge-local-1.1",
+                  "rightedge-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧version[2]のローカル座標の単位と、Game寸法が変わるとこの端も必ず連動するという説明を保持します。公式等価式から座標単位を整理しましたが、カメラの位置・ズーム中心の条件を伴う各端の変動を一律には保証しません。LocalCoord・解像度・ズーム・リダイレクト別の測定は未実施です。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rightedge-local-1.1",
+                  "rightedge-game-1.1",
+                  "rightedge-camera-1.1",
+                  "rightedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal",
+              "legacy_index": 2
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.1の公式資料は<code>CameraPos X + GameWidth / 2</code>を等価な式として記載しています。Pos Xと端を直接比較せず、カメラ位置を加えて同じ基準へそろえます。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rightedge-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧座標図・長いaltを保持してinternalへ。図のY軸の向き・Posの絶対座標表記、画面/ステージ/ローカル座標の関係とズーム条件を整理するまで公開しません。元画像を削除しません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rightedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧距離例のpx・FVar(0)の裸の代入行、Game寸法との関係式、Helper/Projectileの安全な削除とする例は原位置に保持してinternalへ。値の単位はローカル座標で、条件行だけでは削除動作を示しません。端間の差とGame寸法の一致、全ズーム/LocalCoord条件、破棄対象やタイミングは実機未確認です。距離のAbsは画面外も正になるため、画面内外の条件とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rightedge-legacy",
+                  "rightedge-local-1.1",
+                  "rightedge-game-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式New in 1.1の追加記録を参照しますが、最初の個別Alpha/Betaビルドは確認できません。旧page.versionを保持しintroduced_inはnullです。CHAOSのWin/1.0の端・幅・丸め研究は1.1の四端の固定ビルドの実測とは扱わず、系列をまたいで一般化しません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rightedge-history-1.1",
+                  "rightedge-chaos",
+                  "rightedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式RightEdgeのFormat欄はLeftEdgeになっています。項目名・Notes・比較例はRightEdgeなので、既存構文RightEdgeを維持し転記差を内部へ保存します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rightedge-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "rightedge-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルドとLocalCoord/ズーム/リダイレクト・端差の等価性・破棄運用は実機未確認。旧フィールド・図・条件と裸の式を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "TopEdge",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "topedge-local-1.1",
+            "title": "TopEdge — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#topedge",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "topedge-history-1.1",
+            "title": "画面端トリガーの1.1追加 — Elecbyte History",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "topedge-pos-1.1",
+            "title": "Posの基準とステージ座標への変換 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "topedge-camera-1.1",
+            "title": "CameraPosの実行者の座標単位 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerapos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "topedge-game-1.1",
+            "title": "GameHeightのローカル座標単位 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gameheight",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "topedge-chaos",
+            "title": "ステージ端/画面端・キャラ幅の研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "topedge-legacy",
+            "title": "移行前の本文・履歴・使用例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/2975a8aa03ecba04dc1b83d22d425ecc3adc6dfe/src/content/triggers/TopEdge.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>MUGEN 1.1で、現在の画面上端のY座標をステージ基準のfloatで返します。引数はありません。実行者の向きFacingによって上端が別の端へ切り替わることはありません。</p><p>実行者から端までの距離ではなく、端そのものの位置です。単位は実行者のローカル座標系で、描画ピクセル数ではありません。Pos Yは地面を0とし、上が負、下が正です。上下端との比較にはPos Yを使います。</p>",
+            "page_category": "画面上端のY座標取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "topedge-local-1.1",
+                "topedge-pos-1.1",
+                "topedge-camera-1.1",
+                "topedge-game-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            5,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            6,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "TopEdgeとBottomEdgeは何を表す？",
+            "a": "<p>TopEdgeは画面上端、BottomEdgeは画面下端のY座標です。Pos Yとの大小を比べれば、実行者の基準位置が各端より上か下かを調べられます。これだけで画像全体が画面内に収まるかは判定しません。</p>"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "基準位置が上下の画面端の間にある（両端を含む）",
+            "description": "<p>MUGEN 1.1でY軸だけを調べる条件です。2行のTrigger1は両方を満たす必要があります。端上の基準位置も含み、画像全体の表示範囲やもう一方の軸を判定する例ではありません。</p>",
+            "code": [
+              "Trigger1 = Pos Y >= TopEdge",
+              "Trigger1 = Pos Y <= BottomEdge"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.1でLeftEdge / RightEdge / TopEdge / BottomEdgeが追加されました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "topedge-history-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>現在のカメラ表示範囲の端を調べる値です。ステージ全体の端や、キャラクターの移動可能範囲の境界とは分けて扱います。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "topedge-local-1.1",
+                  "topedge-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧version[2]のローカル座標の単位と、Game寸法が変わるとこの端も必ず連動するという説明を保持します。公式等価式から座標単位を整理しましたが、カメラの位置・ズーム中心の条件を伴う各端の変動を一律には保証しません。LocalCoord・解像度・ズーム・リダイレクト別の測定は未実施です。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "topedge-local-1.1",
+                  "topedge-game-1.1",
+                  "topedge-camera-1.1",
+                  "topedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal",
+              "legacy_index": 2
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.1の公式資料は<code>Pos Y - ScreenPos Y</code>を等価な式として記載しています。上端/下端との比較は実行者の基準位置を調べます。体や画像全体が画面内に収まる判定とは異なります。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "topedge-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧座標図・長いaltを保持してinternalへ。図のY軸の向き・Posの絶対座標表記、画面/ステージ/ローカル座標の関係とズーム条件を整理するまで公開しません。元画像を削除しません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "topedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧距離例のpx・FVar(0)の裸の代入行、Game寸法との関係式、Helper/Projectileの安全な削除とする例は原位置に保持してinternalへ。値の単位はローカル座標で、条件行だけでは削除動作を示しません。端間の差とGame寸法の一致、全ズーム/LocalCoord条件、破棄対象やタイミングは実機未確認です。距離のAbsは画面外も正になるため、画面内外の条件とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "topedge-legacy",
+                  "topedge-local-1.1",
+                  "topedge-game-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式New in 1.1の追加記録を参照しますが、最初の個別Alpha/Betaビルドは確認できません。旧page.versionを保持しintroduced_inはnullです。CHAOSのWin/1.0の端・幅・丸め研究は1.1の四端の固定ビルドの実測とは扱わず、系列をまたいで一般化しません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "topedge-history-1.1",
+                  "topedge-chaos",
+                  "topedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "topedge-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルドとLocalCoord/ズーム/リダイレクト・端差の等価性・破棄運用は実機未確認。旧フィールド・図・条件と裸の式を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "BottomEdge",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bottomedge-local-1.1",
+            "title": "BottomEdge — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#bottomedge",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bottomedge-history-1.1",
+            "title": "画面端トリガーの1.1追加 — Elecbyte History",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bottomedge-pos-1.1",
+            "title": "Posの基準とステージ座標への変換 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bottomedge-camera-1.1",
+            "title": "CameraPosの実行者の座標単位 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerapos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bottomedge-game-1.1",
+            "title": "GameHeightのローカル座標単位 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gameheight",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bottomedge-chaos",
+            "title": "ステージ端/画面端・キャラ幅の研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "bottomedge-legacy",
+            "title": "移行前の本文・履歴・使用例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/2975a8aa03ecba04dc1b83d22d425ecc3adc6dfe/src/content/triggers/BottomEdge.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>MUGEN 1.1で、現在の画面下端のY座標をステージ基準のfloatで返します。引数はありません。実行者の向きFacingによって下端が別の端へ切り替わることはありません。</p><p>実行者から端までの距離ではなく、端そのものの位置です。単位は実行者のローカル座標系で、描画ピクセル数ではありません。Pos Yは地面を0とし、上が負、下が正です。上下端との比較にはPos Yを使います。</p>",
+            "page_category": "画面下端のY座標取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "bottomedge-local-1.1",
+                "bottomedge-pos-1.1",
+                "bottomedge-camera-1.1",
+                "bottomedge-game-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            5,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "TopEdgeとBottomEdgeは何を表す？",
+            "a": "<p>TopEdgeは画面上端、BottomEdgeは画面下端のY座標です。Pos Yとの大小を比べれば、実行者の基準位置が各端より上か下かを調べられます。これだけで画像全体が画面内に収まるかは判定しません。</p>"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "基準位置が上下の画面端の間にある（両端を含む）",
+            "description": "<p>MUGEN 1.1でY軸だけを調べる条件です。2行のTrigger1は両方を満たす必要があります。端上の基準位置も含み、画像全体の表示範囲やもう一方の軸を判定する例ではありません。</p>",
+            "code": [
+              "Trigger1 = Pos Y >= TopEdge",
+              "Trigger1 = Pos Y <= BottomEdge"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.1でLeftEdge / RightEdge / TopEdge / BottomEdgeが追加されました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bottomedge-history-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>現在のカメラ表示範囲の端を調べる値です。ステージ全体の端や、キャラクターの移動可能範囲の境界とは分けて扱います。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "bottomedge-local-1.1",
+                  "bottomedge-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧version[2]のローカル座標の単位と、Game寸法が変わるとこの端も必ず連動するという説明を保持します。公式等価式から座標単位を整理しましたが、カメラの位置・ズーム中心の条件を伴う各端の変動を一律には保証しません。LocalCoord・解像度・ズーム・リダイレクト別の測定は未実施です。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "bottomedge-local-1.1",
+                  "bottomedge-game-1.1",
+                  "bottomedge-camera-1.1",
+                  "bottomedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal",
+              "legacy_index": 2
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.1の公式資料は<code>Pos Y - ScreenPos Y + GameHeight</code>を等価な式として記載しています。上端/下端との比較は実行者の基準位置を調べます。体や画像全体が画面内に収まる判定とは異なります。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bottomedge-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧座標図・長いaltを保持してinternalへ。図のY軸の向き・Posの絶対座標表記、画面/ステージ/ローカル座標の関係とズーム条件を整理するまで公開しません。元画像を削除しません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "bottomedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧距離例のpx・FVar(0)の裸の代入行、Game寸法との関係式、Helper/Projectileの安全な削除とする例は原位置に保持してinternalへ。値の単位はローカル座標で、条件行だけでは削除動作を示しません。端間の差とGame寸法の一致、全ズーム/LocalCoord条件、破棄対象やタイミングは実機未確認です。距離のAbsは画面外も正になるため、画面内外の条件とは区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "bottomedge-legacy",
+                  "bottomedge-local-1.1",
+                  "bottomedge-game-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式New in 1.1の追加記録を参照しますが、最初の個別Alpha/Betaビルドは確認できません。旧page.versionを保持しintroduced_inはnullです。CHAOSのWin/1.0の端・幅・丸め研究は1.1の四端の固定ビルドの実測とは扱わず、系列をまたいで一般化しません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "bottomedge-history-1.1",
+                  "bottomedge-chaos",
+                  "bottomedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "bottomedge-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式1.1資料・更新履歴とCHAOSの座標研究を照合。実機検証は未実施。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルドとLocalCoord/ズーム/リダイレクト・端差の等価性・破棄運用は実機未確認。旧フィールド・図・条件と裸の式を保持。"
+      ]
+    }
+  ]
+}

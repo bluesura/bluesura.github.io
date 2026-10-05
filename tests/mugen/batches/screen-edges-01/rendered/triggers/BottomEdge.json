@@ -1,0 +1,109 @@
+{
+  "text": "BottomEdge 座標 > 画面下端（screen edge）のY座標（ステージ座標系） | 実装されたバージョン: 1.1 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 BottomEdge は、画面下端（screen edge）の Y座標 を、絶対ステージ座標を float として返します。向き（Facing）には依存しません。下端の画面端座標が必要な場合にそのまま利用できます。 関連するステートコントローラー： ScreenBound 関連するトリガー： TopEdge , LeftEdge , RightEdge , FrontEdge , BackEdge , ScreenPosY , CameraPosY , CameraZoom , GameHeight , ScreenHeight 構文 BottomEdge 引数 なし 仕様・バグ・エラー・変更点MUGEN 1.1BottomEdge は MUGEN 1.1 系で追加された「画面端座標トリガー」です（カメラズーム導入に伴う screen edge 系）。注意ここでの「画面端」は現在のカメラ表示範囲の端（screen edge）です。ステージ境界（stage boundary）そのものとは限りません。注意GameHeight と同様に、値は「実行者のローカル座標系（localcoord）」側の単位として扱われます。ズーム（CameraZoom）等で GameHeight が変化すると BottomEdge も連動して変化します。 Q＆A(よくある質問)TopEdge との関係は？TopEdge は画面上端のY座標、BottomEdge は画面下端のY座標を返します。概念的には BottomEdge = TopEdge + GameHeight の関係になります（ズーム等で GameHeight が変化すると連動します）。 コードサンプル等価式：BottomEdge の概念式BottomEdge は概念的には次の式と等価です。; BottomEdge 等価式Pos Y - ScreenPos Y + GameHeight 距離の取り方：下端まで何pxか（向き非依存）「画面下端まで何pxか」を距離として扱うなら、座標差分を使えます（距離トリガーではなく座標の差分）。; 画面下端までの距離（差分例）FVar(0) = Abs(BottomEdge - Pos Y) 公式例：画面下端より上にいるか判定する実行者のY座標（Pos Y）と、画面下端座標（BottomEdge）を比較します。; 画面下端より上にいるかTrigger1 = Pos Y < BottomEdge 画面下端より下に出たら判定する落下演出などで画面外（下側）に出たかを判定します。; 画面下端より下に出たかTrigger1 = Pos Y > BottomEdge BottomEdge と TopEdge から「見えている縦幅」を求める画面上下端の差分は、現在のゲーム空間高さ（概ね GameHeight 相当）になります。ズーム等で値が変動する挙動の確認にも使えます。FVar(0) = BottomEdge - TopEdge 画面下端から一定距離外に出たら削除する（Helper/Projectile運用例）画面外へ出たオブジェクトを安全に後始末したい場合の例です（余裕を持たせて+60px）。Trigger1 = Pos Y > BottomEdge + 60 引用記事BottomEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)TopEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)GameHeight / ScreenHeight / CameraZoom - Trigger Reference (MUGEN 1.1 / Elecbyte)ScreenPos - Trigger Reference (MUGEN 1.1 / Elecbyte)M.U.G.E.N Update History - New in 1.1 (Elecbyte)BottomEdge - M.U.G.E.N wiki (web archive) 公開日:2008.06.05 最終更新日:2025.12.26 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ScreenBound",
+      "href": "./../State/ScreenBound.html"
+    },
+    {
+      "text": "TopEdge",
+      "href": "./../Trigger/TopEdge.html"
+    },
+    {
+      "text": "LeftEdge",
+      "href": "./../Trigger/LeftEdge.html"
+    },
+    {
+      "text": "RightEdge",
+      "href": "./../Trigger/RightEdge.html"
+    },
+    {
+      "text": "FrontEdge",
+      "href": "./../Trigger/FrontEdge.html"
+    },
+    {
+      "text": "BackEdge",
+      "href": "./../Trigger/BackEdge.html"
+    },
+    {
+      "text": "ScreenPosY",
+      "href": "./../Trigger/ScreenPosY.html"
+    },
+    {
+      "text": "CameraPosY",
+      "href": "./../Trigger/CameraPosY.html"
+    },
+    {
+      "text": "CameraZoom",
+      "href": "./../Trigger/CameraZoom.html"
+    },
+    {
+      "text": "GameHeight",
+      "href": "./../Trigger/GameHeight.html"
+    },
+    {
+      "text": "ScreenHeight",
+      "href": "./../Trigger/ScreenHeight.html"
+    },
+    {
+      "text": "BottomEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#bottomedge"
+    },
+    {
+      "text": "TopEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#topedge"
+    },
+    {
+      "text": "GameHeight / ScreenHeight / CameraZoom - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#gameheight"
+    },
+    {
+      "text": "ScreenPos - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#screenpos"
+    },
+    {
+      "text": "M.U.G.E.N Update History - New in 1.1 (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    },
+    {
+      "text": "BottomEdge - M.U.G.E.N wiki (web archive)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/BottomEdge"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-stage-coordinates-camera-edge-diagram.png"
+  ],
+  "code": []
+}

@@ -1,56 +1,282 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Pos X",
-        "target": "",
-        "category": [
-            "距離",
-            "ステージ中心基準の現在X座標取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Pos X",
+    "target": "",
+    "category": [
+      "距離",
+      "ステージ中心基準の現在X座標取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "PosX",
+  "summary": "<p>プレイヤーの位置を返します。</p>",
+  "syntax": [
+    "Pos X"
+  ],
+  "description": "プレイヤーの位置を返します。<br>Pos X = 0で画面中央を、Pos Y = 0で地面を意味します。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。<br>詳細: Pos X は、画面中央を0、左方向を正、右方向を負とした、相対距離を返します。Pos Y は、地面を0、下方向を正、上方向を負とした、相対距離を返します。",
+  "images": [
+    {
+      "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+      "width": "640",
+      "height": "430",
+      "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図",
+      "visibility": "internal"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "プレイヤーが地面より下にいる場合のトリガー。",
+      "code": [
+        "Trigger1 = Pos Y >= 0"
+      ],
+      "visibility": "internal"
     },
-    "category": "trigger",
-    "trigger": "PosX",
-    "summary": "<p>プレイヤーの位置を返します。</p>",
-    "syntax": [
-        "Pos X"
+    {
+      "title": "画面中央より右側にいるとき",
+      "description": "<p>画面中央を超えて右側にいる条件です。向きが左でも左右の符号は変わりません。</p>",
+      "code": [
+        "Trigger1 = Pos X > 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Pos - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Pos"
+    },
+    {
+      "title": "Pos - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#pos"
+    },
+    {
+      "title": "Pos - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#pos"
+    },
+    {
+      "title": "Pos - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Pos"
+    },
+    {
+      "id": "posx-local-2002",
+      "title": "Pos — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Pos",
+      "source_type": "official_document"
+    },
+    {
+      "id": "posx-local-1.0",
+      "title": "Pos — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#pos",
+      "source_type": "official_document"
+    },
+    {
+      "id": "posx-local-1.1",
+      "title": "Pos — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+      "source_type": "official_document"
+    },
+    {
+      "id": "posx-legacy",
+      "title": "移行前の説明・画像・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/db3937f87782c3e1418a28fe7feba38e85ef1af6/src/content/triggers/PosX.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "posx-chaos",
+      "title": "Pos X — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/185.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "posx-float-1.1",
+      "title": "floatから整数への変換と警告 — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#avoiding-warnings",
+      "source_type": "official_document"
+    },
+    {
+      "id": "posx-expressions-1.1",
+      "title": "パラメーターの式 — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#expressions-in-state-and-state-controller-parameters",
+      "source_type": "official_document"
+    },
+    {
+      "id": "posx-coordinates-chaos",
+      "title": "座標と幅・押し出しの研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "syntax_kind": "special_form",
+  "return_type": [
+    "float"
+  ],
+  "arguments": [
+    {
+      "name": "[component]",
+      "type": [
+        "char"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>軸を表す<code>X</code>を半角スペースの後へ指定します。このページは水平成分の<code>Pos X</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "posx-local-2002",
+          "posx-local-1.0",
+          "posx-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      }
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者自身の水平位置を、画面中央を0とするfloatで返します。左側は負、右側は正です。キャラクターの向きによって左右の符号を反転させません。</p><p><code>Pos X</code>のように半角スペースを入れて軸を指定します。カメラが移動するステージでは画面中央とステージ中央が異なるため、画面中央基準の座標とステージ中央基準の座標を区別してください。</p>",
+    "page_category": "画面中央基準の現在X座標取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "posx-local-2002",
+        "posx-local-1.0",
+        "posx-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>戻り値は小数を含むfloatです。小数を受け取るパラメーターに使用するとき、常にFloorやCeilで整数化する必要はありません。整数を要求する項目へ渡す場合は、必要な丸め方に応じてFloorやCeilを使います。丸めると小数部分の情報が変わります。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "posx-float-1.1",
+          "posx-expressions-1.1",
+          "posx-local-2002",
+          "posx-local-1.0",
+          "posx-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧本文のfloat型パラメーターでもエラーとなる場合が多いのでfloor/ceilを併用するという助言を原位置に保持しました。公式CNSは整数を要求する項目へのfloat指定の警告を説明しており、今回の資料から全float項目に整数化が必要とは確認できません。対象ビルド・指定先・式が未特定の不具合報告は内部へ残し、一律の丸めを公開推奨しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "posx-legacy",
+          "posx-chaos",
+          "posx-float-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>MUGEN 1.1の公式資料では、ステージ中央基準の位置を求める式として<code>Pos X + CameraPos X</code>が示されています。<code>Pos X = 0</code>は画面中央を表すため、この2つの基準を使い分けます。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "posx-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧概要の画面中央/左正・右負と旧カテゴリのステージ中心基準が混在しています。公式3世代/CHAOSの左負・右正、1.1の画面基準とステージ基準を分ける記載に基づき公開側だけ訂正。原文・カテゴリを保持し、1.1のCameraPos式を旧ビルド全体へ広げません。旧Pos Y例はX座標の例に置き換えず、原位置に保存して内部へ。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "posx-local-2002",
+          "posx-local-1.0",
+          "posx-local-1.1",
+          "posx-legacy",
+          "posx-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>既存の座標図とaltを原位置に保存して非公開にしました。上向きY軸の図、ステージ絶対座標の中へPos X,Yを置く表記、GameWidth/CameraPosの式が複数の座標空間を混在させています。LocalCoord・ズーム・旧ビルドとリダイレクトの座標変換、キャラ幅・押し出しの研究は今回未検証です。図を修正する際は基準と世代を照合します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "posx-legacy",
+          "posx-coordinates-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "プレイヤーの位置を返します。<br>Pos X = 0で画面中央を、Pos Y = 0で地面を意味します。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。<br>詳細: Pos X は、画面中央を0、左方向を正、右方向を負とした、相対距離を返します。Pos Y は、地面を0、下方向を正、上方向を負とした、相対距離を返します。",
-    "images": [
-        {
-        "src": "mugen-stage-coordinates-camera-edge-diagram.png",
-        "width": "640",
-        "height": "430",
-        "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
-        }
+    "source_refs": [
+      "posx-local-2002",
+      "posx-local-1.0",
+      "posx-local-1.1"
     ],
-    "code_sample": [
-        {
-            "title": "プレイヤーが地面より下にいる場合のトリガー。",
-            "code": [
-                "Trigger1 = Pos Y >= 0"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "Pos - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Pos"
-        },
-        {
-            "title": "Pos - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#pos"
-        },
-        {
-            "title": "Pos - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#pos"
-        },
-        {
-            "title": "Pos - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Pos"
-        }
-    ]
+    "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+  }
 }

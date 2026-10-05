@@ -1176,3 +1176,26 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・279テスト・263ページビルド・261 URL/181比較対象ページのHTML検査を通過。HitVelX軸指定を通常幅、HitVelYの軸指定/閾値例とCanRecoverの横スクロールするCommon例・InGuardDistの仕様を390pxで確認し、表示幅と検査用タブを復元。内部注記9件追加の422件、未対応旧履歴145項目。次はVel X/Y・Pos X/Yです。
+
+## 2026-10-05：velocity-position-01
+
+VelX / VelY / PosX / PosYの4件で累計174件（主要・補助16件＋63バッチ158件）、対象内の残り60件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/velocity-position-01/ に保存しました。
+
+- 必須の半角スペース区切り軸指定とfloatを構造化し、原構文と本文を保持しました。Vel Xは向き基準で前進正/後退負、Vel Yは下正/上負です。HitVelの符号が逆という旧比較は前回のWin報告との差を内部へ残して断定しません。
+- Pos Xは画面中央基準、左負/右正です。旧左右逆転とステージ中心というカテゴリを原位置へ保持し、公開側だけ訂正。保存済み1.1資料のPos X + CameraPos XはMUGEN 1.1系列に限定して公開しています。
+- Pos Yの地面0/上負/下正と、>=0は地面上も含む境界を明記。旧公式にもあるbelow the floorという例の不足を新しい説明で補正しました。旧例はJSONに保持し、XにはXの比較例、Yには地面上も含む同じ>=0コードの説明を追加。Vel Yの既存>=0例は維持し、下方向のみなら>0と明記しました。
+- 小数を常にFloor/Ceilへ通す旧助言は内部記録にし、整数を要求する項目への変換と小数入力を分けて公開。公式CNSの変換説明にも転記らしい文言があるため、警告の条件を参照し、変換方向の誤文は取り込みません。
+- [CHAOS Vel X](https://w.atwiki.jp/mugencns/pages/137.html)/[Y](https://w.atwiki.jp/mugencns/pages/136.html)のfloat警告報告、[Vel](https://w.atwiki.jp/mugencns/pages/35.html)の処理順/Bind/自動着地/Offsetの疑問符、[Pos X](https://w.atwiki.jp/mugencns/pages/185.html)/[Y](https://w.atwiki.jp/mugencns/pages/186.html)の記載差を内部へ保持。Pos Yの地面と画面中央、X/Yが混在する文をそのまま公開へ移しません。
+- 既存の座標図を目視し、上向きY軸・Posとステージ絶対座標・CameraPos/GameWidth式の混在が未整理のため、画像とaltを保持してinternalへ。[座標研究](https://w.atwiki.jp/mugencns/pages/95.html)とLocalCoord/ズーム/旧ビルドの座標変換は実機未検証です。初導入はnull。スキーマ・レンダラー・CSS変更はありません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch velocity-position-01
+npm run mugen:batch -- --batch velocity-position-01 --target VelX --target VelY --target PosX --target PosY
+npm run mugen:batch -- --batch velocity-position-01 --target VelX --target VelY --target PosX --target PosY --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・285テスト・263ページビルド・261 URL/185比較対象ページのHTML検査を通過。通常幅VelX軸表、390pxのPosX世代表記/式・PosY境界例・VelY軸表を確認し、表示幅と検査タブを復元しました。内部注記11件追加で433件、未対応旧履歴145項目、未表示フィールド29ページ。次はScreenPos X/Y・CameraPos X/Yです。

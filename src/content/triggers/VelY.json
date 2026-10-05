@@ -1,48 +1,244 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "Vel Y",
-        "target": "",
-        "category": [
-            "速度",
-            "現在の垂直速度取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.14",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "Vel Y",
+    "target": "",
+    "category": [
+      "速度",
+      "現在の垂直速度取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.14",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "VelY",
+  "summary": "<p>プレイヤーのY方向の速度を返します。</p>",
+  "syntax": [
+    "Vel Y"
+  ],
+  "description": "プレイヤーのY方向の速度を返します。<br>Vel Y は、下方に移動している場合、正の値を返します。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。",
+  "code_sample": [
+    {
+      "title": "プレイヤーが上方向に移動していないときのトリガー",
+      "code": [
+        "Trigger1 = Vel Y >= 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "Vel - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Vel"
     },
-    "category": "trigger",
-    "trigger": "VelY",
-    "summary": "<p>プレイヤーのY方向の速度を返します。</p>",
-    "syntax": [
-        "Vel Y"
+    {
+      "title": "Vel - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#vel"
+    },
+    {
+      "title": "Vel - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#vel"
+    },
+    {
+      "title": "Vel - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Vel"
+    },
+    {
+      "id": "vely-local-2002",
+      "title": "Vel — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Vel",
+      "source_type": "official_document"
+    },
+    {
+      "id": "vely-local-1.0",
+      "title": "Vel — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#vel",
+      "source_type": "official_document"
+    },
+    {
+      "id": "vely-local-1.1",
+      "title": "Vel — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#vel",
+      "source_type": "official_document"
+    },
+    {
+      "id": "vely-legacy",
+      "title": "移行前の説明・画像・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/db3937f87782c3e1418a28fe7feba38e85ef1af6/src/content/triggers/VelY.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "vely-chaos",
+      "title": "Vel Y — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/136.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "vely-float-1.1",
+      "title": "floatから整数への変換と警告 — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#avoiding-warnings",
+      "source_type": "official_document"
+    },
+    {
+      "id": "vely-expressions-1.1",
+      "title": "パラメーターの式 — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#expressions-in-state-and-state-controller-parameters",
+      "source_type": "official_document"
+    },
+    {
+      "id": "vely-velset-1.1",
+      "title": "VelSet — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#velset",
+      "source_type": "official_document"
+    },
+    {
+      "id": "vely-velocity-chaos",
+      "title": "Velの処理順と物理状態の研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/35.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "syntax_kind": "special_form",
+  "return_type": [
+    "float"
+  ],
+  "arguments": [
+    {
+      "name": "[component]",
+      "type": [
+        "char"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>軸を表す<code>Y</code>を半角スペースの後へ指定します。このページは垂直成分の<code>Vel Y</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "vely-local-2002",
+          "vely-local-1.0",
+          "vely-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      }
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者自身の現在の垂直速度をfloatで返します。<code>Vel Y</code>のように、Velと軸指定の間に半角スペースを入れます。</p><p>正の値は下方向、負の値は上方向、0は垂直速度がないことを表します。高さや、やられのfall属性は別に判定します。</p>",
+    "page_category": "現在の垂直速度取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "vely-local-2002",
+        "vely-local-1.0",
+        "vely-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>戻り値は小数を含むfloatです。小数を受け取るパラメーターに使用するとき、常にFloorやCeilで整数化する必要はありません。整数を要求する項目へ渡す場合は、必要な丸め方に応じてFloorやCeilを使います。丸めると小数部分の情報が変わります。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "vely-float-1.1",
+          "vely-expressions-1.1",
+          "vely-local-2002",
+          "vely-local-1.0",
+          "vely-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧本文のfloat型パラメーターでもエラーとなる場合が多いのでfloor/ceilを併用するという助言を原位置に保持しました。公式CNSは整数を要求する項目へのfloat指定の警告を説明しており、今回の資料から全float項目に整数化が必要とは確認できません。対象ビルド・指定先・式が未特定の不具合報告は内部へ残し、一律の丸めを公開推奨しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "vely-legacy",
+          "vely-chaos",
+          "vely-float-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSのステート処理→速度による座標更新→Physicsという順序、PosFreeze/Bindの扱い、自動着地と105/52の例外、Offsetリセットかという疑問符は内部参照へ残します。今回それらの評価時点・停止中の値を各ビルドで実測しておらず、Velの値だけで毎フレーム同じ距離を移動するとは断定しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "vely-velocity-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "behavior",
+      "content": "<p><code>Vel Y &gt;= 0</code>は下方向の速度と垂直速度0の両方を含みます。下方向の速度だけを条件にする場合は<code>Vel Y &gt; 0</code>です。速度0から、地面にいることや操作可能なことまでは判断できません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "vely-local-2002",
+          "vely-local-1.0",
+          "vely-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "プレイヤーのY方向の速度を返します。<br>Vel Y は、下方に移動している場合、正の値を返します。<br>戻り値の型はfloatですが、float型のパラメータをとるステートコントローラでも、floatを返すトリガーをそのまま指定すると、なぜかエラーとなる場合が多いです。floorやceilと併用するようにしましょう。",
-    "code_sample": [
-        {
-            "title": "プレイヤーが上方向に移動していないときのトリガー",
-            "code": [
-                "Trigger1 = Vel Y >= 0"
-            ]
-        }
+    "source_refs": [
+      "vely-local-2002",
+      "vely-local-1.0",
+      "vely-local-1.1"
     ],
-    "quote": [
-        {
-            "title": "Vel - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Vel"
-        },
-        {
-            "title": "Vel - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#vel"
-        },
-        {
-            "title": "Vel - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#vel"
-        },
-        {
-            "title": "Vel - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Vel"
-        }
-    ]
+    "comment": "2026-10-05: 保存済み公式3世代とCHAOSを照合した資料確認。実機テストは未実施。"
+  }
 }

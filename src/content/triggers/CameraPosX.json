@@ -1,52 +1,233 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "CameraPos X",
-        "target": "",
-        "category": [
-            "距離",
-            "ステージ中心基準の現在X座標取得"
-        ],
-        "version": "2012.08.31",
-        "update": "2016.01.14",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "CameraPos X",
+    "target": "",
+    "category": [
+      "距離",
+      "ステージ中心基準の現在X座標取得"
+    ],
+    "version": "2012.08.31",
+    "update": "2016.01.14",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "CameraPosX",
+  "summary": "<p>カメラが横方向にどれだけ動いたかを返します。</p>",
+  "syntax": [
+    "CameraPos X"
+  ],
+  "description": "カメラが横方向にどれだけ動いたかを返します。<br>ステージ中央を基準点(0,0)にして、カメラがX軸方向にどれだけ動いたかを浮動小数点数で返します。カメラが左方向に動いていれば負数、右方向に動いていれば正数になります。",
+  "images": [
+    {
+      "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+      "width": "640",
+      "height": "430",
+      "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図",
+      "visibility": "internal"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "",
+      "code": [
+        ""
+      ],
+      "visibility": "internal"
     },
-    "category": "trigger",
-    "trigger": "CameraPosX",
-    "summary": "<p>カメラが横方向にどれだけ動いたかを返します。</p>",
-    "syntax": [
-        "CameraPos X"
-    ],
-    "description": "カメラが横方向にどれだけ動いたかを返します。<br>ステージ中央を基準点(0,0)にして、カメラがX軸方向にどれだけ動いたかを浮動小数点数で返します。カメラが左方向に動いていれば負数、右方向に動いていれば正数になります。",
-    "images": [
-        {
-        "src": "mugen-stage-coordinates-camera-edge-diagram.png",
-        "width": "640",
-        "height": "430",
-        "alt": "MUGENのステージ絶対座標系とカメラ表示範囲（Screen Edge）の関係図。Pos, ScreenPos, CameraPosを用いたTopEdge, BottomEdge, LeftEdge, RightEdgeの計算式、およびBackEdge, FrontEdge, GameWidth, GameHeightのトリガー処理上の定義MUGENのトリガー判定図：BackEdgeDist（キャラ中心軸基準）とBackEdgeBodyDist（幅バー端基準）の計測開始点の違いを比較した図"
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "",
-            "code": [
-                ""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "CameraPos - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#camerapos"
-        },
-        {
-            "title": "CameraPos - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/CameraPos"
-        },
-        {
-            "title": "M.U.G.E.N 1.1 - 君の瞳は紫外線",
-            "url": "http://chottokomaru.sitemix.jp/mugen1.1.html"
-        }
+    {
+      "title": "カメラが基準位置より右にあるとき（MUGEN 1.1）",
+      "description": "<p>基準位置0を含めず、カメラの現在X位置が正の場合を調べます。</p>",
+      "code": [
+        "Trigger1 = CameraPos X > 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "CameraPos - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#camerapos"
+    },
+    {
+      "title": "CameraPos - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/CameraPos"
+    },
+    {
+      "title": "M.U.G.E.N 1.1 - 君の瞳は紫外線",
+      "url": "http://chottokomaru.sitemix.jp/mugen1.1.html",
+      "visibility": "internal"
+    },
+    {
+      "id": "cameraposx-local-1.1",
+      "title": "CameraPos — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerapos",
+      "source_type": "official_document"
+    },
+    {
+      "id": "cameraposx-legacy",
+      "title": "移行前の本文・履歴・例・図",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/7fede5f7e326eeda5fb596b123abbd972f6eed3f/src/content/triggers/CameraPosX.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "cameraposx-history-1.1",
+      "title": "CameraPosの1.1追加 — 保存済み公式履歴",
+      "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+      "source_type": "official_document"
+    },
+    {
+      "id": "cameraposx-pos-1.1",
+      "title": "PosとCameraPosの基準 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+      "source_type": "official_document"
+    }
+  ],
+  "syntax_kind": "special_form",
+  "return_type": [
+    "float"
+  ],
+  "environment": {
+    "engine": "mugen",
+    "runtime": [
+      "mugen-1.1"
     ]
+  },
+  "arguments": [
+    {
+      "name": "[component]",
+      "type": [
+        "char"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>軸を表す<code>X</code>を半角スペースの後へ指定します。このページは<code>CameraPos X</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "cameraposx-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      }
+    }
+  ],
+  "documentation": {
+    "description": "<p>MUGEN 1.1で、ステージに対するカメラの現在の水平位置をfloatで返します。カメラの基準位置は(0, 0)です。基準位置より右なら正、左なら負になります。</p><p><code>CameraPos X</code>のように半角スペースを入れて軸を指定します。戻り値の単位は実行者の座標空間です。現在位置を調べる値なので、今どちらへ動いているかという速度の判定とは分けて使います。</p>",
+    "page_category": "ステージに対するカメラの現在X座標取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "cameraposx-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>共通の既存座標図とaltを保持してinternalへ。図の上向きY軸、Posの絶対座標表記、CameraPos/GameWidth式の座標空間やズーム条件は整理が必要です。今回図を修正せず、解像度・LocalCoord・ズーム・リダイレクトの組合せでの実機確認を保留しています。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "cameraposx-legacy"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>公式の1.1更新履歴にCameraPosの追加が記録されています。MUGEN 1.0のTrigger一覧にはありません。MUGEN 1.1の式として使用してください。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "cameraposx-history-1.1",
+          "cameraposx-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧page.versionの2012.08.31を原位置へ保持します。これはレジストリのAlpha 4のビルド日と同じですが、公式履歴はNew in 1.1にCameraPosの追加をまとめており、Alpha 4の初導入と確認できません。introduced_inはnullです。基準位置0と移動方向を混同せず、カメラの正負は位置として公開。旧個人記事は今回取得できておらず、導入日や特殊条件を補完しません。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "cameraposx-legacy",
+          "cameraposx-history-1.1",
+          "cameraposx-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式CameraPosの例はCameraPos X>=0をleft of the centerと説明しますが、Detailsは右へ移動するとX増加です。0も含む>=0の左/右の説明には資料内の矛盾があるため、新例はX>0を基準位置の右として公開し、原資料は保持します。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "cameraposx-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "cameraposx-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+  }
 }

@@ -1,87 +1,376 @@
 {
-    "page": {
+  "page": {
     "title": "MUGEN Trigger",
     "subtitle": "ScreenPos Y",
     "target": "実行者自身",
     "category": [
-        "距離",
-        "画面上端を基準にした現在のY座標"
+      "距離",
+      "画面上端を基準にした現在のY座標"
     ],
     "version": "2002.04.14",
     "update": "2026.01.04",
     "type": "document",
-    "level": "3"
-    },
-    "title": "ScreenPosY",
-    "category": "trigger",
-    "trigger": "ScreenPosY",
-    "description": "<p><code>ScreenPos Y</code> は、実行者の「画面上のY座標」を返します。</p><p>画面上端を <b>0</b> とし、画面外の上側は負、下側は正の値になります。戻り値は <b>float</b>（浮動小数点数）です。</p><p><code>Pos</code> のようなステージ絶対座標ではなく、カメラ表示範囲（画面）に対する相対座標である点が特徴です。</p><p>整数が必要な箇所へ渡す場合は、<code>Floor()</code>/<code>Ceil()</code>/<code>Round()</code> 等で丸めてから使用してください。</p>",
-    "syntax": [
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "title": "ScreenPosY",
+  "category": "trigger",
+  "trigger": "ScreenPosY",
+  "description": "<p><code>ScreenPos Y</code> は、実行者の「画面上のY座標」を返します。</p><p>画面上端を <b>0</b> とし、画面外の上側は負、下側は正の値になります。戻り値は <b>float</b>（浮動小数点数）です。</p><p><code>Pos</code> のようなステージ絶対座標ではなく、カメラ表示範囲（画面）に対する相対座標である点が特徴です。</p><p>整数が必要な箇所へ渡す場合は、<code>Floor()</code>/<code>Ceil()</code>/<code>Round()</code> 等で丸めてから使用してください。</p>",
+  "syntax": [
     "ScreenPos Y"
-    ],
-    "images": [
+  ],
+  "images": [
     {
-        "src": "mugen-stage-coordinates-camera-edge-diagram.png",
-        "width": "640",
-        "height": "430",
-        "alt": "ステージ座標（Pos）と画面座標（ScreenPos）、カメラ座標（CameraPos）の関係図"
+      "src": "mugen-stage-coordinates-camera-edge-diagram.png",
+      "width": "640",
+      "height": "430",
+      "alt": "ステージ座標（Pos）と画面座標（ScreenPos）、カメラ座標（CameraPos）の関係図",
+      "visibility": "internal"
     }
-    ],
-    "associated_trigger": [
+  ],
+  "associated_trigger": [
     "ScreenPosX",
     "PosY",
     "CameraPosY",
     "GameHeight",
     "ScreenHeight"
-    ],
-    "version": [
+  ],
+  "version": [
     {
-        "no": "MUGEN 1.0 RC3 (2009-10-12) 以降",
-        "content": "<p>cut stage（<code>cuthigh</code>/<code>cutlow</code>）条件下での <code>ScreenPos Y</code> の値計算不具合が修正されました（1.0安定版にも反映）。</p>",
-        "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
+      "no": "MUGEN 1.0 RC3 (2009-10-12) 以降",
+      "content": "<p>cut stage（<code>cuthigh</code>/<code>cutlow</code>）条件下での <code>ScreenPos Y</code> の値計算不具合が修正されました（1.0安定版にも反映）。</p>",
+      "blockquote": "https://www.elecbyte.com/mugendocs/history.html"
     },
     {
-        "no": "IKEMEN GO",
-        "content": "<p><code>ScreenPos</code> を座標入力へ直接使う場合、<code>Floor(ScreenPos Y)</code> のように丸めて扱う運用例があります（実装・座標空間の差異によりズレが出るケースがあるため）。</p>",
-        "blockquote": "https://github.com/ikemen-engine/Ikemen-GO/issues/188"
+      "no": "IKEMEN GO",
+      "content": "<p><code>ScreenPos</code> を座標入力へ直接使う場合、<code>Floor(ScreenPos Y)</code> のように丸めて扱う運用例があります（実装・座標空間の差異によりズレが出るケースがあるため）。</p>",
+      "blockquote": "https://github.com/ikemen-engine/Ikemen-GO/issues/188"
     }
-    ],
-    "code_sample": [
+  ],
+  "code_sample": [
     {
-        "title": "画面内（上下）にいるか判定（1.0以降）",
-        "description": "<p><code>GameHeight</code> を使い、解像度（設定）に依存しない形で判定します。</p>",
-        "code": [
+      "title": "画面内（上下）にいるか判定（1.0以降）",
+      "description": "<p><code>GameHeight</code> を使い、解像度（設定）に依存しない形で判定します。</p>",
+      "code": [
         "Trigger1 = ScreenPos Y >= 0 && ScreenPos Y < GameHeight"
-        ]
+      ],
+      "visibility": "internal"
     },
     {
-        "title": "標準240高を前提にした簡易判定（2002.04.14系）",
-        "description": "<p>古い環境で <code>GameHeight</code> が使えない場合の例です（標準の240高想定）。</p>",
-        "code": [
+      "title": "標準240高を前提にした簡易判定（2002.04.14系）",
+      "description": "<p>古い環境で <code>GameHeight</code> が使えない場合の例です（標準の240高想定）。</p>",
+      "code": [
         "Trigger1 = ScreenPos Y = [0,239]"
-        ]
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "GameHeightで基準位置の上下範囲を調べる（MUGEN 1.0）",
+      "description": "<p>MUGEN 1.0の公式資料に基づく1軸の条件です。GameHeightは実行者の座標空間の値で、ウィンドウの描画ピクセル数を固定値で代入する式ではありません。MUGEN 1.1のズームを含む用途は座標空間を別途確認してください。</p>",
+      "code": [
+        "Trigger1 = ScreenPos Y >= 0 && ScreenPos Y < GameHeight"
+      ]
+    },
+    {
+      "title": "標準240単位の高さを前提に、基準位置を調べる",
+      "description": "<p>2002.04.14系の標準240単位を前提にした半開区間です。0を含み240を含みません。小数部分を維持し、別の座標空間へ固定値を流用しません。</p>",
+      "code": [
+        "Trigger1 = ScreenPos Y = [0,240)"
+      ]
     }
+  ],
+  "quote": [
+    {
+      "title": "ScreenPos - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ScreenPos"
+    },
+    {
+      "title": "ScreenPos - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#ScreenPos"
+    },
+    {
+      "title": "ScreenPos - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#ScreenPos"
+    },
+    {
+      "title": "M.U.G.E.N Update History (ScreenPosの修正履歴)",
+      "url": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "title": "IKEMEN GO Issue: Explodの座標空間とScreenPosの運用例",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/188",
+      "visibility": "internal"
+    },
+    {
+      "id": "screenposy-local-2002",
+      "title": "ScreenPos — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ScreenPos",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenposy-local-1.0",
+      "title": "ScreenPos — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#screenpos",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenposy-local-1.1",
+      "title": "ScreenPos — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#screenpos",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenposy-legacy",
+      "title": "移行前の本文・履歴・例・図",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/7fede5f7e326eeda5fb596b123abbd972f6eed3f/src/content/triggers/ScreenPosY.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "screenposy-chaos",
+      "title": "ScreenPos Y — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/193.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "screenposy-history-1.0",
+      "title": "ScreenPos Yの修正 — Elecbyte 1.0 History",
+      "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc3",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenposy-history-1.1",
+      "title": "ScreenPos Yの修正 — Elecbyte 1.1b1 History",
+      "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-0-rc3",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenposy-size-1.0",
+      "title": "GameHeight — Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#gameheight",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenposy-size-1.1",
+      "title": "GameHeight — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#gameheight",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenposy-screen-size-1.1",
+      "title": "ScreenHeight — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#screenheight",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenposy-pos-1.1",
+      "title": "Posの基準 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenposy-float-1.1",
+      "title": "整数への変換と警告 — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#avoiding-warnings",
+      "source_type": "official_document"
+    },
+    {
+      "id": "screenposy-ikemen-issue",
+      "title": "IKEMEN GOのExplod/HitFallVel LocalCoord不具合報告 #188",
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/188",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "syntax_kind": "special_form",
+  "return_type": [
+    "float"
+  ],
+  "arguments": [
+    {
+      "name": "[component]",
+      "type": [
+        "char"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>軸を表す<code>Y</code>を半角スペースの後へ指定します。このページは<code>ScreenPos Y</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "screenposy-local-2002",
+          "screenposy-local-1.0",
+          "screenposy-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      }
+    }
+  ],
+  "documentation": {
+    "description": "<p>実行者自身の基準位置の垂直座標を、画面上端を0とするfloatで返します。上端より上は負、下は正です。基準位置が画面内でも、体や画像の全体が画面内に収まるとは限りません。</p><p><code>ScreenPos Y</code>のように半角スペースを入れて軸を指定します。Pos Yは地面が基準で、ScreenPosとは0の位置が異なります。整数を要求する項目へ渡すときは、必要な丸め方に応じてFloorやCeilを使います。</p>",
+    "page_category": "画面上端基準の現在Y座標取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "screenposy-local-2002",
+        "screenposy-local-1.0",
+        "screenposy-local-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "research",
+      "content": "<p>共通の既存座標図とaltを保持してinternalへ。図の上向きY軸、Posの絶対座標表記、CameraPos/GameWidth式の座標空間やズーム条件は整理が必要です。今回図を修正せず、解像度・LocalCoord・ズーム・リダイレクトの組合せでの実機確認を保留しています。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "screenposy-legacy"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "version_change",
+      "content": "<p>MUGEN 1.0 RC3でcut stageにおけるScreenPos Yの値の計算が修正されました。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "screenposy-history-1.0",
+          "screenposy-history-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      },
+      "legacy_index": 0,
+      "change": "fixed",
+      "at": "mugen-1.0-rc3"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧version[1]とIKEMEN GO issue #188を別エンジンの記録として保持します。元のissueはExplodのスケール/HitFallVelがLocalCoordを考慮しないという2020年の報告で、ScreenPos Yをfloorするコードを含みますが、ScreenPosの型やX/Yの一律丸めがMUGENでも必須という証拠にはしません。</p>",
+      "environment": {
+        "engine": "ikemen-go"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "screenposy-legacy",
+          "screenposy-ikemen-issue"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      },
+      "visibility": "internal",
+      "legacy_index": 1
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧本文のPosをステージ絶対座標とする説明とRound()の案内は原位置に保持し、公開側を訂正しました。保存済み公式のTrigger一覧には一般のRound()はなく、Floor/Ceilを案内します。2002/1.0公式のScreenPos書式がPos [component]、1.1冒頭がtop-rightという記載は、具体的な軸のDetails/CHAOSと異なるため資料差として保持。CHAOSのPos Y=0を画面端とする表記も、PosとScreenPosを混ぜて公開しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "screenposy-local-2002",
+          "screenposy-local-1.0",
+          "screenposy-local-1.1",
+          "screenposy-legacy",
+          "screenposy-chaos",
+          "screenposy-pos-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>画面上下の条件は基準位置の1軸を調べるものです。範囲には同じ座標空間の幅・高さを使います。MUGEN 1.0の公式例はGameWidth/GameHeightを使用しています。1.1ではGameWidth/GameHeightはカメラズームに応じて変わり、ScreenWidth/ScreenHeightはズームの影響を受けません。表示する用途に合わせて座標空間を確認してください。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "screenposy-size-1.0",
+          "screenposy-size-1.1",
+          "screenposy-screen-size-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧固定幅の閉区間[0,239]は原位置に保存してinternalへ。floatの239より大きく240未満の部分を除くため、標準240単位を想定する新例は[0,240)へ。旧GameHeight例はMUGEN 1.0の資料に基づく例として保持し、1.1のズーム/LocalCoordと画面描画ピクセルの一致を保証しません。CHAOSの基準点より上へ体がはみ出すこととPos Yとの差から高さを得られないという注意も適用条件の研究として内部に残します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "screenposy-legacy",
+          "screenposy-chaos",
+          "screenposy-size-1.0",
+          "screenposy-size-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "quote": [
-        {
-            "title": "ScreenPos - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ScreenPos"
-        },
-        {
-            "title": "ScreenPos - Trigger Reference (MUGEN 1.0)",
-            "url": "https://www.elecbyte.com/mugendocs/trigger.html#ScreenPos"
-        },
-        {
-            "title": "ScreenPos - Trigger Reference (MUGEN 1.1 Beta 1)",
-            "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#ScreenPos"
-        },
-        {
-            "title": "M.U.G.E.N Update History (ScreenPosの修正履歴)",
-            "url": "https://www.elecbyte.com/mugendocs/history.html"
-        },
-        {
-            "title": "IKEMEN GO Issue: Explodの座標空間とScreenPosの運用例",
-            "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/188"
-        }
-    ]
+    "source_refs": [
+      "screenposy-local-2002",
+      "screenposy-local-1.0",
+      "screenposy-local-1.1"
+    ],
+    "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+  }
 }

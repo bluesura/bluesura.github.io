@@ -1199,3 +1199,27 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・285テスト・263ページビルド・261 URL/185比較対象ページのHTML検査を通過。通常幅VelX軸表、390pxのPosX世代表記/式・PosY境界例・VelY軸表を確認し、表示幅と検査タブを復元しました。内部注記11件追加で433件、未対応旧履歴145項目、未表示フィールド29ページ。次はScreenPos X/Y・CameraPos X/Yです。
+
+## 2026-10-05：screen-camera-01
+
+ScreenPosX / ScreenPosY / CameraPosX / CameraPosYの4件で累計178件（主要・補助16件＋64バッチ162件）、対象内の残り56件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/screen-camera-01/ に保存しました。
+
+- ScreenPosの画面左/上基準、CameraPosの基準位置(0,0)と実行者の座標空間、必須軸指定/floatを整理。Posをステージ絶対座標とする旧説明とRound()の案内は原位置に残し、公開文を訂正しました。
+- 保存済み公式1.0/1.1履歴へRC2のScreenPos X修正、RC3のcut stageでのY修正を照合。既存RC2に加え、RC3のビルドID/2009-10-12をレジストリへ追加し、公開・配布日はnullのままです。旧履歴は対応付けて保持します。
+- 旧IKEMEN GO履歴と[issue #188](https://github.com/ikemen-engine/Ikemen-GO/issues/188)は別エンジンの内部記録へ。issueはExplod/HitFallVelのLocalCoord報告で、ScreenPosをMUGENでも一律丸めする根拠にはしません。元の本文/出典も保持します。
+- [CHAOS ScreenPos X](https://w.atwiki.jp/mugencns/pages/192.html)/[Y](https://w.atwiki.jp/mugencns/pages/193.html)と公式のPos/ScreenPos転記、1.1冒頭のtop-rightとDetailsの左/上基準の食い違いを内部へ。半幅計算や拡縮を認識できないという報告は未検証のままです。
+- 旧1.0以降とする例は内部へ保持して同じコードをMUGEN 1.0の例として公開し、1.1のズームへ一般化しません。旧閉区間[0,319]/[0,239]も保持し、新たな固定幅例は[0,320)/[0,240)へ。小数の末尾範囲を取りこぼさず、0を含み上限を含めない前提を明記しました。Game/Screenサイズの公式ズーム特性も世代を明記しています。
+- CameraPosはMUGEN 1.1を対象に、移動速度ではなく現在位置と説明。公式のX>=0をleftとする例はDetailsの右増加と矛盾し内部へ、新例はX>0で右、Y<0で上。1.1追加は公式にありますが、旧2012.08.31からAlpha 4初導入と推定しません。元の個人記事は取得できず、初導入nullで保持します。
+- 共通座標図とaltをinternalへ保持。ズーム/LocalCoord/リダイレクトを含む実機確認は未実施です。スキーマ・レンダラー・CSSは変更していません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch screen-camera-01
+npm run mugen:batch -- --batch screen-camera-01 --target ScreenPosX --target ScreenPosY --target CameraPosX --target CameraPosY
+npm run mugen:batch -- --batch screen-camera-01 --target ScreenPosX --target ScreenPosY --target CameraPosX --target CameraPosY --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・291テスト・263ページビルド・261 URL/189比較対象ページのHTML検査を通過。ScreenPosXの世代別/半開区間例を通常幅、390pxのScreenPosY RC3履歴・CameraPosX軸表とCameraPosY例を確認し、表示幅と検査タブを復元。内部注記13件追加で446件、未対応旧履歴141項目、未表示フィールド29ページ。次はGameWidth/Height・ScreenWidth/Height・CameraZoomです。

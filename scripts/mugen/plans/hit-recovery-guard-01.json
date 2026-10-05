@@ -1,0 +1,1117 @@
+{
+  "id": "hit-recovery-guard-01",
+  "reviewed_on": "2026-10-05",
+  "description": "HitVelの軸指定・符号資料差、受身許可とCommon条件、ガード認識距離を分離。原文と未確認研究を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "HitVelX",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvelx-local-2002",
+            "title": "HitVel — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitVel",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvelx-local-1.0",
+            "title": "HitVel — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#hitvel",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvelx-local-1.1",
+            "title": "HitVel — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitvel",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvelx-legacy",
+            "title": "移行前の説明・履歴・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/4726082a09a37916a41ddb289477dd253d135f10/src/content/triggers/HitVelX.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvelx-chaos",
+            "title": "HitVel X — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/134.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvelx-vel-1.1",
+            "title": "現在速度を参照するVel — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#vel",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvelx-hitvelset-1.1",
+            "title": "HitVelSet — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitvelset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>軸を表す<code>X</code>を空白の後へ指定します。このページは水平成分の<code>HitVel X</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitvelx-local-2002",
+                  "hitvelx-local-1.0",
+                  "hitvelx-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身が攻撃を受けたときに与えられる水平方向の速度を、floatで返します。<code>HitVel X</code>のように、HitVelと軸指定の間に空白を入れます。</p><p>被弾時の速度情報を調べるトリガーです。現在実際に移動している速度を調べる<code>Vel X</code>とは区別して使います。</p>",
+            "page_category": "被弾で与えられた水平速度の参照",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "hitvelx-local-2002",
+                "hitvelx-local-1.0",
+                "hitvelx-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>公式3世代と旧本文はHitVel Xが後方正/HitVel Yが上方正とし、Velの符号と逆と説明しています。一方CHAOSは少なくともWin版ではHitVelSetでVelへ反映される数値そのままと報告しています。両方を保持し、未検証の方向規則を公開へ断定しません。旧閾値例は方向を付け足さず維持しています。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "hitvelx-local-2002",
+                  "hitvelx-local-1.0",
+                  "hitvelx-local-1.1",
+                  "hitvelx-legacy",
+                  "hitvelx-chaos",
+                  "hitvelx-vel-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSのGetHitVar(XVel)*Facingとの同義かという疑問符を保持します。符号の適用ビルド、Facing変更/相手側基準、被弾状態外の残存値やHitVelSet後の減速・加速との違いは今回実機未確認です。導入はpage.versionから推定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitvelx-chaos",
+                  "hitvelx-local-2002",
+                  "hitvelx-local-1.0",
+                  "hitvelx-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitvelx-local-2002",
+              "hitvelx-local-1.0",
+              "hitvelx-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+          }
+        }
+      ],
+      "remaining": [
+        "符号の資料差、fall外の値、特殊攻撃/リダイレクト、ガード距離境界の再現は実機未確認。初導入はnull、原文・研究を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "HitVelY",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvely-local-2002",
+            "title": "HitVel — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitVel",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvely-local-1.0",
+            "title": "HitVel — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#hitvel",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvely-local-1.1",
+            "title": "HitVel — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitvel",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvely-legacy",
+            "title": "移行前の説明・履歴・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/4726082a09a37916a41ddb289477dd253d135f10/src/content/triggers/HitVelY.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvely-chaos",
+            "title": "HitVel Y — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/135.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvely-vel-1.1",
+            "title": "現在速度を参照するVel — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#vel",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "hitvely-hitvelset-1.1",
+            "title": "HitVelSet — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitvelset",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>軸を表す<code>Y</code>を空白の後へ指定します。このページは垂直成分の<code>HitVel Y</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitvely-local-2002",
+                  "hitvely-local-1.0",
+                  "hitvely-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身が攻撃を受けたときに与えられる垂直方向の速度を、floatで返します。<code>HitVel Y</code>のように、HitVelと軸指定の間に空白を入れます。</p><p>被弾時の速度情報を調べるトリガーです。現在実際に移動している速度を調べる<code>Vel Y</code>とは区別して使います。</p>",
+            "page_category": "被弾で与えられた垂直速度の参照",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "hitvely-local-2002",
+                "hitvely-local-1.0",
+                "hitvely-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>公式3世代と旧本文はHitVel Xが後方正/HitVel Yが上方正とし、Velの符号と逆と説明しています。一方CHAOSは少なくともWin版ではHitVelSetでVelへ反映される数値そのままと報告しています。両方を保持し、未検証の方向規則を公開へ断定しません。旧閾値例は方向を付け足さず維持しています。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "hitvely-local-2002",
+                  "hitvely-local-1.0",
+                  "hitvely-local-1.1",
+                  "hitvely-legacy",
+                  "hitvely-chaos",
+                  "hitvely-vel-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSのGetHitVar(YVel)との同義かという疑問符を保持します。符号の適用ビルド、Facing変更/相手側基準、被弾状態外の残存値やHitVelSet後の減速・加速との違いは今回実機未確認です。導入はpage.versionから推定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "hitvely-chaos",
+                  "hitvely-local-2002",
+                  "hitvely-local-1.0",
+                  "hitvely-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "hitvely-local-2002",
+              "hitvely-local-1.0",
+              "hitvely-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+          }
+        }
+      ],
+      "remaining": [
+        "符号の資料差、fall外の値、特殊攻撃/リダイレクト、ガード距離境界の再現は実機未確認。初導入はnull、原文・研究を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "CanRecover",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "canrecover-local-2002",
+            "title": "CanRecover — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#CanRecover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "canrecover-local-1.0",
+            "title": "CanRecover — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#canrecover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "canrecover-local-1.1",
+            "title": "CanRecover — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#canrecover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "canrecover-legacy",
+            "title": "移行前の説明・履歴・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/4726082a09a37916a41ddb289477dd253d135f10/src/content/triggers/CanRecover.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "canrecover-chaos",
+            "title": "CanRecover — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/101.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "canrecover-hitdef-1.1",
+            "title": "HitDef Fall.Recover / Fall.RecoverTime — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "canrecover-common-1.0",
+            "title": "MUGEN 1.0 common1.cnsの5050 — 固定コミットの配布ファイルミラー",
+            "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/common1.cns",
+            "source_type": "source_code"
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "CanRecover = 1だけでは受身ステートへ移らないのはなぜ？",
+            "a": "<p>CanRecoverは許可の判定です。受身ステートへの移行はコントローラーで行います。MUGEN 1.0のCommonではrecovery入力、Alive、速度や高さの条件も使うため、自作やられでは自分の遷移条件を確認してください。</p>",
+            "r": [
+              {
+                "title": "固定コミットの1.0 common1.cns",
+                "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/common1.cns"
+              }
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            6,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            7,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            8,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身がfallのやられ状態にいるとき、現在受身が許可されているなら1、許可されていなければ0を整数で返します。引数はありません。</p><p>fall状態以外での戻り値は公式資料では未定義です。通常のジャンプで下降しているかを判定する値ではありません。CanRecover = 1だけで、受身入力や受身ステートへの移行まで完了したとは判断しません。</p>",
+            "page_category": "fall状態での受身許可判定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "canrecover-local-2002",
+                "canrecover-local-1.0",
+                "canrecover-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>fall状態で使用します。自作のやられステートでは、ステート番号だけでなく実際のMoveTypeやfallの状態を確認してください。5050は標準Commonのやられステートの番号で、CanRecoverの引数やエンジン全体の必須番号ではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "canrecover-local-2002",
+                  "canrecover-local-1.0",
+                  "canrecover-local-1.1",
+                  "canrecover-common-1.0"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.0のcommon1.cnsでは、5050の受身遷移にCanRecoverのほかAliveとrecoveryコマンド、速度条件を使います。地面近くの受身には高さ条件もあります。キャラがCommonを変更している場合は、その遷移条件を確認してください。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "canrecover-common-1.0"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "legacy_index": 1
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>攻撃側HitDefの<code>Fall.Recover = 0</code>はfall状態からの受身を許可しません。<code>Fall.RecoverTime</code>は受身可能になるまでの時間で、被弾側のヒットシェイクで停止する時間を含みません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "canrecover-hitdef-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Commonの抜粋イメージは、固定コミットのMUGEN 1.0 common1.cnsの速度・高さのConst指定、Alive/CanRecover/recovery、5200/5210の値に一致しました。1.0のファイル例として維持します。旧-1のAI例とFAQの上昇終了/一般的条件という説明、HitFall単独で落下状態を絞る記述は原位置に保持して内部へ。独自Commonや他人のステートでの安全な移行を今回確認していません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "canrecover-legacy",
+                  "canrecover-common-1.0"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSのくらい以外でもフラグが保存される報告、MoveType=HかつTimeがある状態の経過フレーム/次の被弾でリセット、立ち・倒れ・ステート奪取中でも立つか、死亡時・攻撃以外でHとなる場合の未検証を保持します。公式のfall外未定義と別に内部で記録し、疑問符を確認済みへ変換しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "canrecover-chaos",
+                  "canrecover-local-2002",
+                  "canrecover-local-1.0",
+                  "canrecover-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧コンボ可否FAQと英語圏実装談・追加AI/メモの外部出典は保存しますが、保持方法や受身抜け対策の適用範囲は今回未確認です。CanRecoverそのものと変数/Helperに過去の事実を保持する仕組みは同一にしません。初導入ビルドも推定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "canrecover-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "canrecover-local-2002",
+              "canrecover-local-1.0",
+              "canrecover-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+          }
+        }
+      ],
+      "remaining": [
+        "符号の資料差、fall外の値、特殊攻撃/リダイレクト、ガード距離境界の再現は実機未確認。初導入はnull、原文・研究を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "InGuardDist",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "inguarddist-local-2002",
+            "title": "InGuardDist — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#InGuardDist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "inguarddist-local-1.0",
+            "title": "InGuardDist — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#inguarddist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "inguarddist-local-1.1",
+            "title": "InGuardDist — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#inguarddist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "inguarddist-legacy",
+            "title": "移行前の説明・履歴・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/4726082a09a37916a41ddb289477dd253d135f10/src/content/triggers/InGuardDist.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "inguarddist-chaos",
+            "title": "InGuardDist — MUGEN CNS WIKI CHAOS@予定",
+            "url": "https://w.atwiki.jp/mugencns/pages/139.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "inguarddist-hitdef-1.1",
+            "title": "HitDef Guard.Dist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "inguarddist-attackdist-1.1",
+            "title": "AttackDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#attackdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "相手攻撃のガード認識距離内の判定",
+            "description": "<p>範囲の条件行です。ガード入力やガード状態への移行を含む完成したAIではありません。</p>",
+            "code": [
+              "Trigger1 = InGuardDist = 1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身が、相手の打撃やProjectileの攻撃のガード認識距離内なら1、範囲外または相手が攻撃していなければ0を整数で返します。引数はありません。</p><p>ガード認識距離には相手のHitDefの<code>guard.dist</code>設定が使われ、AttackDistでも変更できます。InGuardDistは範囲の判定です。攻撃が命中したことや、既にガードが成立したことの判定には使いません。</p>",
+            "page_category": "相手攻撃のガード認識距離内かの判定",
+            "associated_state": [
+              "HitDef",
+              "AttackDist"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "inguarddist-local-2002",
+                "inguarddist-local-1.0",
+                "inguarddist-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>AttackDistが変更するのは攻撃側の現在のHitDefのguard.distです。公式ではこの距離設定は攻撃側の<code>MoveType = A</code>で有効とされています。距離を判定する側へAttackDistを設定しても、相手の攻撃の範囲を変更する指定にはなりません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "inguarddist-attackdist-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧version[0]はnoが?でWindows版という記録です。CHAOSはWinから/DOSには存在しないと報告していますが、保存済み2002.04.14公式資料にも項目があります。資料にあることとDOS実行可否/Win導入ビルドを区別し、旧?・本文を保持して初導入はnullです。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "inguarddist-legacy",
+                  "inguarddist-chaos",
+                  "inguarddist-local-2002",
+                  "inguarddist-local-1.0",
+                  "inguarddist-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "visibility": "internal",
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSの基準位置1から前方に伸びる距離、P2Distとの1差、指定距離と一致なら範囲外、背面は範囲外/重なりは範囲内という境界報告を保持します。向き・複数の相手/Projectile・評価時点や各ビルドの再現は実機未確認で、単純なP2Dist式へ置き換えません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "inguarddist-chaos"
+                ],
+                "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "inguarddist-local-2002",
+              "inguarddist-local-1.0",
+              "inguarddist-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式3世代とCHAOS、CanRecoverの既存Common例は固定コミットの1.0ファイルへ照合。実機未検証。"
+          }
+        }
+      ],
+      "remaining": [
+        "符号の資料差、fall外の値、特殊攻撃/リダイレクト、ガード距離境界の再現は実機未確認。初導入はnull、原文・研究を保持。"
+      ]
+    }
+  ]
+}

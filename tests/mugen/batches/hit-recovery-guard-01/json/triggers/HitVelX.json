@@ -1,0 +1,48 @@
+{
+    "page": {
+        "title": "MUGEN Trigger",
+        "subtitle": "HitVel X",
+        "target": "",
+        "category": [
+            "速度",
+            "現在の水平速度取得"
+        ],
+        "version": "2002.04.14",
+        "update": "2016.01.17",
+        "type": "document",
+        "level": "3"
+    },
+    "category": "trigger",
+    "trigger": "HitVelX",
+    "summary": "<p>プレイヤーが攻撃を受けたときの速度を取得します。</p>",
+    "syntax": [
+        "HitVel X"
+    ],
+    "description": "プレイヤーが攻撃を受けたときの速度を取得します。<br>HitVel Yは、上方向が、HitVel Xは後方が正の値となります。<br>戻り値の型: float",
+    "code_sample": [
+        {
+            "title": "攻撃を受けたときのX方向の吹き飛び速度が0.5ピクセル毎フレームより大きいときのトリガー",
+            "code": [
+                "Trigger1 = HitVel X > 0.5"
+            ]
+        }
+    ],
+    "quote": [
+        {
+            "title": "HitVel - Trigger Reference(version 2002.04.14)",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitVel"
+        },
+        {
+            "title": "HitVel - Trigger Reference(version 1.0)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitvel"
+        },
+        {
+            "title": "HitVel - Trigger Reference(version 1.1)",
+            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitvel"
+        },
+        {
+            "title": "HitVel - M.U.G.E.N wiki",
+            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitVel"
+        }
+    ]
+}

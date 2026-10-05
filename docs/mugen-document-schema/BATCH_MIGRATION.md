@@ -1131,3 +1131,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・268テスト・263ページビルド・261 URL/174比較対象ページのHTML検査を通過。通常幅のHitCount、幅390pxのUniqHitCount使用例とHitPauseTimeの変更履歴/仕様を確認し、表示幅と検査用タブを復元。テスト側の正規化カテゴリの参照先を修正して再検査済み。内部注記9件追加の402件、未対応旧履歴150項目。次はHitShakeOver・HitOver・HitFallです。
+
+## 2026-10-05：gethit-status-01
+
+HitShakeOver / HitOver / HitFallの3件で累計166件（主要・補助16件＋61バッチ150件）、対象内の残り68件です。移行前JSON・HTML・抽出結果は tests/mugen/batches/gethit-status-01/ に保存しました。
+
+- 引数なし・整数の0/1とMoveType=Hの適用前提を整理。ヒットシェイク終了、のけぞり時間満了、fallフラグを別の条件として公開し、攻撃側HitPauseTime、被弾側GetHitVar(HitShakeTime)、HitFallSetで変わるfall情報と区別しています。通常ジャンプの下降や着地の代用とはしていません。
+- HitOverの旧HitTime=0説明を原位置に保持。1.0/1.1の保存済みGetHitVarのhittime<0相当という記述を公開し、公式のカウント条件hitshaketime>0という文と[CHAOS HitOver](https://w.atwiki.jp/mugencns/pages/131.html)のCtrl復帰/同フレーム行動不可は内部へ保持。トリガー参照そのものにステート遷移やCtrl付与の効果は持たせていません。
+- HitFallの公式の被弾状態外は未定義という条件を公開。旧!HitFall単独例は内部へ保持し、MoveType=Hの条件を先に置く例を追加しました。[CHAOS HitFall](https://w.atwiki.jp/mugencns/pages/130.html)の次の被弾まで持続するかという疑問符は未確認のままです。
+- HitShakeOverの旧5000→5010の独自演出移行例は、[Commonステート](https://w.atwiki.jp/mugencns/pages/17.html)で5010が屈みヒットシェイク用という資料と照合し、原位置に保持して内部へ。既存のMoveType=H/HitShakeOver=0例は維持し、終了=1の条件行を追加。旧Q&Aも保持して攻撃側/被弾側と時間/真偽の違いを公開FAQにしました。
+- P1 PauseTime修正をHitShakeOverの変更と広げた旧履歴と別エンジンのLua関数は内部へ対応付け。[CHAOS HitShakeOver](https://w.atwiki.jp/mugencns/pages/132.html)のIgnoreHitPause疑問符と停止境界、独自ステート/特殊攻撃の評価順は内部研究です。初導入null、今回の実機検証はありません。HitFall/HitOverのWeb取得はキャッシュ失敗のため、同じ既知URLの一次本文をブラウザで読んで補完しました。スキーマ・レンダラー・CSSの変更はありません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch gethit-status-01
+npm run mugen:batch -- --batch gethit-status-01 --target HitShakeOver --target HitOver --target HitFall
+npm run mugen:batch -- --batch gethit-status-01 --target HitShakeOver --target HitOver --target HitFall --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・273テスト・263ページビルド・261 URL/177比較対象ページのHTML検査を通過。通常幅のHitShakeOverと幅390pxのHitOver仕様/例・HitFallの被弾条件例を確認し、表示幅と検査用タブを復元しました。内部注記11件追加の413件、未対応旧履歴148項目。次はHitVel・CanRecover・InGuardDistです。

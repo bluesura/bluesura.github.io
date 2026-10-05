@@ -1,48 +1,223 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "HitOver",
-        "target": "",
-        "category": [
-            "ヒット情報",
-            "のけぞり時間の終了判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "HitOver",
+    "target": "",
+    "category": [
+      "ヒット情報",
+      "のけぞり時間の終了判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "HitOver",
+  "summary": "<p>攻撃を受けた場合のHitTimeが0になったかどうかを返します。</p>",
+  "syntax": [
+    "HitOver"
+  ],
+  "description": "攻撃を受けた場合のHitTimeが0になったかどうかを返します。<br>攻撃を受けた場合のHitTimeが0になったとき、1を返します。<br>共通のやられは、このトリガーにより通常ステートに移されています。やられステートをカスタマイズするときなどに使用します。",
+  "code_sample": [
+    {
+      "title": "プレイヤーのやられ状態が終了したときのトリガー",
+      "code": [
+        "Trigger1 = HitOver = 1"
+      ]
     },
-    "category": "trigger",
-    "trigger": "HitOver",
-    "summary": "<p>攻撃を受けた場合のHitTimeが0になったかどうかを返します。</p>",
-    "syntax": [
-        "HitOver"
+    {
+      "title": "被弾状態でのけぞり時間の終了を判定",
+      "code": [
+        "Trigger1 = MoveType = H",
+        "Trigger1 = HitOver = 1"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "HitOver - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitOver"
+    },
+    {
+      "title": "HitOver - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitover"
+    },
+    {
+      "title": "HitOver - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitover"
+    },
+    {
+      "title": "HitOver - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitOver"
+    },
+    {
+      "id": "hitover-local-2002",
+      "title": "HitOver — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitOver",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitover-local-1.0",
+      "title": "HitOver — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#hitover",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitover-local-1.1",
+      "title": "HitOver — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitover",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitover-legacy",
+      "title": "移行前の説明・履歴・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/a5547e4517ff1fe1ca19e9488eceb977c804379a/src/content/triggers/HitOver.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitover-chaos",
+      "title": "HitOver — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/131.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitover-gethitvar-1.1",
+      "title": "GetHitVar — Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#gethitvar",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitover-hitdef-1.1",
+      "title": "HitDef — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitover-movetype-1.1",
+      "title": "StateDef MoveType — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#movetype",
+      "source_type": "official_document"
+    }
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [],
+  "documentation": {
+    "description": "<p>実行者自身が被弾状態にいるとき、のけぞり時間（hittime）が終了したかを返します。終了していれば1、終了前は0です。</p><p>引数はありません。被弾状態（<code>MoveType = H</code>）で使う、0 / 1の整数判定です。</p><p>揺れの終了はHitShakeOver、のけぞり時間の終了はHitOverで判定します。HitOverを参照するだけではステート変更やCtrlの付与は行われません。</p>",
+    "page_category": "被弾側のけぞり時間の終了判定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "hitover-local-2002",
+        "hitover-local-1.0",
+        "hitover-local-1.1",
+        "hitover-gethitvar-1.1",
+        "hitover-movetype-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>MUGEN 1.0 / 1.1のGetHitVar公式資料では、被弾状態で<code>GetHitVar(HitTime) &lt; 0</code>を判定することがHitOverと同等とされています。HitTime = 0だけを終了条件に置き換えないでください。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitover-gethitvar-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧summary/descriptionとCHAOS概要はHitTimeが0という表現ですが、公式GetHitVarは-1で停止しhittime&lt;0がHitOver相当と記載しています。旧本文を原位置に保持し、公開は満了と負数比較を使います。公式hittimeのカウント条件がhitshaketime&gt;0という文も揺れ中/終了後の関係を今回実機確認していないため、公開へ新たに転記しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "source_code",
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "hitover-legacy",
+          "hitover-chaos",
+          "hitover-gethitvar-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSはHitOver成立時のCtrl復帰と同フレームでは行動不可を報告しています。標準やられステートの処理とトリガー自体の効果を分離し、独自ステートを含む自動Ctrl復帰やフレーム順の保証にはしません。実機未確認です。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "hitover-chaos"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>page.versionは初導入ビルドの根拠にせずintroduced_inはnullです。HitShakeOver/HitOverの被弾状態以外の出力は公式概要の適用前提を外れており、0や1に固定しません。HitFallの明示的な未定義と、他2件の前提を外れた状態の未確認を区別します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "hitover-legacy",
+          "hitover-local-2002",
+          "hitover-local-1.0",
+          "hitover-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "攻撃を受けた場合のHitTimeが0になったかどうかを返します。<br>攻撃を受けた場合のHitTimeが0になったとき、1を返します。<br>共通のやられは、このトリガーにより通常ステートに移されています。やられステートをカスタマイズするときなどに使用します。",
-    "code_sample": [
-        {
-            "title": "プレイヤーのやられ状態が終了したときのトリガー",
-            "code": [
-                "Trigger1 = HitOver = 1"
-            ]
-        }
+    "source_refs": [
+      "hitover-local-2002",
+      "hitover-local-1.0",
+      "hitover-local-1.1"
     ],
-    "quote": [
-        {
-            "title": "HitOver - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitOver"
-        },
-        {
-            "title": "HitOver - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitover"
-        },
-        {
-            "title": "HitOver - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitover"
-        },
-        {
-            "title": "HitOver - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitOver"
-        }
-    ]
+    "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+  }
 }

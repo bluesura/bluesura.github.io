@@ -1,48 +1,220 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "HitFall",
-        "target": "",
-        "category": [
-            "ヒット情報",
-            "空中やられ落下状態の判定"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "HitFall",
+    "target": "",
+    "category": [
+      "ヒット情報",
+      "空中やられ落下状態の判定"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "HitFall",
+  "summary": "<p>プレイヤーがやられ状態で落下状態にあるかどうかを返します。</p>",
+  "syntax": [
+    "HitFall"
+  ],
+  "description": "プレイヤーがやられ状態で落下状態にあるかどうかを返します。<br>プレイヤーがやられ状態にあるとき、落下状態なら1、それ以外なら0を返します。",
+  "code_sample": [
+    {
+      "title": "プレイヤーが落下やられ状態でないときのトリガー",
+      "code": [
+        "Trigger1 = !HitFall"
+      ],
+      "visibility": "internal"
     },
-    "category": "trigger",
-    "trigger": "HitFall",
-    "summary": "<p>プレイヤーがやられ状態で落下状態にあるかどうかを返します。</p>",
-    "syntax": [
-        "HitFall"
+    {
+      "title": "被弾中でfallが無効な場合の判定",
+      "description": "<p>まずMoveType = Hを条件に置き、被弾状態以外の未定義値を使わない例です。</p>",
+      "code": [
+        "Trigger1 = MoveType = H",
+        "Trigger1 = !HitFall"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "HitFall - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitFall"
+    },
+    {
+      "title": "HitFall - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitfall"
+    },
+    {
+      "title": "HitFall - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitfall"
+    },
+    {
+      "title": "HitFall - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitFall"
+    },
+    {
+      "id": "hitfall-local-2002",
+      "title": "HitFall — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitFall",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfall-local-1.0",
+      "title": "HitFall — 保存済み Elecbyte 1.0 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#hitfall",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfall-local-1.1",
+      "title": "HitFall — 保存済み Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitfall",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfall-legacy",
+      "title": "移行前の説明・履歴・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/a5547e4517ff1fe1ca19e9488eceb977c804379a/src/content/triggers/HitFall.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitfall-chaos",
+      "title": "HitFall — MUGEN CNS WIKI CHAOS@予定",
+      "url": "https://w.atwiki.jp/mugencns/pages/130.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitfall-gethitvar-1.1",
+      "title": "GetHitVar — Elecbyte 1.1b1 Trigger Reference",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#gethitvar",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfall-hitdef-1.1",
+      "title": "HitDef — Elecbyte 1.1b1 State Controller Reference",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfall-movetype-1.1",
+      "title": "StateDef MoveType — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#movetype",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitfall-fallset-1.1",
+      "title": "HitFallSet — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitfallset",
+      "source_type": "official_document"
+    }
+  ],
+  "syntax_kind": "nullary",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [],
+  "documentation": {
+    "description": "<p>実行者自身が被弾状態にいるとき、受けた攻撃のfallフラグを返します。fallが有効なら1、無効なら0です。</p><p>引数はありません。被弾状態（<code>MoveType = H</code>）で使う、0 / 1の整数判定です。</p><p>被弾状態以外での戻り値は公式資料では未定義です。通常のジャンプの下降、現在のY速度、地面への着地を判定する値としては使いません。</p>",
+    "page_category": "被弾側のfallフラグ判定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "hitfall-local-2002",
+        "hitfall-local-1.0",
+        "hitfall-local-1.1",
+        "hitfall-gethitvar-1.1",
+        "hitfall-movetype-1.1"
+      ],
+      "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>HitDefのfallは、相手を空中で操作可能な状態へ戻さず地面まで倒れるやられにする設定です。空中で受けた攻撃にはair.fallもあります。被弾後のfall変数はHitFallSetで変更できるため、HitFallは攻撃側に最初に書かれた設定だけを固定的に読み出すものではありません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitfall-hitdef-1.1",
+          "hitfall-fallset-1.1",
+          "hitfall-local-2002",
+          "hitfall-local-1.0",
+          "hitfall-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧!HitFall単独の例は原位置に保持して内部へ。公式は被弾状態以外の出力を未定義とするため、公開例はMoveType=Hを先に確認します。CHAOSのGetHitVar(Fall)との対応と新たに攻撃を受けるまで持続するかという疑問符を保持し、被弾状態を外れた後の値やHitFallSet/特殊攻撃での更新境界を推測しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "hitfall-legacy",
+          "hitfall-chaos",
+          "hitfall-local-2002",
+          "hitfall-local-1.0",
+          "hitfall-local-1.1",
+          "hitfall-fallset-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>page.versionは初導入ビルドの根拠にせずintroduced_inはnullです。HitShakeOver/HitOverの被弾状態以外の出力は公式概要の適用前提を外れており、0や1に固定しません。HitFallの明示的な未定義と、他2件の前提を外れた状態の未確認を区別します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "hitfall-legacy",
+          "hitfall-local-2002",
+          "hitfall-local-1.0",
+          "hitfall-local-1.1"
+        ],
+        "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "description": "プレイヤーがやられ状態で落下状態にあるかどうかを返します。<br>プレイヤーがやられ状態にあるとき、落下状態なら1、それ以外なら0を返します。",
-    "code_sample": [
-        {
-            "title": "プレイヤーが落下やられ状態でないときのトリガー",
-            "code": [
-                "Trigger1 = !HitFall"
-            ]
-        }
+    "source_refs": [
+      "hitfall-local-2002",
+      "hitfall-local-1.0",
+      "hitfall-local-1.1"
     ],
-    "quote": [
-        {
-            "title": "HitFall - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitFall"
-        },
-        {
-            "title": "HitFall - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitfall"
-        },
-        {
-            "title": "HitFall - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitfall"
-        },
-        {
-            "title": "HitFall - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/HitFall"
-        }
-    ]
+    "comment": "2026-10-05: 保存済み公式3世代・GetHitVar/HitDefとCHAOSの一次研究本文を照合。実機未検証。"
+  }
 }

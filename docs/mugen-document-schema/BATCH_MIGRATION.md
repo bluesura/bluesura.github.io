@@ -1248,3 +1248,27 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・297テスト・263ページビルド・261 URL/194比較対象ページHTML検査を通過。GameWidthのRC4履歴を通常幅、ScreenHeightのText/Params例・ScreenWidthの16単位例・CameraZoomの概要・GameHeightの1.0条件例を390pxで確認し、表示幅と検査タブを復元。内部注記17件追加で463件、未対応旧履歴135項目、未表示フィールド29ページ。次はLeftEdge・RightEdge・TopEdge・BottomEdgeです。
+
+## 2026-10-06：screen-edges-01
+
+LeftEdge / RightEdge / TopEdge / BottomEdgeの4件で累計187件（主要・補助16件＋66バッチ171件）、対象内の残り47件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/screen-edges-01/ に保存しました。
+
+- MUGEN 1.1の引数なし/float、画面四端のステージ基準座標・実行者のローカル単位を整理。XはPos X + CameraPos X、Yは地面基準のPos Yで比較し、Facingで左右が切り替わるFrontEdge/BackEdgeと分離しました。旧構文・関連リンク・本文・メタ情報・Q&A・例・図・出典を保持します。
+- 1.1公式の等価式（左右はCameraPos X ± GameWidth / 2、上はPos Y - ScreenPos Y、下はこれにGameHeight加算）と有効な公式条件例は維持。RightEdgeの公式FormatがLeftEdgeという転記差を内部へ残し、構文はRightEdgeを使用します。公式追加履歴はNew in 1.1で、個別の初導入ビルドは推定せずnullです。
+- [CHAOSの座標研究](https://w.atwiki.jp/mugencns/pages/95.html)も照合し、現在の画面端とステージ全体の境界・移動可能範囲を区別。Win/1.0の幅・端・丸め研究を1.1の固定ビルドの実測へ一般化しません。
+- 旧履歴12項目を個別対応付け。Game寸法が変わると各端も一律連動するとする記録は内部へ残し、ズーム中心/カメラ位置やLocalCoordの組合せを未確認のまま保持しました。
+- 旧px距離、FVar(0)の裸の代入行、BottomEdgeを代入先に見せる関係式、画面外条件だけでHelper/Projectileを安全に削除するとする例をinternalへ。上下Q&Aの概ねGameHeightという関係も保持して内部へ移し、基準位置の上下と画像全体を区別する公開Q&Aへ整理しました。
+- 新しい公開例は左右/上下の端の間にある基準位置を2行のTrigger1で判定し、両端を含むことと片軸だけの条件であることを明記。原位置の図・長いaltをinternalへ保持し、元画像は削除していません。
+- スキーマ・レンダラー・CSS・レジストリは変更なし。LocalCoord・解像度・ズーム・リダイレクト・端差の等価性・破棄運用の実機検証は未実施です。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch screen-edges-01
+npm run mugen:batch -- --batch screen-edges-01 --target LeftEdge --target RightEdge --target TopEdge --target BottomEdge
+npm run mugen:batch -- --batch screen-edges-01 --target LeftEdge --target RightEdge --target TopEdge --target BottomEdge --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・303テスト・263ページビルド・261 URL/198比較対象ページHTML検査を通過。LeftEdgeを通常幅、RightEdgeのコード欄・TopEdgeの仕様/FAQ・BottomEdgeの条件例を390pxで確認し、表示幅と検査タブを復元。内部注記17件追加で480件、未対応旧履歴123項目、未表示フィールド29ページ。次はFrontEdge・BackEdgeです。

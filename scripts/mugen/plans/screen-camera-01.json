@@ -1,0 +1,1478 @@
+{
+  "id": "screen-camera-01",
+  "reviewed_on": "2026-10-05",
+  "description": "画面左上基準とカメラの基準位置/座標空間、RC2/RC3修正履歴を整理。旧Round案内・図・別エンジン研究を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "ScreenPosX",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-local-2002",
+            "title": "ScreenPos — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ScreenPos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-local-1.0",
+            "title": "ScreenPos — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#screenpos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-local-1.1",
+            "title": "ScreenPos — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#screenpos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-legacy",
+            "title": "移行前の本文・履歴・例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/7fede5f7e326eeda5fb596b123abbd972f6eed3f/src/content/triggers/ScreenPosX.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>軸を表す<code>X</code>を半角スペースの後へ指定します。このページは<code>ScreenPos X</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "screenposx-local-2002",
+                  "screenposx-local-1.0",
+                  "screenposx-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-chaos",
+            "title": "ScreenPos X — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/192.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-history-1.0",
+            "title": "ScreenPos Xの修正 — Elecbyte 1.0 History",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc2",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-history-1.1",
+            "title": "ScreenPos Xの修正 — Elecbyte 1.1b1 History",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-0-rc2",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-size-1.0",
+            "title": "GameWidth — Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#gamewidth",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-size-1.1",
+            "title": "GameWidth — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gamewidth",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-screen-size-1.1",
+            "title": "ScreenWidth — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#screenwidth",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-pos-1.1",
+            "title": "Posの基準 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-float-1.1",
+            "title": "整数への変換と警告 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#avoiding-warnings",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposx-ikemen-issue",
+            "title": "IKEMEN GOのExplod/HitFallVel LocalCoord不具合報告 #188",
+            "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/188",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "GameWidthで基準位置の左右範囲を調べる（MUGEN 1.0）",
+            "description": "<p>MUGEN 1.0の公式資料に基づく1軸の条件です。GameWidthは実行者の座標空間の値で、ウィンドウの描画ピクセル数を固定値で代入する式ではありません。MUGEN 1.1のズームを含む用途は座標空間を別途確認してください。</p>",
+            "code": [
+              "Trigger1 = ScreenPos X >= 0 && ScreenPos X < GameWidth"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "標準320単位の幅を前提に、基準位置を調べる",
+            "description": "<p>2002.04.14系の標準320単位を前提にした半開区間です。0を含み320を含みません。小数部分を維持し、別の座標空間へ固定値を流用しません。</p>",
+            "code": [
+              "Trigger1 = ScreenPos X = [0,320)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身の基準位置の水平座標を、画面左端を0とするfloatで返します。左端より左は負、右は正です。キャラクターの向きで左右の符号は変わりません。</p><p><code>ScreenPos X</code>のように半角スペースを入れて軸を指定します。Pos Xは画面中央が基準で、ScreenPosとは0の位置が異なります。整数を要求する項目へ渡すときは、必要な丸め方に応じてFloorやCeilを使います。</p>",
+            "page_category": "画面左端基準の現在X座標取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "screenposx-local-2002",
+                "screenposx-local-1.0",
+                "screenposx-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>共通の既存座標図とaltを保持してinternalへ。図の上向きY軸、Posの絶対座標表記、CameraPos/GameWidth式の座標空間やズーム条件は整理が必要です。今回図を修正せず、解像度・LocalCoord・ズーム・リダイレクトの組合せでの実機確認を保留しています。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "screenposx-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "version_change",
+              "content": "<p>MUGEN 1.0 RC2でScreenPos Xの不具合が修正されました。公式履歴には修正対象が記載されていますが、具体的なずれの再現条件までは記されていません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "screenposx-history-1.0",
+                  "screenposx-history-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "legacy_index": 0,
+              "change": "fixed",
+              "at": "mugen-1.0-rc2"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧version[1]とIKEMEN GO issue #188を別エンジンの記録として保持します。元のissueはExplodのスケール/HitFallVelがLocalCoordを考慮しないという2020年の報告で、ScreenPos Yをfloorするコードを含みますが、ScreenPosの型やX/Yの一律丸めがMUGENでも必須という証拠にはしません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "screenposx-legacy",
+                  "screenposx-ikemen-issue"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal",
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧本文のPosをステージ絶対座標とする説明とRound()の案内は原位置に保持し、公開側を訂正しました。保存済み公式のTrigger一覧には一般のRound()はなく、Floor/Ceilを案内します。2002/1.0公式のScreenPos書式がPos [component]、1.1冒頭がtop-rightという記載は、具体的な軸のDetails/CHAOSと異なるため資料差として保持。CHAOSのPos X=0を画面端とする表記も、PosとScreenPosを混ぜて公開しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "screenposx-local-2002",
+                  "screenposx-local-1.0",
+                  "screenposx-local-1.1",
+                  "screenposx-legacy",
+                  "screenposx-chaos",
+                  "screenposx-pos-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>画面左右の条件は基準位置の1軸を調べるものです。範囲には同じ座標空間の幅・高さを使います。MUGEN 1.0の公式例はGameWidth/GameHeightを使用しています。1.1ではGameWidth/GameHeightはカメラズームに応じて変わり、ScreenWidth/ScreenHeightはズームの影響を受けません。表示する用途に合わせて座標空間を確認してください。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "screenposx-size-1.0",
+                  "screenposx-size-1.1",
+                  "screenposx-screen-size-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧固定幅の閉区間[0,319]は原位置に保存してinternalへ。floatの319より大きく320未満の部分を除くため、標準320単位を想定する新例は[0,320)へ。旧GameWidth例はMUGEN 1.0の資料に基づく例として保持し、1.1のズーム/LocalCoordと画面描画ピクセルの一致を保証しません。CHAOSのScreenPos X - Pos Xで半幅を得る報告と拡縮を認識できないという注意も適用条件の研究として内部に残します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "screenposx-legacy",
+                  "screenposx-chaos",
+                  "screenposx-size-1.0",
+                  "screenposx-size-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "screenposx-local-2002",
+              "screenposx-local-1.0",
+              "screenposx-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入の確定、ズーム/LocalCoord・画面描画座標・リダイレクトの組合せと旧不具合の再現は実機未確認。原文・図・研究を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "ScreenPosY",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-local-2002",
+            "title": "ScreenPos — 保存済み Elecbyte 2002.04.14 Trigger Reference",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ScreenPos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-local-1.0",
+            "title": "ScreenPos — 保存済み Elecbyte 1.0 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#screenpos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-local-1.1",
+            "title": "ScreenPos — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#screenpos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-legacy",
+            "title": "移行前の本文・履歴・例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/7fede5f7e326eeda5fb596b123abbd972f6eed3f/src/content/triggers/ScreenPosY.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>軸を表す<code>Y</code>を半角スペースの後へ指定します。このページは<code>ScreenPos Y</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "screenposy-local-2002",
+                  "screenposy-local-1.0",
+                  "screenposy-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-chaos",
+            "title": "ScreenPos Y — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/193.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-history-1.0",
+            "title": "ScreenPos Yの修正 — Elecbyte 1.0 History",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc3",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-history-1.1",
+            "title": "ScreenPos Yの修正 — Elecbyte 1.1b1 History",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#version-1-0-rc3",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-size-1.0",
+            "title": "GameHeight — Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#gameheight",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-size-1.1",
+            "title": "GameHeight — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gameheight",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-screen-size-1.1",
+            "title": "ScreenHeight — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#screenheight",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-pos-1.1",
+            "title": "Posの基準 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-float-1.1",
+            "title": "整数への変換と警告 — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#avoiding-warnings",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "screenposy-ikemen-issue",
+            "title": "IKEMEN GOのExplod/HitFallVel LocalCoord不具合報告 #188",
+            "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/188",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "GameHeightで基準位置の上下範囲を調べる（MUGEN 1.0）",
+            "description": "<p>MUGEN 1.0の公式資料に基づく1軸の条件です。GameHeightは実行者の座標空間の値で、ウィンドウの描画ピクセル数を固定値で代入する式ではありません。MUGEN 1.1のズームを含む用途は座標空間を別途確認してください。</p>",
+            "code": [
+              "Trigger1 = ScreenPos Y >= 0 && ScreenPos Y < GameHeight"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "標準240単位の高さを前提に、基準位置を調べる",
+            "description": "<p>2002.04.14系の標準240単位を前提にした半開区間です。0を含み240を含みません。小数部分を維持し、別の座標空間へ固定値を流用しません。</p>",
+            "code": [
+              "Trigger1 = ScreenPos Y = [0,240)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者自身の基準位置の垂直座標を、画面上端を0とするfloatで返します。上端より上は負、下は正です。基準位置が画面内でも、体や画像の全体が画面内に収まるとは限りません。</p><p><code>ScreenPos Y</code>のように半角スペースを入れて軸を指定します。Pos Yは地面が基準で、ScreenPosとは0の位置が異なります。整数を要求する項目へ渡すときは、必要な丸め方に応じてFloorやCeilを使います。</p>",
+            "page_category": "画面上端基準の現在Y座標取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "screenposy-local-2002",
+                "screenposy-local-1.0",
+                "screenposy-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>共通の既存座標図とaltを保持してinternalへ。図の上向きY軸、Posの絶対座標表記、CameraPos/GameWidth式の座標空間やズーム条件は整理が必要です。今回図を修正せず、解像度・LocalCoord・ズーム・リダイレクトの組合せでの実機確認を保留しています。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "screenposy-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "version_change",
+              "content": "<p>MUGEN 1.0 RC3でcut stageにおけるScreenPos Yの値の計算が修正されました。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "screenposy-history-1.0",
+                  "screenposy-history-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "legacy_index": 0,
+              "change": "fixed",
+              "at": "mugen-1.0-rc3"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧version[1]とIKEMEN GO issue #188を別エンジンの記録として保持します。元のissueはExplodのスケール/HitFallVelがLocalCoordを考慮しないという2020年の報告で、ScreenPos Yをfloorするコードを含みますが、ScreenPosの型やX/Yの一律丸めがMUGENでも必須という証拠にはしません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "screenposy-legacy",
+                  "screenposy-ikemen-issue"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal",
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧本文のPosをステージ絶対座標とする説明とRound()の案内は原位置に保持し、公開側を訂正しました。保存済み公式のTrigger一覧には一般のRound()はなく、Floor/Ceilを案内します。2002/1.0公式のScreenPos書式がPos [component]、1.1冒頭がtop-rightという記載は、具体的な軸のDetails/CHAOSと異なるため資料差として保持。CHAOSのPos Y=0を画面端とする表記も、PosとScreenPosを混ぜて公開しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "screenposy-local-2002",
+                  "screenposy-local-1.0",
+                  "screenposy-local-1.1",
+                  "screenposy-legacy",
+                  "screenposy-chaos",
+                  "screenposy-pos-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>画面上下の条件は基準位置の1軸を調べるものです。範囲には同じ座標空間の幅・高さを使います。MUGEN 1.0の公式例はGameWidth/GameHeightを使用しています。1.1ではGameWidth/GameHeightはカメラズームに応じて変わり、ScreenWidth/ScreenHeightはズームの影響を受けません。表示する用途に合わせて座標空間を確認してください。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "screenposy-size-1.0",
+                  "screenposy-size-1.1",
+                  "screenposy-screen-size-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧固定幅の閉区間[0,239]は原位置に保存してinternalへ。floatの239より大きく240未満の部分を除くため、標準240単位を想定する新例は[0,240)へ。旧GameHeight例はMUGEN 1.0の資料に基づく例として保持し、1.1のズーム/LocalCoordと画面描画ピクセルの一致を保証しません。CHAOSの基準点より上へ体がはみ出すこととPos Yとの差から高さを得られないという注意も適用条件の研究として内部に残します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "screenposy-legacy",
+                  "screenposy-chaos",
+                  "screenposy-size-1.0",
+                  "screenposy-size-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "screenposy-local-2002",
+              "screenposy-local-1.0",
+              "screenposy-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入の確定、ズーム/LocalCoord・画面描画座標・リダイレクトの組合せと旧不具合の再現は実機未確認。原文・図・研究を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "CameraPosX",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "cameraposx-local-1.1",
+            "title": "CameraPos — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerapos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "cameraposx-legacy",
+            "title": "移行前の本文・履歴・例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/7fede5f7e326eeda5fb596b123abbd972f6eed3f/src/content/triggers/CameraPosX.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>軸を表す<code>X</code>を半角スペースの後へ指定します。このページは<code>CameraPos X</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "cameraposx-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "cameraposx-history-1.1",
+            "title": "CameraPosの1.1追加 — 保存済み公式履歴",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "cameraposx-pos-1.1",
+            "title": "PosとCameraPosの基準 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "カメラが基準位置より右にあるとき（MUGEN 1.1）",
+            "description": "<p>基準位置0を含めず、カメラの現在X位置が正の場合を調べます。</p>",
+            "code": [
+              "Trigger1 = CameraPos X > 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>MUGEN 1.1で、ステージに対するカメラの現在の水平位置をfloatで返します。カメラの基準位置は(0, 0)です。基準位置より右なら正、左なら負になります。</p><p><code>CameraPos X</code>のように半角スペースを入れて軸を指定します。戻り値の単位は実行者の座標空間です。現在位置を調べる値なので、今どちらへ動いているかという速度の判定とは分けて使います。</p>",
+            "page_category": "ステージに対するカメラの現在X座標取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "cameraposx-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>共通の既存座標図とaltを保持してinternalへ。図の上向きY軸、Posの絶対座標表記、CameraPos/GameWidth式の座標空間やズーム条件は整理が必要です。今回図を修正せず、解像度・LocalCoord・ズーム・リダイレクトの組合せでの実機確認を保留しています。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "cameraposx-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>公式の1.1更新履歴にCameraPosの追加が記録されています。MUGEN 1.0のTrigger一覧にはありません。MUGEN 1.1の式として使用してください。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "cameraposx-history-1.1",
+                  "cameraposx-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.versionの2012.08.31を原位置へ保持します。これはレジストリのAlpha 4のビルド日と同じですが、公式履歴はNew in 1.1にCameraPosの追加をまとめており、Alpha 4の初導入と確認できません。introduced_inはnullです。基準位置0と移動方向を混同せず、カメラの正負は位置として公開。旧個人記事は今回取得できておらず、導入日や特殊条件を補完しません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "cameraposx-legacy",
+                  "cameraposx-history-1.1",
+                  "cameraposx-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式CameraPosの例はCameraPos X>=0をleft of the centerと説明しますが、Detailsは右へ移動するとX増加です。0も含む>=0の左/右の説明には資料内の矛盾があるため、新例はX>0を基準位置の右として公開し、原資料は保持します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "cameraposx-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "cameraposx-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入の確定、ズーム/LocalCoord・画面描画座標・リダイレクトの組合せと旧不具合の再現は実機未確認。原文・図・研究を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "CameraPosY",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "cameraposy-local-1.1",
+            "title": "CameraPos — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerapos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "cameraposy-legacy",
+            "title": "移行前の本文・履歴・例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/7fede5f7e326eeda5fb596b123abbd972f6eed3f/src/content/triggers/CameraPosY.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>軸を表す<code>Y</code>を半角スペースの後へ指定します。このページは<code>CameraPos Y</code>です。一般形ではX / Yを選びます。括弧付きの数値式にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "cameraposy-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "cameraposy-history-1.1",
+            "title": "CameraPosの1.1追加 — 保存済み公式履歴",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "cameraposy-pos-1.1",
+            "title": "PosとCameraPosの基準 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "カメラが基準位置より上にあるとき（MUGEN 1.1）",
+            "description": "<p>基準位置0を含めず、カメラの現在Y位置が負の場合を調べます。</p>",
+            "code": [
+              "Trigger1 = CameraPos Y < 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>MUGEN 1.1で、ステージに対するカメラの現在の垂直位置をfloatで返します。カメラの基準位置は(0, 0)です。基準位置より上なら負、下なら正になります。</p><p><code>CameraPos Y</code>のように半角スペースを入れて軸を指定します。戻り値の単位は実行者の座標空間です。現在位置を調べる値なので、今どちらへ動いているかという速度の判定とは分けて使います。</p>",
+            "page_category": "ステージに対するカメラの現在Y座標取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "cameraposy-local-1.1"
+              ],
+              "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "content": "<p>共通の既存座標図とaltを保持してinternalへ。図の上向きY軸、Posの絶対座標表記、CameraPos/GameWidth式の座標空間やズーム条件は整理が必要です。今回図を修正せず、解像度・LocalCoord・ズーム・リダイレクトの組合せでの実機確認を保留しています。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "cameraposy-legacy"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>公式の1.1更新履歴にCameraPosの追加が記録されています。MUGEN 1.0のTrigger一覧にはありません。MUGEN 1.1の式として使用してください。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "cameraposy-history-1.1",
+                  "cameraposy-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.versionの2012.08.31を原位置へ保持します。これはレジストリのAlpha 4のビルド日と同じですが、公式履歴はNew in 1.1にCameraPosの追加をまとめており、Alpha 4の初導入と確認できません。introduced_inはnullです。基準位置0と移動方向を混同せず、カメラの正負は位置として公開。旧個人記事は今回取得できておらず、導入日や特殊条件を補完しません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "cameraposy-legacy",
+                  "cameraposy-history-1.1",
+                  "cameraposy-local-1.1"
+                ],
+                "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "cameraposy-local-1.1"
+            ],
+            "comment": "2026-10-05: 保存済み公式資料・更新履歴とCHAOS/旧出典の照合。実機検証は未実施。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入の確定、ズーム/LocalCoord・画面描画座標・リダイレクトの組合せと旧不具合の再現は実機未確認。原文・図・研究を保持。"
+      ]
+    }
+  ]
+}

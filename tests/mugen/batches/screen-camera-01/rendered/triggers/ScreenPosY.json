@@ -1,0 +1,80 @@
+{
+  "text": "ScreenPosY 距離 > 画面上端を基準にした現在のY座標 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 ScreenPos Y は、実行者の「画面上のY座標」を返します。画面上端を 0 とし、画面外の上側は負、下側は正の値になります。戻り値は float（浮動小数点数）です。Pos のようなステージ絶対座標ではなく、カメラ表示範囲（画面）に対する相対座標である点が特徴です。整数が必要な箇所へ渡す場合は、Floor()/Ceil()/Round() 等で丸めてから使用してください。 関連するトリガー： ScreenPosX , PosY , CameraPosY , GameHeight , ScreenHeight 構文 ScreenPos Y 引数 なし 仕様・バグ・エラー・変更点MUGEN 1.0 RC3 (2009-10-12) 以降cut stage（cuthigh/cutlow）条件下での ScreenPos Y の値計算不具合が修正されました（1.0安定版にも反映）。IKEMEN GOScreenPos を座標入力へ直接使う場合、Floor(ScreenPos Y) のように丸めて扱う運用例があります（実装・座標空間の差異によりズレが出るケースがあるため）。 コードサンプル画面内（上下）にいるか判定（1.0以降）GameHeight を使い、解像度（設定）に依存しない形で判定します。Trigger1 = ScreenPos Y >= 0 && ScreenPos Y < GameHeight 標準240高を前提にした簡易判定（2002.04.14系）古い環境で GameHeight が使えない場合の例です（標準の240高想定）。Trigger1 = ScreenPos Y = [0,239] 引用記事ScreenPos - Trigger Reference(version 2002.04.14)ScreenPos - Trigger Reference (MUGEN 1.0)ScreenPos - Trigger Reference (MUGEN 1.1 Beta 1)M.U.G.E.N Update History (ScreenPosの修正履歴)IKEMEN GO Issue: Explodの座標空間とScreenPosの運用例 公開日:2008.06.05 最終更新日:2026.01.04 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ScreenPosX",
+      "href": "./../Trigger/ScreenPosX.html"
+    },
+    {
+      "text": "PosY",
+      "href": "./../Trigger/PosY.html"
+    },
+    {
+      "text": "CameraPosY",
+      "href": "./../Trigger/CameraPosY.html"
+    },
+    {
+      "text": "GameHeight",
+      "href": "./../Trigger/GameHeight.html"
+    },
+    {
+      "text": "ScreenHeight",
+      "href": "./../Trigger/ScreenHeight.html"
+    },
+    {
+      "text": "ScreenPos - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#ScreenPos"
+    },
+    {
+      "text": "ScreenPos - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#ScreenPos"
+    },
+    {
+      "text": "ScreenPos - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#ScreenPos"
+    },
+    {
+      "text": "M.U.G.E.N Update History (ScreenPosの修正履歴)",
+      "href": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "text": "IKEMEN GO Issue: Explodの座標空間とScreenPosの運用例",
+      "href": "https://github.com/ikemen-engine/Ikemen-GO/issues/188"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-stage-coordinates-camera-edge-diagram.png"
+  ],
+  "code": []
+}

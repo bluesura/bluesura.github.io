@@ -1,0 +1,81 @@
+{
+  "text": "GameHeight システム情報 > ゲーム表示領域（ゲーム空間）の高さ取得 | 実装されたバージョン: 2009.10.25 引数 仕様・注意点 使用例 引用記事 現在の「ゲーム空間（カメラ表示範囲）」の高さを、プレイヤーのローカル座標系で実数として返します。ズーム倍率が変化する環境では値がズーム倍率に反比例して変動します（例：ズーム0.5ならGameHeightはズーム1.0時の2倍）。 関連するトリガー： GameWidth , ScreenHeight , ScreenPosX , ScreenPosY , TopEdge , BottomEdge 構文 GameHeight 引数 なし 仕様・バグ・エラー・変更点MUGEN 1.0 RC4GameWidth/GameHeightトリガーが追加されました。MUGEN 1.1 Beta 1カメラズームに反比例して値が変動する旨が明記され、ズーム非依存のScreenWidth/ScreenHeightが併記されました。 Q＆A(よくある質問)ScreenHeightとの違いは？GameHeightは「ゲーム空間（カメラ表示範囲）」の高さで、ズームの影響を受けます。ScreenHeightは「スクリーン空間」の高さで、ズームの影響を受けません。キャラによって戻り値が変わることがある？あります。戻り値は「プレイヤーのローカル座標系」で返るため、キャラ側のローカル座標（スケーリング設定）が異なると、同じ見た目でも数値がスケールして返ります。比較・閾値判定では、同一基準のローカル座標で統一するのが安全です。 コードサンプル画面中央より上側にいるか判定（ズーム対応）ScreenPosと組み合わせて、画面中心を境に上下判定します。[State -2, IsAboveCenter]Type = VarSetTrigger1 = 1Var(0) = (ScreenPos Y < GameHeight / 2) 画面下端に近いか判定（ズーム対応）「ゲーム空間」基準で下寄りかを判定します。[State -2, IsNearBottom]Type = VarSetTrigger1 = 1; 下端から100以内（プレイヤーローカル座標系）Var(1) = (ScreenPos Y > GameHeight - 100) 引用記事GameHeight - Trigger Reference(version 1.0)GameHeight - Trigger Reference(version 1.1)GameHeight - M.U.G.E.N wikiMUGEN History (Elecbyte) 公開日:2008.06.05 最終更新日:2026.01.04 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "GameWidth",
+      "href": "./../Trigger/GameWidth.html"
+    },
+    {
+      "text": "ScreenHeight",
+      "href": "./../Trigger/ScreenHeight.html"
+    },
+    {
+      "text": "ScreenPosX",
+      "href": "./../Trigger/ScreenPosX.html"
+    },
+    {
+      "text": "ScreenPosY",
+      "href": "./../Trigger/ScreenPosY.html"
+    },
+    {
+      "text": "TopEdge",
+      "href": "./../Trigger/TopEdge.html"
+    },
+    {
+      "text": "BottomEdge",
+      "href": "./../Trigger/BottomEdge.html"
+    },
+    {
+      "text": "GameHeight - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#gameheight"
+    },
+    {
+      "text": "GameHeight - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#gameheight"
+    },
+    {
+      "text": "GameHeight - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/GameHeight"
+    },
+    {
+      "text": "MUGEN History (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-stage-coordinates-camera-edge-diagram.png"
+  ],
+  "code": []
+}

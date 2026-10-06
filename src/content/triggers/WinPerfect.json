@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.11",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "WinPerfect",
   "category": "trigger",
@@ -21,7 +23,8 @@
       "src": "mugen-win-lose-conditions.png",
       "width": "640",
       "height": "480",
-      "alt": "MUGENのラウンド結果判定フロー図。勝利（WinKO, WinTime, WinPerfect）、引き分け（DrawGame）、敗北（LoseKO, LoseTime）の各条件からMatchOver（試合終了）に至るプロセスと、RoundState=3以降の判定タイミングの解説。"
+      "alt": "MUGENのラウンド結果判定フロー図。勝利（WinKO, WinTime, WinPerfect）、引き分け（DrawGame）、敗北（LoseKO, LoseTime）の各条件からMatchOver（試合終了）に至るプロセスと、RoundState=3以降の判定タイミングの解説。",
+      "visibility": "internal"
     }
   ],
   "syntax": [
@@ -47,7 +50,12 @@
           "title": "WinPerfect - Trigger Reference (MUGEN 1.1 Beta 1)",
           "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#win"
         }
-      ]
+      ],
+      "visibility": "internal"
+    },
+    {
+      "q": "Life = LifeMaxだけでパーフェクト勝利を判定できる？",
+      "a": "<p>自分の現在の体力が最大という情報だけでは、ラウンドに勝っているかや、チーム全体がパーフェクト扱いかを判定できません。パーフェクト勝利の演出条件にはWinPerfectを使い、自前の条件で判定する場合は勝敗・チームの対象範囲も別に設計してください。</p>"
     }
   ],
   "code_sample": [
@@ -61,7 +69,8 @@
         "Persistent = 0",
         "V = 1",
         "Value = 1"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "フラグのリセット",
@@ -72,13 +81,36 @@
         "Trigger1 = RoundState = 0",
         "V = 1",
         "Value = 0"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "WinPerfectが成立しているか調べる",
+      "description": "<p>条件行だけを示します。演出やフラグの更新を1回に限る場合は、実行するステート・初期化・再実行防止を別に用意してください。</p>",
+      "code": [
+        "Trigger1 = WinPerfect"
+      ]
+    },
+    {
+      "title": "WinPerfectが成立していないか調べる",
+      "description": "<p>勝利の未成立も含む否定条件です。この条件だけで敗北や引き分けを判断しません。</p>",
+      "code": [
+        "Trigger1 = !WinPerfect"
+      ]
+    },
+    {
+      "title": "KOによるパーフェクト勝利",
+      "description": "<p>終了理由とパーフェクト扱いを別々に調べます。同じTrigger1は両方の成立が必要です。</p>",
+      "code": [
+        "Trigger1 = WinKO",
+        "Trigger1 = WinPerfect"
       ]
     }
   ],
   "quote": [
     {
-        "title": "Win - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Win"
+      "title": "Win - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Win"
     },
     {
       "title": "Win / WinPerfect - Trigger Reference (MUGEN 1.0)",
@@ -91,6 +123,205 @@
     {
       "title": "RoundState - Trigger Reference (MUGEN 1.1 Beta 1)",
       "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#RoundState"
+    },
+    {
+      "id": "winperfect-local-2002",
+      "title": "WinPerfect — 保存済み Elecbyte 2002.04.14のWin項目",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Win",
+      "source_type": "official_document"
+    },
+    {
+      "id": "winperfect-local-1.0",
+      "title": "WinPerfect — 保存済み Elecbyte 1.0のWin項目",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#win",
+      "source_type": "official_document"
+    },
+    {
+      "id": "winperfect-local-1.1",
+      "title": "WinPerfect — 保存済み Elecbyte 1.1b1のWin項目",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#win",
+      "source_type": "official_document"
+    },
+    {
+      "id": "winperfect-legacy",
+      "title": "移行前の本文・履歴・使用例・FAQ",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/1d10476f95cca130c3ab18c32ec4579ee4806f64/src/content/triggers/WinPerfect.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "winperfect-chaos",
+      "title": "WinPerfect — CHAOSのラウンド結果研究",
+      "url": "https://w.atwiki.jp/mugencns/pages/112.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "winperfect-roundstate-1.1",
+      "title": "RoundState — ラウンドの進行状態",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundstate",
+      "source_type": "official_document",
+      "visibility": "internal"
+    },
+    {
+      "id": "winperfect-triggers-1.1",
+      "title": "トリガーとPersistent — Elecbyte 1.1b1 CNS",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#triggers",
+      "source_type": "official_document",
+      "visibility": "internal"
+    },
+    {
+      "id": "winperfect-matchover-1.1",
+      "title": "MatchOver — 試合の決着判定",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#matchover",
+      "source_type": "official_document"
     }
-  ]
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "return_type": [
+    "int"
+  ],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤー（チーム戦ではそのチーム）がパーフェクト扱いでラウンドに勝利していれば<code>1</code>、それ以外は<code>0</code>を整数で返します。引数はありません。</p><p>WinKO / WinTimeはラウンドが終わった理由を分ける判定で、WinPerfectはパーフェクト扱いという別の条件です。自分の現在のLifeがLifeMaxと等しいだけでは、ラウンドの勝利やチーム全体のパーフェクト扱いを判定できません。</p>",
+    "page_category": "パーフェクト扱いのラウンド勝利を判定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "winperfect-local-2002",
+        "winperfect-local-1.0",
+        "winperfect-local-1.1"
+      ],
+      "comment": "2026-10-06: 保存済み公式3世代・CHAOS Win/WinKO/WinTimeとWinPerfect検索結果本文・旧フォーラムを照合。資料確認であり実機検証ではない。固定数値の条件比較はラウンド結果フラグの更新を再現しない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>!WinPerfectは「WinPerfectが0」という条件です。まだラウンドの勝利が成立していない区間も含むため、否定条件だけで敗北・引き分けや別の勝利理由を判定しないでください。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "winperfect-local-2002",
+          "winperfect-local-1.0",
+          "winperfect-local-1.1"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代・CHAOS Win/WinKO/WinTimeとWinPerfect検索結果本文・旧フォーラムを照合。資料確認であり実機検証ではない。固定数値の条件比較はラウンド結果フラグの更新を再現しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧本文はRoundState = 3以降を勝敗確定の帯とし、共有図も結果からMatchOverへ至る流れを示す。進行状態と結果の更新は別で、試合の最終決着とも異なる。旧図のsrc/alt/寸法・本文を保持してinternalへ。全プレイヤー/チーム/Turns・Pause/HitPause・結果の取り消しを含む正確な更新フレームは実機未確認で、3による即時/最終確定の保証を公開しない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "winperfect-local-2002",
+          "winperfect-local-1.0",
+          "winperfect-local-1.1",
+          "winperfect-roundstate-1.1",
+          "winperfect-matchover-1.1",
+          "winperfect-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代・CHAOS Win/WinKO/WinTimeとWinPerfect検索結果本文・旧フォーラムを照合。資料確認であり実機検証ではない。固定数値の条件比較はラウンド結果フラグの更新を再現しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧セット/リセット例は-2でRoundState = 3と結果を調べPersistent = 0により1回だけと説明する。CNS公式のPersistent = 0はそのステートにいる間の1回であり、ラウンド/結果単位のラッチそのものではない。負のステートでの適用/ビルド差、0区間のフラグ初期化と更新順・スキップ・Helper・未定義変数用途を今回実測していない。コード・説明・変数番号を原位置へ内部保存し、公開例で1回捕捉を保証しない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "winperfect-legacy",
+          "winperfect-triggers-1.1"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代・CHAOS Win/WinKO/WinTimeとWinPerfect検索結果本文・旧フォーラムを照合。資料確認であり実機検証ではない。固定数値の条件比較はラウンド結果フラグの更新を再現しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>公式3世代はno life lostと説明するが、旧Q&Aの「Lifeが途中で減った履歴を含む」という追記までは明示しない。CHAOS WinPerfect検索結果本文は、勝利かつ体力最大、Simulはパートナーも最大、被弾後や勝利判定後の回復でも1になると記録する。旧Q&A/c/rと公式・研究の衝突を保持し、履歴判定/回復後不可を公開から外す。本文直接取得は失敗し、検索本文以上の内容、正確なruntime/互換プロファイル・体力補正・チーム/Turnsの再現は未確認。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "winperfect-local-2002",
+          "winperfect-local-1.0",
+          "winperfect-local-1.1",
+          "winperfect-legacy",
+          "winperfect-chaos"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代・CHAOS Win/WinKO/WinTimeとWinPerfect検索結果本文・旧フォーラムを照合。資料確認であり実機検証ではない。固定数値の条件比較はラウンド結果フラグの更新を再現しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.version=2002.04.14と原文を保持。公式3世代への掲載から最初の実装を推定せずintroduced_inはnull。実機/ビルド/互換プロファイルごとの確認は未実施で、資料確認をruntime_testへ変更しない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "winperfect-local-2002",
+          "winperfect-local-1.0",
+          "winperfect-local-1.1",
+          "winperfect-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代・CHAOS Win/WinKO/WinTimeとWinPerfect検索結果本文・旧フォーラムを照合。資料確認であり実機検証ではない。固定数値の条件比較はラウンド結果フラグの更新を再現しない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "winperfect-local-2002",
+      "winperfect-local-1.0",
+      "winperfect-local-1.1"
+    ],
+    "comment": "2026-10-06: 保存済み公式3世代・CHAOS Win/WinKO/WinTimeとWinPerfect検索結果本文・旧フォーラムを照合。資料確認であり実機検証ではない。固定数値の条件比較はラウンド結果フラグの更新を再現しない。"
+  }
 }

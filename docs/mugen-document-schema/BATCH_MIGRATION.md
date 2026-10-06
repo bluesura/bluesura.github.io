@@ -1412,3 +1412,27 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・337テスト・263ページビルド・261 URL/217比較対象ページHTML検査を通過。MatchNoを通常幅、番号条件例とMatchOverの世代別仕様/コード例を390pxで確認し、内部非表示と表示幅/検査タブの復元を確認。内部注記10件追加で576件、未対応旧履歴95項目、未表示フィールド29ページ。次はWin・WinKO・WinTime・WinPerfectです。
+
+## 2026-10-06：round-win-01
+
+Win / WinKO / WinTime / WinPerfectの4件で累計210件（主要・補助16件＋73バッチ194件）、対象内の残り24件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/round-win-01/ に保存しました。
+
+- 全4件を引数なし・整数1/0のラウンド結果参照として構造化。評価プレイヤー/チームの勝利、KO/時間切れの理由、パーフェクト扱い、試合全体のMatchOverを分離しました。旧全文・メタ・構文・3履歴・関連リンク・画像src/alt/寸法・8例・Q&A/c/r・引用を保持し、スキーマ/レジストリ/レンダラー/CSSは変更していません。
+- 保存済み公式3世代はWin項目内で4構文をまとめて定義。WinKOは相手の現在Life=0だけ、WinTimeは時間切れ発生だけでは勝利を保証しないことを整理し、否定条件は未成立区間も含むと明示しました。WinKOの公開例はWinとの併用で別理由の勝利を限定、WinPerfectの例はWinKOとの併用で終了理由とパーフェクト扱いを別々に確認します。
+- WinのMatchOver遅延履歴は1.0/1.1の通常behaviorへ対応。旧RoundState=3推奨のWin/WinKO運用注意は[2014年の特定キャラ/技の相談](https://mugenfreeforall.com/topic/19602-winroundstate-help-needed/)にLife/Alive/P2Life/EnemyNear・StateNo/PrevStateNo・専用777番という前提があり、一般推奨にはしません。履歴と引用は内部へ残しました。
+- 旧-2のセット/リセット例8件と共有結果図は内部へ保持。Persistent=0の「そのステートにいる間1回」とラウンド/結果単位のラッチは別であり、負のステートでの適用・0区間の初期化/スキップ/更新順は未実測です。公開例へ変数や副作用・1回実行の保証を追加していません。
+- [CHAOS Win](https://w.atwiki.jp/mugencns/pages/109.html)の取得前死亡による勝利取り消し、取得後との違い、Varでのカウント制約とIeflse表記を保持。[WinKO](https://w.atwiki.jp/mugencns/pages/110.html)/[WinTime](https://w.atwiki.jp/mugencns/pages/111.html)の時間切れ後のKO切替・同時に1にならない報告、デバッグ蘇生の差も研究として内部に保存し、全ビルドの永久確定フラグに変換しません。
+- WinPerfectは公式no life lostから「途中で減った履歴を含む」と断定していた旧Q&Aと、[CHAOS検索結果本文](https://w.atwiki.jp/mugencns/pages/112.html)の被弾後/勝利判定後に回復しても1・Simulはパートナーも最大という記録が食い違います。直接本文取得は失敗したため確認範囲を明記し、原文/Q&A/c/r/資料差を内部へ保存。公開はパーフェクト扱いの判定と、現在の自分のLifeだけでは勝利/チームを判定できない説明へ訂正しました。回復前後の履歴条件を推定していません。
+- 初導入null、結果の更新/取り消し時点、Simul/Turns、体力補正/回復、負のステート、互換設定は実機未検証。公開条件を固定1/0で検査し、否定とAND条件を確認しています。エンジンの勝敗計算/更新順を再現するテストではありません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch round-win-01
+npm run mugen:batch -- --batch round-win-01 --target Win --target WinKO --target WinTime --target WinPerfect
+npm run mugen:batch -- --batch round-win-01 --target Win --target WinKO --target WinTime --target WinPerfect --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・342テスト・263ページビルド・261 URL/221比較対象ページHTML検査を通過。Winを通常幅、WinKOのWin併用例・WinTimeの概要・WinPerfectの訂正Q&A/KO併用例を390pxで確認し、内部非表示と表示幅/検査タブの復元を確認。内部注記18件追加で594件、未対応旧履歴92項目、未表示フィールド29ページ。次はLose・LoseKO・LoseTime・DrawGameです。

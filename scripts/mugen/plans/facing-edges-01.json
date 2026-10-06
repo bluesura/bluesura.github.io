@@ -1,0 +1,987 @@
+{
+  "id": "facing-edges-01",
+  "reviewed_on": "2026-10-06",
+  "description": "前面/背面の画面端座標・Facing選択・片側の比較と境界を整理。原文/旧例/図/別エンジン研究と無効関連IDを保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "FrontEdge",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "frontedge-local-1.1",
+            "title": "FrontEdge — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#frontedge",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "frontedge-history-1.1",
+            "title": "画面端トリガーの1.1追加 — Elecbyte History",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "frontedge-pos-1.1",
+            "title": "Posの基準とステージ座標への変換 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "frontedge-camera-1.1",
+            "title": "CameraPosの実行者の座標単位 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerapos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "frontedge-dist-1.1",
+            "title": "FrontEdgeDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#frontedgedist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "frontedge-body-dist-1.1",
+            "title": "FrontEdgeBodyDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#frontedgebodydist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "frontedge-chaos",
+            "title": "ステージ端/画面端・キャラ幅の研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "frontedge-ikemen",
+            "title": "IKEMEN GO公式の互換性案内",
+            "url": "https://ikemen-engine.github.io/",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "frontedge-legacy",
+            "title": "移行前の本文・履歴・例・図と関連ID",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/c51646de06462b03b5f780c4ce571dd30d6c5a80/src/content/triggers/FrontEdge.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>MUGEN 1.1で、実行者の前面側の画面端のX座標を、ステージ基準のfloatで返します。引数はありません。右向き（Facing = 1）ならRightEdge、左向き（Facing = -1）ならLeftEdgeを選びます。</p><p>実行者から端までの距離ではなく、端そのものの位置です。単位は実行者のローカル座標系で、描画ピクセル数ではありません。Pos Xは画面中央基準なので、ステージ基準で比較するにはPos X + CameraPos Xを使います。</p>",
+            "page_category": "前面側の画面端X座標取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "frontedge-local-1.1",
+                "frontedge-pos-1.1",
+                "frontedge-camera-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+            }
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "FrontEdgeDist / FrontEdgeBodyDistとの違いは？",
+            "a": "<p>FrontEdgeは前面側の端のX座標です。FrontEdgeDistは実行者の基準軸からの距離、FrontEdgeBodyDistは前面側の幅バー端からの距離です。座標と距離、基準軸と幅バー端を使い分けます。</p>"
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "画面端はステージ全体の端と同じ？",
+            "a": "<p>常に同じとは限りません。FrontEdgeが調べるのは現在のカメラ表示範囲の前面側の端です。ステージ全体の境界とは分けて扱います。</p>"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "前面側の端より後ろにある（端上を含まない）",
+            "description": "<p>MUGEN 1.1の公式例に基づき両向きに対応します。前面側の端だけを比較する条件で、反対側の端より外にある基準位置でも真になることがあります。</p>",
+            "code": [
+              "Trigger1 = Facing * (Pos X + CameraPos X) < Facing * (FrontEdge)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "前面側の端上にある基準位置を含めて調べる",
+            "description": "<p>上の厳密な比較に等号を加えた条件です。前面端上またはそれより後ろを調べ、片側の条件だけで画面内全体を判定しません。</p>",
+            "code": [
+              "Trigger1 = Facing * (Pos X + CameraPos X) <= Facing * FrontEdge"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.1でFrontEdgeが追加されました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "frontedge-history-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>公式資料の等価式は<code>IfElse(Facing = 1, RightEdge, LeftEdge)</code>です。左右の端を固定して返すLeftEdge / RightEdgeと異なり、実行者の向きによって選ぶ端が変わります。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "frontedge-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>FrontEdgeDistは実行者の基準軸から、FrontEdgeBodyDistは前面側の幅バー端から画面端までの距離を返します。FrontEdgeは座標なので、同じ数値を返すトリガーとして置き換えません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "frontedge-local-1.1",
+                  "frontedge-dist-1.1",
+                  "frontedge-body-dist-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例は実行者の基準位置を前面側の端と比較する1軸の条件です。片側の端だけでは反対側の端や上下の範囲、体・画像の全体が画面内にあることを判定できません。厳密な&lt; / &gt;は端上を含みません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "frontedge-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧画面内側/背面側の画面外というラベル・裸のFVar代入/Abs距離例を原位置に保持します。FrontEdgeの片側比較は反対側へ大きく外れた基準位置にも真になり、画面全体の内側とは限りません。BackEdgeの公式例はPos X + CameraPos X &lt; BackEdgeで、公式の説明は背面端より左です。左向きの背面は右端なので、両向きの背面側画面外という旧説明とは一致しません。旧Facing依存せずという例も実際には現在のFacingで端と符号を選んでいます。代数的な符号・境界の確認と実機測定を区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "frontedge-local-1.1",
+                  "frontedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>IKEMEN GOの旧Q&Aと出典を別エンジンの内部研究へ保持。2026-10-06の公式サイトはMUGEN 1.1 Beta相当の互換性を掲げていますが、個別トリガー・全Release/Nightlyビルドの同一挙動を確認する実測ではありません。MUGENの公開ページへ未確認の互換性を混ぜません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "frontedge-ikemen",
+                  "frontedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧共通座標図と長いaltを原位置に保持してinternalへ。図のY軸・Posの絶対座標表記・ズーム/LocalCoord条件を整理するまで公開しません。CHAOSのWin/1.0の端・幅研究は1.1の固定ビルドの実測へ一般化しません。画像ファイルを保持します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "frontedge-chaos",
+                  "frontedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式New in 1.1の追加記録はありますが、最初の個別Alpha/Betaビルドは確認できません。旧page.versionを保持しintroduced_inはnullです。ズーム・LocalCoord・リダイレクト・幅・ScreenBoundの組合せは実機未検証です。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "frontedge-history-1.1",
+                  "frontedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "frontedge-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルド・LocalCoord/ズーム/リダイレクト/幅/ScreenBoundの実機確認は未実施。旧フィールド/未表示sample_code/研究/図を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "BackEdge",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "backedge-local-1.1",
+            "title": "BackEdge — 保存済み Elecbyte 1.1b1 Trigger Reference",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#backedge",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "backedge-history-1.1",
+            "title": "画面端トリガーの1.1追加 — Elecbyte History",
+            "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "backedge-pos-1.1",
+            "title": "Posの基準とステージ座標への変換 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#pos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "backedge-camera-1.1",
+            "title": "CameraPosの実行者の座標単位 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#camerapos",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "backedge-dist-1.1",
+            "title": "BackEdgeDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#backedgedist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "backedge-body-dist-1.1",
+            "title": "BackEdgeBodyDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#backedgebodydist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "backedge-chaos",
+            "title": "ステージ端/画面端・キャラ幅の研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "backedge-ikemen",
+            "title": "IKEMEN GO公式の互換性案内",
+            "url": "https://ikemen-engine.github.io/",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "backedge-legacy",
+            "title": "移行前の本文・履歴・例・図と関連ID",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/c51646de06462b03b5f780c4ce571dd30d6c5a80/src/content/triggers/BackEdge.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>MUGEN 1.1で、実行者の背面側の画面端のX座標を、ステージ基準のfloatで返します。引数はありません。右向き（Facing = 1）ならLeftEdge、左向き（Facing = -1）ならRightEdgeを選びます。</p><p>実行者から端までの距離ではなく、端そのものの位置です。単位は実行者のローカル座標系で、描画ピクセル数ではありません。Pos Xは画面中央基準なので、ステージ基準で比較するにはPos X + CameraPos Xを使います。</p>",
+            "page_category": "背面側の画面端X座標取得",
+            "associated_trigger": [
+              "FrontEdge",
+              "LeftEdge",
+              "RightEdge",
+              "BackEdgeDist",
+              "BackEdgeBodyDist",
+              "Facing",
+              "CameraPosX"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "backedge-local-1.1",
+                "backedge-pos-1.1",
+                "backedge-camera-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+            }
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "BackEdgeDist / BackEdgeBodyDistとの違いは？",
+            "a": "<p>BackEdgeは背面側の端のX座標です。BackEdgeDistは実行者の基準軸からの距離、BackEdgeBodyDistは背面側の幅バー端からの距離です。座標と距離、基準軸と幅バー端を使い分けます。</p>"
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "画面端はステージ全体の端と同じ？",
+            "a": "<p>常に同じとは限りません。BackEdgeが調べるのは現在のカメラ表示範囲の背面側の端です。ステージ全体の境界とは分けて扱います。</p>"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "背面側の端より外にある（両向きに対応）",
+            "description": "<p>右向きなら左端より左、左向きなら右端より右にある基準位置を調べます。端上を含まず、画像全体が見えなくなったかは判定しません。</p>",
+            "code": [
+              "Trigger1 = Facing * (Pos X + CameraPos X) < Facing * BackEdge"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "背面側の端上にある基準位置を含めて調べる",
+            "description": "<p>上の厳密な比較に等号を加えた条件です。背面端上またはそれより外を調べ、片側の条件だけで画面内全体を判定しません。</p>",
+            "code": [
+              "Trigger1 = Facing * (Pos X + CameraPos X) <= Facing * BackEdge"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.1でBackEdgeが追加されました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "backedge-history-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>公式資料の等価式は<code>IfElse(Facing = 1, LeftEdge, RightEdge)</code>です。左右の端を固定して返すLeftEdge / RightEdgeと異なり、実行者の向きによって選ぶ端が変わります。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "backedge-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>BackEdgeDistは実行者の基準軸から、BackEdgeBodyDistは背面側の幅バー端から画面端までの距離を返します。BackEdgeは座標なので、同じ数値を返すトリガーとして置き換えません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "backedge-local-1.1",
+                  "backedge-dist-1.1",
+                  "backedge-body-dist-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例は実行者の基準位置を背面側の端と比較する1軸の条件です。片側の端だけでは反対側の端や上下の範囲、体・画像の全体が画面内にあることを判定できません。厳密な&lt; / &gt;は端上を含みません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "backedge-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧画面内側/背面側の画面外というラベル・裸のFVar代入/Abs距離例を原位置に保持します。FrontEdgeの片側比較は反対側へ大きく外れた基準位置にも真になり、画面全体の内側とは限りません。BackEdgeの公式例はPos X + CameraPos X &lt; BackEdgeで、公式の説明は背面端より左です。左向きの背面は右端なので、両向きの背面側画面外という旧説明とは一致しません。旧Facing依存せずという例も実際には現在のFacingで端と符号を選んでいます。代数的な符号・境界の確認と実機測定を区別します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "backedge-local-1.1",
+                  "backedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>IKEMEN GOの旧Q&Aと出典を別エンジンの内部研究へ保持。2026-10-06の公式サイトはMUGEN 1.1 Beta相当の互換性を掲げていますが、個別トリガー・全Release/Nightlyビルドの同一挙動を確認する実測ではありません。MUGENの公開ページへ未確認の互換性を混ぜません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "backedge-ikemen",
+                  "backedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧共通座標図と長いaltを原位置に保持してinternalへ。図のY軸・Posの絶対座標表記・ズーム/LocalCoord条件を整理するまで公開しません。CHAOSのWin/1.0の端・幅研究は1.1の固定ビルドの実測へ一般化しません。画像ファイルを保持します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "backedge-chaos",
+                  "backedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式New in 1.1の追加記録はありますが、最初の個別Alpha/Betaビルドは確認できません。旧page.versionを保持しintroduced_inはnullです。ズーム・LocalCoord・リダイレクト・幅・ScreenBoundの組合せは実機未検証です。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "backedge-history-1.1",
+                  "backedge-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧associated_triggerのCameraPosは対応ページがありません。原配列は保持し、公開関連リンクだけを存在するCameraPosXへ訂正しました。旧Q&AのFrontEdgeの転記も保持し、このページの背面側の端として公開本文を整理しました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "backedge-legacy",
+                  "backedge-camera-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "backedge-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式資料・履歴と一次研究を照合。比較式はFacing=1/-1の代数的な確認であり、MUGEN実機検証は未実施。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入ビルド・LocalCoord/ズーム/リダイレクト/幅/ScreenBoundの実機確認は未実施。旧フィールド/未表示sample_code/研究/図を保持。"
+      ]
+    }
+  ]
+}

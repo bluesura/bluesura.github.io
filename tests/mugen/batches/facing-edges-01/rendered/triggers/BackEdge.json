@@ -1,0 +1,85 @@
+{
+  "text": "BackEdge 座標 > 背面側画面端（screen edge）のX座標（ステージ座標系） | 実装されたバージョン: 1.1 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 BackEdge は、実行者の「背面側」にある画面端（screen edge）の X座標 を、絶対ステージ座標をfloatとして返します。「背面側」は向き（Facing）に依存します。右向き（Facing = 1）なら背面側は左端、左向き（Facing = -1）なら背面側は右端です。 関連するステートコントローラー： ScreenBound 関連するトリガー： FrontEdge , LeftEdge , RightEdge , BackEdgeDist , BackEdgeBodyDist , Facing , CameraPos 構文 BackEdge 引数 なし 仕様・バグ・エラー・変更点MUGEN 1.1BackEdge は、FrontEdge / LeftEdge / RightEdge / TopEdge / BottomEdge と同時に、MUGEN 1.1 系で追加された「画面端座標トリガー」です。 Q＆A(よくある質問)BackEdgeDist / BackEdgeBodyDist と何が違いますか？BackEdge は背面側画面端の X座標（絶対ステージ座標）を返します。BackEdgeDist は実行者のX軸（axis）から背面側画面端までの 距離、BackEdgeBodyDist は幅バー端から背面側画面端までの 距離 を返します。「画面外に出たか」「画面端が何pxにあるか」を扱うなら BackEdge、「あと何pxで画面端か」を扱うなら BackEdgeDist/BackEdgeBodyDist が向いています。「画面端」はステージ端と同じですか？同一ではありません。FrontEdge が参照するのは現在のカメラ表示範囲の端（screen edge）です。カメラ追従やズーム、ScreenBound 等の制御により、画面端の座標は状況で変化します。Ikemen GO でも同じように使えますか？Ikemen GO は「M.U.G.E.N 1.1 Beta 相当の互換性」を目標にしているため、基本的には同系の記述を前提にできます。ただし互換エンジンはバージョン（Nightly/Release）や独自拡張によって差が出ることがあるため、最終的には対象ビルドでの実機確認を推奨します。 コードサンプル公式例：背面側画面端より外（背面側）に出たか判定する絶対ステージ座標系で比較し、実行者が背面側画面端より外側に出た状況を拾う例です。Trigger1 = Pos X + CameraPos X < BackEdge 向き（Facing）に依存せず、背面側へ画面外に出たかを1式で判定する右向き/左向きで不等号の向きが変わる問題を、Facing の符号で吸収します。Trigger1 = Facing * (Pos X + CameraPos X) < Facing * BackEdge 引用記事BackEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)M.U.G.E.N Update History - New in 1.1 (Elecbyte)LeftEdge / RightEdge / CameraPos / Facing - Trigger Reference (MUGEN 1.1 / Elecbyte) 公開日:2008.06.05 最終更新日:2025.12.26 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ScreenBound",
+      "href": "./../State/ScreenBound.html"
+    },
+    {
+      "text": "FrontEdge",
+      "href": "./../Trigger/FrontEdge.html"
+    },
+    {
+      "text": "LeftEdge",
+      "href": "./../Trigger/LeftEdge.html"
+    },
+    {
+      "text": "RightEdge",
+      "href": "./../Trigger/RightEdge.html"
+    },
+    {
+      "text": "BackEdgeDist",
+      "href": "./../Trigger/BackEdgeDist.html"
+    },
+    {
+      "text": "BackEdgeBodyDist",
+      "href": "./../Trigger/BackEdgeBodyDist.html"
+    },
+    {
+      "text": "Facing",
+      "href": "./../Trigger/Facing.html"
+    },
+    {
+      "text": "CameraPos",
+      "href": "./../Trigger/CameraPos.html"
+    },
+    {
+      "text": "BackEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#backedge"
+    },
+    {
+      "text": "M.U.G.E.N Update History - New in 1.1 (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    },
+    {
+      "text": "LeftEdge / RightEdge / CameraPos / Facing - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#leftedge"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-stage-coordinates-camera-edge-diagram.png"
+  ],
+  "code": []
+}

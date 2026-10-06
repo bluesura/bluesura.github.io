@@ -340,3 +340,7 @@ MoveHit / MoveGuarded / MoveReversedで累計160件（59バッチ144件＋主要
 ### 2026-10-06：opponent-distances-01
 
 P2Dist X/Y・P2BodyDist X/Yの4件で累計197件（69バッチ181件＋主要・補助16件）、残り37件。必須char軸指定/float、Facing基準のX距離と幅基準の距離、両者のY軸の高さの差を分離。旧本文・メタ・構文・履歴・例・図・引用を保持し、Xの負数を含む閾値と下限指定・基準軸前方条件、Yの0/-12/12境界を明示しました。公式front.width/前面同士と実際のground/airキー・CHAOSの相手側幅点/同軸の後ろ幅/Width処理の差、X小数切り捨てとY小数保持、P2対象選択/不在時の値とIKEMEN履歴は内部に保存。初導入null、距離計測/幅/精度は実機未検証。スキーマ/レンダラー/CSS変更なし。320テスト・263ページビルド・261 URL/208比較対象HTMLと通常/390px表示を確認。内部注記528件、未対応旧履歴111項目、未表示フィールド29ページ。次はParentDist X/Y・RootDist X/Yです。
+
+### 2026-10-06：helper-distances-01
+
+ParentDist X/Y・RootDist X/Yの4件で累計201件（70バッチ185件＋主要・補助16件）、残り33件。Helper専用/必須char軸指定/float、直接の親と所有本体、実行者Facing基準のXと基準軸の高さの差を分離。1.0/1.1の不在時bottomと通常数値0を分けて公開し、旧SFalse/3世代まとめのbottom説明と公式RootDist節のParentDist表記差、X精度・Y未読資料・LocalCoord換算・寿命/処理順・別エンジンZ記録を内部へ保存。旧本文・メタ・構文・全8履歴・例・図・引用を保持。IsHelperを参照先存在の保証とせず、公開比較式の符号/0/-12/12/30境界を検査。初導入null、エンジン実機未検証、スキーマ/レンダラー/CSS変更なし。326テスト・263ページビルド・261 URL/212比較対象HTMLと通常/390px表示を確認。内部注記552件、未対応旧履歴103項目、未表示フィールド29ページ。次はTeamMode・TeamSide・IsHomeTeamです。

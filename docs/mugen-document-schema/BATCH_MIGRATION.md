@@ -1343,3 +1343,26 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・320テスト・263ページビルド・261 URL/208比較対象ページHTML検査を通過。P2DistXを通常幅、P2BodyDistXの軸表とP2DistY/P2BodyDistYの例を390pxで確認し、内部情報の非表示と表示幅/検査タブの復元を確認。内部注記20件追加で528件、未対応旧履歴111項目、未表示フィールド29ページ。次はParentDist X/Y・RootDist X/Yです。
+
+## 2026-10-06：helper-distances-01
+
+ParentDistX / ParentDistY / RootDistX / RootDistYの4件で累計201件（主要・補助16件＋70バッチ185件）、対象内の残り33件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/helper-distances-01/ に保存しました。
+
+- 必須char軸指定・専用構文・公式floatを構造化。半角スペースを含むParentDist X/Y・RootDist X/Yを保持し、括弧付き数値引数やMUGENのZ成分を生成しません。旧本文・メタ情報・構文・関連ID・2履歴ずつ・例・図・引用は保持。スキーマ/レンダラー/CSSは変更していません。
+- 公式3世代のHelper専用条件を明示。Parentは直接の親、Rootは所有する本体で、本体 → Helper A → Helper Bの例を公開。Xは実行者HelperのFacing基準の正負と同軸0、Yは基準軸の高さの差（上は負・下は正・同じ高さは0）を整理し、相手のFacing・画像/Clsn外縁と区別しました。[CHAOS ParentDist X](https://w.atwiki.jp/mugencns/pages/173.html) / [RootDist X](https://w.atwiki.jp/mugencns/pages/174.html)も照合しています。
+- 1.0/1.1の不在時bottomを公開するerrorとして世代を限定し、通常数値0を代入する処理と区別。保存済みCNSのbottom/特殊評価節を照合し、条件式全体がbottomなら偽となる説明とCond/IfElseの例外を記載しました。2002資料のSFalse・旧3世代共通bottom説明はlegacy_index:0のconflicting/internalに保持。表記差を実装の変更/修正時点へ変換しません。
+- RootDistの公式X説明に3世代ともParentDistと書かれている点は内部に記録。節名・対象・例はRootDistなので、公開本文を親との距離へ誤変換しません。親のdestroyed/KOという公式例から、すべてのKOで即時参照切断されると推定していません。
+- 旧Null例と共通図は内部へ保持。公開例はTriggerAll = IsHelperと短い比較条件で、Helper確認は参照先存在の保証ではないと説明。Xの!=0/0以上30未満/Absで30未満、Yの<0/<=-12/Absで12未満を追加し、公開式そのものを固定数値で検査しました。比較境界のテストであり、距離計測・親子関係・不在時bottomの実機シミュレーションではありません。
+- CHAOSのX小数切り捨て報告はunverified/internalに保持し、型と数値精度・負数の丸め方向を分離。Y個別記事（177/178）は取得できず、Xの報告からYの整数化/小数保持を推定しません。LocalCoord換算・親Helper消滅/Root寿命・ラウンド/処理順・通常プレイヤー評価は実機未検証。初導入null、旧GOのZ成分4履歴は別エンジンの内部記録に保持しています。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch helper-distances-01
+npm run mugen:batch -- --batch helper-distances-01 --target ParentDistX --target ParentDistY --target RootDistX --target RootDistY
+npm run mugen:batch -- --batch helper-distances-01 --target ParentDistX --target ParentDistY --target RootDistX --target RootDistY --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・326テスト・263ページビルド・261 URL/212比較対象ページHTML検査を通過。ParentDistXを通常幅、RootDistXの軸表・ParentDistYの例・RootDistYの世代別エラーを390pxで確認し、内部情報の非表示と表示幅/検査タブの復元を確認。内部注記24件追加で552件、未対応旧履歴103項目、未表示フィールド29ページ。次はTeamMode・TeamSide・IsHomeTeamです。

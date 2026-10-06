@@ -1,0 +1,1913 @@
+{
+  "id": "opponent-distances-01",
+  "reviewed_on": "2026-10-06",
+  "description": "P2距離4件。軸/幅・X符号/Y高さ・閾値の境界を整理。旧本文・Nightly・図と型/幅/対象選択の研究を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "P2DistX",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2distx-local-2002",
+            "title": "P2Dist — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2Dist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2distx-local-1.0",
+            "title": "P2Dist — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#p2dist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2distx-local-1.1",
+            "title": "P2Dist — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2dist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2distx-other-1.1",
+            "title": "P2BodyDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2bodydist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2distx-chaos",
+            "title": "P2Dist X — CHAOSの距離研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/171.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2distx-coords",
+            "title": "距離・幅の基準とWidthの研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2distx-selection",
+            "title": "P2とEnemyの対象選択 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/43.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2distx-legacy",
+            "title": "移行前の本文・使用例・図・別エンジン記録",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/9970de8b3a4f80c6c6483650a6b1fe3ef923df2f/src/content/triggers/P2DistX.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>P2Distの後に半角スペースを入れ、軸を表すX / Yを指定します。このページはX成分の<code>P2Dist X</code>です。括弧付きの数値引数にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2distx-local-2002",
+                  "p2distx-local-1.0",
+                  "p2distx-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "qanda"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "30未満なら相手は前方の近くにいる？",
+            "a": "<p>P2Dist X &lt; 30は負数を除外しません。0以上の範囲を指定するには下限を加えます。向きを問わずX距離の大きさだけを調べるならAbs(P2Dist X)を使います。</p>"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者（P1）の基準軸から、P2として選択される相手の基準軸までの水平距離をfloatで返します。P2Dist Xのように半角スペースを入れて軸を指定します。</p><p>相手の基準軸が実行者の前方なら正、後方なら負、同じX位置なら0です。前後は実行者のFacingで決まり、画面の右・左に固定された符号ではありません。</p><p>基準軸間の値です。P2BodyDist Xの幅を考慮した距離や、画像・Clsn2の外縁までの距離とは分けて扱います。</p>",
+            "page_category": "相手との水平距離を取得（基準軸）",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "p2distx-local-2002",
+                "p2distx-local-1.0",
+                "p2distx-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "基準軸間のX距離が30未満（負数も含む）",
+            "description": "<p>30ちょうどを含みません。大きな負数でも真になり、近さだけを調べる条件ではありません。</p>",
+            "code": [
+              "Trigger1 = P2Dist X < 30"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "基準軸間のX距離が0以上30未満",
+            "description": "<p>0を含み、負数と30ちょうどを除外します。同じX位置も含みます。</p>",
+            "code": [
+              "Trigger1 = (P2Dist X >= 0) && (P2Dist X < 30)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "前後を問わず基準軸間のX距離の大きさが30未満",
+            "description": "<p>Absで前後の符号を除きます。0を含み、-30と30は含みません。</p>",
+            "code": [
+              "Trigger1 = Abs(P2Dist X) < 30"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>P2Dist Xは基準軸間、P2BodyDist Xは幅を考慮する距離です。P2Dist Xが0でも、画像や喰らい判定が同じ形・同じ位置になるとは限りません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2distx-local-2002",
+                  "p2distx-local-1.0",
+                  "p2distx-local-1.1",
+                  "p2distx-other-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p><code>P2Dist X &lt; 30</code>は負の値も条件を満たすため、前方や0以上の距離だけに限定する条件ではありません。0以上30未満なら下限も指定します。前後を問わず基準軸のX距離の大きさを調べる場合はAbs(P2Dist X)を使います。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2distx-local-2002",
+                  "p2distx-local-1.0",
+                  "p2distx-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例はP2を参照できる場面で使う距離条件です。X・Yの距離条件だけで、攻撃が当たることや画像・喰らい判定の接触を判定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2distx-local-2002",
+                  "p2distx-local-1.0",
+                  "p2distx-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式資料はfloatを記載します。CHAOSはXの小数切り捨てとYの小数保持を報告しています。floatという型と実測される値の精度は別の情報です。具体的な実行ビルド・互換設定・小数位置・負数の丸め方向・LocalCoord換算は実機未検証。常にFloor/整数化が必要とはしません。旧CNS暗黙変換引用は内部へ保持します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2distx-local-2002",
+                  "p2distx-local-1.0",
+                  "p2distx-local-1.1",
+                  "p2distx-chaos",
+                  "p2distx-coords",
+                  "p2distx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式のP2Dist/P2BodyDistはError conditions:noneと記載し、P2不在時の数値やbottomを明記しません。P2StateNo/P2StateTypeの不在時仕様をそのまま移植して未知の返り値を確定しません。CHAOSのP2選択はX距離が近い相手・HelperType=Playerを含む・StateNo=5150を除外という記録です。Enemy/EnemyNearと常に同一とせず、NumEnemy>0だけでP2存在を保証するとも断定しません。タッグ・同距離・Helper・カスタムステート・消滅時点は実機未検証。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "p2distx-local-2002",
+                  "p2distx-local-1.0",
+                  "p2distx-local-1.1",
+                  "p2distx-selection",
+                  "p2distx-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧共通距離図とalt、旧Nullコード例を原位置に保持してinternalへ。図の基準軸/幅・符号・両者の向き・LocalCoord条件を照合するまで公開しません。旧X例の30未満は大きな負数でも真になり、近いだけという説明には不足があります。Yの既存条件<0は保持し、公開例では条件の意味を見出しと説明で示します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2distx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。資料への掲載は最初の実装の証明ではないためintroduced_inはnullです。今回の数値比較テストは公開例の境界の確認であり、距離の計測・小数精度・幅/対象選択・リダイレクトのエンジン挙動を再現するテストではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2distx-local-2002",
+                  "p2distx-local-1.0",
+                  "p2distx-local-1.1",
+                  "p2distx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Ikemen GO (Nightly)のZ成分/ikemenversionによるsize box距離という記述と引用を、別エンジンの内部記録として保持。可変NightlyをMUGENの実行ビルドや実測結果へ読み替えず、今回GO仕様を検証/公開していません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2distx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal",
+              "legacy_index": 0
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "p2distx-local-2002",
+              "p2distx-local-1.0",
+              "p2distx-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド・不在時の返り値・対象選択・Xの切り捨て・LocalCoord・Width/重なり/飛び越えの挙動は実機未検証。原文・図・旧例・別エンジン記録を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "P2DistY",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2disty-local-2002",
+            "title": "P2Dist — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2Dist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2disty-local-1.0",
+            "title": "P2Dist — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#p2dist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2disty-local-1.1",
+            "title": "P2Dist — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2dist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2disty-other-1.1",
+            "title": "P2BodyDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2bodydist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2disty-chaos",
+            "title": "P2Dist Y — CHAOSの距離研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/175.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2disty-coords",
+            "title": "距離・幅の基準とWidthの研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2disty-selection",
+            "title": "P2とEnemyの対象選択 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/43.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2disty-legacy",
+            "title": "移行前の本文・使用例・図・別エンジン記録",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/9970de8b3a4f80c6c6483650a6b1fe3ef923df2f/src/content/triggers/P2DistY.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>P2Distの後に半角スペースを入れ、軸を表すX / Yを指定します。このページはY成分の<code>P2Dist Y</code>です。括弧付きの数値引数にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2disty-local-2002",
+                  "p2disty-local-1.0",
+                  "p2disty-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "qanda"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "BodyDist Yは体の上端・下端からの距離？",
+            "a": "<p>MUGENのP2Dist Y / P2BodyDist Yは両者のY軸の高さの差です。画像やClsn2、size box同士の上下の隙間ではありません。</p>"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者（P1）とP2として選択される相手の基準軸の高さの差をfloatで返します。P2Dist Yのように半角スペースを入れて軸を指定します。</p><p>相手が実行者より上なら負、下なら正、同じ高さなら0です。キャラクターの向きによって上下の符号は変わりません。画像の頭・足やClsn2の外縁までの隙間を測る値ではありません。</p>",
+            "page_category": "相手との基準軸の高さの差を取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "p2disty-local-2002",
+                "p2disty-local-1.0",
+                "p2disty-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "相手の基準位置が上にある",
+            "description": "<p>同じ高さの0を含みません。横方向の位置や現在の上下速度は別に判定します。</p>",
+            "code": [
+              "Trigger1 = P2Dist Y < 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "相手の基準位置が12以上高い",
+            "description": "<p>-12ちょうどを含みます。画像全体が上にあるという判定ではありません。</p>",
+            "code": [
+              "Trigger1 = P2Dist Y <= -12"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "基準位置の高さの差が12未満",
+            "description": "<p>上下を問わず差の大きさを調べます。同じ高さの0を含み、-12と12は含みません。</p>",
+            "code": [
+              "Trigger1 = Abs(P2Dist Y) < 12"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>P2Dist YとP2BodyDist Yの公式の定義は、どちらも両者のY軸の高さの差です。負の値は相手が上にいることを表します。横方向の接近や画像・喰らい判定の接触を、このY成分だけで判定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2disty-local-2002",
+                  "p2disty-local-1.0",
+                  "p2disty-local-1.1",
+                  "p2disty-other-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p><code>P2Dist Y &lt; 0</code>は相手の基準位置が上にある条件で、同じ高さの0は含みません。<code>P2Dist Y &lt;= -12</code>は12以上高い条件で、-12ちょうどを含みます。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2disty-local-2002",
+                  "p2disty-local-1.0",
+                  "p2disty-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例はP2を参照できる場面で使う距離条件です。X・Yの距離条件だけで、攻撃が当たることや画像・喰らい判定の接触を判定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2disty-local-2002",
+                  "p2disty-local-1.0",
+                  "p2disty-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式資料はfloatを記載します。CHAOSはXの小数切り捨てとYの小数保持を報告しています。Yの高さ情報をXの切り捨て報告から整数に一般化しません。具体的な実行ビルド・互換設定・小数位置・負数の丸め方向・LocalCoord換算は実機未検証。常にFloor/整数化が必要とはしません。旧CNS暗黙変換引用は内部へ保持します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2disty-local-2002",
+                  "p2disty-local-1.0",
+                  "p2disty-local-1.1",
+                  "p2disty-chaos",
+                  "p2disty-coords",
+                  "p2disty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式のP2Dist/P2BodyDistはError conditions:noneと記載し、P2不在時の数値やbottomを明記しません。P2StateNo/P2StateTypeの不在時仕様をそのまま移植して未知の返り値を確定しません。CHAOSのP2選択はX距離が近い相手・HelperType=Playerを含む・StateNo=5150を除外という記録です。Enemy/EnemyNearと常に同一とせず、NumEnemy>0だけでP2存在を保証するとも断定しません。タッグ・同距離・Helper・カスタムステート・消滅時点は実機未検証。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "p2disty-local-2002",
+                  "p2disty-local-1.0",
+                  "p2disty-local-1.1",
+                  "p2disty-selection",
+                  "p2disty-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧共通距離図とalt、旧Nullコード例を原位置に保持してinternalへ。図の基準軸/幅・符号・両者の向き・LocalCoord条件を照合するまで公開しません。旧X例の30未満は大きな負数でも真になり、近いだけという説明には不足があります。Yの既存条件<0は保持し、公開例では条件の意味を見出しと説明で示します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2disty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。資料への掲載は最初の実装の証明ではないためintroduced_inはnullです。今回の数値比較テストは公開例の境界の確認であり、距離の計測・小数精度・幅/対象選択・リダイレクトのエンジン挙動を再現するテストではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2disty-local-2002",
+                  "p2disty-local-1.0",
+                  "p2disty-local-1.1",
+                  "p2disty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "p2disty-local-2002",
+              "p2disty-local-1.0",
+              "p2disty-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド・不在時の返り値・対象選択・Xの切り捨て・LocalCoord・Width/重なり/飛び越えの挙動は実機未検証。原文・図・旧例・別エンジン記録を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "P2BodyDistX",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydistx-local-2002",
+            "title": "P2BodyDist — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2BodyDist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydistx-local-1.0",
+            "title": "P2BodyDist — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#p2bodydist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydistx-local-1.1",
+            "title": "P2BodyDist — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2bodydist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydistx-other-1.1",
+            "title": "P2Dist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2dist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydistx-chaos",
+            "title": "P2BodyDist X — CHAOSの距離研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/172.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydistx-coords",
+            "title": "距離・幅の基準とWidthの研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydistx-selection",
+            "title": "P2とEnemyの対象選択 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/43.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydistx-legacy",
+            "title": "移行前の本文・使用例・図・別エンジン記録",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/9970de8b3a4f80c6c6483650a6b1fe3ef923df2f/src/content/triggers/P2BodyDistX.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydistx-size",
+            "title": "[Size]のground/air幅定義 — Elecbyte 1.1b1 Tutorial 3",
+            "url": "/MUGEN/document/Official/1.1b1/tutorial3.html",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydistx-width",
+            "title": "対プレイヤー幅と対画面端幅 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#width",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>P2BodyDistの後に半角スペースを入れ、軸を表すX / Yを指定します。このページはX成分の<code>P2BodyDist X</code>です。括弧付きの数値引数にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2bodydistx-local-2002",
+                  "p2bodydistx-local-1.0",
+                  "p2bodydistx-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "qanda"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "30未満なら相手は前方の近くにいる？",
+            "a": "<p>P2BodyDist X &lt; 30は負数を除外しません。0以上の範囲を指定するには下限を加えます。幅基準の符号を相手の基準軸の前後と同一視せず、前後はP2Dist Xで調べます。</p>"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者（P1）の前面側の幅基準点から、P2側で実行者に面する幅基準点までの水平距離をfloatで返します。P2BodyDist Xのように半角スペースを入れて軸を指定します。</p><p>P2Dist Xの基準軸間の距離とは異なり、キャラクターの幅を考慮します。両者が向き合っている場面だけに限定して、常に両者のfront同士の距離と考えないでください。</p><p>負の値は、相手側の幅基準点が実行者の前面基準点より後ろにあることを表します。幅が大きい場合など、相手の基準軸の前後と同じ判定になるとは限りません。画像やClsn2の外縁までの距離ではありません。</p>",
+            "page_category": "相手との水平距離を取得（幅基準）",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "p2bodydistx-local-2002",
+                "p2bodydistx-local-1.0",
+                "p2bodydistx-local-1.1",
+                "p2bodydistx-chaos",
+                "p2bodydistx-coords"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "幅基準のX距離が30未満（負数も含む）",
+            "description": "<p>30ちょうどを含みません。大きな負数でも真になり、近さだけを調べる条件ではありません。</p>",
+            "code": [
+              "Trigger1 = P2BodyDist X < 30"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "幅基準のX距離が0以上30未満",
+            "description": "<p>0を含み、負数と30ちょうどを除外します。幅基準の値であり、相手の基準軸が前方にあることを別途調べる場合はP2Dist Xを使います。</p>",
+            "code": [
+              "Trigger1 = (P2BodyDist X >= 0) && (P2BodyDist X < 30)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "相手の基準軸が前方で、幅基準距離が0以上30未満",
+            "description": "<p>P2Dist X > 0を追加し、相手の基準軸の前後と幅基準の範囲を別に調べます。</p>",
+            "code": [
+              "Trigger1 = (P2Dist X > 0) && (P2BodyDist X >= 0) && (P2BodyDist X < 30)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>キャラクターの[Size]の幅設定にはground.front / ground.back / air.front / air.backがあります。幅基準の距離と、画像やClsn1 / Clsn2の接触は別に扱います。0だから喰らい判定が接しているとは限りません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "p2bodydistx-size",
+                  "p2bodydistx-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式P2BodyDistのfront.width表記と旧概要を保持。保存済みTutorial 3は[Size]でground.front/back・air.front/backを定義するため、その具体名を公開。CHAOSは相手側の幅を両者の基準軸の左右と相手Facingで選択し、同じ基準X座標では相手の後ろ幅を使うと報告する。公式のfront-to-front説明と区別し、接近/飛び越え/幅の重なりで符号が変動する記録を保存。Widthによる一時変化をP2BodyDist Xが感知できないという報告も保持し、Width.Player/Edgeが距離に必ず反映されるとは推定しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2bodydistx-local-2002",
+                  "p2bodydistx-local-1.0",
+                  "p2bodydistx-local-1.1",
+                  "p2bodydistx-chaos",
+                  "p2bodydistx-coords",
+                  "p2bodydistx-size",
+                  "p2bodydistx-width",
+                  "p2bodydistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "behavior",
+              "content": "<p><code>P2BodyDist X &lt; 30</code>は負の値も条件を満たすため、前方や0以上の距離だけに限定する条件ではありません。0以上30未満なら下限も指定します。相手の基準軸の前後を調べる場合はP2Dist Xも使います。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2bodydistx-local-2002",
+                  "p2bodydistx-local-1.0",
+                  "p2bodydistx-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例はP2を参照できる場面で使う距離条件です。X・Yの距離条件だけで、攻撃が当たることや画像・喰らい判定の接触を判定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2bodydistx-local-2002",
+                  "p2bodydistx-local-1.0",
+                  "p2bodydistx-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式資料はfloatを記載します。CHAOSはXの小数切り捨てとYの小数保持を報告しています。floatという型と実測される値の精度は別の情報です。具体的な実行ビルド・互換設定・小数位置・負数の丸め方向・LocalCoord換算は実機未検証。常にFloor/整数化が必要とはしません。旧CNS暗黙変換引用は内部へ保持します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2bodydistx-local-2002",
+                  "p2bodydistx-local-1.0",
+                  "p2bodydistx-local-1.1",
+                  "p2bodydistx-chaos",
+                  "p2bodydistx-coords",
+                  "p2bodydistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式のP2Dist/P2BodyDistはError conditions:noneと記載し、P2不在時の数値やbottomを明記しません。P2StateNo/P2StateTypeの不在時仕様をそのまま移植して未知の返り値を確定しません。CHAOSのP2選択はX距離が近い相手・HelperType=Playerを含む・StateNo=5150を除外という記録です。Enemy/EnemyNearと常に同一とせず、NumEnemy>0だけでP2存在を保証するとも断定しません。タッグ・同距離・Helper・カスタムステート・消滅時点は実機未検証。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "p2bodydistx-local-2002",
+                  "p2bodydistx-local-1.0",
+                  "p2bodydistx-local-1.1",
+                  "p2bodydistx-selection",
+                  "p2bodydistx-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧共通距離図とalt、旧Nullコード例を原位置に保持してinternalへ。図の基準軸/幅・符号・両者の向き・LocalCoord条件を照合するまで公開しません。旧X例の30未満は大きな負数でも真になり、近いだけという説明には不足があります。Yの既存条件<0は保持し、公開例では条件の意味を見出しと説明で示します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2bodydistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。資料への掲載は最初の実装の証明ではないためintroduced_inはnullです。今回の数値比較テストは公開例の境界の確認であり、距離の計測・小数精度・幅/対象選択・リダイレクトのエンジン挙動を再現するテストではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2bodydistx-local-2002",
+                  "p2bodydistx-local-1.0",
+                  "p2bodydistx-local-1.1",
+                  "p2bodydistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Ikemen GO (Nightly)のZ成分/ikemenversionによるsize box距離という記述と引用を、別エンジンの内部記録として保持。可変NightlyをMUGENの実行ビルドや実測結果へ読み替えず、今回GO仕様を検証/公開していません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2bodydistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal",
+              "legacy_index": 0
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "p2bodydistx-local-2002",
+              "p2bodydistx-local-1.0",
+              "p2bodydistx-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド・不在時の返り値・対象選択・Xの切り捨て・LocalCoord・Width/重なり/飛び越えの挙動は実機未検証。原文・図・旧例・別エンジン記録を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "P2BodyDistY",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydisty-local-2002",
+            "title": "P2BodyDist — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P2BodyDist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydisty-local-1.0",
+            "title": "P2BodyDist — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#p2bodydist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydisty-local-1.1",
+            "title": "P2BodyDist — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2bodydist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydisty-other-1.1",
+            "title": "P2Dist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#p2dist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydisty-chaos",
+            "title": "P2BodyDist Y — CHAOSの距離研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/176.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydisty-coords",
+            "title": "距離・幅の基準とWidthの研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydisty-selection",
+            "title": "P2とEnemyの対象選択 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/43.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "p2bodydisty-legacy",
+            "title": "移行前の本文・使用例・図・別エンジン記録",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/9970de8b3a4f80c6c6483650a6b1fe3ef923df2f/src/content/triggers/P2BodyDistY.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>P2BodyDistの後に半角スペースを入れ、軸を表すX / Yを指定します。このページはY成分の<code>P2BodyDist Y</code>です。括弧付きの数値引数にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2bodydisty-local-2002",
+                  "p2bodydisty-local-1.0",
+                  "p2bodydisty-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "qanda"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "BodyDist Yは体の上端・下端からの距離？",
+            "a": "<p>MUGENのP2Dist Y / P2BodyDist Yは両者のY軸の高さの差です。画像やClsn2、size box同士の上下の隙間ではありません。</p>"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>実行者（P1）とP2として選択される相手の基準軸の高さの差をfloatで返します。P2BodyDist Yのように半角スペースを入れて軸を指定します。</p><p>相手が実行者より上なら負、下なら正、同じ高さなら0です。キャラクターの向きによって上下の符号は変わりません。画像の頭・足やClsn2の外縁までの隙間を測る値ではありません。</p><p>MUGENの公式資料では、Y成分はP2Dist Yと同じく両者のY軸の高さの差です。X成分のような幅の減算や、size box同士の上下の隙間とは分けて扱います。</p>",
+            "page_category": "相手との基準軸の高さの差を取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "p2bodydisty-local-2002",
+                "p2bodydisty-local-1.0",
+                "p2bodydisty-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "相手の基準位置が上にある",
+            "description": "<p>同じ高さの0を含みません。横方向の位置や現在の上下速度は別に判定します。</p>",
+            "code": [
+              "Trigger1 = P2BodyDist Y < 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "相手の基準位置が12以上高い",
+            "description": "<p>-12ちょうどを含みます。画像全体が上にあるという判定ではありません。</p>",
+            "code": [
+              "Trigger1 = P2BodyDist Y <= -12"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "基準位置の高さの差が12未満",
+            "description": "<p>上下を問わず差の大きさを調べます。同じ高さの0を含み、-12と12は含みません。</p>",
+            "code": [
+              "Trigger1 = Abs(P2BodyDist Y) < 12"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>P2Dist YとP2BodyDist Yの公式の定義は、どちらも両者のY軸の高さの差です。負の値は相手が上にいることを表します。横方向の接近や画像・喰らい判定の接触を、このY成分だけで判定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2bodydisty-local-2002",
+                  "p2bodydisty-local-1.0",
+                  "p2bodydisty-local-1.1",
+                  "p2bodydisty-other-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p><code>P2BodyDist Y &lt; 0</code>は相手の基準位置が上にある条件で、同じ高さの0は含みません。<code>P2BodyDist Y &lt;= -12</code>は12以上高い条件で、-12ちょうどを含みます。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2bodydisty-local-2002",
+                  "p2bodydisty-local-1.0",
+                  "p2bodydisty-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例はP2を参照できる場面で使う距離条件です。X・Yの距離条件だけで、攻撃が当たることや画像・喰らい判定の接触を判定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "p2bodydisty-local-2002",
+                  "p2bodydisty-local-1.0",
+                  "p2bodydisty-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式資料はfloatを記載します。CHAOSはXの小数切り捨てとYの小数保持を報告しています。Yの高さ情報をXの切り捨て報告から整数に一般化しません。具体的な実行ビルド・互換設定・小数位置・負数の丸め方向・LocalCoord換算は実機未検証。常にFloor/整数化が必要とはしません。旧CNS暗黙変換引用は内部へ保持します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2bodydisty-local-2002",
+                  "p2bodydisty-local-1.0",
+                  "p2bodydisty-local-1.1",
+                  "p2bodydisty-chaos",
+                  "p2bodydisty-coords",
+                  "p2bodydisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式のP2Dist/P2BodyDistはError conditions:noneと記載し、P2不在時の数値やbottomを明記しません。P2StateNo/P2StateTypeの不在時仕様をそのまま移植して未知の返り値を確定しません。CHAOSのP2選択はX距離が近い相手・HelperType=Playerを含む・StateNo=5150を除外という記録です。Enemy/EnemyNearと常に同一とせず、NumEnemy>0だけでP2存在を保証するとも断定しません。タッグ・同距離・Helper・カスタムステート・消滅時点は実機未検証。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "p2bodydisty-local-2002",
+                  "p2bodydisty-local-1.0",
+                  "p2bodydisty-local-1.1",
+                  "p2bodydisty-selection",
+                  "p2bodydisty-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧共通距離図とalt、旧Nullコード例を原位置に保持してinternalへ。図の基準軸/幅・符号・両者の向き・LocalCoord条件を照合するまで公開しません。旧X例の30未満は大きな負数でも真になり、近いだけという説明には不足があります。Yの既存条件<0は保持し、公開例では条件の意味を見出しと説明で示します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2bodydisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。資料への掲載は最初の実装の証明ではないためintroduced_inはnullです。今回の数値比較テストは公開例の境界の確認であり、距離の計測・小数精度・幅/対象選択・リダイレクトのエンジン挙動を再現するテストではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2bodydisty-local-2002",
+                  "p2bodydisty-local-1.0",
+                  "p2bodydisty-local-1.1",
+                  "p2bodydisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Ikemen GO (Nightly)のZ成分/ikemenversionによるsize box距離という記述と引用を、別エンジンの内部記録として保持。可変NightlyをMUGENの実行ビルドや実測結果へ読み替えず、今回GO仕様を検証/公開していません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "p2bodydisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+              },
+              "visibility": "internal",
+              "legacy_index": 0
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "p2bodydisty-local-2002",
+              "p2bodydisty-local-1.0",
+              "p2bodydisty-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代とCHAOSの一次研究を照合。資料の記載確認と実測を区別。MUGEN実機検証は未実施、テストは公開例の数値条件と表示/原文保存のみ。"
+          }
+        }
+      ],
+      "remaining": [
+        "導入ビルド・不在時の返り値・対象選択・Xの切り捨て・LocalCoord・Width/重なり/飛び越えの挙動は実機未検証。原文・図・旧例・別エンジン記録を保持。"
+      ]
+    }
+  ]
+}

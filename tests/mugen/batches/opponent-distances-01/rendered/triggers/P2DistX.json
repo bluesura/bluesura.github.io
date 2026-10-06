@@ -1,0 +1,72 @@
+{
+  "text": "P2DistX 距離 > 相手との水平距離(中心軸基準)の取得 | 実装されたバージョン: 2002.04.14 引数 仕様・注意点 使用例 引用記事 P2Dist X は、実行者(P1)の中心軸から相手(P2)の中心軸までの水平距離を返します。正の値は「P2 が P1 の前方にいる」ことを意味します（P1 の向きに依存）。戻り値は float です。 関連するトリガー： P2DistY , P2BodyDistX , P2BodyDistY 構文 P2Dist X 引数 なし 仕様・バグ・エラー・変更点Ikemen GO (Nightly)P2Dist Z（Z成分）が追加されています。 コードサンプルP2Dist X; 相手が一定距離より近いか？（中心軸基準）[State 0, Example_P2DistX]Type = NullTrigger1 = P2Dist X < 30 引用記事P2Dist - Trigger Reference(version 2002.04.14)P2Dist - Trigger Reference (MUGEN 1.0)P2Dist - Trigger Reference (MUGEN 1.1 Beta)CNS Format / Expressions - float→intの暗黙変換とfloor/ceilIkemen GO Wiki - Triggers (changed) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "P2DistY",
+      "href": "./../Trigger/P2DistY.html"
+    },
+    {
+      "text": "P2BodyDistX",
+      "href": "./../Trigger/P2BodyDistX.html"
+    },
+    {
+      "text": "P2BodyDistY",
+      "href": "./../Trigger/P2BodyDistY.html"
+    },
+    {
+      "text": "P2Dist - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#P2Dist"
+    },
+    {
+      "text": "P2Dist - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#p2dist"
+    },
+    {
+      "text": "P2Dist - Trigger Reference (MUGEN 1.1 Beta)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#p2dist"
+    },
+    {
+      "text": "CNS Format / Expressions - float→intの暗黙変換とfloor/ceil",
+      "href": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "text": "Ikemen GO Wiki - Triggers (changed)",
+      "href": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-coordinate-system-p1-p2-dist.png"
+  ],
+  "code": []
+}

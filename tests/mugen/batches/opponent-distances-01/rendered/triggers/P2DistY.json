@@ -1,0 +1,63 @@
+{
+  "text": "P2DistY 距離 > 相手との垂直距離(中心軸基準)の取得 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 P2Dist Y は、実行者(P1)と相手(P2)の高さの差を返します。負の値は「P2 が P1 より上にいる」ことを意味します。戻り値は float です。 関連するトリガー： P2DistX , P2BodyDistX , P2BodyDistY 構文 P2Dist Y 引数 なし コードサンプルP2Dist Y; 相手が自分より上にいるか？[State 0, Example_P2DistY]Type = NullTrigger1 = P2Dist Y < 0 引用記事P2Dist - Trigger Reference(version 2002.04.14)P2Dist - Trigger Reference (MUGEN 1.0)P2Dist - Trigger Reference (MUGEN 1.1 Beta)CNS Format / Expressions - float→intの暗黙変換とfloor/ceil 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "P2DistX",
+      "href": "./../Trigger/P2DistX.html"
+    },
+    {
+      "text": "P2BodyDistX",
+      "href": "./../Trigger/P2BodyDistX.html"
+    },
+    {
+      "text": "P2BodyDistY",
+      "href": "./../Trigger/P2BodyDistY.html"
+    },
+    {
+      "text": "P2Dist - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#P2Dist"
+    },
+    {
+      "text": "P2Dist - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#p2dist"
+    },
+    {
+      "text": "P2Dist - Trigger Reference (MUGEN 1.1 Beta)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#p2dist"
+    },
+    {
+      "text": "CNS Format / Expressions - float→intの暗黙変換とfloor/ceil",
+      "href": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-coordinate-system-p1-p2-dist.png"
+  ],
+  "code": []
+}

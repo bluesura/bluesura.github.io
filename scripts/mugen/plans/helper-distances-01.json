@@ -1,0 +1,2055 @@
+{
+  "id": "helper-distances-01",
+  "reviewed_on": "2026-10-06",
+  "description": "ParentDist/RootDistのX/Y4件。Helper専用・親とRoot・軸と符号・通常0と不在時bottomを分離。原文・SFalse/精度の資料差・別エンジン・図を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "ParentDistX",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdistx-local-2002",
+            "title": "ParentDist — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ParentDist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdistx-local-1.0",
+            "title": "ParentDist — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#parentdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdistx-local-1.1",
+            "title": "ParentDist — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#parentdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdistx-other",
+            "title": "RootDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#rootdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdistx-bottom-1.0",
+            "title": "bottomと特殊な評価規則 — Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/cns.html#bottom",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdistx-bottom-1.1",
+            "title": "bottomと特殊な評価規則 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#bottom",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdistx-sc-2002",
+            "title": "SFalseとSC値の伝播 — Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/exp.html",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdistx-chaos-x",
+            "title": "ParentDist X — CHAOSの距離・精度研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/173.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdistx-legacy",
+            "title": "移行前の本文・履歴・使用例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/b82c4a27138f237697d9d9cab60853329c1932bd/src/content/triggers/ParentDistX.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>ParentDistの後に半角スペースを入れ、X / Yを指定します。このページはX成分の<code>ParentDist X</code>です。括弧付きの数値引数にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "parentdistx-local-2002",
+                  "parentdistx-local-1.0",
+                  "parentdistx-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>Helper専用のトリガーです。実行者のHelperから親（Parent）までの基準軸間の水平距離をfloatで返します。<code>ParentDist X</code>のように半角スペースを入れて軸を指定します。</p><p>Parentは、このHelperを生成した直接の親です。親が別のHelperなら、本体（Root）とは参照先が異なります。</p><p>親（Parent）の基準軸が実行者の前方なら正、後方なら負、同じX位置なら0です。前後は実行者のHelperのFacingで決まり、親の向きや画面の右・左に固定された符号ではありません。画像やClsn2の端までの距離ではありません。</p>",
+            "page_category": "親との水平距離を取得（基準軸）",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "parentdistx-local-2002",
+                "parentdistx-local-1.0",
+                "parentdistx-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+            }
+          }
+        },
+        {
+          "path": [
+            "qanda"
+          ],
+          "value": [
+            {
+              "q": "ParentDistとRootDistはいつも同じ？",
+              "a": "<p>本体が直接生成したHelperでは参照先は同じです。Helperから生成されたHelperでは、Parentは直接の親Helper、Rootは本体なので、距離が同じとは限りません。両者のFacingではなく実行者の向きでXの前後が決まります。</p>"
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "親とX位置が異なる",
+            "description": "<p>前後の両方を含み、同じX位置の0を除外します。Y位置の一致は調べません。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = ParentDist X != 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "親へのX距離が0以上30未満",
+            "description": "<p>同じX位置の0を含み、後方の負数と30ちょうどを除外します。<30だけなら負数も含むので下限を指定します。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = (ParentDist X >= 0) && (ParentDist X < 30)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "前後を問わずX距離の大きさが30未満",
+            "description": "<p>0を含み、-30と30は含みません。Y方向の差は別に調べます。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = Abs(ParentDist X) < 30"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>本体 → Helper A → Helper Bの順に生成した場合、Helper BのParentはHelper A、Rootは本体です。本体が直接生成したHelperではParentとRootの参照先が同じになります。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "parentdistx-local-2002",
+                  "parentdistx-local-1.0",
+                  "parentdistx-local-1.1",
+                  "parentdistx-other"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>1.0/1.1では、親を持たない場合に<code>bottom</code>を返します。同じX位置を表す通常の数値0とは異なります。条件式全体の評価結果がbottomなら、その条件は偽として扱われます。部分式のbottomにはCond/IfElseなどの特殊な評価規則があります。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "parentdistx-local-1.0",
+                  "parentdistx-local-1.1",
+                  "parentdistx-bottom-1.0",
+                  "parentdistx-bottom-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例はHelperで親を参照できる場面の条件行です。<code>TriggerAll = IsHelper</code>は実行者がHelperかを確認するだけで、参照先の存在や生存を保証しません。距離条件で画像・喰らい判定の接触や追従動作を判定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "parentdistx-local-2002",
+                  "parentdistx-local-1.0",
+                  "parentdistx-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧履歴の不在時説明を原位置に保持。2002.04.14資料はSFalse、1.0/1.1資料はbottomを記載します。旧本文は2002/1.0/1.1をまとめてbottomとし、条件式では0扱いと説明していました。数値0を代入して通常の比較を行う仕様へ読み替えず、資料の表記差を実行ビルドの変更/修正時点にも変換しません。公式は親のdestroyed/KOも例に挙げますが、すべてのKOで直ちにParentが失われるという実測結果とは区別します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdistx-local-2002",
+                  "parentdistx-local-1.0",
+                  "parentdistx-local-1.1",
+                  "parentdistx-sc-2002",
+                  "parentdistx-bottom-1.0",
+                  "parentdistx-bottom-1.1",
+                  "parentdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal",
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式はfloatを記載。CHAOSのParentDist Xはfloat型でも小数が切り捨てられると報告します。型と値の精度を分け、具体的な実行ビルド・負数の丸め方向・互換設定は実機未検証です。一律にFloor/整数化を必要とはしません。LocalCoord差・親/本体とHelperの座標単位・リダイレクト時の換算は実機未確認。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdistx-local-2002",
+                  "parentdistx-local-1.0",
+                  "parentdistx-local-1.1",
+                  "parentdistx-chaos-x",
+                  "parentdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>Helper専用という利用条件と、参照先が存在するという条件は別です。IsHelperが真でも親の生存を保証しません。親HelperのDestroySelf・本体KO・ラウンド移行・処理順・ParentとRootの寿命/参照切断・通常プレイヤーからの評価は今回実機未検証。親が消えたらRootへ自動的に切り替わると推定せず、親のIDを保存した存在確認方式やNumHelperの個数を直接のParent存在保証にも変換しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdistx-local-2002",
+                  "parentdistx-local-1.0",
+                  "parentdistx-local-1.1",
+                  "parentdistx-chaos-x",
+                  "parentdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧共通Root/Parent図・alt・Nullステートの例を原位置に保持してinternalへ。基準軸・HelperのFacing・親子階層・座標単位の図示は実測未検証。旧X!=0とY<0の条件行は短い公開例として意味を明示し、Nullを実行すれば追従するという例にはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。資料への掲載は初実装の証明ではないためintroduced_inはnull。数値比較テストは公開条件式の0/負数/閾値境界のみで、距離の算出・小数精度・不在時bottom・親子関係/寿命・処理順のエンジン挙動を再現するものではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdistx-local-2002",
+                  "parentdistx-local-1.0",
+                  "parentdistx-local-1.1",
+                  "parentdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Ikemen GO (Nightly)のZ成分追加という履歴と引用を別エンジンの内部記録に保持。可変NightlyをMUGENの実行ビルド/実測結果へ読み替えず、今回GOの仕様は検証・公開していません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal",
+              "legacy_index": 1
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "parentdistx-local-2002",
+              "parentdistx-local-1.0",
+              "parentdistx-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・X精度/負数丸め・Y個別研究・LocalCoord換算・親/Rootの寿命・不在時点/警告・通常プレイヤーの実機挙動は未確認。原文と資料差を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "ParentDistY",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdisty-local-2002",
+            "title": "ParentDist — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#ParentDist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdisty-local-1.0",
+            "title": "ParentDist — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#parentdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdisty-local-1.1",
+            "title": "ParentDist — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#parentdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdisty-other",
+            "title": "RootDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#rootdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdisty-bottom-1.0",
+            "title": "bottomと特殊な評価規則 — Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/cns.html#bottom",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdisty-bottom-1.1",
+            "title": "bottomと特殊な評価規則 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#bottom",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdisty-sc-2002",
+            "title": "SFalseとSC値の伝播 — Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/exp.html",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdisty-chaos-x",
+            "title": "ParentDist X — CHAOSの距離・精度研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/173.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "parentdisty-legacy",
+            "title": "移行前の本文・履歴・使用例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/b82c4a27138f237697d9d9cab60853329c1932bd/src/content/triggers/ParentDistY.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>ParentDistの後に半角スペースを入れ、X / Yを指定します。このページはY成分の<code>ParentDist Y</code>です。括弧付きの数値引数にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "parentdisty-local-2002",
+                  "parentdisty-local-1.0",
+                  "parentdisty-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>Helper専用のトリガーです。実行者のHelperから親（Parent）までの基準軸の高さの差をfloatで返します。<code>ParentDist Y</code>のように半角スペースを入れて軸を指定します。</p><p>Parentは、このHelperを生成した直接の親です。親が別のHelperなら、本体（Root）とは参照先が異なります。</p><p>親（Parent）の基準軸が実行者より上なら負、下なら正、同じ高さなら0です。向きによって上下の符号は変わりません。画像の頭・足やClsn2の外縁までの隙間ではありません。</p>",
+            "page_category": "親との基準軸の高さの差を取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "parentdisty-local-2002",
+                "parentdisty-local-1.0",
+                "parentdisty-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+            }
+          }
+        },
+        {
+          "path": [
+            "qanda"
+          ],
+          "value": [
+            {
+              "q": "ParentDistとRootDistはいつも同じ？",
+              "a": "<p>本体が直接生成したHelperでは参照先は同じです。Helperから生成されたHelperでは、Parentは直接の親Helper、Rootは本体なので、距離が同じとは限りません。両者のFacingではなく実行者の向きでXの前後が決まります。</p>"
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "親の基準位置が上にある",
+            "description": "<p>同じ高さの0を含みません。X方向の差は別に調べます。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = ParentDist Y < 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "親の基準位置が12以上高い",
+            "description": "<p>-12ちょうどを含みます。画像全体の上下や現在速度を調べる条件ではありません。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = ParentDist Y <= -12"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "基準位置の高さの差が12未満",
+            "description": "<p>上下を問わず差の大きさを調べます。同じ高さの0を含み、-12と12は含みません。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = Abs(ParentDist Y) < 12"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>本体 → Helper A → Helper Bの順に生成した場合、Helper BのParentはHelper A、Rootは本体です。本体が直接生成したHelperではParentとRootの参照先が同じになります。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "parentdisty-local-2002",
+                  "parentdisty-local-1.0",
+                  "parentdisty-local-1.1",
+                  "parentdisty-other"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>1.0/1.1では、親を持たない場合に<code>bottom</code>を返します。同じ高さを表す通常の数値0とは異なります。条件式全体の評価結果がbottomなら、その条件は偽として扱われます。部分式のbottomにはCond/IfElseなどの特殊な評価規則があります。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "parentdisty-local-1.0",
+                  "parentdisty-local-1.1",
+                  "parentdisty-bottom-1.0",
+                  "parentdisty-bottom-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例はHelperで親を参照できる場面の条件行です。<code>TriggerAll = IsHelper</code>は実行者がHelperかを確認するだけで、参照先の存在や生存を保証しません。距離条件で画像・喰らい判定の接触や追従動作を判定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "parentdisty-local-2002",
+                  "parentdisty-local-1.0",
+                  "parentdisty-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧履歴の不在時説明を原位置に保持。2002.04.14資料はSFalse、1.0/1.1資料はbottomを記載します。旧本文は2002/1.0/1.1をまとめてbottomとし、条件式では0扱いと説明していました。数値0を代入して通常の比較を行う仕様へ読み替えず、資料の表記差を実行ビルドの変更/修正時点にも変換しません。公式は親のdestroyed/KOも例に挙げますが、すべてのKOで直ちにParentが失われるという実測結果とは区別します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdisty-local-2002",
+                  "parentdisty-local-1.0",
+                  "parentdisty-local-1.1",
+                  "parentdisty-sc-2002",
+                  "parentdisty-bottom-1.0",
+                  "parentdisty-bottom-1.1",
+                  "parentdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal",
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式はfloatを記載。CHAOSのParentDist Xはfloat型でも小数が切り捨てられると報告します。Xの報告をYの整数化へ一般化しません。CHAOSのY個別記事は今回取得できず、未読の小数精度を推定していません。一律にFloor/整数化を必要とはしません。LocalCoord差・親/本体とHelperの座標単位・リダイレクト時の換算は実機未確認。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdisty-local-2002",
+                  "parentdisty-local-1.0",
+                  "parentdisty-local-1.1",
+                  "parentdisty-chaos-x",
+                  "parentdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>Helper専用という利用条件と、参照先が存在するという条件は別です。IsHelperが真でも親の生存を保証しません。親HelperのDestroySelf・本体KO・ラウンド移行・処理順・ParentとRootの寿命/参照切断・通常プレイヤーからの評価は今回実機未検証。親が消えたらRootへ自動的に切り替わると推定せず、親のIDを保存した存在確認方式やNumHelperの個数を直接のParent存在保証にも変換しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdisty-local-2002",
+                  "parentdisty-local-1.0",
+                  "parentdisty-local-1.1",
+                  "parentdisty-chaos-x",
+                  "parentdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧共通Root/Parent図・alt・Nullステートの例を原位置に保持してinternalへ。基準軸・HelperのFacing・親子階層・座標単位の図示は実測未検証。旧X!=0とY<0の条件行は短い公開例として意味を明示し、Nullを実行すれば追従するという例にはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。資料への掲載は初実装の証明ではないためintroduced_inはnull。数値比較テストは公開条件式の0/負数/閾値境界のみで、距離の算出・小数精度・不在時bottom・親子関係/寿命・処理順のエンジン挙動を再現するものではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdisty-local-2002",
+                  "parentdisty-local-1.0",
+                  "parentdisty-local-1.1",
+                  "parentdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Ikemen GO (Nightly)のZ成分追加という履歴と引用を別エンジンの内部記録に保持。可変NightlyをMUGENの実行ビルド/実測結果へ読み替えず、今回GOの仕様は検証・公開していません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "parentdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal",
+              "legacy_index": 1
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "parentdisty-local-2002",
+              "parentdisty-local-1.0",
+              "parentdisty-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・X精度/負数丸め・Y個別研究・LocalCoord換算・親/Rootの寿命・不在時点/警告・通常プレイヤーの実機挙動は未確認。原文と資料差を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "RootDistX",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdistx-local-2002",
+            "title": "RootDist — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RootDist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdistx-local-1.0",
+            "title": "RootDist — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#rootdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdistx-local-1.1",
+            "title": "RootDist — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#rootdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdistx-other",
+            "title": "ParentDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#parentdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdistx-bottom-1.0",
+            "title": "bottomと特殊な評価規則 — Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/cns.html#bottom",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdistx-bottom-1.1",
+            "title": "bottomと特殊な評価規則 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#bottom",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdistx-sc-2002",
+            "title": "SFalseとSC値の伝播 — Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/exp.html",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdistx-chaos-x",
+            "title": "RootDist X — CHAOSの距離・精度研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/174.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdistx-legacy",
+            "title": "移行前の本文・履歴・使用例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/b82c4a27138f237697d9d9cab60853329c1932bd/src/content/triggers/RootDistX.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>RootDistの後に半角スペースを入れ、X / Yを指定します。このページはX成分の<code>RootDist X</code>です。括弧付きの数値引数にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rootdistx-local-2002",
+                  "rootdistx-local-1.0",
+                  "rootdistx-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>Helper専用のトリガーです。実行者のHelperから本体（Root）までの基準軸間の水平距離をfloatで返します。<code>RootDist X</code>のように半角スペースを入れて軸を指定します。</p><p>Rootは、このHelperを所有する本体のプレイヤーです。別のHelperから生成されたHelperでも、直接の親ではなく本体を参照します。</p><p>本体（Root）の基準軸が実行者の前方なら正、後方なら負、同じX位置なら0です。前後は実行者のHelperのFacingで決まり、本体の向きや画面の右・左に固定された符号ではありません。画像やClsn2の端までの距離ではありません。</p>",
+            "page_category": "本体との水平距離を取得（基準軸）",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "rootdistx-local-2002",
+                "rootdistx-local-1.0",
+                "rootdistx-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+            }
+          }
+        },
+        {
+          "path": [
+            "qanda"
+          ],
+          "value": [
+            {
+              "q": "ParentDistとRootDistはいつも同じ？",
+              "a": "<p>本体が直接生成したHelperでは参照先は同じです。Helperから生成されたHelperでは、Parentは直接の親Helper、Rootは本体なので、距離が同じとは限りません。両者のFacingではなく実行者の向きでXの前後が決まります。</p>"
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "本体とX位置が異なる",
+            "description": "<p>前後の両方を含み、同じX位置の0を除外します。Y位置の一致は調べません。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = RootDist X != 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "本体へのX距離が0以上30未満",
+            "description": "<p>同じX位置の0を含み、後方の負数と30ちょうどを除外します。<30だけなら負数も含むので下限を指定します。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = (RootDist X >= 0) && (RootDist X < 30)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "前後を問わずX距離の大きさが30未満",
+            "description": "<p>0を含み、-30と30は含みません。Y方向の差は別に調べます。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = Abs(RootDist X) < 30"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>本体 → Helper A → Helper Bの順に生成した場合、Helper BのParentはHelper A、Rootは本体です。本体が直接生成したHelperではParentとRootの参照先が同じになります。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rootdistx-local-2002",
+                  "rootdistx-local-1.0",
+                  "rootdistx-local-1.1",
+                  "rootdistx-other"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>1.0/1.1では、Rootを持たない場合に<code>bottom</code>を返します。同じX位置を表す通常の数値0とは異なります。条件式全体の評価結果がbottomなら、その条件は偽として扱われます。部分式のbottomにはCond/IfElseなどの特殊な評価規則があります。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rootdistx-local-1.0",
+                  "rootdistx-local-1.1",
+                  "rootdistx-bottom-1.0",
+                  "rootdistx-bottom-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例はHelperでRootを参照できる場面の条件行です。<code>TriggerAll = IsHelper</code>は実行者がHelperかを確認するだけで、参照先の存在や生存を保証しません。距離条件で画像・喰らい判定の接触や追従動作を判定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rootdistx-local-2002",
+                  "rootdistx-local-1.0",
+                  "rootdistx-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧履歴の不在時説明を原位置に保持。2002.04.14資料はSFalse、1.0/1.1資料はbottomを記載します。旧RootDist XはSFalseを記載。数値0を代入して通常の比較を行う仕様へ読み替えず、資料の表記差を実行ビルドの変更/修正時点にも変換しません。RootDistの公式X説明は3世代ともParentDistという名前を含みますが、節名・参照対象・使用例はRootDistです。誤記を資料差として保存し、公開はRootの距離として説明します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdistx-local-2002",
+                  "rootdistx-local-1.0",
+                  "rootdistx-local-1.1",
+                  "rootdistx-sc-2002",
+                  "rootdistx-bottom-1.0",
+                  "rootdistx-bottom-1.1",
+                  "rootdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal",
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式はfloatを記載。CHAOSのRootDist Xはfloat型でも小数が切り捨てられると報告します。型と値の精度を分け、具体的な実行ビルド・負数の丸め方向・互換設定は実機未検証です。一律にFloor/整数化を必要とはしません。LocalCoord差・親/本体とHelperの座標単位・リダイレクト時の換算は実機未確認。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdistx-local-2002",
+                  "rootdistx-local-1.0",
+                  "rootdistx-local-1.1",
+                  "rootdistx-chaos-x",
+                  "rootdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>Helper専用という利用条件と、参照先が存在するという条件は別です。IsHelperが真でも親の生存を保証しません。親HelperのDestroySelf・本体KO・ラウンド移行・処理順・ParentとRootの寿命/参照切断・通常プレイヤーからの評価は今回実機未検証。親が消えたらRootへ自動的に切り替わると推定せず、親のIDを保存した存在確認方式やNumHelperの個数を直接のParent存在保証にも変換しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdistx-local-2002",
+                  "rootdistx-local-1.0",
+                  "rootdistx-local-1.1",
+                  "rootdistx-chaos-x",
+                  "rootdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧共通Root/Parent図・alt・Nullステートの例を原位置に保持してinternalへ。基準軸・HelperのFacing・親子階層・座標単位の図示は実測未検証。旧X!=0とY<0の条件行は短い公開例として意味を明示し、Nullを実行すれば追従するという例にはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。資料への掲載は初実装の証明ではないためintroduced_inはnull。数値比較テストは公開条件式の0/負数/閾値境界のみで、距離の算出・小数精度・不在時bottom・親子関係/寿命・処理順のエンジン挙動を再現するものではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdistx-local-2002",
+                  "rootdistx-local-1.0",
+                  "rootdistx-local-1.1",
+                  "rootdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Ikemen GO (Nightly)のZ成分追加という履歴と引用を別エンジンの内部記録に保持。可変NightlyをMUGENの実行ビルド/実測結果へ読み替えず、今回GOの仕様は検証・公開していません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdistx-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal",
+              "legacy_index": 1
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "rootdistx-local-2002",
+              "rootdistx-local-1.0",
+              "rootdistx-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・X精度/負数丸め・Y個別研究・LocalCoord換算・親/Rootの寿命・不在時点/警告・通常プレイヤーの実機挙動は未確認。原文と資料差を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "RootDistY",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdisty-local-2002",
+            "title": "RootDist — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RootDist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdisty-local-1.0",
+            "title": "RootDist — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#rootdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdisty-local-1.1",
+            "title": "RootDist — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#rootdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdisty-other",
+            "title": "ParentDist — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#parentdist",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdisty-bottom-1.0",
+            "title": "bottomと特殊な評価規則 — Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/cns.html#bottom",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdisty-bottom-1.1",
+            "title": "bottomと特殊な評価規則 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#bottom",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdisty-sc-2002",
+            "title": "SFalseとSC値の伝播 — Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/exp.html",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdisty-chaos-x",
+            "title": "RootDist X — CHAOSの距離・精度研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/174.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "rootdisty-legacy",
+            "title": "移行前の本文・履歴・使用例・図",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/b82c4a27138f237697d9d9cab60853329c1932bd/src/content/triggers/RootDistY.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "special_form"
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[component]",
+              "type": [
+                "char"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>RootDistの後に半角スペースを入れ、X / Yを指定します。このページはY成分の<code>RootDist Y</code>です。括弧付きの数値引数にはしません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rootdisty-local-2002",
+                  "rootdisty-local-1.0",
+                  "rootdisty-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>Helper専用のトリガーです。実行者のHelperから本体（Root）までの基準軸の高さの差をfloatで返します。<code>RootDist Y</code>のように半角スペースを入れて軸を指定します。</p><p>Rootは、このHelperを所有する本体のプレイヤーです。別のHelperから生成されたHelperでも、直接の親ではなく本体を参照します。</p><p>本体（Root）の基準軸が実行者より上なら負、下なら正、同じ高さなら0です。向きによって上下の符号は変わりません。画像の頭・足やClsn2の外縁までの隙間ではありません。</p>",
+            "page_category": "本体との基準軸の高さの差を取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "rootdisty-local-2002",
+                "rootdisty-local-1.0",
+                "rootdisty-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+            }
+          }
+        },
+        {
+          "path": [
+            "qanda"
+          ],
+          "value": [
+            {
+              "q": "ParentDistとRootDistはいつも同じ？",
+              "a": "<p>本体が直接生成したHelperでは参照先は同じです。Helperから生成されたHelperでは、Parentは直接の親Helper、Rootは本体なので、距離が同じとは限りません。両者のFacingではなく実行者の向きでXの前後が決まります。</p>"
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "本体の基準位置が上にある",
+            "description": "<p>同じ高さの0を含みません。X方向の差は別に調べます。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = RootDist Y < 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "本体の基準位置が12以上高い",
+            "description": "<p>-12ちょうどを含みます。画像全体の上下や現在速度を調べる条件ではありません。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = RootDist Y <= -12"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "基準位置の高さの差が12未満",
+            "description": "<p>上下を問わず差の大きさを調べます。同じ高さの0を含み、-12と12は含みません。</p>",
+            "code": [
+              "TriggerAll = IsHelper",
+              "Trigger1 = Abs(RootDist Y) < 12"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>本体 → Helper A → Helper Bの順に生成した場合、Helper BのParentはHelper A、Rootは本体です。本体が直接生成したHelperではParentとRootの参照先が同じになります。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rootdisty-local-2002",
+                  "rootdisty-local-1.0",
+                  "rootdisty-local-1.1",
+                  "rootdisty-other"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "error",
+              "content": "<p>1.0/1.1では、Rootを持たない場合に<code>bottom</code>を返します。同じ高さを表す通常の数値0とは異なります。条件式全体の評価結果がbottomなら、その条件は偽として扱われます。部分式のbottomにはCond/IfElseなどの特殊な評価規則があります。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rootdisty-local-1.0",
+                  "rootdisty-local-1.1",
+                  "rootdisty-bottom-1.0",
+                  "rootdisty-bottom-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例はHelperでRootを参照できる場面の条件行です。<code>TriggerAll = IsHelper</code>は実行者がHelperかを確認するだけで、参照先の存在や生存を保証しません。距離条件で画像・喰らい判定の接触や追従動作を判定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "rootdisty-local-2002",
+                  "rootdisty-local-1.0",
+                  "rootdisty-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧履歴の不在時説明を原位置に保持。2002.04.14資料はSFalse、1.0/1.1資料はbottomを記載します。旧本文は2002/1.0/1.1をまとめてbottomとし、条件式では0扱いと説明していました。数値0を代入して通常の比較を行う仕様へ読み替えず、資料の表記差を実行ビルドの変更/修正時点にも変換しません。RootDistの公式X説明は3世代ともParentDistという名前を含みますが、節名・参照対象・使用例はRootDistです。誤記を資料差として保存し、公開はRootの距離として説明します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdisty-local-2002",
+                  "rootdisty-local-1.0",
+                  "rootdisty-local-1.1",
+                  "rootdisty-sc-2002",
+                  "rootdisty-bottom-1.0",
+                  "rootdisty-bottom-1.1",
+                  "rootdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal",
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式はfloatを記載。CHAOSのRootDist Xはfloat型でも小数が切り捨てられると報告します。Xの報告をYの整数化へ一般化しません。CHAOSのY個別記事は今回取得できず、未読の小数精度を推定していません。一律にFloor/整数化を必要とはしません。LocalCoord差・親/本体とHelperの座標単位・リダイレクト時の換算は実機未確認。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdisty-local-2002",
+                  "rootdisty-local-1.0",
+                  "rootdisty-local-1.1",
+                  "rootdisty-chaos-x",
+                  "rootdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>Helper専用という利用条件と、参照先が存在するという条件は別です。IsHelperが真でも親の生存を保証しません。親HelperのDestroySelf・本体KO・ラウンド移行・処理順・ParentとRootの寿命/参照切断・通常プレイヤーからの評価は今回実機未検証。親が消えたらRootへ自動的に切り替わると推定せず、親のIDを保存した存在確認方式やNumHelperの個数を直接のParent存在保証にも変換しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdisty-local-2002",
+                  "rootdisty-local-1.0",
+                  "rootdisty-local-1.1",
+                  "rootdisty-chaos-x",
+                  "rootdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧共通Root/Parent図・alt・Nullステートの例を原位置に保持してinternalへ。基準軸・HelperのFacing・親子階層・座標単位の図示は実測未検証。旧X!=0とY<0の条件行は短い公開例として意味を明示し、Nullを実行すれば追従するという例にはしません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。資料への掲載は初実装の証明ではないためintroduced_inはnull。数値比較テストは公開条件式の0/負数/閾値境界のみで、距離の算出・小数精度・不在時bottom・親子関係/寿命・処理順のエンジン挙動を再現するものではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdisty-local-2002",
+                  "rootdisty-local-1.0",
+                  "rootdisty-local-1.1",
+                  "rootdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Ikemen GO (Nightly)のZ成分追加という履歴と引用を別エンジンの内部記録に保持。可変NightlyをMUGENの実行ビルド/実測結果へ読み替えず、今回GOの仕様は検証・公開していません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "rootdisty-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+              },
+              "visibility": "internal",
+              "legacy_index": 1
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "rootdisty-local-2002",
+              "rootdisty-local-1.0",
+              "rootdisty-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代・CNSのbottom節とCHAOSのX距離記事を照合。資料の記載確認であり実機検証ではない。数値テストは公開条件式の比較境界だけを確認。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・X精度/負数丸め・Y個別研究・LocalCoord換算・親/Rootの寿命・不在時点/警告・通常プレイヤーの実機挙動は未確認。原文と資料差を保持。"
+      ]
+    }
+  ]
+}

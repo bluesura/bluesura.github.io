@@ -1,0 +1,72 @@
+{
+  "text": "RootDistY 距離 > ルートとの垂直距離(中心軸基準)の取得 | 実装されたバージョン: 2002.04.14 引数 仕様・注意点 使用例 引用記事 RootDist Y は、実行者と Root との垂直距離（高さ基準）を返します。主に Helper からの参照を想定しており、負の値は「Root が実行者より上にいる」ことを意味します。戻り値は float です。 関連するトリガー： RootDistX , ParentDistX , ParentDistY 構文 RootDist Y 引数 なし 仕様・バグ・エラー・変更点MUGEN 2002.04.14 / 1.0 / 1.1Root を参照できない場合は bottom を返します（条件式では 0 扱いとなり、通常は成立しません）。Ikemen GO (Nightly)RootDist Z（Z成分）が追加されています。 コードサンプルRootDist Y; Rootが自分より上にいるか？[State 0, Example_RootDistY]Type = NullTrigger1 = RootDist Y < 0 引用記事RootDist - Trigger Reference(version 2002.04.14)RootDist - Trigger Reference (MUGEN 1.0)RootDist - Trigger Reference (MUGEN 1.1 Beta)CNS Format / Expressions - float→intの暗黙変換とfloor/ceilIkemen GO Wiki - Triggers (changed) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "RootDistX",
+      "href": "./../Trigger/RootDistX.html"
+    },
+    {
+      "text": "ParentDistX",
+      "href": "./../Trigger/ParentDistX.html"
+    },
+    {
+      "text": "ParentDistY",
+      "href": "./../Trigger/ParentDistY.html"
+    },
+    {
+      "text": "RootDist - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#RootDist"
+    },
+    {
+      "text": "RootDist - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#rootdist"
+    },
+    {
+      "text": "RootDist - Trigger Reference (MUGEN 1.1 Beta)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#rootdist"
+    },
+    {
+      "text": "CNS Format / Expressions - float→intの暗黙変換とfloor/ceil",
+      "href": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "text": "Ikemen GO Wiki - Triggers (changed)",
+      "href": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-helper-root-parent-dist.png"
+  ],
+  "code": []
+}

@@ -1,0 +1,68 @@
+{
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "RootDist X",
+    "category": ["距離", "ルートとの水平距離(中心軸基準)の取得"],
+    "version": "2002.04.14",
+    "update": "2026.01.11",
+    "type": "document",
+    "level": "3"
+  },
+  "title": "RootDistX",
+  "category": "trigger",
+  "trigger": "RootDistX",
+  "description": "<p><code>RootDist X</code> は、実行者と「Root（ルート）」との水平距離（中心軸基準）を返します。</p><p>主に Helper（ヘルパー）からの参照を想定しており、正の値は「Root が実行者の前方にいる」ことを意味します（実行者の向きに依存）。</p><p>戻り値は <strong>float</strong> です。</p>",
+  "images": [
+      {
+      "src": "mugen-helper-root-parent-dist.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENのHelperから見たRootおよびParentへの相対距離（Dist）の座標系図解。前方が正、後方が負、上が負、下が正の値となるfloat型の仕様解説。"
+      }
+  ],
+  "syntax": ["RootDist X"],
+  "associated_trigger": ["RootDistY", "ParentDistX", "ParentDistY"],
+  "version": [
+    {
+        "no": "エラー",
+        "content": "ルートがいない場合、SFalseを返します。"
+    },
+    {
+      "no": "Ikemen GO (Nightly)",
+      "content": "<p><code>RootDist Z</code>（Z成分）が追加されています。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "RootDist X",
+      "code": [
+        "; RootとX方向にズレているか？",
+        "[State 0, Example_RootDistX]",
+        "Type = Null",
+        "Trigger1 = RootDist X != 0"
+      ]
+    }
+  ],
+  "quote": [
+    {
+        "title": "RootDist - Trigger Reference(version 2002.04.14)",
+        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#RootDist"
+    },
+    {
+      "title": "RootDist - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#rootdist"
+    },
+    {
+      "title": "RootDist - Trigger Reference (MUGEN 1.1 Beta)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#rootdist"
+    },
+    {
+      "title": "CNS Format / Expressions - float→intの暗黙変換とfloor/ceil",
+      "url": "https://www.elecbyte.com/mugendocs/cns.html"
+    },
+    {
+      "title": "Ikemen GO Wiki - Triggers (changed)",
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Triggers-%28changed%29"
+    }
+  ]
+}

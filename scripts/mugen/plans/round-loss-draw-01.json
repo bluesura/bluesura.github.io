@@ -1,0 +1,1479 @@
+{
+  "id": "round-loss-draw-01",
+  "reviewed_on": "2026-10-06",
+  "description": "Lose/LoseKO/LoseTime/DrawGameの4件。ラウンド敗北と理由・引き分け・試合決着を分離し、旧本文/図/例と更新時点の研究を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "Lose",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "lose-local-2002",
+            "title": "Lose — 保存済み Elecbyte 2002.04.14のLose項目",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Lose",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "lose-local-1.0",
+            "title": "Lose — 保存済み Elecbyte 1.0のLose項目",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#lose",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "lose-local-1.1",
+            "title": "Lose — 保存済み Elecbyte 1.1b1のLose項目",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#lose",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "lose-legacy",
+            "title": "移行前の本文・画像・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/f8295d6a9079c27ce224ab325e041e21b8192cd5/src/content/triggers/Lose.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "lose-chaos-drawgame",
+            "title": "DrawGame — CHAOSのラウンド結果更新と引き分け研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/108.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "lose-roundstate-1.1",
+            "title": "RoundState — ラウンドの進行状態",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundstate",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "lose-triggers-1.1",
+            "title": "トリガーとPersistent — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#triggers",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "lose-matchover-1.1",
+            "title": "MatchOver — 試合の決着判定",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#matchover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤー（チーム戦ではそのチーム）がラウンドに敗北していれば<code>1</code>、それ以外は<code>0</code>を整数で返します。引数はありません。</p><p>敗北の理由を分けたい場合はLoseKO / LoseTime、引き分けかはDrawGameを調べます。試合全体の決着はMatchOverで別に調べます。</p>",
+            "page_category": "ラウンドに敗北しているかを判定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "lose-local-2002",
+                "lose-local-1.0",
+                "lose-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "Loseが成立しているか調べる",
+            "description": "<p>条件行だけを示します。演出やフラグの更新を1回に限る場合は、実行するステート・初期化・再実行防止を別に用意してください。</p>",
+            "code": [
+              "Trigger1 = Lose"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "Loseが成立していないか調べる",
+            "description": "<p>敗北の未成立も含む否定条件です。この条件だけで勝利や引き分けを判断しません。</p>",
+            "code": [
+              "Trigger1 = !Lose"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>!Loseは「Loseが0」という条件です。まだラウンドの敗北が成立していない区間も含むため、否定条件だけで勝利・引き分けや別の敗北理由を判定しないでください。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "lose-local-2002",
+                  "lose-local-1.0",
+                  "lose-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧本文はRoundState = 3以降を判定の帯とし、共有図も結果からMatchOverへ至る流れを示す。進行状態・ラウンド結果・試合決着は別である。旧本文・図src/alt/寸法を保持して図はinternalへ。全プレイヤー/チーム/Turns・Pause/HitPause・結果取り消しを含む正確な更新フレームは実機未確認で、3による即時/最終確定を保証しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "lose-local-2002",
+                  "lose-local-1.0",
+                  "lose-local-1.1",
+                  "lose-roundstate-1.1",
+                  "lose-matchover-1.1",
+                  "lose-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧-2のセット/リセット例はRoundState = 3と結果を調べPersistent = 0で1回だけと説明する。CNS公式のPersistent = 0はそのステートにいる間の1回で、ラウンド/結果単位のラッチそのものではない。負のステートでの適用/ビルド差、0区間の初期化・スキップ・更新順・Helper・変数用途は今回実測していない。コード・説明・変数番号を原位置へ内部保存し、公開例で1回捕捉を保証しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "lose-legacy",
+                  "lose-triggers-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOS DrawGame本文にはラウンド取得前の死亡による勝敗再判定と留保があり、結果を永久の確定フラグとして扱わない。Lose/LoseKO/LoseTimeの個別ページ本文は直接取得に失敗し検索でも確認できなかったため、Win系のKO切替/蘇生研究を敗北側へ鏡写しして確認済みにはしない。敗北理由の切替・更新/取り消し・チーム差は未実測。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "lose-chaos-drawgame",
+                  "lose-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.version=2002.04.14と原文を保持。公式3世代への掲載から初導入ビルドを推定せずintroduced_inはnull。実機/ビルド/互換プロファイルごとの確認は未実施で、資料確認をruntime_testへ変更しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "lose-local-2002",
+                  "lose-local-1.0",
+                  "lose-local-1.1",
+                  "lose-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "lose-local-2002",
+              "lose-local-1.0",
+              "lose-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・結果更新/取り消し・引き分け上限と勝ち星・Simul/Turns・負のステートのPersistent・旧フラグ初期化は実機未検証。旧原文/図/例と研究を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "LoseKO",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "loseko-local-2002",
+            "title": "LoseKO — 保存済み Elecbyte 2002.04.14のLose項目",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Lose",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "loseko-local-1.0",
+            "title": "LoseKO — 保存済み Elecbyte 1.0のLose項目",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#lose",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "loseko-local-1.1",
+            "title": "LoseKO — 保存済み Elecbyte 1.1b1のLose項目",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#lose",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "loseko-legacy",
+            "title": "移行前の本文・画像・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/f8295d6a9079c27ce224ab325e041e21b8192cd5/src/content/triggers/LoseKO.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "loseko-chaos-drawgame",
+            "title": "DrawGame — CHAOSのラウンド結果更新と引き分け研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/108.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "loseko-roundstate-1.1",
+            "title": "RoundState — ラウンドの進行状態",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundstate",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "loseko-triggers-1.1",
+            "title": "トリガーとPersistent — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#triggers",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "loseko-matchover-1.1",
+            "title": "MatchOver — 試合の決着判定",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#matchover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤー（チーム戦ではそのチーム）がKOによってラウンドに敗北していれば<code>1</code>、それ以外は<code>0</code>を整数で返します。引数はありません。</p><p>KOによる敗北の判定であり、現在の自分のLifeが0かだけを調べる条件とは別です。自分側が敗北していない場合や、時間切れによる敗北の場合は0です。試合全体の決着はMatchOverで別に調べます。</p>",
+            "page_category": "KOによるラウンド敗北を判定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "loseko-local-2002",
+                "loseko-local-1.0",
+                "loseko-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "LoseKOが成立しているか調べる",
+            "description": "<p>条件行だけを示します。演出やフラグの更新を1回に限る場合は、実行するステート・初期化・再実行防止を別に用意してください。</p>",
+            "code": [
+              "Trigger1 = LoseKO"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "LoseKOが成立していないか調べる",
+            "description": "<p>敗北の未成立も含む否定条件です。この条件だけで勝利や引き分けを判断しません。</p>",
+            "code": [
+              "Trigger1 = !LoseKO"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "ラウンドに敗北し、KOによる敗北ではない",
+            "description": "<p>!LoseKOだけでは、まだ敗北していない区間も含みます。同じTrigger1でLoseも調べます。</p>",
+            "code": [
+              "Trigger1 = Lose",
+              "Trigger1 = !LoseKO"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>!LoseKOは「LoseKOが0」という条件です。まだラウンドの敗北が成立していない区間も含むため、否定条件だけで勝利・引き分けや別の敗北理由を判定しないでください。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "loseko-local-2002",
+                  "loseko-local-1.0",
+                  "loseko-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧本文はRoundState = 3以降を判定の帯とし、共有図も結果からMatchOverへ至る流れを示す。進行状態・ラウンド結果・試合決着は別である。旧本文・図src/alt/寸法を保持して図はinternalへ。全プレイヤー/チーム/Turns・Pause/HitPause・結果取り消しを含む正確な更新フレームは実機未確認で、3による即時/最終確定を保証しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "loseko-local-2002",
+                  "loseko-local-1.0",
+                  "loseko-local-1.1",
+                  "loseko-roundstate-1.1",
+                  "loseko-matchover-1.1",
+                  "loseko-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧-2のセット/リセット例はRoundState = 3と結果を調べPersistent = 0で1回だけと説明する。CNS公式のPersistent = 0はそのステートにいる間の1回で、ラウンド/結果単位のラッチそのものではない。負のステートでの適用/ビルド差、0区間の初期化・スキップ・更新順・Helper・変数用途は今回実測していない。コード・説明・変数番号を原位置へ内部保存し、公開例で1回捕捉を保証しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "loseko-legacy",
+                  "loseko-triggers-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOS DrawGame本文にはラウンド取得前の死亡による勝敗再判定と留保があり、結果を永久の確定フラグとして扱わない。Lose/LoseKO/LoseTimeの個別ページ本文は直接取得に失敗し検索でも確認できなかったため、Win系のKO切替/蘇生研究を敗北側へ鏡写しして確認済みにはしない。敗北理由の切替・更新/取り消し・チーム差は未実測。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "loseko-chaos-drawgame",
+                  "loseko-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.version=2002.04.14と原文を保持。公式3世代への掲載から初導入ビルドを推定せずintroduced_inはnull。実機/ビルド/互換プロファイルごとの確認は未実施で、資料確認をruntime_testへ変更しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "loseko-local-2002",
+                  "loseko-local-1.0",
+                  "loseko-local-1.1",
+                  "loseko-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "loseko-local-2002",
+              "loseko-local-1.0",
+              "loseko-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・結果更新/取り消し・引き分け上限と勝ち星・Simul/Turns・負のステートのPersistent・旧フラグ初期化は実機未検証。旧原文/図/例と研究を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "LoseTime",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "losetime-local-2002",
+            "title": "LoseTime — 保存済み Elecbyte 2002.04.14のLose項目",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Lose",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "losetime-local-1.0",
+            "title": "LoseTime — 保存済み Elecbyte 1.0のLose項目",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#lose",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "losetime-local-1.1",
+            "title": "LoseTime — 保存済み Elecbyte 1.1b1のLose項目",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#lose",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "losetime-legacy",
+            "title": "移行前の本文・画像・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/f8295d6a9079c27ce224ab325e041e21b8192cd5/src/content/triggers/LoseTime.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "losetime-chaos-drawgame",
+            "title": "DrawGame — CHAOSのラウンド結果更新と引き分け研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/108.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "losetime-roundstate-1.1",
+            "title": "RoundState — ラウンドの進行状態",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundstate",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "losetime-triggers-1.1",
+            "title": "トリガーとPersistent — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#triggers",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "losetime-matchover-1.1",
+            "title": "MatchOver — 試合の決着判定",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#matchover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤー（チーム戦ではそのチーム）が時間切れによってラウンドに敗北していれば<code>1</code>、それ以外は<code>0</code>を整数で返します。引数はありません。</p><p>時間切れが発生しただけでは成立せず、自分側のラウンド敗北が必要です。時間切れによる勝利や引き分けの場合は0です。KOによる敗北はLoseKO、試合全体の決着はMatchOverで別に調べます。</p>",
+            "page_category": "時間切れによるラウンド敗北を判定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "losetime-local-2002",
+                "losetime-local-1.0",
+                "losetime-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "LoseTimeが成立しているか調べる",
+            "description": "<p>条件行だけを示します。演出やフラグの更新を1回に限る場合は、実行するステート・初期化・再実行防止を別に用意してください。</p>",
+            "code": [
+              "Trigger1 = LoseTime"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "LoseTimeが成立していないか調べる",
+            "description": "<p>敗北の未成立も含む否定条件です。この条件だけで勝利や引き分けを判断しません。</p>",
+            "code": [
+              "Trigger1 = !LoseTime"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>!LoseTimeは「LoseTimeが0」という条件です。まだラウンドの敗北が成立していない区間も含むため、否定条件だけで勝利・引き分けや別の敗北理由を判定しないでください。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "losetime-local-2002",
+                  "losetime-local-1.0",
+                  "losetime-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧本文はRoundState = 3以降を判定の帯とし、共有図も結果からMatchOverへ至る流れを示す。進行状態・ラウンド結果・試合決着は別である。旧本文・図src/alt/寸法を保持して図はinternalへ。全プレイヤー/チーム/Turns・Pause/HitPause・結果取り消しを含む正確な更新フレームは実機未確認で、3による即時/最終確定を保証しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "losetime-local-2002",
+                  "losetime-local-1.0",
+                  "losetime-local-1.1",
+                  "losetime-roundstate-1.1",
+                  "losetime-matchover-1.1",
+                  "losetime-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧-2のセット/リセット例はRoundState = 3と結果を調べPersistent = 0で1回だけと説明する。CNS公式のPersistent = 0はそのステートにいる間の1回で、ラウンド/結果単位のラッチそのものではない。負のステートでの適用/ビルド差、0区間の初期化・スキップ・更新順・Helper・変数用途は今回実測していない。コード・説明・変数番号を原位置へ内部保存し、公開例で1回捕捉を保証しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "losetime-legacy",
+                  "losetime-triggers-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOS DrawGame本文にはラウンド取得前の死亡による勝敗再判定と留保があり、結果を永久の確定フラグとして扱わない。Lose/LoseKO/LoseTimeの個別ページ本文は直接取得に失敗し検索でも確認できなかったため、Win系のKO切替/蘇生研究を敗北側へ鏡写しして確認済みにはしない。敗北理由の切替・更新/取り消し・チーム差は未実測。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "losetime-chaos-drawgame",
+                  "losetime-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.version=2002.04.14と原文を保持。公式3世代への掲載から初導入ビルドを推定せずintroduced_inはnull。実機/ビルド/互換プロファイルごとの確認は未実施で、資料確認をruntime_testへ変更しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "losetime-local-2002",
+                  "losetime-local-1.0",
+                  "losetime-local-1.1",
+                  "losetime-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "losetime-local-2002",
+              "losetime-local-1.0",
+              "losetime-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・結果更新/取り消し・引き分け上限と勝ち星・Simul/Turns・負のステートのPersistent・旧フラグ初期化は実機未検証。旧原文/図/例と研究を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "DrawGame",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "drawgame-local-2002",
+            "title": "DrawGame — 保存済み Elecbyte 2002.04.14のDrawGame項目",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#DrawGame",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "drawgame-local-1.0",
+            "title": "DrawGame — 保存済み Elecbyte 1.0のDrawGame項目",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#drawgame",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "drawgame-local-1.1",
+            "title": "DrawGame — 保存済み Elecbyte 1.1b1のDrawGame項目",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#drawgame",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "drawgame-legacy",
+            "title": "移行前の本文・画像・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/f8295d6a9079c27ce224ab325e041e21b8192cd5/src/content/triggers/DrawGame.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "drawgame-chaos-drawgame",
+            "title": "DrawGame — CHAOSのラウンド結果更新と引き分け研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/108.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "drawgame-roundstate-1.1",
+            "title": "RoundState — ラウンドの進行状態",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundstate",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "drawgame-triggers-1.1",
+            "title": "トリガーとPersistent — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#triggers",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "drawgame-matchover-1.1",
+            "title": "MatchOver — 試合の決着判定",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#matchover",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤー（チーム戦ではそのチーム）がラウンドを引き分けで終えていれば<code>1</code>、それ以外は<code>0</code>を整数で返します。引数はありません。</p><p>ラウンドの引き分けを直接調べる条件です。WinやLoseの否定だけでは、まだ勝敗が成立していない区間も含むため引き分けを判断できません。試合全体の決着はMatchOverで別に調べます。</p>",
+            "page_category": "ラウンドの引き分けを判定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "drawgame-local-2002",
+                "drawgame-local-1.0",
+                "drawgame-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "DrawGameが成立しているか調べる",
+            "description": "<p>条件行だけを示します。演出やフラグの更新を1回に限る場合は、実行するステート・初期化・再実行防止を別に用意してください。</p>",
+            "code": [
+              "Trigger1 = DrawGame"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "DrawGameが成立していないか調べる",
+            "description": "<p>未終了の区間も含む否定条件です。この条件だけで勝利や敗北を判断しません。</p>",
+            "code": [
+              "Trigger1 = !DrawGame"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "引き分けで、試合全体はまだ決着していない",
+            "description": "<p>ラウンドの引き分けと試合全体の決着を別々に調べます。同じTrigger1は両方の成立が必要です。</p>",
+            "code": [
+              "Trigger1 = DrawGame",
+              "Trigger1 = !MatchOver"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>!DrawGameは「DrawGameが0」という条件です。ラウンドがまだ終わっていない区間も含むため、この否定条件だけで勝利や敗北を判断しないでください。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "drawgame-local-2002",
+                  "drawgame-local-1.0",
+                  "drawgame-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧本文はRoundState = 3以降を判定の帯とし、共有図も結果からMatchOverへ至る流れを示す。進行状態・ラウンド結果・試合決着は別である。旧本文・図src/alt/寸法を保持して図はinternalへ。全プレイヤー/チーム/Turns・Pause/HitPause・結果取り消しを含む正確な更新フレームは実機未確認で、3による即時/最終確定を保証しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "drawgame-local-2002",
+                  "drawgame-local-1.0",
+                  "drawgame-local-1.1",
+                  "drawgame-roundstate-1.1",
+                  "drawgame-matchover-1.1",
+                  "drawgame-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧-2のセット/リセット例はRoundState = 3と結果を調べPersistent = 0で1回だけと説明する。CNS公式のPersistent = 0はそのステートにいる間の1回で、ラウンド/結果単位のラッチそのものではない。負のステートでの適用/ビルド差、0区間の初期化・スキップ・更新順・Helper・変数用途は今回実測していない。コード・説明・変数番号を原位置へ内部保存し、公開例で1回捕捉を保証しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "drawgame-legacy",
+                  "drawgame-triggers-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>保存済み公式3世代のDrawGame項目はFormatをDrawと記載する一方、使用例はtrigger1 = DrawGame。旧syntax=DrawGameと実際の条件例を公開へ維持する。資料内の表記差を保持し、Drawを有効な別名として追加しない。別名の実機確認は未実施。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "drawgame-local-2002",
+                  "drawgame-local-1.0",
+                  "drawgame-local-1.1",
+                  "drawgame-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOS DrawGameは戦闘終了と勝敗判定が同時とは限らず、ラウンド取得前の死亡で結果を再判定し、相手KO後に自分も死亡する例やデバッグ蘇生/死亡・時間切れ後の死亡を記録する。死亡しなければ結果は不変という箇所には「はず」の留保がある。正確なビルド/更新フレーム/互換・チーム/Turnsの再現は未実施。旧Win/Loseは通常0という本文を保持するが、全時点で排他的なフラグと断定しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "drawgame-chaos-drawgame",
+                  "drawgame-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSは引き分け許容回数を超えると両者にラウンド勝利判定が付与されると記録し、取得数の直接参照なし・Varカウント案・チーム/Survival制約も記載する。この「勝利判定」の記述だけでWinとDrawGameが同時に1になると推定しない。勝ち星/取得数とトリガーの値・評価時点は区別し、設定値と上限境界・複数ドロー・全ビルドでの実測は保留する。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "drawgame-chaos-drawgame"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.version=2002.04.14と原文を保持。公式3世代への掲載から初導入ビルドを推定せずintroduced_inはnull。実機/ビルド/互換プロファイルごとの確認は未実施で、資料確認をruntime_testへ変更しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "drawgame-local-2002",
+                  "drawgame-local-1.0",
+                  "drawgame-local-1.1",
+                  "drawgame-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "drawgame-local-2002",
+              "drawgame-local-1.0",
+              "drawgame-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代とCHAOS DrawGame本文を照合。Lose/LoseKO/LoseTimeのCHAOS個別本文は取得失敗し、検索でも確認できず。資料確認であり実機検証ではない。条件比較は supplied 1/0 の論理だけを検査し、結果フラグの更新を再現しない。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・結果更新/取り消し・引き分け上限と勝ち星・Simul/Turns・負のステートのPersistent・旧フラグ初期化は実機未検証。旧原文/図/例と研究を保持。"
+      ]
+    }
+  ]
+}

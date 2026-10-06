@@ -1,0 +1,87 @@
+{
+  "text": "LoseTime 試合情報 > タイムアップ敗北判定 | 実装されたバージョン: 2002.04.14 | 対象: プレイヤー自身 引数 使用例 引用記事 LoseTime は、ラウンドを「時間切れ（Time Over）」で敗北した場合に 1 を返します（チーム戦ではチーム単位）。時間切れで引き分けの場合は DrawGame が 1 になり、LoseTime は 0 のままです。敗北直後の処理は通常 RoundState = 3 以降で評価します。 関連するトリガー： Lose , LoseKO , Win , WinKO , WinPerfect , WinTime , DrawGame , MatchOver 構文 LoseTime 引数 なし コードサンプル時間切れ敗北を1回だけ捕捉してフラグ化ラウンド終了処理（RoundState = 3）で LoseTime を1回だけ捕捉します。[State -2, LoseTimeFlagSet]Type = VarSetTrigger1 = RoundState = 3 && LoseTimePersistent = 0V = 11Value = 1 フラグのリセット次ラウンド開始でフラグを落とします。[State -2, LoseTimeFlagClear]Type = VarSetTrigger1 = RoundState = 0V = 11Value = 0 引用記事Lose - Trigger Reference(version 2002.04.14)Lose / LoseTime - Trigger Reference (MUGEN 1.0)Lose / LoseTime - Trigger Reference (MUGEN 1.1 Beta 1)RoundState - Trigger Reference (MUGEN 1.1 Beta 1)DrawGame - Trigger Reference (MUGEN 1.1 Beta 1) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Lose",
+      "href": "./../Trigger/Lose.html"
+    },
+    {
+      "text": "LoseKO",
+      "href": "./../Trigger/LoseKO.html"
+    },
+    {
+      "text": "Win",
+      "href": "./../Trigger/Win.html"
+    },
+    {
+      "text": "WinKO",
+      "href": "./../Trigger/WinKO.html"
+    },
+    {
+      "text": "WinPerfect",
+      "href": "./../Trigger/WinPerfect.html"
+    },
+    {
+      "text": "WinTime",
+      "href": "./../Trigger/WinTime.html"
+    },
+    {
+      "text": "DrawGame",
+      "href": "./../Trigger/DrawGame.html"
+    },
+    {
+      "text": "MatchOver",
+      "href": "./../Trigger/MatchOver.html"
+    },
+    {
+      "text": "Lose - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Lose"
+    },
+    {
+      "text": "Lose / LoseTime - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#lose"
+    },
+    {
+      "text": "Lose / LoseTime - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#lose"
+    },
+    {
+      "text": "RoundState - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#RoundState"
+    },
+    {
+      "text": "DrawGame - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#DrawGame"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-win-lose-conditions.png"
+  ],
+  "code": []
+}

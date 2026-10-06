@@ -1,0 +1,83 @@
+{
+  "text": "DrawGame 試合情報 > ラウンドの引き分け判定 | 実装されたバージョン: 2002.04.14 | 対象: プレイヤー自身 引数 使用例 引用記事 DrawGame は、ラウンドが引き分けで終了した場合に 1 を返します（チーム戦ではチーム単位）。時間切れ時に体力差が同じ場合など、勝者/敗者が決まらないラウンドで使用します。引き分けのラウンドでは Win/Lose は通常 0 になります。引き分け直後の処理は通常 RoundState = 3 以降で評価します。 関連するトリガー： Win , WinKO , WinPerfect , WinTime , Lose , LoseKO , LoseTime , MatchOver 構文 DrawGame 引数 なし コードサンプル引き分けを1回だけ捕捉してフラグ化ラウンド終了処理（RoundState = 3）で DrawGame を1回だけ捕捉します。[State -2, DrawFlagSet]Type = VarSetTrigger1 = RoundState = 3 && DrawGamePersistent = 0V = 20Value = 1 フラグのリセット次ラウンド開始でフラグを落とします。[State -2, DrawFlagClear]Type = VarSetTrigger1 = RoundState = 0V = 20Value = 0 引用記事DrawGame - Trigger Reference(version 2002.04.14)DrawGame - Trigger Reference (MUGEN 1.0)DrawGame - Trigger Reference (MUGEN 1.1 Beta 1)RoundState - Trigger Reference (MUGEN 1.1 Beta 1) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Win",
+      "href": "./../Trigger/Win.html"
+    },
+    {
+      "text": "WinKO",
+      "href": "./../Trigger/WinKO.html"
+    },
+    {
+      "text": "WinPerfect",
+      "href": "./../Trigger/WinPerfect.html"
+    },
+    {
+      "text": "WinTime",
+      "href": "./../Trigger/WinTime.html"
+    },
+    {
+      "text": "Lose",
+      "href": "./../Trigger/Lose.html"
+    },
+    {
+      "text": "LoseKO",
+      "href": "./../Trigger/LoseKO.html"
+    },
+    {
+      "text": "LoseTime",
+      "href": "./../Trigger/LoseTime.html"
+    },
+    {
+      "text": "MatchOver",
+      "href": "./../Trigger/MatchOver.html"
+    },
+    {
+      "text": "DrawGame - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#DrawGame"
+    },
+    {
+      "text": "DrawGame - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#drawgame"
+    },
+    {
+      "text": "DrawGame - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#DrawGame"
+    },
+    {
+      "text": "RoundState - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#RoundState"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-win-lose-conditions.png"
+  ],
+  "code": []
+}

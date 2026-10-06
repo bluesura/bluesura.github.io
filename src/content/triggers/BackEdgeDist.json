@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2025.12.25",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "BackEdgeDist",
   "category": "trigger",
@@ -18,10 +20,11 @@
   "description": "<p><code>BackEdgeDist</code> は、実行者のX軸（axis）から、実行者の背面側にある画面端（screen edge）までの距離を返します。</p><p>「背面側」は向き（<code>Facing</code>）に依存し、右向き時は左端、左向き時は右端が背面側の画面端になります。</p><p>返り値は<code>float</code>のpx単位の距離です。</p><p><code>BackEdgeBodyDist</code> が「幅バー端」基準なのに対し、<code>BackEdgeDist</code> は「X軸（軸位置）」基準です。</p>",
   "images": [
     {
-        "src": "mugen-backedgedist-frontedgedist-diagram.png",
-        "width": "640",
-        "height": "480",
-        "alt": "MUGENにおける画面端距離の仕様図解。キャラクターのX軸中心から画面端までの距離を示すBackEdgeDist/FrontEdgeDistと、幅バー(Width Bar)の端から画面端までの距離を示すBackEdgeBodyDist/FrontEdgeBodyDistの違い。被弾判定(Clsn2)、攻撃判定(Clsn1)、および画面端(Screen Edge)との位置関係を含む。"
+      "src": "mugen-backedgedist-frontedgedist-diagram.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGENにおける画面端距離の仕様図解。キャラクターのX軸中心から画面端までの距離を示すBackEdgeDist/FrontEdgeDistと、幅バー(Width Bar)の端から画面端までの距離を示すBackEdgeBodyDist/FrontEdgeBodyDistの違い。被弾判定(Clsn2)、攻撃判定(Clsn1)、および画面端(Screen Edge)との位置関係を含む。",
+      "visibility": "internal"
     }
   ],
   "syntax": [
@@ -53,20 +56,43 @@
       "description": "<p>背面側の画面端までの距離が30px未満なら発動します（公式ドキュメント例）。</p>",
       "code": [
         "Trigger1 = BackEdgeDist < 30"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "向きに関係なく、いずれかの画面端が近いときに分岐する",
       "description": "<p>前後どちらの画面端が近い場合でも拾いたいときは、<code>FrontEdgeDist</code> と併用します。</p>",
       "code": [
         "Trigger1 = (BackEdgeDist < 30) || (FrontEdgeDist < 30)"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "背面側の距離が30未満（負の値も含む）",
+      "description": "<p>公式例と同じ閾値条件です。基準は基準軸（X軸）です。30ちょうどを含まず、値が負なら真になります。</p>",
+      "code": [
+        "Trigger1 = BackEdgeDist < 30"
+      ]
+    },
+    {
+      "title": "背面側の距離が0以上30未満",
+      "description": "<p>下限を指定して負数を除外します。0は含み、30は含みません。片側の距離条件だけで画像全体が画面内にあるかは判定しません。</p>",
+      "code": [
+        "Trigger1 = (BackEdgeDist >= 0) && (BackEdgeDist < 30)"
+      ]
+    },
+    {
+      "title": "前後いずれかの距離が0以上30未満",
+      "description": "<p>前後それぞれに下限を指定します。基準軸を基準にする条件です。両端の距離が常に同じという意味ではありません。</p>",
+      "code": [
+        "Trigger1 = ((BackEdgeDist >= 0) && (BackEdgeDist < 30)) || ((FrontEdgeDist >= 0) && (FrontEdgeDist < 30))"
       ]
     }
   ],
   "quote": [
     {
-        "title": "BackEdgeDist - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#BackEdgeDist"
+      "title": "BackEdgeDist - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#BackEdgeDist"
     },
     {
       "title": "BackEdgeDist / BackEdge / FrontEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
@@ -82,7 +108,289 @@
     },
     {
       "title": "Ikemen GO (GitHub issue) - BackEdgeDist/FrontEdgeDist の使用例",
-      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/1338"
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/1338",
+      "visibility": "internal"
+    },
+    {
+      "id": "backedgedist-local-2002",
+      "title": "BackEdgeDist — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#BackEdgeDist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "backedgedist-local-1.0",
+      "title": "BackEdgeDist — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#backedgedist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "backedgedist-local-1.1",
+      "title": "BackEdgeDist — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#backedgedist",
+      "source_type": "official_document"
+    },
+    {
+      "id": "backedgedist-width",
+      "title": "対画面端幅 / 対プレイヤー幅 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#width",
+      "source_type": "official_document"
+    },
+    {
+      "id": "backedgedist-edge",
+      "title": "BackEdge — Elecbyte 1.1b1の画面端座標",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#backedge",
+      "source_type": "official_document"
+    },
+    {
+      "id": "backedgedist-history",
+      "title": "画面端座標トリガーの追加 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/history.html#new-in-1-1",
+      "source_type": "official_document"
+    },
+    {
+      "id": "backedgedist-coords",
+      "title": "座標系の換算 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#const240p",
+      "source_type": "official_document"
+    },
+    {
+      "id": "backedgedist-chaos",
+      "title": "画面端・幅のWin/1.0研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/95.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "backedgedist-chaos-dist",
+      "title": "BackEdgeDistの型・符号・軸基準の研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/99.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "backedgedist-chaos-body",
+      "title": "BackEdgeBodyDistの幅・世代差・処理時点の研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/96.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "backedgedist-legacy",
+      "title": "移行前の本文・例・FAQ・図",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/3271a2f061e59b205902f13fa772a19841721f94/src/content/triggers/BackEdgeDist.json",
+      "source_type": "source_code",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "return_type": [
+    "float"
+  ],
+  "documentation": {
+    "description": "<p>実行者の基準軸（X軸）から、背面側の画面端までの距離を返します。引数はなく、公式資料の戻り値型はfloatです。</p><p>右向き（Facing = 1）では左端、左向き（Facing = -1）では右端を調べます。BackEdgeBodyDistとは異なり、対画面端の幅を考慮しない基準軸からの値です。</p><p>BackEdgeが返す端そのものの座標とは異なります。画面端までの距離を、ステージ全体の境界までの距離や描画ピクセル数と一律に扱わないでください。</p>",
+    "page_category": "基準軸（X軸）から背面側画面端までの距離",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "backedgedist-local-2002",
+        "backedgedist-local-1.0",
+        "backedgedist-local-1.1"
+      ],
+      "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+    }
+  },
+  "qanda": [
+    {
+      "q": "BackEdgeDist / BackEdgeBodyDist / BackEdgeの違いは？",
+      "a": "<p>BackEdgeDistは基準軸から、BackEdgeBodyDistは背面側の対画面端幅バー端からの距離です。MUGEN 1.1のBackEdgeは端そのもののX座標です。距離の基準と座標を分けて使います。</p>"
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>調べるのは現在のカメラ表示範囲の画面端です。ステージ全体の境界までの距離を返すトリガーではありません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "backedgedist-chaos-dist"
+        ],
+        "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>MUGEN 1.1のBackEdgeは端そのもののステージ基準X座標を返します。BackEdgeDistの距離と同じ数値として置き換えません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "backedgedist-edge",
+          "backedgedist-history"
+        ],
+        "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+      },
+      "legacy_index": 1,
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p><code>BackEdgeDist &lt; 30</code>は30未満という条件です。負の値が返った場合も真になります。0以上30未満に限定する場合は下限も指定します。30ちょうどは含みません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "backedgedist-local-2002",
+          "backedgedist-local-1.0",
+          "backedgedist-local-1.1"
+        ],
+        "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式の2002.04.14/1.0/1.1資料はfloatを記載します。一方、CHAOSの距離記事はInt型・小数以下切り捨てを記録しています。公開型は公式記載としてfloatを採用し、報告を削除せずconflictingとして保存。具体的な実行ビルド・互換設定・小数位置・丸め方向の測定は未実施で、全世代に一律のfloat精度やFloor/整数化を保証しません。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "backedgedist-local-2002",
+          "backedgedist-local-1.0",
+          "backedgedist-local-1.1",
+          "backedgedist-chaos-dist",
+          "backedgedist-chaos-body"
+        ],
+        "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>保存済み2002.04.14のBackEdgeDist節は書式/説明が基準軸ですが、例にBackEdgeBodyDistと記載します。1.0/1.1はBackEdgeDistに修正されています。旧資料を保持し、公開例はこのページのBackEdgeDistを使います。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "backedgedist-local-2002",
+          "backedgedist-local-1.0",
+          "backedgedist-local-1.1"
+        ],
+        "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>Win/1.0の対画面端幅とStateType=A/Lの差はCHAOSの記録として保持。BodyDistの状態依存補正と壁の押し戻しの差、1.0の壁際で負数になり得る報告、Widthを評価する番号ステートと常時監視の処理時点を、1.1の全ビルドへ一般化しません。資料内の補正式と座標記事の符号表記の整合も実機で確認する必要があります。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "backedgedist-chaos",
+          "backedgedist-chaos-body"
+        ],
+        "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+      },
+      "visibility": "internal",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "winmugen",
+          "mugen-1.0"
+        ]
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧概要のpx単位、旧近いという使用例を原位置に保持。閾値条件は負数を除外せず、画面の内側だけを意味しません。旧カメラ/ズームの一律変化表記・共通図/altも保持して内部へ。図と幅・座標単位・世代条件の整合は未確認です。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code",
+          "official_document"
+        ],
+        "source_refs": [
+          "backedgedist-legacy",
+          "backedgedist-width"
+        ],
+        "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧page.version=2002.04.14は保持。保存済み資料での存在は初導入の証明ではないためintroduced_inはnullです。LocalCoord・ズーム・ScreenBound・Helper/リダイレクト・小数位置・Widthの組合せと符号は実機未検証。FrontEdgeDistのCHAOS個別記事は取得できず、他の距離記事から未読記事の記載を推定しません。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "backedgedist-local-2002",
+          "backedgedist-local-1.0",
+          "backedgedist-local-1.1",
+          "backedgedist-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧引用のIKEMEN GO Issue/Lua APIは別エンジン資料として原位置に保持して内部へ。MUGENの個別トリガーや全ビルドの同一挙動を示す資料として採用しません。今回その内容の検証は未実施です。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "backedgedist-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+      },
+      "visibility": "internal",
+      "environment": {
+        "engine": "ikemen-go"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "backedgedist-local-2002",
+      "backedgedist-local-1.0",
+      "backedgedist-local-1.1"
+    ],
+    "comment": "2026-10-06: 保存済み公式資料とCHAOSの一次研究を照合。資料の記載確認と実測を区別し、MUGEN実機検証は未実施。比較式のテストは数値条件のみ。"
+  }
 }

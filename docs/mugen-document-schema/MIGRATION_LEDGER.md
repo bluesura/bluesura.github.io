@@ -332,3 +332,7 @@ MoveHit / MoveGuarded / MoveReversedで累計160件（59バッチ144件＋主要
 ### 2026-10-06：facing-edges-01
 
 前面/背面の端座標2件で累計189件（67バッチ173件＋主要・補助16件）、残り45件。Facingによる選択・ステージ基準とローカル単位・距離を分離。片側比較を全画面内とする旧FrontEdge例、背面端より左を両向きの背面側画面外とする旧BackEdgeラベルは保持して内部へ。厳密比較と端上を含む比較を公開し、公開式の正負Facing/両端上/カメラずれ/反対側画面外の代数的結果を確認しました。原文・FAQ・例・図・sample_code・別エンジン研究を保持。documentation.associated_triggerを採用し、CameraPos旧IDを残して公開リンクをCameraPosXへ訂正。CSS変更なし、導入null/実機未検証。309テスト・263ページビルド・261 URL/200比較対象HTMLと通常/390px表示/リンク遷移を確認。内部注記489件、未対応旧履歴121項目、未表示フィールド29ページ。次は前後EdgeDist/EdgeBodyDistの4件です。
+
+### 2026-10-06：edge-distances-01
+
+前後EdgeDist/EdgeBodyDistの4件で累計193件（68バッチ177件＋主要・補助16件）、残り41件。基準軸/対画面端幅バー端、座標/距離、閾値/非負範囲を分離。旧px/[Size]/黄色playerバーの混同・例・FAQ/r・図・引用と履歴を保持。公式float/CHAOS Int・切り捨て、Win/1.0のStateType別幅/壁押し戻し・符号・Width処理時点、2002 BackEdgeDist例のBodyDist表記差と別エンジン資料を内部へ保存。導入null、LocalCoord/ズーム/リダイレクト/幅の実機測定は未実施。スキーマ/レンダラー/CSS変更なし。314テスト・263ページビルド・261 URL/204比較対象HTMLと通常/390px表示を確認。内部注記508件、未対応旧履歴114項目、未表示フィールド29ページ。次はP2Dist X/Y・P2BodyDist X/Yです。

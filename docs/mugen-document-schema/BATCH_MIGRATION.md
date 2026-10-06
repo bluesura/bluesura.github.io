@@ -1296,3 +1296,27 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・309テスト・263ページビルド・261 URL/200比較対象ページHTML検査を通過。BackEdgeの概要/リンクを通常幅、FrontEdge/BackEdge例を390pxで確認し、CameraPosXへの遷移、内部情報の非表示、表示幅/検査タブの復元を確認。内部注記9件追加で489件、未対応旧履歴121項目、未表示フィールド29ページ。次はFrontEdgeDist・BackEdgeDist・FrontEdgeBodyDist・BackEdgeBodyDistです。
+
+## 2026-10-06：edge-distances-01
+
+FrontEdgeDist / BackEdgeDist / FrontEdgeBodyDist / BackEdgeBodyDistの4件で累計193件（主要・補助16件＋68バッチ177件）、対象内の残り41件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/edge-distances-01/ に保存しました。
+
+- 引数なし・公式記載のfloatを構造化。基準軸からの距離と対画面端の幅バー端からの距離、Facingによる端選択、1.1のFrontEdge/BackEdgeが返す端座標と距離を分けました。旧本文・メタ情報・構文・関連ID・履歴・例・図・FAQと出典rは保持します。新しいスキーマ・レンダラー・CSSの変更はありません。
+- BodyDistの旧[Size] ground/airの幅・黄色playerバーとの混同を原位置に残し、公開文はWidth.Edgeの対画面端幅とPlayerの対プレイヤー幅を分けました。保存済み公式Widthの橙/黄/重なりの表示色とValueによる同時指定を照合。画像やClsn1/2の外縁と同一視しません。無関係な旧Size/Tutorial/KFM出典とIKEMEN引用は内部へ残します。
+- 旧30px未満/近いという説明と2例は内部へ保持。同じ公式<30条件を負数も満たすという説明で公開し、下限を明示する0以上30未満・前後いずれかの非負範囲を追加。公開された式そのものを-1/0/29.5/30/100と反対側距離で検査し、0を含む/30を含まない/負数を除く/OR条件を確認しました。これは数値比較のテストであり、距離計測や幅処理のMUGEN実機検証ではありません。
+- 公式3世代のfloatと[CHAOSのBackEdgeDist](https://w.atwiki.jp/mugencns/pages/99.html) / [BackEdgeBodyDist](https://w.atwiki.jp/mugencns/pages/96.html)にあるInt・切り捨ての資料差をconflicting/internalで保存。具体的なビルドや互換設定、小数位置/丸め方向を決めつけず、全世代の小数精度を保証しません。
+- [CHAOSの座標研究](https://w.atwiki.jp/mugencns/pages/95.html) / [FrontEdgeBodyDist](https://w.atwiki.jp/mugencns/pages/97.html)のWin/1.0、StateType A/Lの幅と押し戻しの差、1.0の負数、Widthと常時監視の処理時点は内部へ保持。1.1へ一般化せず、資料の補正式/符号の整合は未検証です。FrontEdgeDist個別記事（pages/98.html）は取得できず、未読の記載を推定しません。
+- 保存済み2002.04.14のBackEdgeDist節は基準軸の説明に対し例はBackEdgeBodyDistで、1.0/1.1ではBackEdgeDistです。資料差を内部へ保持し、公開例はBackEdgeDistを使います。旧負数FAQ/出典・一律px/ズーム変動の記述・共通図とaltも内部へ残しました。
+- 初導入は4件ともnull。LocalCoord・ズーム・ScreenBound・Helper/リダイレクト・StateType別の幅/符号・処理順の実機測定は未実施です。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch edge-distances-01
+npm run mugen:batch -- --batch edge-distances-01 --target FrontEdgeDist --target BackEdgeDist --target FrontEdgeBodyDist --target BackEdgeBodyDist
+npm run mugen:batch -- --batch edge-distances-01 --target FrontEdgeDist --target BackEdgeDist --target FrontEdgeBodyDist --target BackEdgeBodyDist --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・314テスト・263ページビルド・261 URL/204比較対象ページHTML検査を通過。FrontEdgeDistの概要を通常幅、FrontEdgeBodyDistの仕様・BackEdgeBodyDist/BackEdgeDistのコード例を390pxで確認し、内部情報の非表示と表示幅/検査タブの復元を確認。内部注記19件追加で508件、未対応旧履歴114項目、未表示フィールド29ページ。次はP2Dist X/Y・P2BodyDist X/Yです。

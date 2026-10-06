@@ -1320,3 +1320,26 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・314テスト・263ページビルド・261 URL/204比較対象ページHTML検査を通過。FrontEdgeDistの概要を通常幅、FrontEdgeBodyDistの仕様・BackEdgeBodyDist/BackEdgeDistのコード例を390pxで確認し、内部情報の非表示と表示幅/検査タブの復元を確認。内部注記19件追加で508件、未対応旧履歴114項目、未表示フィールド29ページ。次はP2Dist X/Y・P2BodyDist X/Yです。
+
+## 2026-10-06：opponent-distances-01
+
+P2DistX / P2DistY / P2BodyDistX / P2BodyDistYの4件で累計197件（主要・補助16件＋69バッチ181件）、対象内の残り37件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/opponent-distances-01/ に保存しました。
+
+- 必須のchar軸指定・専用構文・公式floatを構造化。半角スペースを含むP2Dist X/Y・P2BodyDist X/Yを維持し、数値引数の関数に変換しません。旧本文・構文・メタ情報・履歴・関連ID・例・図・引用は削除していません。スキーマ・レンダラー・CSSの変更はありません。
+- XはFacing基準の基準軸間距離と幅基準の距離を分離。BodyDist Xを常に両者のfront同士とは扱わず、相手側の実行者に面する幅基準点を説明しました。[Size]の実際のground.front / ground.back / air.front / air.backは保存済みElecbyte 1.1b1 Tutorial 3と照合し、画像/Clsn1/2と幅基準の接触を区別しています。
+- Yは公式2002.04.14/1.0/1.1の両者のY軸の高さの差を公開。上なら負・下なら正・同じ高さは0で、X成分の幅減算や画像/size boxの隙間とは分けました。[CHAOS P2DistY](https://w.atwiki.jp/mugencns/pages/175.html) / [P2BodyDistY](https://w.atwiki.jp/mugencns/pages/176.html)も照合しています。
+- 旧Nullステートの例と共通図は内部へ保持。Xの公式<30例は負数を含む説明に訂正し、0以上30未満と基準軸前方の別条件を追加。Yは<0・<=-12・Absによる12未満を追加しました。公開式そのものを固定数値で検査し、負数/0/-12/12/30の境界と幅・基準軸条件の独立性を確認。これは数値比較のテストでありMUGENの距離計測の実機検証ではありません。
+- [CHAOS P2DistX](https://w.atwiki.jp/mugencns/pages/171.html) / [P2BodyDistX](https://w.atwiki.jp/mugencns/pages/172.html)のX小数切り捨てとY小数保持をunverified/internalへ保存。BodyDist Xの公式front.width/前面同士という記述と、実際の[Size]キー・相手側の幅点・同軸時の後ろ幅・Widthを感知しないという研究の差はconflicting/internalへ保持。具体的なビルド・互換設定・丸め方向や修正世代は推定しません。
+- [CHAOSの対象選択](https://w.atwiki.jp/mugencns/pages/43.html) / [座標研究](https://w.atwiki.jp/mugencns/pages/95.html)の特殊Playerヘルパー・5150除外・幅と処理順は内部へ。P2不在時の値は公式のError conditionsなしという記載から0/bottomを推定せず、NumEnemyだけによる参照保証も追加しません。IKEMEN GOの旧3履歴/引用は別エンジンとして内部に保持しました。初導入はnull、LocalCoord・Helper/リダイレクト・不在境界・幅/精度の実機測定は未実施です。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch opponent-distances-01
+npm run mugen:batch -- --batch opponent-distances-01 --target P2DistX --target P2DistY --target P2BodyDistX --target P2BodyDistY
+npm run mugen:batch -- --batch opponent-distances-01 --target P2DistX --target P2DistY --target P2BodyDistX --target P2BodyDistY --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・320テスト・263ページビルド・261 URL/208比較対象ページHTML検査を通過。P2DistXを通常幅、P2BodyDistXの軸表とP2DistY/P2BodyDistYの例を390pxで確認し、内部情報の非表示と表示幅/検査タブの復元を確認。内部注記20件追加で528件、未対応旧履歴111項目、未表示フィールド29ページ。次はParentDist X/Y・RootDist X/Yです。

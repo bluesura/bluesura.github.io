@@ -336,3 +336,7 @@ MoveHit / MoveGuarded / MoveReversedで累計160件（59バッチ144件＋主要
 ### 2026-10-06：edge-distances-01
 
 前後EdgeDist/EdgeBodyDistの4件で累計193件（68バッチ177件＋主要・補助16件）、残り41件。基準軸/対画面端幅バー端、座標/距離、閾値/非負範囲を分離。旧px/[Size]/黄色playerバーの混同・例・FAQ/r・図・引用と履歴を保持。公式float/CHAOS Int・切り捨て、Win/1.0のStateType別幅/壁押し戻し・符号・Width処理時点、2002 BackEdgeDist例のBodyDist表記差と別エンジン資料を内部へ保存。導入null、LocalCoord/ズーム/リダイレクト/幅の実機測定は未実施。スキーマ/レンダラー/CSS変更なし。314テスト・263ページビルド・261 URL/204比較対象HTMLと通常/390px表示を確認。内部注記508件、未対応旧履歴114項目、未表示フィールド29ページ。次はP2Dist X/Y・P2BodyDist X/Yです。
+
+### 2026-10-06：opponent-distances-01
+
+P2Dist X/Y・P2BodyDist X/Yの4件で累計197件（69バッチ181件＋主要・補助16件）、残り37件。必須char軸指定/float、Facing基準のX距離と幅基準の距離、両者のY軸の高さの差を分離。旧本文・メタ・構文・履歴・例・図・引用を保持し、Xの負数を含む閾値と下限指定・基準軸前方条件、Yの0/-12/12境界を明示しました。公式front.width/前面同士と実際のground/airキー・CHAOSの相手側幅点/同軸の後ろ幅/Width処理の差、X小数切り捨てとY小数保持、P2対象選択/不在時の値とIKEMEN履歴は内部に保存。初導入null、距離計測/幅/精度は実機未検証。スキーマ/レンダラー/CSS変更なし。320テスト・263ページビルド・261 URL/208比較対象HTMLと通常/390px表示を確認。内部注記528件、未対応旧履歴111項目、未表示フィールド29ページ。次はParentDist X/Y・RootDist X/Yです。

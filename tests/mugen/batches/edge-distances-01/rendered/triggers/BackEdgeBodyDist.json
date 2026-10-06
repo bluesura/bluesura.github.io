@@ -1,0 +1,88 @@
+{
+  "text": "BackEdgeBodyDist 距離 > 自キャラ背面（幅バー端）から背面側画面端までの距離 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 BackEdgeBodyDist は、実行者の背面側（後ろ）の「幅バー端」から、背面側の画面端（screen edge）までの距離を返します。BackEdgeDist が「実行者のX軸（軸位置）」基準なのに対し、BackEdgeBodyDist は「幅バー端」基準である点が重要です。返り値はfloatのpx単位の距離。幅バーの定義: 幅バーはキャラクターの [Size]（例: ground.back/air.back 等）と、Width ステートコントローラによる一時変更の影響を受けます。デバッグ確認: 衝突判定表示（Ctrl+C）でplayer幅（黄色）のバーとして視認できます。 関連するステートコントローラー： Width , ScreenBound 関連するトリガー： BackEdgeDist , FrontEdgeBodyDist , FrontEdgeDist 構文 BackEdgeBodyDist 引数 なし 仕様・バグ・エラー・変更点仕様参照する「画面端」は、 screen edge（カメラの現在表示範囲の端）として定義されています。ステージの端（stage boundary）と同一視しないよう注意してください。 コードサンプル背面側の画面端が近いときに分岐する背面側の画面端までの距離が30px未満なら発動します（公式ドキュメント例）。Trigger1 = BackEdgeBodyDist < 30 向きに関係なく、いずれかの画面端が近いときに分岐する前後どちらの画面端が近い場合でも拾いたいときは、FrontEdgeBodyDist と併用します。Trigger1 = (BackEdgeBodyDist < 30) || (FrontEdgeBodyDist < 30) 引用記事BackEdgeBodyDist - Trigger Reference(version 2002.04.14)BackEdgeBodyDist - Trigger Reference (MUGEN 1.1 / Elecbyte)BackEdgeBodyDist - Trigger Reference (MUGEN 1.0 / Elecbyte)Width - State Controller Reference (MUGEN 1.1 / Elecbyte)ScreenBound - State Controller Reference (MUGEN 1.1 / Elecbyte)Tutorial 3 - [Size] の ground.back/front 等の説明 (Elecbyte)kfm.cns (Size例: ground.back/front, air.back/front) - GitHub mirror 公開日:2008.06.05 最終更新日:2025.12.25 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Width",
+      "href": "./../State/Width.html"
+    },
+    {
+      "text": "ScreenBound",
+      "href": "./../State/ScreenBound.html"
+    },
+    {
+      "text": "BackEdgeDist",
+      "href": "./../Trigger/BackEdgeDist.html"
+    },
+    {
+      "text": "FrontEdgeBodyDist",
+      "href": "./../Trigger/FrontEdgeBodyDist.html"
+    },
+    {
+      "text": "FrontEdgeDist",
+      "href": "./../Trigger/FrontEdgeDist.html"
+    },
+    {
+      "text": "BackEdgeBodyDist - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#BackEdgeBodyDist"
+    },
+    {
+      "text": "BackEdgeBodyDist - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#backedgebodydist"
+    },
+    {
+      "text": "BackEdgeBodyDist - Trigger Reference (MUGEN 1.0 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#backedgebodydist"
+    },
+    {
+      "text": "Width - State Controller Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html#width"
+    },
+    {
+      "text": "ScreenBound - State Controller Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html#screenbound"
+    },
+    {
+      "text": "Tutorial 3 - [Size] の ground.back/front 等の説明 (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/tutorial3.html"
+    },
+    {
+      "text": "kfm.cns (Size例: ground.back/front, air.back/front) - GitHub mirror",
+      "href": "https://github.com/fanyer/mugen/blob/master/chars/kfm/kfm.cns"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-backedgedist-frontedgedist-diagram.png"
+  ],
+  "code": []
+}

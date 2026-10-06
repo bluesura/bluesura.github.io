@@ -1,0 +1,85 @@
+{
+  "text": "FrontEdgeDist 距離 > 自キャラ中心軸（X軸）から前面側画面端までの距離 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 FrontEdgeDist は、実行者のX軸（axis）から、実行者の前面側にある画面端（screen edge）までの距離を返します。「前面側」は向き（Facing）に依存し、右向き時は右端、左向き時は左端が前面側の画面端になります。返り値はfloatのpx単位の距離です。FrontEdgeBodyDist が「幅バー端」基準なのに対し、FrontEdgeDist は「X軸（軸位置）」基準です。 関連するステートコントローラー： ScreenBound 関連するトリガー： FrontEdgeBodyDist , BackEdgeDist , BackEdgeBodyDist , FrontEdge , BackEdge 構文 FrontEdgeDist 引数 なし 仕様・バグ・エラー・変更点仕様ここで参照する「画面端」は、現在のカメラ表示範囲の端（screen edge）です。ステージ端（stage boundary）と同一視しないよう注意してください。MUGEN 1.1MUGEN 1.1 では、前面側/背面側の画面端座標を直接返す FrontEdge / BackEdge も利用できます（座標ベースで扱いたい場合に有用）。 Q＆A(よくある質問)値が0未満になることはありますか？実行者の軸位置が画面端より外側に出ている（例：ScreenBound の設定、強制移動、特殊演出で画面外に押し出した等）場合、FrontEdgeDist が0未満になる運用例があります。単純に「距離=常に0以上」と仮定せず、比較演算子で意図を明確にしてください（例：< 0 を画面外判定に使う、など）。 コードサンプル前面側の画面端が近いときに分岐する前面側の画面端までの距離が30px未満なら発動します（公式ドキュメント例）。Trigger1 = FrontEdgeDist < 30 向きに関係なく、いずれかの画面端が近いときに分岐する前後どちらの画面端が近い場合でも拾いたいときは、BackEdgeDist と併用します。Trigger1 = (FrontEdgeDist < 30) || (BackEdgeDist < 30) 引用記事FrontEdgeDist - Trigger Reference(version 2002.04.14)FrontEdgeDist - Trigger Reference (MUGEN 1.1 / Elecbyte)FrontEdgeDist - Trigger Reference (MUGEN 1.0 / Elecbyte)FrontEdge / BackEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)ScreenBound - State Controller Reference (MUGEN 1.1 / Elecbyte) 公開日:2008.06.05 最終更新日:2025.12.25 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ScreenBound",
+      "href": "./../State/ScreenBound.html"
+    },
+    {
+      "text": "FrontEdgeBodyDist",
+      "href": "./../Trigger/FrontEdgeBodyDist.html"
+    },
+    {
+      "text": "BackEdgeDist",
+      "href": "./../Trigger/BackEdgeDist.html"
+    },
+    {
+      "text": "BackEdgeBodyDist",
+      "href": "./../Trigger/BackEdgeBodyDist.html"
+    },
+    {
+      "text": "FrontEdge",
+      "href": "./../Trigger/FrontEdge.html"
+    },
+    {
+      "text": "BackEdge",
+      "href": "./../Trigger/BackEdge.html"
+    },
+    {
+      "text": "FrontEdgeDist - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#FrontEdgeDist"
+    },
+    {
+      "text": "FrontEdgeDist - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#frontedgedist"
+    },
+    {
+      "text": "FrontEdgeDist - Trigger Reference (MUGEN 1.0 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#frontedgedist"
+    },
+    {
+      "text": "FrontEdge / BackEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#frontedge"
+    },
+    {
+      "text": "ScreenBound - State Controller Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html#screenbound"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-backedgedist-frontedgedist-diagram.png"
+  ],
+  "code": []
+}

@@ -1,0 +1,105 @@
+{
+  "text": "FrontEdgeBodyDist 距離 > 自キャラ前面（幅バー端）から前面側画面端までの距離 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 FrontEdgeBodyDist は、実行者の前面側（前方）の「幅バー端」から、前面側の画面端（screen edge）までの距離を返します。「前面側」は向き（Facing）に依存し、右向き時は右端、左向き時は左端が前面側の画面端になります。FrontEdgeDist が「X軸（軸位置）」基準なのに対し、FrontEdgeBodyDist は「幅バー端」基準です。返り値はfloatのpx単位の距離です。幅バーの定義: 幅バーはキャラクターの [Size]（例: ground.front/air.front 等）と、Width ステートコントローラによる一時変更の影響を受けます。デバッグ確認: 衝突判定表示（Ctrl+C）でplayer幅（黄色）のバーとして視認できます。 関連するステートコントローラー： Width , ScreenBound 関連するトリガー： FrontEdgeDist , BackEdgeBodyDist , BackEdgeDist , FrontEdge , BackEdge 構文 FrontEdgeBodyDist 引数 なし 仕様・バグ・エラー・変更点仕様ここで参照する「画面端」は、現在のカメラ表示範囲の端（screen edge）です。ステージ端（stage boundary）と同一視しないよう注意してください。MUGEN 1.1MUGEN 1.1 では、前面側/背面側の画面端座標を直接返す FrontEdge / BackEdge も利用できます（座標ベースで扱いたい場合に有用）。 Q＆A(よくある質問)値が0未満になることはありますか？実行者の幅バー端が画面端より外側に出ている（例：ScreenBound の設定、強制移動、カメラ制御による押し出し等）場合、FrontEdgeBodyDist が0未満になる運用があります。単純に「距離=常に0以上」と仮定せず、比較演算子で意図を明確にしてください（例：< 0 を画面外判定に使う、など）。 コードサンプル前面側の画面端が近いときに分岐する前面側の画面端までの距離が30px未満なら発動します（公式ドキュメント例）。Trigger1 = FrontEdgeBodyDist < 30 向きに関係なく、いずれかの画面端が近いときに分岐する前後どちらの画面端が近い場合でも拾いたいときは、BackEdgeBodyDist と併用します。Trigger1 = (FrontEdgeBodyDist < 30) || (BackEdgeBodyDist < 30) 引用記事FrontEdgeBodyDist - Trigger Reference(version 2002.04.14)FrontEdgeBodyDist - Trigger Reference (MUGEN 1.1 / Elecbyte)FrontEdgeBodyDist - Trigger Reference (MUGEN 1.0 / Elecbyte)FrontEdge / BackEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)Width - State Controller Reference (MUGEN 1.1 / Elecbyte)ScreenBound - State Controller Reference (MUGEN 1.1 / Elecbyte)Tutorial 3 - [Size] の ground.front/air.front 等の説明 (Elecbyte)kfm.cns (Size例: ground.front/air.front) - GitHub mirrorIkemen GO Wiki (Lua) - frontedgebodydist() 公開日:2008.06.05 最終更新日:2025.12.25 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Width",
+      "href": "./../State/Width.html"
+    },
+    {
+      "text": "ScreenBound",
+      "href": "./../State/ScreenBound.html"
+    },
+    {
+      "text": "FrontEdgeDist",
+      "href": "./../Trigger/FrontEdgeDist.html"
+    },
+    {
+      "text": "BackEdgeBodyDist",
+      "href": "./../Trigger/BackEdgeBodyDist.html"
+    },
+    {
+      "text": "BackEdgeDist",
+      "href": "./../Trigger/BackEdgeDist.html"
+    },
+    {
+      "text": "FrontEdge",
+      "href": "./../Trigger/FrontEdge.html"
+    },
+    {
+      "text": "BackEdge",
+      "href": "./../Trigger/BackEdge.html"
+    },
+    {
+      "text": "FrontEdgeBodyDist - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#FrontEdgeBodyDist"
+    },
+    {
+      "text": "FrontEdgeBodyDist - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#frontedgebodydist"
+    },
+    {
+      "text": "FrontEdgeBodyDist - Trigger Reference (MUGEN 1.0 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#frontedgebodydist"
+    },
+    {
+      "text": "FrontEdge / BackEdge - Trigger Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#frontedge"
+    },
+    {
+      "text": "Width - State Controller Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html#width"
+    },
+    {
+      "text": "ScreenBound - State Controller Reference (MUGEN 1.1 / Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/sctrls.html#screenbound"
+    },
+    {
+      "text": "Tutorial 3 - [Size] の ground.front/air.front 等の説明 (Elecbyte)",
+      "href": "https://www.elecbyte.com/mugendocs/tutorial3.html"
+    },
+    {
+      "text": "kfm.cns (Size例: ground.front/air.front) - GitHub mirror",
+      "href": "https://github.com/fanyer/mugen/blob/master/chars/kfm/kfm.cns"
+    },
+    {
+      "text": "Ikemen GO Wiki (Lua) - frontedgebodydist()",
+      "href": "https://github.com/ikemen-engine/Ikemen-GO/wiki/Lua"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen-backedgedist-frontedgedist-diagram.png"
+  ],
+  "code": []
+}

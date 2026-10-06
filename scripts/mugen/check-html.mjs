@@ -101,6 +101,11 @@ for (const { collection, name, base } of cases) {
       if (!source.documentation.associated_state.includes(state)) hiddenLinks.push({ href: `./../State/${state}.html`, text: state });
     }
   }
+  if (source.documentation?.associated_trigger !== undefined) {
+    for (const trigger of legacy.associated_trigger ?? []) {
+      if (!source.documentation.associated_trigger.includes(trigger)) hiddenLinks.push({ href: `./../Trigger/${trigger}.html`, text: trigger });
+    }
+  }
   for (const i of internalParameterIndices) {
     const heading = oldParameterNodes[i] && findAll(oldParameterNodes[i], node => node.tagName === 'h3')[0];
     const href = heading && '#' + attr(heading, 'id');
@@ -177,6 +182,16 @@ for (const { collection, name, base } of cases) {
       const associated = findAll(document, node => attr(node, 'class') === 'associated-trigger');
       const stateLinks = associated.flatMap(node => findAll(node, child => child.tagName === 'a' && attr(child, 'href')?.startsWith('./../State/')));
       assert.deepEqual(stateLinks.map(compactText), source.documentation.associated_state, `${name}: edited associated states`);
+    }
+    if (source.documentation.associated_trigger !== undefined) {
+      const associated = findAll(document, node => attr(node, 'class') === 'associated-trigger');
+      const triggerLinks = associated.flatMap(node => findAll(node, child => child.tagName === 'a' && attr(child, 'href')?.startsWith('./../Trigger/')));
+      assert.deepEqual(triggerLinks.map(compactText), source.documentation.associated_trigger, `${name}: edited associated triggers`);
+      for (const link of triggerLinks) {
+        const href = attr(link, 'href');
+        assert.equal(href, `./../Trigger/${compactText(link)}.html`, `${name}: edited trigger link target`);
+        assert.ok(existsSync(pathFromRoot(`dist/MUGEN/document/Trigger/${compactText(link)}.html`)), `${name}: edited trigger destination missing`);
+      }
     }
     const description = findAll(document, node => attr(node, 'class') === 'description' && attr(node, 'itemprop') === 'articleBody')[0];
     assert.ok(description, `${name}: missing article description`);

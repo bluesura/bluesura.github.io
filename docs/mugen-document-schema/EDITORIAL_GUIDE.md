@@ -38,6 +38,8 @@
 
 ## 訂正の手順
 
+2026-10-06から、`documentation.associated_trigger` で関連トリガーも訂正できます。旧配列を保持し、未指定は従来の表示、`[]`は明示的な非表示です。非空文字列の配列を使い、各IDのページが実在することを確認してください。BackEdgeでは旧CameraPosをJSONへ残し、公開リンクをCameraPosXへ訂正しています。
+
 2026-10-04から、ルート `documentation.syntax` と `documentation.associated_state` で構文・関連ステコンも訂正できます。旧配列を保持し、未指定なら旧値を使います。syntaxは非空文字列の非空配列で、詳細とTrigger一覧へ共通で反映します。associated_stateは非空文字列の配列で、`[]`を明示した場合は関連リンクを非表示にします。descriptionは必須のままです。SysVar/SysFVarでは旧`:=`構文を参照だけに訂正し、対応定義のない旧関連IDは内部記録と原位置へ保持しています。
 
 ページ概要には、ルートの `documentation: { description, evidence? }` を使います。`description` は必須の非空文字列です。ラベル・型・パラメーターなどをこの階層に指定することはできません。旧ルート `description` は原位置に残り、詳細ページ・State / Trigger 一覧・説明用メタ情報は同じ公開本文を参照します。概要を差し替えた場合も、元の説明・画像・出典の保存検査は継続します。Gravity / PosFreeze の相反する旧説明は、この仕組みと非公開の `research` を用いて整理しました。

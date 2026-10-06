@@ -19,6 +19,8 @@ Node.js 20 の CI とブラウザ表示の両方で同じ処理を使うため�
 
 ## 新旧の対応
 
+- 2026-10-06: ルートの `documentation.associated_trigger` を採用しました。公開する関連トリガーのリンクのみ訂正し、旧 `associated_trigger` は保持します。未指定なら旧配列、`[]`なら非表示です。非空文字列の配列に限定し、descriptionは必須のままです。BackEdgeのCameraPosリンクを実在するCameraPosXへ訂正しました。HTML検査では訂正したリンクの順序・リンク先ファイルの存在と旧リンクの非表示を確認します。
+
 - 2026-10-04: ルートの `documentation.syntax` / `associated_state` を採用しました。旧 `syntax` / `associated_state` を保持し、構文は詳細・Trigger一覧、関連ステコンは詳細の公開表示へ反映します。未指定なら旧配列を使用します。syntaxは非空文字列の非空配列、associated_stateは非空文字列の配列です。associated_stateの`[]`は関連リンクの非表示を明示し、旧IDはJSONへ残ります。SysVar/SysFVarの誤った式中代入と未定義関連IDの訂正に使用しています。ルートdocumentationのdescriptionは必須のままです。
 
 - ルートの `documentation.description` は公開用の概要です（2026-09-09 採用）。旧 `description` を残し、詳細・一覧・説明用メタ情報へ反映します。任意の `documentation.evidence` は非公開です。パラメーター用とは異なり `value` は指定できません。

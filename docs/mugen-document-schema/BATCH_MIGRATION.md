@@ -1272,3 +1272,27 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・303テスト・263ページビルド・261 URL/198比較対象ページHTML検査を通過。LeftEdgeを通常幅、RightEdgeのコード欄・TopEdgeの仕様/FAQ・BottomEdgeの条件例を390pxで確認し、表示幅と検査タブを復元。内部注記17件追加で480件、未対応旧履歴123項目、未表示フィールド29ページ。次はFrontEdge・BackEdgeです。
+
+## 2026-10-06：facing-edges-01
+
+FrontEdge / BackEdgeの2件で累計189件（主要・補助16件＋67バッチ173件）、対象内の残り45件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/facing-edges-01/ に保存しました。
+
+- MUGEN 1.1の引数なし/float、実行者のFacingによる前面/背面の端選択・ステージ基準X座標・ローカル単位を整理。座標とDistの基準軸/BodyDistの幅バー端からの距離を分離しました。旧本文・構文・履歴・関連配列・FAQ出典r・使用例・図・未表示sample_codeを保持します。
+- 公式IfElseによる選択とFrontEdgeの等価式は維持。前面端との片側比較だけで画面内全体にいるとする旧例を内部へ保存し、反対側の端より外でも真になるという説明へ整理しました。BackEdge公式のPos X + CameraPos X < BackEdgeは背面端より左という例で、左向きも含む背面側画面外という旧ラベルとは異なります。旧例/ラベルを内部へ保持し、Facingで符号を選ぶ両向きの条件を公開しました。
+- 新例は<による端上を含まない条件と、<=による端上を含む条件を並べています。正負のFacing、両端上、カメラ位置40のずれ、反対側の端より外に出た位置を含む固定ケースで公開式の代数的結果を確認。これはMUGEN実機テストではありません。
+- pxという旧FAQ、BackEdge FAQのFrontEdge転記、裸のFVar/Abs距離例は原位置に保持して内部へ。画面全体/ステージ全体の境界・画像全体の表示判定を分離するFAQへ整理しました。
+- [IKEMEN GO公式サイト](https://ikemen-engine.github.io/)の互換性案内は取得できましたが、個別トリガー/全Release/Nightlyの実測とせず、別エンジンの内部研究に記録。[CHAOSの座標研究](https://w.atwiki.jp/mugencns/pages/95.html)と旧共通図・altも内部へ保持し、Win/1.0の研究を1.1固定ビルドの実測へ一般化しません。
+- documentation.associated_triggerを任意フィールドとして追加。未指定なら旧配列、[]なら明示的に非表示、指定された非空文字列の配列は公開リンクへ反映します。BackEdgeの旧CameraPosを保持し、実在するCameraPosXへ訂正。正規化・スキーマと採用/入力/編集ガイドを更新し、HTML検査で旧リンクの除外・訂正順序/リンク先ファイルの存在を確認します。AstroコンポーネントとCSSは変更なし。
+- New in 1.1の追加履歴は確認できますが、初導入ビルドはnull。LocalCoord・ズーム・リダイレクト・幅・ScreenBoundの組合せは実機未検証です。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch facing-edges-01
+npm run mugen:batch -- --batch facing-edges-01 --target FrontEdge --target BackEdge
+npm run mugen:batch -- --batch facing-edges-01 --target FrontEdge --target BackEdge --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・309テスト・263ページビルド・261 URL/200比較対象ページHTML検査を通過。BackEdgeの概要/リンクを通常幅、FrontEdge/BackEdge例を390pxで確認し、CameraPosXへの遷移、内部情報の非表示、表示幅/検査タブの復元を確認。内部注記9件追加で489件、未対応旧履歴121項目、未表示フィールド29ページ。次はFrontEdgeDist・BackEdgeDist・FrontEdgeBodyDist・BackEdgeBodyDistです。

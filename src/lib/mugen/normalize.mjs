@@ -6,6 +6,7 @@ export const publicNotes = content => effectiveNotes(content).filter(isPublicNot
 export const effectiveDescription = content => content.documentation?.description ?? content.description;
 export const effectiveSyntax = content => content.documentation?.syntax ?? content.syntax;
 export const effectiveAssociatedStates = content => content.documentation?.associated_state ?? content.associated_state;
+export const effectiveAssociatedTriggers = content => content.documentation?.associated_trigger ?? content.associated_trigger;
 export const effectivePageCategory = content => content.documentation?.page_category ?? content.page?.category?.[1];
 export const publicImages = content => (content.images ?? []).filter(image => image.visibility !== 'internal');
 export const publicCodeSamples = content => (content.code_sample ?? []).filter(sample => sample.visibility !== 'internal');
@@ -33,6 +34,7 @@ export function normalizeDocument(content, common = []) {
     description: effectiveDescription(content),
     ...(effectiveSyntax(content) !== undefined ? { syntax: effectiveSyntax(content) } : {}),
     ...(effectiveAssociatedStates(content) !== undefined ? { associated_state: effectiveAssociatedStates(content) } : {}),
+    ...(effectiveAssociatedTriggers(content) !== undefined ? { associated_trigger: effectiveAssociatedTriggers(content) } : {}),
     ...(content.images !== undefined ? { images: publicImages(content) } : {}),
     ...(content.code_sample !== undefined ? { code_sample: publicCodeSamples(content) } : {}),
     ...(content.qanda !== undefined ? { qanda: publicQandA(content) } : {}),

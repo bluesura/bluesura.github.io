@@ -22,6 +22,10 @@
 
 > 2026-10-04: ルートの `documentation.syntax` / `documentation.associated_state` で公開構文・関連ステコンを訂正できます。旧配列は原位置に保持し、詳細・Trigger一覧の構文には訂正値を使います。syntaxは非空文字列の非空配列、associated_stateは非空文字列の配列で、`[]`なら関連ステコンを非表示にします。descriptionは引き続き必須です。SysVar/SysFVarの旧式中代入・未定義関連IDの訂正が使用例です。
 
+> 2026-10-06: `documentation.associated_trigger` で公開する関連トリガーのリンクも訂正できます。旧 `associated_trigger` は原位置に保持し、未指定なら従来の配列、`[]`なら関連トリガーを非表示にします。非空文字列の配列を使用し、descriptionは必須です。BackEdgeの存在しないCameraPosページへのリンクをCameraPosXへ訂正しています。
+
+> 2026-10-06: `documentation.associated_trigger` で公開する関連トリガーのリンクも訂正できます。旧 `associated_trigger` は原位置に保持し、未指定なら従来の配列、`[]`なら関連トリガーを非表示にします。非空文字列の配列を使用し、descriptionは必須です。BackEdgeの存在しないCameraPosページへのリンクをCameraPosXへ訂正しています。
+
 このドキュメントは、`mugen-template-all.json` の各フィールドに入力すべき情報を定義した仕様書です。
 LLM（大規模言語モデル）への指示や、ドキュメントデータベース構築時のリファレンスとして利用してください。
 

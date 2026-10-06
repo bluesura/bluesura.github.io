@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.11",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "TeamSide",
   "category": "trigger",
@@ -50,6 +52,13 @@
         "Trigger1 = 1",
         "Var(1) = IfElse(TeamSide = 1, 100, 200)"
       ]
+    },
+    {
+      "title": "P1チームに所属する",
+      "description": "<p>現在の横位置やホーム扱いではなく、所属側が1である条件です。</p>",
+      "code": [
+        "Trigger1 = TeamSide = 1"
+      ]
     }
   ],
   "qanda": [
@@ -62,13 +71,18 @@
           "title": "Elecbyte Trigger Reference - TeamSide",
           "url": "https://www.elecbyte.com/mugendocs/trigger.html#teamside"
         }
-      ]
+      ],
+      "visibility": "internal"
+    },
+    {
+      "q": "左右を入れ替えたら所属側も変わる？",
+      "a": "<p>画面上の位置が変わるだけではTeamSideは変わりません。P1/P2チームの所属を調べる情報です。現在の横位置はPos X、向きはFacing、ホーム扱いはIsHomeTeamで調べます。</p>"
     }
   ],
   "quote": [
     {
-        "title": "TeamSide - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamSide"
+      "title": "TeamSide - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamSide"
     },
     {
       "title": "TeamSide - Trigger Reference (MUGEN 1.0)",
@@ -80,7 +94,184 @@
     },
     {
       "title": "Stage features - AttachedChar (IKEMEN GO / TeamSide=0 の言及)",
-      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Stage-features/"
+      "url": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Stage-features/",
+      "visibility": "internal"
+    },
+    {
+      "id": "teamside-local-2002",
+      "title": "TeamSide — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamSide",
+      "source_type": "official_document"
+    },
+    {
+      "id": "teamside-local-1.0",
+      "title": "TeamSide — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#teamside",
+      "source_type": "official_document"
+    },
+    {
+      "id": "teamside-local-1.1",
+      "title": "TeamSide — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#teamside",
+      "source_type": "official_document"
+    },
+    {
+      "id": "teamside-chaos",
+      "title": "TeamSide — CHAOSのチーム研究",
+      "url": "https://w.atwiki.jp/mugencns/pages/195.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "teamside-legacy",
+      "title": "移行前の本文・履歴・使用例・FAQ",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/6a87ffabd2474a85bfca58c6a5ae30f316a84db8/src/content/triggers/TeamSide.json",
+      "source_type": "source_code",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーが所属するチーム側を整数で返します。P1チームなら<code>1</code>、P2チームなら<code>2</code>です。</p><p>所属側の情報であり、現在のX座標やFacingではありません。キャラクターが画面上で左右を入れ替えても、位置だけでTeamSideは変わりません。現在の横位置はPos Xなどで調べ、ホーム側かどうかはIsHomeTeamで調べます。</p>",
+    "page_category": "所属するチーム側を取得",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "teamside-local-2002",
+        "teamside-local-1.0",
+        "teamside-local-1.1"
+      ],
+      "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>TeamSideは所属側の1/2、TeamModeはチーム形式の比較、IsHomeTeamはモードに応じたホーム扱いの1/0です。TeamSide = 1を、常に画面左側・右向き・ホーム側という条件として扱わないでください。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "teamside-local-2002",
+          "teamside-local-1.0",
+          "teamside-local-1.1"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSの左側(1P)/右側(2P)という所属サイド表記と、スロットIDの順番を確かめる目安という助言を保持。所属側を現在位置・Facing・一意IDやスロットIDそのものに変換しません。Helper/中立プレイヤー/特殊モード/ラウンド移行の詳細は実機未確認で、別エンジンの0をMUGENへ追加しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "teamside-local-2002",
+          "teamside-local-1.0",
+          "teamside-local-1.1",
+          "teamside-chaos",
+          "teamside-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧本文とFAQのPos/エッジ距離による左右判定案内を保持し、FAQは内部へ。FrontEdgeDist/BackEdgeDistはFacing基準の端までの距離で、P1/P2所属や画面上の左右そのものを返すトリガーではありません。旧VarSet/IfElseの2例は有効な所属側分岐として公開を維持し、後者は1/2を返すMUGENで使う例です。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "teamside-local-2002",
+          "teamside-local-1.0",
+          "teamside-local-1.1",
+          "teamside-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧IKEMEN GO AttachedCharのTeamSide=0という履歴と引用を別エンジンの内部記録に保持。MUGENの有効値やエラー値へ転用せず、今回GOの仕様は検証・公開していません。</p>",
+      "environment": {
+        "engine": "ikemen-go"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "teamside-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+      },
+      "visibility": "internal",
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧page.version=2002.04.14を保持。掲載資料の存在は最初の実装の証明ではないためintroduced_inはnull。今回の検証はJSON・HTML・表示と固定入力での公開条件比較であり、エンジンのモード選択・相手選択・人数更新・互換設定の実機挙動を測定していません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "teamside-local-2002",
+          "teamside-local-1.0",
+          "teamside-local-1.1",
+          "teamside-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "teamside-local-2002",
+      "teamside-local-1.0",
+      "teamside-local-1.1"
+    ],
+    "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+  }
 }

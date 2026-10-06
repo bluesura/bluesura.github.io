@@ -1366,3 +1366,27 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・326テスト・263ページビルド・261 URL/212比較対象ページHTML検査を通過。ParentDistXを通常幅、RootDistXの軸表・ParentDistYの例・RootDistYの世代別エラーを390pxで確認し、内部情報の非表示と表示幅/検査タブの復元を確認。内部注記24件追加で552件、未対応旧履歴103項目、未表示フィールド29ページ。次はTeamMode・TeamSide・IsHomeTeamです。
+
+## 2026-10-06：team-affiliation-01
+
+TeamMode / TeamSide / IsHomeTeamの3件で累計204件（主要・補助16件＋71バッチ188件）、対象内の残り30件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/team-affiliation-01/ に保存しました。
+
+- TeamModeは必須演算子=/!=と引用符なしのSingle/Simul/Turnsを用いる旧式比較、TeamSide/IsHomeTeamは引数なしの整数参照として構造化。TeamModeの比較結果とIsHomeTeamは1/0、TeamSideはP1/P2所属の1/2を返します。チーム形式・現在人数・所属側・現在座標/Facing・ホーム扱いを分離しました。旧本文・メタ・構文・履歴・Q&A/c/r・例・引用は保持し、スキーマ/レジストリ/レンダラー/CSSは変更していません。
+- 保存済み公式3世代と[CHAOS TeamMode](https://w.atwiki.jp/mugencns/pages/194.html)を照合。自チームSingleから相手もSingle/1対1とは推定せず、敵側はリダイレクトして調べます。公式のサバイバル敵側Turnsを公開、CHAOSの検証不足/疑問符は内部へ保持しました。TeamSide/IsHomeTeamのCHAOS記事は全文取得に失敗したため検索結果本文の確認範囲を内部に記録し、未読部分を推定しません。
+- 旧RC4/RC5の2履歴を保存済み公式1.0履歴と照合。RC4は!=構文解析（HitDefAttr/AuthorNameも対象）、RC5はTeamMode/HitDefAttrの評価修正で、別々のversion_change/fixedと既存のmugen-1.0-rc4/rc5へ対応付けました。互換プロファイル・症状・再現条件を推定しません。
+- CHAOSの!=より否定式を勧める留保と、2020年のWinMUGEN引用符付き指定でエラー落ちする[会議室報告](https://w.atwiki.jp/mugencns/pages/40.html)を内部へ保持。具体ビルド/1.0/1.1再現は未確認で、!=を全世代無効にはしていません。モード引数を通常の引用符付き文字列に変換せず、公開例は公式同様の引用符なしです。
+- TeamSideの有効なVarSet/IfElseの旧2例は公開を維持。旧左右判定のPos/EdgeDist案内を内部へ保持してQ&Aを訂正し、所属側と現在の位置/向きを区別しました。IsHomeTeamの旧Q&A・RoundState=0/未定義9000/9010へのイントロ遷移例は内部へ保存し、公開はホーム/非ホームの短い条件行です。Training/Watch/CPU対CPU/Helperの実測とAILevelとの詳細関係は未確認です。
+- 3件のGO履歴・TeamModeのGO Q&A/Tag/Ratio・TeamSideのAttachedChar=0・IsHomeTeamのissue報告と引用を別エンジンの内部記録へ保持。旧2002 TeamMode引用の#TeamModeを残し、公開は実在する#TeamMode(*,***)の新しい保存済み引用へ案内します。初導入null、特殊モード/敵消滅/人数更新/互換設定は実機未検証です。
+- 公開例の比較式を固定したモード文字列/1・2/0・1で検査し、否定条件と既存分岐の100/200を確認。Enemy例の先行人数条件と参照式を検査しました。これは条件式と出力の検証であり、MUGENのモード選択・Enemy対象選択を再現するテストではありません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch team-affiliation-01
+npm run mugen:batch -- --batch team-affiliation-01 --target TeamMode --target TeamSide --target IsHomeTeam
+npm run mugen:batch -- --batch team-affiliation-01 --target TeamMode --target TeamSide --target IsHomeTeam --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・332テスト・263ページビルド・261 URL/215比較対象ページHTML検査を通過。TeamModeを通常幅、必須引数表/RC履歴・TeamSideの既存例・IsHomeTeamの公開例を390pxで確認し、内部情報の非表示と表示幅/検査タブの復元を確認。内部注記14件追加で566件、未対応旧履歴97項目、未表示フィールド29ページ。次はMatchNo・MatchOverです。

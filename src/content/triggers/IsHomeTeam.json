@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.11",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "IsHomeTeam",
   "category": "trigger",
@@ -45,7 +47,12 @@
           "title": "Trigger Reference (MUGEN 1.0) - IsHomeTeam",
           "url": "https://www.elecbyte.com/mugendocs/trigger.html#ishometeam"
         }
-      ]
+      ],
+      "visibility": "internal"
+    },
+    {
+      "q": "ホーム側とP1側・画面左側は同じ？",
+      "a": "<p>常に同じではありません。IsHomeTeamはホーム扱いの1/0、TeamSideは所属側の1/2です。アーケード系ではコンピュータ側、対戦系ではP1チーム側がホームです。現在の横位置やFacingは別に調べます。</p>"
     }
   ],
   "code_sample": [
@@ -58,13 +65,28 @@
         "Trigger1 = RoundState = 0",
         "Trigger1 = Time = 0",
         "Value = IfElse(IsHomeTeam, 9000, 9010)"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "ホーム扱いのチーム",
+      "description": "<p>成立条件だけを示します。イントロの時点や遷移先ステートの設定は別に用意します。</p>",
+      "code": [
+        "Trigger1 = IsHomeTeam"
+      ]
+    },
+    {
+      "title": "ホーム扱いではないチーム",
+      "description": "<p>ホーム扱いの0を確認します。TeamSideの数値2を直接返す条件ではありません。</p>",
+      "code": [
+        "Trigger1 = !IsHomeTeam"
       ]
     }
   ],
   "quote": [
     {
-        "title": "IsHomeTeam - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IsHomeTeam"
+      "title": "IsHomeTeam - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IsHomeTeam"
     },
     {
       "title": "IsHomeTeam - Trigger Reference (MUGEN 1.0)",
@@ -76,7 +98,184 @@
     },
     {
       "title": "Ikemen GO Issue #1958 - IsHomeTeam always returns 1",
-      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/1958"
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/1958",
+      "visibility": "internal"
+    },
+    {
+      "id": "ishometeam-local-2002",
+      "title": "IsHomeTeam — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IsHomeTeam",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ishometeam-local-1.0",
+      "title": "IsHomeTeam — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#ishometeam",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ishometeam-local-1.1",
+      "title": "IsHomeTeam — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#ishometeam",
+      "source_type": "official_document"
+    },
+    {
+      "id": "ishometeam-chaos",
+      "title": "IsHomeTeam — CHAOSのチーム研究",
+      "url": "https://w.atwiki.jp/mugencns/pages/141.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "ishometeam-legacy",
+      "title": "移行前の本文・履歴・使用例・FAQ",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/6a87ffabd2474a85bfca58c6a5ae30f316a84db8/src/content/triggers/IsHomeTeam.json",
+      "source_type": "source_code",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "documentation": {
+    "description": "<p>評価対象のプレイヤーのチームがホーム扱いなら1、それ以外なら0を整数で返します。所属側の1/2を返すTeamSideとは別の情報です。</p><p>アーケード系モードではコンピュータ側がホーム、対戦系モードではP1チーム側がホームとして扱われます。P1側という説明を、キャラクターの現在の画面左位置やFacingと混同しないでください。</p>",
+    "page_category": "チームがホーム扱いかを判定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "ishometeam-local-2002",
+        "ishometeam-local-1.0",
+        "ishometeam-local-1.1"
+      ],
+      "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>1.0/1.1の公式定義は、アーケード系モードでコンピュータ側、対戦系モードでP1チーム側をホームとします。これはモードに応じたチームの扱いで、キャラクターが画面上で左へ移動したかの判定ではありません。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "ishometeam-local-1.0",
+          "ishometeam-local-1.1"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧FAQの左右判定ならTeamSideを優先するという説明とRoundState=0/Time=0で9000/9010へ遷移する旧イントロ例を保持してinternalへ。TeamSideは所属側であり現在の左右位置ではありません。RoundState=0はイントロ中の1とは異なり、未定義の専用ステートや再遷移/フレーム条件を含む旧例を汎用イントロ処理として公開しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "ishometeam-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSの挑戦を受ける側という説明とCPU/左側の案内を照合。Training・Watch・CPU対CPU・チームアーケード・リダイレクト/Helper・モード変更の実測は今回未実施。IsHomeTeamをAILevelの大小やCPU操作そのものと同一視せず、TeamSideから全モード共通のホーム式を推定しません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "ishometeam-local-2002",
+          "ishometeam-local-1.0",
+          "ishometeam-local-1.1",
+          "ishometeam-chaos",
+          "ishometeam-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧IKEMEN GO v0.99.0/Nightlyの常に1というissue報告・回避案と引用を別エンジンの内部記録へ保持。可変Nightlyを検証ビルドとせず、issueの現在状態やMUGENの不具合へ読み替えません。今回GOの仕様/修正は検証・公開していません。</p>",
+      "environment": {
+        "engine": "ikemen-go"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "ishometeam-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+      },
+      "visibility": "internal",
+      "legacy_index": 1
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧page.version=2002.04.14を保持。掲載資料の存在は最初の実装の証明ではないためintroduced_inはnull。今回の検証はJSON・HTML・表示と固定入力での公開条件比較であり、エンジンのモード選択・相手選択・人数更新・互換設定の実機挙動を測定していません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "ishometeam-local-2002",
+          "ishometeam-local-1.0",
+          "ishometeam-local-1.1",
+          "ishometeam-legacy"
+        ],
+        "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+      },
+      "visibility": "internal"
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "ishometeam-local-2002",
+      "ishometeam-local-1.0",
+      "ishometeam-local-1.1"
+    ],
+    "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+  }
 }

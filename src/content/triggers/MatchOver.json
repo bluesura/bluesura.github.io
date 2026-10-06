@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.11",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "MatchOver",
   "category": "trigger",
@@ -21,7 +23,8 @@
       "src": "mugen-win-lose-conditions.png",
       "width": "640",
       "height": "480",
-      "alt": "MUGENのラウンド結果判定フロー図。勝利（WinKO, WinTime, WinPerfect）、引き分け（DrawGame）、敗北（LoseKO, LoseTime）の各条件からMatchOver（試合終了）に至るプロセスと、RoundState=3以降の判定タイミングの解説。"
+      "alt": "MUGENのラウンド結果判定フロー図。勝利（WinKO, WinTime, WinPerfect）、引き分け（DrawGame）、敗北（LoseKO, LoseTime）の各条件からMatchOver（試合終了）に至るプロセスと、RoundState=3以降の判定タイミングの解説。",
+      "visibility": "internal"
     }
   ],
   "syntax": [
@@ -66,7 +69,8 @@
         "Trigger1 = MatchOver",
         "Time = 30",
         "Add = -255, -255, -255"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "ラウンド決着を早めに拾う（PreOverで処理する）",
@@ -77,11 +81,34 @@
         "TriggerAll = RoundState = 3",
         "Trigger1 = Win || Lose || DrawGame",
         "Var(58) = 1"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "試合の決着後を条件にする",
+      "description": "<p>MatchOverの値を調べる条件行です。効果を1回だけ実行する場合は、そのためのステートやフラグを別に用意してください。</p>",
+      "code": [
+        "Trigger1 = MatchOver"
+      ]
+    },
+    {
+      "title": "試合の決着前を条件にする",
+      "description": "<p>試合がまだ終わっていない条件です。ラウンド終了後で次のラウンドが残っている区間も含みます。</p>",
+      "code": [
+        "Trigger1 = !MatchOver"
+      ]
+    },
+    {
+      "title": "試合が決着し、自分側がラウンドに勝っている",
+      "description": "<p>MatchOverは勝者側だけの値ではありません。同じTrigger1でWinも調べ、試合の決着と自分側のラウンド結果を分けます。</p>",
+      "code": [
+        "Trigger1 = MatchOver",
+        "Trigger1 = Win"
       ]
     }
   ],
   "quote": [
-     {
+    {
       "title": "MatchOver - Trigger Reference(version 2002.04.14)",
       "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MatchOver"
     },
@@ -99,11 +126,270 @@
     },
     {
       "title": "IKEMEN GO: 勝利/TimeOverポーズのフェイルセーフ遅延に関する議論",
-      "url": "https://github.com/ikemen-engine/Ikemen-GO/discussions/2890"
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/discussions/2890",
+      "visibility": "internal"
     },
     {
       "title": "IKEMEN GO Releases: RoundNotOver/RoundStateなどラウンド終了挙動の修正履歴",
-      "url": "https://github.com/ikemen-engine/Ikemen-GO/releases"
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/releases",
+      "visibility": "internal"
+    },
+    {
+      "id": "matchover-local-2002",
+      "title": "MatchOver — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#MatchOver",
+      "source_type": "official_document"
+    },
+    {
+      "id": "matchover-local-1.0",
+      "title": "MatchOver — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#matchover",
+      "source_type": "official_document"
+    },
+    {
+      "id": "matchover-local-1.1",
+      "title": "MatchOver — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#matchover",
+      "source_type": "official_document"
+    },
+    {
+      "id": "matchover-legacy",
+      "title": "移行前の本文・履歴・使用例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/fe6ab3e30a504d2a58c2557c3bfb985c3261f76b/src/content/triggers/MatchOver.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "matchover-chaos",
+      "title": "MatchOver — CHAOSの試合情報研究",
+      "url": "https://w.atwiki.jp/mugencns/pages/116.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "matchover-roundstate-1.1",
+      "title": "RoundState — ラウンドの進行状態",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#roundstate",
+      "source_type": "official_document"
+    },
+    {
+      "id": "matchover-palfx-1.1",
+      "title": "PalFX — Time/Addの公式定義",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#palfx",
+      "source_type": "official_document",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "return_type": [
+    "int"
+  ],
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "documentation": {
+    "description": "<p>試合全体の決着がついているかを整数で返します。決着していれば<code>1</code>、それ以外は<code>0</code>です。引数はありません。</p><p>ラウンドが1つ終わっただけで、試合終了とは限りません。例えば2本先取の試合なら、プレイヤーまたはチームが2ラウンドを取って試合の勝利条件を満たす場合に使います。自分側がそのラウンドに勝ったかはWin、負けたかはLose、引き分けかはDrawGameで別に調べます。</p>",
+    "page_category": "試合全体の決着を判定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "matchover-local-2002",
+        "matchover-local-1.0",
+        "matchover-local-1.1"
+      ],
+      "comment": "2026-10-06: 保存済みElecbyte公式3世代とCHAOS MatchOverを照合。資料の記載確認と実測は別。実機検証は未実施で、テストは原文保存・公開表示・固定入力の条件比較を確認する。"
+    }
+  },
+  "qanda": [
+    {
+      "q": "RoundNo = 3やWinだけで試合終了を判定できる？",
+      "a": "<p>ラウンド番号や1ラウンドの勝利だけでは試合終了を保証できません。勝利条件・引き分けなどでラウンド数が変わるため、試合の決着はMatchOverで調べます。自分側の勝敗を条件にする場合はWin / Loseも別に調べてください。</p>"
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>1.0/1.1の公式資料は、勝利ポーズ（state 180）が始まるまではMatchOverが1を返さないと説明しています。KO・時間切れの発生直後に必ず1になる条件として使わず、MatchOverの値自体を調べてください。これは全員のStateNo = 180を確認する条件ではありません。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "matchover-local-1.0",
+          "matchover-local-1.1"
+        ],
+        "comment": "2026-10-06: 保存済みElecbyte公式3世代とCHAOS MatchOverを照合。資料の記載確認と実測は別。実機検証は未実施で、テストは原文保存・公開表示・固定入力の条件比較を確認する。"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>!MatchOverは試合の決着前という条件です。ラウンドがまだ終わっていない場合に加え、1ラウンドが終わっても試合の勝利条件に達していない場合を含みます。!MatchOverだけで戦闘区間RoundState = 2や、自分側の敗北を判定しないでください。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "matchover-local-1.0",
+          "matchover-local-1.1"
+        ],
+        "comment": "2026-10-06: 保存済みElecbyte公式3世代とCHAOS MatchOverを照合。資料の記載確認と実測は別。実機検証は未実施で、テストは原文保存・公開表示・固定入力の条件比較を確認する。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧1.0/1.1履歴の「両者が勝利ポーズへ入った後」を原位置に保持。公式のplayers start their win posesという記載を全プレイヤーが同じ180番へ移る条件に広げず、公開は資料の成立段階として編集した。カスタムステート・勝敗両側・Helper・Turns最終戦と正確な評価フレームは実機未検証。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "matchover-local-2002",
+          "matchover-local-1.0",
+          "matchover-local-1.1",
+          "matchover-legacy"
+        ],
+        "comment": "2026-10-06: 保存済みElecbyte公式3世代とCHAOS MatchOverを照合。資料の記載確認と実測は別。実機検証は未実施で、テストは原文保存・公開表示・固定入力の条件比較を確認する。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSはDOS版は180番内のみ「とのこと」、Win版以降は決着の約10フレーム後と報告し、公式3世代の勝利ポーズ開始までという説明とは世代・時点を切り分ける必要がある。また時間切れ勝利から死亡敗北へ変化すると勝利判定が取り消され、MatchOverも1から0に戻るという記録がある。DOSの伝聞・Win以降の範囲・フレーム数・1から0への再現を今回確認していないため、全ビルドの確定値や一度1なら永続という仕様にしない。研究をJSONへ保持する。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "matchover-local-2002",
+          "matchover-local-1.0",
+          "matchover-local-1.1",
+          "matchover-chaos"
+        ],
+        "comment": "2026-10-06: 保存済みElecbyte公式3世代とCHAOS MatchOverを照合。資料の記載確認と実測は別。実機検証は未実施で、テストは原文保存・公開表示・固定入力の条件比較を確認する。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧概要・共有画像はRoundState = 3とWin/Lose/DrawGameでKO表示/TimeOver直後を拾うと説明する。RoundStateの進行と結果フラグの更新タイミングを分け、これで試合全体の最終決着まで保証するとは推定しない。画像src/alt/寸法・概要・PreOver例を内部に保持。Pause/HitPause、同一フレーム更新、勝敗の取り消し、引き分け/Turnsは実機未確認。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "matchover-legacy",
+          "matchover-roundstate-1.1",
+          "matchover-chaos"
+        ],
+        "comment": "2026-10-06: 保存済みElecbyte公式3世代とCHAOS MatchOverを照合。資料の記載確認と実測は別。実機検証は未実施で、テストは原文保存・公開表示・固定入力の条件比較を確認する。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧フェードアウト例はAdd = -255固定のPalFXをMatchOverが成立する間実行するため、明るさを徐々に変えるフェードではない。Time = 30も連続実行で再設定され、1回実行の前提が無い。旧PalFX例をコードごと内部へ保持し、公開は効果や変数番号を固定しない決着判定条件にする。sample_codeのVar(59)フラグ例も元のまま保持し、初期化/次ラウンドのリセット/Helper監視の実測を付け足さない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "matchover-legacy",
+          "matchover-palfx-1.1"
+        ],
+        "comment": "2026-10-06: 保存済みElecbyte公式3世代とCHAOS MatchOverを照合。資料の記載確認と実測は別。実機検証は未実施で、テストは原文保存・公開表示・固定入力の条件比較を確認する。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧IKEMEN GO履歴のフェイルセーフ遅延（15秒程度）・勝利画面/ポーズ・RoundNotOver/RoundState修正案内と2引用を別エンジンの内部記録へ保持。今回固定コミット/バージョンや遅延の再現は確認せず、MUGENの仕様・回避策に読み替えない。</p>",
+      "environment": {
+        "engine": "ikemen-go"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "matchover-legacy"
+        ],
+        "comment": "2026-10-06: 保存済みElecbyte公式3世代とCHAOS MatchOverを照合。資料の記載確認と実測は別。実機検証は未実施で、テストは原文保存・公開表示・固定入力の条件比較を確認する。"
+      },
+      "legacy_index": 1
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.version=2002.04.14と全文を保持。保存済み公式への掲載から初導入ビルドを推定せずintroduced_inはnull。今回MUGENの実機を実行しておらず、具体モード/互換設定/リダイレクト先/デバッグ操作での数値更新を検証済みにはしない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "matchover-local-2002",
+          "matchover-local-1.0",
+          "matchover-local-1.1",
+          "matchover-legacy"
+        ],
+        "comment": "2026-10-06: 保存済みElecbyte公式3世代とCHAOS MatchOverを照合。資料の記載確認と実測は別。実機検証は未実施で、テストは原文保存・公開表示・固定入力の条件比較を確認する。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "matchover-local-2002",
+      "matchover-local-1.0",
+      "matchover-local-1.1"
+    ],
+    "comment": "2026-10-06: 保存済みElecbyte公式3世代とCHAOS MatchOverを照合。資料の記載確認と実測は別。実機検証は未実施で、テストは原文保存・公開表示・固定入力の条件比較を確認する。"
+  }
 }

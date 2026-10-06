@@ -1390,3 +1390,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・332テスト・263ページビルド・261 URL/215比較対象ページHTML検査を通過。TeamModeを通常幅、必須引数表/RC履歴・TeamSideの既存例・IsHomeTeamの公開例を390pxで確認し、内部情報の非表示と表示幅/検査タブの復元を確認。内部注記14件追加で566件、未対応旧履歴97項目、未表示フィールド29ページ。次はMatchNo・MatchOverです。
+
+## 2026-10-06：match-progress-01
+
+MatchNo / MatchOverの2件で累計206件（主要・補助16件＋72バッチ190件）、対象内の残り28件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/match-progress-01/ に保存しました。
+
+- 両方を引数なし・整数返却として構造化し、試合番号/ラウンド番号と試合全体の決着/各ラウンドの勝敗を分離。MatchNoのtitle欠落、旧本文・メタ・構文・全履歴・画像/寸法/alt・sample_code・全使用例・引用を保持。スキーマ/レジストリ/レンダラー/CSS変更はありません。
+- 保存済み公式3世代は、MatchNoが次試合開始で増え、continueでは増えず、クリア後の新ゲームで1へ戻ると明記。旧本文のcontinue増加・ゲームオーバー時リセットをconflictingの内部研究へ保持し、公開説明を訂正しました。対戦系では常に1で、RoundNoとの条件併用も1回実行を保証しません。CHAOSのMatchNo索引リンクは取得に失敗し、未読本文やSurvival/Training/Watchの更新を推定していません。
+- MatchOverの1.0/1.1履歴は通常のbehaviorとして対応。公式の勝利ポーズ開始までという段階を公開し、旧「両者が180番」という一般化、正確なフレーム境界は内部へ保持。[CHAOS MatchOver](https://w.atwiki.jp/mugencns/pages/116.html)のDOS=180内のみという伝聞、Win以降の約10フレーム、時間切れ勝利の取り消しによる1→0を資料差として内部へ保存。全ビルドの確定値・永久フラグとして公開しません。
+- MatchNoの旧ゲージ初期化例はOR条件が1試合目/1ラウンド目を保証せず、変数の更新前提も無いため内部へ。MatchOverの旧PreOver/結果フラグ例・共通勝敗画像も更新時点と最終決着を実測していないため内部へ。旧PalFX例はAdd固定・再実行で、徐々に暗くなる1回のフェードとして成立しないことを保存しました。公開例は番号比較・MatchOver/否定・WinとのAND条件に限定し、未定義変数や制御効果を追加していません。
+- GOの15秒遅延/フェイルセーフ・RoundNotOver修正と2引用を別エンジンの内部記録へ保持。初導入null、モード/continue差の実測・DOS/Win/1.x成立時点・Turns/Helper・勝敗取り消し・旧フラグ初期化は未検証。固定入力の条件式テストはこれらのエンジン挙動を再現するものではありません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch match-progress-01
+npm run mugen:batch -- --batch match-progress-01 --target MatchNo --target MatchOver
+npm run mugen:batch -- --batch match-progress-01 --target MatchNo --target MatchOver --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・337テスト・263ページビルド・261 URL/217比較対象ページHTML検査を通過。MatchNoを通常幅、番号条件例とMatchOverの世代別仕様/コード例を390pxで確認し、内部非表示と表示幅/検査タブの復元を確認。内部注記10件追加で576件、未対応旧履歴95項目、未表示フィールド29ページ。次はWin・WinKO・WinTime・WinPerfectです。

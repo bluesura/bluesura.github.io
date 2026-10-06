@@ -1,0 +1,79 @@
+{
+  "text": "TeamMode キャラクターのパラメーター > 試合のチーム形式は何ですか？ | 実装されたバージョン: 2002.04.14 | 対象: ステート実行者自身 引数 仕様・注意点 使用例 引用記事 TeamMode は、現在のチーム形式を判定する比較式として使うトリガーです。比較式が成立すれば 1、成立しなければ 0 を返します。モードは Single / Simul / Turns のいずれかとして扱われます（シングル戦 / 同時出場のタッグ戦 / 交代制のチーム戦）。使用できる比較演算子は = と != のみです。 関連するトリガー： TeamSide , NumPartner , NumEnemy , IsHomeTeam 構文 TeamMode = SingleTeamMode != SingleTeamMode = SimulTeamMode != SimulTeamMode = TurnsTeamMode != Turns 引数 なし 仕様・バグ・エラー・変更点MUGEN 1.0 RC4 (2009-10-25)TeamMode などに対する != 演算子の解析が不正になる不具合が修正されました。MUGEN 1.0 RC5 (2009-10-28)TeamMode（および HitDefAttr）の評価が誤る不具合が修正されました。IKEMEN GO追加チームモード Tag が存在し、TeamMode はこのモードを Tag として返します。あわせて、Ratio モードは Turns として扱われます。 Q＆A(よくある質問)サバイバル時の注意点はありますか？公式仕様では、サバイバル時に「敵側」は Turns として扱われます。TeamMode を敵側へリダイレクトして判定する場合は、この挙動を前提に条件分岐してください。IKEMEN GO の追加モードはどう扱われますか？IKEMEN GO には Tag モードがあり、TeamMode はこのモードを Tag として返します。Ratio は Turns として扱われます。 コードサンプルシングル戦の時だけ成立させるシングル戦（1 vs 1）でのみ処理を有効化したい場合の基本形です。[State -2, SingleOnly]Type = NullTrigger1 = TeamMode = Single Simul（同時出場のタッグ戦）でのみ成立させるタッグ戦（同時出場）向けの分岐例です。[State -2, SimulOnly]Type = NullTrigger1 = TeamMode = Simul Turns（交代制チーム戦）でのみ成立させる交代制のチーム戦（Turns）向けの分岐例です。[State -2, TurnsOnly]Type = NullTrigger1 = TeamMode = Turns 引用記事TeamMode - Trigger Reference(version 2002.04.14)TeamMode - Trigger Reference (MUGEN 1.0)TeamMode - Trigger Reference (MUGEN 1.1 Beta 1)TeamMode - Elecbyte Wiki (archived)M.U.G.E.N Update History (TeamMode関連の修正履歴)Ikemen-GO Wiki - Miscellaneous info (Tag/RatioとTeamMode) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "TeamSide",
+      "href": "./../Trigger/TeamSide.html"
+    },
+    {
+      "text": "NumPartner",
+      "href": "./../Trigger/NumPartner.html"
+    },
+    {
+      "text": "NumEnemy",
+      "href": "./../Trigger/NumEnemy.html"
+    },
+    {
+      "text": "IsHomeTeam",
+      "href": "./../Trigger/IsHomeTeam.html"
+    },
+    {
+      "text": "TeamMode - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamMode"
+    },
+    {
+      "text": "TeamMode - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#teammode"
+    },
+    {
+      "text": "TeamMode - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#teammode"
+    },
+    {
+      "text": "TeamMode - Elecbyte Wiki (archived)",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TeamMode"
+    },
+    {
+      "text": "M.U.G.E.N Update History (TeamMode関連の修正履歴)",
+      "href": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "text": "Ikemen-GO Wiki - Miscellaneous info (Tag/RatioとTeamMode)",
+      "href": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-info"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

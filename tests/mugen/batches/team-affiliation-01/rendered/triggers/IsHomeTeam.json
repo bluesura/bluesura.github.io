@@ -1,0 +1,63 @@
+{
+  "text": "IsHomeTeam 試合情報 > 自チームがホーム側かの判定 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 IsHomeTeam は、このトリガーを評価しているプレイヤー（キャラクター）のチームが「ホームチーム」とみなされる場合に 1 を返します。該当しない場合は 0 を返します。アーケード系モードでは、コンピュータ側チームが常にホームチームとして扱われます。対人対戦（Player vs Player）では、P1（左側）がホームチームとして扱われます。 関連するトリガー： TeamSide , TeamMode 構文 IsHomeTeam 引数 なし 仕様・バグ・エラー・変更点MUGEN 1.0 / 1.1公式ドキュメント上の定義は、アーケード系モードではCPU側がホーム、対人対戦ではP1（左側）がホームという扱いです。IKEMEN GO v0.99.0 / Nightly互換性の差分／不具合として、IsHomeTeam が常に 1 を返すという報告があります。IKEMEN GO を対象にする場合は、実機での挙動確認や、TeamSide 等による代替判定を併用してください。 Q＆A(よくある質問)IsHomeTeam と TeamSide の違いは？TeamSide は左右（P1側/ P2側）の区別に近い値を返します。一方 IsHomeTeam はモード依存で「ホーム扱い」を返すため、アーケード系モードではCPU側がホームになり得ます。左右判定が目的なら TeamSide を優先し、ホーム/アウェイ演出など「ホーム扱い」が目的なら IsHomeTeam を使い分けてください。 コードサンプルホーム/アウェイでイントロ演出を分岐するラウンド開始直後に、ホーム側とアウェイ側で別ステートへ分岐します（主に対人対戦向け）。[State -2, IntroBranchByHomeTeam]Type = ChangeStateTrigger1 = RoundState = 0Trigger1 = Time = 0Value = IfElse(IsHomeTeam, 9000, 9010) 引用記事IsHomeTeam - Trigger Reference(version 2002.04.14)IsHomeTeam - Trigger Reference (MUGEN 1.0)IsHomeTeam - Trigger Reference (MUGEN 1.1 Beta 1)Ikemen GO Issue #1958 - IsHomeTeam always returns 1 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "TeamSide",
+      "href": "./../Trigger/TeamSide.html"
+    },
+    {
+      "text": "TeamMode",
+      "href": "./../Trigger/TeamMode.html"
+    },
+    {
+      "text": "IsHomeTeam - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#IsHomeTeam"
+    },
+    {
+      "text": "IsHomeTeam - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#ishometeam"
+    },
+    {
+      "text": "IsHomeTeam - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#ishometeam"
+    },
+    {
+      "text": "Ikemen GO Issue #1958 - IsHomeTeam always returns 1",
+      "href": "https://github.com/ikemen-engine/Ikemen-GO/issues/1958"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

@@ -1,0 +1,1222 @@
+{
+  "id": "team-affiliation-01",
+  "reviewed_on": "2026-10-06",
+  "description": "TeamMode/TeamSide/IsHomeTeamの3件。評価対象の形式・所属側・ホーム扱いを分離し、RC4/RC5・Win研究・旧例/別エンジンを保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "TeamMode",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teammode-local-2002",
+            "title": "TeamMode — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamMode(*,***)",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teammode-local-1.0",
+            "title": "TeamMode — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#teammode",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teammode-local-1.1",
+            "title": "TeamMode — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#teammode",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teammode-chaos",
+            "title": "TeamMode — CHAOSのチーム研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/194.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teammode-legacy",
+            "title": "移行前の本文・履歴・使用例・FAQ",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/6a87ffabd2474a85bfca58c6a5ae30f316a84db8/src/content/triggers/TeamMode.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            5,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "old_style"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[oper]",
+              "type": [
+                "演算子"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。他の比較演算子は使えません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "teammode-local-2002",
+                  "teammode-local-1.0",
+                  "teammode-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              }
+            },
+            {
+              "name": "mode",
+              "type": [
+                "string"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>引用符を付けずに<code>Single</code>（1人）、<code>Simul</code>（同時出場）、<code>Turns</code>（順番に出場）のいずれかを指定します。文字列値を返す関数や数値引数ではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "teammode-local-2002",
+                  "teammode-local-1.0",
+                  "teammode-local-1.1",
+                  "teammode-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teammode-rc4",
+            "title": "!=の構文解析修正 — Elecbyte 1.0 RC4",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc4",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teammode-rc5",
+            "title": "TeamModeの評価修正 — Elecbyte 1.0 RC5",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc5",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teammode-comments",
+            "title": "WinMUGENの引用符付き指定の報告 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/40.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teammode-redirection",
+            "title": "Enemyのリダイレクト — Elecbyte 1.1b1 CNS",
+            "url": "/MUGEN/document/Official/1.1b1/cns.html#trigger-redirection",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teammode-numenemy",
+            "title": "NumEnemy — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#numenemy",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーが属するチームの形式を、指定したモードと比較します。成立すれば1、不成立なら0を整数で返します。試合全体で両チームが同じ形式だと決めつけず、相手の形式は相手へリダイレクトして調べます。</p><p><code>TeamMode = Single</code> / <code>TeamMode = Simul</code> / <code>TeamMode = Turns</code>のように使います。比較演算子は<code>=</code>と<code>!=</code>だけです。モード名は引用符を付けずに指定し、モード名そのものを文字列として返すトリガーとは分けて扱います。</p>",
+            "page_category": "評価対象のチーム形式を比較",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "teammode-local-2002",
+                "teammode-local-1.0",
+                "teammode-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+            }
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "TeamMode = Singleなら試合は必ず1対1？",
+            "a": "<p>自チームがSingleであるという判定です。相手側もSingleかは別に調べます。形式の判定と、NumEnemy / NumPartnerによる現在の人数確認は使い分けてください。</p>"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "自チームが1人のチーム",
+            "description": "<p>相手側の形式や現在の人数を、この条件だけで判定しません。</p>",
+            "code": [
+              "Trigger1 = TeamMode = Single"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "自チームが同時出場のチーム",
+            "description": "<p>相手側の形式や現在の人数を、この条件だけで判定しません。</p>",
+            "code": [
+              "Trigger1 = TeamMode = Simul"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "自チームが順番に出場するチーム",
+            "description": "<p>相手側の形式や現在の人数を、この条件だけで判定しません。</p>",
+            "code": [
+              "Trigger1 = TeamMode = Turns"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "自チームがSingle以外",
+            "description": "<p>Singleとの一致条件を括弧で囲んで否定します。SimulまたはTurnsのときに成立します。</p>",
+            "code": [
+              "Trigger1 = !(TeamMode = Single)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "相手のチームがTurns",
+            "description": "<p>人数条件を先に置き、Enemyへリダイレクトします。相手が複数いる場合に全員を列挙する例ではありません。</p>",
+            "code": [
+              "TriggerAll = NumEnemy > 0",
+              "Trigger1 = Enemy, TeamMode = Turns"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "version_change",
+              "content": "<p>1.0 RC4で、TeamMode・HitDefAttr・AuthorNameの<code>!=</code>を誤って構文解析する不具合が修正されました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0-rc4"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "teammode-rc4"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "change": "fixed",
+              "at": "mugen-1.0-rc4",
+              "legacy_index": 0
+            },
+            {
+              "kind": "version_change",
+              "content": "<p>1.0 RC5で、TeamModeとHitDefAttrの評価が誤る不具合が修正されました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0-rc5"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "teammode-rc5"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "change": "fixed",
+              "at": "mugen-1.0-rc5",
+              "legacy_index": 1
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>サバイバルモードの敵側は<code>Turns</code>として扱われます。自分のTeamModeを読むだけで敵側の形式を判定しません。TeamModeはチーム形式、NumPartner / NumEnemyは現在の人数を調べる別のトリガーです。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "teammode-local-2002",
+                  "teammode-local-1.0",
+                  "teammode-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSは!=より!(TeamMode=モード)の方が確実かもしれないと記載します。公式の有効演算子=/!=とRC4の解析修正・RC5の評価修正は区別して保存。WinMUGENの具体的な!=失敗条件や1.0互換設定への影響は未検証で、全世代で!=が無効とも、両修正が同一原因とも推定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "official_history",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "teammode-local-2002",
+                  "teammode-local-1.0",
+                  "teammode-local-1.1",
+                  "teammode-rc4",
+                  "teammode-rc5",
+                  "teammode-chaos"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSは2020-01-17に引用符不要へ修正し、会議室には2020-01-15のWinMUGENで引用符を付けるとエラー落ちする報告と管理者の確認があります。具体ビルド・再現入力・1.0/1.1での失敗種類は今回未検証。公開例は公式と同様の引用符なしで、エラー種類を全世代へ一般化しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "teammode-local-2002",
+                  "teammode-local-1.0",
+                  "teammode-local-1.1",
+                  "teammode-chaos",
+                  "teammode-comments"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式3世代はサバイバルの敵側Turnsを記載。CHAOSはこの点を検証不足として疑問符付きで保存しています。資料の確認と実機確認を分け、特殊ルール・評価側・Helper・敵消滅時点の返り値は未確認。Enemyの存在条件を置いて参照する例は、すべての相手の形式を列挙するコードではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "teammode-local-2002",
+                  "teammode-local-1.0",
+                  "teammode-local-1.1",
+                  "teammode-chaos",
+                  "teammode-redirection",
+                  "teammode-numenemy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧Single例の1 vs 1という説明と3つのNull例を原位置に保持してinternalへ。自チームSingleから相手もSingleとは推定しません。旧2002出典の#TeamModeは保存済み資料の実在アンカー#TeamMode(*,***)とは異なるため、旧引用を内部に残して新しいローカル引用で案内します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "teammode-legacy",
+                  "teammode-local-2002"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧IKEMEN GOのTag/Ratio記録・Q&Aと引用を別エンジンの内部記録に保持。TeamModeをモード名の返却として説明する旧文をMUGENへ転用せず、今回GOの仕様は検証・公開していません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "teammode-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal",
+              "legacy_index": 2
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。掲載資料の存在は最初の実装の証明ではないためintroduced_inはnull。今回の検証はJSON・HTML・表示と固定入力での公開条件比較であり、エンジンのモード選択・相手選択・人数更新・互換設定の実機挙動を測定していません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "teammode-local-2002",
+                  "teammode-local-1.0",
+                  "teammode-local-1.1",
+                  "teammode-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "teammode-local-2002",
+              "teammode-local-1.0",
+              "teammode-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・旧Winの引用符/!=・RC修正の再現条件・特殊モード/Helper/リダイレクト・敵選択/消滅境界は実機未検証。旧本文と別エンジンの記録を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "TeamSide",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teamside-local-2002",
+            "title": "TeamSide — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamSide",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teamside-local-1.0",
+            "title": "TeamSide — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#teamside",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teamside-local-1.1",
+            "title": "TeamSide — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#teamside",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teamside-chaos",
+            "title": "TeamSide — CHAOSのチーム研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/195.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "teamside-legacy",
+            "title": "移行前の本文・履歴・使用例・FAQ",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/6a87ffabd2474a85bfca58c6a5ae30f316a84db8/src/content/triggers/TeamSide.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーが所属するチーム側を整数で返します。P1チームなら<code>1</code>、P2チームなら<code>2</code>です。</p><p>所属側の情報であり、現在のX座標やFacingではありません。キャラクターが画面上で左右を入れ替えても、位置だけでTeamSideは変わりません。現在の横位置はPos Xなどで調べ、ホーム側かどうかはIsHomeTeamで調べます。</p>",
+            "page_category": "所属するチーム側を取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "teamside-local-2002",
+                "teamside-local-1.0",
+                "teamside-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+            }
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "左右を入れ替えたら所属側も変わる？",
+            "a": "<p>画面上の位置が変わるだけではTeamSideは変わりません。P1/P2チームの所属を調べる情報です。現在の横位置はPos X、向きはFacing、ホーム扱いはIsHomeTeamで調べます。</p>"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "P1チームに所属する",
+            "description": "<p>現在の横位置やホーム扱いではなく、所属側が1である条件です。</p>",
+            "code": [
+              "Trigger1 = TeamSide = 1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>TeamSideは所属側の1/2、TeamModeはチーム形式の比較、IsHomeTeamはモードに応じたホーム扱いの1/0です。TeamSide = 1を、常に画面左側・右向き・ホーム側という条件として扱わないでください。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "teamside-local-2002",
+                  "teamside-local-1.0",
+                  "teamside-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSの左側(1P)/右側(2P)という所属サイド表記と、スロットIDの順番を確かめる目安という助言を保持。所属側を現在位置・Facing・一意IDやスロットIDそのものに変換しません。Helper/中立プレイヤー/特殊モード/ラウンド移行の詳細は実機未確認で、別エンジンの0をMUGENへ追加しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "teamside-local-2002",
+                  "teamside-local-1.0",
+                  "teamside-local-1.1",
+                  "teamside-chaos",
+                  "teamside-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧本文とFAQのPos/エッジ距離による左右判定案内を保持し、FAQは内部へ。FrontEdgeDist/BackEdgeDistはFacing基準の端までの距離で、P1/P2所属や画面上の左右そのものを返すトリガーではありません。旧VarSet/IfElseの2例は有効な所属側分岐として公開を維持し、後者は1/2を返すMUGENで使う例です。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "teamside-local-2002",
+                  "teamside-local-1.0",
+                  "teamside-local-1.1",
+                  "teamside-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧IKEMEN GO AttachedCharのTeamSide=0という履歴と引用を別エンジンの内部記録に保持。MUGENの有効値やエラー値へ転用せず、今回GOの仕様は検証・公開していません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "teamside-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal",
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。掲載資料の存在は最初の実装の証明ではないためintroduced_inはnull。今回の検証はJSON・HTML・表示と固定入力での公開条件比較であり、エンジンのモード選択・相手選択・人数更新・互換設定の実機挙動を測定していません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "teamside-local-2002",
+                  "teamside-local-1.0",
+                  "teamside-local-1.1",
+                  "teamside-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "teamside-local-2002",
+              "teamside-local-1.0",
+              "teamside-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・旧Winの引用符/!=・RC修正の再現条件・特殊モード/Helper/リダイレクト・敵選択/消滅境界は実機未検証。旧本文と別エンジンの記録を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "IsHomeTeam",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ishometeam-local-2002",
+            "title": "IsHomeTeam — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#IsHomeTeam",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ishometeam-local-1.0",
+            "title": "IsHomeTeam — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#ishometeam",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ishometeam-local-1.1",
+            "title": "IsHomeTeam — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#ishometeam",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ishometeam-chaos",
+            "title": "IsHomeTeam — CHAOSのチーム研究",
+            "url": "https://w.atwiki.jp/mugencns/pages/141.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "ishometeam-legacy",
+            "title": "移行前の本文・履歴・使用例・FAQ",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/6a87ffabd2474a85bfca58c6a5ae30f316a84db8/src/content/triggers/IsHomeTeam.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>評価対象のプレイヤーのチームがホーム扱いなら1、それ以外なら0を整数で返します。所属側の1/2を返すTeamSideとは別の情報です。</p><p>アーケード系モードではコンピュータ側がホーム、対戦系モードではP1チーム側がホームとして扱われます。P1側という説明を、キャラクターの現在の画面左位置やFacingと混同しないでください。</p>",
+            "page_category": "チームがホーム扱いかを判定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "ishometeam-local-2002",
+                "ishometeam-local-1.0",
+                "ishometeam-local-1.1"
+              ],
+              "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+            }
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "ホーム側とP1側・画面左側は同じ？",
+            "a": "<p>常に同じではありません。IsHomeTeamはホーム扱いの1/0、TeamSideは所属側の1/2です。アーケード系ではコンピュータ側、対戦系ではP1チーム側がホームです。現在の横位置やFacingは別に調べます。</p>"
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "ホーム扱いのチーム",
+            "description": "<p>成立条件だけを示します。イントロの時点や遷移先ステートの設定は別に用意します。</p>",
+            "code": [
+              "Trigger1 = IsHomeTeam"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "ホーム扱いではないチーム",
+            "description": "<p>ホーム扱いの0を確認します。TeamSideの数値2を直接返す条件ではありません。</p>",
+            "code": [
+              "Trigger1 = !IsHomeTeam"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>1.0/1.1の公式定義は、アーケード系モードでコンピュータ側、対戦系モードでP1チーム側をホームとします。これはモードに応じたチームの扱いで、キャラクターが画面上で左へ移動したかの判定ではありません。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "ishometeam-local-1.0",
+                  "ishometeam-local-1.1"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧FAQの左右判定ならTeamSideを優先するという説明とRoundState=0/Time=0で9000/9010へ遷移する旧イントロ例を保持してinternalへ。TeamSideは所属側であり現在の左右位置ではありません。RoundState=0はイントロ中の1とは異なり、未定義の専用ステートや再遷移/フレーム条件を含む旧例を汎用イントロ処理として公開しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "ishometeam-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSの挑戦を受ける側という説明とCPU/左側の案内を照合。Training・Watch・CPU対CPU・チームアーケード・リダイレクト/Helper・モード変更の実測は今回未実施。IsHomeTeamをAILevelの大小やCPU操作そのものと同一視せず、TeamSideから全モード共通のホーム式を推定しません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "ishometeam-local-2002",
+                  "ishometeam-local-1.0",
+                  "ishometeam-local-1.1",
+                  "ishometeam-chaos",
+                  "ishometeam-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧IKEMEN GO v0.99.0/Nightlyの常に1というissue報告・回避案と引用を別エンジンの内部記録へ保持。可変Nightlyを検証ビルドとせず、issueの現在状態やMUGENの不具合へ読み替えません。今回GOの仕様/修正は検証・公開していません。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "ishometeam-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal",
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧page.version=2002.04.14を保持。掲載資料の存在は最初の実装の証明ではないためintroduced_inはnull。今回の検証はJSON・HTML・表示と固定入力での公開条件比較であり、エンジンのモード選択・相手選択・人数更新・互換設定の実機挙動を測定していません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "ishometeam-local-2002",
+                  "ishometeam-local-1.0",
+                  "ishometeam-local-1.1",
+                  "ishometeam-legacy"
+                ],
+                "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "ishometeam-local-2002",
+              "ishometeam-local-1.0",
+              "ishometeam-local-1.1"
+            ],
+            "comment": "2026-10-06: 保存済み公式3世代と更新履歴・CHAOSの一次資料/検索結果本文を照合。資料の記載確認と実測は別。MUGEN実機検証は未実施で、テストは入力保存・表示・公開条件式の固定値比較のみ。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・旧Winの引用符/!=・RC修正の再現条件・特殊モード/Helper/リダイレクト・敵選択/消滅境界は実機未検証。旧本文と別エンジンの記録を保持。"
+      ]
+    }
+  ]
+}

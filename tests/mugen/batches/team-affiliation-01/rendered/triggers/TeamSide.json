@@ -1,0 +1,63 @@
+{
+  "text": "TeamSide 試合情報 > チームサイド判定 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 TeamSide は、トリガーを評価しているプレイヤー（実行者自身）が所属するチームサイドを返します。戻り値は Team 1（P1 team）なら 1、Team 2（P2 team）なら 2 の整数です。注意: これは「所属チーム」の判定であり、画面上の左右位置（X座標）とは一致しません。左右位置を判定したい場合は Pos（X座標）やエッジ距離系トリガー（FrontEdgeDist/BackEdgeDist など）を利用してください。 関連するトリガー： TeamMode , IsHomeTeam 構文 TeamSide 引数 なし 仕様・バグ・エラー・変更点IKEMEN GOステージの AttachedChar（試合に属さない追加キャラクター）はチームに属さないため、TeamSide が 0 を返す。 Q＆A(よくある質問)キャラクターが画面内で左右を入れ替えたら TeamSide は変わりますか？変わりません。TeamSide は Team 1 / Team 2 の所属を返します。画面内の左右位置を判定したい場合は Pos（X座標）や FrontEdgeDist/BackEdgeDist などを参照してください。 コードサンプル2Pチーム側のときだけ処理するTeamSide が 2（P2 team）の場合だけ成立させる例です。[State -2, OnlyP2Team]Type = VarSetTrigger1 = TeamSide = 2Var(0) = 1 チーム別に値を分岐するTeam 1 と Team 2 で設定値を切り替える例です。[State -2, TeamBranch]Type = VarSetTrigger1 = 1Var(1) = IfElse(TeamSide = 1, 100, 200) 引用記事TeamSide - Trigger Reference(version 2002.04.14)TeamSide - Trigger Reference (MUGEN 1.0)TeamSide - Trigger Reference (MUGEN 1.1 Beta 1)Stage features - AttachedChar (IKEMEN GO / TeamSide=0 の言及) 公開日:2008.06.05 最終更新日:2026.01.11 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "TeamMode",
+      "href": "./../Trigger/TeamMode.html"
+    },
+    {
+      "text": "IsHomeTeam",
+      "href": "./../Trigger/IsHomeTeam.html"
+    },
+    {
+      "text": "TeamSide - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#TeamSide"
+    },
+    {
+      "text": "TeamSide - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#teamside"
+    },
+    {
+      "text": "TeamSide - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#teamside"
+    },
+    {
+      "text": "Stage features - AttachedChar (IKEMEN GO / TeamSide=0 の言及)",
+      "href": "https://github-wiki-see.page/m/ikemen-engine/Ikemen-GO/wiki/Stage-features/"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

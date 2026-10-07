@@ -1,48 +1,239 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "TicksPerSecond",
-        "target": "",
-        "category": [
-            "時間",
-            "1秒あたりのフレーム数(FPS)取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2015.12.28",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "TicksPerSecond",
+    "target": "",
+    "category": [
+      "時間",
+      "1秒あたりのフレーム数(FPS)取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2015.12.28",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "trigger": "TicksPerSecond",
+  "summary": "<p>1秒が何フレームで処理されているかを返します。</p>",
+  "syntax": [
+    "TicksPerSecond"
+  ],
+  "description": "1秒が何フレームで処理されているかを返します。<br>1秒あたりの単位時間を整数で返します。1フレームが1/60秒のとき60を返すことになります。<br>音声や取り込みアニメなどを、ゲームスピードに関係なく特定の間隔で再生したい場合に有効です。",
+  "code_sample": [
+    {
+      "title": "ゲームスピードにかかわらず、ステート経過時間が10秒を超えているときのトリガー",
+      "code": [
+        "Trigger1 = Time > 10 * TicksPerSecond"
+      ]
     },
-    "category": "trigger",
-    "trigger": "TicksPerSecond",
-    "summary": "<p>1秒が何フレームで処理されているかを返します。</p>",
-    "syntax": [
-        "TicksPerSecond"
+    {
+      "title": "10秒分のtick数に達した場合",
+      "description": "<p>10秒分の境界を含む条件です。ステート経過tick数がこの範囲にある間は成立します。</p>",
+      "code": [
+        "Trigger1 = Time >= 10 * TicksPerSecond"
+      ]
+    },
+    {
+      "title": "10秒分以上、11秒分未満の場合",
+      "description": "<p>同じTrigger1なので、下限を含み、上限を含まない範囲の条件です。音声同期や実時間計測の保証ではありません。</p>",
+      "code": [
+        "Trigger1 = Time >= 10 * TicksPerSecond",
+        "Trigger1 = Time < 11 * TicksPerSecond"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "TicksPerSecond - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TicksPerSecond"
+    },
+    {
+      "title": "TicksPerSecond - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#tickspersecond"
+    },
+    {
+      "title": "TicksPerSecond - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#tickspersecond"
+    },
+    {
+      "title": "TicksPerSecond - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TicksPerSecond"
+    },
+    {
+      "id": "tickspersecond-local-2002",
+      "title": "TicksPerSecond — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TicksPerSecond",
+      "source_type": "official_document"
+    },
+    {
+      "id": "tickspersecond-local-1.0",
+      "title": "TicksPerSecond — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#tickspersecond",
+      "source_type": "official_document"
+    },
+    {
+      "id": "tickspersecond-local-1.1",
+      "title": "TicksPerSecond — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#tickspersecond",
+      "source_type": "official_document"
+    },
+    {
+      "id": "tickspersecond-legacy",
+      "title": "移行前の本文・メタ情報・使用例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/54ba3e39bb94f8d49620041b5c82fe7550e18790/src/content/triggers/TicksPerSecond.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "tickspersecond-time-1.1",
+      "title": "現在のステートに滞在したtick数 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#time",
+      "source_type": "official_document"
+    },
+    {
+      "id": "tickspersecond-chaos-playsnd",
+      "title": "音声とゲームスピード・デバッグ加速 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/251.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "tickspersecond-chaos-time",
+      "title": "ステート移行とHitPause中のTime — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/197.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "syntax_kind": "nullary",
+  "arguments": [],
+  "return_type": [
+    "int"
+  ],
+  "documentation": {
+    "description": "<p>1秒あたりのtick数を整数で返します。引数はありません。秒数をゲーム内の処理単位へ換算するために使います。</p><p><code>10 * TicksPerSecond</code>は10秒分に相当するtick数です。現在のステートでの経過tick数を返す<code>Time</code>と比較して、時間条件を記述できます。</p>",
+    "page_category": "時間換算用の1秒あたりtick数",
+    "associated_trigger": [
+      "Time",
+      "GameTime"
     ],
-    "description": "1秒が何フレームで処理されているかを返します。<br>1秒あたりの単位時間を整数で返します。1フレームが1/60秒のとき60を返すことになります。<br>音声や取り込みアニメなどを、ゲームスピードに関係なく特定の間隔で再生したい場合に有効です。",
-    "code_sample": [
-        {
-            "title": "ゲームスピードにかかわらず、ステート経過時間が10秒を超えているときのトリガー",
-            "code": [
-                "Trigger1 = Time > 10 * TicksPerSecond"
-            ]
-        }
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "tickspersecond-local-2002",
+        "tickspersecond-local-1.0",
+        "tickspersecond-local-1.1"
+      ],
+      "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p><code>Time &gt; 10 * TicksPerSecond</code>は10秒分のtick数を超えた場合、<code>Time &gt;= 10 * TicksPerSecond</code>は境界に達した場合も成立します。境界後は条件が真の間、継続して成立します。1回だけ実行するための条件ではありません。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "tickspersecond-local-2002",
+          "tickspersecond-local-1.0",
+          "tickspersecond-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧公開カテゴリのFPS取得と概要の1秒が何フレームで処理されているかという表現は原位置へ保持し、公開文をtick数による換算へ訂正した。公式例のregardless of game speedは維持するが、実測描画FPS・経過実時間のストップウォッチ・常時60という保証へ広げない。各速度設定の値・停止/処理落ち/フレームスキップ/モニター更新頻度・互換設定は未実測。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "tickspersecond-legacy",
+          "tickspersecond-local-2002",
+          "tickspersecond-local-1.0",
+          "tickspersecond-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOS PlaySndは音声がゲームスピードに関わらず等速で再生され、TicksPerSecondによる調整もデバッグ加速に対応できないと記録する。CHAOS Timeはステート移行で0へ戻り、HitPause中は加算しないとする。秒数への換算式だけで停止や音声同期を保証せず、各ビルド/通常Pause/SuperPause/IgnoreHitPauseとデバッグ速度の実測条件を保留する。CHAOS TicksPerSecond個別本文は取得失敗で、未読の値や速度式を補わない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "tickspersecond-chaos-playsnd",
+          "tickspersecond-chaos-time",
+          "tickspersecond-time-1.1",
+          "tickspersecond-local-2002",
+          "tickspersecond-local-1.0",
+          "tickspersecond-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧page.version=2002.04.14は初導入ビルドとみなさず、introduced_inはnull。元summary・本文・カテゴリ・構文・例・引用を保持し、資料確認をruntime_testへ変換しない。別エンジンの拡張仕様をElecbyte MUGENへ混ぜない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "tickspersecond-legacy",
+          "tickspersecond-local-2002",
+          "tickspersecond-local-1.0",
+          "tickspersecond-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
     ],
-    "quote": [
-        {
-            "title": "TicksPerSecond - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TicksPerSecond"
-        },
-        {
-            "title": "TicksPerSecond - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#tickspersecond"
-        },
-        {
-            "title": "TicksPerSecond - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#tickspersecond"
-        },
-        {
-            "title": "TicksPerSecond - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TicksPerSecond"
-        }
-    ]
+    "source_refs": [
+      "tickspersecond-local-2002",
+      "tickspersecond-local-1.0",
+      "tickspersecond-local-1.1"
+    ],
+    "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+  }
 }

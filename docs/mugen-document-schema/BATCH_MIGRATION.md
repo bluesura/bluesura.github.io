@@ -1503,3 +1503,24 @@ npm run mugen:test
 npm run build
 npm run mugen:check-html
 ~~~
+
+## 2026-10-08：palette-tick-rate-01
+
+PalNo・TicksPerSecondの2件で累計222件（77バッチ206件＋主要・補助16件）、残り12件。引数なし/int、選択パレット番号と1.xの.def順序省略時のボタン対応表、秒数×tick換算とステート経過時間を分離。PalNoのHelper継承修正はRC2、Start選択修正はRC3へ個別対応。Win Helperの1固定/1.0疑問符・描画再割当て・デバッグ加速/停止の研究、標準4番慣習と旧FPS表現を内部保持。旧PalNoのY=5ラベルを残して条件例を追加し、TicksPerSecondの有効な旧公式比較例は公開維持。全原文・summary・メタ・構文・例・引用を保存。初導入null、実機未検証。362テスト・263ページビルド・261 URL/233比較対象HTMLと通常/390px表示を確認。スキーマ/レジストリ/レンダラー/CSS変更なし。内部注記643件、未対応旧履歴92項目、未表示フィールド29ページ。次はConst240p・Const480p・Const720pです。
+
+移行前JSON・HTML・抽出結果は tests/mugen/batches/palette-tick-rate-01/ に保存しました。
+
+- PalNoの公式1.xは.defで対応順を設定でき、省略時はA/B/C/X/Y/Z=1〜6、Start併用=7〜12です。既定の対応は6行3列の表として公開し、標準色が必ず4番・Yが必ず5番という全環境共通の説明へ拡張していません。旧ボタン付きタイトルを内部保持し、同じ有効コードを番号だけの説明で公開しています。
+- 公式RC2のHelperが親のpalnoを継承しない修正とRC3のStart＋ボタンで7〜12を選べない修正は別々に対応付けました。[CHAOS PalNo](https://w.atwiki.jp/mugencns/pages/182.html)はWinのHelperで1だけを返す研究とRoot, PalNoの案、1.0の疑問符を記録しています。OwnPal・入れ子・描画パレット再割当て・欠番/上限は未実測として保持しています。
+- TicksPerSecondはFPS計測の旧ラベルを残して、tick換算に公開訂正。旧公式Time > 10 * TicksPerSecond例は有効な条件として公開を維持し、>=の境界を含む例と10秒分以上11秒分未満の半開区間例を追加。1回だけの実行条件ではないことを説明しました。実機の各速度値を推定せず、テストの30/60/120は入力として与えた整数率に限ります。
+- [CHAOS PlaySnd](https://w.atwiki.jp/mugencns/pages/251.html)のデバッグ加速に対応できない注意、[CHAOS Time](https://w.atwiki.jp/mugencns/pages/197.html)の移行時リセット/HitPause中の停止を内部に保持。公式のゲームスピードに関わらない換算例を、音声同期・停止中を含む実時間保証に広げていません。CHAOS TicksPerSecond個別本文は取得失敗です。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch palette-tick-rate-01
+npm run mugen:batch -- --batch palette-tick-rate-01 --target PalNo --target TicksPerSecond
+npm run mugen:batch -- --batch palette-tick-rate-01 --target PalNo --target TicksPerSecond --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~

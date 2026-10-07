@@ -1,0 +1,704 @@
+{
+  "id": "palette-tick-rate-01",
+  "reviewed_on": "2026-10-08",
+  "description": "PalNo/TicksPerSecondの2件。選択パレット番号/既定キー対応と時間換算用tick数を分離し、RC2/RC3修正・Win Helper/加速研究を保持。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "PalNo",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palno-local-2002",
+            "title": "PalNo — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#PalNo",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palno-local-1.0",
+            "title": "PalNo — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#palno",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palno-local-1.1",
+            "title": "PalNo — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#palno",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palno-legacy",
+            "title": "移行前の本文・メタ情報・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/54ba3e39bb94f8d49620041b5c82fe7550e18790/src/content/triggers/PalNo.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palno-rc2",
+            "title": "Helperのpalno継承修正 — Elecbyte 1.0 RC2",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc2",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palno-rc3",
+            "title": "Start＋ボタンの7〜12選択修正 — Elecbyte 1.0 RC3",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc3",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palno-chaos-palno",
+            "title": "Win HelperのPalNo研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/182.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palno-chaos-def",
+            "title": "DEFのパレット番号と選択キー — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/31.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "palno-remappal-1.1",
+            "title": "描画用パレットの対応変更 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#remappal",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>キャラ選択時に選ばれた、評価対象プレイヤーのパレット番号を整数で返します。引数はありません。</p><p><code>PalNo = 5</code>のように番号を条件へ使い、カラー別の性能や処理を分岐できます。番号と選択ボタンの対応は、キャラクターのパレット設定と区別して確認してください。</p>",
+            "page_category": "選択パレット番号の取得",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "palno-local-2002",
+                "palno-local-1.0",
+                "palno-local-1.1"
+              ],
+              "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "選択パレット番号が5の場合",
+            "description": "<p>ボタン名ではなく、現在参照しているパレット番号が5かどうかを調べます。</p>",
+            "code": [
+              "Trigger1 = PalNo = 5"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "選択パレット番号が5以外の場合",
+            "description": "<p>パレット番号で処理を分ける不一致条件です。</p>",
+            "code": [
+              "Trigger1 = PalNo != 5"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.0 / 1.1では、パレットの対応順をキャラクターの.defで指定できます。省略時の既定対応は次のとおりです。</p><table><caption>選択ボタンと既定パレット番号</caption><thead><tr><th scope=\"col\">ボタン</th><th scope=\"col\">通常</th><th scope=\"col\">Start併用</th></tr></thead><tbody><tr><th scope=\"row\">A</th><td>1</td><td>7</td></tr><tr><th scope=\"row\">B</th><td>2</td><td>8</td></tr><tr><th scope=\"row\">C</th><td>3</td><td>9</td></tr><tr><th scope=\"row\">X</th><td>4</td><td>10</td></tr><tr><th scope=\"row\">Y</th><td>5</td><td>11</td></tr><tr><th scope=\"row\">Z</th><td>6</td><td>12</td></tr></tbody></table><p>対応順を変更したキャラクターでは、Yボタンが必ず5番になるとは限りません。基準にするカラーは、実際の番号に合わせて決めてください。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palno-local-1.0",
+                  "palno-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              }
+            },
+            {
+              "kind": "version_change",
+              "content": "<p>Helperが親からpalnoを継承しない不具合を、MUGEN 1.0 RC2で修正しました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0-rc2"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "palno-rc2"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              },
+              "change": "fixed",
+              "at": "mugen-1.0-rc2"
+            },
+            {
+              "kind": "version_change",
+              "content": "<p>Startとボタンを組み合わせてもパレット7〜12を選択できない不具合を、MUGEN 1.0 RC3で修正しました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0-rc3"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "palno-rc3"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              },
+              "change": "fixed",
+              "at": "mugen-1.0-rc3"
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOS PalNoは少なくともWinのHelperでは1だけを返すとし、Root, PalNoで本体を参照する案を記録する。1.0の動作は疑問符で残す。公式RC2の親からのpalno継承修正は資料の対象ビルドが異なるため、両記録を保持しWinの全ビルド境界やHelperのOwnPal/入れ子/カスタムステートでの値を推定しない。RC2の修正とRC3のStart選択修正は別の事象である。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_history",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "palno-chaos-palno",
+                  "palno-rc2",
+                  "palno-rc3"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧概要のスト2配置・左上ボタンが標準4番という慣習説明と、Yボタンなら5番という旧例のタイトルを保持。1.xの.def対応順の省略条件を欠くため公開例を番号のみの説明へ置換した。CHAOS DEFのパレット未設定・pal.defaults・欠番、12色超や選択競合の挙動は未実測。1〜12を全環境共通の戻り値上限とせず、未確認の既定標準色も追加しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "palno-legacy",
+                  "palno-chaos-def",
+                  "palno-local-2002",
+                  "palno-local-1.0",
+                  "palno-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>RemapPalはスプライトの描画に使うパレット対応を変更する。PalNoの選択番号と描画先のgroup/item・PalFXの見た目を一律に同じ値とはしない。RemapPal/旧State5900/動的な再割当て・HelperでPalNo自体が変化するかは未実測のため、変化する/しないを断定しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "palno-remappal-1.1",
+                  "palno-local-2002",
+                  "palno-local-1.0",
+                  "palno-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.version=2002.04.14は初導入ビルドとみなさず、introduced_inはnull。元summary・本文・カテゴリ・構文・例・引用を保持し、資料確認をruntime_testへ変換しない。別エンジンの拡張仕様をElecbyte MUGENへ混ぜない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "palno-legacy",
+                  "palno-local-2002",
+                  "palno-local-1.0",
+                  "palno-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "palno-local-2002",
+              "palno-local-1.0",
+              "palno-local-1.1"
+            ],
+            "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・Helperと描画パレット・各速度/停止/デバッグの値は実機未検証。原文と資料差を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "TicksPerSecond",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "tickspersecond-local-2002",
+            "title": "TicksPerSecond — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#TicksPerSecond",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "tickspersecond-local-1.0",
+            "title": "TicksPerSecond — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#tickspersecond",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "tickspersecond-local-1.1",
+            "title": "TicksPerSecond — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#tickspersecond",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "tickspersecond-legacy",
+            "title": "移行前の本文・メタ情報・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/54ba3e39bb94f8d49620041b5c82fe7550e18790/src/content/triggers/TicksPerSecond.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "nullary"
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": []
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "tickspersecond-time-1.1",
+            "title": "現在のステートに滞在したtick数 — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#time",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "tickspersecond-chaos-playsnd",
+            "title": "音声とゲームスピード・デバッグ加速 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/251.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "tickspersecond-chaos-time",
+            "title": "ステート移行とHitPause中のTime — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/197.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>1秒あたりのtick数を整数で返します。引数はありません。秒数をゲーム内の処理単位へ換算するために使います。</p><p><code>10 * TicksPerSecond</code>は10秒分に相当するtick数です。現在のステートでの経過tick数を返す<code>Time</code>と比較して、時間条件を記述できます。</p>",
+            "page_category": "時間換算用の1秒あたりtick数",
+            "associated_trigger": [
+              "Time",
+              "GameTime"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "tickspersecond-local-2002",
+                "tickspersecond-local-1.0",
+                "tickspersecond-local-1.1"
+              ],
+              "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "10秒分のtick数に達した場合",
+            "description": "<p>10秒分の境界を含む条件です。ステート経過tick数がこの範囲にある間は成立します。</p>",
+            "code": [
+              "Trigger1 = Time >= 10 * TicksPerSecond"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "10秒分以上、11秒分未満の場合",
+            "description": "<p>同じTrigger1なので、下限を含み、上限を含まない範囲の条件です。音声同期や実時間計測の保証ではありません。</p>",
+            "code": [
+              "Trigger1 = Time >= 10 * TicksPerSecond",
+              "Trigger1 = Time < 11 * TicksPerSecond"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p><code>Time &gt; 10 * TicksPerSecond</code>は10秒分のtick数を超えた場合、<code>Time &gt;= 10 * TicksPerSecond</code>は境界に達した場合も成立します。境界後は条件が真の間、継続して成立します。1回だけ実行するための条件ではありません。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "tickspersecond-local-2002",
+                  "tickspersecond-local-1.0",
+                  "tickspersecond-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧公開カテゴリのFPS取得と概要の1秒が何フレームで処理されているかという表現は原位置へ保持し、公開文をtick数による換算へ訂正した。公式例のregardless of game speedは維持するが、実測描画FPS・経過実時間のストップウォッチ・常時60という保証へ広げない。各速度設定の値・停止/処理落ち/フレームスキップ/モニター更新頻度・互換設定は未実測。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "tickspersecond-legacy",
+                  "tickspersecond-local-2002",
+                  "tickspersecond-local-1.0",
+                  "tickspersecond-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOS PlaySndは音声がゲームスピードに関わらず等速で再生され、TicksPerSecondによる調整もデバッグ加速に対応できないと記録する。CHAOS Timeはステート移行で0へ戻り、HitPause中は加算しないとする。秒数への換算式だけで停止や音声同期を保証せず、各ビルド/通常Pause/SuperPause/IgnoreHitPauseとデバッグ速度の実測条件を保留する。CHAOS TicksPerSecond個別本文は取得失敗で、未読の値や速度式を補わない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "tickspersecond-chaos-playsnd",
+                  "tickspersecond-chaos-time",
+                  "tickspersecond-time-1.1",
+                  "tickspersecond-local-2002",
+                  "tickspersecond-local-1.0",
+                  "tickspersecond-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.version=2002.04.14は初導入ビルドとみなさず、introduced_inはnull。元summary・本文・カテゴリ・構文・例・引用を保持し、資料確認をruntime_testへ変換しない。別エンジンの拡張仕様をElecbyte MUGENへ混ぜない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "tickspersecond-legacy",
+                  "tickspersecond-local-2002",
+                  "tickspersecond-local-1.0",
+                  "tickspersecond-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "tickspersecond-local-2002",
+              "tickspersecond-local-1.0",
+              "tickspersecond-local-1.1"
+            ],
+            "comment": "2026-10-08: 保存済み公式3世代の引数なし/int・用途・比較例、1.0 RC2/RC3履歴、CHAOS PalNo/Def/PlaySnd/Time本文を照合。CHAOS TicksPerSecond個別本文は取得失敗。資料確認であり、実機の色変更・Helper・速度/停止/デバッグ加速は未検証。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・Helperと描画パレット・各速度/停止/デバッグの値は実機未検証。原文と資料差を保持。"
+      ]
+    }
+  ]
+}

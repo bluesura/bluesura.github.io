@@ -1,0 +1,49 @@
+{
+  "text": "TicksPerSecond 時間 > 1秒あたりのフレーム数(FPS)取得 | 実装されたバージョン: 2002.04.14 引数 使用例 引用記事 1秒が何フレームで処理されているかを返します。1秒あたりの単位時間を整数で返します。1フレームが1/60秒のとき60を返すことになります。音声や取り込みアニメなどを、ゲームスピードに関係なく特定の間隔で再生したい場合に有効です。 構文 TicksPerSecond 引数 なし コードサンプルゲームスピードにかかわらず、ステート経過時間が10秒を超えているときのトリガーTrigger1 = Time > 10 * TicksPerSecond 引用記事TicksPerSecond - Trigger Reference(version 2002.04.14)TicksPerSecond - Trigger Reference(version 1.0)TicksPerSecond - Trigger Reference(version 1.1)TicksPerSecond - M.U.G.E.N wiki 公開日:2008.06.05 最終更新日:2015.12.28 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "TicksPerSecond - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#TicksPerSecond"
+    },
+    {
+      "text": "TicksPerSecond - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#tickspersecond"
+    },
+    {
+      "text": "TicksPerSecond - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#tickspersecond"
+    },
+    {
+      "text": "TicksPerSecond - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/TicksPerSecond"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

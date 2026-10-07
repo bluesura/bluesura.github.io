@@ -1481,3 +1481,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・352テスト・263ページビルド・261 URL/227比較対象HTML検査を通過。テストは原文保存・特殊構文・存在確認行の順序・与えた文字列の一致/否定/ANDを検査し、MUGENの大小文字比較/対象選択/文字コード/bottomを再現しません。前段のブラウザURLポリシー拒否が未解消のため、今回の通常/390px目視は未実施。内部注記8件追加で620件、未対応旧履歴92項目、未表示フィールド29ページ。次はP1Name・P2Name・P3Name・P4Nameです。
+
+## 2026-10-08：player-names-01
+
+P1Name・P2Name・P3Name・P4Nameの4件で累計220件（76バッチ204件＋主要・補助16件）、残り14件。必須演算子/引用文字列と整数比較結果、評価対象から見た自分/対戦相手/パートナー/第2の相手を分離。P2の旧パートナー説明と関連NumPartner、不在時bottomの旧説を原文保持で訂正しました。直接比較の不在=0/!=1と1.0/1.1不在リダイレクトbottomを区別し、公開例はNumEnemy > 0 / NumPartner > 0 / NumEnemy >= 2の存在確認を併用。旧Var=2例・前提不足な-2移行例・共有図・primary/nearestの選択研究を内部へ保持。2002アンカーを修復し、初導入null、実機未検証。357テスト・263ページビルド・261 URL/231比較対象HTMLと通常/390px表示を確認。前段ブラウザ拒否後の再開確認が完了。スキーマ/レジストリ/レンダラー/CSS変更なし。内部注記636件、未対応旧履歴92項目、未表示フィールド29ページ。次はPalNo・TicksPerSecondです。
+
+移行前JSON・HTML・抽出結果は tests/mugen/batches/player-names-01/ に保存しました。全メタ・旧本文・構文・関連配列・例・図・引用を保持し、公開の訂正をdocumentation/behaviorへ追加しています。
+
+- P1NameはNameのエイリアス。固定の1P側ではなく評価対象の内部名比較です。P2Nameは対戦相手、P3Nameはパートナー、P4Nameは第2の対戦相手という関係で、固定の側番号とは区別しました。
+- 保存済み公式3世代のP2/P3/P4は対象不在の=が0、!=が1です。否定だけでは存在確認になりません。P4では敵が1人の境界も検査し、NumEnemy > 0では第2の相手の確認に不足することを公開例で説明しました。リダイレクト先自体の不在bottomとは別の仕様です。
+- [CHAOS P2Name](https://w.atwiki.jp/mugencns/pages/92.html)の最も近い相手・リダイレクト先から見た対象という研究を、公式primary/firstと導入説明のusually closestとの表現差を含めて内部へ保持。生存者への切替・距離同値・Helper/所有者・文字コードとWinの!=境界は未実測で、固定ID順や全チーム走査を推測していません。CHAOS P1/P3/P4個別本文は取得失敗。
+- P1の旧VarSetのVar = 2はv/valueまたはvar(n)形式と異なるため内部保持。旧ChangeState例も未定義の9000/9100移行先と-2での再入前提が未確認のためコード・説明を内部へ残し、移行先を推定した書き換えは行っていません。P3/P4の旧存在確認条件は誤りとは扱わず保持しています。
+- 旧2002引用は実際のP*Name(*,***)アンカーへ公開リンクを追加し、旧引用を内部保持。AuthorNameのRC4修正をPxNameへ転用していません。テストは原文保存・公開範囲・引数・実際の条件行の人数境界を検査し、実機の対象選択や名前比較をエミュレートしません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch player-names-01
+npm run mugen:batch -- --batch player-names-01 --target P1Name --target P2Name --target P3Name --target P4Name
+npm run mugen:batch -- --batch player-names-01 --target P1Name --target P2Name --target P3Name --target P4Name --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~

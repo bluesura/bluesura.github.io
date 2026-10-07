@@ -10,19 +10,22 @@
     "version": "2002.04.14",
     "update": "2026.01.12",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "P4Name",
   "category": "trigger",
   "trigger": "P4Name",
   "description": "<p><code>P4Name</code> は、P4（2番目の敵）が存在する場合に、その <code>.def</code> 内部名 <code>name</code> を指定文字列と比較し、一致すれば <code>1</code>、一致しなければ <code>0</code> を返します。</p><p>本トリガーは「比較式として使うトリガー」であり、単体で値を返す形式ではなく、<code>=</code> / <code>!=</code> の比較としてのみ記述できます。</p><p>P4 が存在しない場合は <code>bottom</code> を返します。この場合、比較式は <code>bottom</code> となり成立しません。必要に応じて <code>NumEnemy</code> などで事前に存在チェックを行ってください。</p>",
   "images": [
-      {
+    {
       "src": "mugen_name_authorname_logic_flow.png",
       "width": "640",
       "height": "480",
-      "alt": "MUGENのAuthorNameおよびName/PxNameの判定仕様図。P1〜P4の各対象に対し、.defファイル内の記述とスクリプト記述を比較演算子(=, !=)で照合し、真(1)か偽(0)を返すフローを解説しています。"
-      }
+      "alt": "MUGENのAuthorNameおよびName/PxNameの判定仕様図。P1〜P4の各対象に対し、.defファイル内の記述とスクリプト記述を比較演算子(=, !=)で照合し、真(1)か偽(0)を返すフローを解説しています。",
+      "visibility": "internal"
+    }
   ],
   "syntax": [
     "P4Name = \"名前\"",
@@ -45,13 +48,37 @@
         "TriggerAll = NumEnemy >= 2",
         "Trigger1 = P4Name = \"Boss\"",
         "Value = 9100"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "P4Nameの一致条件",
+      "description": "<p>内部名をダブルクォートで囲んで比較します。</p>",
+      "code": [
+        "Trigger1 = P4Name = \"Boss\""
+      ]
+    },
+    {
+      "title": "P4Nameの一致条件を否定する",
+      "description": "<p>対象が不在の場合も成立します。存在する対象だけに絞る場合は、次の例の存在確認を併用してください。</p>",
+      "code": [
+        "Trigger1 = !(P4Name = \"Boss\")"
+      ]
+    },
+    {
+      "title": "存在する対象の内部名が異なる場合",
+      "description": "<p>同じTrigger1で<code>NumEnemy >= 2</code>を先に確認し、その後で名前の不一致を調べます。NumEnemy > 0だけでは対戦相手が1人の場合も含むため、第2の相手の存在確認には不足します。</p>",
+      "code": [
+        "Trigger1 = NumEnemy >= 2",
+        "Trigger1 = P4Name != \"Boss\""
       ]
     }
   ],
   "quote": [
     {
-        "title": "P4Name - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P4Name"
+      "title": "P4Name - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P4Name",
+      "visibility": "internal"
     },
     {
       "title": "P4Name - Trigger Reference (MUGEN 1.0)",
@@ -64,6 +91,286 @@
     {
       "title": "Trigger Reference - About Triggers（old-style / bottom）",
       "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#about-triggers"
+    },
+    {
+      "id": "p4name-local-2002",
+      "title": "P4Name — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#P4Name(*,***)",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p4name-local-1.0",
+      "title": "P4Name — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#p4name",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p4name-local-1.1",
+      "title": "P4Name — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#p4name",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p4name-name-1.1",
+      "title": "演算子と引用文字列 — Name / Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#name",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p4name-about-1.0",
+      "title": "対象の呼称と不在リダイレクト — Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#about-triggers",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p4name-about-1.1",
+      "title": "対象の呼称と不在リダイレクト — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#about-triggers",
+      "source_type": "official_document"
+    },
+    {
+      "id": "p4name-warnings-1.1",
+      "title": "存在確認を先に評価 — CNS 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#avoiding-warnings",
+      "source_type": "official_document",
+      "visibility": "internal"
+    },
+    {
+      "id": "p4name-legacy",
+      "title": "移行前の本文・対象・図・使用例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/2c96ed1f3ec83513cf3b8a9f13a4a40772a46d54/src/content/triggers/P4Name.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "p4name-chaos-p2",
+      "title": "P2Nameの対象とリダイレクト研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/92.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "p4name-helper-1.1",
+      "title": "Helperの名前指定 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#helper",
+      "source_type": "official_document",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "syntax_kind": "old_style",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [
+    {
+      "name": "[oper]",
+      "type": [
+        "演算子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。他の比較演算子は使えません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "p4name-name-1.1",
+          "p4name-local-2002",
+          "p4name-local-1.0",
+          "p4name-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式2002/1.0/1.1b1の対象4項目・Name/導入説明・CNSとCHAOS P2Name本文を照合。CHAOS P1Name/P3Name/P4Name本文は取得失敗。資料確認であり、実機の対象選択・文字列照合・互換設定は未検証。"
+      }
+    },
+    {
+      "name": "\"name\"",
+      "type": [
+        "string"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>照合する内部名をダブルクォートで囲んで指定します。文字列リテラルを使う特殊構文で、数値式を指定する引数ではありません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "p4name-name-1.1",
+          "p4name-local-2002",
+          "p4name-local-1.0",
+          "p4name-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式2002/1.0/1.1b1の対象4項目・Name/導入説明・CNSとCHAOS P2Name本文を照合。CHAOS P1Name/P3Name/P4Name本文は取得失敗。資料確認であり、実機の対象選択・文字列照合・互換設定は未検証。"
+      }
+    }
+  ],
+  "documentation": {
+    "description": "<p>第2の対戦相手の内部名（.defの[Info]にあるname）を、指定した文字列と比較します。<code>=</code>は一致、<code>!=</code>は不一致のときに<code>1</code>、条件に合わないときに<code>0</code>を整数で返します。</p><p><code>P4Name = \"Boss\"</code>のように、比較まで含めて1つの条件として記述します。単独で文字列値を取り出す関数ではありません。</p><p>評価対象から見た第2の対戦相手を調べます。固定の4P側の番号ではありません。表示名displaynameやキャラのフォルダ名とは区別します。</p>",
+    "page_category": "第2の対戦相手の内部名比較",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "p4name-local-2002",
+        "p4name-local-1.0",
+        "p4name-local-1.1"
+      ],
+      "comment": "2026-10-08: 保存済み公式2002/1.0/1.1b1の対象4項目・Name/導入説明・CNSとCHAOS P2Name本文を照合。CHAOS P1Name/P3Name/P4Name本文は取得失敗。資料確認であり、実機の対象選択・文字列照合・互換設定は未検証。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>第2の対戦相手が存在しない場合は、指定した名前にかかわらず<code>P4Name = \"名前\"</code>は<code>0</code>、<code>P4Name != \"名前\"</code>は<code>1</code>です。不一致や一致条件の否定だけでは、対象が存在することを確認できません。「存在する対象の名前が異なる」を調べる場合は、<code>NumEnemy >= 2</code>も条件に含めます。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "p4name-local-2002",
+          "p4name-local-1.0",
+          "p4name-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式2002/1.0/1.1b1の対象4項目・Name/導入説明・CNSとCHAOS P2Name本文を照合。CHAOS P1Name/P3Name/P4Name本文は取得失敗。資料確認であり、実機の対象選択・文字列照合・互換設定は未検証。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>リダイレクト先そのものが存在しない場合は、通常の不一致を表す0とは別にbottomが返ります。これは、P4Nameを直接評価したときに第2の対戦相手が不在である場合の0/1とは区別します。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "p4name-about-1.0",
+          "p4name-about-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式2002/1.0/1.1b1の対象4項目・Name/導入説明・CNSとCHAOS P2Name本文を照合。CHAOS P1Name/P3Name/P4Name本文は取得失敗。資料確認であり、実機の対象選択・文字列照合・互換設定は未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧本文はP4Nameの対象不在時をbottomとするが、保存済み公式3世代は直接比較の=が0、!=が1と記録する。第2の対戦相手という関係は維持し、固定4P側というカテゴリ表現を訂正した。原文を削除せずdocumentationとbehaviorへ公開訂正を追加した。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "p4name-legacy",
+          "p4name-local-2002",
+          "p4name-local-1.0",
+          "p4name-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式2002/1.0/1.1b1の対象4項目・Name/導入説明・CNSとCHAOS P2Name本文を照合。CHAOS P1Name/P3Name/P4Name本文は取得失敗。資料確認であり、実機の対象選択・文字列照合・互換設定は未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧ChangeState例は-2から状態9100へ移行する。移行先の定義・実行可能な状態・再入防止の前提が無く、名前条件が真の間に繰り返し移行し得る。存在確認の条件は保持するが、旧例をそのまま汎用の完成ステートとして案内しない。コード・タイトル・説明をinternalへ保持し、移行先を推定した書き換えは行わない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "p4name-legacy",
+          "p4name-local-2002",
+          "p4name-local-1.0",
+          "p4name-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式2002/1.0/1.1b1の対象4項目・Name/導入説明・CNSとCHAOS P2Name本文を照合。CHAOS P1Name/P3Name/P4Name本文は取得失敗。資料確認であり、実機の対象選択・文字列照合・互換設定は未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>公式はP2Nameをprimary opponent（チームのfirst opponent）、導入説明はP2を通常もっとも近い相手とし、CHAOS P2Nameももっとも近い相手と記録する。P3/P4の概要には疑問符もある。リダイレクトした場合はその対象から見た相手を参照するとする研究を保持。primary/secondaryの選択順・生存者への切替・距離同値・Helper/カスタムステートの所有者は未実測で、固定ID順や全チーム走査を保証しない。CHAOS P1Name/P3Name/P4Name個別本文は取得失敗。共有図のsrc/alt/寸法も原位置へinternal保持し、図を検証結果とは扱わない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "p4name-local-2002",
+          "p4name-local-1.0",
+          "p4name-local-1.1",
+          "p4name-about-1.1",
+          "p4name-chaos-p2",
+          "p4name-helper-1.1",
+          "p4name-legacy"
+        ],
+        "comment": "2026-10-08: 保存済み公式2002/1.0/1.1b1の対象4項目・Name/導入説明・CNSとCHAOS P2Name本文を照合。CHAOS P1Name/P3Name/P4Name本文は取得失敗。資料確認であり、実機の対象選択・文字列照合・互換設定は未検証。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧2002.04.14引用の#P1Name〜#P4Nameは実際のアンカーP1Name(*,***)〜P4Name(*,***)と異なる。原引用をinternalへ保持し有効リンクを追加した。page.versionから初導入を推定せずintroduced_inはnull。比較の大小文字・文字コード・空文字・長さ・Winの!=互換境界を推定しない。AuthorNameのRC4解析修正をPxNameへ転用せず、実機検証は未実施。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "p4name-legacy",
+          "p4name-local-2002",
+          "p4name-local-1.0",
+          "p4name-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式2002/1.0/1.1b1の対象4項目・Name/導入説明・CNSとCHAOS P2Name本文を照合。CHAOS P1Name/P3Name/P4Name本文は取得失敗。資料確認であり、実機の対象選択・文字列照合・互換設定は未検証。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "p4name-local-2002",
+      "p4name-local-1.0",
+      "p4name-local-1.1"
+    ],
+    "comment": "2026-10-08: 保存済み公式2002/1.0/1.1b1の対象4項目・Name/導入説明・CNSとCHAOS P2Name本文を照合。CHAOS P1Name/P3Name/P4Name本文は取得失敗。資料確認であり、実機の対象選択・文字列照合・互換設定は未検証。"
+  }
 }

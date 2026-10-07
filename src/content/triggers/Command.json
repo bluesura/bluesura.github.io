@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2026.01.21",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "Command",
   "category": "trigger",
@@ -66,7 +68,8 @@
         "Command = ~D, DF, F, x",
         "Time = 15",
         "Buffer.Time = 1"
-      ]
+      ],
+      "visibility": "internal"
     },
     {
       "title": "同名コマンドを複数定義する（入力方法の別名集合）",
@@ -84,6 +87,21 @@
         "Time = 15",
         "Buffer.Time = 2"
       ]
+    },
+    {
+      "title": "CMDの入力猶予と成立後の有効期間",
+      "description": "<p><code>Time = 15</code>は入力を完成させる猶予を15フレーム、<code>Buffer.Time = 1</code>は成立したフレームだけ有効にします。個別の指定を省略したコマンドは<code>[Defaults]</code>の値を使います。</p>",
+      "code": [
+        "[Defaults]",
+        "Command.Time = 15",
+        "Command.Buffer.Time = 1",
+        "",
+        "[Command]",
+        "Name = \"fireball\"",
+        "Command = ~D, DF, F, x",
+        "Time = 15",
+        "Buffer.Time = 1"
+      ]
     }
   ],
   "qanda": [
@@ -95,13 +113,25 @@
     {
       "q": "Pause や演出中に入力した必殺技が終わった瞬間に出ない",
       "c": "演出中の入力を「終了後に残す」設計が必要な場合があります。",
-      "a": "<p>MUGENでは、状況によっては演出（Pause等）を跨いだ入力が期待通りに残らないことがあります。演出終了後の入力反映を狙う場合、Pause系の設定（コマンドバッファ延長）を使う設計も検討します。</p>"
+      "a": "<p>MUGENでは、状況によっては演出（Pause等）を跨いだ入力が期待通りに残らないことがあります。演出終了後の入力反映を狙う場合、Pause系の設定（コマンドバッファ延長）を使う設計も検討します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "q": "Pause / SuperPauseの終了直後までコマンド入力を残したい",
+      "a": "<p><code>EndCmdBufTime</code>で、停止の終わり側の何フレーム分をバッファするか指定します。範囲は<code>0〜Time</code>、省略時は<code>0</code>です。対象は停止中に動けないプレイヤーで、バッファしたコマンドを終了直後に<code>Command</code>で検出できます。<code>MoveTime</code>で動ける期間とは区別してください。SuperPauseもこのオプションを受け付けます。</p>",
+      "r": [
+        {
+          "title": "Pause — Elecbyte 1.0",
+          "url": "/MUGEN/document/Official/1.0/sctrls.html#pause"
+        }
+      ]
     }
   ],
   "quote": [
     {
       "title": "Command - Trigger Reference (Elecbyte / 2002.04.14)",
-      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Command"
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Command",
+      "visibility": "internal"
     },
     {
       "title": "Command - Trigger Reference (Elecbyte / 1.0, archived)",
@@ -113,7 +143,284 @@
     },
     {
       "title": "IKEMEN GO Issue: control consistency / commands (State -1)",
-      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/365"
+      "url": "https://github.com/ikemen-engine/Ikemen-GO/issues/365",
+      "id": "command-go-365",
+      "source_type": "forum_or_log",
+      "visibility": "internal"
+    },
+    {
+      "id": "command-local-1.0",
+      "title": "Command — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#command",
+      "source_type": "official_document"
+    },
+    {
+      "id": "command-local-1.1",
+      "title": "Command — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#command",
+      "source_type": "official_document"
+    },
+    {
+      "id": "command-legacy",
+      "title": "移行前の本文・構文・引数・例・履歴",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/79a2ac5d51b8632b1297e5656096fe0229922231/src/content/triggers/Command.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "command-local-2002",
+      "title": "Command — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Command (*,***)",
+      "source_type": "official_document"
+    },
+    {
+      "id": "command-kfm-cmd",
+      "title": "CMDのTime / Buffer.Time — 配布KFMのコメント（固定ミラー）",
+      "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/chars/kfm/kfm.cmd",
+      "source_type": "source_code"
+    },
+    {
+      "id": "command-pause-1.0",
+      "title": "PauseのEndCmdBufTime — Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#pause",
+      "source_type": "official_document",
+      "visibility": "internal"
+    },
+    {
+      "id": "command-superpause-1.0",
+      "title": "SuperPauseの共通オプション — Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#superpause",
+      "source_type": "official_document",
+      "visibility": "internal"
+    },
+    {
+      "id": "command-chaos-command",
+      "title": "Commandのカスタムステート/停止研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/105.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "command-chaos-cmd",
+      "title": "CMDの入力列/許容時間の研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/37.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "syntax_kind": "old_style",
+  "return_type": [
+    "int"
+  ],
+  "documentation": {
+    "description": "<p>プレイヤーのCMDファイルで定義したコマンドが成立しているかを、名前で判定します。<code>Command = \"fireball\"</code>は成立時に<code>1</code>、非成立時に<code>0</code>を整数で返します。<code>!=</code>はその逆の条件です。</p><p>比較演算子は<code>=</code>と<code>!=</code>だけです。コマンド名をダブルクォートで囲み、定義と同じ大文字・小文字で指定します。同じ名前の定義が複数あると、そのいずれかが成立すれば一致します。</p><p>CMDの<code>Time</code>はコマンド入力を完成させる猶予、<code>Buffer.Time</code>は成立後に有効として残す期間です。いずれもフレーム数で指定し、省略時は<code>[Defaults]</code>の対応する設定を使います。</p>",
+    "page_category": "CMDで定義した入力の成立判定",
+    "associated_trigger": [
+      "Ctrl",
+      "StateType"
+    ],
+    "associated_state": [
+      "ChangeState",
+      "Pause",
+      "SuperPause"
+    ],
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document",
+        "source_code"
+      ],
+      "source_refs": [
+        "command-local-2002",
+        "command-local-1.0",
+        "command-local-1.1",
+        "command-kfm-cmd"
+      ],
+      "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+    }
+  },
+  "arguments": [
+    {
+      "name": "[oper]",
+      "type": [
+        "演算子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p><code>=</code>（成立）または<code>!=</code>（非成立）を指定します。他の比較演算子は使えません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "command-local-2002",
+          "command-local-1.0",
+          "command-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    },
+    {
+      "name": "\"command_name\"",
+      "type": [
+        "string"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>CMDで定義したコマンド名をダブルクォートで囲んで指定します。名前の大文字・小文字を区別します。入力列を直接書く欄や数値式の引数ではありません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "command-local-2002",
+          "command-local-1.0",
+          "command-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>Buffer.Timeを長くすると、成立したコマンドの判定が複数フレーム続く場合があります。成立を1回だけのイベントとは扱わないでください。ホールドだけの入力（例: /F）にはBuffer.Timeを適用せず、配布KFMの説明では1として扱います。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "command-kfm-cmd"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>使用例のChangeState先1000は、利用するキャラクター側で定義しておく必要があります。立ち・しゃがみ・空中などの実行条件は、その技の仕様に合わせてStateType等で追加します。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "command-local-2002",
+          "command-local-1.0",
+          "command-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧GO履歴とissue365を別エンジンの記録として保持。報告はジャンプ用Buffer.Timeと向き反転時の入力差を含み、2024年のコメントは再現手順不足とnightlyでdash単体が同様との留保を含む。MUGENの普遍的なバグやGOの現行修正完了とは判断しない。旧Key/KeyDown/KeyUp関連配列は保持し、Elecbyte対象の公開リンクをCtrl/StateTypeへ訂正。</p>",
+      "environment": {
+        "engine": "ikemen-go"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "source_code"
+        ],
+        "source_refs": [
+          "command-go-365",
+          "command-legacy"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧CMD例のTime/Buffer.Time説明は逆転していた。本文とコードをinternalで保持し、同じ実在するCMD設定行を訂正説明付きで追加。旧Pause FAQも保持しEndCmdBufTimeの範囲/対象を資料で補った。sample_codeの専用表示は従来どおり未対応。旧ChangeState例の1000の状態定義と実行条件は実機未確認。旧2002の#Commandリンクは原位置で内部保持し、実際のCommand (*,***)アンカーを追加。旧page.versionは初導入の証拠とせずnull。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "command-legacy",
+          "command-kfm-cmd",
+          "command-pause-1.0",
+          "command-local-2002",
+          "command-local-1.0",
+          "command-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOSは未定義名のロードエラー、HelperのKeyCtrl、RoundState>=3、HitPause中の判定持続、通常Pauseとの違いを報告する。公式のError conditions:noneと未定義名報告の範囲差を残す。停止解除後のフレーム境界・AI・Helper/Rootへの伝播は未測定。カスタムステート/リダイレクトで他者CMDの定義順へ対応する研究とrecoveryの例外らしいとの疑問符を保持し、名前による安全な相手照合を保証しない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "command-chaos-command",
+          "command-local-2002",
+          "command-local-1.0",
+          "command-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOS CMDの先頭チャージ・ホールド順・連続方向・向き反転時の入力保持・複合入力の遅延は留保付き研究として保持。名前数上限や多バイト文字・解析コストも全ビルド共通の測定値へ広げない。KFMコメントはDefaultsの15/1、最小1・Buffer.Time最大30とホールドのみの例外を記載するが、互換設定別の境界・入力取りこぼし・カスタムステートでBuffer.Time=2以上の研究は実機未検証。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "command-chaos-cmd",
+          "command-chaos-command",
+          "command-kfm-cmd"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "command-local-2002",
+      "command-local-1.0",
+      "command-local-1.1"
+    ],
+    "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+  }
 }

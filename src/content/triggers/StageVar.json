@@ -1,120 +1,353 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "StageVar",
-        "category": [
-            "ステージ情報",
-            "ステージ情報の取得・判定"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "StageVar",
+    "category": [
+      "ステージ情報",
+      "ステージ情報の取得・判定"
+    ],
+    "version": "1.0 RC8",
+    "update": "2026.01.10",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": "mugen-1.0-rc8"
+  },
+  "title": "StageVar",
+  "category": "trigger",
+  "trigger": "StageVar",
+  "description": "<p>ステージ定義（<code>.def</code>）の <code>[Info]</code> グループにある文字列を比較し、真偽値（<code>1</code>/<code>0</code>）を返します。</p><p>このトリガーは「条件型」で、単体では値を返す関数ではありません。<code>StageVar(…)</code> の直後に <code>=</code> または <code>!=</code> を書き、ダブルクォートで囲んだ文字列と比較します。</p>",
+  "syntax": [
+    "StageVar(Info.Name) = \"ステージ名\"",
+    "StageVar(Info.DisplayName) = \"表示名\"",
+    "StageVar(Info.Author) = \"作者名\"",
+    "StageVar(Info.Name) != \"ステージ名\"",
+    "StageVar(Info.DisplayName) != \"表示名\"",
+    "StageVar(Info.Author) != \"作者名\""
+  ],
+  "parameter": [
+    {
+      "parameter": "param_name",
+      "type": [
+        "string"
+      ],
+      "description": "<p>比較対象にするステージ <code>[Info]</code> パラメータ名。</p>",
+      "parameter_type": "required",
+      "possible_value": [
+        [
+          "値",
+          "説明"
         ],
-        "version": "1.0 RC8",
-        "update": "2026.01.10",
-        "type": "document",
-        "level": "3"
+        [
+          "Info.Name",
+          "<code>[Info]</code> の <code>name</code> を比較します。"
+        ],
+        [
+          "Info.DisplayName",
+          "<code>[Info]</code> の <code>displayname</code> を比較します。"
+        ],
+        [
+          "Info.Author",
+          "<code>[Info]</code> の <code>author</code> を比較します。"
+        ]
+      ]
     },
-    "title": "StageVar",
-    "category": "trigger",
-    "trigger": "StageVar",
-    "description": "<p>ステージ定義（<code>.def</code>）の <code>[Info]</code> グループにある文字列を比較し、真偽値（<code>1</code>/<code>0</code>）を返します。</p><p>このトリガーは「条件型」で、単体では値を返す関数ではありません。<code>StageVar(…)</code> の直後に <code>=</code> または <code>!=</code> を書き、ダブルクォートで囲んだ文字列と比較します。</p>",
-    "syntax": [
-        "StageVar(Info.Name) = \"ステージ名\"",
-        "StageVar(Info.DisplayName) = \"表示名\"",
-        "StageVar(Info.Author) = \"作者名\"",
-        "StageVar(Info.Name) != \"ステージ名\"",
-        "StageVar(Info.DisplayName) != \"表示名\"",
-        "StageVar(Info.Author) != \"作者名\""
-    ],
-    "parameter": [
-        {
-            "parameter": "param_name",
-            "type": [
-                "string"
-            ],
-            "description": "<p>比較対象にするステージ <code>[Info]</code> パラメータ名。</p>",
-            "parameter_type": "required",
-            "possible_value": [
-                [
-                    "値",
-                    "説明"
-                ],
-                [
-                    "Info.Name",
-                    "<code>[Info]</code> の <code>name</code> を比較します。"
-                ],
-                [
-                    "Info.DisplayName",
-                    "<code>[Info]</code> の <code>displayname</code> を比較します。"
-                ],
-                [
-                    "Info.Author",
-                    "<code>[Info]</code> の <code>author</code> を比較します。"
-                ]
-            ]
-        },
-        {
-            "parameter": "[oper]",
-            "type": [
-                "string"
-            ],
-            "description": "<p>使用できる演算子は <code>=</code> と <code>!=</code> のみです。</p>",
-            "parameter_type": "required",
-            "possible_value": [
-                [
-                    "値",
-                    "説明"
-                ],
-                [
-                    "=",
-                    "等しい（文字列比較）"
-                ],
-                [
-                    "!=",
-                    "等しくない（文字列比較）"
-                ]
-            ]
-        },
-        {
-            "parameter": "\"string\"",
-            "type": [
-                "string"
-            ],
-            "description": "<p>比較する文字列。必ずダブルクォートで囲みます。</p>",
-            "parameter_type": "required"
-        }
-    ],
-    "version": [
-        {
-            "no": "MUGEN 1.0 RC8",
-            "content": "<p><code>StageVar</code> トリガーが追加されました（ステージ名・作者などの基本チェック）。</p>"
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "特定ステージでのみ処理する",
-            "description": "<p>ステージ名（<code>[Info] name</code>）で分岐します。</p>",
-            "code": [
-                "Trigger1 = StageVar(Info.Name) = \"kfm\""
-            ]
-        },
-        {
-            "title": "作者名で分岐する",
-            "description": "<p>作者名（<code>[Info] author</code>）で分岐します。</p>",
-            "code": [
-                "Trigger1 = StageVar(Info.Author) = \"Suika\""
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "StageVar - Trigger Reference (MUGEN 1.0)",
-            "url": "https://www.elecbyte.com/mugendocs/trigger.html#stagevar"
-        },
-        {
-            "title": "StageVar - Trigger Reference (MUGEN 1.1 Beta 1)",
-            "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#stagevar"
-        },
-        {
-            "title": "M.U.G.E.N Update History (Version 1.0 RC8)",
-            "url": "https://www.elecbyte.com/mugendocs/history.html"
-        }
+    {
+      "parameter": "[oper]",
+      "type": [
+        "string"
+      ],
+      "description": "<p>使用できる演算子は <code>=</code> と <code>!=</code> のみです。</p>",
+      "parameter_type": "required",
+      "possible_value": [
+        [
+          "値",
+          "説明"
+        ],
+        [
+          "=",
+          "等しい（文字列比較）"
+        ],
+        [
+          "!=",
+          "等しくない（文字列比較）"
+        ]
+      ]
+    },
+    {
+      "parameter": "\"string\"",
+      "type": [
+        "string"
+      ],
+      "description": "<p>比較する文字列。必ずダブルクォートで囲みます。</p>",
+      "parameter_type": "required"
+    }
+  ],
+  "version": [
+    {
+      "no": "MUGEN 1.0 RC8",
+      "content": "<p><code>StageVar</code> トリガーが追加されました（ステージ名・作者などの基本チェック）。</p>"
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "特定ステージでのみ処理する",
+      "description": "<p>ステージ名（<code>[Info] name</code>）で分岐します。</p>",
+      "code": [
+        "Trigger1 = StageVar(Info.Name) = \"kfm\""
+      ]
+    },
+    {
+      "title": "作者名で分岐する",
+      "description": "<p>作者名（<code>[Info] author</code>）で分岐します。</p>",
+      "code": [
+        "Trigger1 = StageVar(Info.Author) = \"Suika\""
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "StageVar - Trigger Reference (MUGEN 1.0)",
+      "url": "https://www.elecbyte.com/mugendocs/trigger.html#stagevar"
+    },
+    {
+      "title": "StageVar - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#stagevar"
+    },
+    {
+      "title": "M.U.G.E.N Update History (Version 1.0 RC8)",
+      "url": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "id": "stagevar-local-1.0",
+      "title": "StageVar — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#stagevar",
+      "source_type": "official_document"
+    },
+    {
+      "id": "stagevar-local-1.1",
+      "title": "StageVar — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#stagevar",
+      "source_type": "official_document"
+    },
+    {
+      "id": "stagevar-legacy",
+      "title": "移行前の本文・構文・引数・例・履歴",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/79a2ac5d51b8632b1297e5656096fe0229922231/src/content/triggers/StageVar.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "stagevar-history-rc8",
+      "title": "StageVar追加 — 保存済み Elecbyte RC8履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc8",
+      "source_type": "official_history"
+    },
+    {
+      "id": "stagevar-stage-info",
+      "title": "ステージInfoのname/displayname/author — Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/bgs.html#info-group",
+      "source_type": "official_document"
+    }
+  ],
+  "environment": {
+    "engine": "mugen",
+    "runtime": [
+      "mugen-1.0",
+      "mugen-1.1"
     ]
+  },
+  "syntax_kind": "old_style",
+  "return_type": [
+    "int"
+  ],
+  "documentation": {
+    "description": "<p>現在のステージのDEFファイルにある<code>[Info]</code>の名前・表示名・作者名を、指定した文字列と比較します。<code>=</code>は一致、<code>!=</code>は不一致のときに<code>1</code>、条件に合わないときに<code>0</code>を整数で返します。</p><p><code>StageVar(Info.Name) = \"kfm\"</code>のように比較まで含めて記述します。単独で文字列を取得する関数ではありません。<code>Info.Name</code>はname、<code>Info.DisplayName</code>はdisplayname、<code>Info.Author</code>はauthorに対応します。</p>",
+    "page_category": "ステージの名前・作者を文字列と比較",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "stagevar-local-1.0",
+        "stagevar-local-1.1"
+      ],
+      "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+    }
+  },
+  "arguments": [
+    {
+      "name": "param_name",
+      "legacy_index": 0,
+      "type": [
+        "識別子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>比較対象を<code>Info.Name</code>、<code>Info.DisplayName</code>、<code>Info.Author</code>から指定します。識別子を引用符で囲みません。比較する文字列自体とは別の指定です。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "stagevar-local-1.0",
+          "stagevar-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    },
+    {
+      "name": "[oper]",
+      "legacy_index": 1,
+      "type": [
+        "演算子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。他の比較演算子は使えません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "stagevar-local-1.0",
+          "stagevar-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    },
+    {
+      "name": "\"string\"",
+      "legacy_index": 2,
+      "type": [
+        "string"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>比較する文字列リテラルをダブルクォートで囲みます。数値式や文字列取得関数の引数ではありません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "stagevar-local-1.0",
+          "stagevar-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "version_change",
+      "content": "<p>MUGEN 1.0 RC8で、ステージ名・作者などの基本的な確認に使うStageVarが追加されました。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "stagevar-history-rc8"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      },
+      "change": "added",
+      "at": "mugen-1.0-rc8",
+      "legacy_index": 0
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>ステージのdisplaynameはステージ選択リストに表示する名前です。DEFで省略した場合はnameが使われます。内部名・表示名とステージのファイル名を区別して比較します。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "stagevar-stage-info"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>公式1.0/1.1b1のArguments欄はinfo.authorname、Detailsと使用例はinfo.authorとなっており表記が衝突する。旧Info.AuthorをDetails/Exampleに沿って公開維持し、info.authornameを検証済み別名として追加しない。公式BG Infoのauthorをエンジン未使用とする古い説明も、StageVarのauthor比較説明との適用範囲差として残す。実行ビルド/互換設定ごとの両表記の解析・比較は未測定。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "stagevar-local-1.0",
+          "stagevar-local-1.1",
+          "stagevar-stage-info"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧パラメーターのtype=stringと候補表を原位置に保持し、識別子・演算子・引用文字列の必須3引数へlegacy_indexで対応。公式RC8履歴から初導入を記録し、1.0+という系列表記からRC1とは推定しない。作者名/表示名が空・未指定の場合、比較の大小文字・文字コード・長さ・特殊文字とWin版での失敗条件は未測定。旧2条件例と構文/出典は維持し、未確認のauthornameを候補表へ足さない。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "official_history",
+          "source_code"
+        ],
+        "source_refs": [
+          "stagevar-legacy",
+          "stagevar-local-1.0",
+          "stagevar-local-1.1",
+          "stagevar-history-rc8"
+        ],
+        "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "stagevar-local-1.0",
+      "stagevar-local-1.1"
+    ],
+    "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+  }
 }

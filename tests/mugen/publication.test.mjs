@@ -58,3 +58,19 @@ test('client syntax highlighting preserves angle brackets and operators when bui
   runInNewContext(readFileSync(pathFromRoot('public/scripts/code.js'), 'utf8'), { $, document });
   assert.deepEqual(nodes.map(node => textContent(parseFragment(node.html))), lines);
 });
+test('client highlighting preserves CMD release charge four-way directions and every unclassified printable symbol', () => {
+  const lines = [
+    'Command = ~D, DF, F, x',
+    'Command = ~30$D, a+b',
+    'Command = /$B, >~B, F',
+    ...readJSON('src/content/triggers/Command.json').code_sample.flatMap(sample => sample.code),
+    // Unknown punctuation must survive too; highlighting is not a CNS validator.
+    'Unknown = . : ? @ # { } \\ ` \' _ $ ~',
+  ];
+  const nodes = lines.map(text => ({ text, html: '' })), document = {};
+  const $ = target => target === document ? { ready: fn => fn() } : target === '.code li' ? {
+    each: fn => { for (const node of nodes) if (fn.call(node) === false) break; },
+  } : { text: () => target.text, html: html => { target.html = html; } };
+  runInNewContext(readFileSync(pathFromRoot('public/scripts/code.js'), 'utf8'), { $, document });
+  assert.deepEqual(nodes.map(node => textContent(parseFragment(node.html || node.text))), lines);
+});

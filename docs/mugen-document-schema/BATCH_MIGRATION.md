@@ -1545,3 +1545,25 @@ npm run mugen:test
 npm run build
 npm run mugen:check-html
 ~~~
+
+## 2026-10-08：command-stage-metadata-01
+
+Command・StageVarの2件で累計227件（79バッチ211件＋主要・補助16件）、残り7件。必須の比較演算子/引用文字列とint結果、StageVarの引用しない識別子を構造化。Commandの逆転したTime/Buffer.Time説明を原文保存で訂正し、EndCmdBufTimeの0..Time・対象制限を公開FAQへ具体化。StageVar追加はRC8へ対応し、公式のinfo.authorname/author差と停止/入力/カスタムステート/別エンジン研究は内部保持。374テスト・263ページビルド・261 URL/238比較対象HTMLと通常/390px表示を確認。ブラウザで既存の色付け処理がCMDの~/$を消す不具合を再現し、記号と未分類文字の保持を修正、失敗→通過の回帰テストと再読み込み後の~D表示を確認。JSON原文・メタ・構文・表・例・履歴・FAQ・引用を保持。スキーマ/レジストリ/CSS変更なし、実機未検証。内部注記658件、未対応旧履歴90項目、未表示フィールド29ページ。次はHitDefAttr・GetHitVarです。
+
+移行前JSON・HTML・抽出結果は tests/mugen/batches/command-stage-metadata-01/ に保存しました。
+
+- Commandは保存済み公式3世代の= / !=、引用名・大小文字区別・同名のいずれか・1/0を照合。固定コミットの[配布KFM CMDコメント](https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/chars/kfm/kfm.cmd)でTimeの入力猶予とBuffer.Timeの成立後持続を確認。逆転した旧説明付き例をinternalで保持し、同じ設定行を訂正説明付きで追加。ホールドのみの例外と、複数フレーム続く成立が1回だけのイベントではないことを公開しました。ChangeState先1000の定義は作者が用意する前提を明示しています。
+- Pauseの実在パラメーターEndCmdBufTimeの終了側の入力バッファ、0〜Time・省略0・停止中動けないプレイヤーという対象、SuperPauseへの継承を公開FAQに記載。旧FAQ・補足は内部に保持しました。Key/KeyDown/KeyUpの旧関連配列は原位置に残して公開関連を実在するCtrl/StateTypeへ訂正。旧2002リンクは実際のCommand (*,***)へ新引用を追加。
+- [CHAOS Command](https://w.atwiki.jp/mugencns/pages/105.html)と[CMD研究](https://w.atwiki.jp/mugencns/pages/37.html)の未定義名ロードエラー対公式none、Helper/AI/HitPause、カスタムステートでの定義順・recovery例外の疑問符、複合入力/向き反転・境界の留保を内部保持。GO issue365の報告・再現不足・dash単体の留保はengine=ikemen-goの旧履歴対応researchとして保存し、MUGENの一般仕様へ転用していません。
+- StageVarは1.0/1.1のDetails/ExampleのInfo.Authorを維持し、Argumentsのinfo.authornameとの差をconflictingとして内部保存。未検証の別名を増やしていません。旧3引数の型・説明・表を残してlegacy_index付きの識別子・演算子・引用文字列へ対応。RC8履歴で初追加を確認し、displayname省略時nameというBGの説明を公開。比較のケース/文字コード/空文字・互換設定別の動作は未測定です。
+- public/scripts/code.jsのトークナイザーが~/$と未分類ASCIIを落としていたため、CMD記号の分類と1文字フォールバックを追加。JSON/生成HTMLが正しくてもクライアント処理後に~DがDになることをブラウザとテストで確認しました。回帰テストは離し入力・チャージ・4方向・ホールド・元CMD例と未分類句読記号の全文保存を検査し、エンジン入力を模擬しません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch command-stage-metadata-01
+npm run mugen:batch -- --batch command-stage-metadata-01 --target Command --target StageVar
+npm run mugen:batch -- --batch command-stage-metadata-01 --target Command --target StageVar --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~

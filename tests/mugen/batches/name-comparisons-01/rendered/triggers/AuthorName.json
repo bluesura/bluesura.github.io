@@ -1,0 +1,71 @@
+{
+  "text": "AuthorName キャラクター情報 > 作者名（Def:Author）の判定 | 実装されたバージョン: 2002.04.14 | 対象: 評価対象（既定: 実行者自身） 引数 使用例 引用記事 AuthorName は、評価対象キャラクターの .def（[Info] セクション）に記載された author と、指定した文字列を比較し、一致すれば 1、一致しなければ 0 を返します。本トリガーは「比較式として使うトリガー」であり、単体で値を返す形式ではなく、= / != の比較としてのみ記述できます。リダイレクト（例: Enemy, AuthorName = \"Suika\"）と併用して他プレイヤーの作者名を判定できます。リダイレクト先が存在しない場合は bottom になり、式は成立しません。 関連するトリガー： Name , P1Name , P2Name , P3Name , P4Name 構文 AuthorName = \"作者名\"AuthorName != \"作者名\" 引数 なし コードサンプル相手キャラクターの作者名で分岐フラグを立てる相手（Enemy）の作者名が一致した場合に var(0) を立てます。[State -2, DetectEnemyAuthor]Type = VarSetTrigger1 = Enemy, AuthorName = \"Suika\"Var = 0Value = 1 引用記事AuthorName - Trigger Reference(version 2002.04.14)AuthorName - Trigger Reference (MUGEN 1.0)AuthorName - Trigger Reference (MUGEN 1.1 Beta)Trigger Reference - About Triggers（old-style / bottom） 公開日:2008.06.05 最終更新日:2026.01.12 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Name",
+      "href": "./../Trigger/Name.html"
+    },
+    {
+      "text": "P1Name",
+      "href": "./../Trigger/P1Name.html"
+    },
+    {
+      "text": "P2Name",
+      "href": "./../Trigger/P2Name.html"
+    },
+    {
+      "text": "P3Name",
+      "href": "./../Trigger/P3Name.html"
+    },
+    {
+      "text": "P4Name",
+      "href": "./../Trigger/P4Name.html"
+    },
+    {
+      "text": "AuthorName - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#AuthorName"
+    },
+    {
+      "text": "AuthorName - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#authorname"
+    },
+    {
+      "text": "AuthorName - Trigger Reference (MUGEN 1.1 Beta)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#authorname"
+    },
+    {
+      "text": "Trigger Reference - About Triggers（old-style / bottom）",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#about-triggers"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen_name_authorname_logic_flow.png"
+  ],
+  "code": []
+}

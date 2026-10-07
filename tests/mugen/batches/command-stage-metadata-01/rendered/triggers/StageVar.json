@@ -1,0 +1,50 @@
+{
+  "text": "StageVar ステージ情報 > ステージ情報の取得・判定 | 実装されたバージョン: 1.0 RC8 引数 仕様・注意点 使用例 引用記事 ステージ定義（.def）の [Info] グループにある文字列を比較し、真偽値（1/0）を返します。このトリガーは「条件型」で、単体では値を返す関数ではありません。StageVar(…) の直後に = または != を書き、ダブルクォートで囲んだ文字列と比較します。 構文 StageVar(Info.Name) = \"ステージ名\"StageVar(Info.DisplayName) = \"表示名\"StageVar(Info.Author) = \"作者名\"StageVar(Info.Name) != \"ステージ名\"StageVar(Info.DisplayName) != \"表示名\"StageVar(Info.Author) != \"作者名\" 引数 param_name 省略不可 型文字列 比較対象にするステージ [Info] パラメータ名。 値説明 Info.Name[Info] の name を比較します。Info.DisplayName[Info] の displayname を比較します。Info.Author[Info] の author を比較します。 [oper] 省略不可 型文字列 使用できる演算子は = と != のみです。 値説明 =等しい（文字列比較）!=等しくない（文字列比較） \"string\" 省略不可 型文字列 比較する文字列。必ずダブルクォートで囲みます。 仕様・バグ・エラー・変更点MUGEN 1.0 RC8StageVar トリガーが追加されました（ステージ名・作者などの基本チェック）。 コードサンプル特定ステージでのみ処理するステージ名（[Info] name）で分岐します。Trigger1 = StageVar(Info.Name) = \"kfm\" 作者名で分岐する作者名（[Info] author）で分岐します。Trigger1 = StageVar(Info.Author) = \"Suika\" 引用記事StageVar - Trigger Reference (MUGEN 1.0)StageVar - Trigger Reference (MUGEN 1.1 Beta 1)M.U.G.E.N Update History (Version 1.0 RC8) 公開日:2008.06.05 最終更新日:2026.01.10 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "StageVar - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#stagevar"
+    },
+    {
+      "text": "StageVar - Trigger Reference (MUGEN 1.1 Beta 1)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#stagevar"
+    },
+    {
+      "text": "M.U.G.E.N Update History (Version 1.0 RC8)",
+      "href": "https://www.elecbyte.com/mugendocs/history.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

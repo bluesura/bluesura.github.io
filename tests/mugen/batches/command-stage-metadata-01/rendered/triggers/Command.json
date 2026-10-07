@@ -1,0 +1,67 @@
+{
+  "text": "Command 入力 > 入力コマンドの一致判定 | 実装されたバージョン: 2002.04.14 | 対象: ステート実行者自身 引数 仕様・注意点 使用例 引用記事 .cmdファイルで定義したコマンド名が、入力履歴（コマンドバッファ）に存在するかを判定して 1（真）または 0（偽）を返します。判定対象のコマンド名は文字列で指定し、ダブルクォーテーションで括ります。比較式として使うトリガーなので、演算子は = / != のみ有効です。同名のコマンド定義が複数ある場合は、そのいずれかが成立していれば真になります。コマンドが「どれだけの毎フレームの間有効として残るか」「コマンド列の各入力間隔をどれだけ許容するか」は、.cmd側の Time / Buffer.Time（および [Defaults] の既定値）に依存します。 関連するトリガー： Key , KeyDown , KeyUp 構文 Command = \"<command_name>\"Command != \"<command_name>\" 引数 なし 仕様・バグ・エラー・変更点IKEMEN GOMUGENと比較して入力解釈やコマンド認識に差が出るケースが報告されています（特定のコマンド列・同時押し・短い許容値など）。差異が疑われる場合は、.cmdの許容値調整や、必要に応じて Key 系トリガー併用を検討します。 Q＆A(よくある質問)Command が反応しない／取りこぼすことがあるよくある原因は、(1) コマンド名の不一致（大小文字・スペル）、(2) Time/Buffer.Time が厳しすぎる、(3) 入力列の定義が実際の操作と噛み合っていない、のいずれかです。まず .cmd 側のコマンド定義を最小構成で検証し、必要なら許容値を緩めます。Pause や演出中に入力した必殺技が終わった瞬間に出ないMUGENでは、状況によっては演出（Pause等）を跨いだ入力が期待通りに残らないことがあります。演出終了後の入力反映を狙う場合、Pause系の設定（コマンドバッファ延長）を使う設計も検討します。 コードサンプルコマンド成立でステート遷移させる（CNS側）Command は入力履歴に残っている間、条件成立として扱えるため、ChangeState 等の発火条件に使います。[State -1, Fireball]Type = ChangeStateTriggerAll = Command = \"fireball\"Trigger1 = CtrlValue = 1000 cmd側の定義例（Defaults と Command 定義）.cmd 側でコマンド名と入力列を定義します。Time は成立後に有効として残す毎フレーム数の目安、Buffer.Time は入力列の各要素間に許容する間隔の目安です（値が小さいほど厳密）。[Defaults]Command.Time = 15Command.Buffer.Time = 1[Command]Name = \"fireball\"Command = ~D, DF, F, xTime = 15Buffer.Time = 1 同名コマンドを複数定義する（入力方法の別名集合）同じ name を複数定義すると、どれか1つでも成立すれば Command = \"name\" が真になります。[Command]Name = \"fireball\"Command = ~D, DF, F, xTime = 15Buffer.Time = 1[Command]Name = \"fireball\"Command = ~DF, F, xTime = 15Buffer.Time = 2 引用記事Command - Trigger Reference (Elecbyte / 2002.04.14)Command - Trigger Reference (Elecbyte / 1.0, archived)Command - Trigger Reference (Elecbyte / 1.1, archived)IKEMEN GO Issue: control consistency / commands (State -1) 公開日:2008.06.05 最終更新日:2026.01.21 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "QandA",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Key",
+      "href": "./../Trigger/Key.html"
+    },
+    {
+      "text": "KeyDown",
+      "href": "./../Trigger/KeyDown.html"
+    },
+    {
+      "text": "KeyUp",
+      "href": "./../Trigger/KeyUp.html"
+    },
+    {
+      "text": "Command - Trigger Reference (Elecbyte / 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#Command"
+    },
+    {
+      "text": "Command - Trigger Reference (Elecbyte / 1.0, archived)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#command"
+    },
+    {
+      "text": "Command - Trigger Reference (Elecbyte / 1.1, archived)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#command"
+    },
+    {
+      "text": "IKEMEN GO Issue: control consistency / commands (State -1)",
+      "href": "https://github.com/ikemen-engine/Ikemen-GO/issues/365"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

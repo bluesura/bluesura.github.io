@@ -1,0 +1,797 @@
+{
+  "id": "command-stage-metadata-01",
+  "reviewed_on": "2026-10-08",
+  "description": "Command/StageVarの比較構文と整数結果、CMD Time/Buffer.Timeの説明訂正、StageVar RC8追加と公式作者名表記差を原文保存で整理。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "Command",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "command-local-1.0",
+            "title": "Command — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#command",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "command-local-1.1",
+            "title": "Command — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#command",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "command-legacy",
+            "title": "移行前の本文・構文・引数・例・履歴",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/79a2ac5d51b8632b1297e5656096fe0229922231/src/content/triggers/Command.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "old_style"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "command-local-2002",
+            "title": "Command — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#Command (*,***)",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "command-kfm-cmd",
+            "title": "CMDのTime / Buffer.Time — 配布KFMのコメント（固定ミラー）",
+            "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/chars/kfm/kfm.cmd",
+            "source_type": "source_code"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "command-pause-1.0",
+            "title": "PauseのEndCmdBufTime — Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#pause",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "command-superpause-1.0",
+            "title": "SuperPauseの共通オプション — Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#superpause",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "command-chaos-command",
+            "title": "Commandのカスタムステート/停止研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/105.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "command-chaos-cmd",
+            "title": "CMDの入力列/許容時間の研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/37.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "id"
+          ],
+          "value": "command-go-365"
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "source_type"
+          ],
+          "value": "forum_or_log"
+        },
+        {
+          "path": [
+            "quote",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>プレイヤーのCMDファイルで定義したコマンドが成立しているかを、名前で判定します。<code>Command = \"fireball\"</code>は成立時に<code>1</code>、非成立時に<code>0</code>を整数で返します。<code>!=</code>はその逆の条件です。</p><p>比較演算子は<code>=</code>と<code>!=</code>だけです。コマンド名をダブルクォートで囲み、定義と同じ大文字・小文字で指定します。同じ名前の定義が複数あると、そのいずれかが成立すれば一致します。</p><p>CMDの<code>Time</code>はコマンド入力を完成させる猶予、<code>Buffer.Time</code>は成立後に有効として残す期間です。いずれもフレーム数で指定し、省略時は<code>[Defaults]</code>の対応する設定を使います。</p>",
+            "page_category": "CMDで定義した入力の成立判定",
+            "associated_trigger": [
+              "Ctrl",
+              "StateType"
+            ],
+            "associated_state": [
+              "ChangeState",
+              "Pause",
+              "SuperPause"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "source_code"
+              ],
+              "source_refs": [
+                "command-local-2002",
+                "command-local-1.0",
+                "command-local-1.1",
+                "command-kfm-cmd"
+              ],
+              "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "[oper]",
+              "type": [
+                "演算子"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p><code>=</code>（成立）または<code>!=</code>（非成立）を指定します。他の比較演算子は使えません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "command-local-2002",
+                  "command-local-1.0",
+                  "command-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            },
+            {
+              "name": "\"command_name\"",
+              "type": [
+                "string"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>CMDで定義したコマンド名をダブルクォートで囲んで指定します。名前の大文字・小文字を区別します。入力列を直接書く欄や数値式の引数ではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "command-local-2002",
+                  "command-local-1.0",
+                  "command-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "CMDの入力猶予と成立後の有効期間",
+            "description": "<p><code>Time = 15</code>は入力を完成させる猶予を15フレーム、<code>Buffer.Time = 1</code>は成立したフレームだけ有効にします。個別の指定を省略したコマンドは<code>[Defaults]</code>の値を使います。</p>",
+            "code": [
+              "[Defaults]",
+              "Command.Time = 15",
+              "Command.Buffer.Time = 1",
+              "",
+              "[Command]",
+              "Name = \"fireball\"",
+              "Command = ~D, DF, F, x",
+              "Time = 15",
+              "Buffer.Time = 1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "qanda",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "Pause / SuperPauseの終了直後までコマンド入力を残したい",
+            "a": "<p><code>EndCmdBufTime</code>で、停止の終わり側の何フレーム分をバッファするか指定します。範囲は<code>0〜Time</code>、省略時は<code>0</code>です。対象は停止中に動けないプレイヤーで、バッファしたコマンドを終了直後に<code>Command</code>で検出できます。<code>MoveTime</code>で動ける期間とは区別してください。SuperPauseもこのオプションを受け付けます。</p>",
+            "r": [
+              {
+                "title": "Pause — Elecbyte 1.0",
+                "url": "/MUGEN/document/Official/1.0/sctrls.html#pause"
+              }
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>Buffer.Timeを長くすると、成立したコマンドの判定が複数フレーム続く場合があります。成立を1回だけのイベントとは扱わないでください。ホールドだけの入力（例: /F）にはBuffer.Timeを適用せず、配布KFMの説明では1として扱います。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "command-kfm-cmd"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>使用例のChangeState先1000は、利用するキャラクター側で定義しておく必要があります。立ち・しゃがみ・空中などの実行条件は、その技の仕様に合わせてStateType等で追加します。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "command-local-2002",
+                  "command-local-1.0",
+                  "command-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧GO履歴とissue365を別エンジンの記録として保持。報告はジャンプ用Buffer.Timeと向き反転時の入力差を含み、2024年のコメントは再現手順不足とnightlyでdash単体が同様との留保を含む。MUGENの普遍的なバグやGOの現行修正完了とは判断しない。旧Key/KeyDown/KeyUp関連配列は保持し、Elecbyte対象の公開リンクをCtrl/StateTypeへ訂正。</p>",
+              "environment": {
+                "engine": "ikemen-go"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "command-go-365",
+                  "command-legacy"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧CMD例のTime/Buffer.Time説明は逆転していた。本文とコードをinternalで保持し、同じ実在するCMD設定行を訂正説明付きで追加。旧Pause FAQも保持しEndCmdBufTimeの範囲/対象を資料で補った。sample_codeの専用表示は従来どおり未対応。旧ChangeState例の1000の状態定義と実行条件は実機未確認。旧2002の#Commandリンクは原位置で内部保持し、実際のCommand (*,***)アンカーを追加。旧page.versionは初導入の証拠とせずnull。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "command-legacy",
+                  "command-kfm-cmd",
+                  "command-pause-1.0",
+                  "command-local-2002",
+                  "command-local-1.0",
+                  "command-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSは未定義名のロードエラー、HelperのKeyCtrl、RoundState>=3、HitPause中の判定持続、通常Pauseとの違いを報告する。公式のError conditions:noneと未定義名報告の範囲差を残す。停止解除後のフレーム境界・AI・Helper/Rootへの伝播は未測定。カスタムステート/リダイレクトで他者CMDの定義順へ対応する研究とrecoveryの例外らしいとの疑問符を保持し、名前による安全な相手照合を保証しない。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "command-chaos-command",
+                  "command-local-2002",
+                  "command-local-1.0",
+                  "command-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOS CMDの先頭チャージ・ホールド順・連続方向・向き反転時の入力保持・複合入力の遅延は留保付き研究として保持。名前数上限や多バイト文字・解析コストも全ビルド共通の測定値へ広げない。KFMコメントはDefaultsの15/1、最小1・Buffer.Time最大30とホールドのみの例外を記載するが、互換設定別の境界・入力取りこぼし・カスタムステートでBuffer.Time=2以上の研究は実機未検証。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "command-chaos-cmd",
+                  "command-chaos-command",
+                  "command-kfm-cmd"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "command-local-2002",
+              "command-local-1.0",
+              "command-local-1.1"
+            ],
+            "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "実機入力/停止/対象選択/文字比較は未検証。資料差・旧本文・使用例・未表示フィールドはJSONへ保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "StageVar",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stagevar-local-1.0",
+            "title": "StageVar — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#stagevar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stagevar-local-1.1",
+            "title": "StageVar — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#stagevar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stagevar-legacy",
+            "title": "移行前の本文・構文・引数・例・履歴",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/79a2ac5d51b8632b1297e5656096fe0229922231/src/content/triggers/StageVar.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": "mugen-1.0-rc8"
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0",
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "old_style"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int"
+          ]
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stagevar-history-rc8",
+            "title": "StageVar追加 — 保存済み Elecbyte RC8履歴",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc8",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "stagevar-stage-info",
+            "title": "ステージInfoのname/displayname/author — Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/bgs.html#info-group",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>現在のステージのDEFファイルにある<code>[Info]</code>の名前・表示名・作者名を、指定した文字列と比較します。<code>=</code>は一致、<code>!=</code>は不一致のときに<code>1</code>、条件に合わないときに<code>0</code>を整数で返します。</p><p><code>StageVar(Info.Name) = \"kfm\"</code>のように比較まで含めて記述します。単独で文字列を取得する関数ではありません。<code>Info.Name</code>はname、<code>Info.DisplayName</code>はdisplayname、<code>Info.Author</code>はauthorに対応します。</p>",
+            "page_category": "ステージの名前・作者を文字列と比較",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "stagevar-local-1.0",
+                "stagevar-local-1.1"
+              ],
+              "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "param_name",
+              "legacy_index": 0,
+              "type": [
+                "識別子"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>比較対象を<code>Info.Name</code>、<code>Info.DisplayName</code>、<code>Info.Author</code>から指定します。識別子を引用符で囲みません。比較する文字列自体とは別の指定です。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "stagevar-local-1.0",
+                  "stagevar-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            },
+            {
+              "name": "[oper]",
+              "legacy_index": 1,
+              "type": [
+                "演算子"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。他の比較演算子は使えません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "stagevar-local-1.0",
+                  "stagevar-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            },
+            {
+              "name": "\"string\"",
+              "legacy_index": 2,
+              "type": [
+                "string"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "description": "<p>比較する文字列リテラルをダブルクォートで囲みます。数値式や文字列取得関数の引数ではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "stagevar-local-1.0",
+                  "stagevar-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "version_change",
+              "content": "<p>MUGEN 1.0 RC8で、ステージ名・作者などの基本的な確認に使うStageVarが追加されました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "stagevar-history-rc8"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              },
+              "change": "added",
+              "at": "mugen-1.0-rc8",
+              "legacy_index": 0
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>ステージのdisplaynameはステージ選択リストに表示する名前です。DEFで省略した場合はnameが使われます。内部名・表示名とステージのファイル名を区別して比較します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "stagevar-stage-info"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>公式1.0/1.1b1のArguments欄はinfo.authorname、Detailsと使用例はinfo.authorとなっており表記が衝突する。旧Info.AuthorをDetails/Exampleに沿って公開維持し、info.authornameを検証済み別名として追加しない。公式BG Infoのauthorをエンジン未使用とする古い説明も、StageVarのauthor比較説明との適用範囲差として残す。実行ビルド/互換設定ごとの両表記の解析・比較は未測定。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "stagevar-local-1.0",
+                  "stagevar-local-1.1",
+                  "stagevar-stage-info"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧パラメーターのtype=stringと候補表を原位置に保持し、識別子・演算子・引用文字列の必須3引数へlegacy_indexで対応。公式RC8履歴から初導入を記録し、1.0+という系列表記からRC1とは推定しない。作者名/表示名が空・未指定の場合、比較の大小文字・文字コード・長さ・特殊文字とWin版での失敗条件は未測定。旧2条件例と構文/出典は維持し、未確認のauthornameを候補表へ足さない。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "official_history",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "stagevar-legacy",
+                  "stagevar-local-1.0",
+                  "stagevar-local-1.1",
+                  "stagevar-history-rc8"
+                ],
+                "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "stagevar-local-1.0",
+              "stagevar-local-1.1"
+            ],
+            "comment": "2026-10-08: 保存済み公式・固定コミットのKFM CMDコメント・CHAOS研究・GO issue365を照合。資料確認であり、入力認識/停止/カスタムステート/文字比較の実機検証ではない。"
+          }
+        }
+      ],
+      "remaining": [
+        "実機入力/停止/対象選択/文字比較は未検証。資料差・旧本文・使用例・未表示フィールドはJSONへ保持。"
+      ]
+    }
+  ]
+}

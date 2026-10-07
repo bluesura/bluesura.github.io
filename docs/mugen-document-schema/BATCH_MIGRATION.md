@@ -1524,3 +1524,24 @@ npm run mugen:test
 npm run build
 npm run mugen:check-html
 ~~~
+
+## 2026-10-08：coordinate-conversion-01
+
+Const240p・Const480p・Const720pの3件で累計225件（78バッチ209件＋主要・補助16件）、残り9件。1.0/1.1系列の必須float式引数とfloat戻り値、320/640/1280幅基準から評価対象の座標空間への横幅比による換算、入力bottom伝播と通常0を分離。旧現解像度/概ね/localcoord相当の原文・引数・関連・例・引用を保持し、既存3/6/12の公式換算例は公開維持、実在VelSetのx/yによる短い例を追加。2011.01.18やRC1のLocalCoord追加を初導入と推定せずnull。CHAOS索引のウィンドウ疑問符・互換設定/Helper/リダイレクト/精度の留保は内部へ保存。367テスト・263ページビルド・261 URL/236比較対象HTMLと通常/390px表示を確認。換算式の代数テストであり実機未検証。スキーマ/レジストリ/レンダラー/CSS変更なし。内部注記652件、未対応旧履歴92項目、未表示フィールド29ページ。次はCommand・StageVarです。
+
+移行前JSON・HTML・抽出結果は tests/mugen/batches/coordinate-conversion-01/ に保存しました。
+
+- 保存済み公式1.0/1.1は横幅比を明記。320×240・640×480・1280×720基準の引数をそれぞれの基準幅で除して対象幅へ換算する公開文とし、高さの比・表示ピクセル数とは区別しました。引数は1つの必須float式、戻り値float、入力がbottomなら結果もbottomです。arguments[].legacy_indexで旧parameterの情報を引き継ぎ、元説明を上書きしません。
+- common1.cnsの0以外の位置/速度オフセットへいずれかのConstを使う公式推奨を公開。既存value代入の抜粋は公式例と一致するため公開を維持し、追加例は実在するVelSetのX/Yへ換算値を指定しました。架空のパラメーターは追加していません。
+- 3→6→12の結果、0・負数・小数、同幅/倍幅/半幅と1280×720の横幅比4対高さ比3を代数的に検査。与えた幅と数値についての検査であり、エンジンのLocalCoord/互換プロファイル/浮動小数精度/リダイレクトを実測したものではありません。
+- 公式RC1履歴にはLocalCoordとAILevelがあるものの、この3関数の初追加は明記されません。page.versionを維持し初導入はnull。[CHAOS索引](https://w.atwiki.jp/mugencns/pages/24.html)のウィンドウの大きさに関する項目？という疑問符と、Helper・親/本体・カスタムステート・ズーム・非標準アスペクト比・精度は内部研究として保存しています。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch coordinate-conversion-01
+npm run mugen:batch -- --batch coordinate-conversion-01 --target Const240p --target Const480p --target Const720p
+npm run mugen:batch -- --batch coordinate-conversion-01 --target Const240p --target Const480p --target Const720p --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~

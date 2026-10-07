@@ -1,0 +1,71 @@
+{
+  "text": "P1Name キャラクター情報 > 1P側Nameの判定 | 実装されたバージョン: 2002.04.14 | 対象: 評価対象（既定: 実行者自身） 引数 使用例 引用記事 P1Name は Name の別書式（エイリアス）です。評価対象（通常は実行者＝P1）の .def 内部名 name を比較し、一致すれば 1、一致しなければ 0 を返します。本トリガーは「比較式として使うトリガー」であり、単体で値を返す形式ではなく、= / != の比較としてのみ記述できます。 関連するトリガー： Name , AuthorName , P2Name , P3Name , P4Name 構文 P1Name = \"名前\"P1Name != \"名前\" 引数 なし コードサンプルP1Name（= Name）で内部名を判定するP1Name は Name と同義です（可読性や統一目的で使い分けるケースがあります）。[State -2, P1NameGate]Type = VarSetTrigger1 = P1Name = \"Kumquat\"Var = 2Value = 1 引用記事P1Name - Trigger Reference(version 2002.04.14)P1Name - Trigger Reference (MUGEN 1.0)P1Name - Trigger Reference (MUGEN 1.1 Beta)Name - Trigger Reference（同義トリガー） 公開日:2008.06.05 最終更新日:2026.01.12 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Name",
+      "href": "./../Trigger/Name.html"
+    },
+    {
+      "text": "AuthorName",
+      "href": "./../Trigger/AuthorName.html"
+    },
+    {
+      "text": "P2Name",
+      "href": "./../Trigger/P2Name.html"
+    },
+    {
+      "text": "P3Name",
+      "href": "./../Trigger/P3Name.html"
+    },
+    {
+      "text": "P4Name",
+      "href": "./../Trigger/P4Name.html"
+    },
+    {
+      "text": "P1Name - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#P1Name"
+    },
+    {
+      "text": "P1Name - Trigger Reference (MUGEN 1.0)",
+      "href": "https://www.elecbyte.com/mugendocs/trigger.html#p1name"
+    },
+    {
+      "text": "P1Name - Trigger Reference (MUGEN 1.1 Beta)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#p1name"
+    },
+    {
+      "text": "Name - Trigger Reference（同義トリガー）",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#name"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen_name_authorname_logic_flow.png"
+  ],
+  "code": []
+}

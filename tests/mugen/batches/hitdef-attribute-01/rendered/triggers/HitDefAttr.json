@@ -1,0 +1,60 @@
+{
+  "text": "HitDefAttr ヒット情報 > 有効なHitDefの攻撃属性判定 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 引数 仕様・注意点 使用例 引用記事 HitDefAttr は、プレイヤーの「現在アクティブな HitDef」の attr（攻撃属性）を判定するトリガーです。プレイヤーが攻撃中でない場合は、どの条件にも一致しません。HitDef の attr が arg1, arg2 の形で与えられるとき、このトリガーは arg1 が value1 の部分集合、かつ arg2 が value2 の部分集合である場合に真になります。主に CMD での「弱技→強技」などの割り込み条件に使用できます。戻り値: boolean int（1 または 0）。 関連するステートコントローラー： HitDef 構文 HitDefAttr = value1, value2HitDefAttr != value1, value2 引数 oper 型文字列 比較演算子。= または != を指定します。HitDefAttr != value1, value2 は !(HitDefAttr = value1, value2) と論理的に同値です。 値意味 =一致判定!=否定（!(HitDefAttr = ...) と同値） value1 省略不可 型文字列 攻撃の姿勢属性を表す文字列。S(立ち) / C(しゃがみ) / A(空中) のうち、1文字以上を含めます。複数指定も可能（例: SA は「立ち または 空中」）。 文字意味 S立ち（Standing）Cしゃがみ（Crouching）A空中（Aerial） value2 省略不可 型文字列 攻撃種別属性の集合。NA のような2文字コードをカンマ区切りで列挙します。1文字目: N(通常) / S(必殺) / H(超必殺)。2文字目: A(打撃などの攻撃) / T(投げ)。 値意味 NA通常攻撃（Normal Attack）NT通常投げ（Normal Throw）SA必殺攻撃（Special Attack）ST必殺投げ（Special Throw）HA超必殺攻撃（Hyper/Super Attack）HT超必殺投げ（Hyper/Super Throw） 仕様・バグ・エラー・変更点MUGEN 1.0 RC4 (2009-10-25) 以降HitDefAttr の != 演算子が誤って解釈される不具合が修正されました。MUGEN 1.0 RC5 (2009-10-28) 以降HitDefAttr（および TeamMode）の評価が誤る場合がある不具合が修正されました。 コードサンプル空中の超必殺攻撃だけを検出する現在アクティブな HitDef が「空中(A)」かつ「超必殺攻撃(HA)」のときに真になります。trigger1 = HitDefAttr = A, HA 立ち/しゃがみ状態で通常攻撃または必殺攻撃を検出するvalue1 に SC を指定し、value2 に NA(通常攻撃) と SA(必殺攻撃) を列挙します。trigger1 = HitDefAttr = SC, NA, SA 特定属性に一致しない場合（!=）「空中の通常/必殺/超必殺攻撃（A かつ NA/SA/HA）」以外のときに真になります。trigger1 = HitDefAttr != A, NA, SA, HA 引用記事HitDefAttr - Trigger Reference(version 2002.04.14)HitDefAttr - Trigger Reference (MUGEN 1.0)HitDefAttr - Trigger Reference (MUGEN 1.1 / 11b1)M.U.G.E.N Update History (HitDefAttr 関連の修正履歴) 公開日:2008.06.05 最終更新日:2025.12.25 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "Version",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "HitDef",
+      "href": "./../State/HitDef.html"
+    },
+    {
+      "text": "HitDefAttr - Trigger Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/trigger.html#HitDefAttr"
+    },
+    {
+      "text": "HitDefAttr - Trigger Reference (MUGEN 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#hitdefattr"
+    },
+    {
+      "text": "HitDefAttr - Trigger Reference (MUGEN 1.1 / 11b1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#hitdefattr"
+    },
+    {
+      "text": "M.U.G.E.N Update History (HitDefAttr 関連の修正履歴)",
+      "href": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/Trigger/mugen_hitdefattr_flow.png"
+  ],
+  "code": []
+}

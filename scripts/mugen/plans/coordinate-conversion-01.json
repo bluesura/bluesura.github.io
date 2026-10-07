@@ -1,0 +1,1033 @@
+{
+  "id": "coordinate-conversion-01",
+  "reviewed_on": "2026-10-08",
+  "description": "Const240p/480p/720pの3件。評価対象の座標空間への横幅比によるfloat換算・必須式引数・bottom伝播を分離。原文/例/引数を保存。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "Const240p",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const240p-local-1.0",
+            "title": "Const240p — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#const240p",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const240p-local-1.1",
+            "title": "Const240p — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#const240p",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const240p-legacy",
+            "title": "移行前の本文・引数・構文・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/bb3aced9f4b49c473ccfa52de5b4178c963f5784/src/content/triggers/Const240p.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const240p-history-1.0",
+            "title": "LocalCoord追加と1.0 RC履歴 — Elecbyte",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc1",
+            "source_type": "official_history",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const240p-chaos-index",
+            "title": "新MUGEN項目の座標系に関する暫定案内 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/24.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const240p-velset-1.1",
+            "title": "速度の実際のX/Yパラメーター — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#velset",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0",
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "値",
+              "legacy_index": 0,
+              "type": [
+                "float"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>320×240基準で表した換算元の数値または式を指定します。小数・負数・0も数値として指定できます。引数がbottomの場合、戻り値もbottomです。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "const240p-local-1.0",
+                  "const240p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>320×240基準の値を、評価対象プレイヤーの座標空間へ換算し、floatで返します。換算元の数値または式を1つ指定します。</p><p>換算は座標空間の横幅の比を使います。<code>換算後の値 = 換算元の値 × 評価対象の座標空間の横幅 / 320</code>です。高さの比や、ウィンドウの表示ピクセル数による換算とは区別してください。</p><p>座標・速度・オフセットなど、320×240基準で書いた値を、座標空間が異なるキャラクターで使う場合に利用できます。</p>",
+            "page_category": "320×240基準からプレイヤー座標へ換算",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "const240p-local-1.0",
+                "const240p-local-1.1"
+              ],
+              "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "320×240基準の速度を設定する",
+            "description": "<p>現在のステートに入った時点で、基準速度3を換算してX速度へ設定し、Y速度を0にします。実際の番号ステート内で使うステートコントローラーの例です。</p>",
+            "code": [
+              "[State 0, Const240p velocity]",
+              "Type = VelSet",
+              "Trigger1 = Time = 0",
+              "X = Const240p(3)",
+              "Y = Const240p(0)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>引数の式がbottomを返した場合は、換算結果もbottomです。通常の数値0とは区別してください。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "const240p-local-1.0",
+                  "const240p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>共通ステートcommon1.cnsの、0以外の位置・速度オフセットには、座標空間が異なるキャラクターとの整合性を保つために、Const240p / Const480p / Const720pのいずれかを使うことが推奨されています。換算元の値をどの基準で書いたかに合わせて関数を選びます。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "const240p-local-1.0",
+                  "const240p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧公開カテゴリの現解像度という表現と本文の概ね/localcoord相当を保持し、公開文は公式のプレイヤー座標空間と横幅比へ訂正。ウィンドウ/スクリーン/ステージの解像度やCameraZoom・描画xscale/yscaleを同一の倍率としない。リダイレクト後の評価空間・Helper/親/本体・カスタムステート・非標準アスペクト比・浮動小数精度/オーバーフローは実機未測定。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "const240p-legacy",
+                  "const240p-local-1.0",
+                  "const240p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.version=2011.01.18を初導入ビルドへ変換しない。公式1.0 RC1履歴にはLocalCoordと新トリガーAILevelの追加があるが、3つのConst換算関数の初追加は明記されない。introduced_inはnullとし、確認できる1.0/1.1系列だけを記録。CHAOS索引のウィンドウの大きさに関する項目？という暫定説明も留保として保持し、公式と異なる未検証の換算モデルは公開しない。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "official_history",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "const240p-history-1.0",
+                  "const240p-chaos-index",
+                  "const240p-local-1.0",
+                  "const240p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧value = Const...(数値)とコメントの3/6/12例は公式の値代入の抜粋と一致するため公開を維持。valueという行はそれを受け取るコントローラー内で使う抜粋であり、トリガー自身の設定項目を作るものではない。今回の追加例は実在するVelSetのx/yで使用し、全体動作や実機速度の検証とは扱わない。元本文・引数・関連・例・出典は原位置に保持した。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "const240p-legacy",
+                  "const240p-velset-1.1",
+                  "const240p-local-1.0",
+                  "const240p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "const240p-local-1.0",
+              "const240p-local-1.1"
+            ],
+            "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・互換設定・非標準座標/リダイレクト/精度/実機速度は未測定。原文と旧引数・例を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Const480p",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const480p-local-1.0",
+            "title": "Const480p — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#const480p",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const480p-local-1.1",
+            "title": "Const480p — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#const480p",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const480p-legacy",
+            "title": "移行前の本文・引数・構文・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/bb3aced9f4b49c473ccfa52de5b4178c963f5784/src/content/triggers/Const480p.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const480p-history-1.0",
+            "title": "LocalCoord追加と1.0 RC履歴 — Elecbyte",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc1",
+            "source_type": "official_history",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const480p-chaos-index",
+            "title": "新MUGEN項目の座標系に関する暫定案内 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/24.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const480p-velset-1.1",
+            "title": "速度の実際のX/Yパラメーター — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#velset",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0",
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "値",
+              "legacy_index": 0,
+              "type": [
+                "float"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>640×480基準で表した換算元の数値または式を指定します。小数・負数・0も数値として指定できます。引数がbottomの場合、戻り値もbottomです。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "const480p-local-1.0",
+                  "const480p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>640×480基準の値を、評価対象プレイヤーの座標空間へ換算し、floatで返します。換算元の数値または式を1つ指定します。</p><p>換算は座標空間の横幅の比を使います。<code>換算後の値 = 換算元の値 × 評価対象の座標空間の横幅 / 640</code>です。高さの比や、ウィンドウの表示ピクセル数による換算とは区別してください。</p><p>座標・速度・オフセットなど、640×480基準で書いた値を、座標空間が異なるキャラクターで使う場合に利用できます。</p>",
+            "page_category": "640×480基準からプレイヤー座標へ換算",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "const480p-local-1.0",
+                "const480p-local-1.1"
+              ],
+              "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "640×480基準の速度を設定する",
+            "description": "<p>現在のステートに入った時点で、基準速度6を換算してX速度へ設定し、Y速度を0にします。実際の番号ステート内で使うステートコントローラーの例です。</p>",
+            "code": [
+              "[State 0, Const480p velocity]",
+              "Type = VelSet",
+              "Trigger1 = Time = 0",
+              "X = Const480p(6)",
+              "Y = Const480p(0)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>引数の式がbottomを返した場合は、換算結果もbottomです。通常の数値0とは区別してください。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "const480p-local-1.0",
+                  "const480p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>共通ステートcommon1.cnsの、0以外の位置・速度オフセットには、座標空間が異なるキャラクターとの整合性を保つために、Const240p / Const480p / Const720pのいずれかを使うことが推奨されています。換算元の値をどの基準で書いたかに合わせて関数を選びます。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "const480p-local-1.0",
+                  "const480p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧公開カテゴリの現解像度という表現と本文の概ね/localcoord相当を保持し、公開文は公式のプレイヤー座標空間と横幅比へ訂正。ウィンドウ/スクリーン/ステージの解像度やCameraZoom・描画xscale/yscaleを同一の倍率としない。リダイレクト後の評価空間・Helper/親/本体・カスタムステート・非標準アスペクト比・浮動小数精度/オーバーフローは実機未測定。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "const480p-legacy",
+                  "const480p-local-1.0",
+                  "const480p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.version=2011.01.18を初導入ビルドへ変換しない。公式1.0 RC1履歴にはLocalCoordと新トリガーAILevelの追加があるが、3つのConst換算関数の初追加は明記されない。introduced_inはnullとし、確認できる1.0/1.1系列だけを記録。CHAOS索引のウィンドウの大きさに関する項目？という暫定説明も留保として保持し、公式と異なる未検証の換算モデルは公開しない。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "official_history",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "const480p-history-1.0",
+                  "const480p-chaos-index",
+                  "const480p-local-1.0",
+                  "const480p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧value = Const...(数値)とコメントの3/6/12例は公式の値代入の抜粋と一致するため公開を維持。valueという行はそれを受け取るコントローラー内で使う抜粋であり、トリガー自身の設定項目を作るものではない。今回の追加例は実在するVelSetのx/yで使用し、全体動作や実機速度の検証とは扱わない。元本文・引数・関連・例・出典は原位置に保持した。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "const480p-legacy",
+                  "const480p-velset-1.1",
+                  "const480p-local-1.0",
+                  "const480p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "const480p-local-1.0",
+              "const480p-local-1.1"
+            ],
+            "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・互換設定・非標準座標/リダイレクト/精度/実機速度は未測定。原文と旧引数・例を保持。"
+      ]
+    },
+    {
+      "collection": "triggers",
+      "name": "Const720p",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const720p-local-1.0",
+            "title": "Const720p — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#const720p",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const720p-local-1.1",
+            "title": "Const720p — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#const720p",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const720p-legacy",
+            "title": "移行前の本文・引数・構文・使用例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/bb3aced9f4b49c473ccfa52de5b4178c963f5784/src/content/triggers/Const720p.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const720p-history-1.0",
+            "title": "LocalCoord追加と1.0 RC履歴 — Elecbyte",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc1",
+            "source_type": "official_history",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const720p-chaos-index",
+            "title": "新MUGEN項目の座標系に関する暫定案内 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/24.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "const720p-velset-1.1",
+            "title": "速度の実際のX/Yパラメーター — Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#velset",
+            "source_type": "official_document",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0",
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "値",
+              "legacy_index": 0,
+              "type": [
+                "float"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "expression",
+              "description": "<p>1280×720基準で表した換算元の数値または式を指定します。小数・負数・0も数値として指定できます。引数がbottomの場合、戻り値もbottomです。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "const720p-local-1.0",
+                  "const720p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>1280×720基準の値を、評価対象プレイヤーの座標空間へ換算し、floatで返します。換算元の数値または式を1つ指定します。</p><p>換算は座標空間の横幅の比を使います。<code>換算後の値 = 換算元の値 × 評価対象の座標空間の横幅 / 1280</code>です。高さの比や、ウィンドウの表示ピクセル数による換算とは区別してください。</p><p>座標・速度・オフセットなど、1280×720基準で書いた値を、座標空間が異なるキャラクターで使う場合に利用できます。</p>",
+            "page_category": "1280×720基準からプレイヤー座標へ換算",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "const720p-local-1.0",
+                "const720p-local-1.1"
+              ],
+              "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "1280×720基準の速度を設定する",
+            "description": "<p>現在のステートに入った時点で、基準速度12を換算してX速度へ設定し、Y速度を0にします。実際の番号ステート内で使うステートコントローラーの例です。</p>",
+            "code": [
+              "[State 0, Const720p velocity]",
+              "Type = VelSet",
+              "Trigger1 = Time = 0",
+              "X = Const720p(12)",
+              "Y = Const720p(0)"
+            ]
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p>引数の式がbottomを返した場合は、換算結果もbottomです。通常の数値0とは区別してください。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "const720p-local-1.0",
+                  "const720p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>共通ステートcommon1.cnsの、0以外の位置・速度オフセットには、座標空間が異なるキャラクターとの整合性を保つために、Const240p / Const480p / Const720pのいずれかを使うことが推奨されています。換算元の値をどの基準で書いたかに合わせて関数を選びます。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "const720p-local-1.0",
+                  "const720p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧公開カテゴリの現解像度という表現と本文の概ね/localcoord相当を保持し、公開文は公式のプレイヤー座標空間と横幅比へ訂正。ウィンドウ/スクリーン/ステージの解像度やCameraZoom・描画xscale/yscaleを同一の倍率としない。リダイレクト後の評価空間・Helper/親/本体・カスタムステート・非標準アスペクト比・浮動小数精度/オーバーフローは実機未測定。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "const720p-legacy",
+                  "const720p-local-1.0",
+                  "const720p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧page.version=2011.01.18を初導入ビルドへ変換しない。公式1.0 RC1履歴にはLocalCoordと新トリガーAILevelの追加があるが、3つのConst換算関数の初追加は明記されない。introduced_inはnullとし、確認できる1.0/1.1系列だけを記録。CHAOS索引のウィンドウの大きさに関する項目？という暫定説明も留保として保持し、公式と異なる未検証の換算モデルは公開しない。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "official_history",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "const720p-history-1.0",
+                  "const720p-chaos-index",
+                  "const720p-local-1.0",
+                  "const720p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧value = Const...(数値)とコメントの3/6/12例は公式の値代入の抜粋と一致するため公開を維持。valueという行はそれを受け取るコントローラー内で使う抜粋であり、トリガー自身の設定項目を作るものではない。今回の追加例は実在するVelSetのx/yで使用し、全体動作や実機速度の検証とは扱わない。元本文・引数・関連・例・出典は原位置に保持した。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "const720p-legacy",
+                  "const720p-velset-1.1",
+                  "const720p-local-1.0",
+                  "const720p-local-1.1"
+                ],
+                "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "const720p-local-1.0",
+              "const720p-local-1.1"
+            ],
+            "comment": "2026-10-08: 保存済み公式1.0/1.1b1の3換算関数・横幅比・float式引数/戻り値・bottom・Common推奨例と公式1.0履歴を照合。換算の代数検査であり、実機の座標空間/互換設定/リダイレクトは未測定。"
+          }
+        }
+      ],
+      "remaining": [
+        "初導入・互換設定・非標準座標/リダイレクト/精度/実機速度は未測定。原文と旧引数・例を保持。"
+      ]
+    }
+  ]
+}

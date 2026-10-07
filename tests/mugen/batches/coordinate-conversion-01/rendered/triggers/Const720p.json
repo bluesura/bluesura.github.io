@@ -1,0 +1,53 @@
+{
+  "text": "Const720p 定数 > 720p基準座標の現解像度への変換 | 実装されたバージョン: 2011.01.18 | 対象: 実行者自身 引数 使用例 引用記事 1280x720基準で作られた値（座標・速度・オフセット等）を、実行者の座標空間（主にlocalcoord相当）に合わせてスケーリングした数値を返します。変換倍率は概ね「実行者側の横解像度 ÷ 1280」です。たとえば実行者の座標空間が320x240なら約0.25倍、640x480なら約0.5倍になります。共通ステート（common1.cns等）で固定オフセットを持つ処理は、座標系の異なるキャラクター間で一貫性を保つために、Const240p/Const480p/Const720pの利用が推奨される場合があります。 関連するトリガー： Const , Const240p , Const480p 構文 Const720p(値) 引数 値 型浮動小数点数 1280x720基準で記述した数値（定数・式）を指定します。戻り値は座標空間に合わせてスケーリングされた数値です。 コードサンプル1280x720基準の値を座標空間に合わせる基準値12を、実行者の座標空間に合わせて変換します。value = Const720p(12);320x240の場合、3がvalueに代入されます。;640x480の場合、6がvalueに代入されます。;1280x720の場合、12がvalueに代入されます。 引用記事Const720p - Trigger Reference(version 1.0)Const720p - Trigger Reference(version 1.1) 公開日:2008.06.05 最終更新日:2026.01.12 Home > MUGEN Trigger",
+  "sections": [
+    "syntax",
+    "Parameter",
+    "CodeSample",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "引数",
+      "href": "#Parameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Const",
+      "href": "./../Trigger/Const.html"
+    },
+    {
+      "text": "Const240p",
+      "href": "./../Trigger/Const240p.html"
+    },
+    {
+      "text": "Const480p",
+      "href": "./../Trigger/Const480p.html"
+    },
+    {
+      "text": "Const720p - Trigger Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#const720p"
+    },
+    {
+      "text": "Const720p - Trigger Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#const720p"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN Trigger",
+      "href": "./"
+    }
+  ],
+  "media": [],
+  "code": []
+}

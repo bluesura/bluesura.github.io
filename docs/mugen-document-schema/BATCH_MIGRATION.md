@@ -1436,3 +1436,26 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・342テスト・263ページビルド・261 URL/221比較対象ページHTML検査を通過。Winを通常幅、WinKOのWin併用例・WinTimeの概要・WinPerfectの訂正Q&A/KO併用例を390pxで確認し、内部非表示と表示幅/検査タブの復元を確認。内部注記18件追加で594件、未対応旧履歴92項目、未表示フィールド29ページ。次はLose・LoseKO・LoseTime・DrawGameです。
+
+## 2026-10-07：round-loss-draw-01
+
+Lose / LoseKO / LoseTime / DrawGameの4件で累計214件（主要・補助16件＋74バッチ198件）、対象内の残り20件です。2026-10-06に資料照合・計画・適用・テスト/ビルドを実施し、再開した2026-10-07にHTML検査と記録を更新しました。移行前JSON・HTML・抽出結果は tests/mugen/batches/round-loss-draw-01/ に保存しています。
+
+- 全4件を引数なし・整数1/0のプレイヤー/チームのラウンド結果参照として構造化。敗北とKO/時間切れの理由、引き分けと試合全体のMatchOverを分離しました。現在Life=0や時間切れ発生だけでは敗北理由を置き換えません。旧全文・メタ・構文・関連リンク・図src/alt/寸法・8例・引用を保持し、スキーマ/レジストリ/レンダラー/CSSは変更していません。
+- 否定条件は結果がまだ成立していない区間も含みます。公開例は実在する短いTrigger条件とし、LoseKOはLoseとのANDで別理由の敗北、DrawGameは!MatchOverとのANDで試合全体未決着を調べます。勝ち星付与とトリガーの値を同一視せず、!Win/!Loseだけで引き分けと判断しません。
+- 旧-2のセット/リセット例8件と共有図は内部へ保持。Persistent=0の「そのステートにいる間1回」とラウンド/結果単位のラッチは別であり、負のステート・初期化/スキップ/更新順は未実測です。RoundState=3だけで結果の即時/最終確定を保証していません。
+- DrawGameは保存済み公式3世代のFormat=Drawと使用例trigger1=DrawGameが食い違います。資料差をconflictingな内部研究へ保存し、既存のDrawGame構文/使用例を維持。未確認のDraw別名は追加していません。
+- [CHAOS DrawGame](https://w.atwiki.jp/mugencns/pages/108.html)のラウンド取得前の死亡による結果再判定・デバッグ蘇生/死亡・時間切れ後の死亡と「はず」の留保、引き分け上限超過で両者への勝利判定付与・カウント/チーム/Survival制約を内部へ保持。WinとDrawGameが同時に1になる証明とはせず、旧Win/Lose通常0という本文を残して全時点の排他性を公開では断定しません。
+- Lose/LoseKO/LoseTimeのCHAOS個別ページは本文取得に失敗し検索でも確認できませんでした。Win系のKO切替/蘇生研究を敗北側へ写して確認済みとしません。初導入null、結果更新/取り消し・引き分け上限と勝ち星・Simul/Turns・互換設定は実機未検証。条件のテストは固定1/0の否定/ANDのみで、エンジンの勝敗計算や更新順を再現しません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch round-loss-draw-01
+npm run mugen:batch -- --batch round-loss-draw-01 --target Lose --target LoseKO --target LoseTime --target DrawGame
+npm run mugen:batch -- --batch round-loss-draw-01 --target Lose --target LoseKO --target LoseTime --target DrawGame --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・347テスト・263ページビルド・261 URL/225比較対象HTML検査を通過。ブラウザ目視は未完了です。前回は利用上限による自動承認レビュー拒否、2026-10-07再開時は開発サーバー停止による接続エラー後、エラーページの操作がURLポリシーで拒否されました。開発サーバーを4322で再起動しましたが、通常/390px表示を確認済みとは記録しません。内部注記18件追加で612件、未対応旧履歴92項目、未表示フィールド29ページ。次はName・AuthorNameです。

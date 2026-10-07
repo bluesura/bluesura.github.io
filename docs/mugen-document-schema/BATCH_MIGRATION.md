@@ -1459,3 +1459,25 @@ npm run mugen:check-html
 ~~~
 
 258 JSON・347テスト・263ページビルド・261 URL/225比較対象HTML検査を通過。ブラウザ目視は未完了です。前回は利用上限による自動承認レビュー拒否、2026-10-07再開時は開発サーバー停止による接続エラー後、エラーページの操作がURLポリシーで拒否されました。開発サーバーを4322で再起動しましたが、通常/390px表示を確認済みとは記録しません。内部注記18件追加で612件、未対応旧履歴92項目、未表示フィールド29ページ。次はName・AuthorNameです。
+
+## 2026-10-07：name-comparisons-01
+
+Name / AuthorNameの2件で累計216件（主要・補助16件＋75バッチ200件）、対象内の残り18件です。移行前JSON・HTML・抽出結果を tests/mugen/batches/name-comparisons-01/ に保存しました。
+
+- 両者をold_style構文・整数1/0へ構造化。必須の= / !=演算子とダブルクォート付き文字列をspecial_syntaxの引数として定義し、単独の文字列取得関数や数値式とは区別しました。Nameの内部名とdisplayname/フォルダ名、AuthorNameの作者名を分離。旧全文・メタ・構文・図・例・引用・関連リンクを保持し、スキーマ/レジストリ/レンダラー/CSSは変更していません。
+- 不在リダイレクトのbottomは正常な不一致0と分け、1.0/1.1の公式記載に範囲を限定しました。公開例はNumEnemyを同じTrigger1の先頭で確認してからEnemyへ参照を移し、作者名と内部名の併用も同じ参照先でAND条件にします。Enemyがチーム全員を走査する例ではなく、対象選択の再現テストでもありません。
+- AuthorNameの!=構文解析修正を保存済み公式1.0 RC4履歴と照合し、既存のmugen-1.0-rc4へ対応付けました。Nameにはその修正を転用していません。[CHAOS AuthorName](https://w.atwiki.jp/mugencns/pages/89.html)は!=の利用不可の疑い、括弧付き一致条件の否定、空文字への!=不可と2バイト文字の環境差を記録します。公式の演算子表と1.x履歴との資料差はconflictingな内部研究へ保存し、全ビルドで!=無効としません。ChangStateという研究例の誤記もコピーしていません。
+- Nameの既存NoAutoTurn例は有効な条件/パラメーターとして公開を維持。AuthorNameの旧VarSet例はVar = 0が公式v/valueまたはvar(n)代替形式と異なり、相手存在の確認とリセットもありません。コード・説明をJSONへ残して内部化し、変数用途を推定して書き換えていません。共有図も内部へ保存しました。
+- 旧2002引用の#Name/#AuthorNameは実際のName(*,***)/AuthorName(*,***)アンカーと違うため、旧引用を内部保持して有効なリンクを追加。初導入はnull。CNSの大小文字の基本説明、[CHAOS DEF](https://w.atwiki.jp/mugencns/pages/31.html)のname/displayname/authorと2バイト文字注意を照合し、文字コード・空白/空文字/長さ・Helper.Nameと作者名・カスタムステートは未実測として内部へ残しました。CHAOS Name個別本文は取得できませんでした。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch name-comparisons-01
+npm run mugen:batch -- --batch name-comparisons-01 --target Name --target AuthorName
+npm run mugen:batch -- --batch name-comparisons-01 --target Name --target AuthorName --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~
+
+258 JSON・352テスト・263ページビルド・261 URL/227比較対象HTML検査を通過。テストは原文保存・特殊構文・存在確認行の順序・与えた文字列の一致/否定/ANDを検査し、MUGENの大小文字比較/対象選択/文字コード/bottomを再現しません。前段のブラウザURLポリシー拒否が未解消のため、今回の通常/390px目視は未実施。内部注記8件追加で620件、未対応旧履歴92項目、未表示フィールド29ページ。次はP1Name・P2Name・P3Name・P4Nameです。

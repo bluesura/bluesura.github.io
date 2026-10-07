@@ -10,19 +10,22 @@
     "version": "2002.04.14",
     "update": "2026.01.12",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "AuthorName",
   "category": "trigger",
   "trigger": "AuthorName",
   "description": "<p><code>AuthorName</code> は、評価対象キャラクターの <code>.def</code>（<code>[Info]</code> セクション）に記載された <code>author</code> と、指定した文字列を比較し、一致すれば <code>1</code>、一致しなければ <code>0</code> を返します。</p><p>本トリガーは「比較式として使うトリガー」であり、単体で値を返す形式ではなく、<code>=</code> / <code>!=</code> の比較としてのみ記述できます。</p><p>リダイレクト（例: <code>Enemy, AuthorName = \"Suika\"</code>）と併用して他プレイヤーの作者名を判定できます。リダイレクト先が存在しない場合は <code>bottom</code> になり、式は成立しません。</p>",
   "images": [
-      {
+    {
       "src": "mugen_name_authorname_logic_flow.png",
       "width": "640",
       "height": "480",
-      "alt": "MUGENのAuthorNameおよびName/PxNameの判定仕様図。P1〜P4の各対象に対し、.defファイル内の記述とスクリプト記述を比較演算子(=, !=)で照合し、真(1)か偽(0)を返すフローを解説しています。"
-      }
+      "alt": "MUGENのAuthorNameおよびName/PxNameの判定仕様図。P1〜P4の各対象に対し、.defファイル内の記述とスクリプト記述を比較演算子(=, !=)で照合し、真(1)か偽(0)を返すフローを解説しています。",
+      "visibility": "internal"
+    }
   ],
   "syntax": [
     "AuthorName = \"作者名\"",
@@ -45,13 +48,46 @@
         "Trigger1 = Enemy, AuthorName = \"Suika\"",
         "Var = 0",
         "Value = 1"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "AuthorNameの一致条件",
+      "description": "<p>.defに設定した名前と比較します。文字列をダブルクォートで囲んでください。</p>",
+      "code": [
+        "Trigger1 = AuthorName = \"Suika\""
+      ]
+    },
+    {
+      "title": "AuthorNameの一致条件を否定する",
+      "description": "<p>比較節全体を括弧で囲んで否定します。参照先が存在しない場合のbottomを正常な不一致に変換する条件ではありません。</p>",
+      "code": [
+        "Trigger1 = !(AuthorName = \"Suika\")"
+      ]
+    },
+    {
+      "title": "存在する相手の作者名を調べる",
+      "description": "<p>同じTrigger1の最初の行で相手の存在を確認し、次の行でEnemyへリダイレクトします。Enemyが指す対象を評価し、チーム全員を走査する例ではありません。</p>",
+      "code": [
+        "Trigger1 = NumEnemy > 0",
+        "Trigger1 = Enemy, AuthorName = \"Suika\""
+      ]
+    },
+    {
+      "title": "同じ相手の内部名と作者名を照合する",
+      "description": "<p>内部名と作者名を同じEnemy参照で調べます。同じTrigger1なので、存在確認と両方の比較がすべて成立した場合の条件です。</p>",
+      "code": [
+        "Trigger1 = NumEnemy > 0",
+        "Trigger1 = Enemy, Name = \"Kumquat\"",
+        "Trigger1 = Enemy, AuthorName = \"Suika\""
       ]
     }
   ],
   "quote": [
     {
-        "title": "AuthorName - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AuthorName"
+      "title": "AuthorName - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AuthorName",
+      "visibility": "internal"
     },
     {
       "title": "AuthorName - Trigger Reference (MUGEN 1.0)",
@@ -64,6 +100,344 @@
     {
       "title": "Trigger Reference - About Triggers（old-style / bottom）",
       "url": "https://www.elecbyte.com/mugendocs-11b1/trigger.html#about-triggers"
+    },
+    {
+      "id": "authorname-local-2002",
+      "title": "AuthorName — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#AuthorName(*,***)",
+      "source_type": "official_document"
+    },
+    {
+      "id": "authorname-local-1.0",
+      "title": "AuthorName — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#authorname",
+      "source_type": "official_document"
+    },
+    {
+      "id": "authorname-local-1.1",
+      "title": "AuthorName — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#authorname",
+      "source_type": "official_document"
+    },
+    {
+      "id": "authorname-legacy",
+      "title": "移行前の本文・構文・図・使用例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/c44b3302499b3f75a06eb07c8d9c3436749ca88a/src/content/triggers/AuthorName.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "authorname-about-1.0",
+      "title": "旧式構文と不在リダイレクト — Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#about-triggers",
+      "source_type": "official_document"
+    },
+    {
+      "id": "authorname-about-1.1",
+      "title": "旧式構文と不在リダイレクト — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#about-triggers",
+      "source_type": "official_document"
+    },
+    {
+      "id": "authorname-warnings-1.1",
+      "title": "参照先の存在確認を先に評価 — CNS 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#avoiding-warnings",
+      "source_type": "official_document"
+    },
+    {
+      "id": "authorname-expressions-1.1",
+      "title": "特殊構文は比較節全体を1単位として評価 — CNS 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#expressions",
+      "source_type": "official_document",
+      "visibility": "internal"
+    },
+    {
+      "id": "authorname-introduction-1.1",
+      "title": "CNSの大文字小文字の基本説明 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/cns.html#introduction",
+      "source_type": "official_document",
+      "visibility": "internal"
+    },
+    {
+      "id": "authorname-def-tutorial",
+      "title": "DEFのname/displayname/author — Elecbyte 1.1b1チュートリアル",
+      "url": "/MUGEN/document/Official/1.1b1/tutorial1.html",
+      "source_type": "official_document",
+      "visibility": "internal"
+    },
+    {
+      "id": "authorname-chaos-def",
+      "title": "DEFの名前と作者名・文字コードの注意 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/31.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "authorname-chaos-author",
+      "title": "AuthorNameの比較・Win向け!=研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/89.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "authorname-helper-1.1",
+      "title": "Helperの名前指定 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#helper",
+      "source_type": "official_document",
+      "visibility": "internal"
+    },
+    {
+      "id": "authorname-rc4",
+      "title": "AuthorName != の構文解析修正 — Elecbyte 1.0 RC4",
+      "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc4",
+      "source_type": "official_history"
+    },
+    {
+      "id": "authorname-varset-1.1",
+      "title": "VarSetのv/valueとvar(n)代替形式 — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#varset",
+      "source_type": "official_document",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "syntax_kind": "old_style",
+  "return_type": [
+    "int"
+  ],
+  "arguments": [
+    {
+      "name": "[oper]",
+      "type": [
+        "演算子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。他の比較演算子は使えません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "authorname-local-2002",
+          "authorname-local-1.0",
+          "authorname-local-1.1"
+        ],
+        "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+      }
+    },
+    {
+      "name": "\"name\"",
+      "type": [
+        "string"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>照合する作者名をダブルクォートで囲んで指定します。文字列リテラルを使う特殊構文で、数値式や文字列を返す関数の引数ではありません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "authorname-local-2002",
+          "authorname-local-1.0",
+          "authorname-local-1.1"
+        ],
+        "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+      }
+    }
+  ],
+  "documentation": {
+    "description": "<p>プレイヤーの作者名（.defの[Info]にあるauthor）を、指定した文字列と比較します。<code>=</code>は一致、<code>!=</code>は不一致のときに<code>1</code>、条件に合わないときに<code>0</code>を整数で返します。</p><p><code>AuthorName = \"Suika\"</code>のように、比較まで含めて1つの条件として記述します。単独で文字列値を取り出す関数ではありません。</p><p>作者名は内部名Nameとは別の情報です。同名のキャラクターを作者名でも絞りたい場合は、NameとAuthorNameを同じ対象に対して併用できます。</p>",
+    "page_category": "作者名を文字列と比較",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "authorname-local-2002",
+        "authorname-local-1.0",
+        "authorname-local-1.1"
+      ],
+      "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p>リダイレクト先が存在しない場合は、通常の不一致を表す0とは別にbottomが返ります。相手を調べる場合はNumEnemyで存在を先に確認してからEnemyへ参照を移します。否定条件だけでは不在の相手を扱えません。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "authorname-about-1.0",
+          "authorname-about-1.1",
+          "authorname-warnings-1.1"
+        ],
+        "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>共有図はName/AuthorName/P1〜P4の対象と.DEF照合をまとめている。図src/alt/寸法を保持してinternalへ。Nameの実行者/リダイレクト、PxNameの相手/パートナーの選択、Helper.Nameの変更と作者名、カスタムステートの所有者は一律に扱わず、Helper/Root/相手の実測は未実施。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "authorname-legacy",
+          "authorname-helper-1.1",
+          "authorname-local-2002",
+          "authorname-local-1.0",
+          "authorname-local-1.1"
+        ],
+        "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CNS公式は大文字小文字を概ね区別しないこととCommandの例外を説明するが、Name/AuthorNameの各項目は引用文字列の文字コード・バイト/Unicode・全角・空白・長さ/空文字を詳細に定義しない。CHAOS AuthorNameは完全な文字列照合と2バイト文字で環境差が出る可能性、DEF頁は2バイト文字を避ける注意を記録する。留保を保持し、大小文字や文字コードの全ビルド共通保証・部分一致/正規表現・未知の上限を推定しない。CHAOS Name個別本文は取得失敗。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "authorname-introduction-1.1",
+          "authorname-chaos-author",
+          "authorname-chaos-def",
+          "authorname-local-2002",
+          "authorname-local-1.0",
+          "authorname-local-1.1"
+        ],
+        "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧2002.04.14引用は#Name/#AuthorNameを指すが、保存済み公式の実際のアンカーはName(*,***)/AuthorName(*,***)。元引用を保持してinternalにし、有効なリンクを追加した。旧page.version=2002.04.14から初導入ビルドを推定せずintroduced_inはnull。資料確認をruntime_testとせず、Win/DOS/1.xのビルド・互換設定の実機照合は未実施。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "authorname-legacy",
+          "authorname-local-2002",
+          "authorname-local-1.0",
+          "authorname-local-1.1"
+        ],
+        "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+      }
+    },
+    {
+      "kind": "version_change",
+      "content": "<p>AuthorNameの<code>!=</code>が誤って構文解析される不具合を、MUGEN 1.0 RC4で修正しました。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0-rc4"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "authorname-rc4"
+        ],
+        "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+      },
+      "change": "fixed",
+      "at": "mugen-1.0-rc4"
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>公式3世代は=と!=を許可するが、CHAOS AuthorNameは!=を使えない可能性と!(AuthorName=\"...\")による否定、空文字への!=不可を報告する。1.0 RC4には!=解析修正が明記される。Win向け研究と仕様表・1.x履歴の資料差を保持し、旧ビルドの正確な境界・空文字・互換プロファイルを未実測のまま全環境で!=無効とはしない。CHAOS例のChangState表記もそのまま研究として認識し、誤記をコピーした公開例は作らない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "official_history",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "authorname-local-2002",
+          "authorname-local-1.0",
+          "authorname-local-1.1",
+          "authorname-chaos-author",
+          "authorname-rc4"
+        ],
+        "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧作者フラグ例はVarSetでVar = 0とValue = 1を指定する。公式のv/valueまたはvar(n)=値という形式とは異なる。相手存在の事前確認とフラグのリセットも無く、前ラウンド/前相手の一致を保持し得る。旧コード・説明を原位置へinternal保存し、変数用途/初期化を推測した書き換えは行わない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "authorname-legacy",
+          "authorname-varset-1.1",
+          "authorname-warnings-1.1"
+        ],
+        "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "authorname-local-2002",
+      "authorname-local-1.0",
+      "authorname-local-1.1"
+    ],
+    "comment": "2026-10-07: 保存済み公式3世代・CNS/RC4履歴・CHAOS AuthorName/Def本文を照合。CHAOS Name個別本文は取得失敗。資料確認でありMUGEN実機検証ではない。条件テストは与えた文字列の一致/不一致とANDのみで、エンジンの照合/対象選択/文字コードを再現しない。"
+  }
 }

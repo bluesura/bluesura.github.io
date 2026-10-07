@@ -1567,3 +1567,24 @@ npm run mugen:test
 npm run build
 npm run mugen:check-html
 ~~~
+
+## 2026-10-08：hitdef-attribute-01
+
+HitDefAttrの1件で累計228件（80バッチ212件＋主要・補助16件）、残り6件。必須演算子・引用しない姿勢/攻撃種別と整数戻り値を構造化し、旧oper省略可を原位置に保持。RC4の!=解析修正とRC5の評価修正を分離。旧一致例2件は公開維持、旧否定例は内部に残して同じコードを1.x適用/非攻撃時の留保付きで追加。公式の部分集合とCHAOSの共通部分/空属性/更新順/Projectile研究、個別項目の!=疑問符と図は内部保持。初導入null、実機未検証。379テスト・263ページビルド・261 URL/239比較対象HTMLと通常/390px表示を確認。スキーマ/レジストリ/レンダラー/CSS変更なし。内部注記661件、未対応旧履歴88項目、未表示フィールド29ページ。
+
+移行前JSON・HTML・抽出結果は tests/mugen/batches/hitdef-attribute-01/ に保存しました。
+
+- 全原文・メタ・構文・引数の型/省略分類/候補表・図・コード例・履歴・引用を保存。arguments[].legacy_indexで3引数へ対応し、operを必須、value1/value2を引用しない専用属性構文へ公開訂正。HitDef自身の属性と受けた攻撃・StateType単独を分離しています。
+- 保存済み公式1.0履歴に!=解析修正（RC4）と評価修正（RC5）が個別にあり、旧履歴へlegacy_index付きで対応。初導入ビルドを旧2002日付から推定していません。否定を攻撃中の保証に使わないことを1.0/1.1の公開文と例に記載しました。
+- [CHAOS属性頁](https://w.atwiki.jp/mugencns/pages/23.html)と[会議室](https://w.atwiki.jp/mugencns/pages/85.html)は両側の共通部分での反応・空指定・属性更新後の補完・重なり/停止/1F差を報告。公式の部分集合記述との複数属性モデル差をconflictingの内部注記へ保持しました。個別HitDefAttr頁の直接取得は失敗し、検索本文の!=使用不可？だけを未検証として記録。Wildcard/PとProjectile検知の範囲を推測で広げていません。
+- 通常幅で必須演算子表、390pxで修正履歴・有効な一致例と適用範囲を補った否定例を確認しました。テストは保存と公開範囲/構文/履歴の対応を検査し、実機の属性集合判定や更新順を模擬しません。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch hitdef-attribute-01
+npm run mugen:batch -- --batch hitdef-attribute-01 --target HitDefAttr
+npm run mugen:batch -- --batch hitdef-attribute-01 --target HitDefAttr --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~

@@ -10,7 +10,9 @@
     "version": "2002.04.14",
     "update": "2025.12.25",
     "type": "document",
-    "level": "3"
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
   },
   "title": "HitDefAttr",
   "category": "trigger",
@@ -18,10 +20,11 @@
   "description": "<p><code>HitDefAttr</code> は、プレイヤーの「現在アクティブな <code>HitDef</code>」の <code>attr</code>（攻撃属性）を判定するトリガーです。プレイヤーが攻撃中でない場合は、どの条件にも一致しません。</p><p>HitDef の <code>attr</code> が <code>arg1, arg2</code> の形で与えられるとき、このトリガーは <code>arg1</code> が <code>value1</code> の部分集合、かつ <code>arg2</code> が <code>value2</code> の部分集合である場合に真になります。</p><p>主に CMD での「弱技→強技」などの割り込み条件に使用できます。</p><p>戻り値: boolean int（<code>1</code> または <code>0</code>）。</p>",
   "images": [
     {
-        "src": "mugen_hitdefattr_flow.png",
-        "width": "640",
-        "height": "480",
-        "alt": "HitDefAttrトリガーの仕組みの図解。現在の攻撃属性（HitDefのattr）が、指定した姿勢（value1）と攻撃種別（value2）の両方の条件を満たしているかを判定するフローを示しています。左側には「現在の攻撃」、中央には「姿勢（S/C/A）」と「攻撃種別（NA/SA/HA）」の判定ボックスがあり、両方が一致（AND条件）すると「判定結果：真(1)」となり、右側の「弱技から強技へのキャンセル」が許可される様子をグラフィカルに説明しています。"
+      "src": "mugen_hitdefattr_flow.png",
+      "width": "640",
+      "height": "480",
+      "alt": "HitDefAttrトリガーの仕組みの図解。現在の攻撃属性（HitDefのattr）が、指定した姿勢（value1）と攻撃種別（value2）の両方の条件を満たしているかを判定するフローを示しています。左側には「現在の攻撃」、中央には「姿勢（S/C/A）」と「攻撃種別（NA/SA/HA）」の判定ボックスがあり、両方が一致（AND条件）すると「判定結果：真(1)」となり、右側の「弱技から強技へのキャンセル」が許可される様子をグラフィカルに説明しています。",
+      "visibility": "internal"
     }
   ],
   "syntax": [
@@ -151,13 +154,22 @@
       "description": "<p>「空中の通常/必殺/超必殺攻撃（<code>A</code> かつ <code>NA/SA/HA</code>）」<b>以外</b>のときに真になります。</p>",
       "code": [
         "trigger1 = HitDefAttr != A, NA, SA, HA"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "指定属性の一致条件を否定する（MUGEN 1.0 / 1.1）",
+      "description": "<p>公式1.0/1.1の否定条件です。空中の通常・必殺・超必殺攻撃に一致しなければ成立します。攻撃中でない場合も一致条件の否定に含まれるため、攻撃をしていることの確認にはなりません。旧ビルドの修正履歴も確認してください。</p>",
+      "code": [
+        "trigger1 = HitDefAttr != A, NA, SA, HA"
       ]
     }
   ],
   "quote": [
     {
-        "title": "HitDefAttr - Trigger Reference(version 2002.04.14)",
-        "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitDefAttr"
+      "title": "HitDefAttr - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitDefAttr",
+      "visibility": "internal"
     },
     {
       "title": "HitDefAttr - Trigger Reference (MUGEN 1.0)",
@@ -170,6 +182,289 @@
     {
       "title": "M.U.G.E.N Update History (HitDefAttr 関連の修正履歴)",
       "url": "https://www.elecbyte.com/mugendocs-11b1/history.html"
+    },
+    {
+      "id": "hitdefattr-local-2002",
+      "title": "HitDefAttr — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#HitDefAttr(*,***)",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitdefattr-local-1.0",
+      "title": "HitDefAttr — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#hitdefattr",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitdefattr-local-1.1",
+      "title": "HitDefAttr — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#hitdefattr",
+      "source_type": "official_document"
+    },
+    {
+      "id": "hitdefattr-rc4",
+      "title": "HitDefAttrの修正 — RC4履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc4",
+      "source_type": "official_history"
+    },
+    {
+      "id": "hitdefattr-rc5",
+      "title": "HitDefAttrの修正 — RC5履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc5",
+      "source_type": "official_history"
+    },
+    {
+      "id": "hitdefattr-legacy",
+      "title": "移行前の本文・引数・図・例・履歴",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/7da0b09c81e5801cd9350f1a01fa11d9b4b5b934/src/content/triggers/HitDefAttr.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitdefattr-chaos-trigger",
+      "title": "HitDefAttr個別項目の!=疑問符 — CHAOS（検索本文）",
+      "url": "https://w.atwiki.jp/mugencns/pages/129.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitdefattr-chaos-attr",
+      "title": "攻撃属性の判定/更新研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/23.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitdefattr-chaos-discussion",
+      "title": "属性の空指定/重なり研究 — CHAOS会議室",
+      "url": "https://w.atwiki.jp/mugencns/pages/85.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "hitdefattr-hitdef-1.1",
+      "title": "HitDefのAttr — Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+      "source_type": "official_document",
+      "visibility": "internal"
     }
-  ]
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "syntax_kind": "old_style",
+  "return_type": [
+    "int"
+  ],
+  "documentation": {
+    "description": "<p>プレイヤーの現在有効なHitDefの攻撃属性を判定します。<code>HitDefAttr = SC, NA, SA</code>は、立ち・しゃがみの通常攻撃または必殺攻撃という条件です。受けた攻撃の情報ではなく、自身のHitDefを調べます。</p><p>姿勢属性と攻撃種別の両方を指定し、属性の比較結果を整数<code>1</code>または<code>0</code>で返します。<code>S/C/A</code>や<code>NA/SA</code>は引用符で囲みません。文字列を取り出す関数でも、StateTypeだけの判定でもありません。</p><p>攻撃中でない場合、一致条件<code>=</code>は成立しません。公式1.0/1.1では<code>!=</code>は一致条件全体の否定と説明されているため、否定条件だけでは攻撃中であることを確認できません。CMDで技の割り込み条件などに使えます。</p>",
+    "page_category": "現在のHitDefの攻撃属性を比較",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "hitdefattr-local-2002",
+        "hitdefattr-local-1.0",
+        "hitdefattr-local-1.1"
+      ],
+      "comment": "2026-10-08: 保存済み公式3世代・RC4/RC5履歴とCHAOS属性/会議室研究を照合。複数属性の集合判定、!=の旧ビルド境界、属性更新のフレーム処理は実機未測定。"
+    }
+  },
+  "arguments": [
+    {
+      "name": "oper",
+      "legacy_index": 0,
+      "type": [
+        "演算子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p><code>=</code>（一致）または<code>!=</code>（不一致）を指定します。省略しません。公式1.0/1.1では<code>!=</code>を一致条件全体の否定と説明します。旧ビルドの修正履歴は下記を参照してください。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitdefattr-local-2002",
+          "hitdefattr-local-1.0",
+          "hitdefattr-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代・RC4/RC5履歴とCHAOS属性/会議室研究を照合。複数属性の集合判定、!=の旧ビルド境界、属性更新のフレーム処理は実機未測定。"
+      }
+    },
+    {
+      "name": "value1",
+      "legacy_index": 1,
+      "type": [
+        "属性指定"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>HitDefの姿勢属性を<code>S</code>（立ち）、<code>C</code>（しゃがみ）、<code>A</code>（空中）から1文字以上指定します。<code>SC</code>のように組み合わせ、引用符で囲みません。現在のStateTypeだけを比較する指定ではありません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitdefattr-local-2002",
+          "hitdefattr-local-1.0",
+          "hitdefattr-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代・RC4/RC5履歴とCHAOS属性/会議室研究を照合。複数属性の集合判定、!=の旧ビルド境界、属性更新のフレーム処理は実機未測定。"
+      }
+    },
+    {
+      "name": "value2",
+      "legacy_index": 2,
+      "type": [
+        "属性指定"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p><code>NA</code>のような2文字の攻撃種別を、<code>NA, SA</code>のようにカンマで区切って指定します。公式の本トリガー欄では1文字目が<code>N/S/H</code>、2文字目が<code>A/T</code>です。引用符で囲みません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "hitdefattr-local-2002",
+          "hitdefattr-local-1.0",
+          "hitdefattr-local-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代・RC4/RC5履歴とCHAOS属性/会議室研究を照合。複数属性の集合判定、!=の旧ビルド境界、属性更新のフレーム処理は実機未測定。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "version_change",
+      "content": "<p>HitDefAttrなどの<code>!=</code>が誤って解析される不具合を修正しました。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "hitdefattr-rc4"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代・RC4/RC5履歴とCHAOS属性/会議室研究を照合。複数属性の集合判定、!=の旧ビルド境界、属性更新のフレーム処理は実機未測定。"
+      },
+      "legacy_index": 0,
+      "change": "fixed",
+      "at": "mugen-1.0-rc4"
+    },
+    {
+      "kind": "version_change",
+      "content": "<p>HitDefAttrとTeamModeが誤って評価される場合の不具合を修正しました。RC4の解析修正とは別の変更です。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "hitdefattr-rc5"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代・RC4/RC5履歴とCHAOS属性/会議室研究を照合。複数属性の集合判定、!=の旧ビルド境界、属性更新のフレーム処理は実機未測定。"
+      },
+      "legacy_index": 1,
+      "change": "fixed",
+      "at": "mugen-1.0-rc5"
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>公式はHitDefのarg1/arg2が指定value1/value2の部分集合であることをAND条件とする。一方CHAOS属性頁/会議室は両側で重なる属性があると反応すると報告し、複数属性では部分集合と共通部分ありの違いが残る。公開例は単一姿勢・単一攻撃種別の一般的なHitDefを想定し、複数属性での判定規則を実測済みとして拡張しない。旧本文の部分集合とフロー図の全説明を保持し、図は内部に置く。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitdefattr-local-2002",
+          "hitdefattr-local-1.0",
+          "hitdefattr-local-1.1",
+          "hitdefattr-chaos-attr",
+          "hitdefattr-chaos-discussion",
+          "hitdefattr-legacy"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代・RC4/RC5履歴とCHAOS属性/会議室研究を照合。複数属性の集合判定、!=の旧ビルド境界、属性更新のフレーム処理は実機未測定。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOS個別項目の検索本文には!=使用不可？と!(Attr=...)推奨、Attr名の書式がある。本文の直接取得は失敗。公式RC4/RC5修正と1.0/1.1の否定同値を区別し、Win/DOS/各RCの実際の解析/評価・非攻撃時の!=やリダイレクト不在bottomは未測定。旧否定例のコードと説明は保持し、適用範囲を明示した同じ条件例を公開に追加する。page.versionから初導入を推定しない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "official_history",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "hitdefattr-local-2002",
+          "hitdefattr-local-1.0",
+          "hitdefattr-local-1.1",
+          "hitdefattr-chaos-trigger",
+          "hitdefattr-rc4",
+          "hitdefattr-rc5",
+          "hitdefattr-legacy"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代・RC4/RC5履歴とCHAOS属性/会議室研究を照合。複数属性の集合判定、!=の旧ビルド境界、属性更新のフレーム処理は実機未測定。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>CHAOS属性/会議室は姿勢属性の空指定、攻撃判定とくらい判定の重なり後のStateTypeへの更新、NotHitByで非命中でも起きる補完、Pause/SuperPause/UnHittableと1フレーム差を報告する。会議室の補完に反応しない？と後の本文の更新後検知を履歴込みで保持。Projectileとの非対応、AA/AT/APなど公式欄未列挙の属性指定、Helper/カスタムステート・消去/再定義時期も未実測で、Pを指定すると全Projectileを検知するとは書かない。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation",
+          "official_document"
+        ],
+        "source_refs": [
+          "hitdefattr-chaos-attr",
+          "hitdefattr-chaos-discussion",
+          "hitdefattr-hitdef-1.1"
+        ],
+        "comment": "2026-10-08: 保存済み公式3世代・RC4/RC5履歴とCHAOS属性/会議室研究を照合。複数属性の集合判定、!=の旧ビルド境界、属性更新のフレーム処理は実機未測定。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "hitdefattr-local-2002",
+      "hitdefattr-local-1.0",
+      "hitdefattr-local-1.1"
+    ],
+    "comment": "2026-10-08: 保存済み公式3世代・RC4/RC5履歴とCHAOS属性/会議室研究を照合。複数属性の集合判定、!=の旧ビルド境界、属性更新のフレーム処理は実機未測定。"
+  }
 }

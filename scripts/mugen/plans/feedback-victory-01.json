@@ -1,0 +1,1040 @@
+{
+  "id": "feedback-victory-01",
+  "reviewed_on": "2026-10-09",
+  "description": "ForceFeedbackの資料上の未実装と旧式定数指定、VictoryQuoteのRC1追加・番号選択/勝利画面設定を原文非破壊で整理。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "ForceFeedback",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "forcefeedback-local-1.0",
+            "title": "ForceFeedback — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#forcefeedback",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "forcefeedback-local-1.1",
+            "title": "ForceFeedback — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#forcefeedback",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "forcefeedback-legacy",
+            "title": "移行前の本文・引数・例・図・履歴",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/a0f37ef62067ef2d339bf2c17d4174e567dc79bb/src/content/state-controllers/ForceFeedback.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "forcefeedback-local-2002",
+            "title": "ForceFeedback — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ForceFeedback",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "forcefeedback-common-cns",
+            "title": "配布common1.cnsの振動指定（固定ミラー）",
+            "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/common1.cns",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "forcefeedback-chaos",
+            "title": "ForceFeedbackの機器対応/定数の留保 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/229.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>対応する入力機器へ振動を指定する、旧来のステートコントローラーです。保存済みのMUGEN 1.0公式資料は、このコントローラーが1.0では未実装と明記しています。廃止されたという推定と、実装されていないという説明を区別します。</p><p>以下は資料に残る設定項目です。必須項目はなく、数値の指定は算術式を受け付けない定数指定です。common1.cnsに記述が残っていても、その実行環境で実際に振動することの確認にはなりません。</p>",
+            "page_category": "旧来のゲームパッド振動指定",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "forcefeedback-local-2002",
+                "forcefeedback-local-1.0",
+                "forcefeedback-local-1.1"
+              ],
+              "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "振動パターン"
+            ],
+            "description": "<p>資料の指定はsine（Dual Shockの大きいモーター）、square（小さいモーター）、sinesquare（両方）、off（振動の停止）です。配布common1.cnsの例は引用符なしのwaveform = square等を使います。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "forcefeedback-local-2002",
+                "forcefeedback-local-1.0",
+                "forcefeedback-local-1.1"
+              ],
+              "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+            },
+            "possible_value": [
+              [
+                "振動パターン",
+                "資料上の効果"
+              ],
+              [
+                "sine",
+                "Dual Shockの大きいモーター"
+              ],
+              [
+                "square",
+                "Dual Shockの小さいモーター"
+              ],
+              [
+                "sinesquare",
+                "両方のモーター"
+              ],
+              [
+                "off",
+                "現在の振動を停止"
+              ]
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "sine（公式省略値。引用符付き指定の扱いは未検証）",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "forcefeedback-local-2002",
+                  "forcefeedback-local-1.0",
+                  "forcefeedback-local-1.1",
+                  "forcefeedback-common-cns"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "持続フレーム数"
+            ],
+            "description": "<p>持続時間をフレーム数の整数定数で指定します。省略時は60です。Timeトリガーなどの式は指定しません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "forcefeedback-local-2002",
+                "forcefeedback-local-1.0",
+                "forcefeedback-local-1.1"
+              ],
+              "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "constant_only"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": 60,
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "forcefeedback-local-2002",
+                  "forcefeedback-local-1.0",
+                  "forcefeedback-local-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "開始振幅",
+              "一次係数",
+              "二次係数",
+              "三次係数"
+            ],
+            "description": "<p>開始振幅を整数定数、d1/d2/d3を小数定数で指定します。資料の振幅は0〜255、計算は<code>start + d1*t + d2*t**2 + d3*t**3</code>です。tは振動開始からの経過フレーム数で、係数にCNSの式を指定する意味ではありません。省略時は128, 0, 0, 0です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "forcefeedback-local-2002",
+                "forcefeedback-local-1.0",
+                "forcefeedback-local-1.1"
+              ],
+              "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "expression_policy"
+          ],
+          "value": "constant_only"
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "128, 0, 0, 0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "forcefeedback-local-2002",
+                  "forcefeedback-local-1.0",
+                  "forcefeedback-local-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "開始振動数",
+              "一次係数",
+              "二次係数",
+              "三次係数"
+            ],
+            "description": "<p>開始振動数を整数定数、d1/d2/d3を小数定数で指定する、資料上の項目です。資料では<code>start + d1*t + d2*t**2 + d3*t**3</code>の計算と128, 0, 0, 0の省略値を示しますが、同時にFreqは完全に無視されると明記しています。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "forcefeedback-local-2002",
+                "forcefeedback-local-1.0",
+                "forcefeedback-local-1.1"
+              ],
+              "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "expression_policy"
+          ],
+          "value": "constant_only"
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "128, 0, 0, 0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "forcefeedback-local-2002",
+                  "forcefeedback-local-1.0",
+                  "forcefeedback-local-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "振動するパッドの指定"
+            ],
+            "description": "<p>資料では1でP1のパッド、0でP2のパッドを指定します。省略時は1、真偽の定数指定です。現代のパッドやHelperでの対応を保証する指定ではありません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "forcefeedback-local-2002",
+                "forcefeedback-local-1.0",
+                "forcefeedback-local-1.1"
+              ],
+              "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "expression_policy"
+          ],
+          "value": "constant_only"
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": 1,
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "forcefeedback-local-2002",
+                  "forcefeedback-local-1.0",
+                  "forcefeedback-local-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "comment": "旧?を保持し順序を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持。"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "limitation",
+              "content": "<p>MUGEN 1.0の公式資料では未実装とされています。旧形式の設定情報を残していますが、1.0でゲームパッドが振動する機能として扱わないでください。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "forcefeedback-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧廃止されています。(多分)を原位置に残し、公式1.0のnot implementedと区別して内部対応。1.1b1資料にも1.0未実装の同じ文が残るが、1.1固有の対応状況・削除ビルドやパーサー拒否をここから推定しない。2002公式のPlaystation Dual Shockネイティブ対応、CHAOSの対応不明・Waveform必須表記と公式任意の差、旧引用符付き波形省略値と配布例の引用なし表記を留保付きで保持。どの機器/ドライバー/OSで作動するか未測定。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "forcefeedback-legacy",
+                  "forcefeedback-chaos",
+                  "forcefeedback-local-2002",
+                  "forcefeedback-local-1.0",
+                  "forcefeedback-local-1.1",
+                  "forcefeedback-common-cns"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>Freq無視と振幅/振動数の0..255は資料記載。各係数の上限/負数/丸め/補正、Timeの0/負数/終了境界、P1/P2と入力デバイス/Helperの対応は実機未測定。common1.cnsにsinesquare/ampl = 110,-1,-.3等が残る事実と実装の作動を区別する。旧Timeの60フレーム=1秒という説明、旧?を含む処理順、波形の旧効果?を保存する。</p>",
+              "environment": {
+                "engine": "mugen"
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "forcefeedback-legacy",
+                  "forcefeedback-common-cns",
+                  "forcefeedback-local-2002",
+                  "forcefeedback-local-1.0",
+                  "forcefeedback-local-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "forcefeedback-local-2002",
+              "forcefeedback-local-1.0",
+              "forcefeedback-local-1.1"
+            ],
+            "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+          }
+        }
+      ],
+      "remaining": [
+        "実機/互換設定・対応機器・画面表示・欠番や境界は未測定。原文と旧例/図/読み込み順を保持。"
+      ]
+    },
+    {
+      "collection": "state-controllers",
+      "name": "VictoryQuote",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "victoryquote-local-1.0",
+            "title": "VictoryQuote — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#victoryquote",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "victoryquote-local-1.1",
+            "title": "VictoryQuote — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#victoryquote",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "victoryquote-legacy",
+            "title": "移行前の本文・引数・例・図・履歴",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/a0f37ef62067ef2d339bf2c17d4174e567dc79bb/src/content/state-controllers/VictoryQuote.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": "mugen-1.0-rc1"
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0",
+              "mugen-1.1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "victoryquote-rc1",
+            "title": "VictoryQuote追加 — 公式RC1履歴",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc1",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "victoryquote-localization",
+            "title": "言語グループとフォールバック — Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/localization.html#language-mechanism",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "victoryquote-kfm-cns",
+            "title": "配布KFMのQuotesコメントと設定（固定ミラー）",
+            "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/chars/kfm/kfm.cns",
+            "source_type": "source_code"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "victoryquote-system-def",
+            "title": "配布勝利画面の表示設定（固定ミラー）",
+            "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/system.def",
+            "source_type": "source_code"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "victoryquote-newmugen-research",
+            "title": "登録漏れ/旧キャラ/画像に関する研究 — ニコニコMUGENwiki",
+            "url": "https://w.atwiki.jp/niconicomugen/pages/3627.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "images",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>現在の試合の直後にある勝利画面で、勝者が表示するセリフの番号を選択します。実行した場で文字を画面へ描くコントローラーではありません。セリフはキャラクターの定数ファイルの<code>[Quotes]</code>に定義します。</p><p>試合中はいつでも実行できますが、表示へ影響するのは勝者の指定です。Helperが実行しても効果はありません。勝利画面を表示する設定は、モチーフのsystem.def側で行います。</p>",
+            "page_category": "次の勝利画面のセリフ番号を選択",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "victoryquote-local-1.0",
+                "victoryquote-local-1.1"
+              ],
+              "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "セリフ番号（0〜99）"
+            ],
+            "description": "<p>選択するセリフの番号を整数または式で指定します。番号の範囲は0〜99です。範囲外の番号を指定した場合はランダム選択となり、省略値の-1もこの扱いです。有効な番号の例として3は<code>victory3</code>を指定します。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "victoryquote-local-1.0",
+                "victoryquote-local-1.1"
+              ],
+              "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": -1,
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "victoryquote-local-1.0",
+                  "victoryquote-local-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "モチーフで勝利画面を有効にする（system.def）",
+            "description": "<p>既存の[Victory Screen]へ設定します。セリフの選択とは別の画面設定です。表示モードやフォント・画像の設定もモチーフ側で確認してください。</p>",
+            "code": [
+              "[Victory Screen]",
+              "enabled = 1"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "日本語を選ぶ（mugen.cfg）",
+            "description": "<p>[ja.Quotes]と対応フォントを用意したうえで、[Config]の言語設定を指定します。キャラクターのCNSへ書く設定ではありません。</p>",
+            "code": [
+              "[Config]",
+              "Language = \"ja\""
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "相手の名前に合わせてvictory3を選ぶ",
+            "description": "<p>既存の勝利ステートで使う例です。試合の勝者・本体から、存在する相手の内部名を比較します。表示する言語グループにvictory3を定義しておいてください。番号3は配列の3番目という説明ではなく、victory3の番号です。</p>",
+            "code": [
+              "[State 180, Victory quote]",
+              "Type = VictoryQuote",
+              "TriggerAll = !IsHelper",
+              "TriggerAll = Win",
+              "TriggerAll = NumEnemy > 0",
+              "Trigger1 = P2Name = \"Kung Fu Man\"",
+              "Value = 3"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持。"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "version_change",
+              "content": "<p>MUGEN 1.0 RC1でVictoryQuoteと[Quotes]が追加されました。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "victoryquote-rc1"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              },
+              "change": "added",
+              "at": "mugen-1.0-rc1"
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>[Quotes]は既定の英語セリフ、[ja.Quotes]は日本語用のグループです。mugen.cfgの[Config] Language = \"ja\"で日本語を選び、対応する言語グループがなければ既定のグループへフォールバックします。日本語を保存するファイルはUTF-8を使い、勝利画面側にも非ASCII文字を表示できるTrueTypeフォントを設定します。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "victoryquote-localization",
+                  "victoryquote-kfm-cns"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧9000,2必須/LocalCoord320,240で120×115左上という固定寸法の説明と図は保持して内部へ。公式RC1履歴は9000,2を使用できるとし、配布system.defはp1.spr/p1.offset/p1.scale/p1.windowを設定する。画像寸法・切抜き・スケールはモチーフ設定に依存し、全勝利画面で固定必須とは判断しない。既定enabled=1の旧コメントは配布設定の実値とグローバル省略値を区別し、元例を保持して公開例から除く。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_history",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "victoryquote-legacy",
+                  "victoryquote-system-def",
+                  "victoryquote-rc1"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧有効な番号の0..99と配布KFMのvictory1開始例、ニコニコwikiのvictory0欠番時のWinner!報告、登録漏れ・範囲外・言語グループの欠番を同一視しない。配布system.defのwinquote.text = \"Winner!\"は画面側の既定表示。未定義の範囲内番号、Quotesなし/部分翻訳・ランダム抽選対象・再指定/試合境界/同時勝者と非表示モードは未測定。旧WinキャラへのQuotes追加報告はコントローラーの旧版対応を意味しない。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              },
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "victoryquote-legacy",
+                  "victoryquote-kfm-cns",
+                  "victoryquote-system-def",
+                  "victoryquote-newmugen-research",
+                  "victoryquote-local-1.0",
+                  "victoryquote-local-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "victoryquote-local-1.0",
+              "victoryquote-local-1.1"
+            ],
+            "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+          }
+        }
+      ],
+      "remaining": [
+        "実機/互換設定・対応機器・画面表示・欠番や境界は未測定。原文と旧例/図/読み込み順を保持。"
+      ]
+    }
+  ]
+}

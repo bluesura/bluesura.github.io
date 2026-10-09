@@ -1,0 +1,79 @@
+{
+  "text": "Type = VictoryQuote 演出 > 勝利セリフの選択・表示 | 実装されたバージョン: 2011.01.18 | 対象: 画面 パラメーター コピペ用 使用例 読み込み順 引用記事 ”M.U.G.E.N 1.0”から追加されたステートコントローラで、勝利画面に表示するプレイヤーのセリフを選択します。”VictoryQuote”はプレイヤーの試合中に読み込まれますが、試合後にしか効果がありません。また、ヘルパーで実行しても効果がないです。勝利のセリフは、CNSファイル内の[Quotes]グループに指定します。勝利画面では、 ”9000,2” のスプライトが必要になります。キャラの ”Localcoord” が ”320, 240” の場合、画像の大きさは左上基準で横幅120、高さ115になります。 パラメーター value = セリフの番号 型整数 省略時-1 最小値0 最大値99 使用するセリフの番号を指定します。無効な番号が指定された場合、ランダムに選択されます。 IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 コピペ用パラメーター一覧（省略時の挙動） [State 0, VictoryQuote]Type = VictoryQuoteTrigger1 = 1value = -1IgnoreHitPause = 0Persistent = 1 コードサンプル設定方法; system.def で有無を設定。デフォルトは 1 で、有効になります。[Victory Screen]enabled = 1 .cnsの[Quotes]設定方法; ”[Quotes]”はデフォルトの言語で指定されるセリフです。; 基本的に”[Quotes]”は英語で書かなければいけません。; 各言語ごとにセリフは 100 まで指定出来ます。 (例：victory0 - victory99)[Quotes]victory1 = \"You must defeat Tu Shou to stand a chance.\"victory2 = \"You need a lot of training. Come back in ten years.\"victory3 = \"You look familiar. Did I see you on TV?\"victory4 = \"Your moves are too predictable. You want to learn Kung Fu Palm? It's not for novices.\"victory5 = \"That was a good workout.\"victory6 = \"I want to challenge more skilled fighters.\"victory7 = \"What do you mean my girlfriend is in another temple?\" 別言語の[Quotes]設定方法1; 日本語のセリフを指定するには”[ja.Quotes]”のように書きます。; 別の言語(例： en, es, ja, etc.)を指定する場合; ISO 639-1を参考にして設定してください。(例：中国語の場合”[zh.Quotes]”); それ以降は”[Quotes]”と同じ書き方ですが、ファイルを必ずutf-8で保存してください。[ja.Quotes]victory1 = \"カンフー突き手を破らぬ限り、お前に勝ち目はない！\"victory2 = \"十年早いんだぞ\"victory3 = \"お前は見覚えがあるな。テレビにでも…？\"victory4 = \"お前の動きは見破りやすすぎる。 なに、カンフー突き手が覚えたいんだと？ 素人には無理だぞ\"victory5 = \"ふー。 いい汗だった\"victory6 = \"もっと強い相手に挑戦したい\"victory7 = \"なんだと！彼女はここにもいないと？\" 別言語の[Quotes]設定方法2; mugen.cfg を開いて Language を設定します; language はISO 639-1を参考に指定してください。Language = \"ja\" P2の名前が”Kung Fu Man”の時に、3番目の勝利ゼリフを出す[State ,VictoryQuote]Type = VictoryQuoteTrigger1 = P2Name = \"Kung Fu Man\"value = 3 パラメーターの読み込み順 パラメーター読み込み順 value 1 IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事VictoryQuote - State Controller Reference(version 1.0)VictoryQuote - State Controller Reference(version 1.1)VictoryQuote - 絶対許早苗豆腐VictoryQuote - M.U.G.E.N wikiVictoryQuote - State Controller 公開日:2008.06.05 最終更新日:2013.11.27 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "DefaultParameter",
+    "CodeSample",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "使用例",
+      "href": "#CodeSample"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "ISO 639-1",
+      "href": "http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
+    },
+    {
+      "text": "ISO 639-1",
+      "href": "http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
+    },
+    {
+      "text": "VictoryQuote - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#victoryquote"
+    },
+    {
+      "text": "VictoryQuote - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#victoryquote"
+    },
+    {
+      "text": "VictoryQuote - 絶対許早苗豆腐",
+      "href": "http://yurusanae.blog98.fc2.com/blog-category-41.html"
+    },
+    {
+      "text": "VictoryQuote - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VictoryQuote"
+    },
+    {
+      "text": "VictoryQuote - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VictoryQuote&protocol=http"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/State/VictoryQuote.png"
+  ],
+  "code": [
+    "[State 0, VictoryQuote]",
+    "Type                       = VictoryQuote",
+    "Trigger1                   = 1",
+    "value                      = -1",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

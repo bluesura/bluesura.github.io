@@ -212,7 +212,9 @@ for (const { collection, name, base } of cases) {
     assert.ok(!parameterEntries.some(entry => compactText(findAll(entry, node => node.tagName === 'h3')[0]).startsWith(`${key} =`)), `${name}: internal parameter heading leaked`);
     assert.ok(!rendered.code.some(line => line.replace(/^;\s*/, '').split('=')[0].trim() === key), `${name}: internal parameter copy line leaked`);
     const loading = findAll(document, node => attr(node, 'id') === 'LoadParameter')[0];
-    assert.ok(!findAll(loading, node => node.tagName === 'th').some(node => compactText(node) === key), `${name}: internal parameter loading row leaked`);
+    // Trigger pages have no controller loading-order section.
+    if (source.category === 'state') assert.ok(loading, `${name}: missing controller loading section`);
+    if (loading) assert.ok(!findAll(loading, node => node.tagName === 'th').some(node => compactText(node) === key), `${name}: internal parameter loading row leaked`);
   }
   for (const [index, parameter] of current.parameter.filter(parameter => parameter.parameter).entries()) {
     const requirementVariants = parameter.variants?.filter(variant => variant.parameter_type !== undefined) ?? [];

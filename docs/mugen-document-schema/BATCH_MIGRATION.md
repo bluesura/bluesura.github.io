@@ -1609,3 +1609,24 @@ npm run mugen:test
 npm run build
 npm run mugen:check-html
 ~~~
+
+## gethit-fields-01（2026-10-09）
+
+GetHitVar の1件。累計231件、82バッチ215件＋主要/補助16件、残り3件。
+
+- 旧33項目は別々の位置引数ではありません。すべての旧項目を内部に保持し、唯一の必須識別子param_nameと31候補の戻り値/参照情報の表に整理しました。argumentsは追加した候補表付き項目へlegacy_index=33で対応。旧summary・構文の重複・型・例・引用も保持しています。
+- 公式2002/1.0/1.1のDetailsからisboundを補い、一覧だけのhitid/fall.timeの意味と型は推測しません。2002の非推奨Snap項目xoff/yoff/zoffは公開注記と旧内部詳細に保持し、「謎」を数値型へ置換していません。旧2002リンクは内部に残し、実在アンカーへの引用を追加。
+- 旧非H時一律0とCHAOSの世代別保持、公式hittime減算条件とCHAOSの停止解除後減算は内部でconflicting。配布Commonのslidetime/ctrltimeのTime比較を確認して、減算カウンターと比較閾値を分けました。fall.recovertimeを起き上がりのrecovertimeと分離し、入力や遷移自体の保証を付けません。damageの短期間記録/補正/反映順、回数の持越し、fall速度の型/座標差などは内部へ。
+- 既存公式のyvel例は公開維持。MoveType=Hを明示する速度・hittime < 0・isboundの条件部分を追加。初導入null、実機での保持/減算/精度/処理順は未測定。research/evidenceはHTMLへ出しません。
+- 389テスト・263ページビルド・261 URL/242比較対象HTML、通常幅/390pxの候補表・条件例と内部情報非表示を確認。HTML検査の内部項目チェックがTriggerの存在しない読み込み順節で停止する問題を再現し修正しました。State Controllerの節存在/内部行非表示チェックは維持し、全比較検査が通過。
+- スキーマ/レジストリ/レンダラー/CSS変更なし。内部注記670件、未対応旧履歴87項目、未表示フィールド29ページ。残りはModifyExplod / Projectile / ReversalDefです。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch gethit-fields-01
+npm run mugen:batch -- --batch gethit-fields-01 --target GetHitVar
+npm run mugen:batch -- --batch gethit-fields-01 --target GetHitVar --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~

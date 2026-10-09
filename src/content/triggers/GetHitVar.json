@@ -1,318 +1,799 @@
 {
-    "page": {
-        "title": "MUGEN Trigger",
-        "subtitle": "GetHitVar",
-        "target": "",
-        "category": [
-            "ヒット情報",
-            "被弾した攻撃のHitDef値取得"
-        ],
-        "version": "2002.04.14",
-        "update": "2016.01.17",
-        "type": "document",
-        "level": "3"
+  "page": {
+    "title": "MUGEN Trigger",
+    "subtitle": "GetHitVar",
+    "target": "",
+    "category": [
+      "ヒット情報",
+      "被弾した攻撃のHitDef値取得"
+    ],
+    "version": "2002.04.14",
+    "update": "2016.01.17",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "category": "trigger",
+  "associated_state": [
+    "HitDef"
+  ],
+  "trigger": "GetHitVar",
+  "summary": "<p>攻撃を受けてmovetypeがHのステートにいるとき、相手のHitDefで設定された各値を参照できます。</p>",
+  "syntax": [
+    "GetHitVar(AnimType)",
+    "GetHitVar(GroundType)",
+    "GetHitVar(AirType)",
+    "GetHitVar(Damage)",
+    "GetHitVar(HitShakeTime)",
+    "GetHitVar(HitTime)",
+    "GetHitVar(HitShakeTime)",
+    "GetHitVar(SlideTime)",
+    "GetHitVar(CtrlTime)",
+    "GetHitVar(RecoverTime)",
+    "GetHitVar(HitCount)",
+    "GetHitVar(FallCount)",
+    "GetHitVar(XVel)",
+    "GetHitVar(YVel)",
+    "GetHitVar(YAccel)",
+    "GetHitVar(Fall)",
+    "GetHitVar(Fall.Damage)",
+    "GetHitVar(Fall.XVel)",
+    "GetHitVar(Fall.YVel)",
+    "GetHitVar(Fall.Recover)",
+    "GetHitVar(Fall.RecoverTime)",
+    "GetHitVar(ChainID)",
+    "GetHitVar(Guarded)",
+    "GetHitVar(IsBound)",
+    "GetHitVar(XVelAdd)",
+    "GetHitVar(YVelAdd)",
+    "GetHitVar(Type)",
+    "GetHitVar(XOff)",
+    "GetHitVar(YOff)",
+    "GetHitVar(ZOff)",
+    "GetHitVar(Fall.Kill)",
+    "GetHitVar(Fall.Envshake.Time)",
+    "GetHitVar(Fall.Envshake.Freq)",
+    "GetHitVar(Fall.Envshake.Ampl)",
+    "GetHitVar(Fall.Envshake.Phase)"
+  ],
+  "description": "攻撃を受けてmovetypeがHのステートにいるとき、相手のHitDefで設定された各値を参照できます。<br>movetypeがH以外の場合、たとえ共通やられステート(5000番台)にいても0しか返しません。",
+  "parameter": [
+    {
+      "parameter": "xveladd",
+      "type": [
+        "float"
+      ],
+      "description": "<p>KOされたときの横方向の加算速度を返します。</p>",
+      "visibility": "internal"
     },
-    "category": "trigger",
-    "associated_state": [
-        "HitDef"
-    ],
-    "trigger": "GetHitVar",
-    "summary": "<p>攻撃を受けてmovetypeがHのステートにいるとき、相手のHitDefで設定された各値を参照できます。</p>",
+    {
+      "parameter": "yveladd",
+      "type": [
+        "float"
+      ],
+      "description": "<p>KOされたときの垂直方向の加算速度を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "type",
+      "type": [
+        "int"
+      ],
+      "description": "<p>HitDefのtypeパラメータを数字で返します。<br>: 0 - non, 1 - high, 2 - low, 3 - trip (地上ヒット時のみ)</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "animtype",
+      "type": [
+        "int"
+      ],
+      "description": "<p>HitDefのanimtypeパラメータを数字で返します。<br>(0 - light, 1 - medium, 2 - hard, 3 - back, 4 - up, 5 - diag-up)</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "airtype",
+      "type": [
+        "int"
+      ],
+      "description": "<p>HitDefのairtypeパラメータを数字で返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "groundtype",
+      "type": [
+        "int"
+      ],
+      "description": "<p>HitDefのgroundtypeパラメータを数字で返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "damage",
+      "type": [
+        "int"
+      ],
+      "description": "<p>コンタクトの瞬間のみ、ダメージ値を返します。ガードのときは、削りダメージを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "hitcount",
+      "type": [
+        "int"
+      ],
+      "description": "<p>攻撃をうけている間のヒット数を返します。3ヒット目なら3を返します。画面に表示されているヒット数ではなく、自分が受けたコンボのヒット数です。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fallcount",
+      "type": [
+        "int"
+      ],
+      "description": "<p>攻撃をうけている間の、地面に落下した回数を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "hitshaketime",
+      "type": [
+        "int"
+      ],
+      "description": "<p>攻撃を受けてブルブルする時間の残り時間を返します。具体的には、ヒットの瞬間にHitDefのpausetimeを返し、0になるまで1フレームにつき1づつ減っていきます。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "hittime",
+      "type": [
+        "int"
+      ],
+      "description": "<p>ヒット(ガード)が終了するまでの残り時間を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "slidetime",
+      "type": [
+        "int"
+      ],
+      "description": "<p>地上ヒット(ガード)時、スライドが終了するまでの残り時間を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "ctrltime",
+      "type": [
+        "int"
+      ],
+      "description": "<p>ガード時、コントロール可能になるまでの残り時間を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "recovertime",
+      "type": [
+        "int"
+      ],
+      "description": "<p>ダウン状態から起き上がるまでの残り時間を返します。ボタン連打で短縮されます。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "xoff",
+      "type": [
+        "謎"
+      ],
+      "description": "<p>\"Snap\" の x オフセットを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "yoff",
+      "type": [
+        "謎"
+      ],
+      "description": "<p>\"Snap\" の y オフセットを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "zoff",
+      "type": [
+        "謎"
+      ],
+      "description": "<p>\"Snap\" の z オフセットを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "xvel",
+      "type": [
+        "float"
+      ],
+      "description": "<p>横方向の速度を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "yvel",
+      "type": [
+        "float"
+      ],
+      "description": "<p>垂直方向の速度を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "yaccel",
+      "type": [
+        "float"
+      ],
+      "description": "<p>垂直方向の加速度を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "chainid",
+      "type": [
+        "int"
+      ],
+      "description": "<p>HitDefのchainidを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "guarded",
+      "type": [
+        "int"
+      ],
+      "description": "<p>ガードのとき1を、それ以外で0を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall",
+      "type": [
+        "int"
+      ],
+      "description": "<p>fallのとき1を、それ以外で0を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall.damage",
+      "type": [
+        "int"
+      ],
+      "description": "<p>落下で受けるダメージを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall.xvel",
+      "type": [
+        "float"
+      ],
+      "description": "<p>落下バウンド時の横方向の速度を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall.yvel",
+      "type": [
+        "float"
+      ],
+      "description": "<p>落下バウンド時の垂直方向の速度を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall.recover",
+      "type": [
+        "int"
+      ],
+      "description": "<p>空中復帰(x+y)が可能なとき1を、それ以外のとき0を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall.recovertime",
+      "type": [
+        "int"
+      ],
+      "description": "<p>空中復帰(x+y)が可能になるまでの残り時間を返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall.kill",
+      "type": [
+        "int"
+      ],
+      "description": "<p>HitDefのfall.kill パラメータを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall.envshake.time",
+      "type": [
+        "int"
+      ],
+      "description": "<p>HitDefのfall.envshake.time パラメータを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall.envshake.freq",
+      "type": [
+        "float"
+      ],
+      "description": "<p>HitDefのfall.envshake.freq パラメータを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall.envshake.ampl",
+      "type": [
+        "int"
+      ],
+      "description": "<p>HitDefのfall.envshake.ampl パラメータを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "fall.envshake.phase",
+      "type": [
+        "float"
+      ],
+      "description": "<p>HitDefのfall.envshake.phase パラメータを返します。</p>",
+      "visibility": "internal"
+    },
+    {
+      "parameter": "param_name",
+      "value": [
+        "参照する被弾情報の項目名"
+      ],
+      "type": [
+        "識別子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "description": "<p>下表の項目名を、<code>GetHitVar(...)</code>の括弧内に1つ指定します。<code>yvel</code>等は引用符付き文字列や変数で置き換える式ではありません。表の型は項目を参照したときの戻り値です。</p>",
+      "possible_value": [
+        [
+          "項目名",
+          "戻り値の型",
+          "参照する情報"
+        ],
+        [
+          "animtype",
+          "int",
+          "被弾アニメーション種別。0: light / 1: medium / 2: hard / 3: back / 4: up / 5: diag-up"
+        ],
+        [
+          "groundtype",
+          "int",
+          "HitDefで設定された地上ヒットの種別"
+        ],
+        [
+          "airtype",
+          "int",
+          "HitDefで設定された空中ヒットの種別"
+        ],
+        [
+          "type",
+          "int",
+          "ヒット種別。0: none / 1: high / 2: low / 3: trip（地上のみ）"
+        ],
+        [
+          "damage",
+          "int",
+          "受けた攻撃のダメージ量"
+        ],
+        [
+          "hitcount",
+          "int",
+          "受けたコンボのヒット数。攻撃側のHitCountとは別"
+        ],
+        [
+          "fallcount",
+          "int",
+          "受けたコンボ中の地面への落下回数"
+        ],
+        [
+          "hitshaketime",
+          "int",
+          "被弾時の停止時間。0まで減算される"
+        ],
+        [
+          "hittime",
+          "int",
+          "被弾の硬直時間。終了の判定はhittime < 0"
+        ],
+        [
+          "slidetime",
+          "int",
+          "地上のスライド時間。配布CommonではTimeと比較して減速・停止に使う"
+        ],
+        [
+          "ctrltime",
+          "int",
+          "ガード後に操作可能となる時間。配布CommonではTimeと比較してCtrlSetに使う"
+        ],
+        [
+          "recovertime",
+          "int",
+          "ダウンから起き上がるまでの時間。0まで減算され、ボタン入力で短縮される"
+        ],
+        [
+          "xvel",
+          "float",
+          "攻撃から与えられたX方向の速度"
+        ],
+        [
+          "yvel",
+          "float",
+          "攻撃から与えられたY方向の速度"
+        ],
+        [
+          "yaccel",
+          "float",
+          "攻撃で設定されたY方向の加速度"
+        ],
+        [
+          "xveladd",
+          "float",
+          "KO時に加算するX方向の速度"
+        ],
+        [
+          "yveladd",
+          "float",
+          "KO時に加算するY方向の速度"
+        ],
+        [
+          "chainid",
+          "int",
+          "最後に受けた攻撃のChainID"
+        ],
+        [
+          "guarded",
+          "int",
+          "最後の攻撃をガードしたか。真偽値"
+        ],
+        [
+          "isbound",
+          "int",
+          "攻撃側のTargetBindで拘束されているか。真偽値"
+        ],
+        [
+          "fall",
+          "int",
+          "倒れ扱いか。真偽値"
+        ],
+        [
+          "fall.damage",
+          "int",
+          "落下時のダメージ量"
+        ],
+        [
+          "fall.xvel",
+          "float",
+          "地面でバウンドした後のX方向の速度"
+        ],
+        [
+          "fall.yvel",
+          "float",
+          "地面でバウンドした後のY方向の速度"
+        ],
+        [
+          "fall.recover",
+          "int",
+          "受身が許可されているか。入力や状態遷移そのものとは別"
+        ],
+        [
+          "fall.recovertime",
+          "int",
+          "受身の許可に用いる時間値。起き上がりまでのrecovertimeとは別"
+        ],
+        [
+          "fall.kill",
+          "int",
+          "攻撃側HitDefのfall.kill値"
+        ],
+        [
+          "fall.envshake.time",
+          "int",
+          "HitDefの落下時画面揺れ時間"
+        ],
+        [
+          "fall.envshake.freq",
+          "float",
+          "HitDefの落下時画面揺れの角速度"
+        ],
+        [
+          "fall.envshake.ampl",
+          "int",
+          "HitDefの落下時画面揺れの振幅"
+        ],
+        [
+          "fall.envshake.phase",
+          "float",
+          "HitDefの落下時画面揺れの位相"
+        ]
+      ],
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "gethitvar-local-2002",
+          "gethitvar-local-1.0",
+          "gethitvar-local-1.1",
+          "gethitvar-common"
+        ],
+        "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+      }
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "攻撃を受けたときのY方向への吹き飛び速度が-5.5未満だったときのトリガー。",
+      "code": [
+        "Trigger1 = GetHitVar(yvel) < -5.5"
+      ]
+    },
+    {
+      "title": "被弾処理で上向きの速度を判定する",
+      "description": "<p>処理対象をMoveTypeで確認し、与えられたY速度を比較する条件部分です。現在のVel Yを調べる式ではありません。</p>",
+      "code": [
+        "Trigger1 = MoveType = H",
+        "Trigger1 = GetHitVar(yvel) < -5.5"
+      ]
+    },
+    {
+      "title": "被弾の硬直終了を負数で判定する",
+      "description": "<p>既存の被弾処理で使う条件部分です。0を終了に含めず、HitOverに対応する負数条件を使います。</p>",
+      "code": [
+        "Trigger1 = MoveType = H",
+        "Trigger1 = GetHitVar(hittime) < 0"
+      ]
+    },
+    {
+      "title": "TargetBindによる拘束を参照する",
+      "description": "<p>被弾処理から拘束の有無を読む条件部分です。StateNoだけで拘束を推定しません。</p>",
+      "code": [
+        "Trigger1 = MoveType = H",
+        "Trigger1 = GetHitVar(isbound)"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "GetHitVar - Trigger Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#GetHitVar",
+      "visibility": "internal"
+    },
+    {
+      "title": "GetHitVar - Trigger Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#gethitvar"
+    },
+    {
+      "title": "GetHitVar - Trigger Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#gethitvar"
+    },
+    {
+      "title": "GetHitVar - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/GetHitVar"
+    },
+    {
+      "id": "gethitvar-local-2002",
+      "title": "GetHitVar — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/trigger.html#GetHitVar(*)",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gethitvar-local-1.0",
+      "title": "GetHitVar — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/trigger.html#gethitvar",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gethitvar-local-1.1",
+      "title": "GetHitVar — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/trigger.html#gethitvar",
+      "source_type": "official_document"
+    },
+    {
+      "id": "gethitvar-legacy",
+      "title": "移行前の33項目・構文・説明・例",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/2f4775213a29b6dfdf9f9d2e073aa91fa0e693e4/src/content/triggers/GetHitVar.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "gethitvar-chaos",
+      "title": "値保持・固定時間・ヒット数研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/126.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "gethitvar-damage",
+      "title": "Damageの更新・反映・Fall.Damage研究 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/84.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    },
+    {
+      "id": "gethitvar-common",
+      "title": "配布Commonの時間比較（固定ミラー）",
+      "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/common1.cns",
+      "source_type": "source_code",
+      "visibility": "internal"
+    }
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "syntax_kind": "function",
+  "return_type": [
+    "int",
+    "float"
+  ],
+  "documentation": {
+    "page_category": "被弾情報の項目指定による数値参照",
+    "description": "<p>受けた攻撃の情報を、項目名を指定して参照します。<code>GetHitVar(yvel)</code>のように、引用符を付けずに1つの項目名を指定します。戻り値は選んだ項目により整数または浮動小数点数です。</p><p>被弾・ガード処理の条件を組む場合は、<code>MoveType = H</code>などで処理対象の状態を明示します。参照する速度と現在の<code>Vel</code>、受けたヒット数と攻撃側の<code>HitCount</code>は別の情報です。</p>",
     "syntax": [
-        "GetHitVar(AnimType)",
-        "GetHitVar(GroundType)",
-        "GetHitVar(AirType)",
-        "GetHitVar(Damage)",
-        "GetHitVar(HitShakeTime)",
-        "GetHitVar(HitTime)",
-        "GetHitVar(HitShakeTime)",
-        "GetHitVar(SlideTime)",
-        "GetHitVar(CtrlTime)",
-        "GetHitVar(RecoverTime)",
-        "GetHitVar(HitCount)",
-        "GetHitVar(FallCount)",
-        "GetHitVar(XVel)",
-        "GetHitVar(YVel)",
-        "GetHitVar(YAccel)",
-        "GetHitVar(Fall)",
-        "GetHitVar(Fall.Damage)",
-        "GetHitVar(Fall.XVel)",
-        "GetHitVar(Fall.YVel)",
-        "GetHitVar(Fall.Recover)",
-        "GetHitVar(Fall.RecoverTime)",
-        "GetHitVar(ChainID)",
-        "GetHitVar(Guarded)",
-        "GetHitVar(IsBound)",
-        "GetHitVar(XVelAdd)",
-        "GetHitVar(YVelAdd)",
-        "GetHitVar(Type)",
-        "GetHitVar(XOff)",
-        "GetHitVar(YOff)",
-        "GetHitVar(ZOff)",
-        "GetHitVar(Fall.Kill)",
-        "GetHitVar(Fall.Envshake.Time)",
-        "GetHitVar(Fall.Envshake.Freq)",
-        "GetHitVar(Fall.Envshake.Ampl)",
-        "GetHitVar(Fall.Envshake.Phase)"
+      "GetHitVar(param_name)",
+      "GetHitVar(yvel)",
+      "GetHitVar(hittime)",
+      "GetHitVar(isbound)"
     ],
-    "description": "攻撃を受けてmovetypeがHのステートにいるとき、相手のHitDefで設定された各値を参照できます。<br>movetypeがH以外の場合、たとえ共通やられステート(5000番台)にいても0しか返しません。",
-    "parameter": [
-        {
-            "parameter": "xveladd",
-            "type": [
-                "float"
-            ],
-            "description": "<p>KOされたときの横方向の加算速度を返します。</p>"
-        },
-        {
-            "parameter": "yveladd",
-            "type": [
-                "float"
-            ],
-            "description": "<p>KOされたときの垂直方向の加算速度を返します。</p>"
-        },
-        {
-            "parameter": "type",
-            "type": [
-                "int"
-            ],
-            "description": "<p>HitDefのtypeパラメータを数字で返します。<br>: 0 - non, 1 - high, 2 - low, 3 - trip (地上ヒット時のみ)</p>"
-        },
-        {
-            "parameter": "animtype",
-            "type": [
-                "int"
-            ],
-            "description": "<p>HitDefのanimtypeパラメータを数字で返します。<br>(0 - light, 1 - medium, 2 - hard, 3 - back, 4 - up, 5 - diag-up)</p>"
-        },
-        {
-            "parameter": "airtype",
-            "type": [
-                "int"
-            ],
-            "description": "<p>HitDefのairtypeパラメータを数字で返します。</p>"
-        },
-        {
-            "parameter": "groundtype",
-            "type": [
-                "int"
-            ],
-            "description": "<p>HitDefのgroundtypeパラメータを数字で返します。</p>"
-        },
-        {
-            "parameter": "damage",
-            "type": [
-                "int"
-            ],
-            "description": "<p>コンタクトの瞬間のみ、ダメージ値を返します。ガードのときは、削りダメージを返します。</p>"
-        },
-        {
-            "parameter": "hitcount",
-            "type": [
-                "int"
-            ],
-            "description": "<p>攻撃をうけている間のヒット数を返します。3ヒット目なら3を返します。画面に表示されているヒット数ではなく、自分が受けたコンボのヒット数です。</p>"
-        },
-        {
-            "parameter": "fallcount",
-            "type": [
-                "int"
-            ],
-            "description": "<p>攻撃をうけている間の、地面に落下した回数を返します。</p>"
-        },
-        {
-            "parameter": "hitshaketime",
-            "type": [
-                "int"
-            ],
-            "description": "<p>攻撃を受けてブルブルする時間の残り時間を返します。具体的には、ヒットの瞬間にHitDefのpausetimeを返し、0になるまで1フレームにつき1づつ減っていきます。</p>"
-        },
-        {
-            "parameter": "hittime",
-            "type": [
-                "int"
-            ],
-            "description": "<p>ヒット(ガード)が終了するまでの残り時間を返します。</p>"
-        },
-        {
-            "parameter": "slidetime",
-            "type": [
-                "int"
-            ],
-            "description": "<p>地上ヒット(ガード)時、スライドが終了するまでの残り時間を返します。</p>"
-        },
-        {
-            "parameter": "ctrltime",
-            "type": [
-                "int"
-            ],
-            "description": "<p>ガード時、コントロール可能になるまでの残り時間を返します。</p>"
-        },
-        {
-            "parameter": "recovertime",
-            "type": [
-                "int"
-            ],
-            "description": "<p>ダウン状態から起き上がるまでの残り時間を返します。ボタン連打で短縮されます。</p>"
-        },
-        {
-            "parameter": "xoff",
-            "type": [
-                "謎"
-            ],
-            "description": "<p>\"Snap\" の x オフセットを返します。</p>"
-        },
-        {
-            "parameter": "yoff",
-            "type": [
-                "謎"
-            ],
-            "description": "<p>\"Snap\" の y オフセットを返します。</p>"
-        },
-        {
-            "parameter": "zoff",
-            "type": [
-                "謎"
-            ],
-            "description": "<p>\"Snap\" の z オフセットを返します。</p>"
-        },
-        {
-            "parameter": "xvel",
-            "type": [
-                "float"
-            ],
-            "description": "<p>横方向の速度を返します。</p>"
-        },
-        {
-            "parameter": "yvel",
-            "type": [
-                "float"
-            ],
-            "description": "<p>垂直方向の速度を返します。</p>"
-        },
-        {
-            "parameter": "yaccel",
-            "type": [
-                "float"
-            ],
-            "description": "<p>垂直方向の加速度を返します。</p>"
-        },
-        {
-            "parameter": "chainid",
-            "type": [
-                "int"
-            ],
-            "description": "<p>HitDefのchainidを返します。</p>"
-        },
-        {
-            "parameter": "guarded",
-            "type": [
-                "int"
-            ],
-            "description": "<p>ガードのとき1を、それ以外で0を返します。</p>"
-        },
-        {
-            "parameter": "fall",
-            "type": [
-                "int"
-            ],
-            "description": "<p>fallのとき1を、それ以外で0を返します。</p>"
-        },
-        {
-            "parameter": "fall.damage",
-            "type": [
-                "int"
-            ],
-            "description": "<p>落下で受けるダメージを返します。</p>"
-        },
-        {
-            "parameter": "fall.xvel",
-            "type": [
-                "float"
-            ],
-            "description": "<p>落下バウンド時の横方向の速度を返します。</p>"
-        },
-        {
-            "parameter": "fall.yvel",
-            "type": [
-                "float"
-            ],
-            "description": "<p>落下バウンド時の垂直方向の速度を返します。</p>"
-        },
-        {
-            "parameter": "fall.recover",
-            "type": [
-                "int"
-            ],
-            "description": "<p>空中復帰(x+y)が可能なとき1を、それ以外のとき0を返します。</p>"
-        },
-        {
-            "parameter": "fall.recovertime",
-            "type": [
-                "int"
-            ],
-            "description": "<p>空中復帰(x+y)が可能になるまでの残り時間を返します。</p>"
-        },
-        {
-            "parameter": "fall.kill",
-            "type": [
-                "int"
-            ],
-            "description": "<p>HitDefのfall.kill パラメータを返します。</p>"
-        },
-        {
-            "parameter": "fall.envshake.time",
-            "type": [
-                "int"
-            ],
-            "description": "<p>HitDefのfall.envshake.time パラメータを返します。</p>"
-        },
-        {
-            "parameter": "fall.envshake.freq",
-            "type": [
-                "float"
-            ],
-            "description": "<p>HitDefのfall.envshake.freq パラメータを返します。</p>"
-        },
-        {
-            "parameter": "fall.envshake.ampl",
-            "type": [
-                "int"
-            ],
-            "description": "<p>HitDefのfall.envshake.ampl パラメータを返します。</p>"
-        },
-        {
-            "parameter": "fall.envshake.phase",
-            "type": [
-                "float"
-            ],
-            "description": "<p>HitDefのfall.envshake.phase パラメータを返します。</p>"
-        }
-    ],
-    "code_sample": [
-        {
-            "title": "攻撃を受けたときのY方向への吹き飛び速度が-5.5未満だったときのトリガー。",
-            "code": [
-                "Trigger1 = GetHitVar(yvel) < -5.5"
-            ]
-        }
-    ],
-    "quote": [
-        {
-            "title": "GetHitVar - Trigger Reference(version 2002.04.14)",
-            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#GetHitVar"
-        },
-        {
-            "title": "GetHitVar - Trigger Reference(version 1.0)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/trigger.html#gethitvar"
-        },
-        {
-            "title": "GetHitVar - Trigger Reference(version 1.1)",
-            "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/trigger.html#gethitvar"
-        },
-        {
-            "title": "GetHitVar - M.U.G.E.N wiki",
-            "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/GetHitVar"
-        }
-    ]
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "gethitvar-local-2002",
+        "gethitvar-local-1.0",
+        "gethitvar-local-1.1"
+      ],
+      "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+    }
+  },
+  "arguments": [
+    {
+      "name": "param_name",
+      "legacy_index": 33,
+      "type": [
+        "識別子"
+      ],
+      "parameter_type": "required",
+      "expression_policy": "special_syntax",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "gethitvar-local-2002",
+          "gethitvar-local-1.0",
+          "gethitvar-local-1.1"
+        ],
+        "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+      }
+    }
+  ],
+  "notes": [
+    {
+      "kind": "behavior",
+      "content": "<p><code>hitshaketime</code>は被弾時の停止、<code>hittime</code>は被弾の硬直を参照します。<code>GetHitVar(hittime) &lt; 0</code>は<code>HitOver</code>の判定に対応します。値が0になっただけでは、この負数条件は成立しません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "gethitvar-local-2002",
+          "gethitvar-local-1.0",
+          "gethitvar-local-1.1"
+        ],
+        "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+      },
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      }
+    },
+    {
+      "kind": "deprecated",
+      "content": "<p>2002資料では<code>xoff</code> / <code>yoff</code> / <code>zoff</code>のSnapオフセット参照が非推奨とされています。これらは通常の制作例や候補表へ含めていません。</p>",
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "gethitvar-local-2002"
+        ],
+        "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+      }
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧本文・summaryのMoveType!=Hで一律0という記述を保持。公式はgethit stateでの参照を説明するが、CHAOSはWin以降の保持とDOS時のH制限に疑問符を付ける。全世代/全項目の一律0や未定義を断定しない。開始前・解除後・リダイレクト/Helper・カスタムステートの値は未測定。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "gethitvar-local-2002",
+          "gethitvar-local-1.0",
+          "gethitvar-local-1.1",
+          "gethitvar-legacy",
+          "gethitvar-chaos"
+        ],
+        "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式hittimeのhitshaketime>0中に減算という文と、CHAOSの停止解除後の減算が衝突。旧slidetime/ctrltime/fall.recovertimeの残り時間表現は保持。固定CommonはTimeとの比較でslide減速/停止・CtrlSetを行う。固定閾値と減算カウンターを一律に扱わず、hittimeの-1境界は公開へ分離。停止/再被弾/速度や切り替えタイミングは未検証。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "gethitvar-local-2002",
+          "gethitvar-local-1.0",
+          "gethitvar-local-1.1",
+          "gethitvar-chaos",
+          "gethitvar-common"
+        ],
+        "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>公式の候補一覧とDetailsは一致しない。hitid/fall.timeは一覧だけで型・意味を確定せず、isboundとfall.kill/envshakeはDetailsから確認。zoffの非推奨記述は2002にあるが1.0/1.1のDetailsにはない。xoff/yoff/zoffの旧型「謎」は保持。旧syntaxのHitShakeTime重複・isboundの詳細欠落は原位置を残し、公開は1引数と確認できた31項目へ整理。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "gethitvar-local-2002",
+          "gethitvar-local-1.0",
+          "gethitvar-local-1.1"
+        ],
+        "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>旧damageの瞬間だけ・ガード削りを保持。CHAOS Damage研究は短期間の記録・補正/同時命中/HitOverride/体力上限/反映順を報告するが、各ビルドや停止中の測定は未実施。未処理量・減少済み量・HitDefの入力値を同一視しない。fall.damageの消去とfall.killの機能不明も内部保持。</p>",
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "community_documentation"
+        ],
+        "source_refs": [
+          "gethitvar-legacy",
+          "gethitvar-damage",
+          "gethitvar-chaos"
+        ],
+        "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+      },
+      "visibility": "internal"
+    },
+    {
+      "kind": "research",
+      "content": "<p>CHAOSはhitcountのガード後の持越し・fallcountのtrip加算、xvelの座標/Facing変換を記録。fall.xvel/yvelのInt表記と公式floatにも差がある。旧値・型を保持して公開表は公式float。受身入力のx+y固定・fall.recovertime減算という旧説明や、0/非H時の読み取り・精度/座標換算は実機検証まで内部へ。</p>",
+      "evidence": {
+        "status": "conflicting",
+        "basis": [
+          "official_document",
+          "community_documentation"
+        ],
+        "source_refs": [
+          "gethitvar-local-2002",
+          "gethitvar-local-1.0",
+          "gethitvar-local-1.1",
+          "gethitvar-legacy",
+          "gethitvar-chaos"
+        ],
+        "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+      },
+      "visibility": "internal"
+    }
+  ]
 }

@@ -392,3 +392,7 @@ ForceFeedback・VictoryQuoteの2件で累計230件（81バッチ214件＋主要�
 ### 2026-10-09：gethit-fields-01
 
 GetHitVarの1件で累計231件（82バッチ215件＋主要・補助16件）、残り3件。旧33項目は位置引数ではなく参照する項目名の候補として保存し、唯一の必須param_nameと型/意味を持つ31候補へ整理。旧本文/summary/重複構文/各型/説明/例/引用は保持。isboundをDetailsから補い、非推奨Snapの旧型「謎」、一覧だけのhitid/fall.timeは推測しません。非H時一律0とWin/DOS保持研究、公式hittimeの減算条件とCHAOS、slide/ctrl/fall.recoverの固定閾値・残り時間、fall速度の型/座標差・damage/回数/処理順は内部へ。既存公式例は公開維持し、MoveTypeを明示した速度/負数終了/拘束の条件例を追加。初導入null、実機未検証。389テスト・263ページビルド・261 URL/242比較対象HTMLと通常/390px表示を確認。HTML検査が内部項目を持つTriggerで存在しない読み込み順表を走査する不具合を再現し修正。State Controllerの表の存在/内部行非表示チェックは維持しています。内部注記670件、未対応旧履歴87項目、未表示フィールド29ページ。次はModifyExplodです。
+
+### 2026-10-09：modify-explod-01
+
+ModifyExplodの1件で累計232件（83バッチ216件＋主要・補助16件）、残り2件。所有者が作成したExplodのID/-1/同ID複数対象と、生成時の既定値を入れ直さない更新時省略を整理。1.0のPos/PosType併記を環境付き制約にし、旧20定義・9履歴・候補図・引用・読み込み順を保持。Scaleを公開側で2つのfloatへ訂正、TransのDefaultとNoneを分けました。1.0のRGB影/位置/透過形式を公開し、1.1の単一Shadow・Pos float・キャラmugenversion依存PosTypeと新引数のModifyへの適用は内部保持。SuperMoveTime/PauseMoveTime/SuperMoveの旧更新不能/停止効果を保持し、3項目は内部へ保存。IgnoreHitPauseは命令の実行とExplodのアニメーションを混同せず共通0を維持。警告引用先は503で再確認不可、4警告とColor誤記も原文保持し、架空のColorは追加しません。BindTime=0・RemoveTime経過/残時間・Anim/OwnPal制限・処理順研究は未測定のため内部へ。縮尺のみを変更する短い例を追加。初導入null、実機未検証。395テスト・263ページビルド・261 URL/243比較対象HTMLと通常/390px表示を確認。スキーマ/レジストリ/レンダラー/CSS変更なし。内部注記684件、未対応旧履歴78項目、未表示フィールド29ページ。次はProjectileです。

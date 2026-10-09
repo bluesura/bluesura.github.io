@@ -1630,3 +1630,28 @@ npm run mugen:test
 npm run build
 npm run mugen:check-html
 ~~~
+
+## modify-explod-01（2026-10-09）
+
+ModifyExplod の1件。累計232件、83バッチ216件＋主要/補助16件、残り2件。
+
+- 変更前のJSON・HTML・抽出結果を tests/mugen/batches/modify-explod-01/ へ保存し、計画とともに適用前にコミット。旧20パラメーター・9履歴・説明・候補図・全引用・読み込み順を削除していません。
+- 実行者所有のID選択/-1/同ID複数を整理。更新項目を省略したときは変更しないことをコメント出力し、Explodの生成時0/1/2値やP1を更新用のCNSへ挿入しません。共通IgnoreHitPause=0/Persistent=1は保持。
+- 1.0のPos/PosType同時指定とAddAlpha/Alphaを環境付き制約へ追加。旧Scaleの1つだけの型を保持して公開はfloat2値。Posの整数範囲・PosType候補図/地面基準/1.1以降一律None、TransのDefault=None推測を原位置に残し、公開の基準/候補表を訂正しました。
+- 1.0のRGB Shadowと1.1の単一フラグ、Pos float・キャラmugenversion依存のPosType、新たな生成側引数の更新可否は内部研究へ。1.1の型・新しいパラメーターの更新例を推定せず、Color/Anim/OwnPalも追加しません。
+- SuperMoveTime/PauseMoveTimeの変更不能報告、SuperMoveの停止/非推奨・負数永続報告を保持し、3項目は内部に保存。IgnoreHitPauseの命令実行とExplodのアニメ停止、BindTime=0の位置・RemoveTimeの経過/残時間、Random上端・OnTop優先と未読、更新順の資料差は内部へ。4警告の出典は503で本文再確認不可、Colorの誤記を含め原文保存しました。
+- 縮尺だけを2倍にする公開例を追加。初導入null、MUGENの実機未検証。research/evidence/load_priority_evidenceは公開しません。
+- 395テスト・263ページビルド・261 URL/243比較対象HTML、通常幅/390pxのパラメーター表・使用例と内部非表示を確認。幅を復元し検査タブを終了。スキーマ/レジストリ/レンダラー/CSS変更なし。内部注記684件、未対応旧履歴78項目、未表示フィールド29ページ。次はProjectile / ReversalDefです。
+
+実行した手順：
+
+```powershell
+npm run mugen:batch-baseline -- --batch modify-explod-01
+npm run mugen:batch -- --batch modify-explod-01 --target ModifyExplod
+npm run mugen:batch -- --batch modify-explod-01 --target ModifyExplod --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+npm run mugen:inventory
+```

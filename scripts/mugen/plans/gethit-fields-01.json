@@ -1,0 +1,844 @@
+{
+  "id": "gethit-fields-01",
+  "reviewed_on": "2026-10-09",
+  "description": "GetHitVarの1必須識別子と31項目の戻り値表。旧33詳細を保存し、保持/時間/型の資料差と未詳項目を内部へ。",
+  "documents": [
+    {
+      "collection": "triggers",
+      "name": "GetHitVar",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gethitvar-local-2002",
+            "title": "GetHitVar — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/trigger.html#GetHitVar(*)",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gethitvar-local-1.0",
+            "title": "GetHitVar — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/trigger.html#gethitvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gethitvar-local-1.1",
+            "title": "GetHitVar — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/trigger.html#gethitvar",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gethitvar-legacy",
+            "title": "移行前の33項目・構文・説明・例",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/2f4775213a29b6dfdf9f9d2e073aa91fa0e693e4/src/content/triggers/GetHitVar.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gethitvar-chaos",
+            "title": "値保持・固定時間・ヒット数研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/126.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gethitvar-damage",
+            "title": "Damageの更新・反映・Fall.Damage研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/84.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "gethitvar-common",
+            "title": "配布Commonの時間比較（固定ミラー）",
+            "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/common1.cns",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "syntax_kind"
+          ],
+          "value": "function"
+        },
+        {
+          "path": [
+            "return_type"
+          ],
+          "value": [
+            "int",
+            "float"
+          ]
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "page_category": "被弾情報の項目指定による数値参照",
+            "description": "<p>受けた攻撃の情報を、項目名を指定して参照します。<code>GetHitVar(yvel)</code>のように、引用符を付けずに1つの項目名を指定します。戻り値は選んだ項目により整数または浮動小数点数です。</p><p>被弾・ガード処理の条件を組む場合は、<code>MoveType = H</code>などで処理対象の状態を明示します。参照する速度と現在の<code>Vel</code>、受けたヒット数と攻撃側の<code>HitCount</code>は別の情報です。</p>",
+            "syntax": [
+              "GetHitVar(param_name)",
+              "GetHitVar(yvel)",
+              "GetHitVar(hittime)",
+              "GetHitVar(isbound)"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "gethitvar-local-2002",
+                "gethitvar-local-1.0",
+                "gethitvar-local-1.1"
+              ],
+              "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            6,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            7,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            8,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            9,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            10,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            11,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            12,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            13,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            14,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            15,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            16,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            17,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            18,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            19,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            20,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            21,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            22,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            23,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            24,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            25,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            26,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            27,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            28,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            29,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            30,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            31,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            32,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            "-"
+          ],
+          "value": {
+            "parameter": "param_name",
+            "value": [
+              "参照する被弾情報の項目名"
+            ],
+            "type": [
+              "識別子"
+            ],
+            "parameter_type": "required",
+            "expression_policy": "special_syntax",
+            "description": "<p>下表の項目名を、<code>GetHitVar(...)</code>の括弧内に1つ指定します。<code>yvel</code>等は引用符付き文字列や変数で置き換える式ではありません。表の型は項目を参照したときの戻り値です。</p>",
+            "possible_value": [
+              [
+                "項目名",
+                "戻り値の型",
+                "参照する情報"
+              ],
+              [
+                "animtype",
+                "int",
+                "被弾アニメーション種別。0: light / 1: medium / 2: hard / 3: back / 4: up / 5: diag-up"
+              ],
+              [
+                "groundtype",
+                "int",
+                "HitDefで設定された地上ヒットの種別"
+              ],
+              [
+                "airtype",
+                "int",
+                "HitDefで設定された空中ヒットの種別"
+              ],
+              [
+                "type",
+                "int",
+                "ヒット種別。0: none / 1: high / 2: low / 3: trip（地上のみ）"
+              ],
+              [
+                "damage",
+                "int",
+                "受けた攻撃のダメージ量"
+              ],
+              [
+                "hitcount",
+                "int",
+                "受けたコンボのヒット数。攻撃側のHitCountとは別"
+              ],
+              [
+                "fallcount",
+                "int",
+                "受けたコンボ中の地面への落下回数"
+              ],
+              [
+                "hitshaketime",
+                "int",
+                "被弾時の停止時間。0まで減算される"
+              ],
+              [
+                "hittime",
+                "int",
+                "被弾の硬直時間。終了の判定はhittime < 0"
+              ],
+              [
+                "slidetime",
+                "int",
+                "地上のスライド時間。配布CommonではTimeと比較して減速・停止に使う"
+              ],
+              [
+                "ctrltime",
+                "int",
+                "ガード後に操作可能となる時間。配布CommonではTimeと比較してCtrlSetに使う"
+              ],
+              [
+                "recovertime",
+                "int",
+                "ダウンから起き上がるまでの時間。0まで減算され、ボタン入力で短縮される"
+              ],
+              [
+                "xvel",
+                "float",
+                "攻撃から与えられたX方向の速度"
+              ],
+              [
+                "yvel",
+                "float",
+                "攻撃から与えられたY方向の速度"
+              ],
+              [
+                "yaccel",
+                "float",
+                "攻撃で設定されたY方向の加速度"
+              ],
+              [
+                "xveladd",
+                "float",
+                "KO時に加算するX方向の速度"
+              ],
+              [
+                "yveladd",
+                "float",
+                "KO時に加算するY方向の速度"
+              ],
+              [
+                "chainid",
+                "int",
+                "最後に受けた攻撃のChainID"
+              ],
+              [
+                "guarded",
+                "int",
+                "最後の攻撃をガードしたか。真偽値"
+              ],
+              [
+                "isbound",
+                "int",
+                "攻撃側のTargetBindで拘束されているか。真偽値"
+              ],
+              [
+                "fall",
+                "int",
+                "倒れ扱いか。真偽値"
+              ],
+              [
+                "fall.damage",
+                "int",
+                "落下時のダメージ量"
+              ],
+              [
+                "fall.xvel",
+                "float",
+                "地面でバウンドした後のX方向の速度"
+              ],
+              [
+                "fall.yvel",
+                "float",
+                "地面でバウンドした後のY方向の速度"
+              ],
+              [
+                "fall.recover",
+                "int",
+                "受身が許可されているか。入力や状態遷移そのものとは別"
+              ],
+              [
+                "fall.recovertime",
+                "int",
+                "受身の許可に用いる時間値。起き上がりまでのrecovertimeとは別"
+              ],
+              [
+                "fall.kill",
+                "int",
+                "攻撃側HitDefのfall.kill値"
+              ],
+              [
+                "fall.envshake.time",
+                "int",
+                "HitDefの落下時画面揺れ時間"
+              ],
+              [
+                "fall.envshake.freq",
+                "float",
+                "HitDefの落下時画面揺れの角速度"
+              ],
+              [
+                "fall.envshake.ampl",
+                "int",
+                "HitDefの落下時画面揺れの振幅"
+              ],
+              [
+                "fall.envshake.phase",
+                "float",
+                "HitDefの落下時画面揺れの位相"
+              ]
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "source_code"
+              ],
+              "source_refs": [
+                "gethitvar-local-2002",
+                "gethitvar-local-1.0",
+                "gethitvar-local-1.1",
+                "gethitvar-common"
+              ],
+              "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "arguments"
+          ],
+          "value": [
+            {
+              "name": "param_name",
+              "legacy_index": 33,
+              "type": [
+                "識別子"
+              ],
+              "parameter_type": "required",
+              "expression_policy": "special_syntax",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "gethitvar-local-2002",
+                  "gethitvar-local-1.0",
+                  "gethitvar-local-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "behavior",
+              "content": "<p><code>hitshaketime</code>は被弾時の停止、<code>hittime</code>は被弾の硬直を参照します。<code>GetHitVar(hittime) &lt; 0</code>は<code>HitOver</code>の判定に対応します。値が0になっただけでは、この負数条件は成立しません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "gethitvar-local-2002",
+                  "gethitvar-local-1.0",
+                  "gethitvar-local-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+              },
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0",
+                  "mugen-1.1"
+                ]
+              }
+            },
+            {
+              "kind": "deprecated",
+              "content": "<p>2002資料では<code>xoff</code> / <code>yoff</code> / <code>zoff</code>のSnapオフセット参照が非推奨とされています。これらは通常の制作例や候補表へ含めていません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "gethitvar-local-2002"
+                ],
+                "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧本文・summaryのMoveType!=Hで一律0という記述を保持。公式はgethit stateでの参照を説明するが、CHAOSはWin以降の保持とDOS時のH制限に疑問符を付ける。全世代/全項目の一律0や未定義を断定しない。開始前・解除後・リダイレクト/Helper・カスタムステートの値は未測定。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "gethitvar-local-2002",
+                  "gethitvar-local-1.0",
+                  "gethitvar-local-1.1",
+                  "gethitvar-legacy",
+                  "gethitvar-chaos"
+                ],
+                "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式hittimeのhitshaketime>0中に減算という文と、CHAOSの停止解除後の減算が衝突。旧slidetime/ctrltime/fall.recovertimeの残り時間表現は保持。固定CommonはTimeとの比較でslide減速/停止・CtrlSetを行う。固定閾値と減算カウンターを一律に扱わず、hittimeの-1境界は公開へ分離。停止/再被弾/速度や切り替えタイミングは未検証。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation",
+                  "source_code"
+                ],
+                "source_refs": [
+                  "gethitvar-local-2002",
+                  "gethitvar-local-1.0",
+                  "gethitvar-local-1.1",
+                  "gethitvar-chaos",
+                  "gethitvar-common"
+                ],
+                "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>公式の候補一覧とDetailsは一致しない。hitid/fall.timeは一覧だけで型・意味を確定せず、isboundとfall.kill/envshakeはDetailsから確認。zoffの非推奨記述は2002にあるが1.0/1.1のDetailsにはない。xoff/yoff/zoffの旧型「謎」は保持。旧syntaxのHitShakeTime重複・isboundの詳細欠落は原位置を残し、公開は1引数と確認できた31項目へ整理。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "gethitvar-local-2002",
+                  "gethitvar-local-1.0",
+                  "gethitvar-local-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>旧damageの瞬間だけ・ガード削りを保持。CHAOS Damage研究は短期間の記録・補正/同時命中/HitOverride/体力上限/反映順を報告するが、各ビルドや停止中の測定は未実施。未処理量・減少済み量・HitDefの入力値を同一視しない。fall.damageの消去とfall.killの機能不明も内部保持。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "gethitvar-legacy",
+                  "gethitvar-damage",
+                  "gethitvar-chaos"
+                ],
+                "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+              },
+              "visibility": "internal"
+            },
+            {
+              "kind": "research",
+              "content": "<p>CHAOSはhitcountのガード後の持越し・fallcountのtrip加算、xvelの座標/Facing変換を記録。fall.xvel/yvelのInt表記と公式floatにも差がある。旧値・型を保持して公開表は公式float。受身入力のx+y固定・fall.recovertime減算という旧説明や、0/非H時の読み取り・精度/座標換算は実機検証まで内部へ。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "gethitvar-local-2002",
+                  "gethitvar-local-1.0",
+                  "gethitvar-local-1.1",
+                  "gethitvar-legacy",
+                  "gethitvar-chaos"
+                ],
+                "comment": "2026-10-09: 保存済み資料・固定コミット配布Common・研究本文を照合。資料確認であり、実機での保持/減算/精度/処理順は未測定。"
+              },
+              "visibility": "internal"
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "被弾処理で上向きの速度を判定する",
+            "description": "<p>処理対象をMoveTypeで確認し、与えられたY速度を比較する条件部分です。現在のVel Yを調べる式ではありません。</p>",
+            "code": [
+              "Trigger1 = MoveType = H",
+              "Trigger1 = GetHitVar(yvel) < -5.5"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "被弾の硬直終了を負数で判定する",
+            "description": "<p>既存の被弾処理で使う条件部分です。0を終了に含めず、HitOverに対応する負数条件を使います。</p>",
+            "code": [
+              "Trigger1 = MoveType = H",
+              "Trigger1 = GetHitVar(hittime) < 0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "code_sample",
+            "-"
+          ],
+          "value": {
+            "title": "TargetBindによる拘束を参照する",
+            "description": "<p>被弾処理から拘束の有無を読む条件部分です。StateNoだけで拘束を推定しません。</p>",
+            "code": [
+              "Trigger1 = MoveType = H",
+              "Trigger1 = GetHitVar(isbound)"
+            ]
+          }
+        }
+      ],
+      "review_notes": [
+        "全旧フィールドを保持。初導入null、実機未検証。",
+        "旧詳細はJSONに残し、構文上の唯一の引数と参照候補を分離する。"
+      ]
+    }
+  ]
+}

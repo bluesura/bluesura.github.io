@@ -153,7 +153,7 @@
           ],
           "value": {
             "page_category": "当て身の属性と成功時の処理",
-            "description": "<p>実行者と相手の攻撃判定<code>Clsn1</code>同士が重なったとき、<code>Reversal.Attr</code>で指定した相手の攻撃に当て身を成立させます。通常の攻撃が相手の食らい判定へ当たるHitDefとは、判定枠の組み合わせが異なります。</p><p>成功時の停止・スパーク・音・ステート移行を設定します。成功を調べる側は<code>MoveHit</code>、当て身された側は<code>MoveReversed</code>を使います。<code>Projectile</code>そのものと、HitDefを持つHelper型の飛び道具は区別してください。</p><p>旧資料に複製されていたHitDef設定はJSONへ保持しています。当て身での効果が不確かな項目は、公開のパラメーター一覧とコピー欄へ含めていません。</p>",
+            "description": "<p>実行者と相手の攻撃判定<code>Clsn1</code>同士が重なったとき、<code>Reversal.Attr</code>で指定した相手の攻撃に当て身を成立させます。通常の攻撃が相手の食らい判定へ当たるHitDefとは、判定枠の組み合わせが異なります。</p><p>成功時の停止・スパーク・音・ステート移行を設定します。成功を調べる側は<code>MoveHit</code>、当て身された側は<code>MoveReversed</code>を使います。<code>Projectile</code>そのものと、HitDefを持つHelper型の飛び道具は区別してください。</p>",
             "associated_state": [
               "HitDef",
               "HitOverRide",
@@ -241,7 +241,7 @@
               "属性",
               "属性リスト"
             ],
-            "description": "<p><code>Reversal.Attr = SA, NA, SA</code>のように、姿勢属性と攻撃種別をカンマで区切ります。この例は立ち・空中の通常打撃と必殺打撃が対象です。第1要素は<code>S</code>（立ち）・<code>C</code>（屈み）・<code>A</code>（空中）の組み合わせ、第2要素以降は<code>N</code>（通常）・<code>S</code>（必殺）・<code>H</code>（超必殺）と<code>A</code>（打撃）・<code>T</code>（投げ）・<code>P</code>（飛び道具属性）の組み合わせです。</p><p><code>Attr</code>が実行者側の攻撃属性を指定するのに対し、こちらは受け止める相手の属性のリストです。複数の姿勢属性と攻撃種別を列挙できます。</p>",
+            "description": "<p><code>Reversal.Attr = SA, NA, SA</code>のように、姿勢属性と攻撃種別をカンマで区切ります。この例は立ち・空中の通常打撃と必殺打撃が対象です。第1要素は<code>S</code>（立ち）・<code>C</code>（屈み）・<code>A</code>（空中）の組み合わせ、第2要素以降は<code>N</code>（通常）・<code>S</code>（必殺）・<code>H</code>（超必殺）・<code>A</code>（通常／必殺／超必殺すべて）と<code>A</code>（打撃）・<code>T</code>（投げ）・<code>P</code>（飛び道具属性）の組み合わせです。</p><p><code>Attr</code>が実行者側の攻撃属性を指定するのに対し、こちらは受け止める相手の属性のリストです。複数の姿勢属性と攻撃種別を列挙できます。</p><p>例えば<code>Reversal.Attr = SCA, AA</code>は、立ち・屈み・空中のすべての打撃属性が対象です。</p>",
             "hide_legacy": [
               "min_value",
               "max_value"
@@ -249,13 +249,15 @@
             "evidence": {
               "status": "confirmed",
               "basis": [
-                "official_document"
+                "official_document",
+                "community_documentation"
               ],
               "source_refs": [
                 "reversal-local-1.0",
                 "reversal-local-1.1",
                 "reversal-hitdef-1.0",
-                "reversal-hitdef-1.1"
+                "reversal-hitdef-1.1",
+                "reversal-chaos"
               ],
               "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
             }
@@ -319,7 +321,7 @@
               "属性",
               "属性"
             ],
-            "description": "<p>当て身定義自身の攻撃属性を<code>Attr = S, NA</code>のように指定します。受け止める相手の属性を列挙する<code>Reversal.Attr</code>とは別です。CHAOSの研究には、属性付きReversalDefが相手のReversalDefやHitOverrideとの判定に関与することが記録されています。</p>",
+            "description": "<p>当て身定義自身の攻撃属性を<code>Attr = S, NA</code>のように指定します。受け止める相手の属性を列挙する<code>Reversal.Attr</code>とは別です。属性を指定したReversalDefは、相手のReversalDefやHitOverrideとの属性判定にも関与します。</p>",
             "hide_legacy": [
               "min_value",
               "max_value"
@@ -1125,7 +1127,7 @@
             "value": [
               "当て身する相手を1人に制限するフラグ"
             ],
-            "description": "<p>CHAOSの研究では、<code>0</code>なら1回の定義で別々の相手へ当て身を成立させられるとされています。同じ相手に繰り返し成立させるフラグとは異なります。省略時の値は今回の資料では確定していません。</p>",
+            "description": "<p><code>0</code>は1回の定義で別々の相手へ当て身を成立させられます。同じ相手に繰り返し成立させるフラグとは異なります。</p>",
             "hide_legacy": [
               "min_value",
               "max_value"

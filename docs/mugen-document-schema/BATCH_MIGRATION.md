@@ -1681,3 +1681,28 @@ npm run build
 npm run mugen:check-html
 npm run mugen:inventory
 ```
+
+## reversal-definition-01（2026-10-09）
+
+ReversalDefの1件。累計234件、85バッチ218件＋主要/補助16件。今回の対象234件への追加型移行を完了しました。
+
+- 変更前のJSON/HTML/抽出結果を tests/mugen/batches/reversal-definition-01/ へ保存し、計画とともに適用前にコミット。旧87項目・34履歴・FAQ・全引用・2画像・ルート注釈・読み込み順を削除していません。
+- 必須Reversal.Attrの複数属性とSCA, AA、実行者側Attrと相手側属性、MoveHitとMoveReversedを整理。公開9項目＋共通2項目、CNS14行。必須属性/未知のAttr・HitOnce/派生音・スパークはコメントです。
+- PauseTime、HitSound、P1StateNo、P2StateNo、SparkNoとSparkXYを照合。SparkNoはS2000の単一値構文、SparkXYは相手HitDefの位置への加算。Attr/HitOnceの省略値はunknownのままです。
+- HitDef由来の効果不確実な78項目は内部に保存。ID/Fallの検証不足、分身FAQ、永続ターゲット/PrevStateNo/停止研究、31警告は公開しません。既知の数値読み込み順と疑問符/調査中の証拠を分け、原値を保持しました。research/evidence/load_priority_evidenceはJSONのみです。
+- 2002.04.14のスパーク位置変更と1.0 RC6の2002互換1tick遅れ修正を対応付け。必須属性、Clsn1、実在する移行先801を使う短い例を追加。初導入null、実機未検証です。
+- 416テスト・258 JSON検証・263ページビルド・261 URL/245比較対象HTML、通常幅/390pxの表・変更履歴・使用例・内部非表示を確認。共通項目の旧アンカー87/88を確認し、幅を復元・検査タブ終了。スキーマ/レジストリ/レンダラー/CSS変更なし。
+- 再集計で対象内旧形式0件・未対応旧履歴0項目・内部注記774件・未表示フィールド29ページ。対象外のLifebar19件/statetype5件と旧フィールド廃止、実機確認は今回の完了範囲に含めません。統合レビューはSTATUS.mdの手順へ進みます。
+
+実行した手順：
+
+```powershell
+npm run mugen:batch-baseline -- --batch reversal-definition-01
+npm run mugen:batch -- --batch reversal-definition-01 --target ReversalDef
+npm run mugen:batch -- --batch reversal-definition-01 --target ReversalDef --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+npm run mugen:inventory
+```

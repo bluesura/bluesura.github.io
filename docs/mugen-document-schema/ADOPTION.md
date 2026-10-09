@@ -115,3 +115,7 @@ npm run mugen:check-html
 `npm run mugen:batch-baseline -- --batch <id>` は追加の比較基準を固定します。`npm run mugen:batch -- --batch <id> --target <name>` は追加計画の dry-run で、`--apply` を付けた場合のみ原本へ適用します。対象の未指定・計画外・既存値の上書き・移行済みデータへの再実行を拒否します。
 
 `mugen-template-all.json` は従来形式の空テンプレートとして維持します。v2 の実例は `src/content/state-controllers/Helper.json` と `src/content/triggers/Cond.json` を参照してください。新しい必須条件を空の旧テンプレートへ一律に持ち込みません。
+
+### 2026-10-09: パラメーターの既存アンカーの保持
+
+`documentation.parameter_anchor_indices` を採用しました。パラメーター名から非負整数への任意マップで、共通項目の合成や内部項目の除外後も見出しリンクの位置番号へ優先します。未指定時の挙動は従来どおりです。Projectileの新しい項目を末尾に追加した際、IgnoreHitPause/Persistentの旧リンク122/123を保持するために使います。JSONの表示用情報であり、CNSのパラメーターや公開メタ表には出力しません。

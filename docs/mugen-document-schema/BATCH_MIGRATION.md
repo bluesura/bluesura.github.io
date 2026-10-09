@@ -1655,3 +1655,29 @@ npm run build
 npm run mugen:check-html
 npm run mugen:inventory
 ```
+
+## projectile-definition-01（2026-10-09）
+
+Projectileの1件。累計233件、84バッチ217件＋主要/補助16件、残り1件。
+
+- 変更前のJSON/HTML/抽出結果を tests/mugen/batches/projectile-definition-01/ へ保存し、計画とともに適用前にコミット。旧122項目・44履歴・全引用・候補図・GIF・読み込み順を削除していません。
+- 86項目のHitDef共有設定と生成側36項目を照合。飛び道具IDと攻撃ID、ヒット回数とコンボ数、優先度と表示順、速度乗算と加速、ガード省略を整理。スパークの誤った2値指定、Down.Bounceの逆の条件、PauseTimeの対象、固定の受身入力の一般化を公開側で訂正しました。
+- 1.1のOwnPal/RemapPalを環境と条件付きで公開し、OwnPalを追加。ProjShadowは1.0のRGB3値と1.1の単一整数をvariantsで分離、無条件RGBのCNSを出力しません。境界/重力/バウンド速度の座標別省略値もコメント出力です。
+- AfterImage.Timeの1/0資料差はunknownのまま。AfterImage.Transを追加し、計124定義、公開119項目＋共通2項目、CNS124行です。残像12項目は条件付きコメント、PalPostBrightを加算0,0,0へ訂正。旧乗算文・バグ付き赤の負の読み込み順は原位置に保持しました。
+- セミコロン付き3項目/Attack.Width/HitOnce、全40警告、Winの多段/相殺/パレット/PosType差、Offset精度と処理順、親の停止・MoveTime研究は内部へ。初導入null、MUGEN実機未検証。research/evidence/load_priority_evidenceは公開しません。
+- Helper生成後Root所有とRoot, NumProjID条件、AIRを要する通常攻撃例を追加。StateDef -2で他者のステート/アニメデータを使う場合の未定義動作も整理しました。
+- HTML保存検査で検出した共通項目の旧リンクずれを、任意のdocumentation.parameter_anchor_indicesと共有正規化で修正。schema/入力説明/採用記録と3回帰テストを追加し、旧122/123と他項目のアンカー・CNS不変性を確認しました。
+- 407テスト・263ページビルド・261 URL/244比較対象HTML、通常幅/390pxの世代別定義・加算値・生成例と内部非表示を確認。追加schemaが開発サーバーの旧キャッシュに残ったため再起動し、旧リンクを再確認。幅を復元し検査タブを終了。内部注記735件、未対応旧履歴34項目、未表示フィールド29ページ。次はReversalDefです。
+
+実行した手順：
+
+```powershell
+npm run mugen:batch-baseline -- --batch projectile-definition-01
+npm run mugen:batch -- --batch projectile-definition-01 --target Projectile
+npm run mugen:batch -- --batch projectile-definition-01 --target Projectile --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+npm run mugen:inventory
+```

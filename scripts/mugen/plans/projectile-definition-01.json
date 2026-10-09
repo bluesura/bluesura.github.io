@@ -250,6 +250,10 @@
                 "projectile-local-1.1"
               ],
               "comment": "2026-10-09: 保存済み公式Projectile/HitDef/AfterImageとCHAOS本文を照合。資料確認であり、飛び道具の実機測定ではない。"
+            },
+            "parameter_anchor_indices": {
+              "IgnoreHitPause": 122,
+              "Persistent": 123
             }
           }
         },
@@ -8344,6 +8348,126 @@
               ]
             }
           ]
+        },
+        {
+          "path": [
+            "parameter",
+            54,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>命中時のスパークのAIRアクション番号です。fightfx.airから使う場合は番号を、自分のAIRから使う場合は<code>SparkNo = S2000</code>のように先頭へSを付けます。グループ番号との組ではありません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "projectile-local-1.0",
+                "projectile-local-1.1",
+                "projectile-hitdef-1.0",
+                "projectile-hitdef-1.1"
+              ],
+              "comment": "2026-10-09: 公開文の再確認。資料確認でありMUGEN実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            35,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "飛び道具の停止時間, 相手の揺れ時間"
+            ],
+            "description": "<p>命中後の飛び道具の停止時間と相手の揺れ時間を2つの整数で指定します。飛び道具を生成したキャラクター自身の停止時間を指定する項目ではありません。省略時は<code>0, 0</code>です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "projectile-local-1.0",
+                "projectile-hitdef-1.0",
+                "projectile-chaos"
+              ],
+              "comment": "2026-10-09: 公開文の再確認。資料確認でありMUGEN実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            48,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p><code>1</code>は相手を落下状態にし、空中で操作を取り戻す前に着地してダウンする攻撃にします。<code>0</code>が省略値です。受身を許可するかは<code>Fall.Recover</code>で設定します。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "projectile-local-1.0",
+                "projectile-local-1.1",
+                "projectile-hitdef-1.0",
+                "projectile-hitdef-1.1"
+              ],
+              "comment": "2026-10-09: 公開文の再確認。資料確認でありMUGEN実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            41,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>命中時に相手が移行するステート番号です。相手が使うステートデータは<code>P2GetP1State</code>で指定します。省略時の<code>-1</code>では、この項目によるステート移行を指定しません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "projectile-local-1.0",
+                "projectile-local-1.1",
+                "projectile-hitdef-1.0",
+                "projectile-hitdef-1.1"
+              ],
+              "comment": "2026-10-09: 公開文の再確認。資料確認でありMUGEN実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "notes",
+            "-"
+          ],
+          "value": {
+            "kind": "research",
+            "visibility": "internal",
+            "content": "<p>公開文の再確認で、旧SparkNo=S2000,0の2値記述、PauseTimeの自分を本体と読み取れる文、Fallのx+y固定入力、P2StateNo=-1/HitOverrideと投げの一般推奨は原文へ保持。SparkNoはS2000の1値に訂正。ProjectileのPauseTimeの第1値は飛び道具側の停止としてCHAOS本文と照合し、親MoveTime・停止解除順の研究は別に保持。P2StateNoのカスタムステート相互作用は実機未測定。</p>",
+            "evidence": {
+              "status": "conflicting",
+              "basis": [
+                "source_code",
+                "community_documentation",
+                "official_document"
+              ],
+              "source_refs": [
+                "projectile-legacy",
+                "projectile-chaos",
+                "projectile-hitdef-1.0"
+              ],
+              "comment": "原文保持、資料照合のみ。実機未測定。"
+            }
+          }
         }
       ],
       "review_notes": [

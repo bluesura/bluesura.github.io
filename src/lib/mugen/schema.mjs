@@ -97,6 +97,7 @@ const documentDocumentationSchema = z.object({
   syntax: z.array(z.string().min(1)).min(1).optional(),
   associated_state: z.array(z.string().min(1)).optional(),
   associated_trigger: z.array(z.string().min(1)).optional(),
+  parameter_anchor_indices: z.record(z.string().min(1), z.number().int().nonnegative()).optional(),
   evidence: evidenceSchema.optional(),
 }).strict();
 export const parameterSchema = z.object({

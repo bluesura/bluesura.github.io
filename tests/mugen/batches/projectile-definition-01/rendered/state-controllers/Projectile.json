@@ -1,0 +1,721 @@
+{
+  "text": "Type = Projectile 攻撃 > 飛び道具 | 実装されたバージョン: 2002.04.14 | 対象: 実行者自身 パラメーター 仕様・注意点 コピペ用 読み込み順 引用記事 飛び道具を出現させます。独自のパラメータ以外にHitDefの全てのパラメータを設定可能。ちなみに、飛び道具でもやられ判定を付けないと相殺しません。割と細かい設定が可能ですが、それでもあまり複雑な動きはできません。このステートコントローラーで役不足な場合はHelperを使用します。なお、WinではプレイヤーへのPalFXの影響を受けてしまいます(バグ？)。OwnPal=1を指定してもエラーとはなりませんが、無効です。ちなみに、Helperが出したProjectileも、本体管理となります。当然、パレットも本体と共用です。 関連するトリガー： NumProj , NumProjID パラメーター パラメーター一覧 124項目 AttrHitFlagGuardFlagAffectTeamAnimTypeAir.AnimTypeFall.AnimTypeGround.TypeAir.TypeProjIDProjRemoveProjRemoveTimeProjShadowProjMissTimeProjHitsProjPriorityProjHitAnimProjRemAnimProjCancelAnimVelocityVelMulRemVelocityAccelProjScaleIDChainIDNoChainIDKillGuard.KillFall.KillHitOnceAir.JuggleDamageGetPowerGivePowerPauseTimeNumHitsHitSoundGuardSoundPriorityP1StateNoP2StateNoP2GetP1StateP1SprPriority; SprPriorityP2SprPriorityForceStandForceNoFallFallFall.DamageFall.XVelocityFall.YVelocityFall.RecoverFall.RecoverTimeSparkNoGuard.SparkNoSparkXYP1FacingP1GetP2FacingSnap; MinDist; MaxDistP2FacingGround.HitTimeGround.SlideTimeGround.VelocityGround.CornerPush.VelOffAir.HitTimeAir.FallAir.VelocityAir.CornerPush.VelOffDown.BounceDown.HitTimeDown.VelocityDown.CornerPush.VelOffGuard.VelocityGuard.HitTimeGuard.SlideTimeGuard.CtrlTimeGuard.DistGuard.PauseTimeGuard.CornerPush.VelOffAirGuard.VelocityAirGuard.CtrlTimeAirGuard.CornerPush.VelOffYAccelPalFX.TimePalFX.ColorPalFX.AddPalFX.MulPalFX.SinAddPalFX.InvertAllEnvShake.TimeEnvShake.AmplEnvShake.PhaseEnvShake.FreqFall.EnvShake.TimeFall.EnvShake.AmplFall.EnvShake.PhaseFall.EnvShake.FreqOffsetPosTypeProjSprPriorityProjStageBoundProjEdgeBoundProjHeightBoundProjAnimPauseMoveTimeSuperMoveTimeAfterImage.TimeAfterImage.LengthAfterImage.TimeGapAfterImage.FrameGapAfterImage.PalColorAfterImage.PalInvertAllAfterImage.PalBrightAfterImage.PalContrastAfterImage.PalPostBrightAfterImage.PalAddAfterImage.PalMulAttack.WidthReMapPalIgnoreHitPausePersistent Attr = 反撃属性1, 反撃属性2, ... 型文字列, 文字列, ... 省略時;なし(攻撃がヒットしない) 攻撃の属性を指定します。属性1には、「S」「C」「A」(順に立ち、屈み、空中)のいずれかを指定します。属性2には、「N」「S」「H」「A」（順に通常、必殺、超必殺、すべて）と、「A」「T」「P」（同じく攻撃、投げ、飛び道具）を組み合わせて指定します。例えば立ちパンチなどならAttr = S,NA、空中で飛び道具を出す超必殺技ならAttr = A,HP と記述します。空中判定になる地上攻撃(リープアタック等)は、空中扱いにしましょう。ただし、AirやOffsetで見た目のみ浮いている場合は、地上扱いでもかまいません。とりあえず、StateTypeと同じにしておけば、問題ないでしょう。 HitFlag = ヒットフラグ 型文字列 省略時MAF ;ダウン状態にのみヒットしない 敵がどういう状態ならヒットするかフラグを指定します。フラグは複数指定可能。投げ技など連続技に組み込めない攻撃で有効。 フラグ H立ちL屈みM立ち、屈みの両方A空中F落下状態Dダウン状態(ただし、Fと組み合わせなければ機能しない)P飛び道具を消せるようになる。ただし、Windows版のみ。+食らい状態の敵のみにヒット-食らい状態の敵にはヒットしない GuardFlag = ガードフラグ 型文字列 省略時MA ;どのような状態でもガード可 敵がどういう状態ならガードできるかフラグを指定します。フラグは複数指定可能。 フラグ H立ちL屈みM立ち、屈みの両方A空中 AffectTeam = 影響チーム 型文字列 省略時E チームモード時、どのチームに攻撃が影響するかフラグを指定します。 フラグ B敵味方かまわずE敵のみF味方のみ AnimType = アニメタイプ 型文字列 省略時Light 相手のリアクションアニメの種類を指定します。ただし、「up」と「diagup」はオプションで、相手が絵を用意してない場合は、「back」と同じ結果になります。 文字列状態 L弱 (Lightの略)M中 (Mediumの略)H強 (Hardの略)Bふっとび (Backの略)U真上ふっとび (UPの略)D斜めふっとび (DiagUpの略) Air.AnimType = 空中でのアニメタイプ 型文字列 省略時;AnimTypeと同じ値になります。 空中でのアニメタイプを指定。 Fall.AnimType = fall状態時のアニメタイプ 型文字列 省略時;Air.AnimTypeがUの時はU、それ以外ならBになります。 空中でのアニメタイプfall状態のときのアニメタイプです。※fall状態・・・fall=1。hittimeを過ぎても、受身を取らない限り空中復帰できず、着地すると落下ダウンする状態。これに対し、fall=0の場合、空中で立ち直り、hittimeを過ぎると操作可能となる。また、hittime中でも、着地すると通常のジャンプ着地となる。なお、一度fall=1になると、fall=0の攻撃を受けてもfall=1のままとなる。 Ground.Type = 地上でののけぞり方 型文字列 省略時High 相手の地上でののけぞり方を文字列で指定します。 文字列状態 H上のけぞり (Highの略)L下のけぞり (Lowの略)T転倒 (Tripの略)Nなし、使用は非推奨 (Nonの略) Air.Type = 空中でののけぞり方 型文字列 省略時;Ground.Typeと同じ値になります。 相手の空中でののけぞり方を文字列で指定します。設定方法はground.typeと同じ。 ProjID = 飛び道具のID番号 型整数 IDを指定。Projectile発生条件などに使用。正の整数のみ指定可。 ProjRemove = 消滅フラグ 型整数 省略時1 0以外を指定すると、ヒット時に消えるようになります。 ProjRemoveTime = 射程時間 型整数 省略時-1 画面に出現してから、消滅するまでの時間を指定。-1で消えなくなります。 ProjShadow = 赤影, 緑影, 青影 型整数, 整数, 整数 省略時0, 0, 0 影の色を指定。-1でステージ依存、0,0,0で影なし、255,255,255でまっくろになります。 ProjMissTime = 攻撃がヒットしない時間 型整数 省略時0 複数ヒットする場合、何フレームごとにヒットするかを指定。0にすると一瞬で全部当たります。ただしProjMissTime中もProjectileは移動するため、途中で敵をすり抜けて意図したヒット数にならないことがあります。飛び道具を全段ヒットさせたい場合は、PauseTimeで調節しましょう。 ProjHits = ヒット数 型整数 省略時1 ヒット数を指定。 ProjPriority = 飛び道具優先度 型整数 省略時1 飛び道具の優先度を指定。ヒット数に関係なく、高い方が低い方をかき消します。ただし、かき消した場合、優先度が1下がります。例えば、3ヒットするprojpriority = 3の飛び道具は、飛び道具を2つかき消した後でヒットしても、3ヒットします。 ProjHitAnim = ヒット時のアニメ番号 型整数 省略時-1 飛び道具が当たったときのアニメを指定。-1にするとアニメは変更されません。 ProjRemAnim = 消滅時のアニメ番号 型整数 省略時;ProjHitAnimが使われます。 時間経過や、画面外に出たりして消えるときのアニメを指定。 ProjCancelAnim = 相殺時のアニメ番号 型整数 省略時;ProjRemAnimが使われます。 敵の飛び道具等にかき消されたときのアニメを指定。 Velocity = 水平速度, 垂直速度 型浮動小数点数, 浮動小数点数 省略時0, 0 初速度を指定。 VelMul = 水平速度係数, 垂直速度係数 型浮動小数点数, 浮動小数点数 省略時1, 1 加速度を倍数で指定。 RemVelocity = 消滅時水平速度, 消滅時垂直速度 型浮動小数点数, 浮動小数点数 省略時0, 0 消滅時の速度を指定。 Accel = 水平加速度, 垂直加速度 型浮動小数点数, 浮動小数点数 省略時0, 0 加速度を指定。 ProjScale = x縮尺, y縮尺 型浮動小数点数, 浮動小数点数 省略時1, 1 縮尺を指定。cnsファイルの[Size]群のProj.DoScale=1の場合、同群のScale・プレイヤーのscaleの影響を受けます。 ID = ヒットid番号 型整数 省略時0 識別用のIDをつけることができます。後述と組み合わせることにより、特定の技からは繋がらなかったりするようにできます。また、Target系のステコン、トリガーが参照するID(HitID)は、このIDの攻撃によりターゲットとなった敵を示します。 ChainID = 連続ヒットid番号 型整数 省略時-1 ここで指定したIDからのみ、攻撃が繋がるようになります。-1ですべての攻撃が繋がります。 NoChainID = 不連続ヒットid番号1, 不連続ヒットid番号2 型整数, 整数 省略時-1 ここで指定したIDからは攻撃が繋がらなくなります。2つまで指定可。ガード時も繋がらなくなる(攻撃がすり抜ける)ます。-1で、すべての攻撃が繋がります。 Kill = KOフラグ 型整数 省略時1 0にすると、その攻撃で相手をKOできなくなります。最後の一撃でのみKOしたい多段攻撃などに。 Guard.Kill = ガードKOフラグ 型整数 省略時1 0にすると、ガード時のダメージで相手をKOできなくなります。 Fall.Kill 型整数 省略時1 0にすると、落下ダウン時のダメージで相手をKOできなくなります。 HitOnce = 1回ヒットフラグ 型0か1 省略時0 1にした場合、複数の敵がいても、1方にしかヒットしなくなります。AttrがT(投げ)の場合、1になります。 Air.Juggle = ジャグルポイント 型整数 省略時0 Fall状態の敵に対する連続技に必要なポイント数を上乗せ。StateDefのJuggleパラメータとは違う値です。Projectile専用パラメータ。 Damage = ヒットダメージ, ガードダメージ 型整数, 整数 省略時0, 0 ヒット、ガード時のダメージを整数で指定します。 GetPower = p1ヒットゲージ増加量, p1ガードゲージ増加量 型整数, 整数 省略時;ヒット時がmugen.cfgのDefault.Attack.LifeToPowerMulパラメータにdamageをかけたものに、ガード時がその半分になります。 攻撃がヒットした、ガードされたときに増えるゲージ量です。 GivePower = p2ヒットゲージ増加量, p2ガードゲージ増加量 型整数, 整数 省略時;ヒット時がmugen.cfgのDefault.GetHit.LifeToPowerMulパラメータにDamageをかけたものに、ガード時がその半分になります。 攻撃がヒットした、ガードされたときに増える相手のゲージ量です。 PauseTime = p1停止時間, p2ブルブル時間 型整数, 整数 省略時0, 0 ヒット時の自分と相手の停止時間を整数で指定します。停止時間中、相手はブルブル揺れます(HitShake状態)。 NumHits = ヒットカウント数 型整数 省略時1 コンボカウンターに加算されるヒット数です。 HitSound = グループ番号, アイテム番号 型整数, 整数 省略時;デフォルトでプレーヤー変数に設定された値になります。 ヒット音をcommon.sndから指定します。5,0(弱ヒット音)～5,4(大打撃音)から選ぶことになります。自分のsndファイルから指定したい場合は、HitSound = S1,0のように、先頭にSを記述します。 GuardSound = グループ番号, アイテム番号 型整数, 整数 省略時;デフォルトでプレーヤー変数に設定された値になります。 ガード音をcommon.sndから指定します。といっても、用意されているのは6,0のみ。自分のsndファイルから指定したい場合は、先頭にSを記述します。 Priority = ヒット優先度, 相打ちの挙動 型整数, 文字列 省略時4, H 攻撃の優先度で1から7、相打ち時の挙動を「Hit」「Dodge」「Miss」の内から指定します。実行者の攻撃と相手の攻撃が同時に発生した場合、数値の高い方のみヒットします。ヒット優先度が同じ場合、「Hit」「Miss」「Dodge」により以下のようになります。 文字列状態 H攻撃がヒットする (Hitの略)M自分の攻撃は当たらない (Missの略)D相手が「Hit」でも両者空振り (Dodgeの略) P1StateNo = ヒット時移行するステート番号 型整数 省略時-1 攻撃がヒットした場合に移行するステートの番号を指定します。主に投げ技で使用。 P2StateNo = ヒット時相手に参照させるステート番号 型整数 省略時-1 ;無効 攻撃がヒットした場合に、相手に参照させるステートの番号を指定します。これを指定した場合、HitOverrideを仕込んだ相手(Helper等)に攻撃が当たらなくなります。P2StateNo=-1とすると、P2GetP1State=1の効果のみになる。（P2GetP1State=0が指定されている場合はP2GetP1Stateが優先されるためP2GetP1State=0となる。）なお、この際に5000番台に移動するのはGround.Type、Air.TypeがNormal(頭文字がN）以外の場合である。投げに使ってもProjectile等と相打ちした時に致命的な不具合が生じることがあるので、できれば全く使わない方が良いです。といいたいところですが、代わりに使うことになるTargetStateも扱いが難しいので、不具合を承知で使うのも止むを得ないかもしれません。 P2GetP1State = ステート奪取フラグ 型整数 省略時;相手に実行者の食らいステートを読み込ませる。 0の時はP2StateNoを指定していても対象者のステートを奪わず、対象者自身のステートを読みこませる。1の時は相手のステートを奪います。 P1SprPriority 型整数 省略時1 攻撃が接触した場合のスプライトの表示優先度を指定します。1だと相手の手前、-1だと奥に表示されます。 ; SprPriority = スプライト表示優先度 型整数 省略時0 pr specifies the drawing priority for the explod. Animations with higher priority get drawn over animations with lesser priority. For instances, setting sprpriority = -3 will cause the explod to be drawn under most characters and other explods, which usually have sprpriority >= -2. P2SprPriority 型整数 省略時0 This is the drawing priority of P2's sprite if the move hits or is guarded by P2. ForceStand = 強制立たせフラグ 型整数 省略時;Ground.VelocityのY速度が0なら0、0でなければ1になります。 1にすると、しゃがんだ相手にヒットしても立ち食らいポーズをとらせます。 ForceNoFall 型整数 省略時0 fall状態強制解除。Set to 1 to force P2 out of a \"fall\" state, if he is in one. This parameter has no effect on P2 if he is not in a \"fall\" state. This parameter is ignored if the \"fall\" parameter is set to 1. Fall = 落下フラグ 型整数 省略時0 通常、相手を浮かせるような攻撃でも、HitTimeが終了すれば、相手は立ち直り、着地しますが、Fall = 1にした場合、相手は自動では立ち直らず、受身操作（x+y）をしなければダウンします。Set to 1 if you want P2 to go into a \"fall\" state (where P2 hits the ground without regaining control in the air). Use if you want a move to \"knock down\" P2. Fall.Damage = damage_amt 型整数 省略時0 落下状態のままダウンした場合に与えるダメージを指定します。 Fall.XVelocity = 落下バウンド水平速度 型浮動小数点数 省略時;速度は変更されません。 落下状態のままダウンした場合の、バウンド水平速度を変更する場合、指定します。 Fall.YVelocity = 落下バウンド垂直速度 型浮動小数点数 省略時-4.5 落下状態のままダウンした場合の、バウンド垂直速度を指定します。 Fall.Recover = 受身可能フラグ 型整数 省略時1 0にすると相手が落下状態でも受身（x+y）不可。1で受身がとれるようになります。 Fall.RecoverTime = 受身可能受付開始時間 型整数 省略時4 落下状態になってから受身が取れるようになるまでの時間を指定します。PauseTimeは含まれません。Fall.Recover = 0にした場合は無効。追撃することを想定している場合は、大きな値を設定するか、Fall.Recover = 0にします。 SparkNo = ヒットスパークのアクション番号 型整数 省略時;cnsで設定した値が使用されます。 ヒットスパークのアクション番号をfightfx.airから指定します。自分のairファイルから指定したい場合は、\"sparkno = S2000,0\"のように、先頭にSを記述します。 Guard.SparkNo = ガードスパークのアクション番号 型整数 省略時;cnsで設定した値が使用されます。 ガードスパークのアクション番号をfightfx.airから指定します。自分のairファイルから指定したい場合は、\"guard.sparkno = S2010,0\"のように、先頭にSを記述します。 SparkXY = スパークx座標, スパークy座標 型整数, 整数 省略時0, 0 ヒット、ガードスパークの表示位置を指定します。 P1Facing = p1の向き 型整数 省略時;向きを変えません。 -1にすると、攻撃がヒットした場合に後ろを向きます。主に投げ技で使用。 P1GetP2Facing = p1の向き 型整数 省略時0 1にすると、攻撃がヒットした場合に相手と同じ方向を、-1で逆を向きます。0は向きが変わりません。P1Facingより優先されます。 Snap = x固定座標, y固定座標 型整数, 整数 省略時;no change in P2's position ヒットした相手を固定する位置を、P1を基準として指定します。このパラメータも、通常、使用しません。投げ等で相手を指定位置に固定する場合は、TargetBindを使用します。This moves P2 to the specified position relative to P1 if hit. This parameter is not normally used. If you want to snap P2 to a particular position for a throw, it is recommended you use a \"TargetBind\" controller in P1's throwing state instead. ; MinDist = x最小座標, y最小座標 型整数, 整数 省略時;no change in P2's position 攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できます。 ; MaxDist = x最大座標, y最大座標 型整数, 整数 省略時;no change in P2's position 攻撃がヒットしている間の、P2の移動範囲をP1の位置を基準として指定できます。These let you control the minimum and maximum distance of P2 relative to P1, after P2 has been hit. These parameters are not commonly used. P2Facing = p2の向き 型整数 省略時;向きは変わりません。 1にすると、攻撃がヒットした場合、相手に正面を向かせます。-1にすると後ろを向かせます。 Ground.HitTime = ヒット時間 型整数 省略時0 相手が攻撃を受けて行動不能になる時間です。長くするほど連続攻撃が繋がりやすくなります。永久コンボが発生しないように、気をつけて設定しましょう。相手が地上にいる間のみ有効です。 Ground.SlideTime = ヒットバック時間 型整数 省略時0 相手が攻撃を受けて後ずさる時間です。この時間が経過すると、ブレーキがかかります。ただし、やられステートのphysicsがSやCになっているため、ヒットバックは摩擦によっても停止します。よって、よろけやられのような、ゆっくりとしたヒットバックは、HitDefでは再現できません。ナニソレ。0で強烈なブレーキがかかります。 Ground.Velocity = ヒット速度X, ヒット速度Y 型浮動小数点数, 浮動小数点数 省略時0, 0 相手が地上で攻撃を受けて移動する速度です。yに負数を指定すると、宙に浮きます。地上にいる場合、摩擦の影響を受けます。 Ground.CornerPush.VelOff = 地上コーナープッシュ速度 型浮動小数点数 省略時;AttrがAの場合は0、それ以外の場合は、1.3*Guard.Velocityとなります。 画面端で地上の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。相手の移動距離とは無関係で、相手のshaketimeではなく、自分のpausetimeが0になった瞬間に速度がかかります。 Air.HitTime = 空中でのヒット時間 型整数 省略時20 相手が空中で攻撃を受けて行動不能になる時間です。この時間を過ぎると、相手はコントロールを取り戻します。この時、空中くらい/ふっとびアニメ(5035番)はAirに依存するため、5035番のアニメが終わり見た目が立ち直っていても、行動不能な時間内なら行動不能。行動不能な時間が経過していれば、5035番のアニメ中で見た目がのけぞっていても行動可能です。Fallパラメータが1の場合、このパラメータは無効になります。 Air.Fall = value 型整数 省略時;Fallと同じ値になります。 空中ヒットしたときのみ落下状態にしたい場合は1にします。Fall = 1だと地上やられでも落下状態になります。 Air.Velocity = 空中ヒット速度X, 空中ヒット速度Y 型浮動小数点数, 浮動小数点数 省略時0, 0 相手が空中で攻撃を受けたとき移動する速度です。 Air.CornerPush.VelOff = 空中コーナープッシュ速度 型浮動小数点数 省略時;Ground.CornerPush.VelOffと同じ値になります。 画面端で空中の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。 Down.Bounce = ダウン追い討ちヒットバウンドフラグ 型整数 省略時0 1にすると、ダウン追い討ちヒット時、Fall.XVelocityとFall.YVelocityでバウンドします。Down.Velocityの垂直速度が0の時のみ有効。0にするとバウンドしません。 Down.HitTime = ダウン追い討ちヒット時間 型整数 ダウン状態の敵に攻撃が当たったとき、スライドする時間です。down.velocityの垂直速度が0の時のみ有効。 Down.Velocity = ダウン追い討ち水平速度, ダウン追い討ち垂直速度 型浮動小数点数, 浮動小数点数 省略時;Air.Velocityと同じ値になります。 ダウン追い討ちヒット時ののけぞり速度を指定します。垂直方向の速度が0以外の場合、相手は宙に浮きます。0の場合はスライドします。 Down.CornerPush.VelOff = ダウンコーナープッシュ速度 型浮動小数点数 省略時;Ground.CornerPush.VelOffと同値になります。 画面端でダウン状態の相手に攻撃を加えたときに、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。 Guard.Velocity = ガード速度X 型浮動小数点数 省略時;Ground.Velocityと同じ値になります 相手が地上で攻撃をガードしたとき移動する速度です。垂直方向は指定不可。 Guard.HitTime = ガード時間 型整数 省略時;ground.hittimeと同値になりますが、前述の仕様により、実際のガード時間はground.hittimeの半分となり、硬直は、guard.ctrltime(省略時guard.slidetime)か「ground.hittimeの半分」のどちらか低い方、ということにになります。 相手が攻撃をガードしてから自動的に(キーを後ろに入力しなくても)ガードモーションをとり続ける時間。行動不能時間ではないので注意。DOS版では、なぜか、実際にゲームに反映されるのは、指定値の半分になります。ガードされると凄く不利というのがDOSの仕様です。WIN版では、指定値がそのまま適応されます。 Guard.SlideTime = ガードバック時間 型整数 省略時;Guard.HitTimeと同じ値になります。 Ground.SlideTimeのガード版。 Guard.CtrlTime = ガードからの復帰時間 型整数 省略時;Guard.SlideTimeと同じ値になります。 相手が攻撃をガードしてからコントロールを取り戻すまでの時間。ただし、どんなに大きな値にしてもguard.hittimeが過ぎれば相手はコントロールを取り戻します。 Guard.Dist = ガード認識距離 型整数 省略時;CNSの[Size]のAttack.Distで設定した値になります。 相手がガード操作を行うことでガードポーズを取るようになる距離をピクセルで指定します。 Guard.PauseTime = p1停止時間, p2ブルブル時間 型整数, 整数 省略時;PauseTimeと同じ値になります。 ガード時の自分と相手の停止時間を整数で指定します。停止時間中、相手はブルブル揺れます(HitShake状態)。 Guard.CornerPush.VelOff = 地上ガードコーナープッシュ速度 型浮動小数点数 省略時;Ground.CornerPush.VelOffと同じ値になります。 画面端で地上の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。 AirGuard.Velocity = 空中ガード速度X, 空中ガード速度Y 型浮動小数点数 省略時;Air.Velocityの空中ヒット速度X * 1.5, ;空中ヒット速度Y / 2 相手が空中で攻撃をガードしたとき移動する速度です。 AirGuard.CtrlTime = 空中ガード復帰時間 型整数 省略時;Guard.CtrlTimeと同じ値になります。 相手が空中で攻撃をガードしてからコントロールを取り戻すまでの時間。 AirGuard.CornerPush.VelOff = 地上ガードコーナープッシュ速度空中 型浮動小数点数 省略時;Ground.CornerPush.VelOffと同じ値になります。 画面端で空中の相手に攻撃をガードされた時に、押し戻される速度を指定します。値が大きくなるほど、画面端から遠くに押し戻されます。 YAccel = 重力 型浮動小数点数 省略時;相手の重力に依存します。 ヒット時の重力を指定します。 PalFX.Time = 持続時間 型整数 省略時0 最小値-1 最大値2147483647 効果の持続時間をフレーム単位で指定します。ステートが変わっても有効なので、パレット変更中にやられステートに移行しても効果は持続します。この現象を回避したければ、Time=1にして、トリガーで時間を調整します。ただし、その場合SinAddは機能しません。または、効果を終わらせたい時に別のAllPalFXでTime=1をだけを指定して値を上書きします。ただし、この場合相手プレイヤーのAllPalFXも消してしまいます。-1で表示を永続化。0では表示されず、1以上か-1を指定しなければなりません。※60フレーム=1秒 PalFX.Color = 彩度 型整数 省略時256 最小値0 ;グレースケール 最大値256 ;変化なし パレットの彩度を下げます。例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。 0← →256 PalFX.Add = 加算する赤色, 加算する緑色, 加算する青色 型整数, 整数, 整数 省略時0, 0, 0 最小値-256, -256, -256 ;黒 最大値256, 256, 256 ;白 指定した色をパレットに加算します。暗い色ほど指定色に近づき、色の合計値が大きくなるほど、色が明るくなります。例: Add=256,0,0の場合、 黒(0,0,0)は 赤(256,0,0)になりますが、 白(256,256,256)は 白(256,256,256)のままです。 PalFX.Mul = 合成する赤色, 合成する緑色, 合成する青色 型整数, 整数, 整数 省略時256, 256, 256 最小値1, 1, 1 最大値256, 256, 256 ;変化なし 基本色(パレット+Add+SinAddの合計値)に合成色(Mulで指定した値)/256を乗算します。合成色の値が小さくなるほど、色が暗くなります。明るい色ほど合成色に近づきます。例: Add=64,256,64,Mul=1,256,1の場合、 白(256,256,256)は 緑(1,256,1)になりますが、 黒(0,0,0)は 黒(0,0,0)のままです。 PalFX.SinAdd = 周期する赤色, 周期する緑色, 周期する青色, 周期 型整数, 整数, 整数, 整数 省略時0, 0, 0, 0 指定色を、指定周期(単位はフレーム)の正弦波でパレットに加算/減算。周期が大きいほどゆるやかに色が変化します。例: SinAdd=0,0,256,20, Add=0,0,0,Mul=256,256,256の場合、 (128,128,128)は、5F後 (128,128,256)になり、10F後 (128,128,128)に戻り、15F後 (128,128,0)、20F後 (128,128,128)に戻る、という周期を繰り返します。 PalFX.InvertAll = 色反転フラグ 型0か1 省略時0 最小値0 ;色が反転しない 最大値1 ;色が反転する 色を反転するか・しないかのフラグです。例: (0,0,0)→ (256,256,256), (0,252,0)→ (256,4,256), (256,0,0)→ (0,256,256) EnvShake.Time = ヒット時画面振動時間 型整数 揺れの持続時間を指定。 EnvShake.Ampl = 揺れ幅 型整数 省略時-4 揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。 EnvShake.Phase = 位相 型浮動小数点数 省略時0 ;振動数の乗数が90以上のときは90。 位相を指定。 EnvShake.Freq = 揺れの速度 型浮動小数点数 省略時60 揺れるスピードを、0(低速)～180(高速)の間で指定。 Fall.EnvShake.Time = 落下時画面振動時間 型整数 相手の落下ダウン時に画面を揺らしたい時間を指定。 Fall.EnvShake.Ampl = 振幅 型浮動小数点数 省略時-4 揺れ幅をピクセル寸法で指定。負数を指定すると、最初、下方向に揺れます。 Fall.EnvShake.Phase = 位相 型整数 省略時0 ;振動数の乗数が90以上のときは90。 位相を指定。 Fall.EnvShake.Freq = 振動数 型浮動小数点数 省略時60 揺れるスピードを、0(低速)～180(高速)の間で指定。 Offset = 水平発射位置, 垂直発射位置 型整数, 整数 省略時0, 0 最小値-2147483647, -2147483647 最大値2147483647, 2147483647 PosTypeを基準とした発射位置を指定。 PosType = 基準点の位置 型文字列 省略時P1 飛び道具を出現させるための基準点(0,0)をどこにするか、以下の文字列から指定します。 タイプ基準 P1実行者が基準点(0,0)になります。X軸の正数は実行者の正面・Y軸の負数は実行者の頭上。P2実行者に最も近い敵が基準点(0,0)になります。X軸の正数は最も近い敵の正面・Y軸の負数は最も近い敵の頭上。FFはFrontの略。実行者の正面の画面端が基準点(0,0)になります。X軸の負数は基準点から実行者の方向・Y軸の負数は地面から上。BBはBackの略。実行者の背面の画面端が基準点(0,0)になります。X軸の正数は基準点から実行者の方向・Y軸の負数は地面から上。LLはLeftの略。画面左上が基準点(0,0)になります。X軸の正数は画面右方向・Y軸の正数は画面下方向。RRはRightの略。画面右上が基準点(0,0)になります。X軸の負数は画面左方向・Y軸の正数は画面下方向。NNはNoneの略。ステージ中央が基準点(0,0)になります。他のPosTypeと違い基準点は絶対に動きません。X軸は右方向が正数・左方向が負数。Y軸は上方向が負数・下方向が正数。Version1.1から追加された値です。 ProjSprPriority = スプライト表示優先度 型整数 省略時3 飛び道具のスプライト表示優先度を指定。 ProjStageBound = ステージ外射程 型整数 省略時40 ステージ外に出てから消滅するまでの距離をピクセル(ドット)で指定。 ProjEdgeBound = 画面外射程 型整数 省略時40 画面外に出てから消滅するまでの距離をピクセル(ドット)で指定。消滅アニメの半径より小さいと、消滅アニメが画面にはみ出ます。 ProjHeightBound = 上空射程, 地上射程 型整数, 整数 省略時-240, 1 飛び道具の上下射程を指定。この範囲を超えると、消滅します。 ProjAnim = 飛び道具のアニメ番号 型整数 省略時0 飛び道具のアニメを指定。ProjAnim=-1で実行時の実行者（おそらくはRoot？未検証）のAnim。 PauseMoveTime = pause無視時間 型整数 省略時0 pause中に動ける時間を指定。コントローラーの実行主体は問いません。 SuperMoveTime = superpause無視時間 型整数 省略時0 superpause中に動ける時間を指定。コントローラーの実行主体は問いません。 AfterImage.Time = 持続時間 型整数 省略時1 指定時間内は残像が付き続けます。ステートが変わっても有効ですので、持続時間中に攻撃を受けると、やられモーションにも残像が付きます。-1で永続します。0で前回のAfterImageを消去できます。 AfterImage.Length = ヒストリーバッファ容量 型整数 省略時20 最小値1 最大値60 TimeGapで指定した数値の間隔でフレームを選ばれ、Lengthで指定した数だけそのフレームの時の自キャラの画像と場所が履歴に保存されます。 Length = 20 Length = 60 AfterImage.TimeGap = スキップフレーム数 型整数 省略時1 Timegapで指定された数値の間隔でフレームが選ばれていきます。この時選ばれたフレームのキャラの画像と位置が履歴として保存されます。連続写真のような残像にしたい場合は、値を小さくしましょう。また、値が大きくなれば残像の間隔は長くなります。 Timegap = 1 Timegap = 4 AfterImage.FrameGap = フレーム間隔 型整数 省略時4 Lengthの時に保存された履歴から、FrameGapで指定された数値の間隔で履歴が選ばれ残像として表示されます。値を大きくすると、履歴が選ばれる間隔が大きくなるので、表示される残像の間隔も大きくなります。また、設定する値は必ずLengthより小さい値を設定しないと何も表示されません。 Framegap = 1 Framegap = 4 TimeGap,FrameGap,Lengthの流れ AfterImage.PalColor = 彩度 型整数 省略時256 最小値0 ;グレースケール 最大値256 ;変化なし パレットの彩度を下げます。例: 彩度を低くした時、明るい色ほど白・暗い色ほど黒に近づきます。 0← →256 AfterImage.PalInvertAll = 色反転フラグ 型0か1 省略時0 最小値0 ;色が反転しない 最大値1 ;色が反転する 色を反転するか・しないかのフラグです。例: (0,0,0)→ (256,256,256), (0,252,0)→ (256,4,256), (256,0,0)→ (0,256,256) AfterImage.PalBright = add_赤, add_緑, add_青 型整数, 整数, 整数 省略時30, 30, 30 最小値-256, -256, -256 最大値256, 256, 256 残像のパレットに指定の色要素を加算します。例えば、0,0,256とすれば、青っぽくなりますが、同時に白っぽくもなります。もともと白い部分は白いまま。 AfterImage.PalContrast = mul_赤, mul_緑, mul_青 型整数, 整数, 整数 省略時120, 120, 220 残像のパレットに指定の色要素を乗算します。例えば、128,128,256とすれば、青っぽくなりますが、同時に黒っぽくもなります。もともと黒い部分は黒いまま。また、省略した場合、青っぽい状態で表示されます。 AfterImage.PalPostBright = add2_赤, add2_緑, add2_青 型整数, 整数, 整数 省略時120, 120, 220 最小値-256, -256, -256 最大値256, 256, 256 残像のパレットに指定の色要素を乗算します。例えば、128,128,256とすれば、青っぽくなりますが、同時に黒っぽくもなります。もともと黒い部分は黒いまま。また、省略した場合、青っぽい状態で表示されます。 AfterImage.PalAdd = add_赤, add_緑, add_青 型整数, 整数, 整数 省略時10, 10, 25 2,3,4…番目の残像に、累積して色要素が加算されます。残像をグラデーションさせるときに。 AfterImage.PalMul = mul_赤, mul_緑, mul_青 型浮動小数点数, 浮動小数点数, 浮動小数点数 省略時.65, .65, .75 2,3,4…番目の残像に、累積して色要素が乗算されます。残像をグラデーションさせるときに。 Attack.Width = z1, z2 型整数, 整数 現在、使われておりません。 ReMapPal = dst_pal_grp, dst_pal_item 型整数, 整数 省略時-1, 0 Forces a palette remap of the helper's indexed-color sprites to the specified palette. This parameter is used only if ownpal_flag is non-zero. If dst_pal_grp is -1, this parameter will be ignored. IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 仕様・バグ・エラー・変更点Version1.1からReMapPalが追加されました。Version1.1からPosTypeにNが追加されました。Version1.1から※未検証 PosTypeのL,R,F,B,Nが正しく動作しない。Version1.0から※未検証 PosTypeのL,Rの挙動がおかしい。警告文NEGATIVE PROJECTILE ID:ProjIDに-1以下警告文ILLIGAL PROJANIM:ProjAnimに-2以下警告文ILLIGAL PROJHIT ACTIONID:ProjHitAnimに-2以下警告文ILLIGAL PROJREMOVE ACTIONID:ProjRemAnimに-2以下警告文ILLIGAL PROJCANCEL ACTIONID:ProjCanselAnimに-2以下警告文ILLIGAL PROJREMOVETIME:ProjRemoveTimeに-2以下警告文NEGATIVE # OF PROJECTILE HITS:ProjHitsに0以下警告文NEGATIVE PROJECTILE MISS TIME:ProjMissTimeに-1以下警告文ILLEGAL:SHADOWCOLOR:ProjShdowに-2以下、256以上警告文ASSIGNED NEGATIVE HITID:IDに-1以下警告文SPECIFIED NEGATIVE HIT PRIORITY:Priorityに-1以下警告文SPECIFIED NEGATIVE PAUSETIME:PauseTime第1引数に-1以下警告文SPECIFIED NEGATIVE P2SHAKETIME:PauseTime第2引数に-1以下警告文NEGATIVE GUARD.P1PAUSETIME:Guard.PauseTIME第1引数に-1以下警告文NEGATIVE GUARD.P2SHAKETIME:Guard.PauseTIME第2引数に-1以下警告文ILLEGAL SPARK NO:SparkNoに-3以下警告文ILLEGAL GSPARK NO:Guard.SparkNoに-3以下警告文SPECIFIED ILLEGAL SOUND GROUP:HitSound第1引数に-2以下警告文SPECIFIED ILLEGAL SOUND NO:HitSound第2引数に-2以下警告文SPECIFIED ILLEGAL GSOUND GROUP:GuardSound第1引数に-2以下警告文SPECIFIED ILLEGAL GSOUND NO:GuardSound第2引数に-2以下警告文NEGATIVE GROUND.P2SLIDTIME:Ground.SlideTimeに-1以下警告文NEGATIVE GUARD.P2SLIDTIME:Guard.SlideTimeに-1以下警告文NEGATIVE GROUND.P2HITTIME:Ground.HitTimeに-1以下警告文NEGATIVE GUARD.P2HITTIME:Guard.HitTimeに-1以下警告文NEGATIVE AIR．P2HITTIME:Air.HitTimeに-1以下警告文NEGATIVE GUARD.P2CTRLTIME:Guard.CtrlTimeに-1以下警告文SPECIFIED ILLEGAL P2BINDTIME:snapの第4引数に-2以下警告文NEGATIVE AIR．P2CTRLTIME:Air.CtrlTimeに-1以下警告文SPECIFIED NEGATIVE P1STATENO:P1SteteNoに-2以下警告文SPECIFIED NEGATIVE P2STATENO:P2SteteNoに-2以下警告文SPECIFIED NEGATIVE RECOVERTIME:RecoverTimeに-1以下警告文NEGATIVE DOWN.P2HITTIME:DownHitTimeに-1以下警告文SPECIFIED NEGATIVE CHAINID:ChainIDに-2以下警告文SPECIFIED NEGATIVE NOCHAINID:NoChainID第1引数に-2以下警告文SPECIFIED NEGATIVE NOCHAINID2:NoChainID第2引数に-2以下警告文INVALID PALFX TIME:Palfx.Timeに-2以下警告文INVALID PALFX MUL VALUE:PalFX.Mulに-1以下警告文NEGATIVE FREQ FOR ENVSHAKE:EnvShake.Freqに-1以下警告文NEGATIVE FREQ FOR ENVSHAKE:Fall.EnvShake.Freqに-1以下 コピペ用パラメーター一覧（省略時の挙動） [State 0, Projectile]Type = ProjectileTrigger1 = 1; Attr = ; 省略時: ;なし(攻撃がヒットしない); HitFlag = ; 省略時: MAF ;ダウン状態にのみヒットしない; GuardFlag = ; 省略時: MA ;どのような状態でもガード可AffectTeam = EAnimType = Light; Air.AnimType = ; 省略時: ;AnimTypeと同じ値になります。; Fall.AnimType = ; 省略時: ;Air.AnimTypeがUの時はU、それ以外ならBになります。Ground.Type = High; Air.Type = ; 省略時: ;Ground.Typeと同じ値になります。; ProjID = ; 省略時: 未確認ProjRemove = 1ProjRemoveTime = -1ProjShadow = 0, 0, 0ProjMissTime = 0ProjHits = 1ProjPriority = 1ProjHitAnim = -1; ProjRemAnim = ; 省略時: ;ProjHitAnimが使われます。; ProjCancelAnim = ; 省略時: ;ProjRemAnimが使われます。Velocity = 0, 0VelMul = 1, 1RemVelocity = 0, 0Accel = 0, 0ProjScale = 1, 1ID = 0ChainID = -1NoChainID = -1Kill = 1Guard.Kill = 1Fall.Kill = 1HitOnce = 0Air.Juggle = 0Damage = 0, 0; GetPower = ; 省略時: ;ヒット時がmugen.cfgのDefault.Attack.LifeToPowerMulパラメータにdamageをかけたものに、ガード時がその半分になります。; GivePower = ; 省略時: ;ヒット時がmugen.cfgのDefault.GetHit.LifeToPowerMulパラメータにDamageをかけたものに、ガード時がその半分になります。PauseTime = 0, 0NumHits = 1; HitSound = ; 省略時: ;デフォルトでプレーヤー変数に設定された値になります。; GuardSound = ; 省略時: ;デフォルトでプレーヤー変数に設定された値になります。Priority = 4, HP1StateNo = -1; P2StateNo = ; 省略時: -1 ;無効; P2GetP1State = ; 省略時: ;相手に実行者の食らいステートを読み込ませる。P1SprPriority = 1; SprPriority = ; 代替書式・条件を確認: 0P2SprPriority = 0; ForceStand = ; 省略時: ;Ground.VelocityのY速度が0なら0、0でなければ1になります。ForceNoFall = 0Fall = 0Fall.Damage = 0; Fall.XVelocity = ; 省略時: ;速度は変更されません。Fall.YVelocity = -4.5Fall.Recover = 1Fall.RecoverTime = 4; SparkNo = ; 省略時: ;cnsで設定した値が使用されます。; Guard.SparkNo = ; 省略時: ;cnsで設定した値が使用されます。SparkXY = 0, 0; P1Facing = ; 省略時: ;向きを変えません。P1GetP2Facing = 0; Snap = ; 省略時: ;no change in P2's position; MinDist = ; 代替書式・条件を確認: ;no change in P2's position; MaxDist = ; 代替書式・条件を確認: ;no change in P2's position; P2Facing = ; 省略時: ;向きは変わりません。Ground.HitTime = 0Ground.SlideTime = 0Ground.Velocity = 0, 0; Ground.CornerPush.VelOff = ; 省略時: ;AttrがAの場合は0、それ以外の場合は、1.3*Guard.Velocityとなります。Air.HitTime = 20; Air.Fall = ; 省略時: ;Fallと同じ値になります。Air.Velocity = 0, 0; Air.CornerPush.VelOff = ; 省略時: ;Ground.CornerPush.VelOffと同じ値になります。Down.Bounce = 0; Down.HitTime = ; 省略時: 未確認; Down.Velocity = ; 省略時: ;Air.Velocityと同じ値になります。; Down.CornerPush.VelOff = ; 省略時: ;Ground.CornerPush.VelOffと同値になります。; Guard.Velocity = ; 省略時: ;Ground.Velocityと同じ値になります; Guard.HitTime = ; 省略時: ;ground.hittimeと同値になりますが、前述の仕様により、実際のガード時間はground.hittimeの半分となり、硬直は、guard.ctrltime(省略時guard.slidetime)か「ground.hittimeの半分」のどちらか低い方、ということにになります。; Guard.SlideTime = ; 省略時: ;Guard.HitTimeと同じ値になります。; Guard.CtrlTime = ; 省略時: ;Guard.SlideTimeと同じ値になります。; Guard.Dist = ; 省略時: ;CNSの[Size]のAttack.Distで設定した値になります。; Guard.PauseTime = ; 省略時: ;PauseTimeと同じ値になります。; Guard.CornerPush.VelOff = ; 省略時: ;Ground.CornerPush.VelOffと同じ値になります。; AirGuard.Velocity = ; 省略時: ;Air.Velocityの空中ヒット速度X * 1.5, ;空中ヒット速度Y / 2; AirGuard.CtrlTime = ; 省略時: ;Guard.CtrlTimeと同じ値になります。; AirGuard.CornerPush.VelOff= ; 省略時: ;Ground.CornerPush.VelOffと同じ値になります。; YAccel = ; 省略時: ;相手の重力に依存します。PalFX.Time = 0PalFX.Color = 256PalFX.Add = 0, 0, 0PalFX.Mul = 256, 256, 256PalFX.SinAdd = 0, 0, 0, 0PalFX.InvertAll = 0; EnvShake.Time = ; 省略時: 未確認EnvShake.Ampl = -4; EnvShake.Phase = ; 省略時: 0 ;振動数の乗数が90以上のときは90。EnvShake.Freq = 60; Fall.EnvShake.Time = ; 省略時: 未確認Fall.EnvShake.Ampl = -4; Fall.EnvShake.Phase = ; 省略時: 0 ;振動数の乗数が90以上のときは90。Fall.EnvShake.Freq = 60Offset = 0, 0PosType = P1ProjSprPriority = 3ProjStageBound = 40ProjEdgeBound = 40ProjHeightBound = -240, 1ProjAnim = 0PauseMoveTime = 0SuperMoveTime = 0AfterImage.Time = 1AfterImage.Length = 20AfterImage.TimeGap = 1AfterImage.FrameGap = 4AfterImage.PalColor = 256AfterImage.PalInvertAll = 0AfterImage.PalBright = 30, 30, 30AfterImage.PalContrast = 120, 120, 220AfterImage.PalPostBright = 120, 120, 220AfterImage.PalAdd = 10, 10, 25AfterImage.PalMul = .65, .65, .75; Attack.Width = ; 省略時: 未確認ReMapPal = -1, 0IgnoreHitPause = 0Persistent = 1 パラメーターの読み込み順 パラメーター読み込み順 Attr ?, ? HitFlag ? GuardFlag ? AffectTeam ? AnimType ? Air.AnimType ? Fall.AnimType ? Ground.Type ? Air.Type ? ProjID 1 ProjRemove 2 ProjRemoveTime 3 ProjShadow 4, 5, 6 ProjMissTime 7 ProjHits 8 ProjPriority 9 ProjHitAnim 10 ProjRemAnim 11 ProjCancelAnim 12 Velocity 13, 14 VelMul 15, 16 RemVelocity 17, 18 Accel 19, 20 ProjScale 21, 22 ID 23 ChainID 24 NoChainID 25, 26 Kill 27 Guard.Kill 28 Fall.Kill 29 HitOnce 30 Air.Juggle 31 Damage 32, 33 GetPower 34, 35 GivePower 36, 37 PauseTime 39, 38 NumHits 40 HitSound 41, 42 GuardSound 43, 44 Priority 45, ? P1StateNo 46 P2StateNo 47 P2GetP1State 48 P1SprPriority 49 ; SprPriority 49 ;P1SprPriorityと同じ扱い? P2SprPriority 50 ForceStand 51 ForceNoFall 52 Fall 53 Fall.Damage 54 Fall.XVelocity 55 Fall.YVelocity 56 Fall.Recover 57 Fall.RecoverTime 58 SparkNo 59 Guard.SparkNo 60 SparkXY 61, 62 P1Facing 63 P1GetP2Facing 64 Snap 65 -> 67, 66 -> 68 ; MinDist 65, 66 ; MaxDist 67, 68 P2Facing 69 Ground.HitTime 70 Ground.SlideTime 71 Ground.Velocity 72, 73 Ground.CornerPush.VelOff 74 Air.HitTime 75 Air.Fall 76 Air.Velocity 77, 78 Air.CornerPush.VelOff 79 Down.Bounce 80 Down.HitTime 81 Down.Velocity 82, 83 Down.CornerPush.VelOff 84 Guard.Velocity 85 Guard.HitTime 86 Guard.SlideTime 87 Guard.CtrlTime 88 Guard.Dist 89 Guard.PauseTime 91, 90 Guard.CornerPush.VelOff 92 AirGuard.Velocity 93, 94 AirGuard.CtrlTime 95 AirGuard.CornerPush.VelOff 96 YAccel 97 PalFX.Time 98 PalFX.Color 99 PalFX.Add 100, 101, 102 PalFX.Mul 103, 104, 105 PalFX.SinAdd 106, 107, 108 PalFX.InvertAll 109 EnvShake.Time 110 EnvShake.Ampl 111 EnvShake.Phase 112 EnvShake.Freq 113 Fall.EnvShake.Time 114 Fall.EnvShake.Ampl 115 Fall.EnvShake.Phase 116 Fall.EnvShake.Freq 117 Offset 118, 119 PosType ? ProjSprPriority 120 ProjStageBound 121 ProjEdgeBound 122 ProjHeightBound 123, 124 ProjAnim 125 PauseMoveTime 126 SuperMoveTime 127 AfterImage.Time 128 AfterImage.Length 129 AfterImage.TimeGap 130 AfterImage.FrameGap 131 AfterImage.PalColor 132 AfterImage.PalInvertAll 133 AfterImage.PalBright -1, 134, 135 ;バグで1個読み込まない AfterImage.PalContrast 136, 137, 138 AfterImage.PalPostBright 139, 140, 141 AfterImage.PalAdd 142, 143, 144 AfterImage.PalMul 145, 146, 147 Attack.Width ? ,? ReMapPal ?, ? IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事Projectile - State Controller Reference(version 2002.04.14)Projectile - State Controller Reference(version 1.0)Projectile - State Controller Reference(version 1.1)Projectile - M.U.G.E.N wikiProjectile - State ControllerProjectile - 東方夢幻館Projectile - 地球の応接間 公開日:2008.06.05 最終更新日:2017.08.06 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "NumProj",
+      "href": "./../Trigger/NumProj.html"
+    },
+    {
+      "text": "NumProjID",
+      "href": "./../Trigger/NumProjID.html"
+    },
+    {
+      "text": "Attr",
+      "href": "#parameter-Attr-0"
+    },
+    {
+      "text": "HitFlag",
+      "href": "#parameter-HitFlag-1"
+    },
+    {
+      "text": "GuardFlag",
+      "href": "#parameter-GuardFlag-2"
+    },
+    {
+      "text": "AffectTeam",
+      "href": "#parameter-AffectTeam-3"
+    },
+    {
+      "text": "AnimType",
+      "href": "#parameter-AnimType-4"
+    },
+    {
+      "text": "Air.AnimType",
+      "href": "#parameter-Air.AnimType-5"
+    },
+    {
+      "text": "Fall.AnimType",
+      "href": "#parameter-Fall.AnimType-6"
+    },
+    {
+      "text": "Ground.Type",
+      "href": "#parameter-Ground.Type-7"
+    },
+    {
+      "text": "Air.Type",
+      "href": "#parameter-Air.Type-8"
+    },
+    {
+      "text": "ProjID",
+      "href": "#parameter-ProjID-9"
+    },
+    {
+      "text": "ProjRemove",
+      "href": "#parameter-ProjRemove-10"
+    },
+    {
+      "text": "ProjRemoveTime",
+      "href": "#parameter-ProjRemoveTime-11"
+    },
+    {
+      "text": "ProjShadow",
+      "href": "#parameter-ProjShadow-12"
+    },
+    {
+      "text": "ProjMissTime",
+      "href": "#parameter-ProjMissTime-13"
+    },
+    {
+      "text": "ProjHits",
+      "href": "#parameter-ProjHits-14"
+    },
+    {
+      "text": "ProjPriority",
+      "href": "#parameter-ProjPriority-15"
+    },
+    {
+      "text": "ProjHitAnim",
+      "href": "#parameter-ProjHitAnim-16"
+    },
+    {
+      "text": "ProjRemAnim",
+      "href": "#parameter-ProjRemAnim-17"
+    },
+    {
+      "text": "ProjCancelAnim",
+      "href": "#parameter-ProjCancelAnim-18"
+    },
+    {
+      "text": "Velocity",
+      "href": "#parameter-Velocity-19"
+    },
+    {
+      "text": "VelMul",
+      "href": "#parameter-VelMul-20"
+    },
+    {
+      "text": "RemVelocity",
+      "href": "#parameter-RemVelocity-21"
+    },
+    {
+      "text": "Accel",
+      "href": "#parameter-Accel-22"
+    },
+    {
+      "text": "ProjScale",
+      "href": "#parameter-ProjScale-23"
+    },
+    {
+      "text": "ID",
+      "href": "#parameter-ID-24"
+    },
+    {
+      "text": "ChainID",
+      "href": "#parameter-ChainID-25"
+    },
+    {
+      "text": "NoChainID",
+      "href": "#parameter-NoChainID-26"
+    },
+    {
+      "text": "Kill",
+      "href": "#parameter-Kill-27"
+    },
+    {
+      "text": "Guard.Kill",
+      "href": "#parameter-Guard.Kill-28"
+    },
+    {
+      "text": "Fall.Kill",
+      "href": "#parameter-Fall.Kill-29"
+    },
+    {
+      "text": "HitOnce",
+      "href": "#parameter-HitOnce-30"
+    },
+    {
+      "text": "Air.Juggle",
+      "href": "#parameter-Air.Juggle-31"
+    },
+    {
+      "text": "Damage",
+      "href": "#parameter-Damage-32"
+    },
+    {
+      "text": "GetPower",
+      "href": "#parameter-GetPower-33"
+    },
+    {
+      "text": "GivePower",
+      "href": "#parameter-GivePower-34"
+    },
+    {
+      "text": "PauseTime",
+      "href": "#parameter-PauseTime-35"
+    },
+    {
+      "text": "NumHits",
+      "href": "#parameter-NumHits-36"
+    },
+    {
+      "text": "HitSound",
+      "href": "#parameter-HitSound-37"
+    },
+    {
+      "text": "GuardSound",
+      "href": "#parameter-GuardSound-38"
+    },
+    {
+      "text": "Priority",
+      "href": "#parameter-Priority-39"
+    },
+    {
+      "text": "P1StateNo",
+      "href": "#parameter-P1StateNo-40"
+    },
+    {
+      "text": "P2StateNo",
+      "href": "#parameter-P2StateNo-41"
+    },
+    {
+      "text": "P2GetP1State",
+      "href": "#parameter-P2GetP1State-42"
+    },
+    {
+      "text": "P1SprPriority",
+      "href": "#parameter-P1SprPriority-43"
+    },
+    {
+      "text": "; SprPriority",
+      "href": "#parameter--SprPriority-44"
+    },
+    {
+      "text": "P2SprPriority",
+      "href": "#parameter-P2SprPriority-45"
+    },
+    {
+      "text": "ForceStand",
+      "href": "#parameter-ForceStand-46"
+    },
+    {
+      "text": "ForceNoFall",
+      "href": "#parameter-ForceNoFall-47"
+    },
+    {
+      "text": "Fall",
+      "href": "#parameter-Fall-48"
+    },
+    {
+      "text": "Fall.Damage",
+      "href": "#parameter-Fall.Damage-49"
+    },
+    {
+      "text": "Fall.XVelocity",
+      "href": "#parameter-Fall.XVelocity-50"
+    },
+    {
+      "text": "Fall.YVelocity",
+      "href": "#parameter-Fall.YVelocity-51"
+    },
+    {
+      "text": "Fall.Recover",
+      "href": "#parameter-Fall.Recover-52"
+    },
+    {
+      "text": "Fall.RecoverTime",
+      "href": "#parameter-Fall.RecoverTime-53"
+    },
+    {
+      "text": "SparkNo",
+      "href": "#parameter-SparkNo-54"
+    },
+    {
+      "text": "Guard.SparkNo",
+      "href": "#parameter-Guard.SparkNo-55"
+    },
+    {
+      "text": "SparkXY",
+      "href": "#parameter-SparkXY-56"
+    },
+    {
+      "text": "P1Facing",
+      "href": "#parameter-P1Facing-57"
+    },
+    {
+      "text": "P1GetP2Facing",
+      "href": "#parameter-P1GetP2Facing-58"
+    },
+    {
+      "text": "Snap",
+      "href": "#parameter-Snap-59"
+    },
+    {
+      "text": "; MinDist",
+      "href": "#parameter--MinDist-60"
+    },
+    {
+      "text": "; MaxDist",
+      "href": "#parameter--MaxDist-61"
+    },
+    {
+      "text": "P2Facing",
+      "href": "#parameter-P2Facing-62"
+    },
+    {
+      "text": "Ground.HitTime",
+      "href": "#parameter-Ground.HitTime-63"
+    },
+    {
+      "text": "Ground.SlideTime",
+      "href": "#parameter-Ground.SlideTime-64"
+    },
+    {
+      "text": "Ground.Velocity",
+      "href": "#parameter-Ground.Velocity-65"
+    },
+    {
+      "text": "Ground.CornerPush.VelOff",
+      "href": "#parameter-Ground.CornerPush.VelOff-66"
+    },
+    {
+      "text": "Air.HitTime",
+      "href": "#parameter-Air.HitTime-67"
+    },
+    {
+      "text": "Air.Fall",
+      "href": "#parameter-Air.Fall-68"
+    },
+    {
+      "text": "Air.Velocity",
+      "href": "#parameter-Air.Velocity-69"
+    },
+    {
+      "text": "Air.CornerPush.VelOff",
+      "href": "#parameter-Air.CornerPush.VelOff-70"
+    },
+    {
+      "text": "Down.Bounce",
+      "href": "#parameter-Down.Bounce-71"
+    },
+    {
+      "text": "Down.HitTime",
+      "href": "#parameter-Down.HitTime-72"
+    },
+    {
+      "text": "Down.Velocity",
+      "href": "#parameter-Down.Velocity-73"
+    },
+    {
+      "text": "Down.CornerPush.VelOff",
+      "href": "#parameter-Down.CornerPush.VelOff-74"
+    },
+    {
+      "text": "Guard.Velocity",
+      "href": "#parameter-Guard.Velocity-75"
+    },
+    {
+      "text": "Guard.HitTime",
+      "href": "#parameter-Guard.HitTime-76"
+    },
+    {
+      "text": "Guard.SlideTime",
+      "href": "#parameter-Guard.SlideTime-77"
+    },
+    {
+      "text": "Guard.CtrlTime",
+      "href": "#parameter-Guard.CtrlTime-78"
+    },
+    {
+      "text": "Guard.Dist",
+      "href": "#parameter-Guard.Dist-79"
+    },
+    {
+      "text": "Guard.PauseTime",
+      "href": "#parameter-Guard.PauseTime-80"
+    },
+    {
+      "text": "Guard.CornerPush.VelOff",
+      "href": "#parameter-Guard.CornerPush.VelOff-81"
+    },
+    {
+      "text": "AirGuard.Velocity",
+      "href": "#parameter-AirGuard.Velocity-82"
+    },
+    {
+      "text": "AirGuard.CtrlTime",
+      "href": "#parameter-AirGuard.CtrlTime-83"
+    },
+    {
+      "text": "AirGuard.CornerPush.VelOff",
+      "href": "#parameter-AirGuard.CornerPush.VelOff-84"
+    },
+    {
+      "text": "YAccel",
+      "href": "#parameter-YAccel-85"
+    },
+    {
+      "text": "PalFX.Time",
+      "href": "#parameter-PalFX.Time-86"
+    },
+    {
+      "text": "PalFX.Color",
+      "href": "#parameter-PalFX.Color-87"
+    },
+    {
+      "text": "PalFX.Add",
+      "href": "#parameter-PalFX.Add-88"
+    },
+    {
+      "text": "PalFX.Mul",
+      "href": "#parameter-PalFX.Mul-89"
+    },
+    {
+      "text": "PalFX.SinAdd",
+      "href": "#parameter-PalFX.SinAdd-90"
+    },
+    {
+      "text": "PalFX.InvertAll",
+      "href": "#parameter-PalFX.InvertAll-91"
+    },
+    {
+      "text": "EnvShake.Time",
+      "href": "#parameter-EnvShake.Time-92"
+    },
+    {
+      "text": "EnvShake.Ampl",
+      "href": "#parameter-EnvShake.Ampl-93"
+    },
+    {
+      "text": "EnvShake.Phase",
+      "href": "#parameter-EnvShake.Phase-94"
+    },
+    {
+      "text": "EnvShake.Freq",
+      "href": "#parameter-EnvShake.Freq-95"
+    },
+    {
+      "text": "Fall.EnvShake.Time",
+      "href": "#parameter-Fall.EnvShake.Time-96"
+    },
+    {
+      "text": "Fall.EnvShake.Ampl",
+      "href": "#parameter-Fall.EnvShake.Ampl-97"
+    },
+    {
+      "text": "Fall.EnvShake.Phase",
+      "href": "#parameter-Fall.EnvShake.Phase-98"
+    },
+    {
+      "text": "Fall.EnvShake.Freq",
+      "href": "#parameter-Fall.EnvShake.Freq-99"
+    },
+    {
+      "text": "Offset",
+      "href": "#parameter-Offset-100"
+    },
+    {
+      "text": "PosType",
+      "href": "#parameter-PosType-101"
+    },
+    {
+      "text": "ProjSprPriority",
+      "href": "#parameter-ProjSprPriority-102"
+    },
+    {
+      "text": "ProjStageBound",
+      "href": "#parameter-ProjStageBound-103"
+    },
+    {
+      "text": "ProjEdgeBound",
+      "href": "#parameter-ProjEdgeBound-104"
+    },
+    {
+      "text": "ProjHeightBound",
+      "href": "#parameter-ProjHeightBound-105"
+    },
+    {
+      "text": "ProjAnim",
+      "href": "#parameter-ProjAnim-106"
+    },
+    {
+      "text": "PauseMoveTime",
+      "href": "#parameter-PauseMoveTime-107"
+    },
+    {
+      "text": "SuperMoveTime",
+      "href": "#parameter-SuperMoveTime-108"
+    },
+    {
+      "text": "AfterImage.Time",
+      "href": "#parameter-AfterImage.Time-109"
+    },
+    {
+      "text": "AfterImage.Length",
+      "href": "#parameter-AfterImage.Length-110"
+    },
+    {
+      "text": "AfterImage.TimeGap",
+      "href": "#parameter-AfterImage.TimeGap-111"
+    },
+    {
+      "text": "AfterImage.FrameGap",
+      "href": "#parameter-AfterImage.FrameGap-112"
+    },
+    {
+      "text": "AfterImage.PalColor",
+      "href": "#parameter-AfterImage.PalColor-113"
+    },
+    {
+      "text": "AfterImage.PalInvertAll",
+      "href": "#parameter-AfterImage.PalInvertAll-114"
+    },
+    {
+      "text": "AfterImage.PalBright",
+      "href": "#parameter-AfterImage.PalBright-115"
+    },
+    {
+      "text": "AfterImage.PalContrast",
+      "href": "#parameter-AfterImage.PalContrast-116"
+    },
+    {
+      "text": "AfterImage.PalPostBright",
+      "href": "#parameter-AfterImage.PalPostBright-117"
+    },
+    {
+      "text": "AfterImage.PalAdd",
+      "href": "#parameter-AfterImage.PalAdd-118"
+    },
+    {
+      "text": "AfterImage.PalMul",
+      "href": "#parameter-AfterImage.PalMul-119"
+    },
+    {
+      "text": "Attack.Width",
+      "href": "#parameter-Attack.Width-120"
+    },
+    {
+      "text": "ReMapPal",
+      "href": "#parameter-ReMapPal-121"
+    },
+    {
+      "text": "IgnoreHitPause",
+      "href": "#parameter-IgnoreHitPause-122"
+    },
+    {
+      "text": "Persistent",
+      "href": "#parameter-Persistent-123"
+    },
+    {
+      "text": "Projectile - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#Projectile"
+    },
+    {
+      "text": "Projectile - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#projectile"
+    },
+    {
+      "text": "Projectile - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#projectile"
+    },
+    {
+      "text": "Projectile - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/Projectile"
+    },
+    {
+      "text": "Projectile - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?Projectile&protocol=http"
+    },
+    {
+      "text": "Projectile - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#Projectile"
+    },
+    {
+      "text": "Projectile - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/projectile.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "/images/State/Projectile.gif",
+    "/images/State/SinAdd.png",
+    "/images/State/InvertAll.png",
+    "./media/img/PosType_P1.png",
+    "./media/img/PosType_P2.png",
+    "./media/img/PosType_Front_1.png",
+    "./media/img/PosType_Back_1.png",
+    "./media/img/PosType_Left_Helper.png",
+    "./media/img/PosType_Right_Helper.png",
+    "./media/img/PosType_None.png",
+    "https://www.youtube.com/embed/nxzpDh2aFoM",
+    "https://www.youtube.com/embed/0W8OcohJOSE",
+    "https://www.youtube.com/embed/v4UHsgrEN5I",
+    "https://www.youtube.com/embed/R1ObQavC_fg",
+    "https://www.youtube.com/embed/lJQW_RXYd7M",
+    "https://www.youtube.com/embed/wP588EIanOY",
+    "/images/State/AfterImage_description.gif",
+    "/images/State/InvertAll.png"
+  ],
+  "code": [
+    "[State 0, Projectile]",
+    "Type                       = Projectile",
+    "Trigger1                   = 1",
+    "; Attr                     =        ; 省略時: ;なし(攻撃がヒットしない)",
+    "; HitFlag                  =        ; 省略時: MAF ;ダウン状態にのみヒットしない",
+    "; GuardFlag                =        ; 省略時: MA ;どのような状態でもガード可",
+    "AffectTeam                 = E",
+    "AnimType                   = Light",
+    "; Air.AnimType             =        ; 省略時: ;AnimTypeと同じ値になります。",
+    "; Fall.AnimType            =        ; 省略時: ;Air.AnimTypeがUの時はU、それ以外ならBになります。",
+    "Ground.Type                = High",
+    "; Air.Type                 =        ; 省略時: ;Ground.Typeと同じ値になります。",
+    "; ProjID                   =        ; 省略時: 未確認",
+    "ProjRemove                 = 1",
+    "ProjRemoveTime             = -1",
+    "ProjShadow                 = 0, 0, 0",
+    "ProjMissTime               = 0",
+    "ProjHits                   = 1",
+    "ProjPriority               = 1",
+    "ProjHitAnim                = -1",
+    "; ProjRemAnim              =        ; 省略時: ;ProjHitAnimが使われます。",
+    "; ProjCancelAnim           =        ; 省略時: ;ProjRemAnimが使われます。",
+    "Velocity                   = 0, 0",
+    "VelMul                     = 1, 1",
+    "RemVelocity                = 0, 0",
+    "Accel                      = 0, 0",
+    "ProjScale                  = 1, 1",
+    "ID                         = 0",
+    "ChainID                    = -1",
+    "NoChainID                  = -1",
+    "Kill                       = 1",
+    "Guard.Kill                 = 1",
+    "Fall.Kill                  = 1",
+    "HitOnce                    = 0",
+    "Air.Juggle                 = 0",
+    "Damage                     = 0, 0",
+    "; GetPower                 =        ; 省略時: ;ヒット時がmugen.cfgのDefault.Attack.LifeToPowerMulパラメータにdamageをかけたものに、ガード時がその半分になります。",
+    "; GivePower                =        ; 省略時: ;ヒット時がmugen.cfgのDefault.GetHit.LifeToPowerMulパラメータにDamageをかけたものに、ガード時がその半分になります。",
+    "PauseTime                  = 0, 0",
+    "NumHits                    = 1",
+    "; HitSound                 =        ; 省略時: ;デフォルトでプレーヤー変数に設定された値になります。",
+    "; GuardSound               =        ; 省略時: ;デフォルトでプレーヤー変数に設定された値になります。",
+    "Priority                   = 4, H",
+    "P1StateNo                  = -1",
+    "; P2StateNo                =        ; 省略時: -1 ;無効",
+    "; P2GetP1State             =        ; 省略時: ;相手に実行者の食らいステートを読み込ませる。",
+    "P1SprPriority              = 1",
+    "; SprPriority              =        ; 代替書式・条件を確認: 0",
+    "P2SprPriority              = 0",
+    "; ForceStand               =        ; 省略時: ;Ground.VelocityのY速度が0なら0、0でなければ1になります。",
+    "ForceNoFall                = 0",
+    "Fall                       = 0",
+    "Fall.Damage                = 0",
+    "; Fall.XVelocity           =        ; 省略時: ;速度は変更されません。",
+    "Fall.YVelocity             = -4.5",
+    "Fall.Recover               = 1",
+    "Fall.RecoverTime           = 4",
+    "; SparkNo                  =        ; 省略時: ;cnsで設定した値が使用されます。",
+    "; Guard.SparkNo            =        ; 省略時: ;cnsで設定した値が使用されます。",
+    "SparkXY                    = 0, 0",
+    "; P1Facing                 =        ; 省略時: ;向きを変えません。",
+    "P1GetP2Facing              = 0",
+    "; Snap                     =        ; 省略時: ;no change in P2's position",
+    "; MinDist                  =        ; 代替書式・条件を確認: ;no change in P2's position",
+    "; MaxDist                  =        ; 代替書式・条件を確認: ;no change in P2's position",
+    "; P2Facing                 =        ; 省略時: ;向きは変わりません。",
+    "Ground.HitTime             = 0",
+    "Ground.SlideTime           = 0",
+    "Ground.Velocity            = 0, 0",
+    "; Ground.CornerPush.VelOff =        ; 省略時: ;AttrがAの場合は0、それ以外の場合は、1.3*Guard.Velocityとなります。",
+    "Air.HitTime                = 20",
+    "; Air.Fall                 =        ; 省略時: ;Fallと同じ値になります。",
+    "Air.Velocity               = 0, 0",
+    "; Air.CornerPush.VelOff    =        ; 省略時: ;Ground.CornerPush.VelOffと同じ値になります。",
+    "Down.Bounce                = 0",
+    "; Down.HitTime             =        ; 省略時: 未確認",
+    "; Down.Velocity            =        ; 省略時: ;Air.Velocityと同じ値になります。",
+    "; Down.CornerPush.VelOff   =        ; 省略時: ;Ground.CornerPush.VelOffと同値になります。",
+    "; Guard.Velocity           =        ; 省略時: ;Ground.Velocityと同じ値になります",
+    "; Guard.HitTime            =        ; 省略時: ;ground.hittimeと同値になりますが、前述の仕様により、実際のガード時間はground.hittimeの半分となり、硬直は、guard.ctrltime(省略時guard.slidetime)か「ground.hittimeの半分」のどちらか低い方、ということにになります。",
+    "; Guard.SlideTime          =        ; 省略時: ;Guard.HitTimeと同じ値になります。",
+    "; Guard.CtrlTime           =        ; 省略時: ;Guard.SlideTimeと同じ値になります。",
+    "; Guard.Dist               =        ; 省略時: ;CNSの[Size]のAttack.Distで設定した値になります。",
+    "; Guard.PauseTime          =        ; 省略時: ;PauseTimeと同じ値になります。",
+    "; Guard.CornerPush.VelOff  =        ; 省略時: ;Ground.CornerPush.VelOffと同じ値になります。",
+    "; AirGuard.Velocity        =        ; 省略時: ;Air.Velocityの空中ヒット速度X * 1.5, ;空中ヒット速度Y / 2",
+    "; AirGuard.CtrlTime        =        ; 省略時: ;Guard.CtrlTimeと同じ値になります。",
+    "; AirGuard.CornerPush.VelOff=        ; 省略時: ;Ground.CornerPush.VelOffと同じ値になります。",
+    "; YAccel                   =        ; 省略時: ;相手の重力に依存します。",
+    "PalFX.Time                 = 0",
+    "PalFX.Color                = 256",
+    "PalFX.Add                  = 0, 0, 0",
+    "PalFX.Mul                  = 256, 256, 256",
+    "PalFX.SinAdd               = 0, 0, 0, 0",
+    "PalFX.InvertAll            = 0",
+    "; EnvShake.Time            =        ; 省略時: 未確認",
+    "EnvShake.Ampl              = -4",
+    "; EnvShake.Phase           =        ; 省略時: 0 ;振動数の乗数が90以上のときは90。",
+    "EnvShake.Freq              = 60",
+    "; Fall.EnvShake.Time       =        ; 省略時: 未確認",
+    "Fall.EnvShake.Ampl         = -4",
+    "; Fall.EnvShake.Phase      =        ; 省略時: 0 ;振動数の乗数が90以上のときは90。",
+    "Fall.EnvShake.Freq         = 60",
+    "Offset                     = 0, 0",
+    "PosType                    = P1",
+    "ProjSprPriority            = 3",
+    "ProjStageBound             = 40",
+    "ProjEdgeBound              = 40",
+    "ProjHeightBound            = -240, 1",
+    "ProjAnim                   = 0",
+    "PauseMoveTime              = 0",
+    "SuperMoveTime              = 0",
+    "AfterImage.Time            = 1",
+    "AfterImage.Length          = 20",
+    "AfterImage.TimeGap         = 1",
+    "AfterImage.FrameGap        = 4",
+    "AfterImage.PalColor        = 256",
+    "AfterImage.PalInvertAll    = 0",
+    "AfterImage.PalBright       = 30, 30, 30",
+    "AfterImage.PalContrast     = 120, 120, 220",
+    "AfterImage.PalPostBright   = 120, 120, 220",
+    "AfterImage.PalAdd          = 10, 10, 25",
+    "AfterImage.PalMul          = .65, .65, .75",
+    "; Attack.Width             =        ; 省略時: 未確認",
+    "ReMapPal                   = -1, 0",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

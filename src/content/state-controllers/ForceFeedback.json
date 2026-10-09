@@ -1,93 +1,584 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "ForceFeedback",
-		"target": "プレイヤー操作者",
-		"category": ["その他","ゲームパッドの振動"],
-		"update": "2013.11.27",
-		"version": "",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "ForceFeedback",
-	"description": "<p>対応しているゲームパッドを振動させます。</p><p>現在は廃止されているはずなのですが、最新（2013.08更新）common1.cnsには、まだ記載されています。また、対応しているゲームパッドの詳細も不明です。使用しないほうがいいです。</p>",
-	"category": "state",
-
-	"version": [
-		{"no": "MUGEN 1.0以上", "content": "廃止されています。(多分)"}
-	],
-
-	"parameter": [
-		{
-			"parameter": "WaveForm",
-			"value": ["振動パターン"],
-			"type": ["string"],
-			"description": "<p>振動の仕方を指定。</p>",
-			"parameter_type": "optional",
-			"default_value": ["\"Sine\""],
-			"load_priority": ["?"],
-			"possible_value": [
-				["振動パターン", "効果"],
-				["\"Sine\"", "？"],
-				["\"Square\"", "？"],
-				["\"SineSquare\"", "？"],
-				["\"Off\"", "？"]
-			]
-		},
-		{
-			"parameter": "Time",
-			"value": ["持続時間"],
-			"type": ["int"],
-			"description": "<p>何フレーム振動するかを指定。</p><p>※60フレーム=1秒</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["60"],
-			"load_priority": ["1"]
-		},
-		{
-			"parameter": "Ampl",
-			"value": ["初期振幅 (integer constant), d1, d2, d3"],
-			"type": ["int", "float", "float", "float"],
-			"description": "<p>振幅を0～255の範囲で指定します。経過時間tにおけるamplは、</p><p>初期振幅 + d1*t + d2*t**2 + d3*t**3</p><p>という式で表せます。ちなみに、**はべき乗の演算子です。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["128, 0, 0, 0"],
-			"load_priority": ["2, 3, 4, 5"]
-		},
-		{
-			"parameter": "Freq",
-			"value": ["初期振動数 (integer constant), d1, d2, d3"],
-			"type": ["int", "float", "float", "float"],
-			"description": "<p>振動数を0～255の範囲で指定します。経過時間tにおけるfreqは、</p><p>初期振動数 + d1*t + d2*t**2 + d3*t**3</p><p>という式で表せます。ちなみに、**はべき乗の演算子です。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["128, 0, 0, 0"],
-			"load_priority": ["6, 7, 8, 9"]
-		},
-		{
-			"parameter": "Self",
-			"value": ["自分フラグ"],
-			"type": ["boolean"],
-			"description": "<p>1ならP1、0ならP2のパッドが振動します。</p>",
-			"min_value": [""],
-			"max_value": [""],
-			"parameter_type": "optional",
-			"default_value": ["1"],
-			"load_priority": ["10"]
-		}
-	],
-
-	"quote": [
-		{"title": "ForceFeedback - State Controller Reference(version 2002.04.14)", "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ForceFeedback"},
-		{"title": "ForceFeedback - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#forcefeedback"},
-		{"title": "ForceFeedback - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#forcefeedback"},
-		{"title": "ForceFeedback - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ForceFeedback"},
-		{"title": "ForceFeedback - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ForceFeedback&protocol=http"},
-		{"title": "ForceFeedback - MUGEN CNS WIKI CHAOS@予定", "url": "http://www49.atwiki.jp/mugencns/pages/229.html"},
-		{"title": "ForceFeedback - 東方夢幻館", "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ForceFeedback"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "ForceFeedback",
+    "target": "プレイヤー操作者",
+    "category": [
+      "その他",
+      "ゲームパッドの振動"
+    ],
+    "update": "2013.11.27",
+    "version": "",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": null
+  },
+  "state": "ForceFeedback",
+  "description": "<p>対応しているゲームパッドを振動させます。</p><p>現在は廃止されているはずなのですが、最新（2013.08更新）common1.cnsには、まだ記載されています。また、対応しているゲームパッドの詳細も不明です。使用しないほうがいいです。</p>",
+  "category": "state",
+  "version": [
+    {
+      "no": "MUGEN 1.0以上",
+      "content": "廃止されています。(多分)"
+    }
+  ],
+  "parameter": [
+    {
+      "parameter": "WaveForm",
+      "value": [
+        "振動パターン"
+      ],
+      "type": [
+        "string"
+      ],
+      "description": "<p>振動の仕方を指定。</p>",
+      "parameter_type": "optional",
+      "default_value": [
+        "\"Sine\""
+      ],
+      "load_priority": [
+        "?"
+      ],
+      "possible_value": [
+        [
+          "振動パターン",
+          "効果"
+        ],
+        [
+          "\"Sine\"",
+          "？"
+        ],
+        [
+          "\"Square\"",
+          "？"
+        ],
+        [
+          "\"SineSquare\"",
+          "？"
+        ],
+        [
+          "\"Off\"",
+          "？"
+        ]
+      ],
+      "documentation": {
+        "value": [
+          "振動パターン"
+        ],
+        "description": "<p>資料の指定はsine（Dual Shockの大きいモーター）、square（小さいモーター）、sinesquare（両方）、off（振動の停止）です。配布common1.cnsの例は引用符なしのwaveform = square等を使います。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "forcefeedback-local-2002",
+            "forcefeedback-local-1.0",
+            "forcefeedback-local-1.1"
+          ],
+          "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+        },
+        "possible_value": [
+          [
+            "振動パターン",
+            "資料上の効果"
+          ],
+          [
+            "sine",
+            "Dual Shockの大きいモーター"
+          ],
+          [
+            "square",
+            "Dual Shockの小さいモーター"
+          ],
+          [
+            "sinesquare",
+            "両方のモーター"
+          ],
+          [
+            "off",
+            "現在の振動を停止"
+          ]
+        ]
+      },
+      "expression_policy": "special_syntax",
+      "default": [
+        {
+          "kind": "unknown",
+          "display": "sine（公式資料の省略値）",
+          "evidence": {
+            "status": "unverified",
+            "basis": [
+              "official_document",
+              "source_code"
+            ],
+            "source_refs": [
+              "forcefeedback-local-2002",
+              "forcefeedback-local-1.0",
+              "forcefeedback-local-1.1",
+              "forcefeedback-common-cns"
+            ],
+            "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "unverified",
+        "basis": [],
+        "comment": "旧?を保持し順序を推定しない。"
+      }
+    },
+    {
+      "parameter": "Time",
+      "value": [
+        "持続時間"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "<p>何フレーム振動するかを指定。</p><p>※60フレーム=1秒</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "60"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "value": [
+          "持続フレーム数"
+        ],
+        "description": "<p>持続時間をフレーム数の整数定数で指定します。省略時は60です。Timeトリガーなどの式は指定しません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "forcefeedback-local-2002",
+            "forcefeedback-local-1.0",
+            "forcefeedback-local-1.1"
+          ],
+          "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+        }
+      },
+      "expression_policy": "constant_only",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 60,
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "forcefeedback-local-2002",
+              "forcefeedback-local-1.0",
+              "forcefeedback-local-1.1"
+            ],
+            "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持。"
+      }
+    },
+    {
+      "parameter": "Ampl",
+      "value": [
+        "初期振幅 (integer constant), d1, d2, d3"
+      ],
+      "type": [
+        "int",
+        "float",
+        "float",
+        "float"
+      ],
+      "description": "<p>振幅を0～255の範囲で指定します。経過時間tにおけるamplは、</p><p>初期振幅 + d1*t + d2*t**2 + d3*t**3</p><p>という式で表せます。ちなみに、**はべき乗の演算子です。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "128, 0, 0, 0"
+      ],
+      "load_priority": [
+        "2, 3, 4, 5"
+      ],
+      "documentation": {
+        "value": [
+          "開始振幅",
+          "一次係数",
+          "二次係数",
+          "三次係数"
+        ],
+        "description": "<p>開始振幅を整数定数、d1/d2/d3を小数定数で指定します。資料の振幅は0〜255、計算は<code>start + d1*t + d2*t**2 + d3*t**3</code>です。tは振動開始からの経過フレーム数で、係数にCNSの式を指定する意味ではありません。省略時は128, 0, 0, 0です。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "forcefeedback-local-2002",
+            "forcefeedback-local-1.0",
+            "forcefeedback-local-1.1"
+          ],
+          "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+        }
+      },
+      "expression_policy": "constant_only",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "128, 0, 0, 0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "forcefeedback-local-2002",
+              "forcefeedback-local-1.0",
+              "forcefeedback-local-1.1"
+            ],
+            "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持。"
+      }
+    },
+    {
+      "parameter": "Freq",
+      "value": [
+        "初期振動数 (integer constant), d1, d2, d3"
+      ],
+      "type": [
+        "int",
+        "float",
+        "float",
+        "float"
+      ],
+      "description": "<p>振動数を0～255の範囲で指定します。経過時間tにおけるfreqは、</p><p>初期振動数 + d1*t + d2*t**2 + d3*t**3</p><p>という式で表せます。ちなみに、**はべき乗の演算子です。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "128, 0, 0, 0"
+      ],
+      "load_priority": [
+        "6, 7, 8, 9"
+      ],
+      "documentation": {
+        "value": [
+          "開始振動数",
+          "一次係数",
+          "二次係数",
+          "三次係数"
+        ],
+        "description": "<p>開始振動数を整数定数、d1/d2/d3を小数定数で指定する、資料上の項目です。資料では<code>start + d1*t + d2*t**2 + d3*t**3</code>の計算と128, 0, 0, 0の省略値を示しますが、同時にFreqは完全に無視されると明記しています。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "forcefeedback-local-2002",
+            "forcefeedback-local-1.0",
+            "forcefeedback-local-1.1"
+          ],
+          "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+        }
+      },
+      "expression_policy": "constant_only",
+      "default": [
+        {
+          "kind": "literal",
+          "value": "128, 0, 0, 0",
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "forcefeedback-local-2002",
+              "forcefeedback-local-1.0",
+              "forcefeedback-local-1.1"
+            ],
+            "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持。"
+      }
+    },
+    {
+      "parameter": "Self",
+      "value": [
+        "自分フラグ"
+      ],
+      "type": [
+        "boolean"
+      ],
+      "description": "<p>1ならP1、0ならP2のパッドが振動します。</p>",
+      "min_value": [
+        ""
+      ],
+      "max_value": [
+        ""
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "1"
+      ],
+      "load_priority": [
+        "10"
+      ],
+      "documentation": {
+        "value": [
+          "振動するパッドの指定"
+        ],
+        "description": "<p>資料では1でP1のパッド、0でP2のパッドを指定します。省略時は1、真偽の定数指定です。現代のパッドやHelperでの対応を保証する指定ではありません。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "forcefeedback-local-2002",
+            "forcefeedback-local-1.0",
+            "forcefeedback-local-1.1"
+          ],
+          "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+        }
+      },
+      "expression_policy": "constant_only",
+      "default": [
+        {
+          "kind": "literal",
+          "value": 1,
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "forcefeedback-local-2002",
+              "forcefeedback-local-1.0",
+              "forcefeedback-local-1.1"
+            ],
+            "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持。"
+      }
+    }
+  ],
+  "quote": [
+    {
+      "title": "ForceFeedback - State Controller Reference(version 2002.04.14)",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ForceFeedback"
+    },
+    {
+      "title": "ForceFeedback - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#forcefeedback"
+    },
+    {
+      "title": "ForceFeedback - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#forcefeedback"
+    },
+    {
+      "title": "ForceFeedback - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ForceFeedback"
+    },
+    {
+      "title": "ForceFeedback - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ForceFeedback&protocol=http"
+    },
+    {
+      "title": "ForceFeedback - MUGEN CNS WIKI CHAOS@予定",
+      "url": "http://www49.atwiki.jp/mugencns/pages/229.html"
+    },
+    {
+      "title": "ForceFeedback - 東方夢幻館",
+      "url": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ForceFeedback"
+    },
+    {
+      "id": "forcefeedback-local-1.0",
+      "title": "ForceFeedback — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#forcefeedback",
+      "source_type": "official_document"
+    },
+    {
+      "id": "forcefeedback-local-1.1",
+      "title": "ForceFeedback — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#forcefeedback",
+      "source_type": "official_document"
+    },
+    {
+      "id": "forcefeedback-legacy",
+      "title": "移行前の本文・引数・例・図・履歴",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/a0f37ef62067ef2d339bf2c17d4174e567dc79bb/src/content/state-controllers/ForceFeedback.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "forcefeedback-local-2002",
+      "title": "ForceFeedback — 保存済み Elecbyte 2002.04.14",
+      "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ForceFeedback",
+      "source_type": "official_document"
+    },
+    {
+      "id": "forcefeedback-common-cns",
+      "title": "配布common1.cnsの振動指定（固定ミラー）",
+      "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/common1.cns",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "forcefeedback-chaos",
+      "title": "ForceFeedbackの機器対応/定数の留保 — CHAOS",
+      "url": "https://w.atwiki.jp/mugencns/pages/229.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "environment": {
+    "engine": "mugen"
+  },
+  "documentation": {
+    "description": "<p>対応する入力機器へ振動を指定する、旧来のステートコントローラーです。保存済みのMUGEN 1.0公式資料は、このコントローラーが1.0では未実装と明記しています。廃止されたという推定と、実装されていないという説明を区別します。</p><p>以下は資料に残る設定項目です。必須項目はなく、数値の指定は算術式を受け付けない定数指定です。common1.cnsに記述が残っていても、その実行環境で実際に振動することの確認にはなりません。</p>",
+    "page_category": "旧来のゲームパッド振動指定",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "forcefeedback-local-2002",
+        "forcefeedback-local-1.0",
+        "forcefeedback-local-1.1"
+      ],
+      "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "limitation",
+      "content": "<p>MUGEN 1.0の公式資料では未実装とされています。旧形式の設定情報を残していますが、1.0でゲームパッドが振動する機能として扱わないでください。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document"
+        ],
+        "source_refs": [
+          "forcefeedback-local-1.0"
+        ],
+        "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧廃止されています。(多分)を原位置に残し、公式1.0のnot implementedと区別して内部対応。1.1b1資料にも1.0未実装の同じ文が残るが、1.1固有の対応状況・削除ビルドやパーサー拒否をここから推定しない。2002公式のPlaystation Dual Shockネイティブ対応、CHAOSの対応不明・Waveform必須表記と公式任意の差、旧引用符付き波形省略値と配布例の引用なし表記を留保付きで保持。どの機器/ドライバー/OSで作動するか未測定。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "forcefeedback-legacy",
+          "forcefeedback-chaos",
+          "forcefeedback-local-2002",
+          "forcefeedback-local-1.0",
+          "forcefeedback-local-1.1",
+          "forcefeedback-common-cns"
+        ],
+        "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+      },
+      "legacy_index": 0
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>Freq無視と振幅/振動数の0..255は資料記載。各係数の上限/負数/丸め/補正、Timeの0/負数/終了境界、P1/P2と入力デバイス/Helperの対応は実機未測定。common1.cnsにsinesquare/ampl = 110,-1,-.3等が残る事実と実装の作動を区別する。旧Timeの60フレーム=1秒という説明、旧?を含む処理順、波形の旧効果?を保存する。</p>",
+      "environment": {
+        "engine": "mugen"
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "forcefeedback-legacy",
+          "forcefeedback-common-cns",
+          "forcefeedback-local-2002",
+          "forcefeedback-local-1.0",
+          "forcefeedback-local-1.1"
+        ],
+        "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "forcefeedback-local-2002",
+      "forcefeedback-local-1.0",
+      "forcefeedback-local-1.1"
+    ],
+    "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+  }
 }

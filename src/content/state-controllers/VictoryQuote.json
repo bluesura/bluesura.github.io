@@ -1,100 +1,395 @@
 {
-	"page": {
-		"title": "MUGEN State Controller",
-		"subtitle": "VictoryQuote",
-		"target": "画面",
-		"category": ["演出","勝利セリフの選択・表示"],
-		"version": "2011.01.18",
-		"update": "2013.11.27",
-		"type": "document",
-		"level": "3"
-	},
-
-	"state": "VictoryQuote",
-	"description": "<p>”M.U.G.E.N 1.0”から追加されたステートコントローラで、勝利画面に表示するプレイヤーのセリフを選択します。</p><p>”VictoryQuote”はプレイヤーの試合中に読み込まれますが、試合後にしか効果がありません。また、ヘルパーで実行しても効果がないです。勝利のセリフは、CNSファイル内の[Quotes]グループに指定します。</p><p>勝利画面では、 ”9000,2” のスプライトが必要になります。キャラの ”Localcoord” が ”320, 240” の場合、画像の大きさは左上基準で横幅120、高さ115になります。</p>",
-	"images": [{"src": "VictoryQuote.png", "width": "640", "height": "480", "alt": "MUGEN VictoryQuote"}],
-	"category": "state",
-
-	"parameter": [
-		{
-			"parameter": "value",
-			"value": ["セリフの番号"],
-			"type": ["int"],
-			"description": "使用するセリフの番号を指定します。無効な番号が指定された場合、ランダムに選択されます。",
-			"min_value": ["0"],
-			"max_value": ["99"],
-			"parameter_type": "optional",
-			"default_value": ["-1"],
-			"load_priority": ["1"]
-		}
-	],
-
-	"code_sample": [
-		{
-			"title": "設定方法",
-			"code": [
-				"; system.def で有無を設定。デフォルトは 1 で、有効になります。",
-				"[Victory Screen]",
-				"enabled = 1"
-			]
-		},
-		{
-			"title": ".cnsの[Quotes]設定方法",
-			"code": [
-				"; ”[Quotes]”はデフォルトの言語で指定されるセリフです。",
-				"; 基本的に”[Quotes]”は英語で書かなければいけません。",
-				"; 各言語ごとにセリフは 100 まで指定出来ます。 (例：victory0 - victory99)",
-				"[Quotes]",
-				"victory1 = \"You must defeat Tu Shou to stand a chance.\"",
-				"victory2 = \"You need a lot of training. Come back in ten years.\"",
-				"victory3 = \"You look familiar. Did I see you on TV?\"",
-				"victory4 = \"Your moves are too predictable. You want to learn Kung Fu Palm? It's not for novices.\"",
-				"victory5 = \"That was a good workout.\"",
-				"victory6 = \"I want to challenge more skilled fighters.\"",
-				"victory7 = \"What do you mean my girlfriend is in another temple?\""
-			]
-		},
-		{
-			"title": "別言語の[Quotes]設定方法1",
-			"code": [
-				"; 日本語のセリフを指定するには”[ja.Quotes]”のように書きます。",
-				"; 別の言語(例： en, es, ja, etc.)を指定する場合",
-				"; <a href=\"http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO 639-1</a>を参考にして設定してください。(例：中国語の場合”[zh.Quotes]”)",
-				"; それ以降は”[Quotes]”と同じ書き方ですが、ファイルを必ずutf-8で保存してください。",
-				"[ja.Quotes]",
-				"victory1 = \"カンフー突き手を破らぬ限り、お前に勝ち目はない！\"",
-				"victory2 = \"十年早いんだぞ\"",
-				"victory3 = \"お前は見覚えがあるな。テレビにでも…？\"",
-				"victory4 = \"お前の動きは見破りやすすぎる。　なに、カンフー突き手が覚えたいんだと？　素人には無理だぞ\"",
-				"victory5 = \"ふー。　いい汗だった\"",
-				"victory6 = \"もっと強い相手に挑戦したい\"",
-				"victory7 = \"なんだと！彼女はここにもいないと？\""
-			]
-		},
-		{
-			"title": "別言語の[Quotes]設定方法2",
-			"code": [
-				"; mugen.cfg を開いて Language を設定します",
-				"; language は<a href=\"http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO 639-1</a>を参考に指定してください。",
-				"Language = \"ja\""
-			]
-		},
-		{
-			"title": "P2の名前が”Kung Fu Man”の時に、3番目の勝利ゼリフを出す",
-			"code": [
-				"[State ,VictoryQuote]",
-				"Type = VictoryQuote",
-				"Trigger1 = P2Name = \"Kung Fu Man\"",
-				"value = 3"
-			]
-		}
-	],
-
-	"quote": [
-		{"title": "VictoryQuote - State Controller Reference(version 1.0)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#victoryquote"},
-		{"title": "VictoryQuote - State Controller Reference(version 1.1)", "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#victoryquote"},
-		{"title": "VictoryQuote - 絶対許早苗豆腐", "url": "http://yurusanae.blog98.fc2.com/blog-category-41.html"},
-		{"title": "VictoryQuote - M.U.G.E.N wiki", "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VictoryQuote"},
-		{"title": "VictoryQuote - State Controller", "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VictoryQuote&protocol=http"}
-	]
+  "page": {
+    "title": "MUGEN State Controller",
+    "subtitle": "VictoryQuote",
+    "target": "画面",
+    "category": [
+      "演出",
+      "勝利セリフの選択・表示"
+    ],
+    "version": "2011.01.18",
+    "update": "2013.11.27",
+    "type": "document",
+    "level": "3",
+    "engine": "mugen",
+    "introduced_in": "mugen-1.0-rc1"
+  },
+  "state": "VictoryQuote",
+  "description": "<p>”M.U.G.E.N 1.0”から追加されたステートコントローラで、勝利画面に表示するプレイヤーのセリフを選択します。</p><p>”VictoryQuote”はプレイヤーの試合中に読み込まれますが、試合後にしか効果がありません。また、ヘルパーで実行しても効果がないです。勝利のセリフは、CNSファイル内の[Quotes]グループに指定します。</p><p>勝利画面では、 ”9000,2” のスプライトが必要になります。キャラの ”Localcoord” が ”320, 240” の場合、画像の大きさは左上基準で横幅120、高さ115になります。</p>",
+  "images": [
+    {
+      "src": "VictoryQuote.png",
+      "width": "640",
+      "height": "480",
+      "alt": "MUGEN VictoryQuote",
+      "visibility": "internal"
+    }
+  ],
+  "category": "state",
+  "parameter": [
+    {
+      "parameter": "value",
+      "value": [
+        "セリフの番号"
+      ],
+      "type": [
+        "int"
+      ],
+      "description": "使用するセリフの番号を指定します。無効な番号が指定された場合、ランダムに選択されます。",
+      "min_value": [
+        "0"
+      ],
+      "max_value": [
+        "99"
+      ],
+      "parameter_type": "optional",
+      "default_value": [
+        "-1"
+      ],
+      "load_priority": [
+        "1"
+      ],
+      "documentation": {
+        "value": [
+          "セリフ番号（0〜99）"
+        ],
+        "description": "<p>選択するセリフの番号を整数または式で指定します。番号の範囲は0〜99です。範囲外の番号を指定した場合はランダム選択となり、省略値の-1もこの扱いです。有効な番号の例として3は<code>victory3</code>を指定します。</p>",
+        "evidence": {
+          "status": "confirmed",
+          "basis": [
+            "official_document"
+          ],
+          "source_refs": [
+            "victoryquote-local-1.0",
+            "victoryquote-local-1.1"
+          ],
+          "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+        }
+      },
+      "expression_policy": "expression",
+      "default": [
+        {
+          "kind": "literal",
+          "value": -1,
+          "evidence": {
+            "status": "confirmed",
+            "basis": [
+              "official_document"
+            ],
+            "source_refs": [
+              "victoryquote-local-1.0",
+              "victoryquote-local-1.1"
+            ],
+            "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+          }
+        }
+      ],
+      "load_priority_evidence": {
+        "status": "confirmed",
+        "basis": [
+          "maintainer_report"
+        ],
+        "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。旧表記を保持。"
+      }
+    }
+  ],
+  "code_sample": [
+    {
+      "title": "設定方法",
+      "code": [
+        "; system.def で有無を設定。デフォルトは 1 で、有効になります。",
+        "[Victory Screen]",
+        "enabled = 1"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": ".cnsの[Quotes]設定方法",
+      "code": [
+        "; ”[Quotes]”はデフォルトの言語で指定されるセリフです。",
+        "; 基本的に”[Quotes]”は英語で書かなければいけません。",
+        "; 各言語ごとにセリフは 100 まで指定出来ます。 (例：victory0 - victory99)",
+        "[Quotes]",
+        "victory1 = \"You must defeat Tu Shou to stand a chance.\"",
+        "victory2 = \"You need a lot of training. Come back in ten years.\"",
+        "victory3 = \"You look familiar. Did I see you on TV?\"",
+        "victory4 = \"Your moves are too predictable. You want to learn Kung Fu Palm? It's not for novices.\"",
+        "victory5 = \"That was a good workout.\"",
+        "victory6 = \"I want to challenge more skilled fighters.\"",
+        "victory7 = \"What do you mean my girlfriend is in another temple?\""
+      ]
+    },
+    {
+      "title": "別言語の[Quotes]設定方法1",
+      "code": [
+        "; 日本語のセリフを指定するには”[ja.Quotes]”のように書きます。",
+        "; 別の言語(例： en, es, ja, etc.)を指定する場合",
+        "; <a href=\"http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO 639-1</a>を参考にして設定してください。(例：中国語の場合”[zh.Quotes]”)",
+        "; それ以降は”[Quotes]”と同じ書き方ですが、ファイルを必ずutf-8で保存してください。",
+        "[ja.Quotes]",
+        "victory1 = \"カンフー突き手を破らぬ限り、お前に勝ち目はない！\"",
+        "victory2 = \"十年早いんだぞ\"",
+        "victory3 = \"お前は見覚えがあるな。テレビにでも…？\"",
+        "victory4 = \"お前の動きは見破りやすすぎる。　なに、カンフー突き手が覚えたいんだと？　素人には無理だぞ\"",
+        "victory5 = \"ふー。　いい汗だった\"",
+        "victory6 = \"もっと強い相手に挑戦したい\"",
+        "victory7 = \"なんだと！彼女はここにもいないと？\""
+      ]
+    },
+    {
+      "title": "別言語の[Quotes]設定方法2",
+      "code": [
+        "; mugen.cfg を開いて Language を設定します",
+        "; language は<a href=\"http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO 639-1</a>を参考に指定してください。",
+        "Language = \"ja\""
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "P2の名前が”Kung Fu Man”の時に、3番目の勝利ゼリフを出す",
+      "code": [
+        "[State ,VictoryQuote]",
+        "Type = VictoryQuote",
+        "Trigger1 = P2Name = \"Kung Fu Man\"",
+        "value = 3"
+      ],
+      "visibility": "internal"
+    },
+    {
+      "title": "モチーフで勝利画面を有効にする（system.def）",
+      "description": "<p>既存の[Victory Screen]へ設定します。セリフの選択とは別の画面設定です。表示モードやフォント・画像の設定もモチーフ側で確認してください。</p>",
+      "code": [
+        "[Victory Screen]",
+        "enabled = 1"
+      ]
+    },
+    {
+      "title": "日本語を選ぶ（mugen.cfg）",
+      "description": "<p>[ja.Quotes]と対応フォントを用意したうえで、[Config]の言語設定を指定します。キャラクターのCNSへ書く設定ではありません。</p>",
+      "code": [
+        "[Config]",
+        "Language = \"ja\""
+      ]
+    },
+    {
+      "title": "相手の名前に合わせてvictory3を選ぶ",
+      "description": "<p>既存の勝利ステートで使う例です。試合の勝者・本体から、存在する相手の内部名を比較します。表示する言語グループにvictory3を定義しておいてください。番号3は配列の3番目という説明ではなく、victory3の番号です。</p>",
+      "code": [
+        "[State 180, Victory quote]",
+        "Type = VictoryQuote",
+        "TriggerAll = !IsHelper",
+        "TriggerAll = Win",
+        "TriggerAll = NumEnemy > 0",
+        "Trigger1 = P2Name = \"Kung Fu Man\"",
+        "Value = 3"
+      ]
+    }
+  ],
+  "quote": [
+    {
+      "title": "VictoryQuote - State Controller Reference(version 1.0)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#victoryquote"
+    },
+    {
+      "title": "VictoryQuote - State Controller Reference(version 1.1)",
+      "url": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#victoryquote"
+    },
+    {
+      "title": "VictoryQuote - 絶対許早苗豆腐",
+      "url": "http://yurusanae.blog98.fc2.com/blog-category-41.html"
+    },
+    {
+      "title": "VictoryQuote - M.U.G.E.N wiki",
+      "url": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/VictoryQuote"
+    },
+    {
+      "title": "VictoryQuote - State Controller",
+      "url": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?VictoryQuote&protocol=http"
+    },
+    {
+      "id": "victoryquote-local-1.0",
+      "title": "VictoryQuote — 保存済み Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/sctrls.html#victoryquote",
+      "source_type": "official_document"
+    },
+    {
+      "id": "victoryquote-local-1.1",
+      "title": "VictoryQuote — 保存済み Elecbyte 1.1b1",
+      "url": "/MUGEN/document/Official/1.1b1/sctrls.html#victoryquote",
+      "source_type": "official_document"
+    },
+    {
+      "id": "victoryquote-legacy",
+      "title": "移行前の本文・引数・例・図・履歴",
+      "url": "https://github.com/bluesura/bluesura.github.io/blob/a0f37ef62067ef2d339bf2c17d4174e567dc79bb/src/content/state-controllers/VictoryQuote.json",
+      "source_type": "source_code",
+      "visibility": "internal"
+    },
+    {
+      "id": "victoryquote-rc1",
+      "title": "VictoryQuote追加 — 公式RC1履歴",
+      "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc1",
+      "source_type": "official_history"
+    },
+    {
+      "id": "victoryquote-localization",
+      "title": "言語グループとフォールバック — Elecbyte 1.0",
+      "url": "/MUGEN/document/Official/1.0/localization.html#language-mechanism",
+      "source_type": "official_document"
+    },
+    {
+      "id": "victoryquote-kfm-cns",
+      "title": "配布KFMのQuotesコメントと設定（固定ミラー）",
+      "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/chars/kfm/kfm.cns",
+      "source_type": "source_code"
+    },
+    {
+      "id": "victoryquote-system-def",
+      "title": "配布勝利画面の表示設定（固定ミラー）",
+      "url": "https://github.com/fanyer/mugen/blob/b6885c654ba830157f5dd4f257bebfa738300df3/data/system.def",
+      "source_type": "source_code"
+    },
+    {
+      "id": "victoryquote-newmugen-research",
+      "title": "登録漏れ/旧キャラ/画像に関する研究 — ニコニコMUGENwiki",
+      "url": "https://w.atwiki.jp/niconicomugen/pages/3627.html",
+      "source_type": "community_documentation",
+      "visibility": "internal"
+    }
+  ],
+  "environment": {
+    "engine": "mugen",
+    "runtime": [
+      "mugen-1.0",
+      "mugen-1.1"
+    ]
+  },
+  "documentation": {
+    "description": "<p>現在の試合の直後にある勝利画面で、勝者が表示するセリフの番号を選択します。実行した場で文字を画面へ描くコントローラーではありません。セリフはキャラクターの定数ファイルの<code>[Quotes]</code>に定義します。</p><p>試合中はいつでも実行できますが、表示へ影響するのは勝者の指定です。Helperが実行しても効果はありません。勝利画面を表示する設定は、モチーフのsystem.def側で行います。</p>",
+    "page_category": "次の勝利画面のセリフ番号を選択",
+    "evidence": {
+      "status": "confirmed",
+      "basis": [
+        "official_document"
+      ],
+      "source_refs": [
+        "victoryquote-local-1.0",
+        "victoryquote-local-1.1"
+      ],
+      "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+    }
+  },
+  "notes": [
+    {
+      "kind": "version_change",
+      "content": "<p>MUGEN 1.0 RC1でVictoryQuoteと[Quotes]が追加されました。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_history"
+        ],
+        "source_refs": [
+          "victoryquote-rc1"
+        ],
+        "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+      },
+      "change": "added",
+      "at": "mugen-1.0-rc1"
+    },
+    {
+      "kind": "behavior",
+      "content": "<p>[Quotes]は既定の英語セリフ、[ja.Quotes]は日本語用のグループです。mugen.cfgの[Config] Language = \"ja\"で日本語を選び、対応する言語グループがなければ既定のグループへフォールバックします。日本語を保存するファイルはUTF-8を使い、勝利画面側にも非ASCII文字を表示できるTrueTypeフォントを設定します。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "confirmed",
+        "basis": [
+          "official_document",
+          "source_code"
+        ],
+        "source_refs": [
+          "victoryquote-localization",
+          "victoryquote-kfm-cns"
+        ],
+        "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧9000,2必須/LocalCoord320,240で120×115左上という固定寸法の説明と図は保持して内部へ。公式RC1履歴は9000,2を使用できるとし、配布system.defはp1.spr/p1.offset/p1.scale/p1.windowを設定する。画像寸法・切抜き・スケールはモチーフ設定に依存し、全勝利画面で固定必須とは判断しない。既定enabled=1の旧コメントは配布設定の実値とグローバル省略値を区別し、元例を保持して公開例から除く。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_history",
+          "source_code"
+        ],
+        "source_refs": [
+          "victoryquote-legacy",
+          "victoryquote-system-def",
+          "victoryquote-rc1"
+        ],
+        "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+      }
+    },
+    {
+      "kind": "research",
+      "visibility": "internal",
+      "content": "<p>旧有効な番号の0..99と配布KFMのvictory1開始例、ニコニコwikiのvictory0欠番時のWinner!報告、登録漏れ・範囲外・言語グループの欠番を同一視しない。配布system.defのwinquote.text = \"Winner!\"は画面側の既定表示。未定義の範囲内番号、Quotesなし/部分翻訳・ランダム抽選対象・再指定/試合境界/同時勝者と非表示モードは未測定。旧WinキャラへのQuotes追加報告はコントローラーの旧版対応を意味しない。</p>",
+      "environment": {
+        "engine": "mugen",
+        "runtime": [
+          "mugen-1.0",
+          "mugen-1.1"
+        ]
+      },
+      "evidence": {
+        "status": "unverified",
+        "basis": [
+          "official_document",
+          "community_documentation",
+          "source_code"
+        ],
+        "source_refs": [
+          "victoryquote-legacy",
+          "victoryquote-kfm-cns",
+          "victoryquote-system-def",
+          "victoryquote-newmugen-research",
+          "victoryquote-local-1.0",
+          "victoryquote-local-1.1"
+        ],
+        "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+      }
+    }
+  ],
+  "evidence": {
+    "status": "confirmed",
+    "basis": [
+      "official_document"
+    ],
+    "source_refs": [
+      "victoryquote-local-1.0",
+      "victoryquote-local-1.1"
+    ],
+    "comment": "2026-10-09: 保存済み公式・固定コミット配布ファイル/コメント・コミュニティ研究を照合。対応機器の振動や画面表示/番号選択/フォントは実機未測定。"
+  }
 }

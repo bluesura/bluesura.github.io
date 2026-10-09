@@ -1588,3 +1588,24 @@ npm run mugen:test
 npm run build
 npm run mugen:check-html
 ~~~
+
+## feedback-victory-01（2026-10-09）
+
+ForceFeedback / VictoryQuote の2件。累計230件、81バッチ214件＋主要/補助16件、残り4件。
+
+- 旧原文・メタ・パラメーター/省略値/読み込み順・図・コード例・引用を保持。移行前比較基準と追加計画を適用前にコミットしました。
+- ForceFeedbackは保存済み1.0の「未実装」を公開制約へ限定し、旧「廃止（多分）」を内部へ対応付けました。1.1の同文から1.1の対応や削除ビルドを推定しません。数値定数・4係数・Freq無視を明示し、公式任意/CHAOS必須、旧引用符付き波形と配布common1.cnsの引用なし指定、対応機器の研究は内部へ。WaveFormはunknownの省略指定としてCNS出力をコメントに保ち、公開表示は資料で確認したsineだけを案内します。
+- VictoryQuoteは公式RC1履歴による初導入、0..99と範囲外のランダム、勝者の指定・Helper無効を構造化しました。有効な既存英日Quotes例は公開維持し、Configの言語指定・Victory Screenの有効化・存在確認を伴うvictory3選択例を追加。範囲内の未定義番号をランダムと断定しません。旧一律9000,2必須/120×115、既定値の一般化、前提不足の旧例/図は内部保存。
+- RC1レジストリを追加。公式履歴の22 Sep 2009と旧参考表の21 Sepの相違を記録し、配布日はnull。MUGEN/IKEMENを分離し、検証状態や根拠はHTMLへ出しません。資料確認を実機検証とはしません。
+- 384テスト、263ページビルド、261 URL/241比較対象HTML、通常幅/390pxで2件の表・設定例・内部情報非表示を確認。開発サーバーの古いレジストリ参照は対象を確認して4322で再起動し解消。検査後に幅を復元して検査タブを終了しました。
+- 内部注記665件、未対応旧履歴87項目、未表示フィールド29ページ。スキーマ/レンダラー/CSSは変更なし。残りはGetHitVar / ModifyExplod / Projectile / ReversalDefです。
+
+~~~sh
+npm run mugen:batch-baseline -- --batch feedback-victory-01
+npm run mugen:batch -- --batch feedback-victory-01 --target ForceFeedback --target VictoryQuote
+npm run mugen:batch -- --batch feedback-victory-01 --target ForceFeedback --target VictoryQuote --apply
+npm run mugen:validate
+npm run mugen:test
+npm run build
+npm run mugen:check-html
+~~~

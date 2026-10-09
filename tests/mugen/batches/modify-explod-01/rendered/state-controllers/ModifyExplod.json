@@ -1,0 +1,196 @@
+{
+  "text": "Type = ModifyExplod 演出 > 表示中のExplodのパラメータ変更 | 実装されたバージョン: 2002.04.14 | 対象: 画像 パラメーター 仕様・注意点 コピペ用 読み込み順 引用記事 既に出したExplodの設定を変える命令。指定したIDのExplodが存在しない場合は、ID以降のパラメータは読み込まれません。IgnoreHitPause = 1ではHitPauseTime中にも出る、またAnimが動く。IgnoreHitPauseを省略するとHitPauseTime中には出ない、またAnimeが動く。IgnoreHitPause = 0ではHitPauseTime中には出ない、またAnimが動かない。 関連するステートコントローラー： Explod パラメーター パラメーター一覧 22項目 IDFacingVFacingPosPosTypeRandomVelAccelScaleBindTimeOnTopRemoveTimeSuperMoveTimeSprPriorityPauseMoveTimeSuperMoveShadowRemoveOnGethitTransAlphaIgnoreHitPausePersistent ID = ExplodのID番号 型整数 省略時-1 設定を変更するExplodのIDを指定します。-1で全てのExplodの設定を変更する。IDが存在しない場合、それ以降のパラメータは読み込まれない。 Facing = 向き 型整数 省略時;変更なし スプライトの向きを指定。1で正、-1で負の方向を向きます。 VFacing = 上下の向き 型整数 省略時;変更なし -1にすると、垂直方向に反転表示されます。 Pos = x座標, y座標 型整数, 整数 省略時;変更なし 最小値-2147483647, -2147483647 最大値2147483647, 2147483647 スプライトの出現位置を変更します。 PosType = 基準点の位置 型文字列 省略時P1 ;Version1.1からはNoneに変更されています。 アニメーションを出現させるための基準点(0,0)をどこにするか、以下の文字列から指定します。 タイプ基準 P1実行者が基準点(0,0)になります。X軸の正数は実行者の正面・Y軸の負数は実行者の頭上。P2実行者に最も近い敵が基準点(0,0)になります。X軸の正数は最も近い敵の正面・Y軸の負数は最も近い敵の頭上。FFはFrontの略。実行者の正面の画面端が基準点(0,0)になります。X軸の負数は基準点から実行者の方向・Y軸の負数は地面から上。BBはBackの略。実行者の背面の画面端が基準点(0,0)になります。X軸の正数は基準点から実行者の方向・Y軸の負数は地面から上。LLはLeftの略。画面左上が基準点(0,0)になります。X軸の正数は画面右方向・Y軸の正数は画面下方向。RRはRightの略。画面右上が基準点(0,0)になります。X軸の負数は画面左方向・Y軸の正数は画面下方向。NNはNoneの略。ステージ中央が基準点(0,0)になります。他のPosTypeと違い基準点は絶対に動きません。X軸は右方向が正数・左方向が負数。Y軸は上方向が負数・下方向が正数。Version1.1から追加された値です。 Random = x範囲, y範囲 型整数, 整数 省略時;変更なし 出現位置をランダムにする場合の、出現範囲を指定。pos = 0,0で、random = 40,80の場合、0,0の位置から左右-20～20ピクセル、上下-40～40ピクセルの範囲内でランダムに出現します。 Vel = x速度, y速度 型浮動小数点数, 浮動小数点数 省略時;変更なし スプライトの初速度を指定。 Accel = x加速度, y加速度 型浮動小数点数, 浮動小数点数 省略時;変更なし スプライトの加速度を指定。 Scale = 横縮尺 [,縦縮尺] 型浮動小数点数 省略時;変更なし 縮尺を指定。 BindTime = 固定時間 型整数 省略時;変更なし ここで指定した時間内は、基準位置からの相対位置で表示されます。つまり、基準位置が移動すると、それに合わせてスプライトも移動します。-1以下で固定時間が永続化。ただし-2以下は警告文を出すので永続にする場合は、-1のみしか指定してはいけません。 OnTop = 手前表示フラグ 型0か1 省略時;変更なし 1にすると、sprpriorityは無視され、全てのスプライト、背景レイヤーより手前に表示されます。ただし、ヒット/ガードスパークより手前に表示させることはできません。 RemoveTime = 消滅時間 型整数 省略時;変更なし 発生してから消滅するまでの時間を指定。-1で永久に表示。-2で、スプライトのアニメが終了すると消えます。特定の条件下で消すような場合は、Expoldを消すコントローラを使うとよいでしょう。 SuperMoveTime = superpause無視時間 型整数 省略時;変更なし SuperPauseコントローラの影響を無視する時間を指定。-1または-2で無視時間永続化。 SprPriority = スプライト表示優先順位 型整数 省略時;変更なし スプライトの表示優先順位を指定。-3にすると、大抵のスプライトより奥に表示されます。OnTopが有効な場合、SprPriorityが読み込まれません。 PauseMoveTime = move_time 型整数 省略時;変更なし pauseコントローラの影響を無視する時間を指定。 SuperMove = superpause無視フラグ 型0か1 省略時;変更なし 1にすると、superpauseコントローラの影響を受けなくなります。指定しないほうがよいパラメータのようです。下記のsupermovetimeで代用してください。SuperMoveTimeが0の場合は、SuperMoveは読み込まれません。 Shadow = 赤影, 緑影, 青影 型整数, 整数, 整数 省略時;変更なし 影の色をR,G,Bで指定。-1でステージ依存。0,0,0で影なし。 RemoveOnGethit = やられ消滅フラグ 型0か1 省略時;変更なし 1にすると、プレイヤーが攻撃を受けた場合、消滅します。 Trans = 透過型 型文字列 省略時;変更なし 透過型には、以下のいずれかの文字列を指定します。透過処理効果Default何も処理しない。多分Noneと同じ処理？パラメータは読み込まれる。None透過処理無し。Airで透過処理している時無効にできる。Add画像を半透明にする。アルファ値256,256の加算透過。Add1Addより暗い感じの半透明にする。アルファ値256,128の加算透過。Sub画像を影のように半透明にする。減算透過。AddAlpha下記のAlphaとセットで使うのが普通。 Alpha = ソースアルファ, デスティネーションアルファ 型整数, 整数 省略時;変更なし 透過型が\"AddAlpha\"の場合に指定します。有効範囲は0(低)から256(高)です。ソースアルファは、透過させるスプライトの透過度、デスティネーションアルファは、スプライト透過の目的となるピクセル(背景と考えると、実際には異なるが、わかり易い)の透過度、ということになります。 IgnoreHitPause = ヒット停止中も処理するか 型0か1 省略時0 最小値0 最大値1 HitPauseTime（ヒット停止）中に、このステートコントローラーを評価・実行するかを指定します。0（既定）: ヒット停止中は評価されません。1: ヒット停止中も評価・実行されます。値は0/1の整数定数のみです（var等の式は使用不可）。注意: ヒット停止中はIgnoreHitPause=1のステコンだけが実行・内部制限カウントの対象になる挙動が報告されており、通常制作では問題になりませんが、極端な条件下では想定外の挙動が起きる可能性があります。補足: [StateDef -3]は投げ等で他者のステートデータを使用している間はチェックされないため、IgnoreHitPauseを1にしても走らない局面があります。IKEMEN GO: ZSSの後方互換性対応や挙動整合のため、IgnoreHitPause周辺はリリース間で修正・拡張が入っています。MUGENと完全一致しないケースもあり得るため、互換性重視のコードは対象ビルドで挙動確認してください。 Persistent = 実行頻度（トリガー成立回数の間引き） 型整数 省略時1 最小値0 最大値128 Persistent は、このステートコントローラーが「実行可能（発火）」になった回数を基準に、実行頻度を間引くための共通パラメーターです。まず「トリガー成立（= 実行可能）」の定義は次のとおりです。triggerall は共通の前提条件（AND）です。triggerall が偽のフレームでは、trigger1 以降が成立していても発火しません。trigger1 / trigger2 / trigger3 ... は番号ごとにグループで評価されます。同じ番号（例：trigger1 が複数行）は AND（全部真ならその番号グループが真）。番号が違うグループ同士（trigger1 と trigger2 など）は OR（どれか1つのグループが真なら発火）。この「発火（トリガー成立）」が起きた回数に対して、Persistent は次のように動作します。1（既定）: 発火するたびに毎回実行します。0: そのステートにいる間は最初の1回だけ実行します（ステートを離れて戻るとカウントはリセットされ、再び1回実行可能になります）。N（2以上）: 発火したN回に1回だけ実行します。例：発火が毎フレーム続く（= 毎フレーム発火条件が真）なら、見かけ上はNフレームに1回の実行になります。発火が断続的な場合は、実行間隔も断続的になります（“フレーム”ではなく“発火回数”で数えるため）。値に指定できるのは整数定数のみです（var/fvar/sysvar を含む式は不可）。注意: 一部の解析記事では、エンジン内部でステート内のステートコントローラーごとに「Persistent用のカウンタ」が確保され、最大512個相当まで管理される、と説明されています。極端に大量のステートコントローラーを1つのステートに詰め込む設計は、可読性だけでなく実装上の制約にも触れやすいため、常時処理が肥大化している場合は分割・整理を推奨します。 仕様・バグ・エラー・変更点BindTime=0でPosTypeを指定していてもPosType=Leftとして扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。未検証：AfterImage系統と異なり、ModifyExplodを用いてもRemoveTimeで消えるまでの残り時間は変わらない。バグAnimとOwnPalは設定出来ません。仕様Pos、Facing、VFacing、Vel、Accel、RandomはPosTypeも一緒に指定しなければ読み込まれない。SuperMoveTimeやPauseMoveTimeはModifyExplod自体のパラメータが変更されるだけで、対象となるExplodの該当する値を変更することはできない。警告文ILLEGAL POSBINDTIME FOR EXPLOD:BindTimeに-2以下警告文NEGATIVE EXPLOD RANDOM PARAM:Randomに-1以下警告文ILLEGAL REMOVETIME FOR EXPLOD:RemoveTimeに-3以下警告文ILLEGAL SHADOW COLOR:Colorに-2以下 コピペ用パラメーター一覧（省略時の挙動） [State 0, ModifyExplod]Type = ModifyExplodTrigger1 = 1ID = -1; Facing = ; 省略時: ;変更なし; VFacing = ; 省略時: ;変更なし; Pos = ; 省略時: ;変更なし; PosType = ; 省略時: P1 ;Version1.1からはNoneに変更されています。; Random = ; 省略時: ;変更なし; Vel = ; 省略時: ;変更なし; Accel = ; 省略時: ;変更なし; Scale = ; 省略時: ;変更なし; BindTime = ; 省略時: ;変更なし; OnTop = ; 省略時: ;変更なし; RemoveTime = ; 省略時: ;変更なし; SuperMoveTime = ; 省略時: ;変更なし; SprPriority = ; 省略時: ;変更なし; PauseMoveTime = ; 省略時: ;変更なし; SuperMove = ; 省略時: ;変更なし; Shadow = ; 省略時: ;変更なし; RemoveOnGethit = ; 省略時: ;変更なし; Trans = ; 省略時: ;変更なし; Alpha = ; 省略時: ;変更なしIgnoreHitPause = 0Persistent = 1 パラメーターの読み込み順 パラメーター読み込み順 ID 1 Facing 2 VFacing 3 Pos 4, 5 PosType ? Random 6, 7 Vel 8, 9 Accel 10, 11 Scale 12, 13 BindTime 14 OnTop 15 RemoveTime 16 SuperMoveTime 17 SprPriority 18 PauseMoveTime 19 SuperMove 20 Shadow 21, 22, 23 RemoveOnGethit 24 Trans ? Alpha 25, 26 IgnoreHitPause ? Persistent ? *バージョンや実行環境、パラメーターの指定の仕方によって、読み込まれる順番が変わる可能性があります。? は読み込み順が不明な項目です。 引用記事ModifyExplod - State Controller Reference(version 2002.04.14)ModifyExplod - State Controller Reference(version 1.0)ModifyExplod - State Controller Reference(version 1.1)ModifyExplod - M.U.G.E.N wikiModifyExplod - State ControllerModifyExplod - 東方夢幻館ModifyExplod - 地球の応接間 公開日:2008.06.05 最終更新日:2017.08.06 Home > MUGEN State Controller",
+  "sections": [
+    "Parameter",
+    "Version",
+    "DefaultParameter",
+    "LoadParameter",
+    "Quote"
+  ],
+  "links": [
+    {
+      "text": "パラメーター",
+      "href": "#Parameter"
+    },
+    {
+      "text": "仕様・注意点",
+      "href": "#Version"
+    },
+    {
+      "text": "コピペ用",
+      "href": "#DefaultParameter"
+    },
+    {
+      "text": "読み込み順",
+      "href": "#LoadParameter"
+    },
+    {
+      "text": "引用記事",
+      "href": "#Quote"
+    },
+    {
+      "text": "Explod",
+      "href": "./../State/Explod.html"
+    },
+    {
+      "text": "ID",
+      "href": "#parameter-ID-0"
+    },
+    {
+      "text": "Facing",
+      "href": "#parameter-Facing-1"
+    },
+    {
+      "text": "VFacing",
+      "href": "#parameter-VFacing-2"
+    },
+    {
+      "text": "Pos",
+      "href": "#parameter-Pos-3"
+    },
+    {
+      "text": "PosType",
+      "href": "#parameter-PosType-4"
+    },
+    {
+      "text": "Random",
+      "href": "#parameter-Random-5"
+    },
+    {
+      "text": "Vel",
+      "href": "#parameter-Vel-6"
+    },
+    {
+      "text": "Accel",
+      "href": "#parameter-Accel-7"
+    },
+    {
+      "text": "Scale",
+      "href": "#parameter-Scale-8"
+    },
+    {
+      "text": "BindTime",
+      "href": "#parameter-BindTime-9"
+    },
+    {
+      "text": "OnTop",
+      "href": "#parameter-OnTop-10"
+    },
+    {
+      "text": "RemoveTime",
+      "href": "#parameter-RemoveTime-11"
+    },
+    {
+      "text": "SuperMoveTime",
+      "href": "#parameter-SuperMoveTime-12"
+    },
+    {
+      "text": "SprPriority",
+      "href": "#parameter-SprPriority-13"
+    },
+    {
+      "text": "PauseMoveTime",
+      "href": "#parameter-PauseMoveTime-14"
+    },
+    {
+      "text": "SuperMove",
+      "href": "#parameter-SuperMove-15"
+    },
+    {
+      "text": "Shadow",
+      "href": "#parameter-Shadow-16"
+    },
+    {
+      "text": "RemoveOnGethit",
+      "href": "#parameter-RemoveOnGethit-17"
+    },
+    {
+      "text": "Trans",
+      "href": "#parameter-Trans-18"
+    },
+    {
+      "text": "Alpha",
+      "href": "#parameter-Alpha-19"
+    },
+    {
+      "text": "IgnoreHitPause",
+      "href": "#parameter-IgnoreHitPause-20"
+    },
+    {
+      "text": "Persistent",
+      "href": "#parameter-Persistent-21"
+    },
+    {
+      "text": "ModifyExplod - State Controller Reference(version 2002.04.14)",
+      "href": "/MUGEN/document/Official/2002.04.14/sctrls.html#ModifyExplod"
+    },
+    {
+      "text": "ModifyExplod - State Controller Reference(version 1.0)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs/sctrls.html#modifyexplod"
+    },
+    {
+      "text": "ModifyExplod - State Controller Reference(version 1.1)",
+      "href": "https://web.archive.org/web/http://www.elecbyte.com/mugendocs-11b1/sctrls.html#modifyexplod"
+    },
+    {
+      "text": "ModifyExplod - M.U.G.E.N wiki",
+      "href": "https://web.archive.org/web/http://elecbyte.com/wiki/index.php/ModifyExplod"
+    },
+    {
+      "text": "ModifyExplod - State Controller",
+      "href": "/redirect/?url=homotaro.s44.xrea.com/pukiwiki/pukiwiki.php?ModifyExplod&protocol=http"
+    },
+    {
+      "text": "ModifyExplod - 東方夢幻館",
+      "href": "http://kurogane452.g.ribbon.to/Filefyx/sctrls_main.html#ModifyExplod"
+    },
+    {
+      "text": "ModifyExplod - 地球の応接間",
+      "href": "http://www.purple.dti.ne.jp/earth/mugen/statebook/state4.htm"
+    },
+    {
+      "text": "Home",
+      "href": "/"
+    },
+    {
+      "text": "MUGEN State Controller",
+      "href": "./"
+    }
+  ],
+  "media": [
+    "./media/img/PosType_P1.png",
+    "./media/img/PosType_P2.png",
+    "./media/img/PosType_Front_1.png",
+    "./media/img/PosType_Back_1.png",
+    "./media/img/PosType_Left_Explod.png",
+    "./media/img/PosType_Right_Explod.png",
+    "./media/img/PosType_None.png"
+  ],
+  "code": [
+    "[State 0, ModifyExplod]",
+    "Type                       = ModifyExplod",
+    "Trigger1                   = 1",
+    "ID                         = -1",
+    "; Facing                   =        ; 省略時: ;変更なし",
+    "; VFacing                  =        ; 省略時: ;変更なし",
+    "; Pos                      =        ; 省略時: ;変更なし",
+    "; PosType                  =        ; 省略時: P1 ;Version1.1からはNoneに変更されています。",
+    "; Random                   =        ; 省略時: ;変更なし",
+    "; Vel                      =        ; 省略時: ;変更なし",
+    "; Accel                    =        ; 省略時: ;変更なし",
+    "; Scale                    =        ; 省略時: ;変更なし",
+    "; BindTime                 =        ; 省略時: ;変更なし",
+    "; OnTop                    =        ; 省略時: ;変更なし",
+    "; RemoveTime               =        ; 省略時: ;変更なし",
+    "; SuperMoveTime            =        ; 省略時: ;変更なし",
+    "; SprPriority              =        ; 省略時: ;変更なし",
+    "; PauseMoveTime            =        ; 省略時: ;変更なし",
+    "; SuperMove                =        ; 省略時: ;変更なし",
+    "; Shadow                   =        ; 省略時: ;変更なし",
+    "; RemoveOnGethit           =        ; 省略時: ;変更なし",
+    "; Trans                    =        ; 省略時: ;変更なし",
+    "; Alpha                    =        ; 省略時: ;変更なし",
+    "IgnoreHitPause             = 0",
+    "Persistent                 = 1"
+  ]
+}

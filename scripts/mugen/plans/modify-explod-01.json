@@ -1,0 +1,2141 @@
+{
+  "id": "modify-explod-01",
+  "reviewed_on": "2026-10-09",
+  "description": "ModifyExplodの対象IDと更新時省略値を整理。旧20項目/9履歴/図/順を保持し、1.0の位置併記と2値Scaleを公開、停止値/1.1新書式/未測定警告を内部へ。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "ModifyExplod",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-local-2002",
+            "title": "ModifyExplod — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ModifyExplod",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-local-1.0",
+            "title": "ModifyExplod — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#modifyexplod",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-local-1.1",
+            "title": "ModifyExplod — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#modifyexplod",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-explod-1.0",
+            "title": "Explodのパラメーター定義 — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#explod",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-trans-1.0",
+            "title": "Transのパラメーター定義 — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#trans",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-explod-1.1",
+            "title": "Explodのパラメーター定義 — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#explod",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-trans-1.1",
+            "title": "Transのパラメーター定義 — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#trans",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-legacy",
+            "title": "移行前の20項目・9履歴・図・引用",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/e5f29f76701bf7a2d93c2b9c4e7f065b50061c1d/src/content/state-controllers/ModifyExplod.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-chaos",
+            "title": "対象選択・結合・経過時間の研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/219.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-explod-chaos",
+            "title": "Explodの生成・更新順・停止の研究 — CHAOS",
+            "url": "https://w.atwiki.jp/mugencns/pages/216.html",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "modifyexplod-warnings",
+            "title": "旧警告の引用先 — MUGENの便覧（今回本文取得不可）",
+            "url": "http://mugenbinran.web.fc2.com/error.html#12",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "page_category": "作成済みExplodの設定変更",
+            "description": "<p>実行者が作成した、既に表示中のExplodの設定を変更します。<code>ID</code>で対象を選び、変更するパラメーターを指定します。同じIDのExplodが複数ある場合は、それらをまとめて対象にします。新しいExplodを作成する命令ではありません。</p><p>変更項目を省略した場合は、その項目を変更しません。生成時の<code>Explod</code>の省略値を、変更時の値として入れ直す必要はありません。MUGEN 1.0で位置を変更する場合は、<code>Pos</code>と<code>PosType</code>を一緒に指定します。</p>",
+            "associated_state": [
+              "Explod",
+              "ExplodBindTime",
+              "RemoveExplod"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "source_code",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "modifyexplod-local-2002",
+                "modifyexplod-local-1.0",
+                "modifyexplod-local-1.1",
+                "modifyexplod-legacy",
+                "modifyexplod-chaos"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": -1,
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-chaos"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "変更するExplodのID"
+            ],
+            "description": "<p>実行者が作成したExplodのうち、変更対象のIDを整数式で指定します。省略時または<code>-1</code>は実行者が作成した全Explodを対象にします。同じIDに複数ある場合はすべてが対象です。対象が存在しない場合は変更を行いません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-chaos"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>左右の向きを指定します。<code>1</code>はPosTypeで決まる正のX方向、<code>-1</code>はその逆方向です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>上下の向きを指定します。<code>1</code>は通常の向き、<code>-1</code>は上下反転です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "X位置, Y位置"
+            ],
+            "description": "<p>基準点からのX・Yの位置を変更します。MUGEN 1.0では<code>PosType</code>を併記し、どの基準点からの位置かを指定します。</p>",
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "Pos変更時に併記（MUGEN 1.0）",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧読み込み順の疑問符を保持。順番は推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "位置の基準点"
+            ],
+            "description": "<p>MUGEN 1.0でPosを変更するときに、位置の基準点を指定します。下表は1.0のExplodで定義されている基準です。画面端の指定ではYの基準は画面上端です。</p>",
+            "hide_legacy": [
+              "possible_value"
+            ],
+            "possible_value": [
+              [
+                "指定値",
+                "MUGEN 1.0の基準"
+              ],
+              [
+                "P1",
+                "実行者の基準軸。正のXは実行者の正面方向"
+              ],
+              [
+                "P2",
+                "相手の基準軸。正のXは相手の正面方向"
+              ],
+              [
+                "F / front",
+                "実行者の正面側の画面端。Yは画面上端"
+              ],
+              [
+                "B / back",
+                "実行者の背面側の画面端。Yは画面上端"
+              ],
+              [
+                "L / left",
+                "画面左上。正のXは右方向"
+              ],
+              [
+                "R / right",
+                "画面右上。正のXは右方向"
+              ]
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "X範囲, Y範囲"
+            ],
+            "description": "<p>位置に加えるランダムなずれの範囲を指定します。1.0のExplod資料では<code>Random = 40, 80</code>はXが<code>-20～19</code>、Yが<code>-40～39</code>の範囲です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            6,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            6,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            6,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            6,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "X速度, Y速度"
+            ],
+            "description": "<p>ExplodのX・Y速度を指定します。1.0のExplod資料では、Xの方向はExplodの向きを基準にします。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            7,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            7,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            7,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            7,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "X加速度, Y加速度"
+            ],
+            "description": "<p>ExplodのX・Y加速度を指定します。各値は浮動小数点数の式です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            8,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            8,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            8,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            8,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "横縮尺, 縦縮尺"
+            ],
+            "type": [
+              "float",
+              "float"
+            ],
+            "description": "<p>横と縦の縮尺を2つの浮動小数点数で指定します。<code>Scale = 1, 1</code>は横・縦とも元の大きさです。省略時に<code>1, 1</code>へ戻す命令ではありません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            9,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            9,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            9,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            9,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "基準点との結合時間"
+            ],
+            "description": "<p>基準点からの相対位置を保つ時間をtickで指定します。結合中は基準点の移動に追従します。<code>-1</code>は結合を継続する指定です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            10,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            10,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            10,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            10,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "最前面表示フラグ"
+            ],
+            "description": "<p><code>1</code>はExplodを通常のスプライト・背景レイヤーより手前に表示し、<code>SprPriority</code>より優先します。<code>0</code>はSprPriorityに従う表示です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            11,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            11,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            11,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            11,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "消滅までの時間"
+            ],
+            "description": "<p>Explodの消滅時間を指定します。Explodの定義では<code>-1</code>は時間による消滅なし、<code>-2</code>はアニメーション終了時の消滅です。指定したIDを条件に応じて明示的に消す場合は、<code>RemoveExplod</code>を使います。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            12,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            12,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            12,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            12,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            13,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            13,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            13,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            13,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "スプライト表示優先順位"
+            ],
+            "description": "<p>数値が大きいスプライトほど手前に表示します。<code>OnTop = 1</code>の表示は、この優先順位より優先されます。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            14,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            14,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            14,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            14,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            15,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            15,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            15,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            15,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            16,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            16,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            16,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            16,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "赤成分, 緑成分, 青成分（1.0）"
+            ],
+            "description": "<p>MUGEN 1.0のExplod形式では、影を赤・緑・青の3つの整数で指定します。各成分は<code>0～255</code>で、<code>0, 0, 0</code>は影なしです。赤成分を<code>-1</code>にすると、ステージの影色を使います。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            16,
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            17,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            17,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            17,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            17,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "被弾時の消滅フラグ"
+            ],
+            "description": "<p><code>1</code>にすると、作成者が攻撃を受けたときにExplodを消滅させます。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-legacy",
+                "modifyexplod-explod-1.0",
+                "modifyexplod-local-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            18,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            18,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            18,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧読み込み順の疑問符を保持。順番は推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            18,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "透過処理"
+            ],
+            "description": "<p>AIRの透過設定を上書きします。下表はMUGEN 1.0のTransで定義された指定値です。<code>AddAlpha</code>では<code>Alpha</code>を併記します。<code>Default</code>と<code>None</code>は別の指定です。</p>",
+            "possible_value": [
+              [
+                "指定値",
+                "MUGEN 1.0の処理"
+              ],
+              [
+                "Default",
+                "透過設定を変更しない"
+              ],
+              [
+                "None",
+                "透過を無効にする"
+              ],
+              [
+                "Add",
+                "加算透過"
+              ],
+              [
+                "AddAlpha",
+                "Alphaで指定した加算透過"
+              ],
+              [
+                "Add1",
+                "Alpha = 256, 128相当の加算透過"
+              ],
+              [
+                "Sub",
+                "減算透過"
+              ]
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-explod-1.0",
+                "modifyexplod-trans-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            18,
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            19,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "none",
+              "display": "変更しない",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "source_code",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            19,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            19,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。対象ビルド等は未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            19,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "ソース係数, 背景係数"
+            ],
+            "description": "<p>MUGEN 1.0の<code>Trans = AddAlpha</code>で、描くExplodと背景に用いる係数を2つの整数で指定します。範囲はそれぞれ<code>0～256</code>です。係数を省略するための既定値を、生成時のTransから流用しません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "source_code",
+                "official_document"
+              ],
+              "source_refs": [
+                "modifyexplod-explod-1.0",
+                "modifyexplod-trans-1.0"
+              ],
+              "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            19,
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen",
+            "runtime": [
+              "mugen-1.0"
+            ]
+          }
+        },
+        {
+          "path": [
+            "constraints"
+          ],
+          "value": [
+            {
+              "kind": "requires",
+              "parameters": [
+                "Pos",
+                "PosType"
+              ],
+              "description": "MUGEN 1.0で位置を変更する場合はPosとPosTypeを併記する。",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            },
+            {
+              "kind": "requires",
+              "parameters": [
+                "Trans",
+                "Alpha"
+              ],
+              "description": "MUGEN 1.0でTrans = AddAlphaを指定する場合はAlphaを併記する。",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-trans-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "BindTime=0でPosTypeを指定していてもPosType=Leftとして扱われるようになってしまうため、スプライトが画面外に消える・消えなくてもおかしな位置に表示される可能性がある。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-chaos"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "未検証：AfterImage系統と異なり、ModifyExplodを用いてもRemoveTimeで消えるまでの残り時間は変わらない。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-chaos"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              },
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "AnimとOwnPalは設定出来ません。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-chaos"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              },
+              "legacy_index": 2
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "Pos、Facing、VFacing、Vel、Accel、RandomはPosTypeも一緒に指定しなければ読み込まれない。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              },
+              "legacy_index": 3
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SuperMoveTimeやPauseMoveTimeはModifyExplod自体のパラメータが変更されるだけで、対象となるExplodの該当する値を変更することはできない。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-chaos"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              },
+              "legacy_index": 4
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "ILLEGAL POSBINDTIME FOR EXPLOD:BindTimeに-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-warnings"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              },
+              "legacy_index": 5
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE EXPLOD RANDOM PARAM:Randomに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-warnings"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              },
+              "legacy_index": 6
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "ILLEGAL REMOVETIME FOR EXPLOD:RemoveTimeに-3以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-warnings"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              },
+              "legacy_index": 7
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "ILLEGAL SHADOW COLOR:Colorに-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-warnings"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              },
+              "legacy_index": 8
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>MUGEN 1.0で位置を変えるときは、<code>Pos</code>と<code>PosType</code>を一緒に記述します。既存Explodを基準点へ結合する時間だけを変更したい場合は、<code>ExplodBindTime</code>の専用命令も使えます。</p>",
+              "environment": {
+                "engine": "mugen",
+                "runtime": [
+                  "mugen-1.0"
+                ]
+              },
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "modifyexplod-local-1.0"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧PosTypeの生成時P1/1.1からNoneという既定値と、F/Bの地面基準・P2最寄り・Nの図を保持。1.0資料はF/BのYを画面上端とする。1.1のExplod資料はP1/Noneをキャラのmugenversion条件で分け、Posをfloat2値とするが、ModifyExplodへの新書式の適用・省略時のPosTypeは個別未測定。PosTypeへ生成時の省略値をコピーしない。N/None・Space/BindID等を推測で追加しない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-local-1.0",
+                  "modifyexplod-local-1.1",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-explod-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧ShadowはRGB3整数。1.0のExplodもRGBだが、1.1のExplodは単一整数の描画フラグへ変更。ModifyExplodの実際の入力/効果を未測定のため1.1の型・更新例を生成せず、旧3値と21/22/23の順を保持。旧ILLEGAL SHADOW COLORの条件はColorと誤記している。実在しないColorパラメーターは追加しない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-explod-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>SuperMoveTime/PauseMoveTimeは対象Explodの値を変更できないという旧報告を保持。旧SuperMoveの無停止・SuperMoveTime=0時未読、負数永続の説明も保持。1.1のExplodはSuperMoveを非推奨節に残しているため廃止と断定しない。ModifyExplodの各値がどの実体へ適用されるか未確認なので3項目は内部保存し、更新できるという公開例を作らない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-explod-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧IgnoreHitPauseは省略/0/1で命令の実行とExplodアニメ停止が変わるという記録。Explodの公式IgnoreHitPause=1既定はアニメーションの独立性を説明し、共通コントローラーの実行条件とは別。ModifyExplodでの省略と明示0/1を測定せず、生成時の1を共通の0へ上書きしない。共通値と旧原文は保持。警告出典は2026-10-09の取得で503だったため条件・綴りの再確認は未完了。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-explod-1.1",
+                  "modifyexplod-warnings"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>CHAOSのBindTime=1連続指定例とRemoveTimeの生成後経過時間判定、BindTime=0の画面左上化・更新順を内部保持。BindTime=0の一般説明やRemoveTime更新による残時間リセットを保証しない。旧Randomの上端20/40と1.0公式の19/39、OnTopでSprPriority未読/ヒットスパーク順位、Scaleの第二値省略、Trans Default=None推定も原文保持。1.1のaddalpha/add1非推奨とAdd+AlphaをModifyExplodへ無条件適用しない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "modifyexplod-legacy",
+                  "modifyexplod-chaos",
+                  "modifyexplod-explod-chaos",
+                  "modifyexplod-explod-1.0",
+                  "modifyexplod-trans-1.0",
+                  "modifyexplod-trans-1.1"
+                ],
+                "comment": "2026-10-09: 保存済み公式のModifyExplod/Explod/TransとCHAOS本文を照合。資料上の確認であり、各ビルドの更新効果・解析順・停止中の処理は実機未測定。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample"
+          ],
+          "value": [
+            {
+              "title": "既に表示中のExplodの縮尺を変更する",
+              "description": "<p>実行者が作成したID=2300のExplodを対象に、横・縦とも2倍にします。画像を生成するExplodは別途必要です。位置など他の設定は記述しません。</p>",
+              "code": [
+                "[State 0, ModifyExplod]",
+                "Type = ModifyExplod",
+                "Trigger1 = Time = 0",
+                "ID = 2300",
+                "Scale = 2, 2"
+              ]
+            }
+          ]
+        }
+      ],
+      "review_notes": [
+        "初導入null。資料を照合した範囲を公開し、実機確認とは区別する。",
+        "生成時Explodの既定値・1.1の新パラメーターを更新時へ流用しない。"
+      ]
+    }
+  ]
+}

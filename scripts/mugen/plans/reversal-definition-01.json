@@ -1,0 +1,5828 @@
+{
+  "id": "reversal-definition-01",
+  "reviewed_on": "2026-10-09",
+  "description": "ReversalDefの原87項目・34履歴を保持し、当て身の必須属性・成功判定と共有設定を照合。効果不確実なHitDefコピーは内部へ。",
+  "documents": [
+    {
+      "collection": "state-controllers",
+      "name": "ReversalDef",
+      "additions": [
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "reversal-local-2002",
+            "title": "ReversalDef — 保存済み Elecbyte 2002.04.14",
+            "url": "/MUGEN/document/Official/2002.04.14/sctrls.html#ReversalDef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "reversal-local-1.0",
+            "title": "ReversalDef — 保存済み Elecbyte 1.0",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#reversaldef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "reversal-local-1.1",
+            "title": "ReversalDef — 保存済み Elecbyte 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#reversaldef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "reversal-hitdef-1.0",
+            "title": "当て身の共有設定 — 保存済み HitDef 1.0",
+            "url": "/MUGEN/document/Official/1.0/sctrls.html#hitdef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "reversal-hitdef-1.1",
+            "title": "当て身の共有設定 — 保存済み HitDef 1.1b1",
+            "url": "/MUGEN/document/Official/1.1b1/sctrls.html#hitdef",
+            "source_type": "official_document"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "reversal-history-2002",
+            "title": "2002.04.14のスパーク位置変更",
+            "url": "/MUGEN/document/Official/1.0/history.html#april-2002",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "reversal-history-rc6",
+            "title": "RC6の2002互換ステート更新修正",
+            "url": "/MUGEN/document/Official/1.0/history.html#version-1-0-rc6",
+            "source_type": "official_history"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            5,
+            "id"
+          ],
+          "value": "reversal-chaos"
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "reversal-legacy",
+            "title": "移行前の87定義・34履歴・FAQ・読み込み順",
+            "url": "https://github.com/bluesura/bluesura.github.io/blob/bfc14b67b59513ce9029cba59588d72702ec29d9/src/content/state-controllers/ReversalDef.json",
+            "source_type": "source_code",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "quote",
+            "-"
+          ],
+          "value": {
+            "id": "reversal-warnings",
+            "title": "旧警告の引用元 — MUGENの便覧",
+            "url": "http://mugenbinran.web.fc2.com/error.html#12",
+            "source_type": "community_documentation",
+            "visibility": "internal"
+          }
+        },
+        {
+          "path": [
+            "page",
+            "engine"
+          ],
+          "value": "mugen"
+        },
+        {
+          "path": [
+            "page",
+            "introduced_in"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "environment"
+          ],
+          "value": {
+            "engine": "mugen"
+          }
+        },
+        {
+          "path": [
+            "documentation"
+          ],
+          "value": {
+            "page_category": "当て身の属性と成功時の処理",
+            "description": "<p>実行者と相手の攻撃判定<code>Clsn1</code>同士が重なったとき、<code>Reversal.Attr</code>で指定した相手の攻撃に当て身を成立させます。通常の攻撃が相手の食らい判定へ当たるHitDefとは、判定枠の組み合わせが異なります。</p><p>成功時の停止・スパーク・音・ステート移行を設定します。成功を調べる側は<code>MoveHit</code>、当て身された側は<code>MoveReversed</code>を使います。<code>Projectile</code>そのものと、HitDefを持つHelper型の飛び道具は区別してください。</p><p>旧資料に複製されていたHitDef設定はJSONへ保持しています。当て身での効果が不確かな項目は、公開のパラメーター一覧とコピー欄へ含めていません。</p>",
+            "associated_state": [
+              "HitDef",
+              "HitOverRide",
+              "TargetState",
+              "TargetLifeAdd"
+            ],
+            "associated_trigger": [
+              "MoveHit",
+              "MoveReversed",
+              "NumTarget"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document",
+                "community_documentation"
+              ],
+              "source_refs": [
+                "reversal-local-2002",
+                "reversal-local-1.0",
+                "reversal-local-1.1",
+                "reversal-chaos"
+              ],
+              "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "required",
+              "display": "受け止める相手の攻撃属性を指定",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-local-2002",
+                  "reversal-local-1.0",
+                  "reversal-local-1.1"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            0,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "受け止める相手の姿勢属性, 攻撃種別..."
+            ],
+            "type": [
+              "属性",
+              "属性リスト"
+            ],
+            "description": "<p><code>Reversal.Attr = SA, NA, SA</code>のように、姿勢属性と攻撃種別をカンマで区切ります。この例は立ち・空中の通常打撃と必殺打撃が対象です。第1要素は<code>S</code>（立ち）・<code>C</code>（屈み）・<code>A</code>（空中）の組み合わせ、第2要素以降は<code>N</code>（通常）・<code>S</code>（必殺）・<code>H</code>（超必殺）と<code>A</code>（打撃）・<code>T</code>（投げ）・<code>P</code>（飛び道具属性）の組み合わせです。</p><p><code>Attr</code>が実行者側の攻撃属性を指定するのに対し、こちらは受け止める相手の属性のリストです。複数の姿勢属性と攻撃種別を列挙できます。</p>",
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "reversal-local-1.0",
+                "reversal-local-1.1",
+                "reversal-hitdef-1.0",
+                "reversal-hitdef-1.1"
+              ],
+              "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "省略時は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            1,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "実行者の攻撃属性"
+            ],
+            "type": [
+              "属性",
+              "属性"
+            ],
+            "description": "<p>当て身定義自身の攻撃属性を<code>Attr = S, NA</code>のように指定します。受け止める相手の属性を列挙する<code>Reversal.Attr</code>とは別です。CHAOSの研究には、属性付きReversalDefが相手のReversalDefやHitOverrideとの判定に関与することが記録されています。</p>",
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "community_documentation"
+              ],
+              "source_refs": [
+                "reversal-chaos"
+              ],
+              "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            2,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            3,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            4,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            5,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            6,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            6,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            6,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            6,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            7,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            7,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            7,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            7,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            8,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            8,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            8,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            8,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            9,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            9,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            9,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            9,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            10,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            10,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            10,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            10,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            11,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            11,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            11,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            11,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            12,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            12,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            12,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            12,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            13,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            13,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            13,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            13,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            14,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            14,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            14,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            14,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            15,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            15,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            15,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            15,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            16,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "省略時は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            16,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            16,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            16,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "当て身する相手を1人に制限するフラグ"
+            ],
+            "description": "<p>CHAOSの研究では、<code>0</code>なら1回の定義で別々の相手へ当て身を成立させられるとされています。同じ相手に繰り返し成立させるフラグとは異なります。省略時の値は今回の資料では確定していません。</p>",
+            "hide_legacy": [
+              "min_value",
+              "max_value"
+            ],
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "community_documentation"
+              ],
+              "source_refs": [
+                "reversal-chaos"
+              ],
+              "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            17,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            17,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            17,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            17,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            18,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            18,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            18,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            18,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            19,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            19,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            19,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            19,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            20,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            20,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            20,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            20,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            21,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0, 0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-local-1.0",
+                  "reversal-local-1.1",
+                  "reversal-hitdef-1.0",
+                  "reversal-hitdef-1.1"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            21,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            21,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            21,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "実行者の停止時間, 相手の揺れ時間"
+            ],
+            "description": "<p>当て身成功時の実行者の停止時間と、相手の揺れ時間を2つの整数で指定します。HitDefの共有設定です。省略時は<code>0, 0</code>です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "reversal-local-1.0",
+                "reversal-local-1.1",
+                "reversal-hitdef-1.0",
+                "reversal-hitdef-1.1"
+              ],
+              "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            22,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            22,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            22,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            22,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            23,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "derived",
+              "display": "プレイヤー変数の既定ヒット音",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-local-1.0",
+                  "reversal-local-1.1",
+                  "reversal-hitdef-1.0",
+                  "reversal-hitdef-1.1"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            23,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            23,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            23,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>当て身成功時の音をグループ番号・番号の2値で指定します。自分のSNDから使う場合は<code>HitSound = S1, 0</code>のように先頭へSを付けます。グループ番号の<code>-1</code>は無音です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "reversal-local-1.0",
+                "reversal-local-1.1",
+                "reversal-hitdef-1.0",
+                "reversal-hitdef-1.1"
+              ],
+              "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            24,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            24,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            24,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            24,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            25,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            25,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            25,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            25,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            26,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": -1,
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-local-1.0",
+                  "reversal-local-1.1",
+                  "reversal-hitdef-1.0",
+                  "reversal-hitdef-1.1"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            26,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            26,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            26,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>当て身成功時に実行者自身が移行するステート番号です。移行先を実行者側のCNSへ用意してください。省略時の<code>-1</code>では、この項目によるステート移行を指定しません。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "reversal-local-1.0",
+                "reversal-local-1.1",
+                "reversal-hitdef-1.0",
+                "reversal-hitdef-1.1"
+              ],
+              "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            27,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": -1,
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-local-1.0",
+                  "reversal-local-1.1",
+                  "reversal-hitdef-1.0",
+                  "reversal-hitdef-1.1"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            27,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            27,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            27,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>当て身成功時に相手を移行させる、実行者側のステート番号です。相手に使わせるステートを別途用意してください。省略時の<code>-1</code>では、この項目によるステート移行を指定しません。HitDefを持つHelperも対象になり得るため、Helperの処理を考慮して設計します。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "reversal-local-1.0",
+                "reversal-local-1.1",
+                "reversal-hitdef-1.0",
+                "reversal-hitdef-1.1"
+              ],
+              "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            28,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            28,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            28,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            28,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            29,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            29,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            29,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            29,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            30,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            30,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            30,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            30,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            31,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            31,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            31,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            31,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            32,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            32,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            32,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            32,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            33,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            33,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            33,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            33,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            34,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            34,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            34,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            34,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            35,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            35,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            35,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            35,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            36,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            36,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            36,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            36,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            37,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            37,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            37,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            37,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            38,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            38,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            38,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            38,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            39,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            39,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            39,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            39,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            40,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "derived",
+              "display": "CNSで設定したヒットスパーク",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-local-1.0",
+                  "reversal-local-1.1",
+                  "reversal-hitdef-1.0",
+                  "reversal-hitdef-1.1"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            40,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            40,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            40,
+            "documentation"
+          ],
+          "value": {
+            "description": "<p>当て身成功時のスパークのAIRアクション番号です。fightfx.airの番号を、自分のAIRから使う場合は<code>SparkNo = S2000</code>のように先頭へSを付けて指定します。<code>-1</code>はスパークなしです。音と異なり1値で指定します。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "reversal-local-1.0",
+                "reversal-local-1.1",
+                "reversal-hitdef-1.0",
+                "reversal-hitdef-1.1"
+              ],
+              "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            41,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            41,
+            "expression_policy"
+          ],
+          "value": "special_syntax"
+        },
+        {
+          "path": [
+            "parameter",
+            41,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            41,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            42,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "literal",
+              "value": "0, 0",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-local-1.0",
+                  "reversal-local-1.1",
+                  "reversal-hitdef-1.0",
+                  "reversal-hitdef-1.1"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            42,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            42,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            42,
+            "documentation"
+          ],
+          "value": {
+            "value": [
+              "相手のスパーク位置へ加えるX, Y"
+            ],
+            "description": "<p>相手のHitDefが指定した<code>SparkXY</code>へ加えるX・Yのオフセットです。実行者を基準とする絶対のスパーク位置ではありません。省略時は<code>0, 0</code>です。</p>",
+            "evidence": {
+              "status": "confirmed",
+              "basis": [
+                "official_document"
+              ],
+              "source_refs": [
+                "reversal-local-1.0",
+                "reversal-local-1.1",
+                "reversal-hitdef-1.0",
+                "reversal-hitdef-1.1"
+              ],
+              "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+            }
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            43,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            43,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            43,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            43,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            44,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            44,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            44,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            44,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            45,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            45,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            45,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            45,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            46,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            46,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            46,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            46,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            47,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            47,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            47,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            47,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            48,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            48,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            48,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            48,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            49,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            49,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            49,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            49,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            50,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            50,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            50,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            50,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            51,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            51,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            51,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            51,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            52,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            52,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            52,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            52,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            53,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            53,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            53,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            53,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            54,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            54,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            54,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            54,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            55,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            55,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            55,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            55,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            56,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            56,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            56,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            56,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            57,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            57,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            57,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            57,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            58,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            58,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            58,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            58,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            59,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            59,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            59,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            59,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            60,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            60,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            60,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            60,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            61,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            61,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            61,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            61,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            62,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            62,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            62,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            62,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            63,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            63,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            63,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            63,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            64,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            64,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            64,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            64,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            65,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            65,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            65,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            65,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            66,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            66,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            66,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            66,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            67,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            67,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            67,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            67,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            68,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            68,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            68,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            68,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            69,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            69,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            69,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            69,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            70,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            70,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            70,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            70,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            71,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            71,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            71,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            71,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            72,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            72,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            72,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            72,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            73,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            73,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            73,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            73,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            74,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            74,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            74,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            74,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            75,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            75,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            75,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            75,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            76,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            76,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            76,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            76,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            77,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            77,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            77,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            77,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            78,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            78,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            78,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            78,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            79,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            79,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            79,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            79,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            80,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            80,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            80,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            80,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            81,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            81,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            81,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            81,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            82,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            82,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            82,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            82,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            83,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            83,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            83,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            83,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            84,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            84,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            84,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            84,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            85,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            85,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            85,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "confirmed",
+            "basis": [
+              "maintainer_report"
+            ],
+            "comment": "既存の読み込み順は基本的に検証済みとの管理者確認（2026-09-07）。当て身で効果が有効かは別の論点。数値・括弧・逆順・カンマを含む原表記を保持。対象ビルドは未記録。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            85,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "parameter",
+            86,
+            "default"
+          ],
+          "value": [
+            {
+              "kind": "unknown",
+              "display": "ReversalDefでの省略時・効果は未確認",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code"
+                ],
+                "source_refs": [
+                  "reversal-legacy"
+                ],
+                "comment": "旧HitDefコピーの省略値・読み込み順を保持。読まれることから当て身で有効な効果を推定しない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "parameter",
+            86,
+            "expression_policy"
+          ],
+          "value": "expression"
+        },
+        {
+          "path": [
+            "parameter",
+            86,
+            "load_priority_evidence"
+          ],
+          "value": {
+            "status": "unverified",
+            "basis": [],
+            "source_refs": [],
+            "comment": "旧疑問符・調査中・可変長表記を保持。読み込み順を推定しない。"
+          }
+        },
+        {
+          "path": [
+            "parameter",
+            86,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            0,
+            "visibility"
+          ],
+          "value": "internal"
+        },
+        {
+          "path": [
+            "qanda",
+            "-"
+          ],
+          "value": {
+            "q": "当て身が成功したことを調べるのはMoveHitとMoveReversedのどちら？",
+            "a": "<p>当て身する実行者側は<code>MoveHit</code>、当て身された相手側は<code>MoveReversed</code>です。MoveReversedを実行者側の成功判定へ使わないようにします。</p>"
+          }
+        },
+        {
+          "path": [
+            "notes"
+          ],
+          "value": [
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "HitDefを常時使用している「Helper」が、相手側の「Attr」を適切に設定していない「ReversalDef」に衝突すると<span class=\"warning\">”分身バグ”</span>が発生します。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-chaos"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 0
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "GivePowerが動作しない？オプションは読み込む？",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-chaos"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 1
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<code>RoundState=3</code>,<code>RoundState=4</code>ではパワーゲージが増減されません。<br>※ただし、パラメーターは読み込まれます。",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-chaos"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 2
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "ASSIGNED NEGATIVE HITID:IDに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 3
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED NEGATIVE HIT PRIORITY:Priorityに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 4
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED NEGATIVE PAUSETIME:PauseTime第1引数に-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 5
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED NEGATIVE P2SHAKETIME:PauseTime第2引数に-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 6
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE GUARD.P1PAUSETIME:Guard.PauseTIME第1引数に-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 7
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE GUARD.P2SHAKETIME:Guard.PauseTIME第2引数に-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 8
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "ILLEGAL SPARK NO:SparkNoに-3以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 9
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "ILLEGAL GSPARK NO:Guard.SparkNoに-3以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 10
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED ILLEGAL SOUND GROUP:HitSound第1引数に-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 11
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED ILLEGAL SOUND NO:HitSound第2引数に-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 12
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED ILLEGAL GSOUND GROUP:GuardSound第1引数に-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 13
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED ILLEGAL GSOUND NO:GuardSound第2引数に-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 14
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE GROUND.P2SLIDTIME:Ground.SlideTimeに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 15
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE GUARD.P2SLIDTIME:Guard.SlideTimeに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 16
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE GROUND.P2HITTIME:Ground.HitTimeに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 17
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE GUARD.P2HITTIME:Guard.HitTimeに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 18
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE AIR．P2HITTIME:Air.HitTimeに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 19
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE GUARD.P2CTRLTIME:Guard.CtrlTimeに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 20
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED ILLEGAL P2BINDTIME:snapの第4引数に-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 21
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE AIR．P2CTRLTIME:Air.CtrlTimeに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 22
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED NEGATIVE P1STATENO:P1SteteNoに-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 23
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED NEGATIVE P2STATENO:P2SteteNoに-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 24
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED NEGATIVE RECOVERTIME:RecoverTimeに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 25
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE DOWN.P2HITTIME:DownHitTimeに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 26
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED NEGATIVE CHAINID:ChainIDに-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 27
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED NEGATIVE NOCHAINID:NoChainID第1引数に-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 28
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "SPECIFIED NEGATIVE NOCHAINID2:NoChainID第2引数に-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 29
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "INVALID PALFX TIME:Palfx.Timeに-2以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 30
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "INVALID PALFX MUL VALUE:PalFX.Mulに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 31
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE FREQ FOR ENVSHAKE:EnvShake.Freqに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 32
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "NEGATIVE FREQ FOR ENVSHAKE:Fall.EnvShake.Freqに-1以下",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-warnings"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              },
+              "legacy_index": 33
+            },
+            {
+              "kind": "version_change",
+              "change": "changed",
+              "at": "mugen-linux-2002.04.14",
+              "content": "<p>2002.04.14の履歴では、<code>SparkXY</code>が相手のHitDefのスパーク位置に加えるオフセットへ変更されています。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "reversal-history-2002"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            },
+            {
+              "kind": "version_change",
+              "change": "fixed",
+              "at": "mugen-1.0-rc6",
+              "environment": {
+                "engine": "mugen",
+                "compatibility_profile": [
+                  "mugen-compat-2002"
+                ]
+              },
+              "content": "<p>1.0 RC6の履歴には、2002互換キャラクターで<code>P1StateNo</code>と<code>P2StateNo</code>を指定した当て身の後、相手のステート更新が実行者より1tick遅れる問題の修正が記録されています。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_history"
+                ],
+                "source_refs": [
+                  "reversal-history-rc6"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            },
+            {
+              "kind": "behavior",
+              "content": "<p>実行者側の<code>MoveHit</code>で当て身成功を検出できます。当て身された側の<code>MoveReversed</code>とは参照する側が異なります。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "official_document",
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "reversal-local-2002",
+                  "reversal-local-1.0",
+                  "reversal-local-1.1",
+                  "reversal-chaos"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            },
+            {
+              "kind": "limitation",
+              "content": "<p>CHAOSの解説では、Projectileそのものは当て身の対象外で、HitDefを持つHelper型の飛び道具とは異なるとされています。<code>Reversal.Attr</code>に飛び道具属性のPを含めても、この2種類が同じ対象になるわけではありません。</p>",
+              "evidence": {
+                "status": "confirmed",
+                "basis": [
+                  "community_documentation"
+                ],
+                "source_refs": [
+                  "reversal-chaos"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>原本の「HitDefの丸コピ」87項目を保持。公式の共有5項目と備考のSparkXY、CHAOSで用途を説明したAttr/HitOnceを公開し、他78項目は効果を断定しない内部定義へ。ID・Fall系はCHAOSにも検証不足の記載がある。読み込み順の管理者確認と有効な効果・省略時動作を区別する。Damage使用不可との報告、GivePower疑問符、RoundState3/4のゲージ増減も保持。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-chaos"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>HitDefとReversalDefの上書き・状態変更による解除、MoveTypeに依存しない成立、同じ相手は1定義1回という報告を保持。HitOnceの旧0省略と投げ属性時1は、ReversalDefでの省略を測定していないためunknown。空のReversal.AttrによるHitDefキャンセル、読み込み順と実行順・判定順は別に検証する。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-chaos"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>Helper分身の旧FAQと全版共通という原履歴を保持。Attr付きReversalDefとHitOverride/P2StateNo、無敵消去や同時HitDefの影響というCHAOS報告には環境切り分けが必要。必ずHitOverride/DestroySelfを使うという万能の公開対策を外し、相手用ステートの設計・Helper対応は個別確認とする。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-chaos"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>永続ターゲット、消えたHelper・死亡ステートのTarget関係、コンボ数のリセット、空属性・状態変更・死亡時の解除条件の疑問符を保持。旧版P1StateNo時のPrevStateNo未更新という報告と、公式RC6の2002互換の相手1tick遅れ修正は別事象であり同じ修正と断定しない。</p>",
+              "evidence": {
+                "status": "unverified",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-chaos"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            },
+            {
+              "kind": "research",
+              "visibility": "internal",
+              "content": "<p>旧Reversal.Attrの姿勢「いずれか」説明と公式SA複合の差、自分のAttrへのすべて属性のコピー、SparkNo=S2000,0の2値、SparkXYの通常ヒット/ガード用絶対位置文を保持し公開訂正。原本のPalFX図2枚・候補表・AllPalFX消去説明、Fall.EnvShake型差・YAccel相手依存・Down.Bounce逆条件も内部に保持。31警告のログ/適用可否・便覧本文は今回実機未確認、綴りを元にP1SteteNo等の架空パラメーターを生成しない。</p>",
+              "evidence": {
+                "status": "conflicting",
+                "basis": [
+                  "source_code",
+                  "community_documentation",
+                  "official_document"
+                ],
+                "source_refs": [
+                  "reversal-legacy",
+                  "reversal-local-2002",
+                  "reversal-local-1.0",
+                  "reversal-local-1.1",
+                  "reversal-hitdef-1.0"
+                ],
+                "comment": "2026-10-09: 公式2002/1.0/1.1とCHAOS本文の記載を照合。MUGENの実機試験ではない。"
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "code_sample"
+          ],
+          "value": [
+            {
+              "title": "立ち・空中の打撃を受け止めて自分を801へ移行する",
+              "description": "<p>実行者の当て身ステートで使う例です。使用するAIRにClsn1を用意し、自分の移行先ステート801をCNSへ定義してください。相手のステート移行やダメージはこの例では指定していません。</p>",
+              "code": [
+                "[State 800, ReversalDef]",
+                "Type = ReversalDef",
+                "Trigger1 = Time = 0",
+                "Reversal.Attr = SA, NA, SA",
+                "PauseTime = 12, 12",
+                "SparkNo = -1",
+                "HitSound = -1, 0",
+                "P1StateNo = 801"
+              ]
+            }
+          ]
+        }
+      ],
+      "review_notes": [
+        "初導入null。MUGEN実機未測定。公式非掲載だけで削除しない。",
+        "CHAOSのAttr/HitOnce説明と検証不足のID/Fallを分ける。旧FAQ・バグ・警告・読み込み順を原位置に保存。"
+      ]
+    }
+  ]
+}
